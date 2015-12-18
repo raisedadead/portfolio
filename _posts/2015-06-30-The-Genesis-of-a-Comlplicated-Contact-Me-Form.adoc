@@ -6,7 +6,7 @@ Okay so here's the deal:
 
 I have simple one pager web resume, hosted via Github Pages. If you are a fan you should be aware that Github Pages serve static pages only.
 
-But for the fun and the fans (which I apprently don't have any), I wanted to have a contact form too, that would send me a message from the page to my inbox. Now Github doesn't allow me to execute server side code, and JavaScript won't send an email from a browser, I am in a bit of jeopardy.
+But for the fun and the fans (which I apprently don't have any), I wanted to have a contact form too, that would send me a message from the page to my inbox. Now, Github doesn't allow me to execute server side code, and JavaScript won't send an email from a browser, so I am in a bit of jeopardy.
 
 == Solutions? 
 
