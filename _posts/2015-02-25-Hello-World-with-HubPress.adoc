@@ -1,0 +1,22 @@
+= Hello World! with HubPress
+:published_at: 2015-02-25
+:hp-tags: Non-Technical, Thoughts
+
+== Hello world!
+
+It’s been quite a while (actually ages) that I have been fiddling with so many ways to blog out there. Well for starters, blogger is the simplest way to get started with blogging. It allows you to use the templates, and standard YourBlogName.blogspot.com etc. URLs. Then there’s WordPress that can either be used on worpress.com or a on a private web-hosting service, with tons and tons of themes. Both allow custom domain names and are dynamic. So you could actually have a full-fledged e-commerce websites instead of blogs. Lately tumblr has taken up a lion’s share from the big guys albeit the flexibility of creating web sites.
+
+But for a casual blogger like me, lately static blogging platforms are a much more convenient way to put up awesome looking blogs at the cost of pennies and almost every time rather completely FREE, with services like GitHub Pages, etc.
+
+Most casual bloggers rarely need the dynamic content, simply put whenever someone is reading your blog the generation of the blog page needn’t be on the fly from some heavy MySQL database. The content in the blogs are rather static texts. But of course instead of creating hard coded HTML pages from scratch it would be great to have frameworks generate the pages for you while you provide the static text content the first time.
+Voila you have Jekyll. It’s the awesomeness of Jekyll that generates those beautiful template-friendly static sites, and of course blogs on GitHub Pages and any other web-hosting service that provides a basic Linux box. Good bye databases. 
+
+So we know that Jekyll is awesome, it’s in ruby and uses tons of other plugins, gems to bring in powers of having a static websites with twitter feeds, facebook posts, images from Instagram, 500px, and you name it, well this are kind of dynamic in their own way (I mean on the client side…), with every service provider having so many APIs out there to embed stuff into pages. Neat right?
+
+Now we need something that is simpler to manage, Jekyll is awesome but it is because it is Generic to generate static pages and whence for the most part left out to developers to decide the structure of the web site and the blog. This where the trouble starts for rookies including yours truly that how do you go about using Jekyll minus knowing how to structure the blog, separate drafts, themes, etc. that was so simple and one click in WordPress. Enter Octopress 2.0, it’s an amazing framework on top of Jekyll that gives you Jekyll blogs a beautiful boot strapped structure. It uses lots of great ruby gems to manage the heavy lifting for you. For instance using rake you create posts, stash them as drafts, change themes and publish to GitHub Pages, or rsync server via console commands. Feels like a hacker eh!
+
+But you see still essentially it is yet mostly to be used be developers, it takes away the noviceness from devs like me who don't know ruby, YAML etc. But still its a challange for people who just want a text editor and a GitHub hosted blog and not worry about anything else, here you stumble upon the awesomeness of HubPress. Its simply awesome in terms of the UX it gives to all alike. For novices you just fork a copy of hubpress and then do a little tinkering with the settings as mentioned in the docs. No installation required on any physical machine. Just a browser and that's all it needs.
+
+For the hackers out there you can go crazy in creating awesome templates in hbs (Express.js template engine plugin for Handlebars) and that's as simple as child's play. JavaScript devs like me will definitely go crazy with the possibilities that it opened up.
+
+So this being the first post written using HubPress, I must say so far that the deployment with a custom domain and other settings, its just done before you blink your eye. The text editor is the coolest distraction free environment you will every see. Just two words to end the stupidly long post because I was carried away in typing are: HUBPRESS ROCKS!
