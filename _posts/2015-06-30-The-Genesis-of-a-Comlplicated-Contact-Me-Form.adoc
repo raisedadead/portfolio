@@ -24,13 +24,4 @@ Okay let me cut the crap, and before you walk away, lets get started right away.
 
 == Steps:
 
-=== 1. Hosting the website via Github pages.
-
-Please check out the {url-gh-pages}[Github Pages] .
-Follow the official doumentations, and create a website.
-
-=== 2. Create the contact form
-
-
-
 === ...to be continued
