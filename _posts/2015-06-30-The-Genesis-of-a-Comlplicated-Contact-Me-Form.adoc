@@ -1,6 +1,6 @@
 = The Genesis of a Comlplicated Contact Me Form
 :published_at: 2015-06-30
-:hp-tags: Technical, NodeJS, reCaptcha, Firebase, Zapier,
+:hp-tags: Technical, NodeJS, reCaptcha, Firebase, Zapier
 
 == Connecting Web Services Example
 
