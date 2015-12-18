@@ -1,0 +1,25 @@
+= Introducing me to MEAN Stack and SailsJS
+:published_at: 2015-04-07
+:hp-tags: Non-Technical, Geeky, NodeJS	
+
+== Not a fullstack developer, but do I care!
+
+I am not a fullstack developer. But that hasn't so far stopped me from trying to be one. A fullstack developer is one who can design and code applications typically on a network or a cloud based platform from end to end. That means the back-end logic, the database mappings, the front-end logic, the UI, everything.
+
+Well basically I have spent most of my budding coding years with C++ and developing applications on Windows Native Platform, with COM, MFC, etc. I am clueless more or less on how the world of fullstack developers work.
+
+So one fine night while I was researching on the bold stuff. I happened to be inspired by a good friend to check out the nodejs platfrom. I recently started working on some of the JavaScript frameworks at my day job, so I kind of started liking node, the simple architecture, and the awesomeness of MVC design.
+
+Also since database admittingly is one my weakest points (I just hate SQL queries), I instantly fell in love with NoSQL. This partly happened because Mongo is so sweet and because I love OOPS. Objects are my daily staple. So be it C++, or JavaScript. I like the way they work.
+
+And then finally I get a challenge from my brother, to design and develop this application for his recent startup. The problem is he needs a simple and really simple backend app for his e-commerce venture. Needs to manage the inventory. Generate invoices and stuff.
+
+But long term stable planning is quite some months away, so for starters, tonight I am going to start developing a very basic app to manage his warehouse.
+
+=== The Challenge
+
+Develop something real fast.
+
+
+
+=== ... to be continued
