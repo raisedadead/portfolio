@@ -22,11 +22,9 @@ Grab a beer. Connect the Github static page to a Firebase NoSQL backend, that pi
 
 Sounds way to complex for a contact me form? Well I warned you!
 
-Having said that, this second one has one benifit. This will get me to learn a couple of things, about these amazing tools (PaaS, SaaS, whatever you want to call them). 
+Having said that, this has one benefit. It will probably get me to learn a couple of things, about these amazing tools (PaaS, SaaS, whatever you want to call them), and hopefully help you too, in your applications.
 
-Steps? Please be patient. I am only blogging and configuring things at the same time...
-
-Okay, fine! Before you walk away, lets get started, sorry about the swagger...o_0...!
+Steps? Sure why not? But please be patient. I am only blogging and configuring things at the same time... Hehheh, fine! Before you walk away, lets get started already..!
 
 == Steps:
 
