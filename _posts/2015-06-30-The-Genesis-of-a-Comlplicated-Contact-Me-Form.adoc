@@ -4,31 +4,40 @@
 
 Okay so here's the deal:
 
-I have simple one pager web resume, hosted via Github Pages. If are a fan you should be aware that Github Pages serve static pages only.
+I have simple one pager web resume, hosted via Github Pages. If you are a fan you should be aware that Github Pages serve static pages only.
 
-But for the fun and the fans (which I apprently don't have any), I wanted to have a contact form too, that would you know send me a message from the page via email. Now that github doesn't allow me to write server side code, and JavaScript cant send an email, I am facing a bit of trouble here ain't I?
+But for the fun and the fans (which I apprently don't have any), I wanted to have a contact form too, that would send me a message from the page to my inbox. Now Github doesn't allow me to execute server side code, and JavaScript won't send an email from a browser, I am in a bit of jeopardy.
 
-== Solutions: 
+== Solutions? 
 
-There are two solutions.
+Well there are two.
 
-====== Solution 1: 
-Host the resume on a hosting service. Go to Sleep. Period.
+====== Solution 1: As easy as a walk in the park. 
 
-====== Solution 2: 
-Grab a beer. Connect the Github static page to a Firebase NoSQL backend, that pings a Zapier webhook, which delivers a payload to a mandrill service that sends me my damn email. With an additional complexity of adding a Google reCaptcha to the page that can be authenticated from my micro tiny heroku staged app.
+Put up the resume with a webhost. Go to Sleep. Period.
+
+====== Solution 2: NOT so easy as a walk in the park.
+
+Grab a beer. Connect the Github static page to a Firebase NoSQL backend, that pings a Zapier webhook, which delivers a payload to a Mandrill service that sends me my damn email. With an additional complexity of adding a Google reCaptcha to the page that can be authenticated from my micro tiny Heroku staged application.
 
 Sounds way to complex for a contact me form? Well I warned you!
 
-Having said, that I guess this will get me learning a couple of things, about these amazing tools (PaaS, SaaS, whatever you want to call them). 
+Having said that, this second one has one benifit. This will get me to learn a couple of things, about these amazing tools (PaaS, SaaS, whatever you want to call them). 
 
-Steps? Please be patient. I am only blogging and configuring things at the same time...Okay let me cut the crap, and before you walk away, lets get started right away.
+Steps? Please be patient. I am only blogging and configuring things at the same time...
+
+Okay, fine! Before you walk away, lets get started, sorry about the swagger...o_0...!
 
 == Steps:
 
 ====== 1. Grab a beer:
-Just walk to your fridge.
 
-====== 2. Hold your thoughts, for a minute...
+For this one, just walk to your fridge.
+
+====== 2. Put up a page on Github Pages.
+
+Google this one too, please. Or if your too lazy to do that, just fork my website, do your changes and push it back to github. (To your fork, NOT mine!!).
+
+While you are at it let me get started, and I'll fill you in on more.
 
 === ...to be continued
