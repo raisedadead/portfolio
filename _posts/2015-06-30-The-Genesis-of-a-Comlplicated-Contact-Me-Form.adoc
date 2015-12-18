@@ -2,27 +2,33 @@
 :published_at: 2015-06-30
 :hp-tags: Technical, NodeJS, reCaptcha, Firebase, Zapier
 
-== Connecting Web Services Example
+Okay so here's the deal:
 
-A guide to a overwhelmingly complex application, that is yet so small and simple.
-
-I have simple one pager web resume, hosted via Github Pages. We all know that Github Pages serve static pages only.
+I have simple one pager web resume, hosted via Github Pages. If are a fan you should be aware that Github Pages serve static pages only.
 
 But for the fun and the fans (which I apprently don't have any), I wanted to have a contact form too, that would you know send me a message from the page via email. Now that github doesn't allow me to write server side code, and JavaScript cant send an email, I am facing a bit of trouble here ain't I?
 
-Solution: There are two solutions.
+== Solutions: 
 
-Solution 1: Host the resume on a hosting service. Period.
+There are two solutions.
 
-Solution 2: Develop an app that does all this while, leveraging the amazing technologies, and services and in the process learn a thing or two.
+====== Solution 1: 
+Host the resume on a hosting service. Go to Sleep. Period.
 
-Well, as you have guessed I am going withe the second one.
+====== Solution 2: 
+Grab a beer. Connect the Github static page to a Firebase NoSQL backend, that pings a Zapier webhook, which delivers a payload to a mandrill service that sends me my damn email. With an additional complexity of adding a Google reCaptcha to the page that can be authenticated from my micro tiny heroku staged app.
 
+Sounds way to complex for a contact me form? Well I warned you!
 
-Steps? Please be patient. I am onlu blogging and write the code and configuring things at the same time...
+Having said, that I guess this will get me learning a couple of things, about these amazing tools (PaaS, SaaS, whatever you want to call them). 
 
-Okay let me cut the crap, and before you walk away, lets get started right away.
+Steps? Please be patient. I am only blogging and configuring things at the same time...Okay let me cut the crap, and before you walk away, lets get started right away.
 
 == Steps:
+
+====== 1. Grab a beer:
+Just walk to your fridge.
+
+====== 2. Hold your thoughts, for a minute...
 
 === ...to be continued
