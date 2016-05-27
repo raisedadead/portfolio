@@ -1,7 +1,7 @@
 body {
   background-color: #f2f2f2;
-  font-family: "Lato"; /* OPTIONAL: Google Fonts - base font */
-  font-weight: 300;
+  font-family: "Raleway"; /* OPTIONAL: Google Fonts - base font */
+  font-weight: 400;
   font-size: 16px;
   color: #555;
 
@@ -12,7 +12,7 @@ body {
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway"; /* OPTIONAL: Google Fonts - title font */
-  font-weight: 300;
+  font-weight: 400;
   color: #333;
 }
 
@@ -92,7 +92,6 @@ a:after {
 .header h1 {
   font-size: 80px;
   color: white;
-  background: rgba(0,0,0,0.2);
 }
 
 .header h3 {
@@ -144,6 +143,7 @@ a:after {
 /* social icons: */
 .footer i {
   padding-right: 8px;
+  font-size: x-large;
   /*color: #1abc9c;*/
 }
 
