@@ -103,6 +103,11 @@ a:after {
   color: #fff;
 }
 
+.header img {
+  height: 10%;
+  width: 10%;
+}
+
 /* About Wrap */
 .about {
   background: #2c3e50;
