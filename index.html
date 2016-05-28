@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link href="images/favicon-32x32.png" rel="icon" sizes="32x32" type=
+    "image/png">
+    <link href="images/favicon-16x16.png" rel="icon" sizes="16x16" type=
+    "image/png">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">	
-    <!-- OPTIONAL: description -->
-    <meta name="description" content="A resume of Mrugesh Mohapatra">
-    <meta name="author" content="Mrugesh Mohapatra">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="icon.png" />
-
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content=
+    "I am 27 and I love developing applications for Desk, Web and Mobile."
+    name="description">
+    <meta content="Mrugesh Mohapatra" name="author">
     <title>Mrugesh Mohapatra</title>
 
     <!-- Bootstrap core CSS -->
@@ -21,6 +24,7 @@
     <link href='//fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
 
 		<script src="//use.fontawesome.com/c172bf2bfd.js"></script>
+		<script src="js/jquery.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -35,12 +39,12 @@
 		<div class="container">
 			<div class="row centered">
 				<div class="col-lg-12">
+					<img alt="" src="images/profile.png">
 					<h1>Mrugesh Mohapatra</h1>
 					<h3>
 						Developer, Hardcore Music Addict. 
 						Die hard OpenSource Enthusiast. 
-						A budding Photographer. 
-						Born Free And Living Free.
+						A budding Photographer.
 					</h3>
 				</div><!--/.col-lg-12 -->
 			</div><!--/.row -->
@@ -64,7 +68,12 @@
           <p>I have a nerdy knowledge about programming in C++ and
           JavaScript. I am a trained professional on Image
           Processing, CAD & 3D Modelling.</p>
-      
+          
+          <div id="more-about-toggle">
+          	<p><i class="fa fa-caret-square-o-down"></i></p>
+          </div>
+          
+          <div id="more-about" style="visibility:hidden; height: 0px;">
           <p>My latest endeavours are Open Source projects in
           JavaScript (both on web and backend), including libraries
           and frameworks like Three.js, Node.js, MongoDB, Git and
@@ -91,13 +100,18 @@
           Besides being hooked to my Notebook, I love going to rock
           gigs and night-outs with my buddies. I believe in God but
           not in Symbols. I trust myself. I love being me.</p>
-          
 				</div>
-				<div class="col-lg-3">
+      </div>
+      
+      <div class="col-lg-3">
 					<!-- todo - download link -->
-					<p><a href="#" target="_blank"><i class="icon-file"></i> <sm>DOWNLOAD PDF</sm></a></p>
-				</div>
-				
+					<p>
+						<a href="#" target="_blank">
+							<i class="fa fa-download"></i><sm>GET THE CV</sm>
+						</a>
+					</p>
+			</div>
+
 			</div><!--/.row -->
 		</div><!--/.container -->
 	</div><!--/ #intro -->
@@ -105,6 +119,148 @@
 
 	<section id="resume" name="resume"></section>
 	
+	<!-- WORK SECTION -->
+	<div class="container desc">
+		<div class="row">
+
+				<div class="col-lg-2 col-lg-offset-1">
+					<h5>WORK</h5>
+				</div>
+
+				<div class="col-lg-6">
+					<p class="tight"><t>Senior Software Engineer</t><br/>
+						3DPLM Software Solutions Ltd. (R&D Lab for Dassault Systèmes)<br/>
+					</p>
+					<p>
+						<strong>
+							<sm>JavaScript, C++, CAA, CAD, WebGL, Three.js &nbsp;</sm>
+						</strong>
+          	<i id="more-job-1-toggle" class="fa fa-caret-square-o-down"></i>
+					</p>
+					<p>
+						<more id="more-job-1" style="visibility:hidden; height: 0px; display:none;">
+							Currently the role requires development of new features and 
+							prototype for the 3D Web Apps on the 3DExperience platform by 
+							Dassault Systemes. Challenges include prototyping Web Apps in 
+							JavaScript, HTML5, and modern web technologies, such as WebGL, 
+							ThreeJS, RequireJS, AMD, MVC, and more. Gained expertise on Web 
+							technologies as mentioned, which is yet again a new horizon, from 
+							the traditional technical background in previous engagements. The 
+							role also requires the browser plugins ( in C++ ), to be supported 
+							for the platform migrations and clients working with legacy 
+							systems. Have been an active member of the Techies Club and 
+							participated as a mentor in Hackathons conducted in house at 
+							3DPLM. Functional role requires mentoring and guiding junior team 
+							members in their assigned tasks and technical challenges.
+						</more>
+					</p>
+				</div>
+				<div class="col-lg-3">
+					<p>
+						<sm>
+								MAY 2015<br/>
+								PUNE, MH, INDIA<br/>
+							<imp>
+								CURRENT POSITION
+							</imp>
+						</sm>
+					</p>
+				</div>
+				
+				<div class="col-lg-6 col-lg-offset-3">
+					<p class="tight"><t>Software Engineer</t><br/>
+						3DPLM Software Solutions Ltd. (R&D Lab for Dassault Systèmes)<br/>
+					</p>
+					<p>
+						<strong>
+							<sm>JavaScript, C++, CAA, CAD, WebGL, Three.js &nbsp;</sm>
+						</strong>
+          	<i id="more-job-2-toggle" class="fa fa-caret-square-o-down"></i>
+					</p>
+					<p>
+						<more id="more-job-2" style="visibility:hidden; height: 0px; display:none;">
+							Got hands on expertise in developing, and supporting plugins for 
+							the CATIA - ENOVIA V5, V6 Product Suites. Technologies included 
+							browser plugins for Mozilla Firefox ( Gecko Infrastructure ) and 
+							Internet Explorer ( using ActiveX Infrastructure ). Learnt and 
+							developed modules in CAA, C++ using the Internal tool suite for 
+							Dassault Systemes. Key challenges included gaining a grasp on the 
+							CAD & PLM concepts, which is a paradigm shift from my past 
+							experience. During the period got exposure to prototyping new 
+							features for the 3D Viewer plugins. Functional role required 
+							participation and coordination in managing the team deliverables, 
+							while ensuring the quality benchmarks and high standards expected 
+							by Dassault Systems.
+						</more>
+					</p>
+				</div>
+				<div class="col-lg-3">
+					<p><sm>JUNE 2014 - MAY 2015<br/>
+					PUNE, MH, INDIA</sm></p>
+				</div>
+				
+				<div class="col-lg-6 col-lg-offset-3">
+					<p class="tight"><t>Project Engineer (Senior Developer)</t><br/>
+						Wipro Technologies<br/>
+					</p>
+					<p>
+						<strong>
+							<sm>Visual C++, MFC, COM, Win32 SDK, Image Processing &nbsp;</sm>
+						</strong>
+          	<i id="more-job-3-toggle" class="fa fa-caret-square-o-down"></i>
+					</p>
+					<p>
+						<more id="more-job-3" style="visibility:hidden; height: 0px; display:none;">
+							Gained Hands on Expertise in Developing and Maintaining 
+							Applications on Windows Platform with skills MFC and Command Line 
+							Utility Programming in Visual C++. Responsible in Designing, 
+							developing and Maintaining Image Processing Applications and 
+							frameworks. Key challenges included developing algorithms to 
+							support multiple Imaging formats, design and develop components of
+							the existing applications using COM modules, and Framework 
+							Libraries (DLL) to deliver quality products that have target 
+							platforms ranging from Windows XP to Windows 8.Gained upfront 
+							hands on skills in Visual Studio 2005, 2008 and 2010. Visual C++, 
+							Software Configuration Management, Windows API, MFC Application 
+							Development and CLI Application Development and COM and ATL.
+						</more>
+					</p>
+				</div>
+				<div class="col-lg-3">
+					<p><sm>FEBRUARY 2013 - JUNE 2014<br/>
+					PUNE, MH, INDIA</sm></p>
+				</div>
+				
+				<div class="col-lg-6 col-lg-offset-3">
+					<p class="tight"><t>Project Engineer (Junior Developer)</t><br/>
+						Wipro Technologies<br/>
+					</p>
+					<p>
+						<strong>
+							<sm>C, C++, Shell Scripting, Socket Programming &nbsp;</sm>
+						</strong>
+          	<i id="more-job-4-toggle" class="fa fa-caret-square-o-down"></i>
+					</p>
+					<p>
+						<more id="more-job-4" style="visibility:hidden; height: 0px; display:none;">
+							Trained in Unix Platform with expertise in C, C++, 
+							Shell Scripting, Socket Programming, Unix System Internals, RedHat 
+							and Unit Testing. Was responsible as a Junior Developer in a 
+							Classified Project that required critical development of code 
+							snippets in C, C++, Shell Script.
+						</more>
+					</p>
+				</div>
+				<div class="col-lg-3">
+					<p><sm>JANUARY 2012 - JANUARY 2013<br/>
+					PUNE, MH, INDIA</sm></p>
+				</div>
+				
+		</div><!--/.row -->
+		<br>
+		<hr>
+	</div><!--/.container -->
+
 	<!-- EDUCATION SECTION -->
 	<div class="container desc">
 		<div class="row">
@@ -115,8 +271,8 @@
 
 				<div class="col-lg-6">
 					<p><t>Bachelor of Technology in Computer Science and Engineering</t><br/>
-						Synergy Institute of Engineering and Technology, Dhenkanal.
-						<br/><i>Biju Patnaik University of Technology (BPUT).</i>
+						Synergy Institute of Engineering and Technology, Dhenkanal.<br/>
+						<em>Biju Patnaik University of Technology (BPUT).</em>
 					</p>
 				</div>
 				<div class="col-lg-3">
@@ -178,5 +334,46 @@
 			
 		</div><!--/.container -->
 	</div><!--/ #footer -->
+	
+	<script>
+		$(document).ready(function () {
+			
+      $("#more-about-toggle").click(function () {
+        $("#more-about").animate({height: '100%'}).css({
+        	'visibility':'visible'
+        }).show();
+        $(this).animate({height: '0px'}).hide();
+      });
+      
+      $("#more-job-1-toggle").click(function () {
+        $("#more-job-1").animate({height: '100%'}).css({
+        	'visibility':'visible'
+        }).show();
+        $(this).animate({height: '0px'}).hide();
+      });
+      
+      $("#more-job-2-toggle").click(function () {
+        $("#more-job-2").animate({height: '100%'}).css({
+        	'visibility':'visible'
+        }).show();
+        $(this).animate({height: '0px'}).hide();
+      });
+      
+      $("#more-job-3-toggle").click(function () {
+        $("#more-job-3").animate({height: '100%'}).css({
+        	'visibility':'visible'
+        }).show();
+        $(this).animate({height: '0px'}).hide();
+      });
+      
+      $("#more-job-4-toggle").click(function () {
+        $("#more-job-4").animate({height: '100%'}).css({
+        	'visibility':'visible'
+        }).show();
+        $(this).animate({height: '0px'}).hide();
+      });
+      
+    });
+	</script>
   </body>
 </html>
