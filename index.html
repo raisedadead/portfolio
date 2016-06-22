@@ -364,20 +364,25 @@
       <script>
          $(document).ready(function () {
 
+            var totalCount = 21;
+            var bg = Math.floor(Math.random() * totalCount);
+            var path = './images/backgrounds/' + bg + '.jpg';
+            $("#header").css('background', 'url(\'' + path + '\') no-repeat center top');
+
          	$(function() {
-			  $('a[href*="#"]:not([href="#"])').click(function() {
-			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			      var target = $(this.hash);
-			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			      if (target.length) {
-			        $('html, body').animate({
-			          scrollTop: target.offset().top
-			        }, 1000);
-			        return false;
-			      }
-			    }
-			  });
-			});
+   			   $('a[href*="#"]:not([href="#"])').click(function() {
+   			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+   			      var target = $(this.hash);
+   			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+   			      if (target.length) {
+   			        $('html, body').animate({
+   			          scrollTop: target.offset().top
+   			        }, 1000);
+   			        return false;
+   			      }
+   			    }
+   			  });
+   			});
 
          	$("#more-about-toggle").click(function () {
          		$("#more-about").animate({height: '100%'}).css({
