@@ -365,7 +365,7 @@
          $(document).ready(function () {
 
             var totalCount = 21;
-            var bg = Math.floor(Math.random() * totalCount);
+            var bg = Math.floor(Math.random() * totalCount) + 1;
             var path = './images/backgrounds/' + bg + '.jpg';
             $("#header").css('background', 'url(\'' + path + '\') no-repeat center top');
 
