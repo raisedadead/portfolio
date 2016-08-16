@@ -1,1 +1,1 @@
-### [mrugeshm.com](https://mrugeshm.com)
+Nothing fancy here, just one of my personal websites.
