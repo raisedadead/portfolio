@@ -1,0 +1,4 @@
+[submodule "resume"]
+	path = resume
+	url = https://github.com/raisedadead/resume.git
+	branch = master
