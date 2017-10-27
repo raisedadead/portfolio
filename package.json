@@ -1,16 +1,39 @@
 {
   "name": "raisedadead",
   "version": "0.1.0",
+  "description": "Nothing fancy here, just one of my personal websites.",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react-dom": "^16.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/prompt"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/config-angular": "^4.2.1",
+    "@commitlint/prompt": "^4.2.2",
+    "commitizen": "^2.9.6",
+    "react-scripts": "^1.0.14"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raisedadead/raisedadead.git"
+  },
+  "author": "mrugesh mohapatra <me@raisedadead.com> (https://raisedadead.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raisedadead/raisedadead/issues"
+  },
+  "homepage": "https://github.com/raisedadead/raisedadead#readme"
 }
