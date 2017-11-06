@@ -24,6 +24,10 @@
     ]
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "0.0.21",
+    "@fortawesome/fontawesome-free-brands": "0.0.18",
+    "@fortawesome/fontawesome-free-solid": "0.0.17",
+    "@fortawesome/react-fontawesome": "0.0.12",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
