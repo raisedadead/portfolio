@@ -26,13 +26,18 @@ export default class RNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md">
-          <NavbarBrand href="/">mrugesh mohapatra</NavbarBrand>
+        <Navbar expand="md">
+          <NavbarBrand href="/">home</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink href="/resume/">résumé</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/raisedadead/ama/">
+                  ama
+                </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/contact/">contact</NavLink>
