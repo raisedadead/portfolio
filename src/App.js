@@ -18,27 +18,27 @@ class App extends Component {
               <ul>
                 <li>
                   <a href="https://twitter.com/raisedadead">
-                    <span class="label">Twitter</span>
+                    <span className="label">Twitter</span>
                   </a>
                 </li>
                 <li>
                   <a href="https://freeCodeCamp.org/raisedadead">
-                    <span class="label">freeCodeCamp</span>
+                    <span className="label">freeCodeCamp</span>
                   </a>
                 </li>
                 <li>
                   <a href="https://github.com/raisedadead">
-                    <span class="label">GitHub</span>
+                    <span className="label">GitHub</span>
                   </a>
                 </li>
                 <li>
                   <a href="https://blog.raisedadead.com">
-                    <span class="label">Medium</span>
+                    <span className="label">Medium</span>
                   </a>
                 </li>
                 <li>
                   <a href="https://linkedin.com/in/mrugeshm">
-                    <span class="label">LinkedIn</span>
+                    <span className="label">LinkedIn</span>
                   </a>
                 </li>
               </ul>
@@ -46,7 +46,7 @@ class App extends Component {
           </header>
 
           <footer id="footer">
-            <span class="copyright">
+            <span className="copyright">
               COPYRIGHT &copy; 2017 MRUGESH MOHAPATRA.
             </span>
           </footer>
