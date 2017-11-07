@@ -10,18 +10,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
-    "commit": "git-cz"
-  },
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/prompt"
-    }
+    "commit": "commit",
+    "commitmsg": "commitlint -e $GIT_PARAMS"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
   },
   "dependencies": {
     "@fortawesome/fontawesome": "0.0.21",
@@ -36,8 +29,9 @@
     "reactstrap": "^5.0.0-alpha.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^4.2.2",
     "@commitlint/config-angular": "^4.2.1",
-    "@commitlint/prompt": "^4.2.2",
+    "@commitlint/prompt-cli": "^4.2.2",
     "commitizen": "^2.9.6",
     "husky": "^0.14.3",
     "lint-staged": "^4.3.0",
