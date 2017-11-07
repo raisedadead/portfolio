@@ -8,6 +8,8 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/fontawesome-free-solid';
 
 export default class RNav extends React.Component {
   constructor(props) {
@@ -27,7 +29,9 @@ export default class RNav extends React.Component {
     return (
       <div>
         <Navbar expand="md">
-          <NavbarBrand href="/">home</NavbarBrand>
+          <NavbarBrand href="/">
+            <FontAwesomeIcon icon={faHome} />
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
