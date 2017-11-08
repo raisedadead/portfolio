@@ -1,2 +1,2 @@
-import { TopNav, SocialNav } from './Nav';
-export { TopNav, SocialNav };
+import { TopNav, SocialNav } from './Nav'
+export { TopNav, SocialNav }

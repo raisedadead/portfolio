@@ -20,13 +20,12 @@
     ]
   },
   "dependencies": {
-    "@fortawesome/fontawesome": "0.0.21",
-    "@fortawesome/fontawesome-free-brands": "0.0.18",
-    "@fortawesome/fontawesome-free-solid": "0.0.17",
     "@fortawesome/react-fontawesome": "0.0.12",
     "bootstrap": "^4.0.0-beta",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-fontawesome": "^1.6.1",
+    "react-helmet": "^5.2.0",
     "react-popper": "^0.7.4",
     "react-transition-group": "^2.2.1",
     "reactstrap": "^5.0.0-alpha.3"

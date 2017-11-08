@@ -1,19 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 export default class SocialNav extends Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
   render() {
     return (
       <div>
@@ -45,6 +32,6 @@ export default class SocialNav extends Component {
           </li>
         </ul>
       </div>
-    );
+    )
   }
 }
