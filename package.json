@@ -35,7 +35,7 @@
     "commitizen": "^2.9.6",
     "husky": "^0.14.3",
     "lint-staged": "^4.3.0",
-    "prettier": "1.8.0",
+    "prettier": "1.8.1",
     "react-scripts": "^1.0.16"
   },
   "repository": {
