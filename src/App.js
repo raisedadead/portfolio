@@ -8,18 +8,20 @@ class App extends Component {
       <Container>
         <Row>
           <Col>
-            <header>
-              <TopNav />
+            <TopNav />
+            <Col>
               <h1>mrugesh mohapatra</h1>
+            </Col>
+            <Col>
               <p>
                 developer. music addict. open source enthusiast. noob
                 photographer.
               </p>
-              <SocialNav />
-            </header>
-            <footer>
+            </Col>
+            <SocialNav />
+            <Col>
               <span>COPYRIGHT &copy; 2017 MRUGESH MOHAPATRA.</span>
-            </footer>
+            </Col>
           </Col>
         </Row>
       </Container>
