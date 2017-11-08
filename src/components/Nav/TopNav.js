@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Collapse,
   Navbar,
@@ -11,7 +11,7 @@ import {
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/fontawesome-free-solid';
 
-export default class RNav extends React.Component {
+export default class TopNav extends Component {
   constructor(props) {
     super(props);
 

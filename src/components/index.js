@@ -1,2 +1,2 @@
-import RNav from './Nav';
-export default RNav;
+import { TopNav, SocialNav } from './Nav';
+export { TopNav, SocialNav };

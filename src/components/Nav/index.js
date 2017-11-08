@@ -1,2 +1,3 @@
-import RNav from './Nav.js';
-export default RNav;
+import TopNav from './TopNav.js';
+import SocialNav from './SocialNav.js';
+export { TopNav, SocialNav };
