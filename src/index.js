@@ -1,24 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Helmet } from 'react-helmet'
 import registerServiceWorker from './registerServiceWorker'
 
 import 'uikit/dist/css/uikit.min.css'
+import UIkit from 'uikit'
+import Icons from 'uikit/dist/js/uikit-icons'
 
+import { Head } from './components'
 import App from './App'
+
+// loads the Icon plugin
+UIkit.use(Icons)
 
 const Main = () => {
   return (
     <div>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <meta name="theme-color" content="#000000" />
-        <title>mrugesh mohapatra</title>
-      </Helmet>
+      <Head />
       <App />
     </div>
   )

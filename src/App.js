@@ -7,10 +7,12 @@ export default class App extends Component {
     return (
       <div className="uk-container">
         <TopNav />
-        <h1 className="uk-heading-primary">mrugesh mohapatra</h1>
-        <p>
-          developer. music addict. open source enthusiast. noob photographer.
-        </p>
+        <div>
+          <h1 className="uk-heading-primary">mrugesh mohapatra</h1>
+          <p>
+            developer. music addict. open source enthusiast. noob photographer.
+          </p>
+        </div>
         <SocialNav />
         <Footer />
       </div>

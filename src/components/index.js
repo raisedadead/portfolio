@@ -1,4 +1,5 @@
+import { Head } from './Head'
 import { TopNav, SocialNav } from './Nav'
 import { Footer } from './Footer'
 
-export { TopNav, SocialNav, Footer }
+export { Head, TopNav, SocialNav, Footer }
