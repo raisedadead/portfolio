@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
+import registerServiceWorker from './registerServiceWorker'
 
-import App from './App'
 import 'uikit/dist/css/uikit.min.css'
 
-import registerServiceWorker from './registerServiceWorker'
+import App from './App'
 
 const Main = () => {
   return (
