@@ -1,15 +1,15 @@
+sudo: false
+
+language: "node_js"
+
+node_js:
+  - "8"
+
+script:
+  - "npm run build"
+  - "npm test"
+
 notifications:
   email:
-    on_success: change
-    on_failure: always
-language: node_js
-node_js:
-  - 8
-cache:
-  directories:
-    - node_modules
-before_install: git fetch --unshallow
-script:
-  - /bin/bash ./scripts/lint-commits.sh
-  - npm run build
-  - npm test
+    on_success: "change"
+    on_failure: "always"
