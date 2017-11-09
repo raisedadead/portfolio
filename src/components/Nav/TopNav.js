@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, NavItem, NavLink } from 'reactstrap'
 
 export default class TopNav extends Component {
   render() {
     return (
-      <div>
-        <Navbar expand="md">
-          <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="/resume/">résumé</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/raisedadead/ama/">ama</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/contact/">contact</NavLink>
-            </NavItem>
-          </Nav>
-        </Navbar>
-      </div>
+      <nav className="uk-navbar-container uk-navbar-transparent" uk-navbar>
+        <div className="uk-navbar-right">
+          <ul className="uk-navbar-nav">
+            <li>
+              <a href="/resume/">résumé</a>
+            </li>
+            <li>
+              <a href="https://github.com/raisedadead/ama/">ama</a>
+            </li>
+            <li>
+              <a href="/contact/">contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     )
   }
 }
