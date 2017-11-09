@@ -14,7 +14,10 @@
     "commitmsg": "commitlint -e"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "@fortawesome/react-fontawesome": "0.0.12",
