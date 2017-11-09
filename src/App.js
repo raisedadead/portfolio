@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import { Container, Row, Col } from 'reactstrap'
-import { TopNav, SocialNav } from './components/index'
+import { TopNav, SocialNav, Footer } from './components/index'
 
 export default class App extends Component {
   render() {
@@ -35,7 +35,7 @@ export default class App extends Component {
               </Col>
               <SocialNav />
               <Col>
-                <span>COPYRIGHT &copy; 2017 MRUGESH MOHAPATRA.</span>
+                <Footer />
               </Col>
             </Col>
           </Row>
