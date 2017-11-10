@@ -8,10 +8,10 @@ const TopNav = () => {
         <ul className="uk-navbar-nav uk-iconnav">
           <li>
             <a
-              className="uk-card uk-card-default uk-border-circle"
-              href="/resume/"
-              data-uk-icon="icon: copy"
               title="résumé"
+              href="/resume/"
+              className="uk-card uk-card-default uk-border-circle"
+              data-uk-icon="icon: copy"
               data-uk-tooltip
               style={raisedButtonStyle}
             >
@@ -20,10 +20,10 @@ const TopNav = () => {
           </li>
           <li>
             <a
-              className="uk-card uk-card-default uk-border-circle"
-              href="https://github.com/raisedadead/ama/"
-              data-uk-icon="icon: comment"
               title="ask me anything"
+              href="https://github.com/raisedadead/ama/"
+              className="uk-card uk-card-default uk-border-circle"
+              data-uk-icon="icon: comment"
               data-uk-tooltip
               style={raisedButtonStyle}
             >
@@ -32,10 +32,10 @@ const TopNav = () => {
           </li>
           <li>
             <a
-              className="uk-card uk-card-default uk-border-circle"
-              href="/contact/"
-              data-uk-icon="icon: mail"
               title="contact"
+              href="/contact/"
+              className="uk-card uk-card-default uk-border-circle"
+              data-uk-icon="icon: mail"
               data-uk-tooltip
               style={raisedButtonStyle}
             >
