@@ -12,7 +12,7 @@ const TopNav = () => (
           <a
             title="résumé"
             href="/resume/"
-            className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded"
+            className="uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-rounded"
             data-uk-icon="icon: copy"
             data-uk-tooltip="pos: bottom"
             style={raisedButtonStyle}
@@ -24,7 +24,7 @@ const TopNav = () => (
           <a
             title="ask me anything"
             href="https://github.com/raisedadead/ama/"
-            className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded"
+            className="uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-rounded"
             data-uk-icon="icon: comment"
             data-uk-tooltip="pos: bottom"
             style={raisedButtonStyle}
@@ -36,7 +36,7 @@ const TopNav = () => (
           <a
             title="contact"
             href="/contact/"
-            className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded"
+            className="uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-rounded"
             data-uk-icon="icon: mail"
             data-uk-tooltip="pos: bottom"
             style={raisedButtonStyle}
