@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Nothing fancy here, just one of my personal websites.",
   "main": "index.js",
+  "engines": {
+    "node": ">8"
+  },
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -14,10 +17,7 @@
     "commitmsg": "commitlint -e"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
   },
   "dependencies": {
     "react": "^16.0.0",
