@@ -10,7 +10,7 @@ const TopNav = () => {
             <a
               title="résumé"
               href="/resume/"
-              className="uk-card uk-card-default uk-border-circle"
+              className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded"
               data-uk-icon="icon: copy"
               data-uk-tooltip
               style={raisedButtonStyle}
@@ -22,7 +22,7 @@ const TopNav = () => {
             <a
               title="ask me anything"
               href="https://github.com/raisedadead/ama/"
-              className="uk-card uk-card-default uk-border-circle"
+              className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded"
               data-uk-icon="icon: comment"
               data-uk-tooltip
               style={raisedButtonStyle}
@@ -34,7 +34,7 @@ const TopNav = () => {
             <a
               title="contact"
               href="/contact/"
-              className="uk-card uk-card-default uk-border-circle"
+              className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded"
               data-uk-icon="icon: mail"
               data-uk-tooltip
               style={raisedButtonStyle}

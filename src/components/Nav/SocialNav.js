@@ -9,7 +9,7 @@ const SocialNav = () => {
           <a
             title="Twitter"
             href="https://twitter.com/raisedadead"
-            className="uk-card uk-card-default uk-border-circle"
+            className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-circle"
             data-uk-icon="icon: twitter"
             data-uk-tooltip="pos: bottom"
             style={raisedButtonStyle}
@@ -21,7 +21,7 @@ const SocialNav = () => {
           <a
             title="GitHub"
             href="https://github.com/raisedadead"
-            className="uk-card uk-card-default uk-border-circle"
+            className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-circle"
             data-uk-icon="icon: github"
             data-uk-tooltip="pos: bottom"
             style={raisedButtonStyle}
@@ -33,7 +33,7 @@ const SocialNav = () => {
           <a
             title="Medium"
             href="https://blog.raisedadead.com"
-            className="uk-card uk-card-default uk-border-circle"
+            className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-circle"
             data-uk-icon="icon: world"
             data-uk-tooltip="pos: bottom"
             style={raisedButtonStyle}
@@ -45,7 +45,7 @@ const SocialNav = () => {
           <a
             title="freeCodeCamp"
             href="https://freeCodeCamp.org/raisedadead"
-            className="uk-card uk-card-default uk-border-circle"
+            className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-circle"
             data-uk-icon="icon: code"
             data-uk-tooltip="pos: bottom"
             style={raisedButtonStyle}
@@ -57,7 +57,7 @@ const SocialNav = () => {
           <a
             title="LinkedIn"
             href="https://linkedin.com/in/mrugeshm"
-            className="uk-card uk-card-default uk-border-circle"
+            className="uk-box-shadow-small uk-box-shadow-hover-large uk-border-circle"
             data-uk-icon="icon: linkedin"
             data-uk-tooltip="pos: bottom"
             style={raisedButtonStyle}
