@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="uk-position-bottom-center uk-margin-bottom">
       <span>
         Copyright &copy; {new Date().getFullYear()} Mrugesh Mohapatra.
       </span>
