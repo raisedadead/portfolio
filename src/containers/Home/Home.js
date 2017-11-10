@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { TopNav, SocialNav, Footer } from '../'
+import { TopNav, SocialNav, Footer } from '../../components'
 
 const Home = () => (
   <div className="uk-container uk-width-viewport uk-height-viewport uk-padding-remove">

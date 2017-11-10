@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Home } from './components'
+import { Home } from './containers'
 
 export default class App extends Component {
   render() {
