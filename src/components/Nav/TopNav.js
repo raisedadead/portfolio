@@ -12,7 +12,7 @@ const TopNav = () => (
           <a
             title="résumé"
             href="https://git.raisedadead.com/resume/"
-            className="uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-rounded"
+            className="uk-background-muted uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-rounded"
             data-uk-icon="icon: copy"
             data-uk-tooltip="pos: bottom"
             target="_blank"
@@ -26,7 +26,7 @@ const TopNav = () => (
           <a
             title="ask me anything"
             href="https://github.com/raisedadead/ama/"
-            className="uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-rounded"
+            className="uk-background-muted uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-rounded"
             data-uk-icon="icon: comment"
             data-uk-tooltip="pos: bottom"
             target="_blank"
