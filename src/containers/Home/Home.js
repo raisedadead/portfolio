@@ -1,10 +1,14 @@
 import React from 'react'
 
-import { TopNav, SocialNav, Footer } from '../../components'
+import { TopNav, SocialNav, Footer, ImageLoader } from '../../components'
 
 const Home = () => (
   <div className="uk-container uk-cover-container uk-width-viewport uk-height-viewport uk-padding-remove">
-    <img src="assets/images/background.jpg" alt="background" data-uk-cover />
+    <ImageLoader
+      src="assets/images/background.jpg"
+      alt="background"
+      data-uk-cover
+    />
     <TopNav />
     <div className="uk-position-center uk-text-center">
       <p className="uk-heading-primary" style={{ color: 'black' }}>
