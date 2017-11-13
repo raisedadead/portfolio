@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { TopNav, SocialNav, Footer, Background } from '../../components'
 import { HomeContent } from '.'
 import { StylesHelper } from '../../components/Utils'
+import { DoubleBounce } from 'better-react-spinkit'
 
 const mainContainer = StylesHelper(
   'uk-container',
@@ -12,16 +13,21 @@ const mainContainer = StylesHelper(
 )
 const content = StylesHelper('uk-position-center', 'uk-text-center')
 
-const Home = () => (
-  <div className={mainContainer}>
-    <Background data-uk-cover />
-    <TopNav />
-    <div className={content}>
-      <HomeContent />
-      <SocialNav />
-    </div>
-    <Footer />
-  </div>
-)
+class Home extends Component {
+  render() {
+    return (
+      <div className={mainContainer}>
+        <Background data-uk-cover />
+        <TopNav />
+        <div className={content}>
+          <HomeContent />
+          <DoubleBounce size={50} className={content} />
+          <SocialNav />
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+}
 
 export default Home
