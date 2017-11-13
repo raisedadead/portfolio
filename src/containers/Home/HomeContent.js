@@ -7,13 +7,13 @@ const HomeContent = props => (
   <div {...props}>
     <p
       className={heading}
-      style={{ color: '#00649F', fontFamily: "'Lora', sans-serif" }}
+      style={{ color: '#F5F5F5', fontFamily: "'Lora', sans-serif" }}
     >
       mrugesh mohapatra
     </p>
     <p
       className={tagline}
-      style={{ color: '#32424A', fontFamily: "'Montserrat', sans-serif" }}
+      style={{ color: '#D5F7FF', fontFamily: "'Montserrat', sans-serif" }}
     >
       developer. music addict. open source enthusiast. noob photographer.
     </p>
