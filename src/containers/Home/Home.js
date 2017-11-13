@@ -11,10 +11,16 @@ const Home = () => (
     />
     <TopNav />
     <div className="uk-position-center uk-text-center">
-      <p className="uk-heading-primary" style={{ color: 'black' }}>
+      <p
+        className="uk-heading-primary"
+        style={{ color: '#00649F', fontFamily: "'Lora', sans-serif" }}
+      >
         mrugesh mohapatra
       </p>
-      <p className="uk-text-large">
+      <p
+        className="uk-text-large"
+        style={{ color: '#32424A', fontFamily: "'Montserrat', sans-serif" }}
+      >
         developer. music addict. open source enthusiast. noob photographer.
       </p>
       <SocialNav />
