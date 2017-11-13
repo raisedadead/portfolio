@@ -1,2 +1,3 @@
 import Home from './Home'
-export { Home }
+import HomeContent from './HomeContent'
+export { Home, HomeContent }
