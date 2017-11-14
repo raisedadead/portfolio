@@ -1,5 +1,5 @@
 import React from 'react'
-import { StylesHelper } from '../../components/Utils/index'
+import { StylesHelper } from '../../components/'
 
 const mainContainer = StylesHelper(
   'uk-container',

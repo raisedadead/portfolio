@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TopNav, SocialNav, Footer, Background } from '../../components'
 import { HomeContent } from '.'
-import { StylesHelper } from '../../components/Utils'
+import { StylesHelper } from '../../components/'
 import { DoubleBounce } from 'better-react-spinkit'
 
 const mainContainer = StylesHelper(
