@@ -5,27 +5,20 @@ import 'uikit/dist/css/uikit.min.css'
 import UIkit from 'uikit'
 import Icons from 'uikit/dist/js/uikit-icons'
 
-import { Head } from './components'
 import App from './App'
 
 import registerServiceWorker from './registerServiceWorker'
 
-// loads the Icon plugin
 UIkit.use(Icons)
-
 const Main = () => {
   return (
-    <div>
-      <Head />
+    <Router>
       <App />
-    </div>
+    </Router>
   )
 }
 
-ReactDOM.render(
-  <Router>
-    <Main />
-  </Router>,
-  document.getElementById('root')
-)
+ReactDOM.render(<Main />, document.getElementById('root'))
 registerServiceWorker()
+
+export default Main
