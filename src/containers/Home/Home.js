@@ -13,7 +13,7 @@ const mainContainer = StylesHelper(
 )
 const content = StylesHelper('uk-position-center', 'uk-text-center')
 
-class Home extends Component {
+export default class Home extends Component {
   render() {
     return (
       <div className={mainContainer}>
@@ -29,5 +29,3 @@ class Home extends Component {
     )
   }
 }
-
-export default Home

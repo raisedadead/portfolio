@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 
-class ImageLoader extends Component {
+export default class ImageLoader extends Component {
   constructor(props) {
     super(props)
     this.state = { style: { opacity: 0 } }
@@ -34,5 +34,3 @@ ImageLoader.defaultProps = {
   src: '',
   alt: ''
 }
-
-export default ImageLoader

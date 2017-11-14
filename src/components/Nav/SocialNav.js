@@ -1,7 +1,7 @@
 import React from 'react'
 
 const raisedButtonStyle = { height: 50, margin: '4px 0 4px 0' }
-const SocialNav = () => (
+export default () => (
   <nav className="uk-navbar-container uk-navbar-transparent" data-uk-navbar>
     <div className="uk-navbar-center">
       <ul className="uk-navbar-nav uk-iconnav">
@@ -79,5 +79,3 @@ const SocialNav = () => (
     </div>
   </nav>
 )
-
-export default SocialNav

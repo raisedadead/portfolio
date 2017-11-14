@@ -3,7 +3,8 @@ import { StylesHelper } from '../../components/Utils'
 
 const heading = StylesHelper('uk-heading-primary')
 const tagline = StylesHelper('uk-text-large')
-const HomeContent = props => (
+
+export default props => (
   <div {...props}>
     <p
       className={heading}
@@ -19,5 +20,3 @@ const HomeContent = props => (
     </p>
   </div>
 )
-
-export default HomeContent

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const raisedButtonStyle = { height: 50, margin: '4px 0 4px 0' }
-const TopNav = () => (
+export default () => (
   <nav
     className="uk-navbar-container uk-navbar-transparent uk-margin-top uk-margin-right"
     data-uk-navbar
@@ -50,5 +50,3 @@ const TopNav = () => (
     </div>
   </nav>
 )
-
-export default TopNav
