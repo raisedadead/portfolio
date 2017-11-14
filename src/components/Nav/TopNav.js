@@ -11,12 +11,10 @@ const TopNav = () => (
         <li>
           <a
             title="résumé"
-            href="https://git.raisedadead.com/resume/"
+            href="/resume"
             className="uk-background-muted uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-rounded"
             data-uk-icon="icon: copy"
             data-uk-tooltip="pos: bottom"
-            target="_blank"
-            rel="noopener noreferrer"
             style={raisedButtonStyle}
           >
             <span className="uk-hidden">résumé</span>
@@ -34,6 +32,18 @@ const TopNav = () => (
             style={raisedButtonStyle}
           >
             <span className="uk-hidden">ask me anything</span>
+          </a>
+        </li>
+        <li>
+          <a
+            title="contact"
+            href="/contact"
+            className="uk-background-muted uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-rounded"
+            data-uk-icon="icon: mail"
+            data-uk-tooltip="pos: bottom"
+            style={raisedButtonStyle}
+          >
+            <span className="uk-hidden">Contact</span>
           </a>
         </li>
       </ul>

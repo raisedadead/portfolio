@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-
-import { Home } from './containers'
+import Routes from './Routes'
 
 export default class App extends Component {
   render() {
-    return <Home />
+    return <Routes />
   }
 }
