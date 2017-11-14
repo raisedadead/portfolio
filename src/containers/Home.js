@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import { TopNav, SocialNav, Footer, Background } from '../../components'
-import { HomeContent } from '.'
-import { StylesHelper } from '../../components/'
-import { DoubleBounce } from 'better-react-spinkit'
+import {
+  TopNav,
+  SocialNav,
+  Footer,
+  Background,
+  StylesHelper
+} from '../components'
+
+import HomeContent from './HomeContent'
 
 const mainContainer = StylesHelper(
   'uk-container',
@@ -21,7 +26,6 @@ export default class Home extends Component {
         <TopNav />
         <div className={content}>
           <HomeContent />
-          <DoubleBounce size={50} className={content} />
           <SocialNav />
         </div>
         <Footer />

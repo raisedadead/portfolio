@@ -1,5 +1,5 @@
 import React from 'react'
-import { StylesHelper } from '../../components/'
+import { StylesHelper } from '../components/'
 
 const heading = StylesHelper('uk-heading-primary')
 const tagline = StylesHelper('uk-text-large')
