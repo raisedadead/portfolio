@@ -1,0 +1,8 @@
+{
+  "generator-semantic-module": {
+    "module-name": "./",
+    "packager": "npm",
+    "commitizen-adapter": "cz-customizable",
+    "commitlint-config": "@commitlint/config-conventional"
+  }
+}
