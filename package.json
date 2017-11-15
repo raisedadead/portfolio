@@ -29,9 +29,7 @@
     "react-dom": "^16.0.0",
     "react-fontawesome": "^1.6.1",
     "react-helmet": "^5.2.0",
-    "react-popper": "^0.7.4",
     "react-router-dom": "^4.2.2",
-    "react-transition-group": "^2.2.1",
     "uikit": "^3.0.0-beta.34"
   },
   "devDependencies": {
