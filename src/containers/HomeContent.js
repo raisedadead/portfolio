@@ -3,9 +3,10 @@ import { StylesHelper } from '../components/'
 
 const heading = StylesHelper('uk-heading-primary')
 const tagline = StylesHelper('uk-text-large')
-
+const content = StylesHelper('uk-width-1-3')
 export default props => (
   <div {...props}>
+    <img src="assets/images/profile.png" alt="profile" className={content} />
     <p
       className={heading}
       style={{ color: '#F5F5F5', fontFamily: "'Lora', sans-serif" }}
