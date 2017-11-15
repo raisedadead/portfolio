@@ -21,7 +21,7 @@ const content = StylesHelper('uk-position-center', 'uk-text-center')
 export default class Home extends Component {
   render() {
     return (
-      <div className={mainContainer}>
+      <div className={mainContainer} style={{ background: '#77B9F6' }}>
         <Background data-uk-cover />
         <TopNav />
         <div className={content}>
