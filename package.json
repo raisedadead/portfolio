@@ -19,8 +19,8 @@
   "dependencies": {
     "better-react-spinkit": "^2.0.2",
     "classnames": "^2.2.5",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
     "react-fontawesome": "^1.6.1",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2",
@@ -40,7 +40,7 @@
     "url": "git+https://github.com/raisedadead/raisedadead.git"
   },
   "author": "mrugesh mohapatra <me@raisedadead.com> (https://raisedadead.com)",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/raisedadead/raisedadead/issues"
   },
