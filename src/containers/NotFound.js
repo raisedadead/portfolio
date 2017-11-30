@@ -14,7 +14,7 @@ export default () => (
   <div className={mainContainer}>
     <div className={content}>
       <span data-uk-icon="icon: ban; ratio:2;" />
-      <h4 style={{ color: '#01AAC1', fontFamily: "'Montserrat', sans-serif" }}>
+      <h4 style={{ color: '#01AAC1', fontFamily: "'Quicksand', sans-serif" }}>
         404 | Nah...not happening. Can't find you need !
       </h4>
     </div>

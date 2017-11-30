@@ -14,7 +14,7 @@ export default () => (
   <div className={mainContainer}>
     <div className={content}>
       <span data-uk-icon="icon: mail; ratio:2;" />
-      <h4 style={{ color: '#666666', fontFamily: "'Montserrat', sans-serif" }}>
+      <h4 style={{ color: '#666666', fontFamily: "'Quicksand', sans-serif" }}>
         Contact | Stay tuned as this page is being prep-ed for next release.
       </h4>
     </div>
