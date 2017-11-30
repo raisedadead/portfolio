@@ -1,59 +1,30 @@
 {
-  "name": "raisedadead",
-  "version": "0.1.0",
-  "description": "Nothing fancy here, just one of my personal websites.",
-  "main": "index.js",
-  "engines": {
-    "node": ">8"
-  },
   "private": true,
-  "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-scripts eject",
-    "commit": "git-cz",
-    "commit:retry": "git-cz --retry",
-    "commitmsg": "commitlint -e",
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,json,css}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "dependencies": {
-    "better-react-spinkit": "^2.0.2",
-    "classnames": "^2.2.5",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-fontawesome": "^1.6.1",
-    "react-helmet": "^5.2.0",
-    "react-router-dom": "^4.2.2",
-    "uikit": "^3.0.0-beta.34"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^5.1.1",
-    "@commitlint/config-conventional": "^5.1.3",
-    "commitizen": "^2.9.6",
-    "cz-customizable": "^5.2.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^5.0.0",
-    "prettier": "1.8.2",
-    "react-app-rewired": "^1.3.5",
-    "react-scripts": "^1.0.16"
-  },
+  "name": "raisedadead",
+  "description": "Nothing fancy here, just one of my personal websites.",
+  "author": "mrugesh mohapatra <me@raisedadead.com> (https://raisedadead.com)",
+  "license": "ISC",
+  "homepage": "/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raisedadead/raisedadead.git"
   },
-  "author": "mrugesh mohapatra <me@raisedadead.com> (https://raisedadead.com)",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/raisedadead/raisedadead/issues"
   },
-  "homepage": "/",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "react-app-rewired build",
+    "precommit": "lint-staged",
+    "commit": "git-cz",
+    "commit:retry": "git-cz --retry",
+    "commitmsg": "commitlint -e",
+    "eject": "react-scripts eject",
+    "lint": "lint-staged",
+    "start": "react-app-rewired start",
+    "test": "react-app-rewired test --env=jsdom"
+  },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
@@ -61,5 +32,42 @@
     "cz-customizable": {
       "config": "commitizen.config.js"
     }
+  },
+  "dependencies": {
+    "better-react-spinkit": "^2.0.2",
+    "classnames": "^2.2.5",
+    "react": "^16.2.0",
+    "react-app-rewire-styled-components": "^3.0.0",
+    "react-dom": "^16.2.0",
+    "react-fontawesome": "^1.6.1",
+    "react-helmet": "^5.2.0",
+    "react-router-dom": "^4.2.2",
+    "styled-components": "^2.2.4",
+    "uikit": "^3.0.0-beta.34"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^5.2.0",
+    "@commitlint/config-conventional": "^5.1.3",
+    "commitizen": "^2.9.6",
+    "cz-customizable": "^5.2.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
+    "prettier": "1.8.2",
+    "prettier-package-json": "^1.4.0",
+    "react-app-rewired": "^1.3.5",
+    "react-scripts": "^1.0.16"
+  },
+  "engines": {
+    "node": ">8"
+  },
+  "lint-staged": {
+    "*.{js,json,css}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package.json": [
+      "prettier-package-json --write",
+      "git add"
+    ]
   }
 }
