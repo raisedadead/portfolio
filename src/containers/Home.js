@@ -21,8 +21,14 @@ const content = StylesHelper('uk-position-center', 'uk-text-center')
 export default class Home extends Component {
   render() {
     return (
-      <div className={mainContainer} style={{ background: '#77B9F6' }}>
+      <div className={mainContainer}>
         <Background data-uk-cover />
+        <div
+          className="uk-position-cover"
+          style={{
+            background: 'linear-gradient(to right, #36d1dcaa, #5b86e5aa)'
+          }}
+        />
         <TopNav />
         <div className={content}>
           <HomeContent />
