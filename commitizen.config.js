@@ -41,9 +41,11 @@ const types = [
   }
 ]
 
-const scopes = ['app', 'nav', 'pages', 'tools', 'deploy'].map(name => ({
-  name
-}))
+const scopes = ['app', 'nav', 'pages', 'tools', 'deploy', 'dependencies'].map(
+  name => ({
+    name
+  })
+)
 
 module.exports = {
   types,

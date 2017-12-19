@@ -34,12 +34,15 @@
     }
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.0.1",
+    "@fortawesome/fontawesome-free-brands": "^5.0.1",
+    "@fortawesome/fontawesome-free-solid": "^5.0.1",
+    "@fortawesome/react-fontawesome": "0.0.16",
     "better-react-spinkit": "^2.0.4",
     "classnames": "^2.2.5",
     "react": "^16.2.0",
     "react-app-rewire-styled-components": "^3.0.0",
     "react-dom": "^16.2.0",
-    "react-fontawesome": "^1.6.1",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2",
     "styled-components": "^2.3.2",
