@@ -1,15 +1,23 @@
 sudo: false
-
-language: "node_js"
-
+language: node_js
+cache:
+  directories:
+  - node_modules
 node_js:
-  - "8"
-
+- '8'
+before_install:
+# package-lock.json was introduced in npm@5
+- npm install -g npm@5 # skip this if you are using node 9
+- npm install -g greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
 script:
-  - "npm run build"
-  - "npm test"
-
+- npm run build
+- npm test
+after_script: greenkeeper-lockfile-upload
 notifications:
   email:
-    on_success: "change"
-    on_failure: "always"
+    on_success: change
+    on_failure: always
+env:
+  global:
+    secure: PyfqULJ9Si3XMm9IguYEAuVn3lNzpz4vZBOqwvigy+wKZakg/3cEkZ623S4xtAnmNbpFqExQe0CoC5cgEYXzM+sFzij4bSWiuaua1E/T4RwdJp/dCDVcYrNh/YWkkH6EUTJU9mqfhjQz+2pPfJxbVgxDmiVk6bvQd5Owh2amxb1jaX9fxYiziNe/WotEiVMPdI7GoyLZwC/BQN4bqtdETIF484buozik+fzRXKzFHa5Wq1cB1ymcQRFnHJWrtpa5Ox1ns6kRH0XWymgbRH8BsN5Te1fR72NKTORJUrLcm/P19sIMnsFjfyZd1r6VbwLCkurmjRxICVGKEYNoGjs5BkPe4mO8QHLQu45TexsbSUb5gUp9mL75b/q1WQpSzFroijNVtuiP/44YX3zcEuhlob6BpHb1/bCMJQsD6W2FyWMp457ZIpXy9TPNFevamViG0M1tapreq7K+DCGsEGkOS6uinkf+Z9k9JCezT9Dd/AfK1Ytv/r62XOhcYvaq4zUBzlGF4bceMHUIH5Fajk6e+7BpW01Xei9krXecXgB80ELz7TJ+2nyKDfgDXKMKE+d/72Pr+0LpXe0gP84grKWC+TzNbjyNMEuWjybtlvXtOCnPjFDLxdX6yOgP4BkAntibW6sx7xZb0P9+szlieGIN/53GtgAwU8EFTT9atMiU4ik=
