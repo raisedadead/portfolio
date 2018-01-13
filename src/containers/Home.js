@@ -33,11 +33,14 @@ export default class Home extends Component {
         <div
           className="uk-position-cover"
           style={{
-            background: 'linear-gradient(to right, #36d1dcaa, #5b86e5aa)'
+            background: 'linear-gradient(to bottom, #36d1dc88, #5b86e5)'
           }}
         />
         <div style={contentSyles} className={content}>
-          <div style={{ width: '25%', height: '25%' }}>
+          <div
+            style={{ width: '15vw', height: '15vw', borderRadius: '50%' }}
+            className="uk-box-shadow-large"
+          >
             <ImageLoader src="assets/images/profile.png" alt="profile image" />
           </div>
           <HomeContent />
