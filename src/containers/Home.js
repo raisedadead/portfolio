@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { MainNav, Footer, Background, StylesHelper } from '../components'
+import {
+  MainNav,
+  Footer,
+  Background,
+  StylesHelper,
+  ImageLoader
+} from '../components'
 
 import HomeContent from './HomeContent'
 
@@ -13,8 +19,7 @@ const mainContainer = StylesHelper(
 const content = StylesHelper('uk-position-center', 'uk-text-center')
 
 const contentSyles = {
-  width: '75vw',
-  height: '50vh',
+  width: '60vw',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -32,6 +37,9 @@ export default class Home extends Component {
           }}
         />
         <div style={contentSyles} className={content}>
+          <div style={{ width: '25%', height: '25%' }}>
+            <ImageLoader src="assets/images/profile.png" alt="profile image" />
+          </div>
           <HomeContent />
           <MainNav />
         </div>
