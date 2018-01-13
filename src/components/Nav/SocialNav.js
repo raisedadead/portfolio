@@ -1,17 +1,26 @@
 import React from 'react'
 
-const raisedButtonStyle = { height: 50, margin: '4px 0 4px 0' }
-export default () => (
-  <nav className="uk-navbar-container uk-navbar-transparent" data-uk-navbar>
+const raisedButtonStyle = {
+  height: 50,
+  margin: '4px 0 4px 0',
+  backgroundColor: '#00000000',
+  color: '#f8f8f8'
+}
+export default props => (
+  <nav
+    className="uk-navbar-container uk-navbar-transparent"
+    data-uk-navbar
+    {...props}
+  >
     <div className="uk-navbar-center">
       <ul className="uk-navbar-nav uk-iconnav">
         <li>
           <a
             title="Twitter"
             href="https://twitter.com/raisedadead"
-            className="uk-background-muted uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-circle"
+            className="uk-border-circle"
             data-uk-icon="icon: twitter"
-            data-uk-tooltip="pos: bottom"
+            data-uk-tooltip="pos: top"
             target="_blank"
             rel="noopener noreferrer"
             style={raisedButtonStyle}
@@ -23,9 +32,9 @@ export default () => (
           <a
             title="GitHub"
             href="https://github.com/raisedadead"
-            className="uk-background-muted uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-circle"
+            className="uk-border-circle"
             data-uk-icon="icon: github"
-            data-uk-tooltip="pos: bottom"
+            data-uk-tooltip="pos: top"
             target="_blank"
             rel="noopener noreferrer"
             style={raisedButtonStyle}
@@ -37,9 +46,9 @@ export default () => (
           <a
             title="Medium"
             href="https://blog.raisedadead.com"
-            className="uk-background-muted uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-circle"
-            data-uk-icon="icon: world"
-            data-uk-tooltip="pos: bottom"
+            className="uk-border-circle"
+            data-uk-icon="icon: pencil"
+            data-uk-tooltip="pos: top"
             target="_blank"
             rel="noopener noreferrer"
             style={raisedButtonStyle}
@@ -51,9 +60,9 @@ export default () => (
           <a
             title="freeCodeCamp"
             href="https://freeCodeCamp.org/raisedadead"
-            className="uk-background-muted uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-circle"
+            className="uk-border-circle"
             data-uk-icon="icon: code"
-            data-uk-tooltip="pos: bottom"
+            data-uk-tooltip="pos: top"
             target="_blank"
             rel="noopener noreferrer"
             style={raisedButtonStyle}
@@ -65,9 +74,9 @@ export default () => (
           <a
             title="LinkedIn"
             href="https://linkedin.com/in/mrugeshm"
-            className="uk-background-muted uk-box-shadow-small uk-box-shadow-hover-xlarge uk-border-circle"
+            className="uk-border-circle"
             data-uk-icon="icon: linkedin"
-            data-uk-tooltip="pos: bottom"
+            data-uk-tooltip="pos: top"
             target="_blank"
             rel="noopener noreferrer"
             style={raisedButtonStyle}

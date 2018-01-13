@@ -1,11 +1,5 @@
 import React, { Component } from 'react'
-import {
-  TopNav,
-  SocialNav,
-  Footer,
-  Background,
-  StylesHelper
-} from '../components'
+import { MainNav, Footer, Background, StylesHelper } from '../components'
 
 import HomeContent from './HomeContent'
 
@@ -18,6 +12,14 @@ const mainContainer = StylesHelper(
 )
 const content = StylesHelper('uk-position-center', 'uk-text-center')
 
+const contentSyles = {
+  width: '75vw',
+  height: '50vh',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center'
+}
 export default class Home extends Component {
   render() {
     return (
@@ -29,10 +31,9 @@ export default class Home extends Component {
             background: 'linear-gradient(to right, #36d1dcaa, #5b86e5aa)'
           }}
         />
-        <TopNav />
-        <div className={content}>
+        <div style={contentSyles} className={content}>
           <HomeContent />
-          <SocialNav />
+          <MainNav />
         </div>
         <Footer />
       </div>

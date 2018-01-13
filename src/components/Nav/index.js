@@ -1,3 +1,3 @@
-import TopNav from './TopNav.js'
+import MainNav from './MainNav.js'
 import SocialNav from './SocialNav.js'
-export { TopNav, SocialNav }
+export { MainNav, SocialNav }
