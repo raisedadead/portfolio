@@ -37,7 +37,7 @@
     "@fortawesome/fontawesome": "^1.1.4",
     "@fortawesome/fontawesome-free-brands": "^5.0.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.8",
-    "@fortawesome/react-fontawesome": "0.0.17",
+    "@fortawesome/react-fontawesome": "0.0.18",
     "better-react-spinkit": "^2.0.4",
     "classnames": "^2.2.5",
     "react": "^16.2.0",
