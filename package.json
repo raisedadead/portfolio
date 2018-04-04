@@ -34,18 +34,18 @@
     }
   },
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.4",
-    "@fortawesome/fontawesome-free-brands": "^5.0.8",
-    "@fortawesome/fontawesome-free-solid": "^5.0.8",
+    "@fortawesome/fontawesome": "^1.1.5",
+    "@fortawesome/fontawesome-free-brands": "^5.0.9",
+    "@fortawesome/fontawesome-free-solid": "^5.0.9",
     "@fortawesome/react-fontawesome": "0.0.18",
     "better-react-spinkit": "^2.0.4",
     "classnames": "^2.2.5",
-    "react": "^16.2.0",
-    "react-app-rewire-styled-components": "^3.0.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.1",
+    "react-app-rewire-styled-components": "^3.0.2",
+    "react-dom": "^16.3.1",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2",
-    "styled-components": "^3.2.1",
+    "styled-components": "^3.2.5",
     "uikit": "^3.0.0-beta.34"
   },
   "devDependencies": {
@@ -54,11 +54,11 @@
     "commitizen": "^2.9.6",
     "cz-customizable": "^5.2.0",
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.0",
+    "lint-staged": "^7.0.3",
     "prettier": "1.11.1",
     "prettier-package-json": "^1.5.1",
     "react-app-rewired": "^1.5.0",
-    "react-scripts": "^1.1.1"
+    "react-scripts": "^1.1.4"
   },
   "engines": {
     "node": ">8"
