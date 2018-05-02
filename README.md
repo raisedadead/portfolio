@@ -13,6 +13,12 @@ What is this about?
 
 Nonetheless, please feel free to browse, and leave feedbacks on the issue tracker. If you catch a typo, or something broken, please let me know.
 
+## Demo
+
+> staging branch which where the development goes is available at: <https://beta.raisedadead.com/>
+
+> master branch which is the final version is available at <https://raisedadead.com/> | <https://mrugeshm.com/>
+
 # License
 
 Software:
@@ -20,11 +26,6 @@ The software as it is licensed under [ISC](LICENSE), please feel free to extend,
 
 Content:
 The content pertaining to Mrugesh Mohapatra such as his resume, personal information, imagery, etc. is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](by-nc-nd-4).
-
-## demo
-
-staging : is available at: <https://beta.raisedadead.com/>
-master  : is available at: <https://raisedadead.com/> | <https://mrugeshm.com/>
 
 [build-status-img]: https://travis-ci.org/raisedadead/portfolio.svg?branch=staging
 [build-status]: https://travis-ci.org/raisedadead/portfolio
