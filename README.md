@@ -15,9 +15,7 @@ Nonetheless, please feel free to browse, and leave feedbacks on the issue tracke
 
 ## Demo
 
-> staging branch which where the development goes is available at: <https://beta.raisedadead.com/>
-
-> master branch which is the final version is available at <https://raisedadead.com/> | <https://mrugeshm.com/>
+> <https://raisedadead.com/>
 
 # License
 
