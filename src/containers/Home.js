@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  MainNav,
+  // MainNav,
   Footer,
   Background,
   StylesHelper,
@@ -44,7 +44,9 @@ export default class Home extends Component {
             <ImageLoader src="assets/images/profile.png" alt="profile image" />
           </div>
           <HomeContent />
+          {/*
           <MainNav />
+          */}
         </div>
         <Footer />
       </div>
