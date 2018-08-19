@@ -23,21 +23,7 @@ export default props => (
       developer. music addict. open source enthusiast. noob photographer.
     </p>
     <p style={{ color: '#D5F7FF', fontFamily: "'Quicksand', sans-serif" }}>
-      {' '}
-      Developer Advocate at&nbsp;
-      <a
-        href="https://www.freecodecamp.org"
-        rel="noopener noreferrer"
-        style={{
-          color: '#D5F7FF',
-          fontFamily: "'Quicksand', sans-serif",
-          textDecoration: 'none',
-          fontWeight: 'bold'
-        }}
-        target="_blank"
-      >
-        freeCodeCamp.org
-      </a>
+      Developer Advocate at freeCodeCamp.org
     </p>
   </div>
 )
