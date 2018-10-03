@@ -58,7 +58,7 @@
     "prettier": "1.14.3",
     "prettier-package-json": "^2.0.0",
     "react-app-rewired": "^1.5.0",
-    "react-scripts": "^1.1.4"
+    "react-scripts": "^2.0.4"
   },
   "engines": {
     "node": ">8"
