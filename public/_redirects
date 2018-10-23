@@ -4,3 +4,5 @@ https://www.mrugeshm.com/* https://raisedadead.com/:splat 301!
 
 # Optional: Redirect default Netlify subdomain to primary domain
 https://raisedadead.netlify.com/* https://raisedadead.com/:splat 301!
+
+/blog/*  https://blog.raisedadead.com/:splat  200
