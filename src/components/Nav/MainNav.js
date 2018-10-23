@@ -1,12 +1,23 @@
 import React from 'react'
 
 const raisedButtonStyle = {
-  height: '50px',
-  margin: '4px 0px',
   backgroundColor: '#36d1dc',
   color: '#155263',
   fontWeight: 'bold'
 }
+
+const handleCalendlyClick = e => {
+  e.preventDefault()
+  window.Calendly.showPopupWidget('https://calendly.com/mrugesh-m')
+  return false
+}
+
+const handleAMAClick = e => {
+  e.preventDefault()
+  window.open('https://github.com/raisedadead/ama/', '_blank')
+  return false
+}
+
 export default () => (
   <nav
     className="uk-navbar-container uk-navbar-transparent uk-margin-top uk-margin-right"
@@ -15,30 +26,26 @@ export default () => (
     <div className="uk-navbar-center">
       <ul className="uk-navbar-nav uk-iconnav">
         <li>
-          <a
-            title="résumé"
-            href="https://git.raisedadead.com/resume/"
-            className="uk-box-shadow-small uk-border-rounded"
+          <button
+            title="schedule a meeting with me"
+            className="uk-box-shadow-small uk-border-rounded uk-button"
             data-uk-tooltip="pos: bottom"
-            target="_blank"
-            rel="noopener noreferrer"
             style={raisedButtonStyle}
+            onClick={handleCalendlyClick}
           >
-            <span>résumé</span>
-          </a>
+            <span data-uk-icon="icon: calendar" />
+          </button>
         </li>
         <li>
-          <a
+          <button
             title="ask me anything"
-            href="https://github.com/raisedadead/ama/"
-            className="uk-box-shadow-small uk-border-rounded"
+            className="uk-box-shadow-small uk-border-rounded uk-button"
             data-uk-tooltip="pos: bottom"
-            target="_blank"
-            rel="noopener noreferrer"
             style={raisedButtonStyle}
+            onClick={handleAMAClick}
           >
-            <span>ask me anything</span>
-          </a>
+            <span data-uk-icon="icon: question" />
+          </button>
         </li>
       </ul>
     </div>

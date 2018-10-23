@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  // MainNav,
+  MainNav,
   Footer,
   Background,
   StylesHelper,
@@ -38,15 +38,13 @@ export default class Home extends Component {
         />
         <div style={contentSyles} className={content}>
           <div
-            style={{ width: '15vw', height: '15vw', borderRadius: '50%' }}
+            style={{ width: '10vw', height: '10vw', borderRadius: '50%' }}
             className="uk-box-shadow-large"
           >
             <ImageLoader src="assets/images/profile.png" alt="profile image" />
           </div>
           <HomeContent />
-          {/*
           <MainNav />
-          */}
         </div>
         <Footer />
       </div>
