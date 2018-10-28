@@ -1,12 +1,12 @@
 [![Build Status][build-status-img]][build-status]
 [![Greenkeeper badge][greenkeeper-badge-img]][greenkeeper-badge]
-# portfolio
+# Portfolio
 
 > Nothing fancy here, just my [portfolio website][personal-website].
 
 What is this about?
 
-- Its just a basic identity website. Nothing more [... as of now].
+- It's just a basic identity website. Nothing more [... as of now].
 - Currently I am rewriting it as  a part of learning [react][react-website].
 - The code is expected to be buggy and overy complicated, as a result.
 - To test locally, run `npm install` followed by `npm start`.
