@@ -17,10 +17,8 @@
   "scripts": {
     "build": "react-app-rewired build",
     "postbuild": "react-snap",
-    "precommit": "lint-staged",
     "commit": "git-cz",
     "commit:retry": "git-cz --retry",
-    "commitmsg": "commitlint -e",
     "eject": "react-scripts eject",
     "lint": "lint-staged",
     "start": "react-app-rewired start",
@@ -71,6 +69,12 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e",
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,json,css}": [
       "prettier --write",
