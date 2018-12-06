@@ -16,6 +16,7 @@
   "main": "index.js",
   "scripts": {
     "build": "react-app-rewired build",
+    "postbuild": "react-snap",
     "precommit": "lint-staged",
     "commit": "git-cz",
     "commit:retry": "git-cz --retry",
@@ -58,11 +59,18 @@
     "prettier": "1.15.3",
     "prettier-package-json": "^2.0.0",
     "react-app-rewired": "^1.5.0",
-    "react-scripts": "^2.0.4"
+    "react-scripts": "^2.0.4",
+    "react-snap": "^1.22.1"
   },
   "engines": {
     "node": ">8"
   },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "lint-staged": {
     "*.{js,json,css}": [
       "prettier --write",
