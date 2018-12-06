@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { hydrate, render } from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import 'uikit/dist/css/uikit.min.css'
 import UIkit from 'uikit'
@@ -18,7 +18,13 @@ const Main = () => {
   )
 }
 
-ReactDOM.render(<Main />, document.getElementById('root'))
+const rootElement = document.getElementById('root')
+if (rootElement.hasChildNodes()) {
+  hydrate(<Main />, rootElement)
+} else {
+  render(<Main />, rootElement)
+}
+
 registerServiceWorker()
 
 export default Main
