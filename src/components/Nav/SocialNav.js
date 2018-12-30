@@ -16,6 +16,7 @@ export default props => (
       <ul className="uk-navbar-nav uk-iconnav">
         <li>
           <a
+            aria-label="Twitter"
             title="Twitter"
             href="https://twitter.com/raisedadead"
             className="uk-border-circle"
@@ -30,6 +31,7 @@ export default props => (
         </li>
         <li>
           <a
+            aria-label="GitHub"
             title="GitHub"
             href="https://github.com/raisedadead"
             className="uk-border-circle"
@@ -44,6 +46,7 @@ export default props => (
         </li>
         <li>
           <a
+            aria-label="Medium"
             title="Medium"
             href="https://blog.raisedadead.com"
             className="uk-border-circle"
@@ -58,6 +61,7 @@ export default props => (
         </li>
         <li>
           <a
+            aria-label="freeCodeCamp"
             title="freeCodeCamp"
             href="https://freeCodeCamp.org/raisedadead"
             className="uk-border-circle"
@@ -72,6 +76,7 @@ export default props => (
         </li>
         <li>
           <a
+            aria-label="LinkedIn"
             title="LinkedIn"
             href="https://linkedin.com/in/mrugeshm"
             className="uk-border-circle"
