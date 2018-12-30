@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import {
   // MainNav,
+  Background,
   Footer,
-  StylesHelper,
-  ImageLoader
+  ImageLoader,
+  StylesHelper
 } from '../components'
 
 import HomeContent from './HomeContent'
@@ -28,6 +29,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className={mainContainer}>
+        <Background data-uk-cover />
         <div
           className="uk-position-cover"
           style={{
