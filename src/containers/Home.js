@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
   // MainNav,
   Footer,
-  Background,
   StylesHelper,
   ImageLoader
 } from '../components'
@@ -29,7 +28,6 @@ export default class Home extends Component {
   render() {
     return (
       <div className={mainContainer}>
-        <Background data-uk-cover />
         <div
           className="uk-position-cover"
           style={{
