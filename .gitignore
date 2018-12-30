@@ -62,3 +62,6 @@ typings/
 
 # Custom redirects
 public/_redirects
+
+# Lighthouse reports
+*.report.html
