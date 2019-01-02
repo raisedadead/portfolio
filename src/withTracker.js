@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import GoogleAnalytics from 'react-ga'
+import ReactGA from 'react-ga'
 
-GoogleAnalytics.initialize('UA-119399348-1')
+console.log(ReactGA.initialize('UA-119399348-1'))
 
 const withTracker = (WrappedComponent, options = {}) => {
   const trackPage = page => {
-    GoogleAnalytics.set({
+    ReactGA.set({
       page,
       ...options
     })
-    GoogleAnalytics.pageview(page)
+    ReactGA.pageview(page)
   }
 
   // eslint-disable-next-line
