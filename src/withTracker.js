@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactGA from 'react-ga'
 
-console.log(ReactGA.initialize('UA-119399348-1'))
+ReactGA.initialize('UA-119399348-1')
 
 const withTracker = (WrappedComponent, options = {}) => {
   const trackPage = page => {
