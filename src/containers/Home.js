@@ -41,7 +41,7 @@ export default class Home extends Component {
             style={{ width: '15vw', height: '15vw', borderRadius: '50%' }}
             className="uk-box-shadow-large"
           >
-            <ImageLoader src="assets/images/profile.png" alt="profile image" />
+            <ImageLoader src="assets/images/profile.webp" alt="profile image" />
           </div>
           <HomeContent />
           {/*
