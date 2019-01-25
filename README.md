@@ -23,7 +23,7 @@ The software as it is licensed under [ISC](LICENSE), please feel free to extend,
 Content:
 The content pertaining to Mrugesh Mohapatra such as his resume, personal information, imagery, etc. is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)][by-nc-nd-4].
 
-[build-status-img]: https://travis-ci.org/raisedadead/portfolio.svg?branch=staging
+[build-status-img]: https://travis-ci.org/raisedadead/portfolio.svg?branch=master
 [build-status]: https://travis-ci.org/raisedadead/portfolio
 [greenkeeper-badge-img]: https://badges.greenkeeper.io/raisedadead/portfolio.svg
 [greenkeeper-badge]: https://greenkeeper.io/
