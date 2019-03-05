@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Spring } from 'react-spring'
 
 import {
   // MainNav,
@@ -29,38 +28,27 @@ const contentSyles = {
 }
 export default class Home extends Component {
   render() {
-    const fromStyle = { opacity: 0 }
-    const toStyle = { opacity: 1, transition: 'opacity 2.0s' }
     return (
-      <Spring from={fromStyle} to={toStyle}>
-        {props => (
-          <div style={props}>
-            <div className={mainContainer}>
-              <Background data-uk-cover />
-              <div
-                className="uk-position-cover"
-                style={{
-                  background: 'linear-gradient(to bottom, #36d1dc88, #5b86e5)'
-                }}
-              />
-              <div style={contentSyles} className={content}>
-                <div
-                  style={{ width: '15vw', height: '15vw', borderRadius: '50%' }}
-                  className="uk-box-shadow-large"
-                >
-                  <ImageLoader
-                    src="assets/images/profile.webp"
-                    alt="profile image"
-                  />
-                </div>
-                <HomeContent />
-                {/*<MainNav />*/}
-              </div>
-              <Footer />
-            </div>
+      <div className={mainContainer}>
+        <Background data-uk-cover />
+        <div
+          className="uk-position-cover"
+          style={{
+            background: 'linear-gradient(to bottom, #36d1dc88, #5b86e5)'
+          }}
+        />
+        <div style={contentSyles} className={content}>
+          <div
+            style={{ width: '15vw', height: '15vw', borderRadius: '50%' }}
+            className="uk-box-shadow-large"
+          >
+            <ImageLoader src="assets/images/profile.webp" alt="profile image" />
           </div>
-        )}
-      </Spring>
+          <HomeContent />
+          {/*<MainNav />*/}
+        </div>
+        <Footer />
+      </div>
     )
   }
 }

@@ -1,10 +1,10 @@
 import React from 'react'
-import { ImageLoader } from '../'
+import LazyHero from 'react-lazy-hero'
 
-export default props => (
-  <ImageLoader
-    src="assets/images/background.webp"
-    alt="background"
-    {...props}
+export default () => (
+  <LazyHero
+    minHeight="100vh"
+    opacity={0}
+    imageSrc="assets/images/background.webp"
   />
 )
