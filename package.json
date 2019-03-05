@@ -52,7 +52,7 @@
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.0",
     "@storybook/addon-actions": "^5.0.0",
-    "@storybook/addon-links": "^4.1.4",
+    "@storybook/addon-links": "^5.0.0",
     "@storybook/addons": "^5.0.0",
     "@storybook/react": "^4.1.4",
     "babel-loader": "^8.0.4",
