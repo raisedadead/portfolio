@@ -8,7 +8,7 @@ export default class ImageLoader extends Component {
   }
 
   onImageLoad = () => {
-    const updatedStyle = { opacity: 1, transition: 'opacity, 1.5s' }
+    const updatedStyle = { opacity: 1, transition: 'opacity, 0.5s' }
     this.setState({ style: updatedStyle })
   }
 
