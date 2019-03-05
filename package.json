@@ -54,7 +54,7 @@
     "@storybook/addon-actions": "^5.0.0",
     "@storybook/addon-links": "^5.0.0",
     "@storybook/addons": "^5.0.0",
-    "@storybook/react": "^4.1.4",
+    "@storybook/react": "^5.0.0",
     "babel-loader": "^8.0.4",
     "commitizen": "^3.0.7",
     "cz-customizable": "^5.2.0",
