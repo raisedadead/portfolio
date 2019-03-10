@@ -1,0 +1,9 @@
+# Redirect domain aliases to primary domain
+https://mrugeshm.com/* https://mrugesh.dev/:splat 301!
+https://www.mrugeshm.com/* https://mrugesh.dev/:splat 301!
+
+https://raisedadead.com/* https://mrugesh.dev/:splat 301!
+https://www.raisedadead.com/* https://mrugesh.dev/:splat 301!
+
+# Optional: Redirect default Netlify subdomain to primary domain
+https://raisedadead.netlify.com/* https://mrugesh.dev/:splat 301!

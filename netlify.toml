@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+
+[context.production]
+  publish = "build"
+
+[context.deploy-preview]
+  publish = "public"
