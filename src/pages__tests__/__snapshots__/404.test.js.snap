@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`404 renders correctly 1`] = `
+<div
+  css={
+    Object {
+      "map": undefined,
+      "name": "12xy27n",
+      "next": undefined,
+      "styles": "
+          display:flex;
+          flex-direction:column;
+          height:100%;
+          min-height:100vh;
+        ",
+    }
+  }
+>
+  <div
+    css={
+      Object {
+        "map": undefined,
+        "name": "1v1mbgo",
+        "next": undefined,
+        "styles": "
+            flex-basis: auto;
+            flex-grow: 1;
+            header {
+              border-bottom: solid 1px;
+              padding: 3.24rem;
+            }
+            main {
+              flex-grow:1;
+              padding: 3.24rem;
+            }
+          ",
+      }
+    }
+  >
+    <header>
+      <h1>
+        Mrugesh Mohapatra
+      </h1>
+    </header>
+    <div
+      css={
+        Object {
+          "map": undefined,
+          "name": "tnyl6e",
+          "next": undefined,
+          "styles": "
+              @media all and (min-width: 768px) {
+                display:flex;
+              }
+            ",
+        }
+      }
+    >
+      <div
+        className="nav"
+        css={
+          Object {
+            "map": undefined,
+            "name": "1gc62of",
+            "next": undefined,
+            "styles": "
+                border-left: solid 1px;
+                order:2;
+                padding: 3.24rem;
+                width:20vw;
+                min-width:330px;
+                nav ul {
+                  list-style:none;
+                  margin:0;
+                }
+              ",
+          }
+        }
+      >
+        <section>
+          <h2>
+            About this Starter
+          </h2>
+          <nav>
+            <ul>
+              <li
+                id="home"
+              >
+                <a
+                  activeClassName="current"
+                  href="/"
+                >
+                  Home
+                </a>
+              </li>
+              <li
+                id="dashboard"
+              >
+                <a
+                  activeClassName="current"
+                  href="/dashboard/"
+                >
+                  Client-Only Path
+                </a>
+              </li>
+              <li
+                id="fourOhFour"
+              >
+                <a
+                  activeClassName="current"
+                  href="/404/"
+                >
+                  Custom 404 Page
+                </a>
+              </li>
+              <li
+                id="plugins"
+              >
+                <a
+                  activeClassName="current"
+                  href="/plugins/"
+                >
+                  Plugins
+                </a>
+              </li>
+              <li
+                id="tools"
+              >
+                <a
+                  activeClassName="current"
+                  href="/tools/"
+                >
+                  Tools and Utilities
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </section>
+      </div>
+      <main>
+        <h2>
+          Page not found
+        </h2>
+        <p>
+          You might find what you're looking for at 
+          <a
+            aria-current="page"
+            className=""
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            style={Object {}}
+          >
+            the index page
+          </a>
+          .
+        </p>
+        <p>
+          Note: this 404 page overrides Gatsby's built-in 404.
+        </p>
+      </main>
+    </div>
+  </div>
+  <footer
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "
+		<a rel=\\"license\\" href=\\"//creativecommons.org/licenses/by-sa/4.0/\\"><img alt=\\"Creative Commons Licence\\" style=\\"border-width:0\\" src=\\"//i.creativecommons.org/l/by-sa/4.0/88x31.png\\" /></a><br />
+		<span xmlns:dct=\\"http://purl.org/dc/terms/\\" property=\\"dct:title\\">DavidSabine/gatsby-starter</span> by <a xmlns:cc=\\"http://creativecommons.org/ns#\\" href=\\"//davesabine.com\\" property=\\"cc:attributionName\\" rel=\\"cc:attributionURL\\">David Sabine</a> is licensed under a <a rel=\\"license\\" href=\\"//creativecommons.org/licenses/by-sa/4.0/\\">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />
+		Based on a work at <a xmlns:dct=\\"http://purl.org/dc/terms/\\" href=\\"//github.com/DavidSabine/gatsby-starter\\" rel=\\"dct:source\\">github.com/DavidSabine/gatsby-starter</a>.
+	",
+      }
+    }
+  />
+</div>
+`;

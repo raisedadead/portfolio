@@ -1,4 +1,5 @@
 [build]
+  functions = '__functions__'
   command = "npm run build"
 
 [context.production]

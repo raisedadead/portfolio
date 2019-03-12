@@ -5,7 +5,7 @@ node_js:
 
 cache:
   directories:
-  - "$HOME/.npm"
+    - '$HOME/.npm'
 
 env:
   global:
@@ -18,6 +18,7 @@ sudo: false
 before_install:
   - npm config set loglevel warn
   - npm install -g greenkeeper-lockfile@1
+  - npm install -g codecov
 
 install: npm ci
 
@@ -26,5 +27,6 @@ before_script: greenkeeper-lockfile-update
 script:
   - npm run build
   - npm run test
+  - codecov
 
 after_script: greenkeeper-lockfile-upload

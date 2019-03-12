@@ -1,0 +1,58 @@
+{
+  "name": "gatsby-starter",
+  "description": "This starter ships with the main Gatsby files and a small collection of plugins to start a PWA with Google Analytics, Tag Manager, Manifest, SEO tools, Stripe for product listings and checkout, plus the basic TDD/automated-test tools preferred by the Gatsby core contributors: Jest & Cypress https://gatsby-starter.davesabine.com.",
+  "license": "CC-BY-4.0",
+  "scripts": {
+    "build": "gatsby build",
+    "cy:open-dev": "cypress open --config baseUrl=http://localhost:8000",
+    "develop": "gatsby develop",
+    "serve": "gatsby serve",
+    "test": "jest",
+    "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open-dev",
+    "test:watch": "jest --watchAll"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled": "^10.0.6",
+    "gatsby": "^2.0.103",
+    "gatsby-plugin-create-client-paths": "^2.0.2",
+    "gatsby-plugin-emotion": "^4.0.1",
+    "gatsby-plugin-google-analytics": "^2.0.12",
+    "gatsby-plugin-google-tagmanager": "^2.0.8",
+    "gatsby-plugin-manifest": "^2.0.14",
+    "gatsby-plugin-netlify-functions": "^0.0.3",
+    "gatsby-plugin-offline": "^2.0.22",
+    "gatsby-plugin-react-helmet": "^3.0.2",
+    "gatsby-plugin-robots-txt": "^1.4.0",
+    "gatsby-plugin-sitemap": "^2.0.2",
+    "gatsby-plugin-typography": "^2.2.6",
+    "gray-percentage": "^2.0.0",
+    "netlify-identity-widget": "^1.5.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-helmet": "^5.2.0",
+    "react-typography": "^0.16.18",
+    "typography": "^0.16.18"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^24.0.0",
+    "babel-preset-gatsby": "^0.1.6",
+    "cross-env": "^5.2.0",
+    "cypress": "^3.1.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.0.0",
+    "jest-dom": "^3.0.1",
+    "react-test-renderer": "^16.7.0",
+    "start-server-and-test": "^1.7.10"
+  }
+}
