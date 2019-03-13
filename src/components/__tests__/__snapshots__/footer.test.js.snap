@@ -2,81 +2,141 @@
 
 exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
 <footer>
-  <nav>
-    <div>
-      <ul>
-        <li>
-          <a
-            aria-label="Twitter"
-            href="https://twitter.com/raisedadead"
-            rel="noopener noreferrer"
-            target="_blank"
-            title="Twitter"
+  <div
+    className="css-1vcwft5 elghiqq0"
+  >
+    <nav
+      className="css-142ynee e1befqft0"
+    >
+      <a
+        className="e1befqft1 css-sb55b2 e70ypka2"
+        data-index={0}
+        href="https://twitter.com/raisedadead"
+        onClick={[Function]}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span
+          className="css-1xssqnp e70ypka1"
+        >
+          <span
+            className="css-pw07op e70ypka0"
           >
-            <span>
-              Twitter
+            <span
+              className="css-1me6504 e1i5p1da0"
+            >
+              <span>
+                Twitter
+              </span>
             </span>
-          </a>
-        </li>
-        <li>
-          <a
-            aria-label="GitHub"
-            href="https://github.com/raisedadead"
-            rel="noopener noreferrer"
-            target="_blank"
-            title="GitHub"
+          </span>
+        </span>
+      </a>
+      <a
+        className="e1befqft1 css-sb55b2 e70ypka2"
+        data-index={1}
+        href="https://github.com/raisedadead"
+        onClick={[Function]}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span
+          className="css-1xssqnp e70ypka1"
+        >
+          <span
+            className="css-pw07op e70ypka0"
           >
-            <span>
-              GitHub
+            <span
+              className="css-1me6504 e1i5p1da0"
+            >
+              <span>
+                GitHub
+              </span>
             </span>
-          </a>
-        </li>
-        <li>
-          <a
-            aria-label="Medium"
-            href="https://blog.raisedadead.com"
-            rel="noopener noreferrer"
-            target="_blank"
-            title="Medium"
+          </span>
+        </span>
+      </a>
+      <a
+        className="e1befqft1 css-sb55b2 e70ypka2"
+        data-index={2}
+        href="https://blog.raisedadead.com"
+        onClick={[Function]}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span
+          className="css-1xssqnp e70ypka1"
+        >
+          <span
+            className="css-pw07op e70ypka0"
           >
-            <span>
-              Medium
+            <span
+              className="css-1me6504 e1i5p1da0"
+            >
+              <span>
+                Medium
+              </span>
             </span>
-          </a>
-        </li>
-        <li>
-          <a
-            aria-label="freeCodeCamp"
-            href="https://freeCodeCamp.org/raisedadead"
-            rel="noopener noreferrer"
-            target="_blank"
-            title="freeCodeCamp"
+          </span>
+        </span>
+      </a>
+      <a
+        className="e1befqft1 css-sb55b2 e70ypka2"
+        data-index={3}
+        href="https://freeCodeCamp.org/raisedadead"
+        onClick={[Function]}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span
+          className="css-1xssqnp e70ypka1"
+        >
+          <span
+            className="css-pw07op e70ypka0"
           >
-            <span>
-              freeCodeCamp
+            <span
+              className="css-1me6504 e1i5p1da0"
+            >
+              <span>
+                freeCodeCamp
+              </span>
             </span>
-          </a>
-        </li>
-        <li>
-          <a
-            aria-label="LinkedIn"
-            href="https://linkedin.com/in/mrugeshm"
-            rel="noopener noreferrer"
-            target="_blank"
-            title="LinkedIn"
+          </span>
+        </span>
+      </a>
+      <a
+        className="e1befqft1 css-sb55b2 e70ypka2"
+        data-index={4}
+        href="https://linkedin.com/in/mrugeshm"
+        onClick={[Function]}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span
+          className="css-1xssqnp e70ypka1"
+        >
+          <span
+            className="css-pw07op e70ypka0"
           >
-            <span>
-              LinkedIn
+            <span
+              className="css-1me6504 e1i5p1da0"
+            >
+              <span>
+                LinkedIn
+              </span>
             </span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <span>
-    Copyright © 
-    2019
-     Mrugesh Mohapatra.
-  </span>
+          </span>
+        </span>
+      </a>
+    </nav>
+    <h6
+      className="css-pdf1eb e19le4zx0"
+    >
+       
+      © 
+      2019
+       Mrugesh Mohapatra.
+    </h6>
+  </div>
 </footer>
 `;

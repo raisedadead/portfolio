@@ -1,10 +1,16 @@
 import React from 'react';
 import SocialNav from './Nav/SocialNav';
+import { Box, Text } from 'mineral-ui';
 
 const Footer = () => (
   <footer>
-    <SocialNav />
-    <span>Copyright &copy; {new Date().getFullYear()} Mrugesh Mohapatra.</span>
+    <Box>
+      <SocialNav />
+      <Text as="h6" align="center">
+        {` `}
+        &copy; {new Date().getFullYear()} Mrugesh Mohapatra.
+      </Text>
+    </Box>
   </footer>
 );
 
