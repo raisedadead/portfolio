@@ -1,82 +1,67 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+import React from 'react';
 
-exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
-<footer>
+const SocialNav = () => (
   <nav>
     <div>
       <ul>
         <li>
           <a
             aria-label="Twitter"
-            href="https://twitter.com/raisedadead"
-            rel="noopener noreferrer"
-            target="_blank"
             title="Twitter"
+            href="https://twitter.com/raisedadead"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <span>
-              Twitter
-            </span>
+            <span>Twitter</span>
           </a>
         </li>
         <li>
           <a
             aria-label="GitHub"
-            href="https://github.com/raisedadead"
-            rel="noopener noreferrer"
-            target="_blank"
             title="GitHub"
+            href="https://github.com/raisedadead"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <span>
-              GitHub
-            </span>
+            <span>GitHub</span>
           </a>
         </li>
         <li>
           <a
             aria-label="Medium"
-            href="https://blog.raisedadead.com"
-            rel="noopener noreferrer"
-            target="_blank"
             title="Medium"
+            href="https://blog.raisedadead.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <span>
-              Medium
-            </span>
+            <span>Medium</span>
           </a>
         </li>
         <li>
           <a
             aria-label="freeCodeCamp"
-            href="https://freeCodeCamp.org/raisedadead"
-            rel="noopener noreferrer"
-            target="_blank"
             title="freeCodeCamp"
+            href="https://freeCodeCamp.org/raisedadead"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <span>
-              freeCodeCamp
-            </span>
+            <span>freeCodeCamp</span>
           </a>
         </li>
         <li>
           <a
             aria-label="LinkedIn"
-            href="https://linkedin.com/in/mrugeshm"
-            rel="noopener noreferrer"
-            target="_blank"
             title="LinkedIn"
+            href="https://linkedin.com/in/mrugeshm"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <span>
-              LinkedIn
-            </span>
+            <span>LinkedIn</span>
           </a>
         </li>
       </ul>
     </div>
   </nav>
-  <span>
-    Copyright © 
-    2019
-     Mrugesh Mohapatra.
-  </span>
-</footer>
-`;
+);
+
+export default SocialNav;

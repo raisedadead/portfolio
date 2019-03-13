@@ -30,3 +30,7 @@ node_modules
 .cache/
 .DS_Store
 public
+
+# Cypress
+cypress/screenshots/
+cypress/videos/

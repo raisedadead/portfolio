@@ -1,9 +1,9 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
-import HtmlHead  from '../htmlhead'
-const metaData = require(`../../../gatsby-config`).siteMetadata
+import React from 'react';
+import renderer from 'react-test-renderer';
+import HTMLHead from '../HTMLHead';
+const metaData = require(`../../../gatsby-config`).siteMetadata;
 
-describe(`HtmlHead`, () =>
+describe(`HTMLHead`, () => {
   it(`renders correctly`, () => {
     const data = {
       site: {
@@ -15,11 +15,11 @@ describe(`HtmlHead`, () =>
           icon: metaData.icon,
           siteUrl: metaData.siteUrl,
           titleTemplate: metaData.titleTemplate,
-          twitterCreator: metaData.twitterCreator  
+          twitterCreator: metaData.twitterCreator
         }
       }
-    }
-    const tree = renderer.create(<HtmlHead data={data} />).toJSON()
-      expect(tree).toMatchSnapshot()
-  })
-)
+    };
+    const tree = renderer.create(<HTMLHead data={data} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});

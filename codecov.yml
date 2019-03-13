@@ -18,6 +18,7 @@ coverage:
         enabled: no
 
 comment:
-  layout: 'diff, flags, files'
+  layout: 'diff, files'
   behavior: default
-  require_changes: yes # if true: only post the comment if coverage changes
+  require_changes: yes
+

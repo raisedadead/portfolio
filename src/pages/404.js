@@ -1,19 +1,19 @@
-import HtmlHead from '../components/htmlhead'
-import Layout from '../components/layout.js'
-import React from 'react'
-import { Link } from 'gatsby'
+import HtmlHead from '../components/HTMLHead';
+import DefaultLayout from '../components/Layouts/DefaultLayout.js';
+import React from 'react';
+import { Link } from 'gatsby';
 
-const pageData = require(`../../nav-config`).pages.fourOhFour
+export const FourOhFourMarkup = () => (
+  <DefaultLayout>
+    <HtmlHead title="404" />
+    <main>
+      <h2>404 | Page not found.</h2>
+      <p>
+        Ah..! That's my bad. Sorry. Why don't you checkout{` `}
+        <Link to="/">something here</Link>.
+      </p>
+    </main>
+  </DefaultLayout>
+);
 
-export const FourOhFourMarkup = props => (
-	<Layout>
-		<HtmlHead title={pageData.title} />
-		<main>
-			<h2>Page not found</h2>
-			<p>You might find what you're looking for at <Link to='/'>the index page</Link>.</p>
-			<p>Note: this 404 page overrides Gatsby's built-in 404.</p>
-		</main>
-	</Layout>
-)
-
-export default FourOhFourMarkup
+export default FourOhFourMarkup;

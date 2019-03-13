@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "jest/valid-expect": 0,
+    "jest/valid-describe": 0
+  }
+}

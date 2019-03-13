@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage renders correctly 1`] = `
+<div>
+  <div>
+    <header>
+      <p>
+        Mrugesh Mohapatra
+      </p>
+    </header>
+    <div>
+      <main>
+        <div>
+          <header>
+            <h1>
+              mrugesh mohapatra
+            </h1>
+          </header>
+          <main>
+            <h2>
+              developer. music addict. open source enthusiast. noob photographer.
+            </h2>
+            <p>
+              Developer Advocate at freeCodeCamp.org
+            </p>
+          </main>
+        </div>
+      </main>
+    </div>
+  </div>
+  <footer>
+    <nav>
+      <div>
+        <ul>
+          <li>
+            <a
+              aria-label="Twitter"
+              href="https://twitter.com/raisedadead"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Twitter"
+            >
+              <span>
+                Twitter
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              aria-label="GitHub"
+              href="https://github.com/raisedadead"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="GitHub"
+            >
+              <span>
+                GitHub
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              aria-label="Medium"
+              href="https://blog.raisedadead.com"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Medium"
+            >
+              <span>
+                Medium
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              aria-label="freeCodeCamp"
+              href="https://freeCodeCamp.org/raisedadead"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="freeCodeCamp"
+            >
+              <span>
+                freeCodeCamp
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              aria-label="LinkedIn"
+              href="https://linkedin.com/in/mrugeshm"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="LinkedIn"
+            >
+              <span>
+                LinkedIn
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <span>
+      Copyright © 
+      2019
+       Mrugesh Mohapatra.
+    </span>
+  </footer>
+</div>
+`;
