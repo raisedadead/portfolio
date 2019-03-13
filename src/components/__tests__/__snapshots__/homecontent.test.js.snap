@@ -1,19 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HomeContent renders correctly -- according to react-test-renderer 1`] = `
-<div>
-  <header>
-    <h1>
-      mrugesh mohapatra
-    </h1>
-  </header>
-  <main>
-    <h2>
-      developer. music addict. open source enthusiast. noob photographer.
-    </h2>
-    <p>
-      Developer Advocate at freeCodeCamp.org
-    </p>
-  </main>
-</div>
+<section
+  className="css-1vcwft5 elghiqq0"
+>
+  <div
+    className="e7r6m60 css-12x1zff elghiqq0"
+  >
+    <div
+      className="e7r6m61 css-137pand elghiqq0"
+    >
+      <h1
+        className="css-pdf1eb e19le4zx0"
+      >
+        mrugesh mohapatra
+      </h1>
+    </div>
+    <div
+      className="e7r6m61 css-137pand elghiqq0"
+    >
+      <h2
+        className="css-pdf1eb e19le4zx0"
+      >
+        developer. music addict. open source enthusiast. noob photographer.
+      </h2>
+    </div>
+    <div
+      className="e7r6m61 css-137pand elghiqq0"
+    >
+      <h4
+        className="css-pdf1eb e19le4zx0"
+      >
+        Developer Advocate at freeCodeCamp.org
+      </h4>
+    </div>
+  </div>
+</section>
 `;

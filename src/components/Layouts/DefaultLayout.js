@@ -1,21 +1,27 @@
-import Footer from '../Footer';
 import React from 'react';
+import { ThemeProvider } from 'mineral-ui/themes';
+import Box from 'mineral-ui/Box';
 
-class Template extends React.Component {
+import MainNav from '../Nav/MainNav';
+import Footer from '../Footer';
+
+class DefaultLayout extends React.Component {
   render() {
     const { children } = this.props;
     return (
-      <div>
-        <div>
-          <header>
-            <p>Mrugesh Mohapatra</p>
-          </header>
-          <div>{children}</div>
-        </div>
-        <Footer />
-      </div>
+      <ThemeProvider>
+        <Box marginHorizontal="auto" width={1 / 2}>
+          <div>
+            <header>
+              <MainNav />
+            </header>
+            <div>{children}</div>
+          </div>
+          <Footer />
+        </Box>
+      </ThemeProvider>
     );
   }
 }
 
-export default Template;
+export default DefaultLayout;
