@@ -1,17 +1,15 @@
-import AppDescription from '../components/appdescription'
-import HtmlHead from '../components/htmlhead'
-import Layout from '../components/layout'
-import React from 'react'
+import HomeContent from '../components/HomeContent';
+import HtmlHead from '../components/HTMLHead';
+import DefaultLayout from '../components/Layouts/DefaultLayout';
+import React from 'react';
 
-const pageData = require(`../../nav-config`).pages.home
+export const IndexMarkup = () => (
+  <DefaultLayout>
+    <HtmlHead title="Home" />
+    <main>
+      <HomeContent />
+    </main>
+  </DefaultLayout>
+);
 
-export const IndexMarkup = props => (
-	<Layout>
-		<HtmlHead title={pageData.title} />
-		<main>
-			<AppDescription />
-		</main>
-	</Layout>
-)
-
-export default IndexMarkup
+export default IndexMarkup;

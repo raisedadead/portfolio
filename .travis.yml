@@ -25,6 +25,7 @@ install: npm ci
 before_script: greenkeeper-lockfile-update
 
 script:
+  - npm run lint
   - npm run build
   - npm run test
   - codecov
