@@ -1,3 +1,5 @@
+const path = require(`path`);
+
 const sitesConfig = {
   sites: {
     default: {
@@ -27,10 +29,19 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/images`,
+        name: `images`
+      }
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         anonymize: true,
-        exclude: [`/preview/**`, `/do-not-track/me/too/`],
+        exclude: [`/preview/**`],
         head: true,
         respectDNT: true,
         trackingId: `UA-125425021-1`
