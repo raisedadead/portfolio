@@ -2,114 +2,96 @@
 
 exports[`404 renders correctly 1`] = `
 <div
-  className="css-11inlkn elghiqq0"
+  className="css-nz9nvg elghiqq0"
 >
-  <div>
-    <header>
-      <nav
-        className="css-14zqg3i e1befqft0"
+  <div
+    className="css-11inlkn elghiqq0"
+  >
+    <nav
+      className="css-14zqg3i e1befqft0"
+    >
+      <a
+        className="e1befqft1 e70ypka2 css-w4xqqz e19l42ga0"
+        data-index={0}
+        href="https://github.com/raisedadead/ama/"
+        onClick={[Function]}
       >
-        <a
-          className="e1befqft1 css-p91rce e70ypka2"
-          data-index={0}
-          href="https://git.raisedadead.com/resume/"
-          onClick={[Function]}
-          rel="noopener noreferrer"
-          target="_blank"
+        <span
+          className="css-1xssqnp e70ypka1"
         >
           <span
-            className="css-1xssqnp e70ypka1"
+            className="css-1sp7cuy e70ypka0"
           >
             <span
-              className="css-1sp7cuy e70ypka0"
+              className="css-1fns1v3 e1i5p1da0"
             >
               <span
-                className="css-gh8y4m e1i5p1da0"
-              >
-                <span>
-                  résumé
-                </span>
-              </span>
-            </span>
-          </span>
-        </a>
-        <a
-          className="e1befqft1 css-p91rce e70ypka2"
-          data-index={1}
-          href="https://github.com/raisedadead/ama/"
-          onClick={[Function]}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <span
-            className="css-1xssqnp e70ypka1"
-          >
-            <span
-              className="css-1sp7cuy e70ypka0"
-            >
-              <span
-                className="css-gh8y4m e1i5p1da0"
+                className="css-1h0pl34 ew65k9p0"
+                id="tooltip-1"
               >
                 <span
-                  className="css-1h0pl34 ew65k9p0"
-                  id="tooltip-1"
+                  className="css-pusqig ew65k9p3"
                 >
                   <span
-                    className="css-pusqig ew65k9p3"
+                    aria-describedby="tooltip-1-content"
+                    aria-owns="tooltip-1-content"
+                    className="css-1myw1nk e3ztgjb0"
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    role="button"
+                    tabIndex={0}
                   >
-                    <span
-                      aria-describedby="tooltip-1-content"
-                      aria-owns="tooltip-1-content"
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      role="button"
-                      tabIndex={0}
-                    >
-                      ama
-                    </span>
+                    ama
                   </span>
                 </span>
               </span>
             </span>
           </span>
-        </a>
-      </nav>
-    </header>
-    <div>
-      <main>
-        <h2>
-          404 | Page not found.
-        </h2>
-        <p>
-          Ah..! That's my bad. Sorry. Why don't you checkout
-           
-          <a
-            aria-current="page"
-            className=""
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            style={Object {}}
-          >
-            something here
-          </a>
-          .
-        </p>
-      </main>
-    </div>
+        </span>
+      </a>
+    </nav>
   </div>
+  <main>
+    <main>
+      <section
+        className="css-11inlkn elghiqq0"
+      >
+        <div
+          className="e7r6m60 css-wzh7ay elghiqq0"
+        >
+          <h2
+            className="css-ov77vs e19le4zx0"
+          >
+            404 | Page not found.
+          </h2>
+          <p
+            className="css-16qt340 e19le4zx0"
+          >
+            Ah..! That's my bad. Sorry. Why don't you checkout
+             
+            <a
+              href="/"
+            >
+              something here
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+    </main>
+  </main>
   <footer>
-    <div
-      className="css-moci5h elghiqq0"
+    <section
+      className="css-11inlkn elghiqq0"
     >
       <nav
         className="css-1ogyrb7 e1befqft0"
       >
         <a
-          className="e1befqft1 css-p91rce e70ypka2"
+          className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={0}
           href="https://twitter.com/raisedadead"
           onClick={[Function]}
@@ -123,17 +105,26 @@ exports[`404 renders correctly 1`] = `
               className="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-gh8y4m e1i5p1da0"
+                className="css-1fns1v3 e1i5p1da0"
               >
-                <span>
-                  Twitter
+                <span
+                  className="css-1h0pl34 ew65k9p0"
+                  id="tooltip-2"
+                >
+                  <span
+                    className="css-pusqig ew65k9p3"
+                  >
+                    <i
+                      className="fa"
+                    />
+                  </span>
                 </span>
               </span>
             </span>
           </span>
         </a>
         <a
-          className="e1befqft1 css-p91rce e70ypka2"
+          className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={1}
           href="https://github.com/raisedadead"
           onClick={[Function]}
@@ -147,17 +138,26 @@ exports[`404 renders correctly 1`] = `
               className="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-gh8y4m e1i5p1da0"
+                className="css-1fns1v3 e1i5p1da0"
               >
-                <span>
-                  GitHub
+                <span
+                  className="css-1h0pl34 ew65k9p0"
+                  id="tooltip-3"
+                >
+                  <span
+                    className="css-pusqig ew65k9p3"
+                  >
+                    <i
+                      className="fa"
+                    />
+                  </span>
                 </span>
               </span>
             </span>
           </span>
         </a>
         <a
-          className="e1befqft1 css-p91rce e70ypka2"
+          className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={2}
           href="https://blog.raisedadead.com"
           onClick={[Function]}
@@ -171,17 +171,26 @@ exports[`404 renders correctly 1`] = `
               className="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-gh8y4m e1i5p1da0"
+                className="css-1fns1v3 e1i5p1da0"
               >
-                <span>
-                  Medium
+                <span
+                  className="css-1h0pl34 ew65k9p0"
+                  id="tooltip-4"
+                >
+                  <span
+                    className="css-pusqig ew65k9p3"
+                  >
+                    <i
+                      className="fa"
+                    />
+                  </span>
                 </span>
               </span>
             </span>
           </span>
         </a>
         <a
-          className="e1befqft1 css-p91rce e70ypka2"
+          className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={3}
           href="https://freeCodeCamp.org/raisedadead"
           onClick={[Function]}
@@ -195,17 +204,26 @@ exports[`404 renders correctly 1`] = `
               className="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-gh8y4m e1i5p1da0"
+                className="css-1fns1v3 e1i5p1da0"
               >
-                <span>
-                  freeCodeCamp
+                <span
+                  className="css-1h0pl34 ew65k9p0"
+                  id="tooltip-5"
+                >
+                  <span
+                    className="css-pusqig ew65k9p3"
+                  >
+                    <i
+                      className="fa"
+                    />
+                  </span>
                 </span>
               </span>
             </span>
           </span>
         </a>
         <a
-          className="e1befqft1 css-p91rce e70ypka2"
+          className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={4}
           href="https://linkedin.com/in/mrugeshm"
           onClick={[Function]}
@@ -219,10 +237,19 @@ exports[`404 renders correctly 1`] = `
               className="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-gh8y4m e1i5p1da0"
+                className="css-1fns1v3 e1i5p1da0"
               >
-                <span>
-                  LinkedIn
+                <span
+                  className="css-1h0pl34 ew65k9p0"
+                  id="tooltip-6"
+                >
+                  <span
+                    className="css-pusqig ew65k9p3"
+                  >
+                    <i
+                      className="fa"
+                    />
+                  </span>
                 </span>
               </span>
             </span>
@@ -237,7 +264,7 @@ exports[`404 renders correctly 1`] = `
         2019
          Mrugesh Mohapatra.
       </h6>
-    </div>
+    </section>
   </footer>
 </div>
 `;

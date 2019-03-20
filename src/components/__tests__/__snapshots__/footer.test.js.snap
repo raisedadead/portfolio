@@ -2,8 +2,8 @@
 
 exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
 <footer>
-  <div
-    className="css-1vcwft5 elghiqq0"
+  <section
+    className="css-1big75 elghiqq0"
   >
     <nav
       className="css-142ynee e1befqft0"
@@ -25,8 +25,17 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span>
-                Twitter
+              <span
+                className="css-1h0pl34 ew65k9p0"
+                id="tooltip-1"
+              >
+                <span
+                  className="css-pusqig ew65k9p3"
+                >
+                  <i
+                    className="fa"
+                  />
+                </span>
               </span>
             </span>
           </span>
@@ -49,8 +58,17 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span>
-                GitHub
+              <span
+                className="css-1h0pl34 ew65k9p0"
+                id="tooltip-2"
+              >
+                <span
+                  className="css-pusqig ew65k9p3"
+                >
+                  <i
+                    className="fa"
+                  />
+                </span>
               </span>
             </span>
           </span>
@@ -73,8 +91,17 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span>
-                Medium
+              <span
+                className="css-1h0pl34 ew65k9p0"
+                id="tooltip-3"
+              >
+                <span
+                  className="css-pusqig ew65k9p3"
+                >
+                  <i
+                    className="fa"
+                  />
+                </span>
               </span>
             </span>
           </span>
@@ -97,8 +124,17 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span>
-                freeCodeCamp
+              <span
+                className="css-1h0pl34 ew65k9p0"
+                id="tooltip-4"
+              >
+                <span
+                  className="css-pusqig ew65k9p3"
+                >
+                  <i
+                    className="fa"
+                  />
+                </span>
               </span>
             </span>
           </span>
@@ -121,8 +157,17 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span>
-                LinkedIn
+              <span
+                className="css-1h0pl34 ew65k9p0"
+                id="tooltip-5"
+              >
+                <span
+                  className="css-pusqig ew65k9p3"
+                >
+                  <i
+                    className="fa"
+                  />
+                </span>
               </span>
             </span>
           </span>
@@ -137,6 +182,6 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
       2019
        Mrugesh Mohapatra.
     </h6>
-  </div>
+  </section>
 </footer>
 `;

@@ -1,39 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HomeContent renders correctly -- according to react-test-renderer 1`] = `
+exports[`HomeContent renders correctly 1`] = `
 <section
-  className="css-1vcwft5 elghiqq0"
+  className="css-1hm9igd elghiqq0"
 >
   <div
-    className="e7r6m60 css-12x1zff elghiqq0"
+    className="e7r6m60 css-13v9bvk elghiqq0"
   >
     <div
-      className="e7r6m61 css-137pand elghiqq0"
+      className="css-1nsbwhm elghiqq0"
     >
-      <h1
-        className="css-pdf1eb e19le4zx0"
+      <div
+        className=" gatsby-image-wrapper"
+        style={
+          Object {
+            "overflow": "hidden",
+            "position": "relative",
+          }
+        }
       >
-        mrugesh mohapatra
-      </h1>
+        <div
+          style={
+            Object {
+              "paddingBottom": "100%",
+              "width": "100%",
+            }
+          }
+        />
+        <img
+          alt=""
+          src="random-2b80985b4264e4cb34b1850de91c6911"
+          style={
+            Object {
+              "height": "100%",
+              "left": 0,
+              "objectFit": "cover",
+              "objectPosition": "center",
+              "opacity": 1,
+              "position": "absolute",
+              "top": 0,
+              "transition": "opacity 0.5s",
+              "transitionDelay": "0.25s",
+              "width": "100%",
+            }
+          }
+        />
+        <picture>
+          <source
+            sizes="(max-width: 300px) 100vw, 300px"
+            srcSet="random-2b80985b4264e4cb34b1850de91c6911"
+            type="image/webp"
+          />
+          <img
+            alt=""
+            onLoad={[Function]}
+            sizes="(max-width: 300px) 100vw, 300px"
+            src="random-2b80985b4264e4cb34b1850de91c6911"
+            srcSet="random-2b80985b4264e4cb34b1850de91c6911"
+            style={
+              Object {
+                "height": "100%",
+                "left": 0,
+                "objectFit": "cover",
+                "objectPosition": "center",
+                "opacity": 0,
+                "position": "absolute",
+                "top": 0,
+                "transition": "opacity 0.5s",
+                "width": "100%",
+              }
+            }
+          />
+        </picture>
+        <noscript
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<picture><source type='image/webp' srcset=\\"random-2b80985b4264e4cb34b1850de91c6911\\" sizes=\\"(max-width: 300px) 100vw, 300px\\" /><img sizes=\\"(max-width: 300px) 100vw, 300px\\" srcset=\\"random-2b80985b4264e4cb34b1850de91c6911\\" src=\\"random-2b80985b4264e4cb34b1850de91c6911\\" alt=\\"\\" style=\\"position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center\\"/></picture>",
+            }
+          }
+        />
+      </div>
     </div>
-    <div
-      className="e7r6m61 css-137pand elghiqq0"
+    <h1
+      className="css-pdf1eb e19le4zx0"
     >
-      <h2
-        className="css-pdf1eb e19le4zx0"
-      >
-        developer. music addict. open source enthusiast. noob photographer.
-      </h2>
-    </div>
-    <div
-      className="e7r6m61 css-137pand elghiqq0"
+      mrugesh mohapatra
+    </h1>
+    <h2
+      className="css-pdf1eb e19le4zx0"
     >
-      <h4
-        className="css-pdf1eb e19le4zx0"
-      >
-        Developer Advocate at freeCodeCamp.org
-      </h4>
-    </div>
+      developer. music addict. open source enthusiast. noob photographer.
+    </h2>
+    <h4
+      className="css-pdf1eb e19le4zx0"
+    >
+      Developer Advocate at freeCodeCamp.org
+    </h4>
   </div>
 </section>
 `;
