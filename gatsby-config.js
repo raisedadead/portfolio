@@ -1,5 +1,3 @@
-const path = require(`path`);
-
 const sitesConfig = {
   sites: {
     default: {

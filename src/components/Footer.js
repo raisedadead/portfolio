@@ -4,7 +4,7 @@ import { Box, Text } from 'mineral-ui';
 
 const Footer = () => (
   <footer>
-    <Box>
+    <Box as="section" marginHorizontal="auto" width={1 / 2}>
       <SocialNav />
       <Text as="h6" align="center">
         {` `}
