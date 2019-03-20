@@ -2,10 +2,21 @@ import React from 'react';
 import Box from 'mineral-ui/Box';
 import Text from 'mineral-ui/Text';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
+import Img from 'gatsby-image';
 
-const HomeContent = () => (
+const HomeContent = props => (
   <Box as="section">
-    <Flex justifyContent="center" direction="column" height="75vh">
+    <Flex
+      alignItems="center"
+      justifyContent="center"
+      direction="column"
+      height="75vh"
+    >
+      <FlexItem>
+        <Box width="15vw" margin="1em">
+          <Img sizes={props.data.file.childImageSharp.fluid} />
+        </Box>
+      </FlexItem>
       <FlexItem>
         <Text as="h1" align="center">
           mrugesh mohapatra
