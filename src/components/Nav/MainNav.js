@@ -1,6 +1,5 @@
 import React from 'react';
 import { PrimaryNav, NavItem } from 'mineral-ui/Navigation';
-import Tooltip from 'mineral-ui/Tooltip';
 import Link from 'mineral-ui/Link';
 import Box from 'mineral-ui/Box/Box';
 
@@ -12,8 +11,11 @@ const MainNaV = () => (
         <span>résumé</span>
       </NavItem>
       */}
-      <NavItem href="https://github.com/raisedadead/ama/">
-        <Tooltip content="ask me anything">ama</Tooltip>
+      <NavItem
+        href="https://github.com/raisedadead/ama/"
+        aria-label="Ask me anything"
+      >
+        ama
       </NavItem>
     </PrimaryNav>
   </Box>

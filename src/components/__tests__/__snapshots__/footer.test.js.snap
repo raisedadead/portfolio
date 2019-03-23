@@ -9,6 +9,7 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
       className="css-142ynee e1befqft0"
     >
       <a
+        aria-label="Twitter"
         className="e1befqft1 css-sb55b2 e70ypka2"
         data-index={0}
         href="https://twitter.com/raisedadead"
@@ -25,23 +26,15 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span
-                className="css-1h0pl34 ew65k9p0"
-                id="tooltip-1"
-              >
-                <span
-                  className="css-pusqig ew65k9p3"
-                >
-                  <i
-                    className="fa"
-                  />
-                </span>
-              </span>
+              <i
+                className="fa"
+              />
             </span>
           </span>
         </span>
       </a>
       <a
+        aria-label="GitHub"
         className="e1befqft1 css-sb55b2 e70ypka2"
         data-index={1}
         href="https://github.com/raisedadead"
@@ -58,23 +51,15 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span
-                className="css-1h0pl34 ew65k9p0"
-                id="tooltip-2"
-              >
-                <span
-                  className="css-pusqig ew65k9p3"
-                >
-                  <i
-                    className="fa"
-                  />
-                </span>
-              </span>
+              <i
+                className="fa"
+              />
             </span>
           </span>
         </span>
       </a>
       <a
+        aria-label="Medium"
         className="e1befqft1 css-sb55b2 e70ypka2"
         data-index={2}
         href="https://blog.raisedadead.com"
@@ -91,23 +76,15 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span
-                className="css-1h0pl34 ew65k9p0"
-                id="tooltip-3"
-              >
-                <span
-                  className="css-pusqig ew65k9p3"
-                >
-                  <i
-                    className="fa"
-                  />
-                </span>
-              </span>
+              <i
+                className="fa"
+              />
             </span>
           </span>
         </span>
       </a>
       <a
+        aria-label="freeCodeCamp.org"
         className="e1befqft1 css-sb55b2 e70ypka2"
         data-index={3}
         href="https://freeCodeCamp.org/raisedadead"
@@ -124,23 +101,15 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span
-                className="css-1h0pl34 ew65k9p0"
-                id="tooltip-4"
-              >
-                <span
-                  className="css-pusqig ew65k9p3"
-                >
-                  <i
-                    className="fa"
-                  />
-                </span>
-              </span>
+              <i
+                className="fa"
+              />
             </span>
           </span>
         </span>
       </a>
       <a
+        aria-label="LinkedIn"
         className="e1befqft1 css-sb55b2 e70ypka2"
         data-index={4}
         href="https://linkedin.com/in/mrugeshm"
@@ -157,18 +126,9 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
             <span
               className="css-1me6504 e1i5p1da0"
             >
-              <span
-                className="css-1h0pl34 ew65k9p0"
-                id="tooltip-5"
-              >
-                <span
-                  className="css-pusqig ew65k9p3"
-                >
-                  <i
-                    className="fa"
-                  />
-                </span>
-              </span>
+              <i
+                className="fa"
+              />
             </span>
           </span>
         </span>
