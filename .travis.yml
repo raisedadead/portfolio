@@ -23,5 +23,5 @@ script:
 - npm run build
 - npm run test
 - codecov
-- "$(npm bin)/cypress run --record"
+- npm run test:e2e:ci
 after_script: greenkeeper-lockfile-upload
