@@ -15,6 +15,7 @@
     "test:e2e:dev": "start-server-and-test develop http://localhost:8000 cy:run",
     "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run:record",
     "test": "jest --coverage",
+    "test:update": "jest -u",
     "test:watch": "jest --watchAll"
   },
   "jest": {

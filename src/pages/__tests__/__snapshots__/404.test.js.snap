@@ -11,6 +11,7 @@ exports[`404 renders correctly 1`] = `
       className="css-14zqg3i e1befqft0"
     >
       <a
+        aria-label="Ask me anything"
         className="e1befqft1 e70ypka2 css-w4xqqz e19l42ga0"
         data-index={0}
         href="https://github.com/raisedadead/ama/"
@@ -25,29 +26,7 @@ exports[`404 renders correctly 1`] = `
             <span
               className="css-1fns1v3 e1i5p1da0"
             >
-              <span
-                className="css-1h0pl34 ew65k9p0"
-                id="tooltip-1"
-              >
-                <span
-                  className="css-pusqig ew65k9p3"
-                >
-                  <span
-                    aria-describedby="tooltip-1-content"
-                    aria-owns="tooltip-1-content"
-                    className="css-1myw1nk e3ztgjb0"
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onMouseEnter={[Function]}
-                    onMouseLeave={[Function]}
-                    role="button"
-                    tabIndex={0}
-                  >
-                    ama
-                  </span>
-                </span>
-              </span>
+              ama
             </span>
           </span>
         </span>
@@ -91,6 +70,7 @@ exports[`404 renders correctly 1`] = `
         className="css-1ogyrb7 e1befqft0"
       >
         <a
+          aria-label="Twitter"
           className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={0}
           href="https://twitter.com/raisedadead"
@@ -107,23 +87,15 @@ exports[`404 renders correctly 1`] = `
               <span
                 className="css-1fns1v3 e1i5p1da0"
               >
-                <span
-                  className="css-1h0pl34 ew65k9p0"
-                  id="tooltip-2"
-                >
-                  <span
-                    className="css-pusqig ew65k9p3"
-                  >
-                    <i
-                      className="fa"
-                    />
-                  </span>
-                </span>
+                <i
+                  className="fa"
+                />
               </span>
             </span>
           </span>
         </a>
         <a
+          aria-label="GitHub"
           className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={1}
           href="https://github.com/raisedadead"
@@ -140,23 +112,15 @@ exports[`404 renders correctly 1`] = `
               <span
                 className="css-1fns1v3 e1i5p1da0"
               >
-                <span
-                  className="css-1h0pl34 ew65k9p0"
-                  id="tooltip-3"
-                >
-                  <span
-                    className="css-pusqig ew65k9p3"
-                  >
-                    <i
-                      className="fa"
-                    />
-                  </span>
-                </span>
+                <i
+                  className="fa"
+                />
               </span>
             </span>
           </span>
         </a>
         <a
+          aria-label="Medium"
           className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={2}
           href="https://blog.raisedadead.com"
@@ -173,23 +137,15 @@ exports[`404 renders correctly 1`] = `
               <span
                 className="css-1fns1v3 e1i5p1da0"
               >
-                <span
-                  className="css-1h0pl34 ew65k9p0"
-                  id="tooltip-4"
-                >
-                  <span
-                    className="css-pusqig ew65k9p3"
-                  >
-                    <i
-                      className="fa"
-                    />
-                  </span>
-                </span>
+                <i
+                  className="fa"
+                />
               </span>
             </span>
           </span>
         </a>
         <a
+          aria-label="freeCodeCamp.org"
           className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={3}
           href="https://freeCodeCamp.org/raisedadead"
@@ -206,23 +162,15 @@ exports[`404 renders correctly 1`] = `
               <span
                 className="css-1fns1v3 e1i5p1da0"
               >
-                <span
-                  className="css-1h0pl34 ew65k9p0"
-                  id="tooltip-5"
-                >
-                  <span
-                    className="css-pusqig ew65k9p3"
-                  >
-                    <i
-                      className="fa"
-                    />
-                  </span>
-                </span>
+                <i
+                  className="fa"
+                />
               </span>
             </span>
           </span>
         </a>
         <a
+          aria-label="LinkedIn"
           className="e1befqft1 css-1blyn4k e70ypka2"
           data-index={4}
           href="https://linkedin.com/in/mrugeshm"
@@ -239,18 +187,9 @@ exports[`404 renders correctly 1`] = `
               <span
                 className="css-1fns1v3 e1i5p1da0"
               >
-                <span
-                  className="css-1h0pl34 ew65k9p0"
-                  id="tooltip-6"
-                >
-                  <span
-                    className="css-pusqig ew65k9p3"
-                  >
-                    <i
-                      className="fa"
-                    />
-                  </span>
-                </span>
+                <i
+                  className="fa"
+                />
               </span>
             </span>
           </span>
