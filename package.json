@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter",
-  "description": "This starter ships with the main Gatsby files and a small collection of plugins to start a PWA with Google Analytics, Tag Manager, Manifest, SEO tools, Stripe for product listings and checkout, plus the basic TDD/automated-test tools preferred by the Gatsby core contributors: Jest & Cypress https://gatsby-starter.davesabine.com.",
-  "license": "CC-BY-4.0",
+  "name": "@raisedadead/portfolio",
+  "description": "mrugesh mohapatra's personal portfolio",
+  "license": "ISC",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -21,6 +21,17 @@
   "jest": {
     "coverageDirectory": "./coverage/",
     "collectCoverage": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
@@ -75,11 +86,24 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "husky": "^1.3.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.5.0",
     "jest-dom": "^3.1.3",
+    "lint-staged": "^8.1.5",
     "prettier": "1.16.4",
     "react-test-renderer": "^16.8.5",
     "start-server-and-test": "^1.7.12"
-  }
+  },
+  "version": "1.0.0",
+  "main": "\"N/A\"",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raisedadead/portfolio.git"
+  },
+  "author": "mrugesh mohapatra <ama+npm@raisedadead.com>",
+  "bugs": {
+    "url": "https://github.com/raisedadead/portfolio/issues"
+  },
+  "homepage": "https://github.com/raisedadead/portfolio#readme"
 }
