@@ -1,28 +1,30 @@
-[![Build Status][build-status-img]][build-status]
-[![Deploy Status][deploy-status-img]][deploy-status]
-[![Greenkeeper][greenkeeper-badge-img]][greenkeeper-badge]
 # portfolio
 
 > Nothing fancy here, just my [portfolio website][personal-website].
-What is this about?
+
+[![Build Status][build-status-img]][build-status]
+[![Deploy Status][deploy-status-img]][deploy-status]
+[![Greenkeeper][greenkeeper-badge-img]][greenkeeper-badge]
+
+## What is this about?
 
 - Its just a basic identity website. Nothing more [... as of now].
-- Currently I am rewriting it as  a part of learning [react][react-website].
-- The code is expected to be buggy and overy complicated, as a result.
-- To test locally, run `npm install` followed by `npm start`.
+- I keep updating it as  a part of learning [react][react-website]. The code is expected to be buggy and   overly complicated, as a result.
+- To test locally, run `npm install` followed by `npm run develop`.
 
 Nonetheless, please feel free to browse, and leave feedbacks on the issue tracker. If you catch a typo, or something broken, please let me know.
 
 ## Demo
 
-> <https://raisedadead.com/>
-# License
+> <https://mrugesh.dev/>
+
+## License
 
 Software:
-The software as it is licensed under [ISC](LICENSE), please feel free to extend, re-use, share the code.
+The software as it is licensed under the [ISC](LICENSE) License, please feel free to extend, re-use, share the code.
 
 Content:
-The content pertaining to Mrugesh Mohapatra such as his resume, personal information, imagery, etc. is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)][by-nc-nd-4].
+The content pertaining to Mrugesh Mohapatra such as his resume, personal information, imagery, etc. is licensed under the [CC BY-NC-ND 4.0][by-nc-nd-4] License.
 
 [build-status-img]: https://travis-ci.org/raisedadead/portfolio.svg?branch=master
 [build-status]: https://travis-ci.org/raisedadead/portfolio
