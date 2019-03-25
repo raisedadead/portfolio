@@ -16,7 +16,7 @@ before_install:
 - npm config set loglevel warn
 - npm install -g greenkeeper-lockfile@1
 - npm install -g codecov
-install: npm ci
+install: npm install
 before_script: greenkeeper-lockfile-update
 script:
 - npm run lint
