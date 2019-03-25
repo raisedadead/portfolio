@@ -2,7 +2,8 @@
 
 > Nothing fancy here, just my [portfolio website][personal-website].
 
-[![Build Status][build-status-img]][build-status]
+[![TravisCI][travis-status-img]][travis-status]
+[![CircleCI][circle-status-img]][circle-status]
 [![Deploy Status][deploy-status-img]][deploy-status]
 [![Greenkeeper][greenkeeper-badge-img]][greenkeeper-badge]
 
@@ -26,8 +27,10 @@ The software as it is licensed under the [ISC](LICENSE) License, please feel fre
 Content:
 The content pertaining to Mrugesh Mohapatra such as his resume, personal information, imagery, etc. is licensed under the [CC BY-NC-ND 4.0][by-nc-nd-4] License.
 
-[build-status-img]: https://travis-ci.org/raisedadead/portfolio.svg?branch=master
-[build-status]: https://travis-ci.org/raisedadead/portfolio
+[travis-status-img]: https://travis-ci.org/raisedadead/portfolio.svg?branch=master
+[travis-status]: https://travis-ci.org/raisedadead/portfolio
+[circle-status-img]: https://circleci.com/gh/raisedadead/portfolio.svg?style=svg
+[circle-status]: https://circleci.com/gh/raisedadead/portfolio
 [deploy-status-img]: https://api.netlify.com/api/v1/badges/22475e18-dbce-4472-880a-6696b0aea170/deploy-status
 [deploy-status]: https://app.netlify.com/sites/raisedadead/deploys
 [greenkeeper-badge-img]: https://badges.greenkeeper.io/raisedadead/portfolio.svg
