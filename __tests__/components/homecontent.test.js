@@ -1,7 +1,7 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from 'react-testing-library';
 
-import { PureHomeContent as HomeContent } from '../HomeContent';
+import { PureHomeContent as HomeContent } from '../../src/components/HomeContent';
 
 describe(`HomeContent`, () => {
   it(`renders correctly`, () => {
@@ -20,7 +20,9 @@ describe(`HomeContent`, () => {
         }
       }
     };
-    const tree = renderer.create(<HomeContent data={data} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const {
+      container: { firstChild }
+    } = render(<HomeContent data={data} />);
+    expect(firstChild).toMatchSnapshot();
   });
 });

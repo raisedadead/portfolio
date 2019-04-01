@@ -2,29 +2,28 @@
 
 exports[`404 renders correctly 1`] = `
 <div
-  className="css-nz9nvg elghiqq0"
+  class="css-nz9nvg elghiqq0"
 >
   <div
-    className="css-11inlkn elghiqq0"
+    class="css-11inlkn elghiqq0"
   >
     <nav
-      className="css-14zqg3i e1befqft0"
+      class="css-14zqg3i e1befqft0"
     >
       <a
         aria-label="Ask me anything"
-        className="e1befqft1 e70ypka2 css-w4xqqz e19l42ga0"
-        data-index={0}
+        class="e1befqft1 e70ypka2 css-w4xqqz e19l42ga0"
+        data-index="0"
         href="https://github.com/raisedadead/ama/"
-        onClick={[Function]}
       >
         <span
-          className="css-1xssqnp e70ypka1"
+          class="css-1xssqnp e70ypka1"
         >
           <span
-            className="css-1sp7cuy e70ypka0"
+            class="css-1sp7cuy e70ypka0"
           >
             <span
-              className="css-1fns1v3 e1i5p1da0"
+              class="css-1fns1v3 e1i5p1da0"
             >
               ama
             </span>
@@ -36,18 +35,18 @@ exports[`404 renders correctly 1`] = `
   <main>
     <main>
       <section
-        className="css-11inlkn elghiqq0"
+        class="css-11inlkn elghiqq0"
       >
         <div
-          className="e7r6m60 css-wzh7ay elghiqq0"
+          class="e7r6m60 css-wzh7ay elghiqq0"
         >
           <h2
-            className="css-ov77vs e19le4zx0"
+            class="css-ov77vs e19le4zx0"
           >
             404 | Page not found.
           </h2>
           <p
-            className="css-16qt340 e19le4zx0"
+            class="css-16qt340 e19le4zx0"
           >
             Ah..! That's my bad. Sorry. Why don't you checkout
              
@@ -64,31 +63,30 @@ exports[`404 renders correctly 1`] = `
   </main>
   <footer>
     <section
-      className="css-11inlkn elghiqq0"
+      class="css-11inlkn elghiqq0"
     >
       <nav
-        className="css-1ogyrb7 e1befqft0"
+        class="css-1ogyrb7 e1befqft0"
       >
         <a
           aria-label="Twitter"
-          className="e1befqft1 css-1blyn4k e70ypka2"
-          data-index={0}
+          class="e1befqft1 css-1blyn4k e70ypka2"
+          data-index="0"
           href="https://twitter.com/raisedadead"
-          onClick={[Function]}
           rel="noopener noreferrer"
           target="_blank"
         >
           <span
-            className="css-1xssqnp e70ypka1"
+            class="css-1xssqnp e70ypka1"
           >
             <span
-              className="css-1sp7cuy e70ypka0"
+              class="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-1fns1v3 e1i5p1da0"
+                class="css-1fns1v3 e1i5p1da0"
               >
                 <i
-                  className="fa"
+                  class="fa"
                 />
               </span>
             </span>
@@ -96,24 +94,23 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="GitHub"
-          className="e1befqft1 css-1blyn4k e70ypka2"
-          data-index={1}
+          class="e1befqft1 css-1blyn4k e70ypka2"
+          data-index="1"
           href="https://github.com/raisedadead"
-          onClick={[Function]}
           rel="noopener noreferrer"
           target="_blank"
         >
           <span
-            className="css-1xssqnp e70ypka1"
+            class="css-1xssqnp e70ypka1"
           >
             <span
-              className="css-1sp7cuy e70ypka0"
+              class="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-1fns1v3 e1i5p1da0"
+                class="css-1fns1v3 e1i5p1da0"
               >
                 <i
-                  className="fa"
+                  class="fa"
                 />
               </span>
             </span>
@@ -121,24 +118,23 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="Medium"
-          className="e1befqft1 css-1blyn4k e70ypka2"
-          data-index={2}
+          class="e1befqft1 css-1blyn4k e70ypka2"
+          data-index="2"
           href="https://blog.raisedadead.com"
-          onClick={[Function]}
           rel="noopener noreferrer"
           target="_blank"
         >
           <span
-            className="css-1xssqnp e70ypka1"
+            class="css-1xssqnp e70ypka1"
           >
             <span
-              className="css-1sp7cuy e70ypka0"
+              class="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-1fns1v3 e1i5p1da0"
+                class="css-1fns1v3 e1i5p1da0"
               >
                 <i
-                  className="fa"
+                  class="fa"
                 />
               </span>
             </span>
@@ -146,24 +142,23 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="freeCodeCamp.org"
-          className="e1befqft1 css-1blyn4k e70ypka2"
-          data-index={3}
+          class="e1befqft1 css-1blyn4k e70ypka2"
+          data-index="3"
           href="https://freeCodeCamp.org/raisedadead"
-          onClick={[Function]}
           rel="noopener noreferrer"
           target="_blank"
         >
           <span
-            className="css-1xssqnp e70ypka1"
+            class="css-1xssqnp e70ypka1"
           >
             <span
-              className="css-1sp7cuy e70ypka0"
+              class="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-1fns1v3 e1i5p1da0"
+                class="css-1fns1v3 e1i5p1da0"
               >
                 <i
-                  className="fa"
+                  class="fa"
                 />
               </span>
             </span>
@@ -171,24 +166,23 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="LinkedIn"
-          className="e1befqft1 css-1blyn4k e70ypka2"
-          data-index={4}
+          class="e1befqft1 css-1blyn4k e70ypka2"
+          data-index="4"
           href="https://linkedin.com/in/mrugeshm"
-          onClick={[Function]}
           rel="noopener noreferrer"
           target="_blank"
         >
           <span
-            className="css-1xssqnp e70ypka1"
+            class="css-1xssqnp e70ypka1"
           >
             <span
-              className="css-1sp7cuy e70ypka0"
+              class="css-1sp7cuy e70ypka0"
             >
               <span
-                className="css-1fns1v3 e1i5p1da0"
+                class="css-1fns1v3 e1i5p1da0"
               >
                 <i
-                  className="fa"
+                  class="fa"
                 />
               </span>
             </span>
@@ -196,7 +190,7 @@ exports[`404 renders correctly 1`] = `
         </a>
       </nav>
       <h6
-        className="css-1xj32bh e19le4zx0"
+        class="css-1xj32bh e19le4zx0"
       >
          
         © 

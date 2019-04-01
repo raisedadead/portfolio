@@ -1,7 +1,7 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import HTMLHead from '../HTMLHead';
-const metaData = require(`../../../gatsby-config`).siteMetadata;
+import { render } from 'react-testing-library';
+import HTMLHead from '../../src/components/HTMLHead';
+const metaData = require(`../../gatsby-config`).siteMetadata;
 
 describe(`HTMLHead`, () => {
   it(`renders correctly`, () => {
@@ -19,7 +19,9 @@ describe(`HTMLHead`, () => {
         }
       }
     };
-    const tree = renderer.create(<HTMLHead data={data} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const {
+      container: { firstChild }
+    } = render(<HTMLHead data={data} />);
+    expect(firstChild).toMatchSnapshot();
   });
 });

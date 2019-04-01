@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeContent renders correctly 1`] = `
+<section
+  class="css-1hm9igd elghiqq0"
+>
+  <div
+    class="e7r6m60 css-13v9bvk elghiqq0"
+  >
+    <div
+      class="css-1nsbwhm elghiqq0"
+    >
+      <div
+        class=" gatsby-image-wrapper"
+        style="position: relative; overflow: hidden;"
+      >
+        <div
+          style="width: 100%; padding-bottom: 100%;"
+        />
+        <img
+          alt=""
+          src="random-2b80985b4264e4cb34b1850de91c6911"
+          style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; transition: opacity 0.5s; transition-delay: 0.25s;"
+        />
+        <picture>
+          <source
+            sizes="(max-width: 300px) 100vw, 300px"
+            srcset="random-2b80985b4264e4cb34b1850de91c6911"
+            type="image/webp"
+          />
+          <img
+            alt=""
+            sizes="(max-width: 300px) 100vw, 300px"
+            src="random-2b80985b4264e4cb34b1850de91c6911"
+            srcset="random-2b80985b4264e4cb34b1850de91c6911"
+            style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 0.5s;"
+          />
+        </picture>
+        <noscript>
+          &lt;picture&gt;&lt;source type='image/webp' srcset="random-2b80985b4264e4cb34b1850de91c6911" sizes="(max-width: 300px) 100vw, 300px" /&gt;&lt;img sizes="(max-width: 300px) 100vw, 300px" srcset="random-2b80985b4264e4cb34b1850de91c6911" src="random-2b80985b4264e4cb34b1850de91c6911" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+        </noscript>
+      </div>
+    </div>
+    <h1
+      class="css-pdf1eb e19le4zx0"
+    >
+      mrugesh mohapatra
+    </h1>
+    <h2
+      class="css-pdf1eb e19le4zx0"
+    >
+      developer. music addict. open source enthusiast. noob photographer.
+    </h2>
+    <h4
+      class="css-pdf1eb e19le4zx0"
+    >
+      Developer Advocate at freeCodeCamp.org
+    </h4>
+  </div>
+</section>
+`;
