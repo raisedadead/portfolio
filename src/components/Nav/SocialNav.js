@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LinkComponent from '../LinkComponent';
 
 const SocialNav = () => (
-  <PrimaryNav itemAs={LinkComponent} minimal alignment="center">
+  <PrimaryNav itemAs={LinkComponent} minimal align="center">
     <NavItem to="https://twitter.com/raisedadead" aria-label="Twitter">
       <FontAwesomeIcon icon={[`fab`, `twitter`]} size="lg" />
     </NavItem>
