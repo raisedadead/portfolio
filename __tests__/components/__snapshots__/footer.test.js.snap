@@ -3,31 +3,30 @@
 exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
 <footer>
   <section
-    className="css-1big75 elghiqq0"
+    class="css-1big75 elghiqq0"
   >
     <nav
-      className="css-142ynee e1befqft0"
+      class="css-142ynee e1befqft0"
     >
       <a
         aria-label="Twitter"
-        className="e1befqft1 css-sb55b2 e70ypka2"
-        data-index={0}
+        class="e1befqft1 css-sb55b2 e70ypka2"
+        data-index="0"
         href="https://twitter.com/raisedadead"
-        onClick={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >
         <span
-          className="css-1xssqnp e70ypka1"
+          class="css-1xssqnp e70ypka1"
         >
           <span
-            className="css-pw07op e70ypka0"
+            class="css-pw07op e70ypka0"
           >
             <span
-              className="css-1me6504 e1i5p1da0"
+              class="css-1me6504 e1i5p1da0"
             >
               <i
-                className="fa"
+                class="fa"
               />
             </span>
           </span>
@@ -35,24 +34,23 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
       </a>
       <a
         aria-label="GitHub"
-        className="e1befqft1 css-sb55b2 e70ypka2"
-        data-index={1}
+        class="e1befqft1 css-sb55b2 e70ypka2"
+        data-index="1"
         href="https://github.com/raisedadead"
-        onClick={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >
         <span
-          className="css-1xssqnp e70ypka1"
+          class="css-1xssqnp e70ypka1"
         >
           <span
-            className="css-pw07op e70ypka0"
+            class="css-pw07op e70ypka0"
           >
             <span
-              className="css-1me6504 e1i5p1da0"
+              class="css-1me6504 e1i5p1da0"
             >
               <i
-                className="fa"
+                class="fa"
               />
             </span>
           </span>
@@ -60,24 +58,23 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
       </a>
       <a
         aria-label="Medium"
-        className="e1befqft1 css-sb55b2 e70ypka2"
-        data-index={2}
+        class="e1befqft1 css-sb55b2 e70ypka2"
+        data-index="2"
         href="https://blog.raisedadead.com"
-        onClick={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >
         <span
-          className="css-1xssqnp e70ypka1"
+          class="css-1xssqnp e70ypka1"
         >
           <span
-            className="css-pw07op e70ypka0"
+            class="css-pw07op e70ypka0"
           >
             <span
-              className="css-1me6504 e1i5p1da0"
+              class="css-1me6504 e1i5p1da0"
             >
               <i
-                className="fa"
+                class="fa"
               />
             </span>
           </span>
@@ -85,24 +82,23 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
       </a>
       <a
         aria-label="freeCodeCamp.org"
-        className="e1befqft1 css-sb55b2 e70ypka2"
-        data-index={3}
+        class="e1befqft1 css-sb55b2 e70ypka2"
+        data-index="3"
         href="https://freeCodeCamp.org/raisedadead"
-        onClick={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >
         <span
-          className="css-1xssqnp e70ypka1"
+          class="css-1xssqnp e70ypka1"
         >
           <span
-            className="css-pw07op e70ypka0"
+            class="css-pw07op e70ypka0"
           >
             <span
-              className="css-1me6504 e1i5p1da0"
+              class="css-1me6504 e1i5p1da0"
             >
               <i
-                className="fa"
+                class="fa"
               />
             </span>
           </span>
@@ -110,24 +106,23 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
       </a>
       <a
         aria-label="LinkedIn"
-        className="e1befqft1 css-sb55b2 e70ypka2"
-        data-index={4}
+        class="e1befqft1 css-sb55b2 e70ypka2"
+        data-index="4"
         href="https://linkedin.com/in/mrugeshm"
-        onClick={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >
         <span
-          className="css-1xssqnp e70ypka1"
+          class="css-1xssqnp e70ypka1"
         >
           <span
-            className="css-pw07op e70ypka0"
+            class="css-pw07op e70ypka0"
           >
             <span
-              className="css-1me6504 e1i5p1da0"
+              class="css-1me6504 e1i5p1da0"
             >
               <i
-                className="fa"
+                class="fa"
               />
             </span>
           </span>
@@ -135,7 +130,7 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
       </a>
     </nav>
     <h6
-      className="css-pdf1eb e19le4zx0"
+      class="css-pdf1eb e19le4zx0"
     >
        
       © 
