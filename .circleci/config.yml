@@ -38,7 +38,7 @@ jobs:
 
       - run:
           name: Run server and E2E tests
-          command: npm run test:e2e:ci
+          command: npm run test:e2e:ci:rec
 
       - store_artifacts:
           path: ~/repo/cypress/screenshots
