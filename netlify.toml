@@ -1,4 +1,4 @@
 [build]
   functions = '__functions__'
-  command = "npm run build && npm run test && npm run test:e2e:ci"
+  command = "npm run build && npm run test"
   publish = "public"
