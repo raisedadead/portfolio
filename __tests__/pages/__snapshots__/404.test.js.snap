@@ -70,7 +70,7 @@ exports[`404 renders correctly 1`] = `
       >
         <a
           aria-label="Twitter"
-          class="e1befqft1 css-1blyn4k e70ypka2"
+          class="e1befqft1 css-1y78gur e70ypka2"
           data-index="0"
           href="https://twitter.com/raisedadead"
           rel="noopener noreferrer"
@@ -94,7 +94,7 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="GitHub"
-          class="e1befqft1 css-1blyn4k e70ypka2"
+          class="e1befqft1 css-1y78gur e70ypka2"
           data-index="1"
           href="https://github.com/raisedadead"
           rel="noopener noreferrer"
@@ -118,7 +118,7 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="Medium"
-          class="e1befqft1 css-1blyn4k e70ypka2"
+          class="e1befqft1 css-1y78gur e70ypka2"
           data-index="2"
           href="https://blog.raisedadead.com"
           rel="noopener noreferrer"
@@ -142,7 +142,7 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="freeCodeCamp.org"
-          class="e1befqft1 css-1blyn4k e70ypka2"
+          class="e1befqft1 css-1y78gur e70ypka2"
           data-index="3"
           href="https://freeCodeCamp.org/raisedadead"
           rel="noopener noreferrer"
@@ -166,7 +166,7 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="LinkedIn"
-          class="e1befqft1 css-1blyn4k e70ypka2"
+          class="e1befqft1 css-1y78gur e70ypka2"
           data-index="4"
           href="https://linkedin.com/in/mrugeshm"
           rel="noopener noreferrer"

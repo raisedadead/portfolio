@@ -1,8 +1,16 @@
 import React from 'react';
-import { PrimaryNav, NavItem } from 'mineral-ui/Navigation';
+import styled from '@emotion/styled';
+import { PrimaryNav, NavItem as NavigationItem } from 'mineral-ui/Navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import LinkComponent from '../LinkComponent';
+
+const NavItem = styled(NavigationItem)({
+  minWidth: `auto`,
+  minHeight: `auto`,
+  padding: `0.5em 0.5em`,
+  height: `auto`
+});
 
 const SocialNav = () => (
   <PrimaryNav itemAs={LinkComponent} minimal align="center">
