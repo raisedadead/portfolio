@@ -8,11 +8,11 @@ exports[`404 renders correctly 1`] = `
     class="css-11inlkn elghiqq0"
   >
     <nav
-      class="css-14zqg3i e1befqft0"
+      class="css-jh4ft1-PrimaryNav e1befqft0"
     >
       <a
         aria-label="Ask me anything"
-        class="e1befqft1 e70ypka2 css-w4xqqz e19l42ga0"
+        class="e1befqft1 e70ypka2 css-1te9ol8 e19l42ga0"
         data-index="0"
         href="https://github.com/raisedadead/ama/"
       >
