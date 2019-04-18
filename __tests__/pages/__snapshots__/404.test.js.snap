@@ -11,9 +11,29 @@ exports[`404 renders correctly 1`] = `
       class="css-jh4ft1-PrimaryNav e1befqft0"
     >
       <a
-        aria-label="Ask me anything"
-        class="e1befqft1 e70ypka2 css-1te9ol8 e19l42ga0"
+        aria-label="Mrugesh Mohapatra's resumé"
+        class="e1befqft1 e70ypka2 css-1iq848b e19l42ga0"
         data-index="0"
+        href="https://represent.io/mrugesh"
+      >
+        <span
+          class="css-1xssqnp e70ypka1"
+        >
+          <span
+            class="css-1sp7cuy e70ypka0"
+          >
+            <span
+              class="css-1fns1v3 e1i5p1da0"
+            >
+              resumé
+            </span>
+          </span>
+        </span>
+      </a>
+      <a
+        aria-label="Ask me anything"
+        class="e1befqft1 e70ypka2 css-1iq848b e19l42ga0"
+        data-index="1"
         href="https://github.com/raisedadead/ama/"
       >
         <span

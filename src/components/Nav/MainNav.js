@@ -7,7 +7,7 @@ import Box from 'mineral-ui/Box/Box';
 const NavItem = styled(NavigationItem)({
   minWidth: `auto`,
   minHeight: `auto`,
-  padding: `0.5em 0.5em`,
+  padding: `0.5em 0`,
   height: `auto`
 });
 
@@ -21,11 +21,12 @@ const MainNaV = () => (
       align="end"
       minimal
     >
-      {/*
-      <NavItem to="https://git.raisedadead.com/resume/">
-        <span>résumé</span>
+      <NavItem
+        href="https://represent.io/mrugesh"
+        aria-label="Mrugesh Mohapatra's resumé"
+      >
+        resumé
       </NavItem>
-      */}
       <NavItem
         href="https://github.com/raisedadead/ama/"
         aria-label="Ask me anything"
