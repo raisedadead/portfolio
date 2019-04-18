@@ -34,3 +34,5 @@ public
 # Cypress
 cypress/screenshots/
 cypress/videos/
+
+.netlify
