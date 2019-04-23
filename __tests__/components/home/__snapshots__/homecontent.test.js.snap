@@ -44,7 +44,26 @@ exports[`HomeContent renders correctly 1`] = `
     <h2
       class="css-pdf1eb e19le4zx0"
     >
-      mrugesh mohapatra
+      <span
+        class="css-1h0pl34 ew65k9p0"
+        id="tooltip-1"
+      >
+        <span
+          class="css-1wyum7k ew65k9p3"
+        >
+          <span
+            aria-describedby="tooltip-1-content"
+            aria-owns="tooltip-1-content"
+            class="css-1myw1nk e3ztgjb0"
+            role="button"
+            tabindex="0"
+          >
+            mrugesh
+          </span>
+        </span>
+      </span>
+       
+      mohapatra
     </h2>
     <h3
       class="css-pdf1eb e19le4zx0"
@@ -59,7 +78,7 @@ exports[`HomeContent renders correctly 1`] = `
         
       <a
         aria-label="freecodecamp.org"
-        class="css-ytumd6"
+        class="css-3r9jsu"
         href="https://www.freecodecamp.org"
         rel="noopener noreferrer"
         target="_blank"

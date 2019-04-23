@@ -3,11 +3,12 @@ import styled from '@emotion/styled';
 import { PrimaryNav, NavItem as NavigationItem } from 'mineral-ui/Navigation';
 import Link from 'mineral-ui/Link';
 import Box from 'mineral-ui/Box/Box';
+import Tooltip from 'mineral-ui/Tooltip';
 
 const NavItem = styled(NavigationItem)({
   minWidth: `auto`,
   minHeight: `auto`,
-  padding: `0.5em 0`,
+  padding: `0`,
   height: `auto`
 });
 
@@ -25,13 +26,17 @@ const MainNaV = () => (
         href="https://represent.io/mrugesh"
         aria-label="Mrugesh Mohapatra's resumé"
       >
-        resumé
+        <Tooltip content="resumé" usePortal>
+          resumé
+        </Tooltip>
       </NavItem>
       <NavItem
         href="https://github.com/raisedadead/ama/"
         aria-label="Ask me anything"
       >
-        ama
+        <Tooltip content="ask me anything" usePortal>
+          ama
+        </Tooltip>
       </NavItem>
     </PrimaryNav>
   </Box>

@@ -1,17 +1,33 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import { ClassNames } from '@emotion/core';
 
 import { StaticQuery, graphql } from 'gatsby';
 import Box from 'mineral-ui/Box';
 import Text from 'mineral-ui/Text';
 import Flex from 'mineral-ui/Flex';
+import Tooltip from 'mineral-ui/Tooltip';
 import Img from 'gatsby-image';
 
-import LinkItem from './Link';
+import LinkItem from '../Link';
 
-const Link = styled(LinkItem)({
-  textDecoration: `none`
-});
+const Link = props => (
+  <ClassNames>
+    {({ css }) => (
+      <LinkItem
+        className={css`
+          outline: none;
+          text-decoration: none;
+          padding: 2px 1px 0;
+          border-bottom-style: dashed;
+          border-bottom-color: currentcolor;
+          border-bottom-width: 1px;
+          color: currentcolor;
+        `}
+        {...props}
+      />
+    )}
+  </ClassNames>
+);
 
 export const PureHomeContent = ({ data }) => (
   <Box
@@ -34,8 +50,13 @@ export const PureHomeContent = ({ data }) => (
         <Img sizes={data.profileImage.childImageSharp.fluid} />
       </Box>
       <Text as="h2" align="center">
-        mrugesh mohapatra
+        <Tooltip cursor="help" content="/mru:dʒi:eʃ/" placement="top" usePortal>
+          mrugesh
+        </Tooltip>
+        {` `}
+        mohapatra
       </Text>
+
       <Text as="h3" align="center">
         developer. music addict. open source enthusiast. noob photographer.
       </Text>

@@ -3,6 +3,7 @@
   "description": "mrugesh mohapatra's personal portfolio",
   "license": "ISC",
   "scripts": {
+    "dev": "npm run develop",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve --port 8000",
