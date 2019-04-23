@@ -41,21 +41,32 @@ exports[`HomeContent renders correctly 1`] = `
         </noscript>
       </div>
     </div>
-    <h1
-      class="css-pdf1eb e19le4zx0"
-    >
-      mrugesh mohapatra
-    </h1>
     <h2
       class="css-pdf1eb e19le4zx0"
     >
-      developer. music addict. open source enthusiast. noob photographer.
+      mrugesh mohapatra
     </h2>
-    <h4
+    <h3
       class="css-pdf1eb e19le4zx0"
     >
-      Developer Advocate at freeCodeCamp.org
-    </h4>
+      developer. music addict. open source enthusiast. noob photographer.
+    </h3>
+    <br />
+    <p
+      class="css-pdf1eb e19le4zx0"
+    >
+      Lead Developer and Community Advocate at
+        
+      <a
+        aria-label="freecodecamp.org"
+        class="css-ytumd6"
+        href="https://www.freecodecamp.org"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        freeCodeCamp.org
+      </a>
+    </p>
   </div>
 </section>
 `;

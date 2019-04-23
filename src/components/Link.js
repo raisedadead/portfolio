@@ -8,7 +8,7 @@ const propTypes = {
   to: PropTypes.string.isRequired
 };
 
-const LinkComponent = ({ children, to, openNewTab = false, ...other }) => {
+const Link = ({ children, to, openNewTab = false, ...other }) => {
   if (!openNewTab && /^\/(?!\/)/.test(to)) {
     return (
       <GatsbyLink to={to} {...other}>
@@ -23,6 +23,6 @@ const LinkComponent = ({ children, to, openNewTab = false, ...other }) => {
     </a>
   );
 };
-LinkComponent.propTypes = propTypes;
+Link.propTypes = propTypes;
 
-export default LinkComponent;
+export default Link;

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { PrimaryNav, NavItem as NavigationItem } from 'mineral-ui/Navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import LinkComponent from '../LinkComponent';
+import Link from '../Link';
 
 const NavItem = styled(NavigationItem)({
   minWidth: `auto`,
@@ -13,7 +13,7 @@ const NavItem = styled(NavigationItem)({
 });
 
 const SocialNav = () => (
-  <PrimaryNav itemAs={LinkComponent} minimal align="center">
+  <PrimaryNav itemAs={Link} minimal align="center">
     <NavItem to="https://twitter.com/raisedadead" aria-label="Twitter">
       <FontAwesomeIcon icon={[`fab`, `twitter`]} size="lg" />
     </NavItem>
