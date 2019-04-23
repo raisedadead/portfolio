@@ -1,4 +1,4 @@
-import HomeContent from '../components/HomeContent';
+import HomeContent from '../components/Home/HomeContent';
 import HtmlHead from '../components/HTMLHead';
 import DefaultLayout from '../components/Layouts/DefaultLayout';
 import React from 'react';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-testing-library';
 
-import { PureHomeContent as HomeContent } from '../../src/components/HomeContent';
+import { PureHomeContent as HomeContent } from '../../../src/components/Home/HomeContent';
 
 describe(`HomeContent`, () => {
   it(`renders correctly`, () => {
