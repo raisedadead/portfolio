@@ -93,7 +93,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
-    "react-testing-library": "^6.1.2",
+    "react-testing-library": "^7.0.0",
     "react-typography": "^0.16.18",
     "start-server-and-test": "^1.7.13",
     "typography": "^0.16.18"
