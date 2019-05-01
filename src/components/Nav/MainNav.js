@@ -16,7 +16,8 @@ const MainNaV = () => (
   <Box marginHorizontal="auto" width={1 / 2}>
     <PrimaryNav
       css={{
-        width: `75vw`
+        width: `75vw`,
+        backgroundColor: `rgba(255, 255, 255, 0)`
       }}
       itemAs={Link}
       align="end"

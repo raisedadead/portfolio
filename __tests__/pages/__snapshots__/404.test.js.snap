@@ -2,13 +2,13 @@
 
 exports[`404 renders correctly 1`] = `
 <div
-  class="css-nz9nvg elghiqq0"
+  class="css-17mhdrz elghiqq0"
 >
   <div
     class="css-11inlkn elghiqq0"
   >
     <nav
-      class="css-jh4ft1-PrimaryNav e1befqft0"
+      class="css-l60o26-PrimaryNav e1befqft0"
     >
       <a
         aria-label="Mrugesh Mohapatra's resumé"
@@ -105,6 +105,7 @@ exports[`404 renders correctly 1`] = `
             Ah..! That's my bad. Sorry. Why don't you checkout
              
             <a
+              class="css-3r9jsu"
               href="/"
             >
               something here
@@ -120,7 +121,7 @@ exports[`404 renders correctly 1`] = `
       class="css-11inlkn elghiqq0"
     >
       <nav
-        class="css-1ogyrb7 e1befqft0"
+        class="css-1pdtlkx-PrimaryNav e1befqft0"
       >
         <a
           aria-label="Twitter"

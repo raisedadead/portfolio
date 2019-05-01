@@ -13,7 +13,12 @@ const NavItem = styled(NavigationItem)({
 });
 
 const SocialNav = () => (
-  <PrimaryNav itemAs={Link} minimal align="center">
+  <PrimaryNav
+    css={{ backgroundColor: `rgba(255, 255, 255, 0)` }}
+    itemAs={Link}
+    minimal
+    align="center"
+  >
     <NavItem to="https://twitter.com/raisedadead" aria-label="Twitter">
       <FontAwesomeIcon icon={[`fab`, `twitter`]} size="lg" />
     </NavItem>

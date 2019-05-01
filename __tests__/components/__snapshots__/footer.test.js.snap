@@ -6,7 +6,7 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
     class="css-1big75 elghiqq0"
   >
     <nav
-      class="css-142ynee e1befqft0"
+      class="css-o92m70-PrimaryNav e1befqft0"
     >
       <a
         aria-label="Twitter"
