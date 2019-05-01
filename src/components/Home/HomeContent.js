@@ -6,6 +6,7 @@ import Box from 'mineral-ui/Box';
 import Text from 'mineral-ui/Text';
 import Flex from 'mineral-ui/Flex';
 import Tooltip from 'mineral-ui/Tooltip';
+import Card from 'mineral-ui/Card';
 import Img from 'gatsby-image';
 
 import LinkItem from '../Link';
@@ -47,7 +48,9 @@ export const PureHomeContent = ({ data }) => (
         width={[`25vw`, `25vw`, `15vw`, `15vw`]}
         margin="1em"
       >
-        <Img sizes={data.profileImage.childImageSharp.fluid} />
+        <Card css={{ borderRadius: `12.5vw` }}>
+          <Img sizes={data.profileImage.childImageSharp.fluid} />
+        </Card>
       </Box>
       <Text as="h2" align="center">
         <Tooltip cursor="help" content="/mru:dʒi:eʃ/" placement="top" usePortal>

@@ -11,34 +11,38 @@ exports[`HomeContent renders correctly 1`] = `
       class="css-1nsbwhm elghiqq0"
     >
       <div
-        class=" gatsby-image-wrapper"
-        style="position: relative; overflow: hidden;"
+        class="css-10bxytm-Card e1roqw6v0"
       >
         <div
-          style="width: 100%; padding-bottom: 100%;"
-        />
-        <img
-          alt=""
-          src="random-2b80985b4264e4cb34b1850de91c6911"
-          style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; transition-delay: 0.5s;"
-        />
-        <picture>
-          <source
-            sizes="(max-width: 300px) 100vw, 300px"
-            srcset="random-2b80985b4264e4cb34b1850de91c6911"
-            type="image/webp"
+          class=" gatsby-image-wrapper"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            style="width: 100%; padding-bottom: 100%;"
           />
           <img
             alt=""
-            sizes="(max-width: 300px) 100vw, 300px"
             src="random-2b80985b4264e4cb34b1850de91c6911"
-            srcset="random-2b80985b4264e4cb34b1850de91c6911"
-            style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 0.5s;"
+            style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; transition-delay: 0.5s;"
           />
-        </picture>
-        <noscript>
-          &lt;picture&gt;&lt;source type='image/webp' srcset="random-2b80985b4264e4cb34b1850de91c6911" sizes="(max-width: 300px) 100vw, 300px" /&gt;&lt;img sizes="(max-width: 300px) 100vw, 300px" srcset="random-2b80985b4264e4cb34b1850de91c6911" src="random-2b80985b4264e4cb34b1850de91c6911" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
-        </noscript>
+          <picture>
+            <source
+              sizes="(max-width: 300px) 100vw, 300px"
+              srcset="random-2b80985b4264e4cb34b1850de91c6911"
+              type="image/webp"
+            />
+            <img
+              alt=""
+              sizes="(max-width: 300px) 100vw, 300px"
+              src="random-2b80985b4264e4cb34b1850de91c6911"
+              srcset="random-2b80985b4264e4cb34b1850de91c6911"
+              style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 0.5s;"
+            />
+          </picture>
+          <noscript>
+            &lt;picture&gt;&lt;source type='image/webp' srcset="random-2b80985b4264e4cb34b1850de91c6911" sizes="(max-width: 300px) 100vw, 300px" /&gt;&lt;img sizes="(max-width: 300px) 100vw, 300px" srcset="random-2b80985b4264e4cb34b1850de91c6911" src="random-2b80985b4264e4cb34b1850de91c6911" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+          </noscript>
+        </div>
       </div>
     </div>
     <h2
