@@ -42,13 +42,13 @@ module.exports = {
         exclude: [`/preview/**`],
         head: true,
         respectDNT: true,
-        trackingId: `UA-125425021-1`
+        trackingId: `UA-119399348-1`
       }
     },
     {
       resolve: `gatsby-plugin-google-tagmanager`,
       options: {
-        id: `GTM-W9DNBKC`,
+        id: `GTM-PBV58Q`,
         includeInDevelopment: true
         // gtmAuth: `9qdcleHZMeragP2aZTYTpw`,
         // gtmPreview: `env-5`,
