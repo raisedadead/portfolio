@@ -23,7 +23,7 @@ exports[`HomeContent renders correctly 1`] = `
           <img
             alt=""
             src="random-2b80985b4264e4cb34b1850de91c6911"
-            style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; transition-delay: 0.5s;"
+            style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; transition-delay: 500ms;"
           />
           <picture>
             <source
@@ -36,7 +36,7 @@ exports[`HomeContent renders correctly 1`] = `
               sizes="(max-width: 300px) 100vw, 300px"
               src="random-2b80985b4264e4cb34b1850de91c6911"
               srcset="random-2b80985b4264e4cb34b1850de91c6911"
-              style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 0.5s;"
+              style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 500ms;"
             />
           </picture>
           <noscript>
