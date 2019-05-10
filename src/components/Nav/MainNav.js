@@ -39,6 +39,11 @@ const MainNaV = () => (
           ama
         </Tooltip>
       </NavItem>
+      <NavItem href="/blog" aria-label="Blog">
+        <Tooltip content="my dev notes, musings and blog" usePortal>
+          blog
+        </Tooltip>
+      </NavItem>
     </PrimaryNav>
   </Box>
 );

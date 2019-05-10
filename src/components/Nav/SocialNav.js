@@ -25,15 +25,6 @@ const SocialNav = () => (
     <NavItem to="https://github.com/raisedadead" aria-label="GitHub">
       <FontAwesomeIcon icon={[`fab`, `github`]} size="lg" />
     </NavItem>
-    <NavItem to="https://blog.raisedadead.com" aria-label="Medium">
-      <FontAwesomeIcon icon={[`fab`, `medium`]} size="lg" />
-    </NavItem>
-    <NavItem
-      to="https://freeCodeCamp.org/raisedadead"
-      aria-label="freeCodeCamp.org"
-    >
-      <FontAwesomeIcon icon={[`fab`, `free-code-camp`]} size="lg" />
-    </NavItem>
     <NavItem to="https://linkedin.com/in/mrugeshm" aria-label="LinkedIn">
       <FontAwesomeIcon icon={[`fab`, `linkedin`]} size="lg" />
     </NavItem>

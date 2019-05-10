@@ -84,6 +84,43 @@ exports[`404 renders correctly 1`] = `
           </span>
         </span>
       </a>
+      <a
+        aria-label="Blog"
+        class="e1befqft1 e70ypka2 css-xlyo8k e19l42ga0"
+        data-index="2"
+        href="/blog"
+      >
+        <span
+          class="css-1xssqnp e70ypka1"
+        >
+          <span
+            class="css-1sp7cuy e70ypka0"
+          >
+            <span
+              class="css-1fns1v3 e1i5p1da0"
+            >
+              <span
+                class="css-1h0pl34 ew65k9p0"
+                id="tooltip-3"
+              >
+                <span
+                  class="css-pusqig ew65k9p3"
+                >
+                  <span
+                    aria-describedby="tooltip-3-content"
+                    aria-owns="tooltip-3-content"
+                    class="css-1myw1nk e3ztgjb0"
+                    role="button"
+                    tabindex="0"
+                  >
+                    blog
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </a>
     </nav>
   </div>
   <main>
@@ -172,57 +209,9 @@ exports[`404 renders correctly 1`] = `
           </span>
         </a>
         <a
-          aria-label="Medium"
-          class="e1befqft1 css-1y78gur e70ypka2"
-          data-index="2"
-          href="https://blog.raisedadead.com"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <span
-            class="css-1xssqnp e70ypka1"
-          >
-            <span
-              class="css-1sp7cuy e70ypka0"
-            >
-              <span
-                class="css-1fns1v3 e1i5p1da0"
-              >
-                <i
-                  class="fa"
-                />
-              </span>
-            </span>
-          </span>
-        </a>
-        <a
-          aria-label="freeCodeCamp.org"
-          class="e1befqft1 css-1y78gur e70ypka2"
-          data-index="3"
-          href="https://freeCodeCamp.org/raisedadead"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <span
-            class="css-1xssqnp e70ypka1"
-          >
-            <span
-              class="css-1sp7cuy e70ypka0"
-            >
-              <span
-                class="css-1fns1v3 e1i5p1da0"
-              >
-                <i
-                  class="fa"
-                />
-              </span>
-            </span>
-          </span>
-        </a>
-        <a
           aria-label="LinkedIn"
           class="e1befqft1 css-1y78gur e70ypka2"
-          data-index="4"
+          data-index="2"
           href="https://linkedin.com/in/mrugeshm"
           rel="noopener noreferrer"
           target="_blank"
