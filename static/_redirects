@@ -12,5 +12,7 @@ https://raisedadead.netlify.com/* https://mrugesh.dev/:splat 301!
 /resume https://represent.io/mrugesh
 /cv https://represent.io/mrugesh
 
+/blog/* https://blog.mrugesh.dev/:splat 200!
+
 # Enable always redirect for SPA
 /*    /index.html   200
