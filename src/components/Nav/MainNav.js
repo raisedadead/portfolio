@@ -1,51 +1,45 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import { PrimaryNav, NavItem as NavigationItem } from 'mineral-ui/Navigation';
-import Link from 'mineral-ui/Link';
+
+import { PrimaryNav } from 'mineral-ui/Navigation';
 import Box from 'mineral-ui/Box/Box';
-import Tooltip from 'mineral-ui/Tooltip';
 
-const NavItem = styled(NavigationItem)({
-  minWidth: `auto`,
-  minHeight: `auto`,
-  padding: `0`,
-  height: `auto`
-});
-
-const MainNaV = () => (
-  <Box marginHorizontal="auto" width={1 / 2}>
-    <PrimaryNav
-      css={{
-        width: `75vw`,
-        backgroundColor: `rgba(255, 255, 255, 0)`
-      }}
-      itemAs={Link}
-      align="end"
-      minimal
-    >
-      <NavItem
-        href="https://represent.io/mrugesh"
-        aria-label="Mrugesh Mohapatra's resumé"
-      >
-        <Tooltip content="resumé" usePortal>
-          resumé
-        </Tooltip>
-      </NavItem>
-      <NavItem
-        href="https://github.com/raisedadead/ama/"
-        aria-label="Ask me anything"
-      >
-        <Tooltip content="ask me anything" usePortal>
-          ama
-        </Tooltip>
-      </NavItem>
-      <NavItem href="/blog" aria-label="Blog">
-        <Tooltip content="my dev notes, musings and blog" usePortal>
-          blog
-        </Tooltip>
-      </NavItem>
-    </PrimaryNav>
-  </Box>
-);
+const MainNaV = ({ showHome = false }) => {
+  let items = [
+    {
+      href: `https://represent.io/mrugesh`,
+      'aria-label': `Mrugesh Mohapatra's resumé`,
+      text: `resumé`
+    },
+    {
+      href: `https://github.com/raisedadead/ama/`,
+      'aria-label': `Ask me anything`,
+      text: `ask me anything`
+    },
+    {
+      href: `/blog`,
+      'aria-label': `Blog`,
+      text: `blog`
+    }
+  ];
+  if (showHome) {
+    items.unshift({
+      href: `/`,
+      'aria-label': `Mrugesh Mohapatra's portfolio`,
+      text: `home`
+    });
+  }
+  return (
+    <Box marginHorizontal="auto" width={1 / 2}>
+      <PrimaryNav
+        css={{
+          backgroundColor: `rgba(255, 255, 255, 0)`
+        }}
+        items={items}
+        align="center"
+        minimal
+      />
+    </Box>
+  );
+};
 
 export default MainNaV;

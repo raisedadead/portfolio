@@ -1,34 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`404 renders correctly 1`] = `
+exports[`Index renders correctly 1`] = `
 <div
   class="css-17mhdrz elghiqq0"
 >
   <main>
     <main>
       <section
-        class="css-11inlkn elghiqq0"
+        class="css-q6m8su elghiqq0"
       >
         <div
           class="e7r6m60 css-wzh7ay elghiqq0"
         >
+          <div
+            class="css-1e6j247 elghiqq0"
+          >
+            <div
+              class="css-c72o0x-Card e1roqw6v0"
+            >
+              <div
+                class=" gatsby-image-wrapper"
+                style="position: relative; overflow: hidden;"
+              >
+                <div
+                  style="width: 100%; padding-bottom: 100%;"
+                />
+                <img
+                  alt=""
+                  src="random-2b80985b4264e4cb34b1850de91c6911"
+                  style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; transition-delay: 500ms;"
+                />
+                <picture>
+                  <source
+                    sizes="(max-width: 300px) 100vw, 300px"
+                    srcset="random-2b80985b4264e4cb34b1850de91c6911"
+                    type="image/webp"
+                  />
+                  <img
+                    alt=""
+                    sizes="(max-width: 300px) 100vw, 300px"
+                    src="random-2b80985b4264e4cb34b1850de91c6911"
+                    srcset="random-2b80985b4264e4cb34b1850de91c6911"
+                    style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 500ms;"
+                  />
+                </picture>
+                <noscript>
+                  &lt;picture&gt;&lt;source type='image/webp' srcset="random-2b80985b4264e4cb34b1850de91c6911" sizes="(max-width: 300px) 100vw, 300px" /&gt;&lt;img sizes="(max-width: 300px) 100vw, 300px" srcset="random-2b80985b4264e4cb34b1850de91c6911" src="random-2b80985b4264e4cb34b1850de91c6911" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/&gt;&lt;/picture&gt;
+                </noscript>
+              </div>
+            </div>
+          </div>
           <h2
             class="css-ov77vs e19le4zx0"
           >
-            404 | Page not found.
+            <span
+              class="css-1h0pl34 ew65k9p0"
+              id="tooltip-1"
+            >
+              <span
+                class="css-1wyum7k ew65k9p3"
+              >
+                <span
+                  aria-describedby="tooltip-1-content"
+                  aria-owns="tooltip-1-content"
+                  class="css-1myw1nk e3ztgjb0"
+                  role="button"
+                  tabindex="0"
+                >
+                  mrugesh
+                </span>
+              </span>
+            </span>
+             
+            mohapatra
           </h2>
+          <h3
+            class="css-77ztty e19le4zx0"
+          >
+            developer. music addict. open source enthusiast. noob photographer.
+          </h3>
+          <br />
           <p
             class="css-16qt340 e19le4zx0"
           >
-            Ah..! That's my bad. Sorry. Why don't you checkout
-             
+            Lead Developer and Community Advocate at
+              
             <a
+              aria-label="freecodecamp.org"
               class="css-3r9jsu"
-              href="/"
+              href="https://www.freecodecamp.org"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              something here
+              freeCodeCamp.org
             </a>
-            .
           </p>
         </div>
       </section>

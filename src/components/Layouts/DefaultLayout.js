@@ -43,8 +43,8 @@ class DefaultLayout extends React.Component {
     return (
       <ThemeProvider theme={lightTheme}>
         <MainBox height="100vh" width="100vw">
-          <MainNav />
           <main>{children}</main>
+          <MainNav />
           <Footer />
         </MainBox>
       </ThemeProvider>

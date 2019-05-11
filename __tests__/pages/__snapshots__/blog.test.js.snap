@@ -1,39 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`404 renders correctly 1`] = `
+exports[`blog renders correctly 1`] = `
 <div
-  class="css-17mhdrz elghiqq0"
+  class="css-jqm3nq elghiqq0"
 >
-  <main>
-    <main>
-      <section
-        class="css-11inlkn elghiqq0"
-      >
-        <div
-          class="e7r6m60 css-wzh7ay elghiqq0"
-        >
-          <h2
-            class="css-ov77vs e19le4zx0"
-          >
-            404 | Page not found.
-          </h2>
-          <p
-            class="css-16qt340 e19le4zx0"
-          >
-            Ah..! That's my bad. Sorry. Why don't you checkout
-             
-            <a
-              class="css-3r9jsu"
-              href="/"
-            >
-              something here
-            </a>
-            .
-          </p>
-        </div>
-      </section>
-    </main>
-  </main>
   <div
     class="css-11inlkn elghiqq0"
   >
@@ -41,9 +11,29 @@ exports[`404 renders correctly 1`] = `
       class="css-1pdtlkx-PrimaryNav e1befqft0"
     >
       <a
-        aria-label="Mrugesh Mohapatra's resumé"
+        aria-label="Mrugesh Mohapatra's portfolio"
         class="e1befqft1 css-11ajdqu e70ypka2"
         data-index="0"
+        href="/"
+      >
+        <span
+          class="css-1xssqnp e70ypka1"
+        >
+          <span
+            class="css-1sp7cuy e70ypka0"
+          >
+            <span
+              class="css-1me6504 e1i5p1da0"
+            >
+              home
+            </span>
+          </span>
+        </span>
+      </a>
+      <a
+        aria-label="Mrugesh Mohapatra's resumé"
+        class="e1befqft1 css-11ajdqu e70ypka2"
+        data-index="1"
         href="https://represent.io/mrugesh"
       >
         <span
@@ -63,7 +53,7 @@ exports[`404 renders correctly 1`] = `
       <a
         aria-label="Ask me anything"
         class="e1befqft1 css-11ajdqu e70ypka2"
-        data-index="1"
+        data-index="2"
         href="https://github.com/raisedadead/ama/"
       >
         <span
@@ -83,7 +73,7 @@ exports[`404 renders correctly 1`] = `
       <a
         aria-label="Blog"
         class="e1befqft1 css-11ajdqu e70ypka2"
-        data-index="2"
+        data-index="3"
         href="/blog"
       >
         <span
@@ -102,6 +92,23 @@ exports[`404 renders correctly 1`] = `
       </a>
     </nav>
   </div>
+  <main>
+    <main>
+      <section
+        class="css-11inlkn elghiqq0"
+      >
+        <div
+          class="e7r6m60 css-wzh7ay elghiqq0"
+        >
+          <h4
+            class="css-105a4qn e19le4zx0"
+          >
+            Did I not finsh creating this page? Yeah, I must have fallen asleep.
+          </h4>
+        </div>
+      </section>
+    </main>
+  </main>
   <footer>
     <section
       class="css-11inlkn elghiqq0"

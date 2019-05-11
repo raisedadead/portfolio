@@ -1,15 +1,16 @@
+import React from 'react';
+
 import HomeContent from '../components/Home/HomeContent';
 import HtmlHead from '../components/HTMLHead';
 import DefaultLayout from '../components/Layouts/DefaultLayout';
-import React from 'react';
 
-export const IndexMarkup = () => (
+export const PureIndexMarkup = ({ homeContent }) => (
   <DefaultLayout>
     <HtmlHead title="Home" />
-    <main>
-      <HomeContent />
-    </main>
+    <main>{homeContent()}</main>
   </DefaultLayout>
 );
+
+export const IndexMarkup = () => <PureIndexMarkup homeContent={HomeContent} />;
 
 export default IndexMarkup;
