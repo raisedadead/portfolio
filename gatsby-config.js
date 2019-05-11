@@ -46,15 +46,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-google-tagmanager`,
-      options: {
-        id: `GTM-PBV58Q`,
-        includeInDevelopment: true
-        // gtmAuth: `9qdcleHZMeragP2aZTYTpw`,
-        // gtmPreview: `env-5`,
-      }
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         background_color: `#242943`,
