@@ -57,57 +57,9 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
         </span>
       </a>
       <a
-        aria-label="Medium"
-        class="e1befqft1 css-1fszmt7 e70ypka2"
-        data-index="2"
-        href="https://blog.raisedadead.com"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <span
-          class="css-1xssqnp e70ypka1"
-        >
-          <span
-            class="css-pw07op e70ypka0"
-          >
-            <span
-              class="css-1me6504 e1i5p1da0"
-            >
-              <i
-                class="fa"
-              />
-            </span>
-          </span>
-        </span>
-      </a>
-      <a
-        aria-label="freeCodeCamp.org"
-        class="e1befqft1 css-1fszmt7 e70ypka2"
-        data-index="3"
-        href="https://freeCodeCamp.org/raisedadead"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <span
-          class="css-1xssqnp e70ypka1"
-        >
-          <span
-            class="css-pw07op e70ypka0"
-          >
-            <span
-              class="css-1me6504 e1i5p1da0"
-            >
-              <i
-                class="fa"
-              />
-            </span>
-          </span>
-        </span>
-      </a>
-      <a
         aria-label="LinkedIn"
         class="e1befqft1 css-1fszmt7 e70ypka2"
-        data-index="4"
+        data-index="2"
         href="https://linkedin.com/in/mrugeshm"
         rel="noopener noreferrer"
         target="_blank"
