@@ -82,7 +82,7 @@
     "gatsby-source-filesystem": "^2.0.33",
     "gatsby-transformer-sharp": "^2.1.19",
     "gray-percentage": "^2.0.0",
-    "husky": "^2.2.0",
+    "husky": "^3.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
     "jest-dom": "^3.2.2",
