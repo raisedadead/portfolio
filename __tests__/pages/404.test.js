@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import FourOhFourMarkup from '../../src/pages/404';
 
 describe(`404`, () => {

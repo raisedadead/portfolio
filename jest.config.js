@@ -12,6 +12,5 @@ module.exports = {
     __PATH_PREFIX__: ``
   },
   testURL: `http://localhost`,
-  setupFiles: [`<rootDir>/jest-loadershim.js`],
-  setupFilesAfterEnv: [`react-testing-library/cleanup-after-each`]
+  setupFiles: [`<rootDir>/jest-loadershim.js`]
 };
