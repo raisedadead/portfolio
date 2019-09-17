@@ -1,8 +1,4 @@
 name: CI
-
-env:
-  NPM_TOKEN_FONTAWESOME: ${{ secrets.NPM_TOKEN_FONTAWESOME }}
-
 on: [push, pull_request]
 
 jobs:
@@ -27,3 +23,4 @@ jobs:
         npm test
       env:
         CI: true
+        NPM_TOKEN_FONTAWESOME: ${{ secrets.NPM_TOKEN_FONTAWESOME }}
