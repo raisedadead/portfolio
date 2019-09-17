@@ -1,6 +1,9 @@
 name: CI
 
-on: [push]
+env:
+  NPM_TOKEN_FONTAWESOME: ${{ secrets.NPM_TOKEN_FONTAWESOME }}
+
+on: [push, pull_request]
 
 jobs:
   build:
