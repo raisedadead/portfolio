@@ -7,7 +7,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import { lightTheme } from '../Theme';
-import MainNav from '../Nav/MainNav';
 import Footer from '../Footer';
 
 library.add(fab);
@@ -42,8 +41,7 @@ class DefaultLayout extends React.Component {
     const { children } = this.props;
     return (
       <ThemeProvider theme={lightTheme}>
-        <MainBox height="100vh" width="100vw">
-          <MainNav />
+        <MainBox height="100vh">
           <main>{children}</main>
           <Footer />
         </MainBox>

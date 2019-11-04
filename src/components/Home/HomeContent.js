@@ -41,12 +41,13 @@ export const PureHomeContent = ({ data }) => (
       alignItems="center"
       justifyContent="center"
       direction="column"
-      height="75vh"
+      height="80vh"
     >
       <Box
         breakpoints={[`narrow`, `medium`, `wide`]}
         width={[`25vw`, `25vw`, `15vw`, `15vw`]}
         margin="1em"
+        padding="1em"
       >
         <Card css={{ borderRadius: `12.5vw` }}>
           <Img sizes={data.profileImage.childImageSharp.fluid} />
@@ -60,12 +61,15 @@ export const PureHomeContent = ({ data }) => (
         mohapatra
       </Text>
 
-      <Text as="h3" align="center">
-        developer. music addict. open source enthusiast. noob photographer.
+      <Text as="h4" align="center">
+        developer 👨‍💻 • music addict 🎸 • open source enthusiast🌟 • photography
+        noob 📷 • travel 🥑
       </Text>
+
       <br />
+
       <Text as="p" align="center">
-        Lead Developer and Community Advocate at{`  `}
+        Technology & Community Advocacy at{`  `}
         <Link to="https://www.freecodecamp.org" aria-label="freecodecamp.org">
           freeCodeCamp.org
         </Link>
