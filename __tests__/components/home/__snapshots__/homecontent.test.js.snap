@@ -5,10 +5,10 @@ exports[`HomeContent renders correctly 1`] = `
   class="css-1hm9igd elghiqq0"
 >
   <div
-    class="e7r6m60 css-13v9bvk elghiqq0"
+    class="e7r6m60 css-1a5gklq elghiqq0"
   >
     <div
-      class="css-1nsbwhm elghiqq0"
+      class="css-opux93 elghiqq0"
     >
       <div
         class="css-10bxytm-Card e1roqw6v0"
@@ -74,16 +74,16 @@ exports[`HomeContent renders correctly 1`] = `
        
       mohapatra
     </h2>
-    <h3
+    <h4
       class="css-pdf1eb e19le4zx0"
     >
-      developer. music addict. open source enthusiast. noob photographer.
-    </h3>
+      developer 👨‍💻 • music addict 🎸 • open source enthusiast🌟 • photography noob 📷 • travel 🥑
+    </h4>
     <br />
     <p
       class="css-pdf1eb e19le4zx0"
     >
-      Lead Developer and Community Advocate at
+      Technology & Community Advocacy at
         
       <a
         aria-label="freecodecamp.org"
