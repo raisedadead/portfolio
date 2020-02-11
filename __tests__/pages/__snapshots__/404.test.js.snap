@@ -2,15 +2,15 @@
 
 exports[`404 renders correctly 1`] = `
 <div
-  class="css-80hznc elghiqq0"
+  class="css-1eauggd elghiqq0"
 >
   <main>
     <main>
       <section
-        class="css-11inlkn elghiqq0"
+        class="css-1p3kcuc elghiqq0"
       >
         <div
-          class="e7r6m60 css-wzh7ay elghiqq0"
+          class="e7r6m60 css-bqxcx7 elghiqq0"
         >
           <h2
             class="css-ov77vs e19le4zx0"
@@ -18,7 +18,7 @@ exports[`404 renders correctly 1`] = `
             404 | Page not found.
           </h2>
           <p
-            class="css-16qt340 e19le4zx0"
+            class="css-1b44m75 e19le4zx0"
           >
             Ah..! That's my bad. Sorry. Why don't you checkout
              
@@ -36,14 +36,14 @@ exports[`404 renders correctly 1`] = `
   </main>
   <footer>
     <section
-      class="css-11inlkn elghiqq0"
+      class="css-1p3kcuc elghiqq0"
     >
       <nav
-        class="css-1pdtlkx-PrimaryNav e1befqft0"
+        class="css-1pkgns8-PrimaryNav e1befqft0"
       >
         <a
           aria-label="Twitter"
-          class="e1befqft1 css-1y78gur e70ypka2"
+          class="e1befqft1 css-91o87d e70ypka2"
           data-index="0"
           href="https://twitter.com/raisedadead"
           rel="noopener noreferrer"
@@ -67,7 +67,7 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="GitHub"
-          class="e1befqft1 css-1y78gur e70ypka2"
+          class="e1befqft1 css-91o87d e70ypka2"
           data-index="1"
           href="https://github.com/raisedadead"
           rel="noopener noreferrer"
@@ -91,7 +91,7 @@ exports[`404 renders correctly 1`] = `
         </a>
         <a
           aria-label="LinkedIn"
-          class="e1befqft1 css-1y78gur e70ypka2"
+          class="e1befqft1 css-91o87d e70ypka2"
           data-index="2"
           href="https://linkedin.com/in/mrugeshm"
           rel="noopener noreferrer"
@@ -115,11 +115,11 @@ exports[`404 renders correctly 1`] = `
         </a>
       </nav>
       <h6
-        class="css-1xj32bh e19le4zx0"
+        class="css-emzqba e19le4zx0"
       >
          
         © 
-        2019
+        2020
          Mrugesh Mohapatra.
       </h6>
     </section>
