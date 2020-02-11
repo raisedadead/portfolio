@@ -2,26 +2,28 @@
 
 exports[`HomeContent renders correctly 1`] = `
 <section
-  class="css-1hm9igd elghiqq0"
+  class="css-s94zys elghiqq0"
 >
   <div
-    class="e7r6m60 css-1a5gklq elghiqq0"
+    class="e7r6m60 css-3zhk4e elghiqq0"
   >
     <div
-      class="css-opux93 elghiqq0"
+      class="css-xlpn71 elghiqq0"
     >
       <div
-        class="css-10bxytm-Card e1roqw6v0"
+        class="css-wkg4d1-Card e1roqw6v0"
       >
         <div
           class=" gatsby-image-wrapper"
           style="position: relative; overflow: hidden;"
         >
           <div
+            aria-hidden="true"
             style="width: 100%; padding-bottom: 100%;"
           />
           <img
             alt=""
+            aria-hidden="true"
             src="random-2b80985b4264e4cb34b1850de91c6911"
             style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; transition-delay: 500ms;"
           />
@@ -51,7 +53,7 @@ exports[`HomeContent renders correctly 1`] = `
       </div>
     </div>
     <h2
-      class="css-pdf1eb e19le4zx0"
+      class="css-1w67auk e19le4zx0"
     >
       <span
         class="css-1h0pl34 ew65k9p0"
@@ -75,13 +77,13 @@ exports[`HomeContent renders correctly 1`] = `
       mohapatra
     </h2>
     <h4
-      class="css-pdf1eb e19le4zx0"
+      class="css-1w67auk e19le4zx0"
     >
       developer 👨‍💻 • music addict 🎸 • open source enthusiast🌟 • photography noob 📷 • travel 🥑
     </h4>
     <br />
     <p
-      class="css-pdf1eb e19le4zx0"
+      class="css-1w67auk e19le4zx0"
     >
       Technology & Community Advocacy at
         
