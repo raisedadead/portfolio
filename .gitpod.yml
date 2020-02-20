@@ -1,0 +1,7 @@
+image: node:alpine
+tasks:
+  - init: npm install && npm run build
+    command: npm run dev
+ports:
+  - port: 8000
+    onOpen: open-preview
