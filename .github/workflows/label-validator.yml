@@ -12,7 +12,7 @@ jobs:
         uses: unsplash/comment-on-pr@master
         if: contains(github.event.issue.labels.*.name, 'test check')
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.COMMENT_TOKEN_TEST }}
         with:
           msg: 'Hey go do your thing!'
       - name: Fail or Pass
