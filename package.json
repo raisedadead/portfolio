@@ -1,6 +1,6 @@
 {
   "name": "@raisedadead/portfolio",
-  "description": "mrugesh mohapatra's personal portfolio",
+  "description": "mrugesh mohapatra's personal site",
   "license": "ISC",
   "scripts": {
     "clean": "gatsby clean",
