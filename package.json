@@ -97,7 +97,7 @@
     "start-server-and-test": "^1.10.8",
     "typography": "^0.16.18"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "\"N/A\"",
   "private": true,
   "repository": {
