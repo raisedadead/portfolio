@@ -1,0 +1,22 @@
+name: label-validator
+on:
+  issues:
+    types: [labeled, unlabeled]
+
+jobs:
+  makecomment:
+    name: make a comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: comment on the PR
+        uses: unsplash/comment-on-pr@master
+        if: contains(github.event.issue.labels.*.name, 'test check')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: 'Hey go do your thing!'
+      - name: Fail or Pass
+        if: success()
+        run: |
+          exit 1
+        
