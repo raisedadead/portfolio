@@ -1,0 +1,20 @@
+name: Label
+on:
+  pull_request:
+    types: [labeled, unlabeled]
+
+jobs:
+  labelChecker:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Comment on the PR
+      uses: unsplash/comment-on-pr@master
+      with:
+        msg: 'Hey go do your thing!'
+      if: contains(github.event.pull_request.labels.*.name, 'test check')
+      env:
+        GITHUB_TOKEN: ${{ secrets.COMMENT_TOKEN_TEST }}
+    - name: Fail if labelChecker
+      if: success()
+      run: |
+        exit 1
