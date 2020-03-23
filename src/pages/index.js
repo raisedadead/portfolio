@@ -6,10 +6,6 @@ import React from 'react';
 export const IndexMarkup = () => (
   <DefaultLayout>
     <HtmlHead title="Home" />
-    <main>
-      <HomeContent />
-    </main>
-  </DefaultLayout>
 );
 
 export default IndexMarkup;
