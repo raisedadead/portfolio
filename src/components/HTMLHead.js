@@ -31,6 +31,6 @@ export const HelmetMarkup = ({ title }) => {
   );
 };
 
-export const HTMLHead = props => <HelmetMarkup {...props} />;
+export const HTMLHead = (props) => <HelmetMarkup {...props} />;
 
 export default HTMLHead;

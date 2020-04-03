@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect */
 describe(`Homepage at baseUrl: ` + `/`, () => {
   it(`has appropriate layout markup`, () => {
     cy.visit(`/`);

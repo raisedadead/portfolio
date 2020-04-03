@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect */
 describe(`404 page`, () => {
   it(`has appropriate layout markup`, () => {
     cy.visit(`/404`);

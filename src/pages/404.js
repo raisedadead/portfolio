@@ -9,7 +9,7 @@ import HtmlHead from '../components/HTMLHead';
 import DefaultLayout from '../components/Layouts/DefaultLayout.js';
 import LinkItem from '../components/Link';
 
-const Link = props => (
+const Link = (props) => (
   <ClassNames>
     {({ css }) => (
       <LinkItem

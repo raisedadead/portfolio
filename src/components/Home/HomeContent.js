@@ -11,7 +11,7 @@ import Img from 'gatsby-image';
 
 import LinkItem from '../Link';
 
-const Link = props => (
+const Link = (props) => (
   <ClassNames>
     {({ css }) => (
       <LinkItem
@@ -91,7 +91,7 @@ export const HomeContent = () => (
         }
       }
     `}
-    render={data => <PureHomeContent data={data} />}
+    render={(data) => <PureHomeContent data={data} />}
   />
 );
 

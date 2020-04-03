@@ -13,16 +13,16 @@ export const getUser = () =>
     ? JSON.parse(window.localStorage.getItem(`netlifyUser`))
     : {};
 
-const setUser = user =>
+const setUser = (user) =>
   window.localStorage.setItem(`netlifyUser`, JSON.stringify(user));
 
-export const handleLogin = callback => {
+export const handleLogin = (callback) => {
   initAuth();
   if (isLoggedIn()) {
     callback(getUser());
   } else {
     netlifyIdentity.open();
-    netlifyIdentity.on(`login`, user => {
+    netlifyIdentity.on(`login`, (user) => {
       setUser(user);
       callback(user);
     });
@@ -35,7 +35,7 @@ export const isLoggedIn = () => {
   return !!user;
 };
 
-export const logout = callback => {
+export const logout = (callback) => {
   initAuth();
   netlifyIdentity.logout();
   netlifyIdentity.on(`logout`, () => {
