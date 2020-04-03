@@ -16,17 +16,45 @@ const MainBox = (props) => (
     {({ css }) => (
       <Box
         className={css`
-          background: #c6ffdd; /* fallback for old browsers */
+          background: #32ccbc; /* fallback for old browsers */
           background: -webkit-linear-gradient(
-            to top,
+            -45deg,
+            #90f7ec,
+            #32ccbc,
             #abdcff,
             #0396ff
           ); /* Chrome 10-25, Safari 5.1-6 */
           background: linear-gradient(
-            to top,
+            -45deg,
+            #90f7ec,
+            #32ccbc,
             #abdcff,
             #0396ff
           ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          background-size: 400% 400%;
+          -webkit-animation: gradientBG 10s ease infinite;
+          animation: gradientBG 10s ease infinite;
+          @-webkit-keyframes gradientBG {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
+          }
+          @keyframes gradientBG {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
         `}
         {...props}
       />

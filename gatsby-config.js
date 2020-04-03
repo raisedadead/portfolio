@@ -11,7 +11,7 @@ const sitesConfig = {
         locale: `en-IN`,
         icon: `assets/images/favicon-32x32.png`,
         siteUrl: `https://mrugesh.dev`, //No trailing slash allowed
-        titleTemplate: `%s | Mrugesh Mohapatra`,
+        titleTemplate: `Mrugesh Mohapatra • %s`,
         twitterCreator: `@raisedadead`
       }
     }

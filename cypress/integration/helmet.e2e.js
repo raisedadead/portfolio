@@ -4,12 +4,8 @@ const metaData = require(`../../gatsby-config`).siteMetadata;
 describe(`helmet component contains valid <head> markup`, () => {
   it(`at ` + `/`, () => {
     cy.visit(`/`, { failOnStatusCode: false });
-    const pageTitle = `Home`;
     cy.get(`html`).should(`have.attr`, `lang`, metaData.lang);
-    cy.get(`html title`).should(
-      `have.text`,
-      metaData.titleTemplate.replace(`%s`, pageTitle)
-    );
+    cy.get(`html title`).should(`have.text`, metaData.defaultTitle);
     cy.get(`html meta[itemprop='description']`).should(
       `have.attr`,
       `content`,
@@ -23,7 +19,7 @@ describe(`helmet component contains valid <head> markup`, () => {
     cy.get(`html meta[itemprop='name']`).should(
       `have.attr`,
       `content`,
-      pageTitle
+      metaData.defaultTitle
     );
     cy.get(`html meta[name='description']`).should(
       `have.attr`,

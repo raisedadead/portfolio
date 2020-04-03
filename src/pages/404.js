@@ -29,7 +29,7 @@ const Link = (props) => (
 );
 export const FourOhFourMarkup = () => (
   <DefaultLayout>
-    <HtmlHead title="404" />
+    <HtmlHead title="Page not found" />
     <main>
       <Box as="section" marginHorizontal="auto" width={1 / 2}>
         <Flex
@@ -38,12 +38,18 @@ export const FourOhFourMarkup = () => (
           direction="column"
           height="75vh"
         >
-          <Text as="h2" align="center">
+          <Text as="h1" align="center">
             404 | Page not found.
           </Text>
-          <Text as="p" align="center">
-            Ah..! That's my bad. Sorry. Why don't you checkout{` `}
-            <Link to="/">something here</Link>.
+          <br />
+          <Text as="h4" align="center">
+            Uh - Oh! Apologies, looks like the something you were looking for
+            has been lost to oblivion.
+          </Text>
+          <br />
+          <Text as="h4" align="center">
+            Why don't you checkout {` `}
+            <Link to="/">something interesting instead</Link>.
           </Text>
         </Flex>
       </Box>
