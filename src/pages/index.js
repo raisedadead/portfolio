@@ -5,7 +5,7 @@ import React from 'react';
 
 export const IndexMarkup = () => (
   <DefaultLayout>
-    <HtmlHead title="Home" />
+    <HtmlHead />
     <main>
       <HomeContent />
     </main>

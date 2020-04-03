@@ -2,7 +2,7 @@
 
 exports[`404 renders correctly 1`] = `
 <div
-  class="css-1tjojcr elghiqq0"
+  class="css-1be6x35 elghiqq0"
 >
   <main>
     <main>
@@ -12,24 +12,31 @@ exports[`404 renders correctly 1`] = `
         <div
           class="e7r6m60 css-bqxcx7 elghiqq0"
         >
-          <h2
-            class="css-ov77vs e19le4zx0"
+          <h1
+            class="css-o2sjh0 e19le4zx0"
           >
             404 | Page not found.
-          </h2>
-          <p
-            class="css-1b44m75 e19le4zx0"
+          </h1>
+          <br />
+          <h4
+            class="css-105a4qn e19le4zx0"
           >
-            Ah..! That's my bad. Sorry. Why don't you checkout
+            Uh - Oh! Apologies, looks like the something you were looking for has been lost to oblivion.
+          </h4>
+          <br />
+          <h4
+            class="css-105a4qn e19le4zx0"
+          >
+            Why don't you checkout 
              
             <a
               class="css-3r9jsu"
               href="/"
             >
-              something here
+              something interesting instead
             </a>
             .
-          </p>
+          </h4>
         </div>
       </section>
     </main>
