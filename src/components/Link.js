@@ -8,7 +8,13 @@ const propTypes = {
   to: PropTypes.string.isRequired
 };
 
-const Link = ({ children, to, openNewTab = false, ...other }) => {
+const Link = ({
+  children,
+  to,
+  openNewTab = false,
+  rel = `noopener noreferrer`,
+  ...other
+}) => {
   if (!openNewTab && /^\/(?!\/)/.test(to)) {
     return (
       <GatsbyLink to={to} {...other}>
@@ -18,7 +24,9 @@ const Link = ({ children, to, openNewTab = false, ...other }) => {
   }
 
   return (
-    <a href={to} {...other} rel="noopener noreferrer" target="_blank">
+    // disable linting because we have a custom rel
+    // eslint-disable-next-line react/jsx-no-target-blank
+    <a href={to} {...other} rel={rel} target="_blank">
       {children}
     </a>
   );
