@@ -21,25 +21,9 @@ const sitesConfig = {
 module.exports = {
   plugins: [
     {
-      resolve: `gatsby-plugin-create-client-paths`,
-      options: {
-        prefixes: [`/dashboard/*`]
-      }
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/images`,
-        name: `images`
-      }
-    },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         anonymize: true,
-        exclude: [`/preview/**`],
         head: true,
         respectDNT: true,
         trackingId: `UA-119399348-1`
@@ -61,12 +45,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sitemap`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`
-      }
-    },
     `gatsby-plugin-offline`
   ],
   siteMetadata: sitesConfig.sites[`default`].siteMetadata
