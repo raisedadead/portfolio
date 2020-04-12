@@ -91,7 +91,7 @@
     "prettier": "2.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-helmet": "5.2.1",
+    "react-helmet": "6.0.0",
     "react-typography": "0.16.19",
     "start-server-and-test": "1.10.11",
     "typography": "0.16.19"
