@@ -4,7 +4,7 @@ import DefaultLayout from '../components/Layouts/DefaultLayout';
 import React from 'react';
 
 export const IndexMarkup = () => (
-  <DefaultLayout>
+  <DefaultLayout isHome={true}>
     <HtmlHead />
     <main>
       <HomeContent />

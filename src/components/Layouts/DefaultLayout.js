@@ -64,13 +64,20 @@ const MainBox = (props) => (
 
 class DefaultLayout extends React.Component {
   render() {
-    const { children } = this.props;
+    const { children, isHome = false } = this.props;
     return (
       <ThemeProvider theme={lightTheme}>
-        <MainBox height="100vh">
-          <main>{children}</main>
-          <Footer />
-        </MainBox>
+        {isHome ? (
+          <MainBox height="100vh">
+            <main>{children}</main>
+            <Footer />
+          </MainBox>
+        ) : (
+          <Box height="100vh">
+            <main>{children}</main>
+            <Footer />
+          </Box>
+        )}
       </ThemeProvider>
     );
   }
