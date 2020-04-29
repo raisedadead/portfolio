@@ -18,43 +18,15 @@ const MainBox = (props) => (
         className={css`
           background: #32ccbc; /* fallback for old browsers */
           background: -webkit-linear-gradient(
-            -45deg,
-            #90f7ec,
-            #32ccbc,
-            #abdcff,
-            #0396ff
+            to bottom,
+            #ffffff,
+            #abdcff
           ); /* Chrome 10-25, Safari 5.1-6 */
           background: linear-gradient(
-            -45deg,
-            #90f7ec,
-            #32ccbc,
-            #abdcff,
-            #0396ff
+            to bottom,
+            #ffffff,
+            #abdcff
           ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-          background-size: 400% 400%;
-          -webkit-animation: gradientBG 10s ease infinite;
-          animation: gradientBG 10s ease infinite;
-          @-webkit-keyframes gradientBG {
-            0% {
-              background-position: 0% 50%;
-            }
-            50% {
-              background-position: 100% 50%;
-            }
-            100% {
-              background-position: 0% 50%;
-            }
-          }
-          @keyframes gradientBG {
-            0% {
-              background-position: 0% 50%;
-            }
-            50% {
-              background-position: 100% 50%;
-            }
-            100% {
-              background-position: 0% 50%;
-            }
         `}
         {...props}
       />
@@ -69,12 +41,12 @@ class DefaultLayout extends React.Component {
       <ThemeProvider theme={lightTheme}>
         {isHome ? (
           <MainBox height="100vh">
-            <main>{children}</main>
+            {children}
             <Footer />
           </MainBox>
         ) : (
           <Box height="100vh">
-            <main>{children}</main>
+            {children}
             <Footer />
           </Box>
         )}

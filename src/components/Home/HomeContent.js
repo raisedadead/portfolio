@@ -46,14 +46,23 @@ export const PureHomeContent = ({ data }) => (
       <Box
         breakpoints={[`narrow`, `medium`, `wide`]}
         width={[`25vw`, `25vw`, `15vw`, `15vw`]}
-        margin="1em"
-        padding="1em"
       >
-        <Card css={{ borderRadius: `12.5vw` }}>
+        <Card
+          css={{
+            borderRadius: `50%`,
+            background: `#abdcff00`,
+            boxShadow: `50px 50px 100px #666666,
+            -50px -50px 100px #abdcff00`,
+            margin: `0 0 50px 0`
+          }}
+        >
           <Img sizes={data.profileImage.childImageSharp.fluid} />
         </Card>
       </Box>
-      <Text as="h2" align="center">
+
+      <br />
+
+      <Text as="h1" align="center">
         <Tooltip cursor="help" content="/mru:dʒi:eʃ/" placement="top" usePortal>
           mrugesh
         </Tooltip>
@@ -61,14 +70,16 @@ export const PureHomeContent = ({ data }) => (
         mohapatra
       </Text>
 
-      <Text as="h4" align="center">
+      <br />
+
+      <Text as="h3" align="center">
         developer 👨‍💻 • music addict 🎸 • open source enthusiast🌟 • photography
         noob 📷 • travel 🥑
       </Text>
 
       <br />
 
-      <Text as="p" align="center">
+      <Text as="h5" align="center">
         Technology & Community Advocacy at{`  `}
         <Link to="https://www.freecodecamp.org" aria-label="freecodecamp.org">
           freeCodeCamp.org

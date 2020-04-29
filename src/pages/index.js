@@ -6,9 +6,7 @@ import React from 'react';
 export const IndexMarkup = () => (
   <DefaultLayout isHome={true}>
     <HtmlHead />
-    <main>
-      <HomeContent />
-    </main>
+    <HomeContent />
   </DefaultLayout>
 );
 

@@ -8,10 +8,10 @@ exports[`HomeContent renders correctly 1`] = `
     class="e7r6m60 css-3zhk4e elghiqq0"
   >
     <div
-      class="css-xlpn71 elghiqq0"
+      class="css-l0gcvb elghiqq0"
     >
       <div
-        class="css-wkg4d1-Card e1roqw6v0"
+        class="css-itixfw-Card e1roqw6v0"
       >
         <div
           class=" gatsby-image-wrapper"
@@ -52,7 +52,8 @@ exports[`HomeContent renders correctly 1`] = `
         </div>
       </div>
     </div>
-    <h2
+    <br />
+    <h1
       class="css-1w67auk e19le4zx0"
     >
       <span
@@ -75,14 +76,15 @@ exports[`HomeContent renders correctly 1`] = `
       </span>
        
       mohapatra
-    </h2>
-    <h4
+    </h1>
+    <br />
+    <h3
       class="css-1w67auk e19le4zx0"
     >
       developer 👨‍💻 • music addict 🎸 • open source enthusiast🌟 • photography noob 📷 • travel 🥑
-    </h4>
+    </h3>
     <br />
-    <p
+    <h5
       class="css-1w67auk e19le4zx0"
     >
       Technology & Community Advocacy at
@@ -96,7 +98,7 @@ exports[`HomeContent renders correctly 1`] = `
       >
         freeCodeCamp.org
       </a>
-    </p>
+    </h5>
   </div>
 </section>
 `;

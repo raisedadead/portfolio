@@ -9,7 +9,8 @@ const NavItem = styled(NavigationItem)({
   minWidth: `auto`,
   minHeight: `auto`,
   padding: `0.5em 0.5em`,
-  height: `auto`
+  height: `auto`,
+  color: `#333840`
 });
 
 const SocialNav = () => (
