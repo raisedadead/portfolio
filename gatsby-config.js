@@ -21,12 +21,6 @@ const sitesConfig = {
 module.exports = {
   plugins: [
     {
-      resolve: `gatsby-plugin-create-client-paths`,
-      options: {
-        prefixes: [`/dashboard/*`]
-      }
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/images`,
@@ -61,12 +55,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sitemap`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`
-      }
-    },
     `gatsby-plugin-offline`
   ],
   siteMetadata: sitesConfig.sites[`default`].siteMetadata

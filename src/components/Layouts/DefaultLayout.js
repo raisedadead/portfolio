@@ -1,5 +1,6 @@
 import React from 'react';
-import { ClassNames } from '@emotion/core';
+import { Global, ClassNames, css } from '@emotion/core';
+import styled from '@emotion/styled';
 
 import { ThemeProvider } from 'mineral-ui/themes';
 import Box from 'mineral-ui/Box';
@@ -10,6 +11,10 @@ import { lightTheme } from '../Theme';
 import Footer from '../Footer';
 
 library.add(fab);
+
+const Wrapper = styled(`div`)`
+  margin: 0;
+`;
 
 const MainBox = (props) => (
   <ClassNames>
@@ -38,19 +43,28 @@ class DefaultLayout extends React.Component {
   render() {
     const { children, isHome = false } = this.props;
     return (
-      <ThemeProvider theme={lightTheme}>
-        {isHome ? (
-          <MainBox height="100vh">
-            {children}
-            <Footer />
-          </MainBox>
-        ) : (
-          <Box height="100vh">
-            {children}
-            <Footer />
-          </Box>
-        )}
-      </ThemeProvider>
+      <Wrapper>
+        <Global
+          styles={css`
+            body {
+              margin: 0;
+            }
+          `}
+        />
+        <ThemeProvider theme={lightTheme}>
+          {isHome ? (
+            <MainBox height="100vh">
+              {children}
+              <Footer />
+            </MainBox>
+          ) : (
+            <Box height="100vh">
+              {children}
+              <Footer />
+            </Box>
+          )}
+        </ThemeProvider>
+      </Wrapper>
     );
   }
 }
