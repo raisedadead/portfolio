@@ -56,26 +56,7 @@ exports[`HomeContent renders correctly 1`] = `
     <h1
       class="css-1w67auk e19le4zx0"
     >
-      <span
-        class="css-1h0pl34 ew65k9p0"
-        id="tooltip-1"
-      >
-        <span
-          class="css-1wyum7k ew65k9p3"
-        >
-          <span
-            aria-describedby="tooltip-1-content"
-            aria-owns="tooltip-1-content"
-            class="css-1myw1nk e3ztgjb0"
-            role="button"
-            tabindex="0"
-          >
-            mrugesh
-          </span>
-        </span>
-      </span>
-       
-      mohapatra
+      mrugesh mohapatra
     </h1>
     <br />
     <h3

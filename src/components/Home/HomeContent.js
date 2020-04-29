@@ -63,11 +63,7 @@ export const PureHomeContent = ({ data }) => (
       <br />
 
       <Text as="h1" align="center">
-        <Tooltip cursor="help" content="/mru:dʒi:eʃ/" placement="top" usePortal>
-          mrugesh
-        </Tooltip>
-        {` `}
-        mohapatra
+        mrugesh mohapatra
       </Text>
 
       <br />
