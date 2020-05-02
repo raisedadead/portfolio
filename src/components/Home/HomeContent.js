@@ -5,7 +5,6 @@ import { StaticQuery, graphql } from 'gatsby';
 import Box from 'mineral-ui/Box';
 import Text from 'mineral-ui/Text';
 import Flex from 'mineral-ui/Flex';
-import Tooltip from 'mineral-ui/Tooltip';
 import Card from 'mineral-ui/Card';
 import Img from 'gatsby-image';
 
