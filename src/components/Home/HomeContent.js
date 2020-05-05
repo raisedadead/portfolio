@@ -50,7 +50,7 @@ export const PureHomeContent = ({ data }) => (
           css={{
             borderRadius: `50%`,
             background: `#abdcff00`,
-            boxShadow: `50px 50px 100px #666666,
+            boxShadow: `50px 50px 100px #33383f,
             -50px -50px 100px #abdcff00`,
             margin: `0 0 50px 0`
           }}
@@ -90,7 +90,7 @@ export const HomeContent = () => (
       query {
         profileImage: file(relativePath: { eq: "profile.png" }) {
           childImageSharp {
-            fluid(maxWidth: 1000) {
+            fluid(maxWidth: 1000, quality: 100) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
