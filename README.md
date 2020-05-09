@@ -28,8 +28,8 @@ The software as it is licensed under the [ISC](LICENSE) License, please feel fre
 Content:
 The content pertaining to Mrugesh Mohapatra such as his resume, personal information, imagery, etc. is licensed under the [CC BY-NC-ND 4.0][by-nc-nd-4] License.
 
-[travis-status-img]: https://travis-ci.org/raisedadead/portfolio.svg?branch=master
-[travis-status]: https://travis-ci.org/raisedadead/portfolio
+[travis-status-img]: https://travis-ci.com/raisedadead/portfolio.svg?branch=master
+[travis-status]: https://travis-ci.com/raisedadead/portfolio
 [circle-status-img]: https://circleci.com/gh/raisedadead/portfolio.svg?style=svg
 [circle-status]: https://circleci.com/gh/raisedadead/portfolio
 [deploy-status-img]: https://api.netlify.com/api/v1/badges/22475e18-dbce-4472-880a-6696b0aea170/deploy-status
