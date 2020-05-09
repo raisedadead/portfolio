@@ -13,7 +13,7 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
         class="e1befqft1 css-1uphkce e70ypka2"
         data-index="0"
         href="https://twitter.com/raisedadead"
-        rel="me"
+        rel="me noopener noreferrer"
         target="_blank"
       >
         <span
@@ -37,7 +37,7 @@ exports[`Footer renders correctly -- according to react-test-renderer 1`] = `
         class="e1befqft1 css-1uphkce e70ypka2"
         data-index="1"
         href="https://github.com/raisedadead"
-        rel="me"
+        rel="me noopener noreferrer"
         target="_blank"
       >
         <span

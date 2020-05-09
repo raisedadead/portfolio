@@ -20,10 +20,18 @@ const SocialNav = () => (
     minimal
     align="center"
   >
-    <NavItem to="https://twitter.com/raisedadead" aria-label="Twitter" rel="me">
+    <NavItem
+      to="https://twitter.com/raisedadead"
+      aria-label="Twitter"
+      rel="me noopener noreferrer"
+    >
       <FontAwesomeIcon icon={[`fab`, `twitter`]} size="lg" />
     </NavItem>
-    <NavItem to="https://github.com/raisedadead" aria-label="GitHub" rel="me">
+    <NavItem
+      to="https://github.com/raisedadead"
+      aria-label="GitHub"
+      rel="me noopener noreferrer"
+    >
       <FontAwesomeIcon icon={[`fab`, `github`]} size="lg" />
     </NavItem>
     <NavItem to="https://linkedin.com/in/mrugeshm" aria-label="LinkedIn">

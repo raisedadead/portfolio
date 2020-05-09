@@ -54,7 +54,7 @@ exports[`404 renders correctly 1`] = `
             class="e1befqft1 css-6malhj e70ypka2"
             data-index="0"
             href="https://twitter.com/raisedadead"
-            rel="me"
+            rel="me noopener noreferrer"
             target="_blank"
           >
             <span
@@ -78,7 +78,7 @@ exports[`404 renders correctly 1`] = `
             class="e1befqft1 css-6malhj e70ypka2"
             data-index="1"
             href="https://github.com/raisedadead"
-            rel="me"
+            rel="me noopener noreferrer"
             target="_blank"
           >
             <span
