@@ -21,13 +21,6 @@ const sitesConfig = {
 module.exports = {
   plugins: [
     {
-      resolve: `gatsby-plugin-nprogress`,
-      options: {
-        color: `#32ccbc`,
-        showSpinner: false
-      }
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/images`,
