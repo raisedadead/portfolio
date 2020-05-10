@@ -1,13 +1,17 @@
 import HomeContent from '../components/Home/HomeContent';
-import HtmlHead from '../components/HTMLHead';
-import DefaultLayout from '../components/Layouts/DefaultLayout';
 import React from 'react';
 
 export const IndexMarkup = () => (
-  <DefaultLayout isHome={true}>
-    <HtmlHead />
+  <div>
     <HomeContent />
-  </DefaultLayout>
+    <df-messenger
+      intent="WELCOME"
+      chat-title="frozen-fire"
+      agent-id="8faaae5b-a250-4a2e-a958-6833a2d0c1d3"
+      language-code="en"
+    ></df-messenger>
+  </div>
 );
 
+IndexMarkup.displayName = `IndexMarkup`;
 export default IndexMarkup;
