@@ -59,6 +59,7 @@ module.exports = {
         theme_color: `#ffffff`
       }
     },
+    `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sitemap`,
