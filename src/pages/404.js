@@ -6,7 +6,6 @@ import Text from 'mineral-ui/Text';
 import Flex from 'mineral-ui/Flex';
 
 import HtmlHead from '../components/HTMLHead';
-import DefaultLayout from '../components/Layouts/DefaultLayout.js';
 import LinkItem from '../components/Link';
 
 const Link = (props) => (
@@ -28,7 +27,7 @@ const Link = (props) => (
   </ClassNames>
 );
 export const FourOhFourMarkup = () => (
-  <DefaultLayout>
+  <div>
     <HtmlHead title="Page not found" />
     <main>
       <Box as="section" marginHorizontal="auto" width={1 / 2}>
@@ -54,7 +53,7 @@ export const FourOhFourMarkup = () => (
         </Flex>
       </Box>
     </main>
-  </DefaultLayout>
+  </div>
 );
 
 export default FourOhFourMarkup;
