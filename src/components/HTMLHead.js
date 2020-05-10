@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 const data = require(`../../gatsby-config`).siteMetadata;
 
 export const HelmetMarkup = ({ title = data.defaultTitle }) => (

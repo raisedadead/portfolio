@@ -21,6 +21,13 @@ const sitesConfig = {
 module.exports = {
   plugins: [
     {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        color: `#32ccbc`,
+        showSpinner: false
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/images`,
@@ -42,7 +49,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        background_color: `#242943`,
+        background_color: `#32ccbc`,
         display: `minimal-ui`,
         icon: `src/images/logo.png`,
         name: `Mrugesh Mohapatra`,
