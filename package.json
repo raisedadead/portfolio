@@ -7,7 +7,7 @@
     "dev": "npm run develop",
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "serve": "gatsby serve --port 8000",
+    "serve": "npm run build && npx netlify dev --dir='public'",
     "format": "npm run lint -- --fix",
     "lint": "eslint .",
     "cy:open": "cypress open",
