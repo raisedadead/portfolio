@@ -1,23 +1,28 @@
 name: Lighthouse
-on: pull_request
-
+on: [push]
 jobs:
-  audit:
+  lhci:
+    name: Lighthouse CI
     runs-on: [ubuntu-latest]
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
     steps:
-    - name: 'Wait for deploy preview to finish'
-      uses: 'WyriHaximus/github-action-wait-for-status@master'
-      with:
-        # We care only about the Netlify checks finishing
-        ignoreActions: 'Lighthouse, CI'
-        checkInterval: 60
-      env:
-        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-    - name: Audit Netlify deploy preview
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        netlify_site: 'raisedadead.netlify.com'
-    - uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: './report'
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build
+        run: |
+          npm ci
+          npm run build --if-present
+        env:
+          CI: true
+          NPM_TOKEN_FONTAWESOME: ${{ secrets.NPM_TOKEN_FONTAWESOME }}
+      - name: run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.3.x
+          lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed!"
