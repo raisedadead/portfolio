@@ -9,6 +9,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import { lightTheme } from '../Theme';
 import Footer from '../Footer';
+import HtmlHead from '../HTMLHead';
 
 library.add(fab);
 
@@ -43,28 +44,31 @@ class DefaultLayout extends React.Component {
   render() {
     const { children, isHome = false } = this.props;
     return (
-      <Wrapper>
-        <Global
-          styles={css`
-            body {
-              margin: 0;
-            }
-          `}
-        />
-        <ThemeProvider theme={lightTheme}>
-          {isHome ? (
-            <MainBox height="100vh">
-              {children}
-              <Footer />
-            </MainBox>
-          ) : (
-            <Box height="100vh">
-              {children}
-              <Footer />
-            </Box>
-          )}
-        </ThemeProvider>
-      </Wrapper>
+      <>
+        <HtmlHead />
+        <Wrapper>
+          <Global
+            styles={css`
+              body {
+                margin: 0;
+              }
+            `}
+          />
+          <ThemeProvider theme={lightTheme}>
+            {isHome ? (
+              <MainBox height="100vh">
+                {children}
+                <Footer />
+              </MainBox>
+            ) : (
+              <Box height="100vh">
+                {children}
+                <Footer />
+              </Box>
+            )}
+          </ThemeProvider>
+        </Wrapper>
+      </>
     );
   }
 }
