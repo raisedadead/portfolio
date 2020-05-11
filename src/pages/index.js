@@ -1,7 +1,13 @@
-import HomeContent from '../components/Home/HomeContent';
 import React from 'react';
 
-export const IndexMarkup = () => <HomeContent />;
+import DefaultLayout from '../components/Layouts/DefaultLayout';
+import HomeContent from '../components/Home/HomeContent';
+
+export const IndexMarkup = () => (
+  <DefaultLayout isHome={true}>
+    <HomeContent />
+  </DefaultLayout>
+);
 
 IndexMarkup.displayName = `IndexMarkup`;
 export default IndexMarkup;
