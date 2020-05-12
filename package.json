@@ -66,7 +66,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
-    "gatsby": "^2.21.21",
+    "gatsby": "^2.21.22",
     "gatsby-image": "^2.4.3",
     "gatsby-plugin-create-client-paths": "^2.3.1",
     "gatsby-plugin-google-analytics": "^2.3.1",
