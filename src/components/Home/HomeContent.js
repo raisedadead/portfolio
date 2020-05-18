@@ -75,7 +75,7 @@ export const PureHomeContent = ({ data }) => (
       <br />
 
       <Text as="h5" align="center">
-        Technology & Community Advocacy at{`  `}
+        Serving the servers that serve{`  `}
         <Link to="https://www.freecodecamp.org" aria-label="freecodecamp.org">
           freeCodeCamp.org
         </Link>
