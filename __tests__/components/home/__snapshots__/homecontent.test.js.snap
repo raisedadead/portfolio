@@ -80,6 +80,34 @@ exports[`HomeContent renders correctly 1`] = `
         freeCodeCamp.org
       </a>
     </h5>
+    <br />
+    <h5
+      class="css-1w67auk e19le4zx0"
+    >
+      Consider browsing my 
+        
+      <a
+        aria-label="blog"
+        class="css-3r9jsu"
+        href="https://devlog.sh"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        📝 blog
+      </a>
+      , or buying me a 
+       
+      <a
+        aria-label="buy me a coffee"
+        class="css-3r9jsu"
+        href="https://www.buymeacoffee.com/mrugesh"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        ☕️ coffee
+      </a>
+      .
+    </h5>
   </div>
 </section>
 `;

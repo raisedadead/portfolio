@@ -80,6 +80,23 @@ export const PureHomeContent = ({ data }) => (
           freeCodeCamp.org
         </Link>
       </Text>
+
+      <br />
+
+      <Text as="h5" align="center">
+        Consider browsing my {`  `}
+        <Link to="https://devlog.sh" aria-label="blog">
+          📝 blog
+        </Link>
+        , or buying me a {` `}
+        <Link
+          to="https://www.buymeacoffee.com/mrugesh"
+          aria-label="buy me a coffee"
+        >
+          ☕️ coffee
+        </Link>
+        .
+      </Text>
     </Flex>
   </Box>
 );
