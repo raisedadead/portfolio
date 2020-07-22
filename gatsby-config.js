@@ -22,6 +22,13 @@ module.exports = {
   plugins: [
     `gatsby-plugin-emotion`,
     {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Poppins`],
+        display: `swap`
+      }
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         anonymize: true,

@@ -1,7 +1,11 @@
 module.exports = {
   purge: [],
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        poppins: [`Poppins`, `sans-serif`]
+      }
+    }
   },
   variants: {},
   plugins: []
