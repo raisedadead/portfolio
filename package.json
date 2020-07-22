@@ -53,6 +53,8 @@
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
@@ -72,6 +74,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "gatsby": "^2.24.8",
+    "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-google-analytics": "^2.3.13",
     "gatsby-plugin-manifest": "^2.4.20",
     "gatsby-plugin-offline": "^3.2.20",
@@ -88,6 +91,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
     "start-server-and-test": "^1.11.2",
-    "tailwindcss": "^1.5.2"
+    "tailwindcss": "^1.5.2",
+    "twin.macro": "^1.6.0"
   }
 }

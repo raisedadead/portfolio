@@ -20,6 +20,7 @@ const sitesConfig = {
 
 module.exports = {
   plugins: [
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
