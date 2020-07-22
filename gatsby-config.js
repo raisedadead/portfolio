@@ -20,20 +20,18 @@ const sitesConfig = {
 
 module.exports = {
   plugins: [
+    `gatsby-plugin-emotion`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
-        path: `${__dirname}/src/images`,
-        name: `images`
+        fonts: [`Poppins`],
+        display: `swap`
       }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         anonymize: true,
-        exclude: [`/preview/**`],
         head: true,
         respectDNT: true,
         trackingId: `UA-119399348-1`
@@ -42,7 +40,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        background_color: `#32ccbc`,
+        background_color: `#242943`,
         display: `minimal-ui`,
         icon: `src/images/logo.png`,
         name: `Mrugesh Mohapatra`,
@@ -52,7 +50,6 @@ module.exports = {
         theme_color: `#ffffff`
       }
     },
-    `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sitemap`,

@@ -1,60 +1,106 @@
 import React from 'react';
-import { ClassNames } from '@emotion/core';
+import tw, { styled, css } from 'twin.macro';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faInstagram,
+  faTwitter,
+  faGithub,
+  faLinkedin
+} from '@fortawesome/free-brands-svg-icons';
 
-import Box from 'mineral-ui/Box';
-import Text from 'mineral-ui/Text';
-import Flex from 'mineral-ui/Flex';
+const dashedLinkStyle = css`
+  ${tw`border-dashed border-gray-500 border-b-2 no-underline`}
+`;
 
-import HtmlHead from '../components/HTMLHead';
-import LinkItem from '../components/Link';
-import DefaultLayout from '../components/Layouts/DefaultLayout';
+const FourOhFourLayout = styled.div`
+  ${tw`font-poppins antialiased w-screen h-screen mx-auto flex flex-col justify-center items-center`}
+`;
 
-const Link = (props) => (
-  <ClassNames>
-    {({ css }) => (
-      <LinkItem
-        className={css`
-          outline: none;
-          text-decoration: none;
-          padding: 2px 1px 0;
-          border-bottom-style: dashed;
-          border-bottom-color: currentcolor;
-          border-bottom-width: 1px;
-          color: currentcolor;
-        `}
-        {...props}
-      />
-    )}
-  </ClassNames>
+const Footer = styled.footer`
+  ${tw`absolute bottom-0 w-screen text-gray-800 shadow-inner`}
+`;
+
+const FAIcon = ({ icon }) => (
+  <FontAwesomeIcon
+    css={css`
+      ${tw`ml-6 w-4 h-4`}
+    `}
+    icon={icon}
+  />
 );
+
 export const FourOhFourMarkup = () => (
-  <DefaultLayout>
-    <HtmlHead title="Page not found" />
-    <main>
-      <Box as="section" marginHorizontal="auto" width={1 / 2}>
-        <Flex
-          alignItems="center"
-          justifyContent="center"
-          direction="column"
-          height="75vh"
+  <FourOhFourLayout>
+    <h1>404 | Page not found.</h1>
+    <br />
+    <h4>
+      Uh - Oh! Apologies, looks like the something you were looking for has been
+      lost to oblivion.
+    </h4>
+    <br />
+    <h4>
+      Why don't you checkout {` `}
+      <a
+        css={css`
+          ${dashedLinkStyle}
+        `}
+        href="/"
+      >
+        something interesting instead
+      </a>
+      .
+    </h4>
+    <Footer>
+      <div
+        css={css`
+          ${tw`container mx-auto px-4 py-4 md:px-16 flex md:flex-row flex-col md:justify-between justify-center content-center items-center`}
+        `}
+      >
+        <span
+          css={css`
+            ${tw`mb-2 md:my-auto`}
+          `}
         >
-          <Text as="h1" align="center">
-            404 | Page not found.
-          </Text>
-          <br />
-          <Text as="h4" align="center">
-            Uh - Oh! Apologies, looks like the something you were looking for
-            has been lost to oblivion.
-          </Text>
-          <br />
-          <Text as="h4" align="center">
-            Why don't you checkout {` `}
-            <Link to="/">something interesting instead</Link>.
-          </Text>
-        </Flex>
-      </Box>
-    </main>
-  </DefaultLayout>
+          &copy; {new Date().getFullYear()} Mrugesh Mohapatra.
+        </span>
+        <span>
+          <a
+            href="https://twitter.com/raisedadead"
+            aria-label="twitter"
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <FAIcon icon={faTwitter} />
+          </a>
+          <a
+            href="https://github.com/raisedadead"
+            aria-label="github"
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <FAIcon icon={faGithub} />
+          </a>
+          <a
+            href="https://linkedin.com/in/mrugeshm"
+            aria-label="linkedin"
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <FAIcon icon={faLinkedin} />
+          </a>
+          <a
+            href="https://instagram.com/raisedadead"
+            aria-label="instagram"
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <FAIcon icon={faInstagram} />
+          </a>
+        </span>
+      </div>
+    </Footer>
+  </FourOhFourLayout>
 );
 
+FourOhFourMarkup.displayName = `FourOhFourMarkup`;
 export default FourOhFourMarkup;
