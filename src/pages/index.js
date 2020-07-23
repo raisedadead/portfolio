@@ -15,30 +15,23 @@ const dashedLinkStyle = css`
 `;
 
 const HomeLayout = styled.div`
-  ${tw`font-poppins antialiased w-screen h-screen mx-auto flex sm:flex-row flex-col justify-center items-center`}
-  background: #90cdf4; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to bottom,
-    #ffffff,
-    #abdcff
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    #ffffff,
-    #abdcff
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  ${tw`font-poppins antialiased w-screen h-screen mx-auto flex flex-col justify-center items-center`}
+  background-color: #a0f6d2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3Crect stroke='%23a0f6d2' stroke-width='.5' width='1' height='1' id='s'/%3E%3Cpattern id='a' width='3' height='3' patternUnits='userSpaceOnUse' patternTransform='scale(21.25) translate(-952.94 -714.71)'%3E%3Cuse fill='%239df1ce' href='%23s' y='2'/%3E%3Cuse fill='%239df1ce' href='%23s' x='1' y='2'/%3E%3Cuse fill='%239aecca' href='%23s' x='2' y='2'/%3E%3Cuse fill='%239aecca' href='%23s'/%3E%3Cuse fill='%2396e7c5' href='%23s' x='2'/%3E%3Cuse fill='%2396e7c5' href='%23s' x='1' y='1'/%3E%3C/pattern%3E%3Cpattern id='b' width='7' height='11' patternUnits='userSpaceOnUse' patternTransform='scale(21.25) translate(-952.94 -714.71)'%3E%3Cg fill='%2393e2c1'%3E%3Cuse href='%23s'/%3E%3Cuse href='%23s' y='5' /%3E%3Cuse href='%23s' x='1' y='10'/%3E%3Cuse href='%23s' x='2' y='1'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='8'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='5' y='2'/%3E%3Cuse href='%23s' x='5' y='6'/%3E%3Cuse href='%23s' x='6' y='9'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='h' width='5' height='13' patternUnits='userSpaceOnUse' patternTransform='scale(21.25) translate(-952.94 -714.71)'%3E%3Cg fill='%2393e2c1'%3E%3Cuse href='%23s' y='5'/%3E%3Cuse href='%23s' y='8'/%3E%3Cuse href='%23s' x='1' y='1'/%3E%3Cuse href='%23s' x='1' y='9'/%3E%3Cuse href='%23s' x='1' y='12'/%3E%3Cuse href='%23s' x='2'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='2'/%3E%3Cuse href='%23s' x='3' y='6'/%3E%3Cuse href='%23s' x='3' y='11'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='4' y='10'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='c' width='17' height='13' patternUnits='userSpaceOnUse' patternTransform='scale(21.25) translate(-952.94 -714.71)'%3E%3Cg fill='%2390ddbd'%3E%3Cuse href='%23s' y='11'/%3E%3Cuse href='%23s' x='2' y='9'/%3E%3Cuse href='%23s' x='5' y='12'/%3E%3Cuse href='%23s' x='9' y='4'/%3E%3Cuse href='%23s' x='12' y='1'/%3E%3Cuse href='%23s' x='16' y='6'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='d' width='19' height='17' patternUnits='userSpaceOnUse' patternTransform='scale(21.25) translate(-952.94 -714.71)'%3E%3Cg fill='%23a0f6d2'%3E%3Cuse href='%23s' y='9'/%3E%3Cuse href='%23s' x='16' y='5'/%3E%3Cuse href='%23s' x='14' y='2'/%3E%3Cuse href='%23s' x='11' y='11'/%3E%3Cuse href='%23s' x='6' y='14'/%3E%3C/g%3E%3Cg fill='%238dd8b9'%3E%3Cuse href='%23s' x='3' y='13'/%3E%3Cuse href='%23s' x='9' y='7'/%3E%3Cuse href='%23s' x='13' y='10'/%3E%3Cuse href='%23s' x='15' y='4'/%3E%3Cuse href='%23s' x='18' y='1'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='e' width='47' height='53' patternUnits='userSpaceOnUse' patternTransform='scale(21.25) translate(-952.94 -714.71)'%3E%3Cg fill='%23f0fff4'%3E%3Cuse href='%23s' x='2' y='5'/%3E%3Cuse href='%23s' x='16' y='38'/%3E%3Cuse href='%23s' x='46' y='42'/%3E%3Cuse href='%23s' x='29' y='20'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='f' width='59' height='71' patternUnits='userSpaceOnUse' patternTransform='scale(21.25) translate(-952.94 -714.71)'%3E%3Cg fill='%23f0fff4'%3E%3Cuse href='%23s' x='33' y='13'/%3E%3Cuse href='%23s' x='27' y='54'/%3E%3Cuse href='%23s' x='55' y='55'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='g' width='139' height='97' patternUnits='userSpaceOnUse' patternTransform='scale(21.25) translate(-952.94 -714.71)'%3E%3Cg fill='%23f0fff4'%3E%3Cuse href='%23s' x='11' y='8'/%3E%3Cuse href='%23s' x='51' y='13'/%3E%3Cuse href='%23s' x='17' y='73'/%3E%3Cuse href='%23s' x='99' y='57'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23b)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23h)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23c)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23d)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23e)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23f)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23g)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
 `;
 
 const HomeCard = ({ children }) => (
   <div
     css={css`
-      ${tw`w-4/5 md:w-1/2 rounded-lg bg-white`}
-      box-shadow: 50px 50px 100px #33383f;
+      ${tw`container rounded-lg bg-gray-200 w-4/5 md:w-2/3 lg:w-1/2`}
+      box-shadow: 50px 50px 100px #000;
     `}
   >
     <div
       css={css`
-        ${tw`p-8 md:p-16 text-center`}
+        ${tw`text-center text-gray-700 font-bold p-8 md:p-12 lg:p-16`}
       `}
     >
       {children}
@@ -48,25 +41,16 @@ const HomeCard = ({ children }) => (
 
 const Footer = styled.footer`
   ${tw`absolute bottom-0 w-screen text-gray-800 shadow-inner`}
-  background: #90cdf4;
+  background: #a0f6d2;
 `;
-
-const FAIcon = ({ icon }) => (
-  <FontAwesomeIcon
-    css={css`
-      ${tw`ml-6 w-4 h-4`}
-    `}
-    icon={icon}
-  />
-);
 
 export const IndexMarkup = () => (
   <HomeLayout>
     <HomeCard>
       <img
         css={css`
-          ${tw`rounded-full mx-auto -mt-16 mb-4 md:-mt-32 md:mb-16 h-32 w-32 md:h-48 md:w-48`}
-          box-shadow: 50px 50px 100px #33383f;
+          ${tw`rounded-full mx-auto h-32 w-32 -mt-24 mb-12 md:h-48 md:w-48 md:-mt-40 md:mb-16 lg:h-64 lg:w-64 lg:-mt-48 lg:mb-20 border-green-400 border-2`}
+          box-shadow: 50px 50px 100px #000;
         `}
         src={ProfileImage}
         alt="Mrugesh Mohapatra's profile image"
@@ -74,7 +58,7 @@ export const IndexMarkup = () => (
 
       <h1
         css={css`
-          ${tw`text-2xl md:text-4xl font-black text-gray-800`}
+          ${tw`text-2xl md:text-4xl`}
         `}
       >
         mrugesh mohapatra
@@ -82,13 +66,13 @@ export const IndexMarkup = () => (
 
       <hr
         css={css`
-          ${tw`mx-auto w-1/4 mt-2 mb-8 border-blue-600 border-2`}
+          ${tw`mx-auto w-1/4 mt-2 mb-8 border-green-300 border-2`}
         `}
       />
 
       <h2
         css={css`
-          ${tw`text-base md:text-xl my-8 font-bold text-gray-800`}
+          ${tw`text-base md:text-xl my-8`}
         `}
       >
         developer 👨‍💻 • music addict 🎸 • open source enthusiast🌟 • photography
@@ -97,7 +81,7 @@ export const IndexMarkup = () => (
 
       <h3
         css={css`
-          ${tw`text-base md:text-xl my-8 font-bold text-gray-800`}
+          ${tw`text-base md:text-xl my-8`}
         `}
       >
         Technology & Community,{`  `}
@@ -116,7 +100,7 @@ export const IndexMarkup = () => (
 
       <p
         css={css`
-          ${tw`text-sm md:text-base my-8 font-bold text-gray-800`}
+          ${tw`text-sm md:text-base my-8`}
         `}
       >
         Consider browsing {`  `}
@@ -149,7 +133,7 @@ export const IndexMarkup = () => (
     <Footer>
       <div
         css={css`
-          ${tw`container mx-auto px-4 py-4 md:px-16 flex md:flex-row flex-col md:justify-between justify-center content-center items-center`}
+          ${tw`container mx-auto px-0 py-2 flex flex-col justify-center items-center md:py-4 md:flex-row md:justify-between md:w-2/3 lg:w-1/2`}
         `}
       >
         <span
@@ -159,14 +143,23 @@ export const IndexMarkup = () => (
         >
           &copy; {new Date().getFullYear()} Mrugesh Mohapatra.
         </span>
-        <span>
+        <div
+          css={css`
+            ${tw`flex flex-row justify-center items-center`}
+          `}
+        >
           <a
             href="https://twitter.com/raisedadead"
             aria-label="twitter"
             target="_blank"
             rel="me noopener noreferrer"
           >
-            <FAIcon icon={faTwitter} />
+            <FontAwesomeIcon
+              css={css`
+                ${tw`ml-4`}
+              `}
+              icon={faTwitter}
+            />
           </a>
           <a
             href="https://github.com/raisedadead"
@@ -174,7 +167,12 @@ export const IndexMarkup = () => (
             target="_blank"
             rel="me noopener noreferrer"
           >
-            <FAIcon icon={faGithub} />
+            <FontAwesomeIcon
+              css={css`
+                ${tw`ml-4`}
+              `}
+              icon={faGithub}
+            />
           </a>
           <a
             href="https://linkedin.com/in/mrugeshm"
@@ -182,7 +180,12 @@ export const IndexMarkup = () => (
             target="_blank"
             rel="me noopener noreferrer"
           >
-            <FAIcon icon={faLinkedin} />
+            <FontAwesomeIcon
+              css={css`
+                ${tw`ml-4`}
+              `}
+              icon={faLinkedin}
+            />
           </a>
           <a
             href="https://instagram.com/raisedadead"
@@ -190,9 +193,14 @@ export const IndexMarkup = () => (
             target="_blank"
             rel="me noopener noreferrer"
           >
-            <FAIcon icon={faInstagram} />
+            <FontAwesomeIcon
+              css={css`
+                ${tw`ml-4`}
+              `}
+              icon={faInstagram}
+            />
           </a>
-        </span>
+        </div>
       </div>
     </Footer>
   </HomeLayout>

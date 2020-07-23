@@ -18,42 +18,54 @@ const FourOhFourLayout = styled.div`
 
 const Footer = styled.footer`
   ${tw`absolute bottom-0 w-screen text-gray-800 shadow-inner`}
+  background: #a0f6d2;
 `;
-
-const FAIcon = ({ icon }) => (
-  <FontAwesomeIcon
-    css={css`
-      ${tw`ml-6 w-4 h-4`}
-    `}
-    icon={icon}
-  />
-);
 
 export const FourOhFourMarkup = () => (
   <FourOhFourLayout>
-    <h1>404 | Page not found.</h1>
-    <br />
-    <h4>
-      Uh - Oh! Apologies, looks like the something you were looking for has been
-      lost to oblivion.
-    </h4>
-    <br />
-    <h4>
-      Why don't you checkout {` `}
-      <a
+    <div
+      css={css`
+        ${tw`text-center text-gray-700 font-bold p-8 md:p-12 lg:p-16 flex flex-col`}
+      `}
+    >
+      <h1
         css={css`
-          ${dashedLinkStyle}
+          ${tw`text-2xl md:text-4xl mb-8`}
         `}
-        href="/"
       >
-        something interesting instead
-      </a>
-      .
-    </h4>
+        404 | Page not found.
+      </h1>
+
+      <p
+        css={css`
+          ${tw`text-base mb-8`}
+        `}
+      >
+        Uh - Oh! Apologies, looks like the something you were looking for has
+        been lost to oblivion.
+      </p>
+
+      <p
+        css={css`
+          ${tw`text-base mb-8`}
+        `}
+      >
+        Why don't you checkout {` `}
+        <a
+          css={css`
+            ${dashedLinkStyle}
+          `}
+          href="/"
+        >
+          something interesting instead
+        </a>
+        .
+      </p>
+    </div>
     <Footer>
       <div
         css={css`
-          ${tw`container mx-auto px-4 py-4 md:px-16 flex md:flex-row flex-col md:justify-between justify-center content-center items-center`}
+          ${tw`container mx-auto px-0 py-2 flex flex-col justify-center items-center md:py-4 md:flex-row md:justify-between md:w-2/3 lg:w-1/2`}
         `}
       >
         <span
@@ -63,14 +75,23 @@ export const FourOhFourMarkup = () => (
         >
           &copy; {new Date().getFullYear()} Mrugesh Mohapatra.
         </span>
-        <span>
+        <div
+          css={css`
+            ${tw`flex flex-row justify-center items-center`}
+          `}
+        >
           <a
             href="https://twitter.com/raisedadead"
             aria-label="twitter"
             target="_blank"
             rel="me noopener noreferrer"
           >
-            <FAIcon icon={faTwitter} />
+            <FontAwesomeIcon
+              css={css`
+                ${tw`ml-4`}
+              `}
+              icon={faTwitter}
+            />
           </a>
           <a
             href="https://github.com/raisedadead"
@@ -78,7 +99,12 @@ export const FourOhFourMarkup = () => (
             target="_blank"
             rel="me noopener noreferrer"
           >
-            <FAIcon icon={faGithub} />
+            <FontAwesomeIcon
+              css={css`
+                ${tw`ml-4`}
+              `}
+              icon={faGithub}
+            />
           </a>
           <a
             href="https://linkedin.com/in/mrugeshm"
@@ -86,7 +112,12 @@ export const FourOhFourMarkup = () => (
             target="_blank"
             rel="me noopener noreferrer"
           >
-            <FAIcon icon={faLinkedin} />
+            <FontAwesomeIcon
+              css={css`
+                ${tw`ml-4`}
+              `}
+              icon={faLinkedin}
+            />
           </a>
           <a
             href="https://instagram.com/raisedadead"
@@ -94,9 +125,14 @@ export const FourOhFourMarkup = () => (
             target="_blank"
             rel="me noopener noreferrer"
           >
-            <FAIcon icon={faInstagram} />
+            <FontAwesomeIcon
+              css={css`
+                ${tw`ml-4`}
+              `}
+              icon={faInstagram}
+            />
           </a>
-        </span>
+        </div>
       </div>
     </Footer>
   </FourOhFourLayout>
