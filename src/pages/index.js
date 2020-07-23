@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql, StaticQuery } from 'gatsby';
 import tw, { styled, css } from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,8 +8,7 @@ import {
   faGithub,
   faLinkedin
 } from '@fortawesome/free-brands-svg-icons';
-
-import ProfileImage from '../images/profile.png';
+import BackgroundImage from 'gatsby-background-image';
 
 const dashedLinkStyle = css`
   ${tw`border-dashed border-gray-500 border-b-2 no-underline`}
@@ -44,15 +44,36 @@ const Footer = styled.footer`
   background: #a0f6d2;
 `;
 
+const ProfileImage = ({ className }) => (
+  <StaticQuery
+    query={graphql`
+      query {
+        profile: file(relativePath: { eq: "profile.png" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 800) {
+              ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            }
+          }
+        }
+      }
+    `}
+    render={(data) => (
+      <BackgroundImage
+        className={className}
+        fluid={data?.profile?.childImageSharp?.fluid}
+      />
+    )}
+  />
+);
+
 export const IndexMarkup = () => (
   <HomeLayout>
     <HomeCard>
-      <img
+      <ProfileImage
         css={css`
           ${tw`rounded-full mx-auto h-32 w-32 -mt-24 mb-12 md:h-48 md:w-48 md:-mt-40 md:mb-16 lg:h-64 lg:w-64 lg:-mt-48 lg:mb-20 border-green-400 border-2`}
           box-shadow: 50px 50px 100px #000;
         `}
-        src={ProfileImage}
         alt="Mrugesh Mohapatra's profile image"
       />
 

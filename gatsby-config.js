@@ -1,3 +1,5 @@
+const path = require(`path`);
+
 const sitesConfig = {
   sites: {
     default: {
@@ -20,6 +22,16 @@ const sitesConfig = {
 
 module.exports = {
   plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `images`)
+      }
+    },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-background-image`,
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-google-fonts`,
