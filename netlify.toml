@@ -2,3 +2,5 @@
   functions = '__functions__'
   command = "npm run build && npm run test"
   publish = "public"
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"
