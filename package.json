@@ -84,7 +84,7 @@
     "gatsby-plugin-robots-txt": "^1.5.1",
     "gatsby-plugin-sharp": "^2.6.22",
     "gatsby-plugin-sitemap": "^2.4.11",
-    "gatsby-source-filesystem": "^2.3.21",
+    "gatsby-source-filesystem": "^2.3.23",
     "gatsby-transformer-sharp": "^2.5.11",
     "husky": "^4.2.3",
     "identity-obj-proxy": "^3.0.0",
