@@ -60,7 +60,7 @@
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@testing-library/jest-dom": "^5.11.1",
     "@testing-library/react": "^10.4.7",
-    "babel-jest": "^25.3.0",
+    "babel-jest": "^26.1.0",
     "babel-preset-gatsby": "^0.5.3",
     "cross-env": "^7.0.2",
     "cypress": "^4.11.0",
