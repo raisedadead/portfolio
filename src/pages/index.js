@@ -10,6 +10,8 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import BackgroundImage from 'gatsby-background-image';
 
+import { HTMLHead } from '../components/html-head';
+
 const dashedLinkStyle = css`
   ${tw`border-dashed border-gray-500 border-b-2 no-underline`}
 `;
@@ -68,6 +70,7 @@ const ProfileImage = ({ className }) => (
 
 export const IndexMarkup = () => (
   <HomeLayout>
+    <HTMLHead title="Home" />
     <HomeCard>
       <ProfileImage
         css={css`
