@@ -31,7 +31,7 @@ const HomeCard = ({ children }) => (
   >
     <div
       css={css`
-        ${tw`text-center text-gray-700 font-bold p-8 md:p-12 lg:p-16`}
+        ${tw`text-center text-gray-700 font-bold p-4 md:p-8 md:p-12 lg:p-16`}
       `}
     >
       {children}
@@ -79,7 +79,7 @@ export const IndexMarkup = () => (
 
       <h1
         css={css`
-          ${tw`text-2xl md:text-4xl`}
+          ${tw`text-base md:text-4xl`}
         `}
       >
         mrugesh mohapatra
@@ -93,7 +93,7 @@ export const IndexMarkup = () => (
 
       <h2
         css={css`
-          ${tw`text-base md:text-xl my-8`}
+          ${tw`text-sm my-4 md:text-xl md:my-8`}
         `}
       >
         developer 👨‍💻 • music addict 🎸 • open source enthusiast🌟 • photography
@@ -102,7 +102,7 @@ export const IndexMarkup = () => (
 
       <h3
         css={css`
-          ${tw`text-base md:text-xl my-8`}
+          ${tw`text-sm my-4 md:text-xl md:my-8`}
         `}
       >
         Technology & Community,{`  `}
@@ -121,7 +121,7 @@ export const IndexMarkup = () => (
 
       <p
         css={css`
-          ${tw`text-sm md:text-base my-8`}
+          ${tw`text-xs my-8 md:text-base md:my-8`}
         `}
       >
         Consider browsing {`  `}
@@ -177,8 +177,9 @@ export const IndexMarkup = () => (
           >
             <FontAwesomeIcon
               css={css`
-                ${tw`ml-4`}
+                ${tw`mx-4 my-2`}
               `}
+              size="lg"
               icon={faTwitter}
             />
           </a>
@@ -190,8 +191,9 @@ export const IndexMarkup = () => (
           >
             <FontAwesomeIcon
               css={css`
-                ${tw`ml-4`}
+                ${tw`mx-4 my-2`}
               `}
+              size="lg"
               icon={faGithub}
             />
           </a>
@@ -203,8 +205,9 @@ export const IndexMarkup = () => (
           >
             <FontAwesomeIcon
               css={css`
-                ${tw`ml-4`}
+                ${tw`mx-4 my-2`}
               `}
+              size="lg"
               icon={faLinkedin}
             />
           </a>
@@ -216,8 +219,9 @@ export const IndexMarkup = () => (
           >
             <FontAwesomeIcon
               css={css`
-                ${tw`ml-4`}
+                ${tw`mx-4 my-2`}
               `}
+              size="lg"
               icon={faInstagram}
             />
           </a>
