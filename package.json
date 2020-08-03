@@ -63,7 +63,7 @@
     "babel-jest": "^26.2.2",
     "babel-preset-gatsby": "^0.5.4",
     "cross-env": "^7.0.2",
-    "cypress": "^4.11.0",
+    "cypress": "^4.12.0",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-cypress": "^2.11.1",
