@@ -149,7 +149,7 @@ export const IndexMarkup = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          a coffee ☕️
+          a beer 🍺
         </a>
         .
       </p>
