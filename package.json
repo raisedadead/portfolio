@@ -97,7 +97,7 @@
     "react-helmet": "^6.1.0",
     "start-server-and-test": "^1.11.2",
     "tailwindcss": "^1.6.2",
-    "twin.macro": "^1.6.3"
+    "twin.macro": "^1.7.0"
   },
   "babelMacros": {
     "twin": {
