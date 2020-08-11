@@ -51,7 +51,7 @@
   },
   "homepage": "https://github.com/raisedadead/portfolio#readme",
   "devDependencies": {
-    "@babel/core": "^7.11.0",
+    "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
