@@ -1,11 +1,11 @@
-name: Auto-merge
+name: Housekeeping
 
 on:
   pull_request:
 
 jobs:
   auto-merge-minor:
-    name: Merge Minor 
+    name: Merge Minor SemVer
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
     steps:
@@ -14,7 +14,7 @@ jobs:
           target: minor
           github-token: ${{ secrets.AUTO_MERGE_TOKEN }}
   auto-merge-patch:
-    name: Merge Patch 
+    name: Merge Patch SemVer
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
     steps:

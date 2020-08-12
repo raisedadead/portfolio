@@ -1,14 +1,15 @@
 name: CI
 
-# Continious integration enabled for all pull requests to master branch
-# and pushes to all branches other than master. Direct pushes to master
-# are handled in the continious delivery workflow
+# Continious integration enabled for all pull requests to master & live
+# branch and pushes to all branches other than master. Direct pushes to
+# live are handled in the continious delivery workflow
 on:
   push:
     branches:
-      - '!master'
+      - '!live'
   pull_request:
     branches:
+      - live
       - master
 
 jobs:
@@ -67,6 +68,8 @@ jobs:
     name: Deploy Preview to Netlify
     needs: build
     runs-on: ubuntu-latest
+    # Do not run this job for Dependabot PRs
+    if: github.actor != 'dependabot[bot]'
 
     strategy:
       matrix:
