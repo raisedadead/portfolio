@@ -17,11 +17,13 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - name: 'Merge Minor SemVer Updates'
+        if: steps.waitforstatuschecks.outputs.status == 'success'
         uses: ahmadnassri/action-dependabot-auto-merge@v1
         with:
           target: minor
           github-token: ${{ secrets.AUTO_MERGE_TOKEN }}
       - name: 'Merge Patch SemVer Updates'
+        if: steps.waitforstatuschecks.outputs.status == 'success'
         uses: ahmadnassri/action-dependabot-auto-merge@v1
         with:
           target: patch
