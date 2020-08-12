@@ -4,21 +4,25 @@ on:
   pull_request:
 
 jobs:
-  auto-merge-minor:
-    name: Merge Minor SemVer
+  automerge:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
     steps:
-      - uses: ahmadnassri/action-dependabot-auto-merge@v1
+      - name: 'Wait for status checks'
+        id: waitforstatuschecks
+        uses: 'WyriHaximus/github-action-wait-for-status@v2'
+        with:
+          ignoreActions: automerge
+          checkInterval: 20
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - name: 'Merge Minor SemVer Updates'
+        uses: ahmadnassri/action-dependabot-auto-merge@v1
         with:
           target: minor
           github-token: ${{ secrets.AUTO_MERGE_TOKEN }}
-  auto-merge-patch:
-    name: Merge Patch SemVer
-    runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
-    steps:
-      - uses: ahmadnassri/action-dependabot-auto-merge@v1
+      - name: 'Merge Patch SemVer Updates'
+        uses: ahmadnassri/action-dependabot-auto-merge@v1
         with:
           target: patch
           github-token: ${{ secrets.AUTO_MERGE_TOKEN }}
