@@ -12,10 +12,16 @@ jobs:
         id: waitforstatuschecks
         uses: WyriHaximus/github-action-wait-for-status@master
         with:
-          ignoreActions: automerge
+          ignoreActions: housekeeping
           checkInterval: 20
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - name: 'Merge Patch SemVer Updates'
+        if: steps.waitforstatuschecks.outputs.status == 'success'
+        uses: ahmadnassri/action-dependabot-auto-merge@master
+        with:
+          target: patch
+          github-token: ${{ secrets.AUTO_MERGE_TOKEN }}
       - name: 'Merge Minor SemVer Updates'
         if: steps.waitforstatuschecks.outputs.status == 'success'
         uses: ahmadnassri/action-dependabot-auto-merge@master
