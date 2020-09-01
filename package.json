@@ -52,7 +52,7 @@
   "homepage": "https://github.com/raisedadead/portfolio#readme",
   "devDependencies": {
     "@babel/core": "^7.11.4",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-env": "^7.11.5",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
