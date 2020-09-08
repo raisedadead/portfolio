@@ -96,7 +96,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "start-server-and-test": "^1.11.3",
-    "tailwindcss": "^1.8.4",
+    "tailwindcss": "^1.8.5",
     "twin.macro": "^1.8.1"
   },
   "babelMacros": {
