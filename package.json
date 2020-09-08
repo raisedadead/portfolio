@@ -86,7 +86,7 @@
     "gatsby-plugin-sitemap": "^2.4.12",
     "gatsby-source-filesystem": "^2.3.27",
     "gatsby-transformer-sharp": "^2.5.14",
-    "husky": "^4.2.3",
+    "husky": "^4.3.0",
     "identity-obj-proxy": "^3.0.0",
     "intersection-observer": "^0.11.0",
     "jest": "^26.4.2",
