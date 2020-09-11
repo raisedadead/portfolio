@@ -73,7 +73,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
-    "gatsby": "^2.24.56",
+    "gatsby": "^2.24.57",
     "gatsby-background-image": "^1.1.2",
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-google-analytics": "^2.3.13",
