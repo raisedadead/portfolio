@@ -59,7 +59,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.0.2",
+    "@testing-library/react": "^11.0.4",
     "babel-jest": "^26.3.0",
     "babel-preset-gatsby": "^0.5.9",
     "cross-env": "^7.0.2",
