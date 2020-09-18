@@ -90,13 +90,13 @@ export const IndexMarkup = () => (
 
       <hr
         css={css`
-          ${tw`mx-auto w-1/4 mt-2 mb-8 border-green-300 border-2`}
+          ${tw`mx-auto w-1/4 mt-2 mb-8 border-green-300 border-4`}
         `}
       />
 
       <h2
         css={css`
-          ${tw`text-sm my-4 md:text-xl md:my-8`}
+          ${tw`text-sm my-4 md:text-lg md:my-8`}
         `}
       >
         developer 👨‍💻 • music addict 🎸 • open source enthusiast🌟 • photography
@@ -105,7 +105,7 @@ export const IndexMarkup = () => (
 
       <h3
         css={css`
-          ${tw`text-sm my-4 md:text-xl md:my-8`}
+          ${tw`text-sm my-4 md:text-lg md:my-8`}
         `}
       >
         Technology & Community,{`  `}
@@ -124,7 +124,7 @@ export const IndexMarkup = () => (
 
       <p
         css={css`
-          ${tw`text-xs my-8 md:text-base md:my-8`}
+          ${tw`leading-loose text-xs my-8 md:text-sm md:my-8`}
         `}
       >
         Consider browsing {`  `}
@@ -139,7 +139,7 @@ export const IndexMarkup = () => (
         >
           my blog 📝
         </a>
-        , or buying me {` `}
+        , and buying me {` `}
         <a
           css={css`
             ${dashedLinkStyle}
@@ -151,7 +151,8 @@ export const IndexMarkup = () => (
         >
           a beer 🍺
         </a>
-        .
+        , if you found articles that I wrote or tools that I helped build
+        useful.
       </p>
     </HomeCard>
     <Footer>
