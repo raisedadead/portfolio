@@ -146,7 +146,7 @@ export const IndexMarkup = () => (
           ${tw`leading-loose text-xs my-8 md:text-sm md:my-8`}
         `}
       >
-        Liked an article or a tool that I helped build useful? Buy me {` `}
+        Liked an article or a tool that I helped build? Buy me {` `}
         <a
           css={css`
             ${dashedLinkStyle}
