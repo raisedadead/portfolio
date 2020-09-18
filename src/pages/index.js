@@ -139,7 +139,14 @@ export const IndexMarkup = () => (
         >
           my blog 📝
         </a>
-        , and buying me {` `}
+        .
+      </p>
+      <p
+        css={css`
+          ${tw`leading-loose text-xs my-8 md:text-sm md:my-8`}
+        `}
+      >
+        Liked an article or a tool that I helped build useful? Buy me {` `}
         <a
           css={css`
             ${dashedLinkStyle}
@@ -151,8 +158,7 @@ export const IndexMarkup = () => (
         >
           a beer 🍺
         </a>
-        , if you found articles that I wrote or tools that I helped build
-        useful.
+        .
       </p>
     </HomeCard>
     <Footer>

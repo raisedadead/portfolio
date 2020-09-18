@@ -81,21 +81,21 @@ export const FourOhFourMarkup = () => {
             has been lost to oblivion.
           </p>
 
-          <a href="/" aria-label="home">
-            <button
+          <a
+            css={css`
+              ${tw`bg-green-400 hover:bg-green-400 text-white font-bold py-2 px-4 rounded`}
+            `}
+            href="/"
+            aria-label="home"
+          >
+            <FontAwesomeIcon
               css={css`
-                ${tw`bg-green-400 hover:bg-green-400 text-white font-bold py-2 px-4 rounded`}
+                ${tw`mr-4`}
               `}
-            >
-              <FontAwesomeIcon
-                css={css`
-                  ${tw`mr-4`}
-                `}
-                size="lg"
-                icon={faArrowLeft}
-              />
-              Take me home.
-            </button>
+              size="lg"
+              icon={faArrowLeft}
+            />
+            Take me home.
           </a>
         </div>
         <div
