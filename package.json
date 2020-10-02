@@ -97,7 +97,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-loading-skeleton": "^2.1.1",
-    "start-server-and-test": "^1.11.4",
+    "start-server-and-test": "^1.11.5",
     "tailwindcss": "^1.8.10",
     "twin.macro": "^1.10.0"
   },
