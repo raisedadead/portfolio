@@ -83,7 +83,7 @@
     "gatsby-plugin-offline": "^3.2.31",
     "gatsby-plugin-react-helmet": "^3.3.13",
     "gatsby-plugin-robots-txt": "^1.5.3",
-    "gatsby-plugin-sharp": "^2.6.39",
+    "gatsby-plugin-sharp": "^2.6.40",
     "gatsby-plugin-sitemap": "^2.4.15",
     "gatsby-source-filesystem": "^2.3.34",
     "gatsby-transformer-sharp": "^2.5.17",
