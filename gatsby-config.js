@@ -56,7 +56,6 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/logo.png`,
         name: `Mrugesh Mohapatra`,
-        orientation: `any`,
         short_name: `Mrugesh`,
         start_url: `/`,
         theme_color: `#ffffff`
