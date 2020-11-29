@@ -74,7 +74,7 @@ export const IndexMarkup = () => (
     <HomeCard>
       <ProfileImage
         css={css`
-          ${tw`rounded-full mx-auto h-32 w-32 -mt-24 mb-12 md:h-48 md:w-48 md:-mt-40 md:mb-16 lg:h-64 lg:w-64 lg:-mt-48 lg:mb-20 border-green-400 border-2`}
+          ${tw`rounded-full mx-auto h-32 w-32 -mt-24 mb-12 md:h-48 md:w-48 md:-mt-40 md:mb-16 border-green-400 border-2`}
           box-shadow: 50px 50px 100px #000;
         `}
         alt="Mrugesh Mohapatra's profile image"
