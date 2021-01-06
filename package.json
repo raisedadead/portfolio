@@ -84,7 +84,7 @@
     "gatsby-plugin-react-helmet": "^3.8.0",
     "gatsby-plugin-robots-txt": "^1.5.5",
     "gatsby-plugin-sharp": "^2.11.2",
-    "gatsby-plugin-sitemap": "^2.9.0",
+    "gatsby-plugin-sitemap": "^2.10.0",
     "gatsby-source-filesystem": "^2.8.1",
     "gatsby-transformer-sharp": "^2.10.0",
     "husky": "^4.3.6",
