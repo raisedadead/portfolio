@@ -1,8 +1,8 @@
 name: CI
 
-# Continious integration enabled for all pull requests to master & live
+# Continuous integration enabled for all pull requests to master & live
 # branch and pushes to all branches other than master. Direct pushes to
-# live are handled in the continious delivery workflow
+# live are handled in the continuous delivery workflow
 on:
   push:
     branches:
@@ -58,51 +58,3 @@ jobs:
           npm test
         env:
           CI: true
-      - name: Upload site artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: public
-          path: public
-
-  preview:
-    name: Deploy Preview to Netlify
-    needs: build
-    runs-on: ubuntu-latest
-    # Do not run this job for Dependabot PRs
-    if: github.actor != 'dependabot[bot]'
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
-      - name: Download site artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: public
-          path: public
-      - name: Display structure of downloaded files
-        run: ls -R
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Deploy to Netlify
-        id: deploy-netlify
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        with:
-          args: deploy --dir=public --message=Preview-${GITHUB_SHA}
-      - name: Netlify Preview URL
-        uses: unsplash/comment-on-pr@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OUTPUT: "
-            Inspect: ${{ steps.deploy-netlify.outputs.NETLIFY_LOGS_URL }}\n
-            Preview: ${{ steps.deploy-netlify.outputs.NETLIFY_URL }}
-          "
-        with:
-          msg: ${{ env.OUTPUT }}
-          check_for_duplicate_msg: false
