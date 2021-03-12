@@ -3,7 +3,6 @@
 > Nothing fancy here, just my [portfolio website][personal-website].
 
 [![CircleCI][circle-status-img]][circle-status]
-[![Deploy Status][deploy-status-img]][deploy-status]
 [![Gitpod][gitpod-img]][gitpod]
 
 
@@ -29,8 +28,6 @@ The content pertaining to Mrugesh Mohapatra such as his resume, personal informa
 
 [circle-status-img]: https://circleci.com/gh/raisedadead/portfolio.svg?style=svg
 [circle-status]: https://circleci.com/gh/raisedadead/portfolio
-[deploy-status-img]: https://api.netlify.com/api/v1/badges/22475e18-dbce-4472-880a-6696b0aea170/deploy-status
-[deploy-status]: https://app.netlify.com/sites/raisedadead/deploys
 [gitpod-img]: https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod
 [gitpod]: https://gitpod.io/#https://github.com/raisedadead/portfolio
 
