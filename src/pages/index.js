@@ -68,7 +68,7 @@ const ProfileImage = ({ className }) => (
   />
 );
 
-export const IndexMarkup = () => (
+const IndexMarkup = () => (
   <HomeLayout>
     <HTMLHead title="Home" />
     <HomeCard>

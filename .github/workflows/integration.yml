@@ -1,16 +1,6 @@
 name: CI
 
-# Continuous integration enabled for all pull requests to master & live
-# branch and pushes to all branches other than master. Direct pushes to
-# live are handled in the continuous delivery workflow
-on:
-  push:
-    branches:
-      - '!live'
-  pull_request:
-    branches:
-      - live
-      - master
+on: [push, pull_request]
 
 jobs:
   lint:

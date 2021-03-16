@@ -4,11 +4,16 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "prettier",
-    "prettier/react",
     "plugin:jest/recommended",
     "plugin:cypress/recommended"
   ],
-  "plugins": ["prettier", "react", "filenames", "jest", "cypress"],
+  "plugins": [
+    "prettier",
+    "react",
+    "filenames",
+    "jest",
+    "cypress"
+  ],
   "parserOptions": {
     "ecmaVersion": 2016,
     "sourceType": "module",
@@ -33,7 +38,9 @@
     "arrow-body-style": [
       "error",
       "as-needed",
-      { "requireReturnForObjectLiteral": true }
+      {
+        "requireReturnForObjectLiteral": true
+      }
     ],
     "no-unused-expressions": [
       "error",
@@ -41,13 +48,25 @@
         "allowTaggedTemplates": true
       }
     ],
-    "semi": ["error", "always"],
-    "consistent-return": ["error"],
-    "filenames/match-regex": ["error", "^[a-z-\\d\\.]+$", true],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "consistent-return": [
+      "error"
+    ],
+    "filenames/match-regex": [
+      "error",
+      "^[a-z-\\d\\.]+$",
+      true
+    ],
     "no-console": "off",
     "no-inner-declarations": "off",
     "prettier/prettier": "error",
-    "quotes": ["error", "backtick"],
+    "quotes": [
+      "error",
+      "backtick"
+    ],
     "react/display-name": "off",
     "react/jsx-key": "warn",
     "react/no-unescaped-entities": "off",
@@ -70,7 +89,10 @@
       }
     },
     {
-      "files": ["**/cypress/integration/**/*", "**/cypress/support/**/*"],
+      "files": [
+        "**/cypress/integration/**/*",
+        "**/cypress/support/**/*"
+      ],
       "globals": {
         "cy": false,
         "Cypress": false

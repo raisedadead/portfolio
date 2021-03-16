@@ -19,7 +19,7 @@ const Footer = styled.footer`
   background: #a0f6d2;
 `;
 
-export const FourOhFourMarkup = () => {
+const FourOhFourMarkup = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
