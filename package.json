@@ -60,7 +60,7 @@
     "@fortawesome/free-solid-svg-icons": "5.15.3",
     "@fortawesome/react-fontawesome": "0.1.14",
     "@testing-library/jest-dom": "5.11.10",
-    "@testing-library/react": "11.2.5",
+    "@testing-library/react": "11.2.6",
     "babel-jest": "26.6.3",
     "babel-preset-gatsby": "0.12.2",
     "cross-env": "7.0.3",
