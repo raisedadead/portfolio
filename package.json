@@ -1,0 +1,31 @@
+{
+  "name": "@raisedadead/portfolio",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "develop": "npm run dev",
+    "build": "svelte-kit build",
+    "start": "svelte-kit start"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "next",
+    "@sveltejs/kit": "next",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "autoprefixer": "^10.2.5",
+    "cssnano": "^4.1.10",
+    "eslint": "^7.23.0",
+    "eslint-plugin-svelte3": "^3.1.2",
+    "postcss": "^8.2.7",
+    "postcss-load-config": "^3.0.1",
+    "prettier": "^2.2.1",
+    "prettier-plugin-svelte": "^2.2.0",
+    "svelte": "^3.29.0",
+    "svelte-preprocess": "^4.6.9",
+    "tailwindcss": "^2.0.3",
+    "tslib": "^2.0.0",
+    "typescript": "^4.2.3",
+    "vite": "^2.1.0"
+  },
+  "type": "module"
+}
