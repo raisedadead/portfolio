@@ -100,7 +100,7 @@ const IndexMarkup = () => (
         `}
       >
         developer 👨‍💻 • music addict 🎸 • open source enthusiast🌟 • photography
-        noob 📷 • travel 🥑
+        noob 📷
       </h2>
 
       <h3
@@ -108,7 +108,7 @@ const IndexMarkup = () => (
           ${tw`text-sm my-4 md:text-lg md:my-8`}
         `}
       >
-        Technology & Community,{`  `}
+        Butler of Infra & Keeper of Open Source,{`  `}
         <a
           css={css`
             ${dashedLinkStyle}
