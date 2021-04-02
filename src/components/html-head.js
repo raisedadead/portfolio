@@ -11,22 +11,43 @@ export const HelmetMarkup = ({ title }) => {
       titleTemplate={data.titleTemplate}
     >
       <html lang={data.lang} />
-      <meta itemProp="description" content={data.description} />
-      <meta itemProp="image" content={data.icon} />
-      <meta itemProp="name" content={pageTitle} />
-      <meta name="description" content={data.description} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={data.twitterCreator} />
-      <meta name="twitter:description" content={data.description} />
-      <meta name="twitter:image" content={data.icon} />
-      <meta name="twitter:image:alt" content={data.defaultTitle} />
-      <meta name="twitter:title" content={data.defaultTitle} />
-      <meta property="og:description" content={data.description} />
-      <meta property="og:image" content={data.icon} />
-      <meta property="og:locale" content={data.locale} />
-      <meta property="og:title" content={data.defaultTitle} />
+      <meta
+        property="og:description"
+        content="Namaste 🙏. I am a software engineer based out of Bengaluru, India. Passionate about all things open-source, aviation and turquoise in color."
+      />
+
+      <meta
+        itemProp="name"
+        content="Mrugesh Mohapatra - Portfolio of a nocturnal developer."
+      />
+      <meta
+        property="og:description"
+        content="Namaste 🙏. I am a software engineer based out of Bengaluru, India. Passionate about all things open-source, aviation and turquoise in color."
+      />
+      <meta itemProp="image" content="https://mrugesh.dev/cover.png" />
+
+      <meta property="og:url" content="https://mrugesh.dev" />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={data.siteUrl} />
+      <meta
+        property="og:title"
+        content="Mrugesh Mohapatra - Portfolio of a nocturnal developer."
+      />
+      <meta
+        property="og:description"
+        content="Namaste 🙏. I am a software engineer based out of Bengaluru, India. Passionate about all things open-source, aviation and turquoise in color."
+      />
+      <meta property="og:image" content="https://mrugesh.dev/cover.png" />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:title"
+        content="Mrugesh Mohapatra - Portfolio of a nocturnal developer."
+      />
+      <meta
+        property="og:description"
+        content="Namaste 🙏. I am a software engineer based out of Bengaluru, India. Passionate about all things open-source, aviation and turquoise in color."
+      />
+      <meta name="twitter:image" content="https://mrugesh.dev/cover.png" />
     </Helmet>
   );
 };

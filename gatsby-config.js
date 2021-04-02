@@ -4,11 +4,8 @@ const sitesConfig = {
   sites: {
     default: {
       siteMetadata: {
-        defaultTitle: `Mrugesh Mohapatra`,
-        description: `
-        Hi, I am Mrugesh Mohapatra and I love developing
-        applications for Desk, Web and Mobile.
-        `,
+        defaultTitle: `Mrugesh Mohapatra - Portfolio of a nocturnal developer.`,
+        description: `Namaste. I am Mrugesh Mohapatra - A software engineer based out of Bengaluru, India. Passionate about all things open-source, aviation and turquoise in color.`,
         lang: `en`,
         locale: `en-IN`,
         icon: `assets/images/favicon-32x32.png`,
