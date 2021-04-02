@@ -25,7 +25,6 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
-.gatsby-context.js
 .sass-cache/
 .cache/
 .DS_Store
@@ -36,3 +35,8 @@ cypress/screenshots/
 cypress/videos/
 
 .netlify
+
+# Svelte
+/.svelte
+/build
+/functions
