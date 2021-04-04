@@ -1,5 +1,5 @@
 const { tailwindExtractor } = require('tailwindcss/lib/lib/purgeUnusedStyles');
-const defaultTheme = require('tailwindcss/defaultTheme');
+const theme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
@@ -20,17 +20,17 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: [...defaultTheme.fontFamily.sans]
+        sans: [...theme.fontFamily.sans]
       }
     },
     boxShadow: {
-      ...defaultTheme.boxShadow,
-      card: '50px 50px 100px #000',
-      link: '0 -4px 0 0 rgba(95, 175, 160, .8) inset'
+      ...theme.boxShadow,
+      card: '50px 50px 100px #000'
     },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      ...colors,
       gray: colors.blueGray,
       red: colors.rose,
       yellow: colors.yellow,
