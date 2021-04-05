@@ -98,7 +98,7 @@
     "react-helmet": "6.1.0",
     "react-loading-skeleton": "2.2.0",
     "start-server-and-test": "1.12.1",
-    "tailwindcss": "1.9.6",
+    "tailwindcss": "2.1.1",
     "twin.macro": "1.12.1"
   },
   "babelMacros": {
