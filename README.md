@@ -2,14 +2,13 @@
 
 > Nothing fancy here, just my [portfolio website][personal-website].
 
-[![CircleCI][circle-status-img]][circle-status]
 [![Gitpod][gitpod-img]][gitpod]
 
 
 ## What is this about?
 
 - Its just a basic identity website. Nothing more [... as of now].
-- I keep updating it as  a part of learning [react][react-website]. The code is expected to be buggy and   overly complicated, as a result.
+- I keep updating it as  a part of learning new stuff like react, svelte or anything that I am just interested at the moment. The code is expected to be buggy and overly complicated, as a result.
 - To test locally, run `npm install` followed by `npm run develop`.
 
 Nonetheless, please feel free to browse, and leave feedbacks on the issue tracker. If you catch a typo, or something broken, please let me know.
@@ -31,6 +30,5 @@ The content pertaining to Mrugesh Mohapatra such as his resume, personal informa
 [gitpod-img]: https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod
 [gitpod]: https://gitpod.io/#https://github.com/raisedadead/portfolio
 
-[personal-website]: https://raisedadead.com
-[react-website]: https://reactjs.org
+[personal-website]: https://mrugesh.dev
 [by-nc-nd-4]: https://creativecommons.org/licenses/by-nc-nd/4.0/
