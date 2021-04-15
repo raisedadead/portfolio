@@ -41,8 +41,8 @@
   }
   .button {
     @apply inline-flex items-center px-4 py-2;
-    @apply border border-transparent shadow-sm;
-    @apply text-sm font-medium rounded-md text-white hover:text-black bg-indigo-600 hover:bg-yellow-300;
+    @apply border-black border-2;
+    @apply text-sm font-medium rounded-md text-black hover:text-white bg-yellow-300 hover:bg-indigo-600;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
   }
   .link {
