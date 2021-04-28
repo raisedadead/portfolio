@@ -24,7 +24,7 @@
     @apply transform rotate-12;
   }
   .profile-card-personality {
-    @apply w-5/6 md:w-3/5 mx-auto mt-2 md:p-2 md:mb-2;
+    @apply w-4/5 mx-auto mt-2 md:p-2 md:mb-2;
     @apply font-medium text-gray-500 text-sm md:text-xl;
   }
   .profile-card-job {
@@ -75,7 +75,7 @@
           <div class="profile-name-bg-line" />
         </div>
         <h2 class="profile-card-personality">
-          developer 👨‍💻 • open-source enthusiast 💕 • photography noob 📷
+          developer 💻 • open-source enthusiast 💕 • photography noob 📷
         </h2>
         <h3 class="profile-card-job">
           Butler of Infra & Keeper of Open Source,
