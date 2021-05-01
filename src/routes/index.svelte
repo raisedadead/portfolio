@@ -2,7 +2,7 @@
   .profile-card {
     @apply flex flex-col justify-center;
     @apply rounded bg-blue-200 border-white border-4 md:border-8 shadow-card;
-    @apply w-2/3 mx-auto px-2 pb-1 mt-2 md:pb-4 md:mt-0;
+    @apply w-2/3 md:w-2/5 mx-auto px-2 pb-1 mt-2 md:pb-4 md:mt-0;
     @apply text-center;
   }
   .profile-pic {
