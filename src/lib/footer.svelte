@@ -2,7 +2,7 @@
   <div>
     <div>
       <p>
-        {new Date().getFullYear()} Mrugesh Mohapatra. All rights reserved.
+        © {new Date().getFullYear()} Mrugesh Mohapatra. All rights reserved.
       </p>
     </div>
   </div>

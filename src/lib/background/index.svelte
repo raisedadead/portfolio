@@ -40,8 +40,8 @@
           attributeName="transform"
           attributeType="XML"
           type="rotate"
-          from="360 60 90"
-          to="0 60 90"
+          from="0 60 90"
+          to="360 60 90"
           dur="15s"
           repeatCount="indefinite"
         />
