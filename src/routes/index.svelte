@@ -1,14 +1,14 @@
 <style>
   .profile-card {
     @apply flex flex-col justify-center;
-    @apply rounded bg-blue-200 border-white border-4 md:border-8 shadow-card;
+    @apply rounded bg-blue-50 border-blue-200 border-4 md:border-8 shadow-card;
     @apply w-2/3 md:w-2/5 mx-auto px-2 pb-1 mt-2 md:pb-4 md:mt-0;
     @apply text-center;
   }
   .profile-pic {
     @apply box-border;
     @apply h-24 w-24 md:h-48 md:w-48;
-    @apply rounded-full bg-blue-200 border-white border-4 md:border-8;
+    @apply rounded-full bg-blue-50 border-blue-200 border-4 md:border-8;
     @apply -mt-12 -ml-12 md:-mt-24 md:-ml-24;
   }
   .profile-name-container {
@@ -46,7 +46,7 @@
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
   }
   .link {
-    @apply bg-blue-100 hover:bg-rose-300 text-gray-600 hover:text-black px-1 pb-1 rounded-md;
+    @apply bg-orange-100 hover:bg-orange-600 text-gray-600 hover:text-white px-1 pb-1 rounded-md;
   }
 </style>
 
