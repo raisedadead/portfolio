@@ -1,21 +1,29 @@
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:jest/recommended',
+    'plugin:cypress/recommended'
+  ],
+  plugins: [
+    'svelte3',
+    '@typescript-eslint',
+    'prettier',
+    'filenames',
+    'jest',
+    'cypress'
+  ],
+  ignorePatterns: ['*.cjs'],
   parserOptions: {
-    ecmaVersion: 2016,
+    ecmaVersion: 2019,
     sourceType: 'module',
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],
     extraFileExtensions: ['.svelte']
   },
-  extends: [
-    'eslint:recommended',
-    'prettier',
-    'svelte3',
-    '@typescript-eslint',
-    'plugin:jest/recommended',
-    'plugin:cypress/recommended'
-  ],
-  plugins: ['prettier', 'filenames', 'jest', 'cypress'],
   env: {
     browser: true,
     es6: true,
@@ -74,6 +82,6 @@ module.exports = {
     }
   ],
   settings: {
-    'svelte3/typescript': require('typescript')
+    'svelte3/typescript': () => require('typescript')
   }
 };

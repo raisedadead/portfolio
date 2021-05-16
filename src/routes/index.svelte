@@ -5,6 +5,7 @@
     @apply w-2/3 md:w-2/5 mx-auto px-2 pb-1 mt-2 md:pb-4 md:mt-0;
     @apply text-center;
   }
+
   .profile-pic {
     @apply box-border;
     @apply h-24 w-24 md:h-48 md:w-48;

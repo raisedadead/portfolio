@@ -37,6 +37,6 @@ cypress/videos/
 .netlify
 
 # Svelte
-/.svelte
+/.svelte-kit
 /build
 /functions
