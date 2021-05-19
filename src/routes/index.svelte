@@ -104,7 +104,7 @@
           <a
             aria-label="Browse my blog"
             class="button"
-            href="https://devlog.sh"
+            href="https://hn.mrugesh.dev"
             rel="noopener noreferrer external"
             target="_blank"
             type="button"
