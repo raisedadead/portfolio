@@ -1,6 +1,11 @@
 {
   "name": "@raisedadead/portfolio",
   "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": "^6.14.12"
+  },
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
@@ -33,5 +38,23 @@
     "tslib": "2.2.0",
     "typescript": "4.2.4"
   },
-  "type": "module"
+  "type": "module",
+  "description": "> Nothing fancy here, just my [portfolio website][personal-website].",
+  "main": "na",
+  "dependencies": {
+    "eslint-plugin-tailwind": "^0.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raisedadead/portfolio.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "Mrugesh Mohapatra <noreply@mrugesh.dev>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raisedadead/portfolio/issues"
+  },
+  "homepage": "https://github.com/raisedadead/portfolio#readme"
 }
