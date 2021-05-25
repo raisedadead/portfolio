@@ -1,4 +1,4 @@
-<style>
+<style style lang="postcss">
   .profile-card {
     @apply flex flex-col justify-center;
     @apply rounded bg-blue-50 border-blue-200 border-4 md:border-8 shadow-card;

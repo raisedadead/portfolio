@@ -28,8 +28,6 @@ Content: The content pertaining to Mrugesh Mohapatra such as his resume,
 personal information, imagery, etc. is licensed under the [CC BY-NC-ND
 4.0][by-nc-nd-4] License.
 
-[circle-status-img]: https://circleci.com/gh/raisedadead/portfolio.svg?style=svg
-[circle-status]: https://circleci.com/gh/raisedadead/portfolio
 [gitpod-img]:
   https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod
 [gitpod]: https://gitpod.io/#https://github.com/raisedadead/portfolio
