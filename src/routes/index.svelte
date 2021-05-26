@@ -76,7 +76,8 @@
           <div class="profile-name-bg-line" />
         </div>
         <h2 class="profile-card-personality">
-          developer 💻 • open-source enthusiast 💕 • photography noob 📷
+          nocturnal developer 🦉 • open-source enthusiast 💕 • photography noob
+          📷
         </h2>
         <h3 class="profile-card-job">
           Butler of Infra & Keeper of Open Source,
