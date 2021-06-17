@@ -1,5 +1,3 @@
 {
-  "ignoredFiles": [
-    "cypress/*",
-  ]
+  "ignoredFiles": ["cypress/*"]
 }
