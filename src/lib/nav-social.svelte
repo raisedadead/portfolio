@@ -1,5 +1,25 @@
-<div>
-  <a href="https://twitter.com/raisedadead">
+<style style lang="postcss">
+  .button-group {
+    @apply justify-center items-center mx-auto;
+    @apply w-4/5 space-y-0 space-x-0 md:space-x-4;
+  }
+  .button {
+    @apply inline-flex items-center px-4 py-2;
+    @apply border-black border-2;
+    @apply text-sm font-medium rounded-md text-black hover:text-white bg-yellow-300 hover:bg-indigo-600;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+  }
+</style>
+
+<div class="button-group">
+  <a
+    aria-label="Twitter"
+    class="button"
+    href="https://twitter.com/raisedadead"
+    rel="noopener noreferrer external"
+    target="_blank"
+    type="button"
+  >
     <span class="sr-only">Twitter</span>
     <svg
       class="h-6 w-6"
@@ -12,7 +32,14 @@
       />
     </svg>
   </a>
-  <a href="https://github.com/raisedadead">
+  <a
+    aria-label="Github"
+    class="button"
+    href="https://github.com/raisedadead"
+    rel="noopener noreferrer external"
+    target="_blank"
+    type="button"
+  >
     <span class="sr-only">GitHub</span>
     <svg
       class="h-6 w-6"
@@ -27,7 +54,14 @@
       />
     </svg>
   </a>
-  <a href="https://instgram.com/raisedadead">
+  <a
+    aria-label="Instagram"
+    class="button"
+    href="https://instagram.com/raisedadead"
+    rel="noopener noreferrer external"
+    target="_blank"
+    type="button"
+  >
     <span class="sr-only">Instagram</span>
     <svg
       class="h-6 w-6"

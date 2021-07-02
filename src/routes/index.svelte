@@ -1,7 +1,7 @@
 <style style lang="postcss">
   .profile-card {
     @apply flex flex-col justify-center;
-    @apply rounded bg-blue-50 border-blue-200 border-4 md:border-8 shadow-card;
+    @apply rounded bg-gray-50 border-yellow-200 border-4 md:border-8 shadow-card;
     @apply w-2/3 md:w-2/5 mx-auto px-2 pb-1 mt-2 md:pb-4 md:mt-0;
     @apply text-center;
   }
@@ -9,7 +9,7 @@
   .profile-pic {
     @apply box-border;
     @apply h-24 w-24 md:h-48 md:w-48;
-    @apply rounded-full bg-blue-50 border-blue-200 border-4 md:border-8;
+    @apply rounded-full bg-gray-50 border-yellow-200 border-4 md:border-8;
     @apply -mt-12 -ml-12 md:-mt-24 md:-ml-24;
   }
   .profile-name-container {
@@ -33,8 +33,8 @@
     @apply font-medium text-gray-600 text-sm md:text-xl;
   }
   .profile-card-paragraph {
-    @apply w-5/6 md:w-full mx-auto my-4 p-2;
-    @apply leading-loose font-medium text-gray-600 text-xs md:text-lg;
+    @apply w-5/6 md:w-full mx-auto my-2 md:my-4 p-2;
+    @apply leading-loose font-medium text-gray-600 text-sm md:text-lg;
   }
   .button-group {
     @apply flex flex-col md:flex-row justify-center items-center mx-auto;
@@ -53,6 +53,8 @@
 
 <script>
   import Background from '$lib/background/index.svelte';
+  import NavSocial from '$lib/nav-social.svelte';
+  import Footer from '$lib/footer.svelte';
 
   let name = `Mrugesh Mohapatra`;
   let profileSrc = `/images/profile.png`;
@@ -113,20 +115,10 @@
             📝Browse my blog
           </a>
         </div>
-        <p class="profile-card-paragraph">
-          If you liked an article I wrote or a tool that I helped build,
-          consider
-          <a
-            aria-label="buy me a coffee"
-            class="link"
-            href="https://www.buymeacoffee.com/mrugesh"
-            rel="noopener noreferrer external"
-            target="_blank"
-          >
-            buying me a beer! 🍺
-          </a>
-        </p>
+        <p class="profile-card-paragraph">Stalk me</p>
+        <NavSocial />
       </div>
+      <Footer />
     </section>
   </div>
 </main>
