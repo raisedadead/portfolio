@@ -29,7 +29,7 @@
     "prettier-plugin-svelte": "2.4.0",
     "svelte": "3.42.4",
     "svelte-preprocess": "4.9.2",
-    "tailwindcss": "2.2.12",
+    "tailwindcss": "2.2.13",
     "tslib": "2.3.1",
     "typescript": "4.4.2"
   },
