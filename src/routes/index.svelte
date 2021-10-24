@@ -57,7 +57,7 @@
   import Footer from '$lib/footer.svelte';
 
   let name = `Mrugesh Mohapatra`;
-  let profileSrc = `/images/profile.png`;
+  let profileSrc = `/images/profile.jpg`;
 </script>
 
 <main>
@@ -82,7 +82,7 @@
           📷
         </h2>
         <h3 class="profile-card-job">
-          Butler of Infra & Keeper of Open Source,
+          Principal Maintainer - Infrastructure & Open Source,
           <a
             aria-label="freecodecamp.org"
             class="link"
