@@ -39,6 +39,7 @@
   .button-group {
     @apply flex flex-col md:flex-row justify-center items-center mx-auto;
     @apply w-4/5 space-y-4 space-x-0 md:space-y-0 md:space-x-4;
+    @apply my-8;
   }
   .button {
     @apply inline-flex items-center px-4 py-2;
@@ -58,6 +59,11 @@
 
   let name = `Mrugesh Mohapatra`;
   let profileSrc = `/images/profile.jpg`;
+
+  function handleClick() {
+    Calendly.initPopupWidget({ url: 'https://calendly.com/mrugesh-m/meet' });
+    return false;
+  }
 </script>
 
 <main>
@@ -114,6 +120,18 @@
           >
             📝Browse my blog
           </a>
+        </div>
+        <div class="button-group">
+          <!-- Calendly link widget begin -->
+          <button
+            on:click={handleClick}
+            aria-label="Schedule a meeting with me"
+            class="button"
+            type="button"
+          >
+            📅 Schedule a meeting with me
+          </button>
+          <!-- Calendly link widget end -->
         </div>
         <p class="profile-card-paragraph">Stalk me</p>
         <NavSocial />
