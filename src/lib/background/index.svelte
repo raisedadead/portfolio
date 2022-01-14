@@ -1,9 +1,3 @@
-<style>
-  svg {
-    @apply w-screen h-screen;
-  }
-</style>
-
 <script>
   let innerWidth = 2000;
   let innerHeight = 1500;
@@ -81,3 +75,9 @@
     </g>
   </svg>
 </div>
+
+<style>
+  svg {
+    @apply w-screen h-screen;
+  }
+</style>

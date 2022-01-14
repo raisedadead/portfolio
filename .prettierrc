@@ -5,10 +5,5 @@
   "semi": true,
   "singleQuote": true,
   "trailingComma": "none",
-  "bracketSpacing": true,
-  "svelteSortOrder": "options-styles-scripts-markup",
-  "svelteStrictMode": false,
-  "svelteBracketNewLine": true,
-  "svelteIndentScriptAndStyle": true,
-  "proseWrap": "always"
+  "bracketSpacing": true
 }
