@@ -73,7 +73,7 @@
 <style style lang="postcss">
   .profile-card {
     @apply flex flex-col justify-center;
-    @apply rounded bg-gray-50 border-yellow-200 border-4 md:border-8 shadow-card;
+    @apply rounded bg-gray-50 border-yellow-200 border-4 md:border-8;
     @apply w-4/5 md:w-3/5 xl:w-2/5 mx-auto px-2 pb-1 mt-2 md:pb-4 md:mt-0;
     @apply text-center;
   }
