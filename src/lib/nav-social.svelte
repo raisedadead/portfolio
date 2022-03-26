@@ -3,7 +3,7 @@
     aria-label="Twitter"
     class="button"
     href="https://twitter.com/raisedadead"
-    rel="noopener noreferrer external me"
+    rel="noopener noreferrer external"
     target="_blank"
     type="button"
   >
@@ -23,7 +23,7 @@
     aria-label="Github"
     class="button"
     href="https://github.com/raisedadead"
-    rel="noopener noreferrer external me"
+    rel="noopener noreferrer external"
     target="_blank"
     type="button"
   >
@@ -45,7 +45,7 @@
     aria-label="Instagram"
     class="button"
     href="https://instagram.com/raisedadead"
-    rel="noopener noreferrer external me"
+    rel="noopener noreferrer external"
     target="_blank"
     type="button"
   >
@@ -67,7 +67,7 @@
     aria-label="LinkedIn"
     class="button"
     href="https://linkedin.com/in/mrugeshm"
-    rel="noopener noreferrer external me"
+    rel="noopener noreferrer external"
     target="_blank"
     type="button"
   >
