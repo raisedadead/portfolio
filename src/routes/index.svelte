@@ -1,10 +1,41 @@
-<script>
+<script lang="ts">
   import Background from '$lib/background/index.svelte';
   import NavSocial from '$lib/nav-social.svelte';
   import Footer from '$lib/footer.svelte';
+  import { onMount } from 'svelte';
 
   let name = `Mrugesh Mohapatra`;
   let profileSrc = `/images/profile.jpg`;
+
+  let cdlyReady = false;
+  const onCalendlyLoaded = () => {
+    cdlyReady = true;
+  };
+
+  onMount(() => {
+    if (window?.Calendly) {
+      onCalendlyLoaded();
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.onload = onCalendlyLoaded;
+      document.body.appendChild(script);
+    }
+  });
+
+  const calendlyHandler = () => {
+    const currentEvent = 'consulting-1-hr';
+    const url =
+      `https://calendly.com/mrugesh-m/${currentEvent}` +
+      `?hide_landing_page_details=1`;
+
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: url
+      });
+    }
+  };
 </script>
 
 <main>
@@ -40,6 +71,26 @@
             freeCodeCamp.org
           </a>
         </h3>
+        {#if cdlyReady}
+          <div class="button-group">
+            <button
+              on:click={calendlyHandler}
+              aria-label="Schedule a call"
+              class="button"
+            >
+              📅 Schedule a call (Paid)
+            </button>
+          </div>
+          <p class="text-sm">
+            or visit my <a
+              class="link"
+              href="https://calendly.com/mrugesh-m"
+              target="_blank"
+              rel="noopener noreferrer external">Calendly</a
+            >
+            for more options.
+          </p>
+        {/if}
         <div class="button-group">
           <a
             aria-label="Ask me anything"
@@ -59,7 +110,7 @@
             target="_blank"
             type="button"
           >
-            📝Browse my blog
+            📝 Browse my blog
           </a>
         </div>
         <p class="profile-card-paragraph">Stalk me</p>
@@ -102,15 +153,16 @@
   }
   .profile-card-job {
     @apply w-5/6 md:w-full mx-auto mt-4 p-2 mb-4;
-    @apply font-medium text-gray-600 text-sm md:text-xl;
+    @apply font-medium text-gray-600 text-sm md:text-lg;
   }
   .profile-card-paragraph {
     @apply w-5/6 md:w-full mx-auto my-2 md:my-4 p-2;
-    @apply leading-loose font-medium text-gray-600 text-sm md:text-lg;
+    @apply leading-loose font-medium text-gray-600 text-sm md:text-base;
   }
   .button-group {
     @apply flex flex-col md:flex-row justify-center items-center mx-auto;
     @apply w-4/5 space-y-4 space-x-0 md:space-y-0 md:space-x-4;
+    @apply mt-8 mb-4;
   }
   .button {
     @apply inline-flex items-center px-4 py-2;
