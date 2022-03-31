@@ -8,9 +8,9 @@
 </script>
 
 <main>
-  <div class="w-full h-screen flex justify-center items-center">
+  <div class="flex items-center justify-center w-full h-screen">
     <Background />
-    <section class="absolute profile-card z-10">
+    <section class="absolute z-10 profile-card">
       <div>
         <img
           id="profile-image"
@@ -65,7 +65,9 @@
         <p class="profile-card-paragraph">Stalk me</p>
         <NavSocial />
       </div>
-      <Footer />
+      <div class="pt-8 pb-2 font-mono">
+        <Footer />
+      </div>
     </section>
   </div>
 </main>
