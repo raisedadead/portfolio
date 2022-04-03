@@ -65,9 +65,7 @@
         <p class="profile-card-paragraph">Stalk me</p>
         <NavSocial />
       </div>
-      <div class="pt-8 pb-2 font-mono">
-        <Footer />
-      </div>
+      <Footer defaultType={true} />
     </section>
   </div>
 </main>

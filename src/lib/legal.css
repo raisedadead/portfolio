@@ -20,10 +20,6 @@ strong {
   @apply font-bold text-gray-500;
 }
 
-.footer-container {
-  @apply mt-12;
-}
-
 .highlight {
   @apply text-base font-bold text-gray-500;
 }
