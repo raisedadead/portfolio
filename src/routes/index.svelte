@@ -28,7 +28,9 @@
     const currentEvent = 'consulting-1-hr';
     const url =
       `https://calendly.com/mrugesh-m/${currentEvent}` +
-      `?hide_landing_page_details=1`;
+      `?hide_landing_page_details=1&hide_gdpr_banner=1` +
+      // `?hide_landing_page_details=1&hide_gdpr_banner=1&hide_event_type_details=1` +
+      `&background_color=f9fafb`;
 
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
