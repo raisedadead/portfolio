@@ -89,11 +89,11 @@
 
 <style style lang="postcss">
   .button-group {
-    @apply justify-center items-center mx-auto;
-    @apply w-4/5 space-y-0 space-x-0 md:space-x-4;
+    @apply flex justify-center items-center mx-auto;
+    @apply w-4/5 space-y-0 space-x-2 md:space-x-4;
   }
   .button {
-    @apply inline-flex items-center px-4 py-2;
+    @apply inline-flex items-center px-2 py-1 md:px-4 md:py-2;
     @apply border-black border-2;
     @apply text-sm font-medium rounded-md text-black hover:text-white bg-yellow-300 hover:bg-indigo-600;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
