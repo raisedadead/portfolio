@@ -71,26 +71,25 @@
             freeCodeCamp.org
           </a>
         </h3>
-        {#if cdlyReady}
-          <div class="button-group">
-            <button
-              on:click={calendlyHandler}
-              aria-label="Schedule a call"
-              class="button"
-            >
-              📅 Schedule a call (Paid)
-            </button>
-          </div>
-          <p class="text-sm">
-            or visit my <a
-              class="link"
-              href="https://calendly.com/mrugesh-m"
-              target="_blank"
-              rel="noopener noreferrer external">Calendly</a
-            >
-            for more options.
-          </p>
-        {/if}
+        <div class="button-group">
+          <button
+            on:click={calendlyHandler}
+            aria-label="Schedule a call"
+            class="button"
+            disabled={!cdlyReady}
+          >
+            📅 Schedule a call (Paid)
+          </button>
+        </div>
+        <p class="text-sm">
+          or visit my <a
+            class="link"
+            href="https://calendly.com/mrugesh-m"
+            target="_blank"
+            rel="noopener noreferrer external">Calendly</a
+          >
+          for more options.
+        </p>
         <div class="button-group">
           <a
             aria-label="Ask me anything"
@@ -166,8 +165,9 @@
   }
   .button {
     @apply inline-flex items-center px-4 py-2;
-    @apply border-black border-2;
-    @apply text-sm font-medium rounded-md text-black hover:text-white bg-yellow-300 hover:bg-indigo-600;
+    @apply border-black disabled:border-gray-600 border-2;
+    @apply text-sm font-medium rounded-md text-black hover:text-white disabled:text-gray-600 disabled:hover:text-gray-600;
+    @apply bg-yellow-300 hover:bg-indigo-600 disabled:bg-gray-200 disabled:hover:bg-yellow-200;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
   }
   .link {
