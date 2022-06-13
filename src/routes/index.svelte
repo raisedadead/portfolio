@@ -62,7 +62,7 @@
           📷
         </h2>
         <h3 class="profile-card-job">
-          Principal Maintainer - Infrastructure & Open Source,
+          Principal Maintainer — Cloud Infrastructure & Open-source,
           <a
             aria-label="freecodecamp.org"
             class="link"
