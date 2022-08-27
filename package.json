@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "1.0.0-next.39",
-    "@sveltejs/kit": "1.0.0-next.443",
+    "@sveltejs/kit": "1.0.0-next.444",
     "@tailwindcss/forms": "0.5.2",
     "@tailwindcss/typography": "0.5.4",
     "@typescript-eslint/eslint-plugin": "5.33.1",
