@@ -125,15 +125,15 @@
 <style style lang="postcss">
   .profile-card {
     @apply flex flex-col justify-center items-center;
-    @apply rounded backdrop-blur-lg bg-white/30 border-white border-2 shadow-lg;
-    @apply p-16 my-16 mx-16;
+    @apply rounded backdrop-blur-lg bg-white/30 shadow-lg;
+    @apply p-8 mt-16 mx-16;
     @apply text-center text-gray-800;
   }
 
   .profile-pic {
-    @apply rounded-full bg-white/30 border-white border-2 shadow-lg;
-    @apply h-24 w-24;
-    @apply mx-auto -mt-28;
+    @apply rounded-full border-white border-2 shadow-lg;
+    @apply h-32 w-32;
+    @apply mx-auto -mt-24;
   }
   .profile-name-container {
     @apply mt-14;
@@ -151,11 +151,11 @@
   }
   .profile-card-personality {
     @apply max-w-md;
-    @apply mx-auto my-2 p-1;
+    @apply mx-auto mt-4 mb-2 p-1;
     @apply font-medium text-lg md:text-2xl text-gray-50 drop-shadow-sm;
   }
   .profile-card-job {
-    @apply max-w-3xl;
+    @apply max-w-2xl;
     @apply mx-auto my-2 p-1;
     @apply lg:leading-loose font-medium text-sm md:text-xl text-gray-50 drop-shadow-sm;
   }
