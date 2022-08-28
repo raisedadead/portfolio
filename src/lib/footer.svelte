@@ -22,7 +22,7 @@
 <style lang="postcss">
   .defaultType {
     @apply font-mono text-gray-700 text-sm text-center;
-    @apply mx-auto py-1 mt-2;
+    @apply mx-8 md:mx-auto py-1 mt-2;
   }
 
   .defaultType a {

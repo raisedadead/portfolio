@@ -126,17 +126,17 @@
   .profile-card {
     @apply flex flex-col justify-center items-center;
     @apply rounded backdrop-blur-lg bg-gray-300/30 shadow-lg;
-    @apply p-8 mt-16 mx-16;
+    @apply p-2 mt-4 mx-8 md:p-8 md:mt-16 md:mx-16;
     @apply text-center text-gray-800;
   }
 
   .profile-pic {
     @apply rounded-full border-white border-2 shadow-lg;
-    @apply h-32 w-32;
-    @apply mx-auto -mt-24;
+    @apply h-24 w-24 md:h-32 md:w-32;
+    @apply mx-auto -mt-14 md:-mt-24;
   }
   .profile-name-container {
-    @apply mt-14;
+    @apply mt-7 md:mt-14;
     @apply transform -rotate-12;
   }
   .profile-name-bg-line {
@@ -146,16 +146,16 @@
   }
   .profile-name-text {
     @apply font-bold text-xl md:text-4xl text-gray-700 drop-shadow-lg;
-    @apply mx-auto -mt-14 p-1;
+    @apply mx-auto md:-mt-14 md:p-1;
     @apply transform rotate-12;
   }
   .profile-card-personality {
-    @apply max-w-md;
+    @apply md:max-w-md max-w-sm;
     @apply mx-auto mt-4 mb-2 p-1;
     @apply font-medium text-lg md:text-2xl text-gray-600 drop-shadow-sm;
   }
   .profile-card-job {
-    @apply max-w-2xl;
+    @apply md:max-w-2xl max-w-sm;
     @apply mx-auto my-2 p-1;
     @apply lg:leading-loose font-medium text-sm md:text-xl text-gray-600 drop-shadow-sm;
   }
