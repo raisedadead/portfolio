@@ -21,12 +21,12 @@
 
 <style lang="postcss">
   .defaultType {
-    @apply font-mono text-gray-800 text-sm text-center;
-    @apply mx-auto py-1 mt-4;
+    @apply font-mono text-gray-700 text-sm text-center;
+    @apply mx-auto py-1 mt-2;
   }
 
   .defaultType a {
-    @apply text-gray-800 hover:text-white;
+    @apply text-gray-700 hover:text-gray-50;
   }
 
   .otherType {

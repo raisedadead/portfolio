@@ -58,14 +58,14 @@
           <div class="profile-name-bg-line" />
         </div>
         <h2 class="profile-card-personality">
-          nocturnal developer 🦉 • open-source enthusiast 💕 • photography noob
+          nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob
           📷
         </h2>
         <h3 class="profile-card-job">
           Principal Maintainer — Cloud Infrastructure & Open-source,
           <a
             aria-label="freecodecamp.org"
-            class="text-gray-600 hover:text-black"
+            class="text-gray-600 hover:text-gray-800 underline hover:no-underline decoration-gray-50"
             href="https://www.freecodecamp.org"
             rel="noopener noreferrer external"
             target="_blank"
@@ -85,7 +85,7 @@
         </div>
         <p class="text-sm">
           or visit my <a
-            class="text-gray-300 hover:text-white"
+            class="text-gray-600 hover:text-gray-800 underline hover:no-underline decoration-gray-50"
             href="https://calendly.com/mrugesh-m"
             target="_blank"
             rel="noopener noreferrer external">Calendly</a
@@ -125,7 +125,7 @@
 <style style lang="postcss">
   .profile-card {
     @apply flex flex-col justify-center items-center;
-    @apply rounded backdrop-blur-lg bg-white/30 shadow-lg;
+    @apply rounded backdrop-blur-lg bg-gray-300/30 shadow-lg;
     @apply p-8 mt-16 mx-16;
     @apply text-center text-gray-800;
   }
@@ -140,7 +140,7 @@
     @apply transform -rotate-12;
   }
   .profile-name-bg-line {
-    @apply border-yellow-300 border-8;
+    @apply border-fuchsia-300 border-8;
     @apply w-1/5 mx-auto -mt-7 m-1;
     @apply rounded-full;
   }
@@ -152,16 +152,16 @@
   .profile-card-personality {
     @apply max-w-md;
     @apply mx-auto mt-4 mb-2 p-1;
-    @apply font-medium text-lg md:text-2xl text-gray-50 drop-shadow-sm;
+    @apply font-medium text-lg md:text-2xl text-gray-600 drop-shadow-sm;
   }
   .profile-card-job {
     @apply max-w-2xl;
     @apply mx-auto my-2 p-1;
-    @apply lg:leading-loose font-medium text-sm md:text-xl text-gray-50 drop-shadow-sm;
+    @apply lg:leading-loose font-medium text-sm md:text-xl text-gray-600 drop-shadow-sm;
   }
-  .profile-card-paragraph {
-    @apply mx-auto p-2 my-1;
-    @apply lg:leading-loose font-medium text-sm;
+  p {
+    @apply mx-auto p-0;
+    @apply lg:leading-loose lg:text-base text-sm text-gray-700;
   }
   .button-group {
     @apply flex flex-col md:flex-row justify-center items-center mx-auto;
@@ -170,8 +170,8 @@
   }
   .button {
     @apply inline-flex items-center px-1 py-1 md:px-4 md:py-2;
-    @apply text-sm font-medium rounded-md text-gray-700 hover:text-gray-800 disabled:text-gray-200;
-    @apply backdrop-blur-sm hover:bg-fuchsia-300 disabled:bg-gray-500;
+    @apply text-sm font-medium rounded-md text-gray-600 hover:text-gray-800 disabled:text-gray-200;
+    @apply backdrop-blur-sm bg-gray-200/50 hover:bg-fuchsia-300 disabled:bg-gray-500;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500;
   }
 </style>
