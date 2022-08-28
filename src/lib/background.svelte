@@ -1,78 +1,36 @@
-<script>
-  let innerWidth = 2000;
-  let innerHeight = 1500;
-  let posX = innerWidth / 2;
-  let posY = innerHeight / 2;
-</script>
-
-<svelte:window bind:innerWidth bind:innerHeight />
-
 <div>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1500">
-    <defs>
-      <radialGradient id="a" gradientUnits="objectBoundingBox">
-        <stop offset="0" stop-color="#075985" />
-        <stop offset="1" stop-color="#99f6e4" />
-      </radialGradient>
-      <linearGradient
-        id="b"
-        gradientUnits="userSpaceOnUse"
-        x1="0"
-        y1="750"
-        x2="1550"
-        y2="750"
-      >
-        <stop offset="0" stop-color="#1edfef" />
-        <stop offset="1" stop-color="#99f6e4" />
-      </linearGradient>
-      <path
-        id="s"
-        fill="url(#b)"
-        d="M1549.2 51.6c-5.4 99.1-20.2 197.6-44.2 293.6c-24.1 96-57.4 189.4-99.3 278.6c-41.9 89.2-92.4 174.1-150.3 253.3c-58 79.2-123.4 152.6-195.1 219c-71.7 66.4-149.6 125.8-232.2 177.2c-82.7 51.4-170.1 94.7-260.7 129.1c-90.6 34.4-184.4 60-279.5 76.3C192.6 1495 96.1 1502 0 1500c96.1-2.1 191.8-13.3 285.4-33.6c93.6-20.2 185-49.5 272.5-87.2c87.6-37.7 171.3-83.8 249.6-137.3c78.4-53.5 151.5-114.5 217.9-181.7c66.5-67.2 126.4-140.7 178.6-218.9c52.3-78.3 96.9-161.4 133-247.9c36.1-86.5 63.8-176.2 82.6-267.6c18.8-91.4 28.6-184.4 29.6-277.4c0.3-27.6 23.2-48.7 50.8-48.4s49.5 21.8 49.2 49.5c0 0.7 0 1.3-0.1 2L1549.2 51.6z"
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svgjs="http://svgjs.com/svgjs"
+    width="1440"
+    height="560"
+    preserveAspectRatio="none"
+    viewBox="0 0 1440 560"
+  >
+    <g mask="url(&quot;#SvgjsMask1005&quot;)" fill="none">
+      <rect
+        width="1440"
+        height="560"
+        x="0"
+        y="0"
+        fill="rgba(24, 209, 141, 1)"
       />
-      <g id="g">
-        <use href="#s" transform="scale(0.12) rotate(60)" />
-        <use href="#s" transform="scale(0.2) rotate(10)" />
-        <use href="#s" transform="scale(0.25) rotate(40)" />
-        <use href="#s" transform="scale(0.3) rotate(-20)" />
-        <use href="#s" transform="scale(0.4) rotate(-30)" />
-        <use href="#s" transform="scale(0.5) rotate(20)" />
-        <use href="#s" transform="scale(0.6) rotate(60)" />
-        <use href="#s" transform="scale(0.7) rotate(10)" />
-        <use href="#s" transform="scale(0.835) rotate(-40)" />
-        <use href="#s" transform="scale(0.9) rotate(40)" />
-        <use href="#s" transform="scale(1.05) rotate(25)" />
-        <use href="#s" transform="scale(1.2) rotate(8)" />
-        <use href="#s" transform="scale(1.333) rotate(-60)" />
-        <use href="#s" transform="scale(1.45) rotate(-30)" />
-        <use href="#s" transform="scale(1.6) rotate(10)" />
-      </g>
-    </defs>
-    <g transform="translate({posX},0)">
-      <g transform="translate(0,{posY})">
-        <circle fill="url(#a)" r="3000" />
-        <g opacity="0.5">
-          <circle fill="url(#a)" r="2000" />
-          <circle fill="url(#a)" r="1800" />
-          <circle fill="url(#a)" r="1700" />
-          <circle fill="url(#a)" r="1651" />
-          <circle fill="url(#a)" r="1450" />
-          <circle fill="url(#a)" r="1250" />
-          <circle fill="url(#a)" r="1175" />
-          <circle fill="url(#a)" r="900" />
-          <circle fill="url(#a)" r="750" />
-          <circle fill="url(#a)" r="500" />
-          <circle fill="url(#a)" r="380" />
-          <circle fill="url(#a)" r="250" />
-        </g>
-        <g transform="rotate(90 0 0)">
-          <use href="#g" transform="rotate(10)" />
-          <use href="#g" transform="rotate(120)" />
-          <use href="#g" transform="rotate(240)" />
-        </g>
-        <circle fill-opacity="0.1" fill="url(#a)" r="3000" />
-      </g>
+      <path
+        d="M0,585.816C108.323,578.833,200.294,511.945,287.263,446.99C369.167,385.818,456.99,320.088,486.737,222.285C515.379,128.115,456.725,33.775,442.571,-63.632C428.444,-160.849,457.801,-267.792,403.617,-349.736C347.408,-434.742,241.727,-465.212,149.032,-507.557C41.406,-556.723,-66.576,-646.502,-181.127,-616.861C-295.665,-587.223,-347.402,-456.975,-416.785,-361.146C-480.226,-273.523,-557.056,-189.311,-568.562,-81.747C-579.908,24.319,-522.744,121.461,-478.806,218.663C-434.698,316.24,-397.068,420.465,-312.092,485.625C-223.596,553.485,-111.288,592.99,0,585.816"
+        fill="#13a771"
+      />
+      <path
+        d="M1440 1061.295C1537.108 1071.566 1643.318 1055.865 1719.076 994.251 1792.738 934.342 1801.387 829.168 1834.726 740.266 1865.524 658.142 1926.097 578.469 1907.1109999999999 492.84000000000003 1888.319 408.087 1797.42 365.038 1737.584 302.142 1681.036 242.702 1645.274 151.50799999999998 1565.237 133.48200000000003 1485.38 115.49599999999998 1418.086 195.897 1337.851 212.11200000000002 1246.399 230.594 1135.599 174.197 1064.547 234.668 994.6890000000001 294.123 1009.092 405.63300000000004 1002.929 497.159 997.1800000000001 582.543 995.701 668.838 1030.035 747.225 1064.692 826.348 1127.878 886.442 1196.449 938.973 1270.057 995.364 1347.788 1051.542 1440 1061.295"
+        fill="#30e7a4"
+      />
     </g>
+    <defs>
+      <mask id="SvgjsMask1005">
+        <rect width="1440" height="560" fill="#ffffff" />
+      </mask>
+    </defs>
   </svg>
 </div>
 
