@@ -17,9 +17,6 @@ const config = {
   ],
 
   kit: {
-    prerender: {
-      default: true
-    },
     adapter: adapter({
       // default options are shown
       pages: 'build',
