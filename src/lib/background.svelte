@@ -9,7 +9,7 @@
     class="transition duration-300 ease-in-out delay-150"
     ><style>
       .path-0 {
-        animation: pathAnim-0 4s;
+        animation: pathAnim-0 10s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
@@ -56,7 +56,7 @@
       class="transition-all duration-300 ease-in-out delay-150 path-0"
     /><style>
       .path-1 {
-        animation: pathAnim-1 4s;
+        animation: pathAnim-1 10s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
@@ -103,7 +103,7 @@
       class="transition-all duration-300 ease-in-out delay-150 path-1"
     /><style>
       .path-2 {
-        animation: pathAnim-2 4s;
+        animation: pathAnim-2 10s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
