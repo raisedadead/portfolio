@@ -125,7 +125,7 @@
 <style style lang="postcss">
   .profile-card {
     @apply flex flex-col justify-center items-center;
-    @apply rounded backdrop-blur-lg bg-gray-300/30 shadow-lg;
+    @apply rounded backdrop-blur-lg bg-gray-50/30 shadow-lg;
     @apply p-2 mt-4 mx-8 md:p-8 md:mt-16 md:mx-16;
     @apply text-center text-gray-800;
   }
@@ -151,17 +151,17 @@
   }
   .profile-card-personality {
     @apply md:max-w-md max-w-sm;
-    @apply mx-auto mt-4 mb-2 p-1;
-    @apply font-medium text-lg md:text-2xl text-gray-600 drop-shadow-sm;
+    @apply mx-auto mt-6 mb-2 p-1;
+    @apply font-medium text-sm md:text-base text-gray-600;
   }
   .profile-card-job {
     @apply md:max-w-2xl max-w-sm;
     @apply mx-auto my-2 p-1;
-    @apply lg:leading-loose font-medium text-sm md:text-xl text-gray-600 drop-shadow-sm;
+    @apply font-medium text-sm md:text-base text-gray-600;
   }
   p {
     @apply mx-auto p-0;
-    @apply lg:leading-loose lg:text-base text-sm text-gray-700;
+    @apply font-medium text-sm text-gray-600;
   }
   .button-group {
     @apply flex flex-col md:flex-row justify-center items-center mx-auto;
