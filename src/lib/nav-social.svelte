@@ -95,8 +95,8 @@
   }
   .button {
     @apply inline-flex items-center px-1 py-1 md:px-4 md:py-2;
-    @apply text-sm font-medium rounded-md text-gray-600 hover:text-gray-800 disabled:text-gray-200;
-    @apply backdrop-blur-sm bg-gray-200/50 hover:bg-fuchsia-300 disabled:bg-gray-500;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500;
+    @apply text-sm font-medium rounded-md text-gray-500 hover:text-gray-50 disabled:text-gray-500;
+    @apply backdrop-blur-sm bg-gray-50/50 hover:bg-gray-500 disabled:bg-gray-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
   }
 </style>
