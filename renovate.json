@@ -1,9 +1,3 @@
 {
-  "extends": ["github>raisedadead/renovate-config:default"],
-  "packageRules": [
-    {
-      "groupName": "Svelte",
-      "matchPackagePrefixes": ["@sveltejs/"]
-    }
-  ]
+  "extends": ["github>raisedadead/renovate-config:default"]
 }
