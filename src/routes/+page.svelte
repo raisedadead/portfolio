@@ -40,8 +40,8 @@
   };
 </script>
 
-<main>
-  <div class="flex items-center justify-center w-full h-screen">
+<main class="bg-slate-500">
+  <div class="flex items-center justify-center">
     <Background />
     <section class="absolute z-10 profile-card">
       <div>
