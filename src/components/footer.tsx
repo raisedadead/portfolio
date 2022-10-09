@@ -1,8 +1,9 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-export type Props = {
+import Link from 'next/link';
+
+export type FooterProps = {
   defaultType?: boolean;
 };
-export const Footer: React.FC<Props> = (props: Props) => {
+export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
   const { defaultType } = props;
   const footerClass = defaultType
     ? 'font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto py-1 mt-2'
@@ -19,43 +20,38 @@ export const Footer: React.FC<Props> = (props: Props) => {
         <p className="mt-2">
           {!defaultType && (
             <>
-              <a
-                aria-label="Terms & Conditions"
-                href="/"
-                className={anchorClass}
-              >
-                {' '}
-                Home{' '}
-              </a>
+              <Link href="/">
+                <a aria-label="Home" className={anchorClass}>
+                  {' '}
+                  Home{' '}
+                </a>
+              </Link>
               •
             </>
           )}
-          <a
-            aria-label="Terms & Conditions"
-            href="/terms"
-            className={anchorClass}
-          >
-            {' '}
-            Terms{' '}
-          </a>
+          <Link href="/terms">
+            <a aria-label="Terms & Conditions" className={anchorClass}>
+              {' '}
+              Terms{' '}
+            </a>
+          </Link>
           •
-          <a
-            aria-label="Privacy Policy"
-            href="/privacy"
-            className={anchorClass}
-          >
-            {' '}
-            Privacy{' '}
-          </a>
+          <Link href="/privacy">
+            <a aria-label="Privacy Policy" className={anchorClass}>
+              {' '}
+              Privacy{' '}
+            </a>
+          </Link>
           •
-          <a
-            aria-label="Refunds & Cancellation Policy"
-            href="/refunds"
-            className={anchorClass}
-          >
-            {' '}
-            Refunds{' '}
-          </a>
+          <Link href="/refunds">
+            <a
+              aria-label="Refunds & Cancellation Policy"
+              className={anchorClass}
+            >
+              {' '}
+              Refunds{' '}
+            </a>
+          </Link>
         </p>
       </div>
     </footer>

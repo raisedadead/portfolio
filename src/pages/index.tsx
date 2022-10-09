@@ -45,28 +45,18 @@ const Home: NextPage = () => {
                   freeCodeCamp.org
                 </a>
               </h3>
-              {/* <div className="mx-auto mt-2 mb-10 flex flex-col items-center justify-center space-y-2 space-x-0 md:mb-2 md:mt-4 md:flex-row md:space-x-2 md:space-y-0">
-                <button
-                  // onClick={calendlyHandler}
-                  // aria-label="Schedule a call"
-                  className="inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-slate-600 backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-slate-500 md:px-4 md:py-2"
-                  // disabled={!cdlyReady}
-                >
-                  📅 Schedule a call (Paid)
-                </button>
-              </div>
-              <p className="text-slate-600-0 mx-auto p-1 text-sm font-medium text-slate-600">
-                or visit my{' '}
+              <div className="mx-auto mt-2 mb-10 flex flex-col items-center justify-center space-y-2 space-x-0 md:mb-2 md:mt-4 md:flex-row md:space-x-2 md:space-y-0">
                 <a
-                  className="text-slate-600 underline decoration-gray-50 hover:text-slate-800 hover:no-underline"
+                  aria-label="Schedule a call"
+                  className="inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-slate-600 backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-slate-500 md:px-4 md:py-2"
                   href="https://calendly.com/mrugesh-m"
-                  target="_blank"
                   rel="noopener noreferrer external"
+                  target="_blank"
+                  type="button"
                 >
-                  Calendly
-                </a>{' '}
-                for more options.
-              </p> */}
+                  📅 Schedule a call
+                </a>
+              </div>
               <div className="button-group">
                 <a
                   aria-label="Ask me anything"
