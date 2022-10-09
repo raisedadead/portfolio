@@ -45,7 +45,7 @@ const Home: NextPage = () => {
                   freeCodeCamp.org
                 </a>
               </h3>
-              <div className="mx-auto mt-2 mb-10 flex flex-col items-center justify-center space-y-2 space-x-0 md:mb-2 md:mt-4 md:flex-row md:space-x-2 md:space-y-0">
+              {/* <div className="mx-auto mt-2 mb-10 flex flex-col items-center justify-center space-y-2 space-x-0 md:mb-2 md:mt-4 md:flex-row md:space-x-2 md:space-y-0">
                 <button
                   // onClick={calendlyHandler}
                   // aria-label="Schedule a call"
@@ -66,11 +66,11 @@ const Home: NextPage = () => {
                   Calendly
                 </a>{' '}
                 for more options.
-              </p>
+              </p> */}
               <div className="button-group">
                 <a
                   aria-label="Ask me anything"
-                  className="m-4 inline-flex items-center rounded-md bg-gray-50/50 px-2 py-1 text-sm font-medium text-slate-600 backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-slate-500 md:px-4 md:py-2"
+                  className="my-2 mx-2 inline-flex items-center rounded-md bg-gray-50/50 px-2 py-1 text-sm font-medium text-slate-600 backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-slate-500 md:px-4 md:py-2"
                   href="https://github.com/raisedadead/ama/discussions"
                   rel="noopener noreferrer external"
                   target="_blank"
@@ -80,7 +80,7 @@ const Home: NextPage = () => {
                 </a>
                 <a
                   aria-label="Browse my blog"
-                  className="m-4 inline-flex items-center rounded-md bg-gray-50/50 px-2 py-1 text-sm font-medium text-slate-600 backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-slate-500 md:px-4 md:py-2"
+                  className="my-2 mx-2 inline-flex items-center rounded-md bg-gray-50/50 px-2 py-1 text-sm font-medium text-slate-600 backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-slate-500 md:px-4 md:py-2"
                   href="https://hn.mrugesh.dev"
                   rel="noopener noreferrer external"
                   target="_blank"
