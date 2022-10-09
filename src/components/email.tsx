@@ -20,3 +20,5 @@ export const Email = () => {
     </a>
   );
 };
+
+export default Email;

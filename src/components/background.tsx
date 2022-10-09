@@ -103,3 +103,5 @@ export const Background = () => {
     </div>
   );
 };
+
+export default Background;
