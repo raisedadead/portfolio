@@ -27,7 +27,7 @@ const Home: NextPage = () => {
                 <h1 className="drop-shadow-l mx-auto rotate-12 transform text-xl font-bold text-slate-600 md:-mt-14 md:p-1 md:text-4xl">
                   {'Mrugesh Mohapatra'.toLowerCase()}
                 </h1>
-                <div className="m-1 mx-auto -mt-7 w-1/5 rounded-full border-8 border-orange-300" />
+                <div className="m-1 mx-auto -mt-7 w-1/5 rounded-full border-8 border-orange-300 bg-orange-300" />
               </div>
               <h2 className="mx-auto mt-6 mb-2 max-w-sm p-1 text-sm font-medium text-slate-600 md:max-w-md md:text-base">
                 nocturnal developer 🦉 • open-source enthusiast 🌏 • photography
