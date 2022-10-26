@@ -20,37 +20,38 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
         <p className="mt-2">
           {!defaultType && (
             <>
-              <Link href="/">
-                <a aria-label="Home" className={anchorClass}>
-                  {' '}
-                  Home{' '}
-                </a>
+              <Link href="/" aria-label="Home" className={anchorClass}>
+                {' '}
+                Home{' '}
               </Link>
               •
             </>
           )}
-          <Link href="/terms">
-            <a aria-label="Terms & Conditions" className={anchorClass}>
-              {' '}
-              Terms{' '}
-            </a>
+          <Link
+            href="/terms"
+            aria-label="Terms & Conditions"
+            className={anchorClass}
+          >
+            {' '}
+            Terms{' '}
           </Link>
           •
-          <Link href="/privacy">
-            <a aria-label="Privacy Policy" className={anchorClass}>
-              {' '}
-              Privacy{' '}
-            </a>
+          <Link
+            href="/privacy"
+            aria-label="Privacy Policy"
+            className={anchorClass}
+          >
+            {' '}
+            Privacy{' '}
           </Link>
           •
-          <Link href="/refunds">
-            <a
-              aria-label="Refunds & Cancellation Policy"
-              className={anchorClass}
-            >
-              {' '}
-              Refunds{' '}
-            </a>
+          <Link
+            href="/refunds"
+            aria-label="Refunds & Cancellation Policy"
+            className={anchorClass}
+          >
+            {' '}
+            Refunds{' '}
           </Link>
         </p>
       </div>
