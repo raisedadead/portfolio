@@ -5,7 +5,8 @@ export const config = {
 };
 
 export const helloEndpoint = async function (req: NextRequest) {
-  return new Response(JSON.stringify({ name: 'John Doe' }), {
+  console.log(req);
+  return new Response(JSON.stringify({ name: 'Hello World' }), {
     status: 200,
     headers: {
       'Content-Type': 'application/json'
