@@ -23,6 +23,7 @@ export default defineNextConfig({
   //   defaultLocale: 'en'
   // },
   experimental: {
-    nextScriptWorkers: true
+    nextScriptWorkers: true,
+    runtime: 'experimental-edge'
   }
 });
