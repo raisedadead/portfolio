@@ -5,7 +5,6 @@
   "scripts": {
     "export": "next export -o build",
     "build": "next build",
-    "postbuild": "npm run export",
     "start": "npm run dev",
     "dev": "next dev",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
