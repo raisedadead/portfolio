@@ -49,7 +49,7 @@ const Home: NextPage = () => {
                 <a
                   aria-label="Schedule a call"
                   className="inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-slate-600 backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-slate-500 md:px-4 md:py-2"
-                  href="https://calendly.com/mrugesh-m"
+                  href="https://calendly.com/d/gqs-whd-zpz"
                   rel="noopener noreferrer external"
                   target="_blank"
                   type="button"
