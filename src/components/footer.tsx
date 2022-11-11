@@ -6,8 +6,8 @@ export type FooterProps = {
 export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
   const { defaultType } = props;
   const footerClass = defaultType
-    ? 'font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto py-1 mt-2'
-    : 'mt-4 text-center';
+    ? 'font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto py-1 mt-8'
+    : 'mt-8 text-center';
   const anchorClass = defaultType
     ? 'text-gray-700 hover:text-gray-50'
     : 'text-gray-500 hover:text-gray-900 no-underline';
@@ -15,7 +15,8 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
     <footer className={footerClass}>
       <div>
         <p>
-          © {new Date().getFullYear()} Mrugesh Mohapatra. All rights reserved.
+          © 2012-{new Date().getFullYear()} Mrugesh Mohapatra, Co. All rights
+          reserved.
         </p>
         <p className="mt-2">
           {!defaultType && (

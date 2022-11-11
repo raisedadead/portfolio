@@ -6,7 +6,7 @@ import { Footer } from '../components/footer';
 const Terms: NextPage = () => (
   <main className="hover:prose-a:text-gray-900; prose-sm prose prose-gray my-auto mx-auto max-w-4xl p-16 px-4 text-gray-700 prose-a:text-gray-500">
     <h1>Terms and Conditions</h1>
-    <p>Last updated: April 01, 2022</p>
+    <p>Last updated: Nov 11, 2022</p>
     <p>
       Please read these terms and conditions carefully before using Our Service.
     </p>
@@ -29,7 +29,7 @@ const Terms: NextPage = () => (
       <li>
         <p>
           <strong>Company</strong> (referred to as either "the Company", "We",
-          "Us" or "Our" in this Agreement) refers to Mrugesh Mohapatra.
+          "Us" or "Our" in this Agreement) refers to Mrugesh Mohapatra, Co.
         </p>
       </li>
       <li>
@@ -93,7 +93,7 @@ const Terms: NextPage = () => (
       </li>
       <li>
         <p>
-          <strong>Website</strong> refers to Mrugesh Mohapatra's website,
+          <strong>Website</strong> refers to Mrugesh Mohapatra, Co's website,
           accessible from{' '}
           <a href="https://mrugesh.dev" target="_blank" rel="noreferrer">
             https://mrugesh.dev
