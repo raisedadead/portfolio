@@ -198,15 +198,7 @@ const Terms: NextPage = () => (
       Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies.
       Persistent Cookies remain on Your personal computer or mobile device when
       You go offline, while Session Cookies are deleted as soon as You close
-      Your web browser. Learn more about cookies:{' '}
-      <a
-        href="https://www.privacypolicies.com/blog/privacy-policy-template/#Use_Of_Cookies_Log_Files_And_Tracking"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Cookies by PrivacyPolicies Generator
-      </a>
-      .
+      Your web browser.
     </p>
     <p>
       We use both Session and Persistent Cookies for the purposes set out below:
