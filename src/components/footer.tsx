@@ -6,11 +6,11 @@ export type FooterProps = {
 export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
   const { defaultType } = props;
   const footerClass = defaultType
-    ? 'font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto py-1 mt-8'
+    ? 'font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto mt-8'
     : 'mt-8 text-center';
   const anchorClass = defaultType
-    ? 'text-gray-700 hover:text-gray-50'
-    : 'text-gray-500 hover:text-gray-900 no-underline';
+    ? 'text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2'
+    : 'text-gray-500 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2 no-underline';
   return (
     <footer className={footerClass}>
       <div>
@@ -22,8 +22,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
           {!defaultType && (
             <>
               <Link href="/" aria-label="Home" className={anchorClass}>
-                {' '}
-                Home{' '}
+                Home
               </Link>
               •
             </>
@@ -33,8 +32,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
             aria-label="Terms & Conditions"
             className={anchorClass}
           >
-            {' '}
-            Terms{' '}
+            Terms
           </Link>
           •
           <Link
@@ -42,8 +40,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
             aria-label="Privacy Policy"
             className={anchorClass}
           >
-            {' '}
-            Privacy{' '}
+            Privacy
           </Link>
           •
           <Link
@@ -51,8 +48,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
             aria-label="Refunds & Cancellation Policy"
             className={anchorClass}
           >
-            {' '}
-            Refunds{' '}
+            Refunds
           </Link>
         </p>
       </div>
