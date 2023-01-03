@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "export": "next export -o build",
     "build": "next build",
+    "postbuild": "npm run export",
     "start": "next dev",
     "develop": "next dev",
-    "deploy": "npx @cloudflare/next-on-pages --experimental-minify",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
     "prepare": "husky install"
