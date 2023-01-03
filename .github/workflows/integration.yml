@@ -4,20 +4,35 @@ on: [push, pull_request]
 
 jobs:
   lint:
-    name: Lint files
+    name: Lint
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x]
 
     steps:
       - name: Checkout source files
         uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
       - name: npm install and lint
         run: |
           npm ci
@@ -26,13 +41,13 @@ jobs:
           CI: true
 
   build:
-    name: Build site
+    name: Build & Test
     needs: lint
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
       - name: Checkout source files
