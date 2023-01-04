@@ -25,7 +25,7 @@ const Refunds: NextPage = () => (
       <li>
         <p>
           <strong>Company</strong> (referred to as either "the Company", "We",
-          "Us" or "Our" in this Agreement) refers to Mrugesh Mohapatra, Co.
+          "Us" or "Our" in this Agreement) refers to Mrugesh Mohapatra Co.
         </p>
       </li>
       <li>

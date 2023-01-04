@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
     <footer className={footerClass}>
       <div>
         <p>
-          © 2012-{new Date().getFullYear()} Mrugesh Mohapatra, Co. All rights
+          © 2012-{new Date().getFullYear()} Mrugesh Mohapatra Co. — All rights
           reserved.
         </p>
         <p className="mt-2">
