@@ -7,9 +7,8 @@
     "npm": ">=8"
   },
   "scripts": {
-    "export": "next export -o build",
     "build": "next build",
-    "postbuild": "npm run export",
+    "build:for-edge": "npx @cloudflare/next-on-pages --experimental-minify",
     "start": "next dev",
     "develop": "next dev",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",

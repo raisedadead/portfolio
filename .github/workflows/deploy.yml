@@ -41,7 +41,7 @@ jobs:
       - name: npm install and build
         run: |
           npm ci
-          npm run build
+          npm run build:for-edge
         env:
           CI: true
 
@@ -51,6 +51,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: mrugesh
-          directory: build
+          directory: .vercel/output/static
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
