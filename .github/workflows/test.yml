@@ -1,13 +1,10 @@
-name: Lighthouse
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+name: Test
+
+on: [workflow_call]
 
 jobs:
-  lhci:
-    name: Lighthouse CI
+  lint:
+    name: Test
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,7 +12,7 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - name: Checkout source files
+      - name: Checkout
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
 
       - name: Use Node.js ${{ matrix.node-version }}
@@ -36,14 +33,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - name: npm install and build
+      - name: Test
         run: |
           npm ci
-          npm run build --if-present
+          npm run test --if-present
         env:
           CI: true
-
-      - name: run Lighthouse CI
-        run: |
-          npm install -g @lhci/cli@latest
-          lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed!"
