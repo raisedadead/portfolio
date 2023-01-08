@@ -1,15 +1,10 @@
-name: CD
+name: Lint
 
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
-  workflow_dispatch:
-  push:
-    branches: [main]
+on: [push, pull_request, workflow_call]
 
 jobs:
-  deploy:
-    name: Deploy
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
 
     strategy:
@@ -38,19 +33,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - name: npm install and build
+      - name: npm install and lint
         run: |
           npm ci
-          npm run build:for-edge
+          npm run lint --if-present
         env:
           CI: true
-
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@c2ad89679f0dee1ff4bcf9b8bbe1cf52d176cb29 # v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: mrugesh
-          directory: .vercel/output/static
-          # Optional: Enable this if you want to have GitHub Deployments triggered
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
