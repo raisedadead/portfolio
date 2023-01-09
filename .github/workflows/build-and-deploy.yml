@@ -37,7 +37,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache
-        uses: actions/cache@4723a57e26efda3a62cbde1812113b730952852d # v3
+        uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 # v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
@@ -75,7 +75,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache
-        uses: actions/cache@4723a57e26efda3a62cbde1812113b730952852d # v3
+        uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 # v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
@@ -107,7 +107,7 @@ jobs:
 
       - name: Find Previous Comment
         if: github.event_name == 'pull_request'
-        uses: peter-evans/find-comment@v2
+        uses: peter-evans/find-comment@81e2da3af01c92f83cb927cf3ace0e085617c556 # v2
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -115,7 +115,7 @@ jobs:
 
       - name: Comment previous step output on Pull Request
         if: github.event_name == 'pull_request'
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@5adcb0bb0f9fb3f95ef05400558bdb3f329ee808 # v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: replace
