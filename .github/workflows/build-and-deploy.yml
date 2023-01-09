@@ -104,35 +104,3 @@ jobs:
           directory: .vercel/output/static
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Find Previous Comment
-        if: github.event_name == 'pull_request'
-        uses: peter-evans/find-comment@81e2da3af01c92f83cb927cf3ace0e085617c556 # v2
-        id: fc
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body-includes: Deployed to Cloudflare Pages
-
-      - name: Comment previous step output on Pull Request
-        if: github.event_name == 'pull_request'
-        uses: peter-evans/create-or-update-comment@5adcb0bb0f9fb3f95ef05400558bdb3f329ee808 # v2
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: replace
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            #### Deployed to Cloudflare Pages:
-
-            **[`${{ steps.deploy.outputs.url }}`](${{ steps.deploy.outputs.url }})**
-
-            <details>
-            <summary>More details: </summary>
-
-            | Step        | Status |
-            | :----       | :------ |
-            | id          | ${{ steps.deploy.outputs.id }} |
-            | alias       | ${{ steps.deploy.outputs.alias }} |
-            | url         | ${{ steps.deploy.outputs.url }} |
-            | environment | ${{ steps.deploy.outputs.environment }} |
-
-            </details>
