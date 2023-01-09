@@ -104,3 +104,20 @@ jobs:
           directory: .vercel/output/static
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+    outputs:
+      issue-number: ${{ github.event.pull_request.number }}
+      url: ${{ steps.deploy.outputs.url }}
+      alias: ${{ steps.deploy.outputs.alias }}
+      environment: ${{ steps.deploy.outputs.environment }}
+      deployment_id: ${{ steps.deploy.outputs.id }}
+
+  comment:
+    uses: raisedadead/portfolio/.github/workflows/comment.yml@main
+    needs: [deploy]
+    with:
+      issue-number: ${{ github.event.pull_request.number }}
+      url: ${{ needs.deploy.outputs.url }}
+      alias: ${{ needs.deploy.outputs.alias }}
+      environment: ${{ needs.deploy.outputs.environment }}
+      deployment_id: ${{ needs.deploy.outputs.deployment_id }}
