@@ -1,3 +1,18 @@
+# Usgae:
+#
+# Add a job like below, which will need to depend on the deploy job.
+#
+# comment:
+#   if: ${{ github.event_name == 'pull_request' }}
+#   uses: raisedadead/portfolio/.github/workflows/comment.yml@main
+#   needs: [deploy]
+#   with:
+#     issue-number: ${{ github.event.pull_request.number }}
+#     url: ${{ needs.deploy.outputs.url }}
+#     alias: ${{ needs.deploy.outputs.alias }}
+#     environment: ${{ needs.deploy.outputs.environment }}
+#     deployment_id: ${{ needs.deploy.outputs.deployment_id }}
+
 name: Comment
 
 on:
