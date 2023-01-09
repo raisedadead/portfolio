@@ -1,0 +1,25 @@
+name: Comment
+
+on:
+  workflow_run:
+    workflows: ['Build & Deploy']
+    types:
+      - completed
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Find Previous Comment
+      #   if: github.event_name == 'pull_request'
+      #   uses: peter-evans/find-comment@v2
+      #   id: fc
+      #   with:
+      #     issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
+      #     comment-author: "github-actions[bot]"
+      #     body-includes: "Deployed to Cloudflare Pages"
+
+      - name: Debug
+        run: |
+          # print the event payload
+          echo ${{ toJSON(github.event.workflow_run) }}
