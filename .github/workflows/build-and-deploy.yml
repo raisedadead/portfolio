@@ -18,8 +18,8 @@ jobs:
 
   # This job is a quick sanity check to ensure that the build is working.
   # This can be expanded to include e2e testing later.
-  sanity-check:
-    name: Sanity Check
+  build:
+    name: Build
     runs-on: ubuntu-latest
     needs: [lint, test]
 
@@ -56,10 +56,10 @@ jobs:
         env:
           CI: true
 
-  build-for-edge:
-    name: Build (For Edge)
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-    needs: [sanity-check]
+    needs: [build]
 
     strategy:
       matrix:
@@ -95,6 +95,7 @@ jobs:
           CI: true
 
       - name: Publish to Cloudflare Pages
+        id: deploy
         uses: cloudflare/pages-action@c2ad89679f0dee1ff4bcf9b8bbe1cf52d176cb29 # v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -103,3 +104,35 @@ jobs:
           directory: .vercel/output/static
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Find Previous Comment
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: Deployed to Cloudflare Pages
+
+      - name: Comment previous step output on Pull Request
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            #### Deployed to Cloudflare Pages:
+
+            **[`${{ steps.deploy.outputs.url }}`](${{ steps.deploy.outputs.url }})**
+
+            <details>
+            <summary>More details: </summary>
+
+            | Step        | Status |
+            | :----       | :------ |
+            | id          | ${{ steps.deploy.outputs.id }} |
+            | alias       | ${{ steps.deploy.outputs.alias }} |
+            | url         | ${{ steps.deploy.outputs.url }} |
+            | environment | ${{ steps.deploy.outputs.environment }} |
+
+            </details>
