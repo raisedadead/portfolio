@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@builder.io/partytown": "0.7.4",
-    "next": "13.1.1",
+    "next": "13.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "zod": "3.20.2"
@@ -43,7 +43,7 @@
     "@typescript-eslint/parser": "5.48.0",
     "autoprefixer": "10.4.13",
     "eslint": "8.31.0",
-    "eslint-config-next": "13.1.1",
+    "eslint-config-next": "13.1.2",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-react": "7.31.11",
     "husky": "8.0.3",
