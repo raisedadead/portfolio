@@ -79,8 +79,8 @@ const Home: NextPage = () => {
                   📝 Browse my blog
                 </a>
               </div>
-              <p className="text-slate-600-0 mx-auto p-0 text-sm font-medium text-slate-600">
-                Stalk me
+              <p className="text-slate-600-0 mx-auto p-0 text-sm font-medium text-slate-600 lg:mt-4">
+                Elsewhere on the internet
               </p>
               <Social />
             </div>
