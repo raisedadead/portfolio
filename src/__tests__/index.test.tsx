@@ -52,4 +52,65 @@ describe('Home', () => {
 
     expect(link).toBeInTheDocument();
   });
+
+  it('renders a paragraph', () => {
+    render(<Home />);
+
+    const paragraph = screen.getByText(/elsewhere on the internet/i);
+
+    expect(paragraph).toBeInTheDocument();
+  });
+
+  it('renders a social media links', () => {
+    render(<Home />);
+
+    const twitterLink = screen.getByRole('link', {
+      name: /twitter/i
+    });
+    const githubLink = screen.getByRole('link', {
+      name: /github/i
+    });
+
+    const linkedinLink = screen.getByRole('link', {
+      name: /linkedin/i
+    });
+
+    const instagramLink = screen.getByRole('link', {
+      name: /instagram/i
+    });
+
+    expect(twitterLink).toBeInTheDocument();
+    expect(twitterLink).toHaveAttribute(
+      'href',
+      'https://twitter.com/raisedadead'
+    );
+
+    expect(githubLink).toBeInTheDocument();
+    expect(githubLink).toHaveAttribute(
+      'href',
+      'https://github.com/raisedadead'
+    );
+
+    expect(linkedinLink).toBeInTheDocument();
+    expect(linkedinLink).toHaveAttribute(
+      'href',
+      'https://linkedin.com/in/mrugeshm'
+    );
+
+    expect(instagramLink).toBeInTheDocument();
+    expect(instagramLink).toHaveAttribute(
+      'href',
+      'https://instagram.com/raisedadead'
+    );
+  });
+
+  it('renders a footer', () => {
+    render(<Home />);
+
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toBeInTheDocument();
+
+    const paragraph = screen.getByText(/mrugesh mohapatra co./i);
+    expect(paragraph).toBeInTheDocument();
+  });
 });
