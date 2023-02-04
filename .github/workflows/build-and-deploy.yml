@@ -37,7 +37,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache
-        uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 # v3
+        uses: actions/cache@627f0f41f6904a5b1efbaed9f96d9eb58e92e920 # v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
@@ -75,7 +75,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache
-        uses: actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12 # v3
+        uses: actions/cache@627f0f41f6904a5b1efbaed9f96d9eb58e92e920 # v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
