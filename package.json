@@ -4,16 +4,17 @@
   "private": true,
   "engines": {
     "node": ">=18",
-    "npm": ">=8"
+    "pnpm": ">=7"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "next build",
     "build:for-edge": "npx @cloudflare/next-on-pages --experimental-minify",
     "start": "next dev",
     "develop": "next dev",
     "test": "jest .",
-    "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+    "lint": "prettier --check --plugin-search-dir=. . && eslint .",
+    "format": "prettier --write --plugin-search-dir=. .",
     "prepare": "husky install"
   },
   "lint-staged": {
