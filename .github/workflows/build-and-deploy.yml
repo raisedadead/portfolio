@@ -36,12 +36,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Cache
         uses: actions/cache@6998d139ddd3e68c71e9e398d8e40b71a2f39812 # v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
             ~/.npm
+            ~/.pnpm-store
             ${{ github.workspace }}/.next/cache
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -49,10 +53,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - name: Build (regular)
+      - name: Install dependencies and Build (regular)
         run: |
-          npm ci
-          npm run build --if-present
+          pnpm install
+          pnpm build
         env:
           CI: true
 
@@ -74,12 +78,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Cache
         uses: actions/cache@6998d139ddd3e68c71e9e398d8e40b71a2f39812 # v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
             ~/.npm
+            ~/.pnpm-store
             ${{ github.workspace }}/.next/cache
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -87,10 +95,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - name: Build (For Edge)
+      - name: Install dependencies and Build (for Cloudflare Pages)
         run: |
-          npm ci
-          npm run build:for-edge --if-present
+          pnpm install
+          pnpm build:for-edge
         env:
           CI: true
 
