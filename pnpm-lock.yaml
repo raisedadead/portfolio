@@ -1,5 +1,10 @@
 lockfileVersion: 5.4
 
+patchedDependencies:
+  '@cloudflare/next-on-pages@0.3.0':
+    hash: 5vintfoofsmpl5bvpvxqhd4wli
+    path: patches/@cloudflare__next-on-pages@0.3.0.patch
+
 specifiers:
   '@builder.io/partytown': 0.7.5
   '@cloudflare/next-on-pages': 0.3.0
@@ -42,7 +47,7 @@ dependencies:
   zod: 3.20.6
 
 devDependencies:
-  '@cloudflare/next-on-pages': 0.3.0_vercel@28.15.3
+  '@cloudflare/next-on-pages': 0.3.0_5vintfoofsmpl5bvpvxqhd4wli_vercel@28.15.3
   '@cloudflare/workers-types': 4.20230115.0
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.6
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.6
@@ -448,7 +453,7 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages/0.3.0_vercel@28.15.3:
+  /@cloudflare/next-on-pages/0.3.0_5vintfoofsmpl5bvpvxqhd4wli_vercel@28.15.3:
     resolution: {integrity: sha512-ncrkskryB3qtrMlMjLTKY54e+TE0q2R0YJEZHFUzuNwHeagj6TlT0ByqcWltx4uYplE/HOhDtfbimDG1wGwbiQ==}
     hasBin: true
     peerDependencies:
@@ -461,6 +466,7 @@ packages:
       esbuild: 0.15.18
       vercel: 28.15.3
     dev: true
+    patched: true
 
   /@cloudflare/workers-types/4.20230115.0:
     resolution: {integrity: sha512-GPJEiO8AFN+jUpA+DHJ1qdVmk4s/hq8JYKjOV/+U7avGquQbVnj905+Kg6uAEfrq16muwmRKl+XJGqsvlBlDNg==}

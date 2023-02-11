@@ -1,0 +1,49 @@
+diff --git a/dist/index.js b/dist/index.js
+index 4332f0529deb8204ee515e72797f1e21107e2323..0acb58f2c5832ccc5ef0ca9df84311adc7cd9df5 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -5859,6 +5859,9 @@ function generate(node, options) {
+ 
+ // src/index.ts
+ var prepVercel = async () => {
++  console.log("\u26A1\uFE0F");
++  console.log("\u26A1\uFE0F Preparing project for 'npx vercel build'...");
++  console.log("\u26A1\uFE0F");
+   try {
+     await (0, import_promises.stat)(".vercel/project.json");
+   } catch {
+@@ -5869,33 +5872,8 @@ var prepVercel = async () => {
+     );
+   }
+   console.log("\u26A1\uFE0F");
+-  console.log("\u26A1\uFE0F Installing 'vercel' CLI...");
+-  console.log("\u26A1\uFE0F");
+-  const vercelBuild = (0, import_child_process.spawn)("npm", ["install", "-D", "vercel"]);
+-  vercelBuild.stdout.on("data", (data2) => {
+-    const lines = data2.toString().split("\n");
+-    lines.map((line) => {
+-      console.log(`\u25B2 ${line}`);
+-    });
+-  });
+-  vercelBuild.stderr.on("data", (data2) => {
+-    const lines = data2.toString().split("\n");
+-    lines.map((line) => {
+-      console.log(`\u25B2 ${line}`);
+-    });
+-  });
+-  await new Promise((resolve2, reject) => {
+-    vercelBuild.on("close", (code) => {
+-      if (code === 0) {
+-        resolve2(null);
+-      } else {
+-        reject();
+-      }
+-    });
+-  });
+-  console.log("\u26A1\uFE0F");
+   console.log("\u26A1\uFE0F");
+-  console.log("\u26A1\uFE0F Completed 'npx vercel build'.");
++  console.log("\u26A1\uFE0F Project ready for 'npx vercel build'...");
+   console.log("\u26A1\uFE0F");
+ };
+ var buildVercel = async () => {
