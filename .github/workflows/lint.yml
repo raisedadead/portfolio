@@ -20,16 +20,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       - name: Cache
         uses: actions/cache@627f0f41f6904a5b1efbaed9f96d9eb58e92e920 # v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
             ~/.npm
-            ~/.pnpm-store
             ${{ github.workspace }}/.next/cache
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -37,9 +33,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - name: Install dependencies and lint
+      - name: npm install and lint
         run: |
-          pnpm install
-          pnpm lint
+          npm ci
+          npm run lint --if-present
         env:
           CI: true

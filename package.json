@@ -4,10 +4,9 @@
   "private": true,
   "engines": {
     "node": ">=18",
-    "pnpm": ">=7"
+    "npm": ">=8"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "build": "next build",
     "build:for-edge": "npx @cloudflare/next-on-pages --experimental-minify",
     "start": "next dev",
