@@ -8,7 +8,7 @@ patchedDependencies:
 specifiers:
   '@builder.io/partytown': 0.7.5
   '@cloudflare/next-on-pages': 0.3.0
-  '@cloudflare/workers-types': 4.20230215.0
+  '@cloudflare/workers-types': 4.20230221.0
   '@tailwindcss/forms': 0.5.3
   '@tailwindcss/typography': 0.5.9
   '@testing-library/jest-dom': ^5.16.5
@@ -48,7 +48,7 @@ dependencies:
 
 devDependencies:
   '@cloudflare/next-on-pages': 0.3.0_5vintfoofsmpl5bvpvxqhd4wli_vercel@28.15.3
-  '@cloudflare/workers-types': 4.20230215.0
+  '@cloudflare/workers-types': 4.20230221.0
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.7
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@testing-library/jest-dom': 5.16.5
@@ -468,8 +468,8 @@ packages:
     dev: true
     patched: true
 
-  /@cloudflare/workers-types/4.20230215.0:
-    resolution: {integrity: sha512-s71gaGwtEIxjSu6l0cekbXm9AwjrmrFVcHPNx9tHidG2dnqamYf5Nms/KgMYZf7gnjdKOp/ZChYFeJJkNv3QfA==}
+  /@cloudflare/workers-types/4.20230221.0:
+    resolution: {integrity: sha512-Ge8csuFQMNv3hd8r85PFWv4KV6bHAtKoBaanTkjbbeJS+mizoiBn4OBva0CFQiGfRJklFSGd4OxuCuiK05kogg==}
     dev: true
 
   /@cspotcode/source-map-support/0.8.1:
