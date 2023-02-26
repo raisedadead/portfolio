@@ -45,7 +45,7 @@ jobs:
 
     steps:
       - name: Find Previous Comment
-        uses: peter-evans/find-comment@85a676a52594b4481e0532825a2d8906ef96dac2 # v2
+        uses: peter-evans/find-comment@034abe94d3191f9c89d870519735beae326f2bdb # v2
         id: fc
         with:
           issue-number: ${{ inputs.issue-number }}
