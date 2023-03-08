@@ -2,8 +2,6 @@
 
 > Nothing fancy here, just my [portfolio website][personal-website].
 
-[![Gitpod][gitpod-img]][gitpod]
-
 ## What is this about?
 
 - It's just a basic identity website. Nothing more [...as of now].
@@ -27,6 +25,10 @@ please feel free to extend, re-use, share the code.
 Content: The content pertaining to Mrugesh Mohapatra such as his resume,
 personal information, imagery, etc. is licensed under the [CC BY-NC-ND
 4.0][by-nc-nd-4] License.
+
+--
+
+[![Gitpod][gitpod-img]][gitpod]
 
 [gitpod-img]: https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod
 [gitpod]: https://gitpod.io/#https://github.com/raisedadead/portfolio
