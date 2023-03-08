@@ -1,3 +1,4 @@
 {
-  "extends": ["github>raisedadead/renovate-config:default"]
+  "extends": ["github>raisedadead/renovate-config:default"],
+  "prHourlyLimit": 2
 }
