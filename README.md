@@ -26,7 +26,7 @@ Content: The content pertaining to Mrugesh Mohapatra such as his resume,
 personal information, imagery, etc. is licensed under the [CC BY-NC-ND
 4.0][by-nc-nd-4] License.
 
---
+---
 
 [![Gitpod][gitpod-img]][gitpod]
 
