@@ -37,14 +37,14 @@ specifiers:
   typescript: 4.9.5
   vercel: ^28.15.3
   wrangler: 2.12.1
-  zod: 3.21.0
+  zod: 3.21.4
 
 dependencies:
   '@builder.io/partytown': 0.7.5
   next: 13.2.3_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  zod: 3.21.0
+  zod: 3.21.4
 
 devDependencies:
   '@cloudflare/next-on-pages': 0.3.0_5vintfoofsmpl5bvpvxqhd4wli_vercel@28.15.3
@@ -7131,6 +7131,6 @@ packages:
       stack-trace: 0.0.10
     dev: true
 
-  /zod/3.21.0:
-    resolution: {integrity: sha512-UYdykTcVxB6lfdyLzAqLyyYAlOcpoluECvjsdoaqfQmz9p+3LRaIqYcNiL/J2kFYp66fBM8wwBvIGVEjq7KtZw==}
+  /zod/3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
