@@ -1,14 +1,11 @@
-import type { NextPage } from 'next';
+import { FC } from 'react';
 import { Background } from '../components/background';
 import { Footer } from '../components/footer';
-import { MetaHead } from '../components/head';
 import { Social } from '../components/social';
 
-const Home: NextPage = () => {
+const Home = async (): Promise<ReturnType<FC>> => {
   return (
     <>
-      <MetaHead />
-
       <main>
         <div className="flex h-screen w-screen items-center justify-center">
           <Background />
