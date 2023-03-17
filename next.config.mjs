@@ -24,6 +24,6 @@ export default defineNextConfig({
   // },
   experimental: {
     nextScriptWorkers: true,
-    runtime: 'experimental-edge'
+    runtime: 'edge'
   }
 });
