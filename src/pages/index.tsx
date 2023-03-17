@@ -8,7 +8,6 @@ const Home: NextPage = () => {
   return (
     <>
       <MetaHead />
-
       <main>
         <div className="flex h-screen w-screen items-center justify-center">
           <Background />
