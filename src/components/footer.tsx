@@ -51,6 +51,10 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
           >
             Refunds
           </Link>
+          •
+          <Link href='/contact' aria-label='Contact Us' className={anchorClass}>
+            Contact
+          </Link>
         </p>
       </div>
     </footer>
