@@ -22,8 +22,8 @@ export default defineNextConfig({
   //   locales: ['en'],
   //   defaultLocale: 'en'
   // },
+  runtime: 'edge',
   experimental: {
-    nextScriptWorkers: true,
-    runtime: 'edge'
+    nextScriptWorkers: true
   }
 });
