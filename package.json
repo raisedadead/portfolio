@@ -12,6 +12,7 @@
     "build:for-edge": "npx @cloudflare/next-on-pages --experimental-minify",
     "start": "next dev",
     "develop": "next dev",
+    "dev": "next dev",
     "test": "jest .",
     "lint": "prettier --check --plugin-search-dir=. . && eslint .",
     "format": "prettier --write --plugin-search-dir=. .",
