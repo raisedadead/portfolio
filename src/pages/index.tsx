@@ -44,7 +44,7 @@ const Home: NextPage = () => {
                   freeCodeCamp.org
                 </a>
               </h3>
-              <div className="space-1 mx-auto mt-2 mb-4 flex flex-row items-center justify-center">
+              <div className="space-1 mx-auto mb-4 mt-2 flex flex-row items-center justify-center">
                 <a
                   aria-label="Schedule a call"
                   className="items-center rounded-md bg-orange-500 px-1 py-1 text-sm font-medium text-slate-100 backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-slate-500 md:px-4 md:py-2"

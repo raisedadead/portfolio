@@ -1,5 +1,5 @@
 export const Social = () => (
-  <div className="mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-y-0 space-x-2">
+  <div className="mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-2 space-y-0">
     <a
       aria-label="Twitter"
       className="inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-gray-500 backdrop-blur-sm hover:bg-gray-500 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-500 md:px-4 md:py-2"
