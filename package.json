@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "=18",
-    "pnpm": ">=7"
+    "node": "18",
+    "pnpm": "8"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
