@@ -56,7 +56,7 @@
     "prettier": "2.8.7",
     "prettier-plugin-tailwindcss": "0.2.6",
     "tailwindcss": "3.3.1",
-    "typescript": "5.0.2",
+    "typescript": "5.0.3",
     "vercel": "^28.18.2",
     "wrangler": "2.13.0"
   }
