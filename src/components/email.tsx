@@ -6,7 +6,7 @@ export const Email = () => {
     .reverse()
     .join('');
   return (
-    <a href="mailto:${email}">
+    <a href='mailto:${email}'>
       {' '}
       <span
         style={{

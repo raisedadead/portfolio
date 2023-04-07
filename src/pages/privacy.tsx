@@ -4,7 +4,7 @@ import { Email } from '../components/email';
 import { Footer } from '../components/footer';
 
 const Terms: NextPage = () => (
-  <main className="hover:prose-a:text-gray-900; prose prose-sm prose-gray mx-auto my-auto max-w-4xl p-16 px-4 text-gray-700 prose-a:text-gray-500">
+  <main className='hover:prose-a:text-gray-900; prose prose-sm prose-gray mx-auto my-auto max-w-4xl p-16 px-4 text-gray-700 prose-a:text-gray-500'>
     <h1>Privacy Policy</h1>
     <p>Last updated: Nov 11, 2022</p>
     <p>
@@ -93,9 +93,9 @@ const Terms: NextPage = () => (
           <strong>Website</strong> refers to Mrugesh Mohapatra, Co, accessible
           from{' '}
           <a
-            href="https://mrugesh.dev"
-            rel="external nofollow noopener noreferrer"
-            target="_blank"
+            href='https://mrugesh.dev'
+            rel='external nofollow noopener noreferrer'
+            target='_blank'
           >
             https://mrugesh.dev
           </a>
@@ -177,9 +177,9 @@ const Terms: NextPage = () => (
         please read &quot;Where can I change the settings for disabling, or
         deleting local shared objects?&quot; available at{' '}
         <a
-          href="https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_"
-          rel="external nofollow noopener noreferrer"
-          target="_blank"
+          href='https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_'
+          rel='external nofollow noopener noreferrer'
+          target='_blank'
         >
           https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_
         </a>
@@ -463,9 +463,9 @@ const Terms: NextPage = () => (
           For more information on the privacy practices of Google, please visit
           the Google Privacy &amp; Terms web page:{' '}
           <a
-            href="https://policies.google.com/privacy"
-            rel="external nofollow noopener noreferrer"
-            target="_blank"
+            href='https://policies.google.com/privacy'
+            rel='external nofollow noopener noreferrer'
+            target='_blank'
           >
             https://policies.google.com/privacy
           </a>
@@ -503,9 +503,9 @@ const Terms: NextPage = () => (
         <p>
           Their Privacy Policy can be viewed at{' '}
           <a
-            href="https://www.paypal.com/webapps/mpp/ua/privacy-full"
-            rel="external nofollow noopener noreferrer"
-            target="_blank"
+            href='https://www.paypal.com/webapps/mpp/ua/privacy-full'
+            rel='external nofollow noopener noreferrer'
+            target='_blank'
           >
             https://www.paypal.com/webapps/mpp/ua/privacy-full
           </a>
@@ -518,9 +518,9 @@ const Terms: NextPage = () => (
         <p>
           Their Privacy Policy can be viewed at{' '}
           <a
-            href="https://razorpay.com/privacy/"
-            rel="external nofollow noopener noreferrer"
-            target="_blank"
+            href='https://razorpay.com/privacy/'
+            rel='external nofollow noopener noreferrer'
+            target='_blank'
           >
             https://razorpay.com/privacy/
           </a>

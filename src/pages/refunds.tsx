@@ -4,7 +4,7 @@ import { Email } from '../components/email';
 import { Footer } from '../components/footer';
 
 const Refunds: NextPage = () => (
-  <main className="hover:prose-a:text-gray-900; prose prose-sm prose-gray mx-auto my-auto max-w-4xl p-16 px-4 text-gray-700 prose-a:text-gray-500">
+  <main className='hover:prose-a:text-gray-900; prose prose-sm prose-gray mx-auto my-auto max-w-4xl p-16 px-4 text-gray-700 prose-a:text-gray-500'>
     <h1>Cancellation and Refund Policy</h1>
     <p>Last updated: Nov 11, 2022</p>
     <p>
@@ -49,7 +49,7 @@ const Refunds: NextPage = () => (
         <p>
           <strong>Website</strong> refers to Mrugesh Mohapatra, Co, accessible
           from{' '}
-          <a href="https://mrugesh.dev" target="_blank" rel="noreferrer">
+          <a href='https://mrugesh.dev' target='_blank' rel='noreferrer'>
             https://mrugesh.dev
           </a>
         </p>

@@ -18,34 +18,34 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
           © 2012-{new Date().getFullYear()} Mrugesh Mohapatra Co. — All rights
           reserved.
         </p>
-        <p className="mt-2">
+        <p className='mt-2'>
           {!defaultType && (
             <>
-              <Link href="/" aria-label="Home" className={anchorClass}>
+              <Link href='/' aria-label='Home' className={anchorClass}>
                 Home
               </Link>
               •
             </>
           )}
           <Link
-            href="/terms"
-            aria-label="Terms & Conditions"
+            href='/terms'
+            aria-label='Terms & Conditions'
             className={anchorClass}
           >
             Terms
           </Link>
           •
           <Link
-            href="/privacy"
-            aria-label="Privacy Policy"
+            href='/privacy'
+            aria-label='Privacy Policy'
             className={anchorClass}
           >
             Privacy
           </Link>
           •
           <Link
-            href="/refunds"
-            aria-label="Refunds & Cancellation Policy"
+            href='/refunds'
+            aria-label='Refunds & Cancellation Policy'
             className={anchorClass}
           >
             Refunds
