@@ -22,8 +22,8 @@ devDependencies:
     specifier: 0.5.0
     version: 0.5.0(vercel@28.18.2)
   '@cloudflare/workers-types':
-    specifier: 4.20230321.0
-    version: 4.20230321.0
+    specifier: 4.20230404.0
+    version: 4.20230404.0
   '@tailwindcss/forms':
     specifier: 0.5.3
     version: 0.5.3(tailwindcss@3.3.1)
@@ -1391,8 +1391,8 @@ packages:
       vercel: 28.18.2
     dev: true
 
-  /@cloudflare/workers-types@4.20230321.0:
-    resolution: {integrity: sha512-zyRFz9AUS0tbg3/kJ+3zxvp9fl/O9yOJlChih/o86hhOqRMcZVbWefYAvFPidRvYUHM5YTG1wjU1bF9FFckRVg==}
+  /@cloudflare/workers-types@4.20230404.0:
+    resolution: {integrity: sha512-fG3oaJX1icfsGV74nhx1+AC6opvZsGqnpx6FvrcVqQaBmCNkjKNqDRFrpasXWFiOIvysBXHKQAzsAJkBZgnM+A==}
     dev: true
 
   /@cspotcode/source-map-support@0.8.1:
