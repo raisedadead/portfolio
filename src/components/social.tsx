@@ -1,11 +1,10 @@
+import { CustomLink as Link } from './custom-link';
 export const Social = () => (
   <div className='mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-2 space-y-0'>
-    <a
+    <Link
       aria-label='Twitter'
       className='inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-gray-500 backdrop-blur-sm hover:bg-gray-500 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-500 md:px-4 md:py-2'
       href='https://twitter.com/raisedadead'
-      rel='noopener noreferrer external'
-      target='_blank'
       type='button'
     >
       <span className='sr-only'>Twitter</span>
@@ -17,13 +16,11 @@ export const Social = () => (
       >
         <path d='M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84' />
       </svg>
-    </a>
-    <a
+    </Link>
+    <Link
       aria-label='Github'
       className='inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-gray-500 backdrop-blur-sm hover:bg-gray-500 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-500 md:px-4 md:py-2'
       href='https://github.com/raisedadead'
-      rel='noopener noreferrer external'
-      target='_blank'
       type='button'
     >
       <span className='sr-only'>GitHub</span>
@@ -39,13 +36,11 @@ export const Social = () => (
           clipRule='evenodd'
         />
       </svg>
-    </a>
-    <a
+    </Link>
+    <Link
       aria-label='Instagram'
       className='inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-gray-500 backdrop-blur-sm hover:bg-gray-500 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-500 md:px-4 md:py-2'
       href='https://instagram.com/raisedadead'
-      rel='noopener noreferrer external'
-      target='_blank'
       type='button'
     >
       <span className='sr-only'>Instagram</span>
@@ -61,13 +56,11 @@ export const Social = () => (
           clipRule='evenodd'
         />
       </svg>
-    </a>
-    <a
+    </Link>
+    <Link
       aria-label='LinkedIn'
       className='inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-gray-500 backdrop-blur-sm hover:bg-gray-500 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-500 md:px-4 md:py-2'
       href='https://linkedin.com/in/mrugeshm'
-      rel='noopener noreferrer external'
-      target='_blank'
       type='button'
     >
       <span className='sr-only'>LinkedIn</span>
@@ -83,6 +76,6 @@ export const Social = () => (
           clipRule='evenodd'
         />
       </svg>
-    </a>
+    </Link>
   </div>
 );

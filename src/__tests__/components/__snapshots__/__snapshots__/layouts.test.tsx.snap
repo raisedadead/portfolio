@@ -1,0 +1,868 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> matches snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="fixed inset-0 -z-10"
+      >
+        <div
+          class="-z-50 h-screen w-screen bg-orange-200"
+        >
+          <svg
+            class="transition delay-150 duration-300 ease-in-out"
+            height="100%"
+            id="svg"
+            preserveAspectRatio="none"
+            viewBox="0 0 1000 800"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              id="one"
+            >
+              <lineargradient
+                gradientUnits="userSpaceOnUse"
+                id="svg1"
+                x1="-207.2916"
+                x2="1991.9283"
+                y1="270.9562"
+                y2="270.9562"
+              >
+                <stop
+                  offset="0"
+                  style="stop-color: rgb(50, 222, 212);"
+                />
+                <stop
+                  offset="1"
+                  style="stop-color: rgb(50, 222, 212); stop-opacity: 0;"
+                />
+              </lineargradient>
+              <path
+                d="M-206.084,515.811c0,0,217.208-66.007,453.867,3c0.017,0.005,0.034,0.01,0.051,0.015 c118.716,34.611,243.627,53.152,366.838,35.887c136.417-19.115,258.875-65.218,397.701-35.334 c107.947,23.237,196.916,83.712,311.488,53.499c122.896-32.409,228.996-83.684,359.183-76.458 c111.262,6.176,199.042,51.051,308.884,10.389V-39.245h-2199.22L-206.084,515.811z"
+                fill="url(#svg1)"
+              />
+            </g>
+            <g
+              id="two"
+            >
+              <lineargradient
+                gradientUnits="userSpaceOnUse"
+                id="svg2"
+                x1="-306.3015"
+                x2="1892.9183"
+                y1="246.9538"
+                y2="246.9538"
+              >
+                <stop
+                  offset="0"
+                  style="stop-color: rgb(50, 222, 212);"
+                />
+                <stop
+                  offset="1"
+                  style="stop-color: rgb(50, 222, 212); stop-opacity: 0;"
+                />
+              </lineargradient>
+              <path
+                d="M-305.094,491.808c0,0,217.208-66.007,453.867,3c0.017,0.005,0.034,0.01,0.051,0.015 c118.716,34.611,243.627,53.152,366.838,35.887c136.417-19.115,258.875-65.218,397.701-35.334 c107.946,23.237,196.916,83.712,311.488,53.499c122.896-32.409,228.996-83.684,359.183-76.458 c111.262,6.176,199.041,51.051,308.884,10.389V-63.247h-2199.22L-305.094,491.808z"
+                fill="url(#svg2)"
+                opacity="0.5"
+              />
+            </g>
+            <g
+              id="three"
+            >
+              <lineargradient
+                gradientUnits="userSpaceOnUse"
+                id="svg3"
+                x1="-107.0737"
+                x2="2090.9382"
+                y1="237.9529"
+                y2="237.9529"
+              >
+                <stop
+                  offset="0"
+                  style="stop-color: rgb(50, 222, 212);"
+                />
+                <stop
+                  offset="1"
+                  style="stop-color: rgb(50, 222, 212); stop-opacity: 0;"
+                />
+              </lineargradient>
+              <path
+                d="M-107.074,466.23c0,0,217.208-61.538,453.867,2.797 c0.017,0.005,0.034,0.009,0.051,0.014c118.716,32.268,243.627,49.553,366.838,33.458c136.417-17.821,258.875-60.803,397.701-32.941 c107.947,21.664,196.916,78.045,311.488,49.876c122.896-30.215,228.996-78.018,359.183-71.281 c111.262,5.758,199.042,47.594,308.884,9.686V-51.246l-2194.283,0.088L-107.074,466.23z"
+                fill="url(#svg3)"
+                opacity="0.5"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <nav
+        class="fixed top-0 z-20 mx-auto w-screen border-b-white-50 border-b "
+      >
+        <ul
+          class="min-h-10 mx-auto flex max-w-[75%] justify-around p-4"
+        >
+          <li>
+            <a
+              aria-label=""
+              class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline"
+              href="/"
+              role="link"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              aria-label=""
+              class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline"
+              href="/contact"
+              role="link"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <main
+        class="relative z-10 mx-auto mb-10 mt-20 h-auto max-h-none w-[90%] overflow-y-auto rounded-sm  pt-16 lg:w-[75%] lg:pb-10 xl:w-[60%] border border-white bg-white/50 shadow-2xl shadow-black backdrop-blur-lg"
+      >
+        <div
+          class="px-20 pb-10 pt-5 "
+        >
+          <section>
+            <div
+              class="prose prose-stone max-w-none px-20 pb-20 pt-5"
+            >
+              <h1
+                class="py-2 text-center"
+              >
+                Blog
+              </h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel maximus lorem, in semper lacus. Praesent scelerisque vestibulum dui, eu facilisis dui dapibus vel.
+              </p>
+              <h2>
+                Consectetur Adipiscing Elit
+              </h2>
+              <p>
+                Integer fringilla ipsum vitae elit interdum, at fermentum odio consequat. Fusce eu felis vel metus commodo dapibus ut nec purus.
+              </p>
+              <h3>
+                Curabitur Venenatis
+              </h3>
+              <ul>
+                <li>
+                  Fusce eget ante vel lacus consequat laoreet.
+                </li>
+                <li>
+                  Mauris vitae magna sed odio cursus sodales.
+                </li>
+                <li>
+                  Phasellus semper enim sit amet ultricies consectetur.
+                </li>
+              </ul>
+              <h2>
+                Donec Velit Neque
+              </h2>
+              <p>
+                Donec velit neque, auctor et enim in, condimentum fermentum nisi. Morbi lacinia velit justo, nec tempus nulla porta quis. Vivamus dictum, risus at feugiat pharetra, erat sem cursus felis, id consectetur ante ipsum ac mi.
+              </p>
+              <h3>
+                Quisque Elementum
+              </h3>
+              <ol>
+                <li>
+                  Etiam commodo bibendum justo.
+                </li>
+                <li>
+                  Pellentesque non semper diam, nec convallis lacus.
+                </li>
+                <li>
+                  Integer in volutpat nunc, at ullamcorper erat.
+                </li>
+              </ol>
+              <h2>
+                Nunc Suscipit
+              </h2>
+              <table
+                class="border"
+              >
+                <thead>
+                  <tr>
+                    <th>
+                      Header 1
+                    </th>
+                    <th>
+                      Header 2
+                    </th>
+                    <th>
+                      Header 3
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Row 1, Cell 1
+                    </td>
+                    <td>
+                      Row 1, Cell 2
+                    </td>
+                    <td>
+                      Row 1, Cell 3
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Row 2, Cell 1
+                    </td>
+                    <td>
+                      Row 2, Cell 2
+                    </td>
+                    <td>
+                      Row 2, Cell 3
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Row 3, Cell 1
+                    </td>
+                    <td>
+                      Row 3, Cell 2
+                    </td>
+                    <td>
+                      Row 3, Cell 3
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3>
+                Etiam Malesuada
+              </h3>
+              <p>
+                Etiam malesuada sapien ut cursus convallis. Sed ullamcorper facilisis justo, et posuere elit convallis a. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+              </p>
+              <h2>
+                Integer Vitae
+              </h2>
+              <p>
+                Integer vitae ipsum vitae lacus lacinia, id congue justo convallis. Cras auctor sapien vitae turpis consequat ultrices. Fusce eu odio lorem. Duis scelerisque purus ac justo pharetra, eget tincidunt neque fringilla. Aenean nec ante turpis. Nulla facilisi.
+              </p>
+              <h3>
+                Maecenas Tincidunt
+              </h3>
+              <ul>
+                <li>
+                  Nulla non ligula non diam consequat consequat.
+                </li>
+                <li>
+                  Praesent quis massa in sem consequat aliquam.
+                </li>
+                <li>
+                  Ut ullamcorper libero at blandit fermentum.
+                </li>
+              </ul>
+              <h2>
+                Aliquam Eros
+              </h2>
+              <p>
+                Aliquam eros magna, ullamcorper et imperdiet id, euismod in mi. Fusce rhoncus metus ut ipsum posuere, sit amet porttitor est dapibus.
+              </p>
+              <h3>
+                Vestibulum Dapibus
+              </h3>
+              <ol>
+                <li>
+                  Vivamus euismod nunc vel lorem ullamcorper.
+                </li>
+                <li>
+                  Curabitur vehicula libero vel mi dapibus.
+                </li>
+                <li>
+                  In hac habitasse platea dictumst.
+                </li>
+              </ol>
+              <h2>
+                Sed Egestas
+              </h2>
+              <table
+                class="border"
+              >
+                <thead>
+                  <tr>
+                    <th>
+                      Column A
+                    </th>
+                    <th>
+                      Column B
+                    </th>
+                    <th>
+                      Column C
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Cell A1
+                    </td>
+                    <td>
+                      Cell B1
+                    </td>
+                    <td>
+                      Cell C1
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Cell A2
+                    </td>
+                    <td>
+                      Cell B2
+                    </td>
+                    <td>
+                      Cell C2
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Cell A3
+                    </td>
+                    <td>
+                      Cell B3
+                    </td>
+                    <td>
+                      Cell C3
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3>
+                Fusce Varius
+              </h3>
+              <p>
+                Fusce varius velit ac sapien malesuada, a tincidunt purus consequat. Nunc luctus dapibus justo, id consequat quam tincidunt vitae. Suspendisse potenti.
+              </p>
+              <h2>
+                Phasellus Eleifend
+              </h2>
+              <p>
+                Phasellus eleifend nulla ut sollicitudin blandit. Maecenas et bibendum erat, eu sollicitudin nisl. Integer porttitor libero id sem consectetur, eu accumsan est cursus.
+              </p>
+              <h4>
+                End.
+              </h4>
+            </div>
+          </section>
+        </div>
+        <footer
+          class="p-2"
+        >
+          <div
+            class="font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto"
+          >
+            <p>
+              © 2012-
+              2023
+               Mrugesh Mohapatra Co. — All rights reserved.
+            </p>
+            <p
+              class="mt-2"
+            >
+              <a
+                aria-label=""
+                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                href="/terms"
+                role="link"
+              >
+                Terms
+              </a>
+              •
+              <a
+                aria-label=""
+                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                href="/privacy"
+                role="link"
+              >
+                Privacy
+              </a>
+              •
+              <a
+                aria-label=""
+                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                href="/refunds"
+                role="link"
+              >
+                Refunds
+              </a>
+            </p>
+          </div>
+        </footer>
+      </main>
+      <div
+        class="fixed bottom-8 right-10 z-20 md:right-20 lg:right-48"
+      />
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="fixed inset-0 -z-10"
+    >
+      <div
+        class="-z-50 h-screen w-screen bg-orange-200"
+      >
+        <svg
+          class="transition delay-150 duration-300 ease-in-out"
+          height="100%"
+          id="svg"
+          preserveAspectRatio="none"
+          viewBox="0 0 1000 800"
+          width="100%"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            id="one"
+          >
+            <lineargradient
+              gradientUnits="userSpaceOnUse"
+              id="svg1"
+              x1="-207.2916"
+              x2="1991.9283"
+              y1="270.9562"
+              y2="270.9562"
+            >
+              <stop
+                offset="0"
+                style="stop-color: rgb(50, 222, 212);"
+              />
+              <stop
+                offset="1"
+                style="stop-color: rgb(50, 222, 212); stop-opacity: 0;"
+              />
+            </lineargradient>
+            <path
+              d="M-206.084,515.811c0,0,217.208-66.007,453.867,3c0.017,0.005,0.034,0.01,0.051,0.015 c118.716,34.611,243.627,53.152,366.838,35.887c136.417-19.115,258.875-65.218,397.701-35.334 c107.947,23.237,196.916,83.712,311.488,53.499c122.896-32.409,228.996-83.684,359.183-76.458 c111.262,6.176,199.042,51.051,308.884,10.389V-39.245h-2199.22L-206.084,515.811z"
+              fill="url(#svg1)"
+            />
+          </g>
+          <g
+            id="two"
+          >
+            <lineargradient
+              gradientUnits="userSpaceOnUse"
+              id="svg2"
+              x1="-306.3015"
+              x2="1892.9183"
+              y1="246.9538"
+              y2="246.9538"
+            >
+              <stop
+                offset="0"
+                style="stop-color: rgb(50, 222, 212);"
+              />
+              <stop
+                offset="1"
+                style="stop-color: rgb(50, 222, 212); stop-opacity: 0;"
+              />
+            </lineargradient>
+            <path
+              d="M-305.094,491.808c0,0,217.208-66.007,453.867,3c0.017,0.005,0.034,0.01,0.051,0.015 c118.716,34.611,243.627,53.152,366.838,35.887c136.417-19.115,258.875-65.218,397.701-35.334 c107.946,23.237,196.916,83.712,311.488,53.499c122.896-32.409,228.996-83.684,359.183-76.458 c111.262,6.176,199.041,51.051,308.884,10.389V-63.247h-2199.22L-305.094,491.808z"
+              fill="url(#svg2)"
+              opacity="0.5"
+            />
+          </g>
+          <g
+            id="three"
+          >
+            <lineargradient
+              gradientUnits="userSpaceOnUse"
+              id="svg3"
+              x1="-107.0737"
+              x2="2090.9382"
+              y1="237.9529"
+              y2="237.9529"
+            >
+              <stop
+                offset="0"
+                style="stop-color: rgb(50, 222, 212);"
+              />
+              <stop
+                offset="1"
+                style="stop-color: rgb(50, 222, 212); stop-opacity: 0;"
+              />
+            </lineargradient>
+            <path
+              d="M-107.074,466.23c0,0,217.208-61.538,453.867,2.797 c0.017,0.005,0.034,0.009,0.051,0.014c118.716,32.268,243.627,49.553,366.838,33.458c136.417-17.821,258.875-60.803,397.701-32.941 c107.947,21.664,196.916,78.045,311.488,49.876c122.896-30.215,228.996-78.018,359.183-71.281 c111.262,5.758,199.042,47.594,308.884,9.686V-51.246l-2194.283,0.088L-107.074,466.23z"
+              fill="url(#svg3)"
+              opacity="0.5"
+            />
+          </g>
+        </svg>
+      </div>
+    </div>
+    <nav
+      class="fixed top-0 z-20 mx-auto w-screen border-b-white-50 border-b "
+    >
+      <ul
+        class="min-h-10 mx-auto flex max-w-[75%] justify-around p-4"
+      >
+        <li>
+          <a
+            aria-label=""
+            class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline"
+            href="/"
+            role="link"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            aria-label=""
+            class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline"
+            href="/contact"
+            role="link"
+          >
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main
+      class="relative z-10 mx-auto mb-10 mt-20 h-auto max-h-none w-[90%] overflow-y-auto rounded-sm  pt-16 lg:w-[75%] lg:pb-10 xl:w-[60%] border border-white bg-white/50 shadow-2xl shadow-black backdrop-blur-lg"
+    >
+      <div
+        class="px-20 pb-10 pt-5 "
+      >
+        <section>
+          <div
+            class="prose prose-stone max-w-none px-20 pb-20 pt-5"
+          >
+            <h1
+              class="py-2 text-center"
+            >
+              Blog
+            </h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel maximus lorem, in semper lacus. Praesent scelerisque vestibulum dui, eu facilisis dui dapibus vel.
+            </p>
+            <h2>
+              Consectetur Adipiscing Elit
+            </h2>
+            <p>
+              Integer fringilla ipsum vitae elit interdum, at fermentum odio consequat. Fusce eu felis vel metus commodo dapibus ut nec purus.
+            </p>
+            <h3>
+              Curabitur Venenatis
+            </h3>
+            <ul>
+              <li>
+                Fusce eget ante vel lacus consequat laoreet.
+              </li>
+              <li>
+                Mauris vitae magna sed odio cursus sodales.
+              </li>
+              <li>
+                Phasellus semper enim sit amet ultricies consectetur.
+              </li>
+            </ul>
+            <h2>
+              Donec Velit Neque
+            </h2>
+            <p>
+              Donec velit neque, auctor et enim in, condimentum fermentum nisi. Morbi lacinia velit justo, nec tempus nulla porta quis. Vivamus dictum, risus at feugiat pharetra, erat sem cursus felis, id consectetur ante ipsum ac mi.
+            </p>
+            <h3>
+              Quisque Elementum
+            </h3>
+            <ol>
+              <li>
+                Etiam commodo bibendum justo.
+              </li>
+              <li>
+                Pellentesque non semper diam, nec convallis lacus.
+              </li>
+              <li>
+                Integer in volutpat nunc, at ullamcorper erat.
+              </li>
+            </ol>
+            <h2>
+              Nunc Suscipit
+            </h2>
+            <table
+              class="border"
+            >
+              <thead>
+                <tr>
+                  <th>
+                    Header 1
+                  </th>
+                  <th>
+                    Header 2
+                  </th>
+                  <th>
+                    Header 3
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Row 1, Cell 1
+                  </td>
+                  <td>
+                    Row 1, Cell 2
+                  </td>
+                  <td>
+                    Row 1, Cell 3
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Row 2, Cell 1
+                  </td>
+                  <td>
+                    Row 2, Cell 2
+                  </td>
+                  <td>
+                    Row 2, Cell 3
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Row 3, Cell 1
+                  </td>
+                  <td>
+                    Row 3, Cell 2
+                  </td>
+                  <td>
+                    Row 3, Cell 3
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>
+              Etiam Malesuada
+            </h3>
+            <p>
+              Etiam malesuada sapien ut cursus convallis. Sed ullamcorper facilisis justo, et posuere elit convallis a. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+            </p>
+            <h2>
+              Integer Vitae
+            </h2>
+            <p>
+              Integer vitae ipsum vitae lacus lacinia, id congue justo convallis. Cras auctor sapien vitae turpis consequat ultrices. Fusce eu odio lorem. Duis scelerisque purus ac justo pharetra, eget tincidunt neque fringilla. Aenean nec ante turpis. Nulla facilisi.
+            </p>
+            <h3>
+              Maecenas Tincidunt
+            </h3>
+            <ul>
+              <li>
+                Nulla non ligula non diam consequat consequat.
+              </li>
+              <li>
+                Praesent quis massa in sem consequat aliquam.
+              </li>
+              <li>
+                Ut ullamcorper libero at blandit fermentum.
+              </li>
+            </ul>
+            <h2>
+              Aliquam Eros
+            </h2>
+            <p>
+              Aliquam eros magna, ullamcorper et imperdiet id, euismod in mi. Fusce rhoncus metus ut ipsum posuere, sit amet porttitor est dapibus.
+            </p>
+            <h3>
+              Vestibulum Dapibus
+            </h3>
+            <ol>
+              <li>
+                Vivamus euismod nunc vel lorem ullamcorper.
+              </li>
+              <li>
+                Curabitur vehicula libero vel mi dapibus.
+              </li>
+              <li>
+                In hac habitasse platea dictumst.
+              </li>
+            </ol>
+            <h2>
+              Sed Egestas
+            </h2>
+            <table
+              class="border"
+            >
+              <thead>
+                <tr>
+                  <th>
+                    Column A
+                  </th>
+                  <th>
+                    Column B
+                  </th>
+                  <th>
+                    Column C
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Cell A1
+                  </td>
+                  <td>
+                    Cell B1
+                  </td>
+                  <td>
+                    Cell C1
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Cell A2
+                  </td>
+                  <td>
+                    Cell B2
+                  </td>
+                  <td>
+                    Cell C2
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Cell A3
+                  </td>
+                  <td>
+                    Cell B3
+                  </td>
+                  <td>
+                    Cell C3
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>
+              Fusce Varius
+            </h3>
+            <p>
+              Fusce varius velit ac sapien malesuada, a tincidunt purus consequat. Nunc luctus dapibus justo, id consequat quam tincidunt vitae. Suspendisse potenti.
+            </p>
+            <h2>
+              Phasellus Eleifend
+            </h2>
+            <p>
+              Phasellus eleifend nulla ut sollicitudin blandit. Maecenas et bibendum erat, eu sollicitudin nisl. Integer porttitor libero id sem consectetur, eu accumsan est cursus.
+            </p>
+            <h4>
+              End.
+            </h4>
+          </div>
+        </section>
+      </div>
+      <footer
+        class="p-2"
+      >
+        <div
+          class="font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto"
+        >
+          <p>
+            © 2012-
+            2023
+             Mrugesh Mohapatra Co. — All rights reserved.
+          </p>
+          <p
+            class="mt-2"
+          >
+            <a
+              aria-label=""
+              class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+              href="/terms"
+              role="link"
+            >
+              Terms
+            </a>
+            •
+            <a
+              aria-label=""
+              class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+              href="/privacy"
+              role="link"
+            >
+              Privacy
+            </a>
+            •
+            <a
+              aria-label=""
+              class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+              href="/refunds"
+              role="link"
+            >
+              Refunds
+            </a>
+          </p>
+        </div>
+      </footer>
+    </main>
+    <div
+      class="fixed bottom-8 right-10 z-20 md:right-20 lg:right-48"
+    />
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

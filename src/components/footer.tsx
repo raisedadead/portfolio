@@ -1,25 +1,26 @@
-import Link from 'next/link';
+import { CustomLink as Link } from './custom-link';
 
 export type FooterProps = {
-  defaultType?: boolean;
+  isDefault?: boolean;
+  className?: string;
 };
 export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
-  const { defaultType } = props;
-  const footerClass = defaultType
-    ? 'font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto mt-8'
-    : 'mt-8 text-center';
-  const anchorClass = defaultType
+  const { isDefault = false, className } = props;
+  const footerType = isDefault
+    ? 'font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto'
+    : 'text-center';
+  const anchorClass = isDefault
     ? 'text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2'
     : 'text-gray-500 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2 no-underline';
   return (
-    <footer className={footerClass}>
-      <div>
+    <footer className={className}>
+      <div className={footerType}>
         <p>
           © 2012-{new Date().getFullYear()} Mrugesh Mohapatra Co. — All rights
           reserved.
         </p>
         <p className='mt-2'>
-          {!defaultType && (
+          {!isDefault && (
             <>
               <Link href='/' aria-label='Home' className={anchorClass}>
                 Home

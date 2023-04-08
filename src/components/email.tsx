@@ -6,18 +6,16 @@ export const Email = () => {
     .reverse()
     .join('');
   return (
-    <a href='mailto:${email}'>
-      {' '}
-      <span
-        style={{
-          unicodeBidi: 'bidi-override',
-          direction: 'rtl',
-          textAlign: 'left'
-        }}
-      >
-        {email}
-      </span>
-    </a>
+    <span
+      className='font-medium underline'
+      style={{
+        unicodeBidi: 'bidi-override',
+        direction: 'rtl',
+        textAlign: 'left'
+      }}
+    >
+      {email}
+    </span>
   );
 };
 
