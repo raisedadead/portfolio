@@ -73,7 +73,7 @@ const Home: NextPage = () => {
                   target='_blank'
                   type='button'
                 >
-                  More...
+                  More
                 </a>
               </div>
               <p className='text-slate-600-0 mx-auto p-0 text-sm font-medium text-slate-600 lg:mt-4'>
