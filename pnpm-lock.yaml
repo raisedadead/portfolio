@@ -19,8 +19,8 @@ dependencies:
 
 devDependencies:
   '@cloudflare/next-on-pages':
-    specifier: 0.5.0
-    version: 0.5.0(vercel@28.18.2)
+    specifier: 0.7.0
+    version: 0.7.0(vercel@28.18.2)
   '@cloudflare/workers-types':
     specifier: 4.20230404.0
     version: 4.20230404.0
@@ -1377,8 +1377,8 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@0.5.0(vercel@28.18.2):
-    resolution: {integrity: sha512-xr1JrBF9yYmxQF7ry62Jov075X8k8cVgHXI1ZCxU3opln+ETAUnc7ALC047XJeXw0VNw5OLdUQYzshTU7KG8IA==}
+  /@cloudflare/next-on-pages@0.7.0(vercel@28.18.2):
+    resolution: {integrity: sha512-AhsBexY9+UjoJDa6XxFjxdSEbPUAl8yXbRWJUc8+KTZBo2kd4ti4aJ50H+Zl1XF9JOjHPwdPYnnxHBF2zXLhww==}
     hasBin: true
     peerDependencies:
       vercel: ^28.0.2
@@ -1388,7 +1388,10 @@ packages:
       chokidar: 3.5.3
       cookie: 0.5.0
       esbuild: 0.15.18
+      js-yaml: 4.1.0
       vercel: 28.18.2
+      zod: 3.21.4
+      zodcli: 0.0.4(zod@3.21.4)
     dev: true
 
   /@cloudflare/workers-types@4.20230404.0:
@@ -10053,6 +10056,12 @@ packages:
     hasBin: true
     dev: true
 
+  /typescript@4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
   /typescript@5.0.4:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
     engines: {node: '>=12.20'}
@@ -10642,7 +10651,15 @@ packages:
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
-    dev: false
+
+  /zodcli@0.0.4(zod@3.21.4):
+    resolution: {integrity: sha512-+WdBcf7Z19ueKI/w9SbxRXGyPnn5Fg/hc2nvOL3YKwcnhL2dvp58MvZwScvJS/Zqt4ePwSOLajboFG6su8BM8w==}
+    peerDependencies:
+      zod: ^3.21.4
+    dependencies:
+      typescript: 4.9.5
+      zod: 3.21.4
+    dev: true
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
