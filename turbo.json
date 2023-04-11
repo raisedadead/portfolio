@@ -1,0 +1,21 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "outputs": [".next/**", "!.next/cache/**"],
+      "dependsOn": ["lint"]
+    },
+    "build:for-edge": {
+      "dependsOn": ["lint"],
+      "outputs": [".vercel/output/**"]
+    },
+    "lint": {},
+    "test": {
+      "dependsOn": ["lint"]
+    },
+    "dev": {
+      "persistent": true,
+      "cache": false
+    }
+  }
+}
