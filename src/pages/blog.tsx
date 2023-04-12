@@ -3,6 +3,10 @@ import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
 import { fetchUserArticles } from '../utils/fetch-posts';
 
+export const config = {
+  runtime: 'experimental-edge'
+};
+
 type Post = {
   title: string;
   link: string;
