@@ -63,10 +63,19 @@ jobs:
         env:
           CI: true
 
-  deploy:
-    name: Deploy
+      - name: Tar Files
+        run: tar -cf build.tar .next
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
+        with:
+          name: build
+          path: build.tar
+
+  build-for-edge:
+    name: Build for Edge
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [lint, test]
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -107,6 +116,31 @@ jobs:
           pnpm turbo build:for-edge
         env:
           CI: true
+
+      - name: Tar Files
+        run: tar -cf build-for-edge.tar .vercel/output/static
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
+        with:
+          name: build-for-edge
+          path: build-for-edge.tar
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [build-for-edge]
+
+    steps:
+      - name: Download Artifact from build
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3
+        with:
+          name: build-for-edge
+
+      - name: Extract Artifact
+        run: |
+          tar -xf build-for-edge.tar
+          rm build-for-edge.tar
 
       - name: Publish to Cloudflare Pages
         id: deploy
