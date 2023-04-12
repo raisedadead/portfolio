@@ -65,7 +65,7 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
             Let&apos;s Work Together!
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             href='/blog'
             aria-label='Recent Articles'
@@ -73,7 +73,7 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
           >
             Recent Articles
           </Link>
-        </li>
+        </li> */}
         {/* <li>
           <Link href='/uses' aria-label='Uses' className={anchorClass}>
             Uses

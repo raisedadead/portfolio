@@ -139,16 +139,6 @@ exports[`Home renders a snapshot of the homepage 1`] = `
           Let's Work Together!
         </a>
       </li>
-      <li>
-        <a
-          aria-label=""
-          class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline"
-          href="/blog"
-          role="link"
-        >
-          Recent Articles
-        </a>
-      </li>
     </ul>
   </nav>
   <main
