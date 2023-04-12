@@ -106,11 +106,27 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       <li>
         <a
           aria-label=""
-          class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline"
+          class="inline-flex items-center text-sm"
           href="/"
           role="link"
         >
-          Home
+          <span
+            class="sr-only"
+          >
+            Home
+          </span>
+          <svg
+            aria-hidden="true"
+            class="h-6 w-6"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M5 22h14a2 2 0 0 0 2-2v-9a1 1 0 0 0-.29-.71l-8-8a1 1 0 0 0-1.41 0l-8 8A1 1 0 0 0 3 11v9a2 2 0 0 0 2 2zm5-2v-5h4v5zm-5-8.59 7-7 7 7V20h-3v-5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v5H5z"
+              fill-rule="evenodd"
+            />
+          </svg>
         </a>
       </li>
       <li>
@@ -120,7 +136,17 @@ exports[`Home renders a snapshot of the homepage 1`] = `
           href="/contact"
           role="link"
         >
-          Contact
+          Let's Work Together!
+        </a>
+      </li>
+      <li>
+        <a
+          aria-label=""
+          class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline"
+          href="/blog"
+          role="link"
+        >
+          Recent Articles
         </a>
       </li>
     </ul>
@@ -362,6 +388,15 @@ exports[`Home renders a snapshot of the homepage 1`] = `
             role="link"
           >
             Refunds
+          </a>
+          •
+          <a
+            aria-label=""
+            class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+            href="/contact"
+            role="link"
+          >
+            Contact
           </a>
         </p>
       </div>
