@@ -3,7 +3,7 @@ import { CustomLink as Link } from './custom-link';
 
 export const Profile: React.FC = () => {
   return (
-    <div className='flex flex-col items-center justify-center text-center'>
+    <div className='flex flex-col items-center justify-center py-10 text-center'>
       <div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
