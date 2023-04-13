@@ -489,12 +489,15 @@ const Terms: NextPage = () => (
     <p>
       We will not store or collect Your payment card details. That information
       is provided directly to Our third-party payment processors whose use of
-      Your personal information is governed by their Privacy Policy. These
-      payment processors adhere to the standards set by PCI-DSS as managed by
-      the PCI Security Standards Council, which is a joint effort of brands like
-      Visa, Mastercard, American Express and Discover. PCI-DSS requirements help
-      ensure the secure handling of payment information.
+      Your personal information is governed by their Privacy Policy.{' '}
     </p>
+    <p>
+      These payment processors adhere to the standards set by PCI-DSS as managed
+      by the PCI Security Standards Council, which is a joint effort of brands
+      like Visa, Mastercard, American Express and Discover. PCI-DSS requirements
+      help ensure the secure handling of payment information.
+    </p>
+    <p>The payment processors We use are:</p>
     <ul>
       <li>
         <p>
@@ -518,11 +521,26 @@ const Terms: NextPage = () => (
         <p>
           Their Privacy Policy can be viewed at{' '}
           <a
-            href='https://razorpay.com/privacy/'
+            href='https://razorpay.com/privacy'
             rel='external nofollow noopener noreferrer'
             target='_blank'
           >
-            https://razorpay.com/privacy/
+            https://razorpay.com/privacy
+          </a>
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Stripe</strong>
+        </p>
+        <p>
+          Their Privacy Policy can be viewed at{' '}
+          <a
+            href='https://stripe.com/en-in/privacy'
+            rel='external nofollow noopener noreferrer'
+            target='_blank'
+          >
+            https://stripe.com/en-in/privacy
           </a>
         </p>
       </li>

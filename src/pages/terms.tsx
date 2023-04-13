@@ -135,7 +135,10 @@ const Terms: NextPage = () => (
       Privacy Policy describes Our policies and procedures on the collection,
       use and disclosure of Your personal information when You use the
       Application or the Website and tells You about Your privacy rights and how
-      the law protects You. Please read our{' '}
+      the law protects You.{' '}
+    </p>
+    <p className='font-medium'>
+      Please read our{' '}
       <a href='https://mrugesh.dev/privacy' target='_blank' rel='noreferrer'>
         Privacy Policy
       </a>{' '}
@@ -166,7 +169,13 @@ const Terms: NextPage = () => (
       facilitating the completion of Your Order.
     </p>
     <h3>Refunds</h3>
-    <p>Please read our Cancellation and Refunds Policy.</p>
+    <p className='font-medium'>
+      Please read our{' '}
+      <a href='https://mrugesh.dev/refunds' target='_blank' rel='noreferrer'>
+        Cancellation and Refunds Policy
+      </a>{' '}
+      .
+    </p>
     <h3>Availability, Errors and Inaccuracies</h3>
     <p>
       We are constantly updating Our offerings of Products on the Service. The
