@@ -1,4 +1,4 @@
-import { gql, request } from 'graphql-request';
+import { gql, GraphQLClient } from 'graphql-request';
 
 const GET_USER_ARTICLES = gql`
   query GetUserArticles($page: Int!) {
@@ -39,10 +39,14 @@ type Post = {
 };
 
 export async function fetchUserArticles(page: number): Promise<Post[]> {
-  const url = 'https://api.hashnode.com';
-  const data = await request<UserArticlesResponse>(url, GET_USER_ARTICLES, {
-    page
-  });
+  const endpoint = 'https://api.hashnode.com';
+
+  const graphQLClient = new GraphQLClient(endpoint, { fetch });
+  const data = await graphQLClient.request<UserArticlesResponse>(
+    GET_USER_ARTICLES,
+    { page }
+  );
+
   const postsArray = data.user.publication.posts.map((post) => {
     return {
       title: post.title,
