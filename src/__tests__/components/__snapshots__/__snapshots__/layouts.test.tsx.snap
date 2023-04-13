@@ -115,7 +115,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               href="/"
               role="link"
             >
-              ls ~/
+              Home
             </a>
           </li>
           <li
@@ -127,7 +127,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               href="/contact"
               role="link"
             >
-              ~/hire.sh --now
+              Hire Me!
             </a>
           </li>
           <li
@@ -139,7 +139,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               href="/blog"
               role="link"
             >
-              ~/show.sh --recent
+              Recent Posts
             </a>
           </li>
           <li
@@ -151,7 +151,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               href="/uses"
               role="link"
             >
-              ~/uses.sh
+              Uses
             </a>
           </li>
         </ul>
@@ -556,7 +556,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               href="/"
               role="link"
             >
-              ls ~/
+              Home
             </a>
           </li>
           <li
@@ -568,7 +568,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               href="/contact"
               role="link"
             >
-              ~/hire.sh --now
+              Hire Me!
             </a>
           </li>
           <li
@@ -580,7 +580,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               href="/blog"
               role="link"
             >
-              ~/show.sh --recent
+              Recent Posts
             </a>
           </li>
           <li
@@ -592,7 +592,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               href="/uses"
               role="link"
             >
-              ~/uses.sh
+              Uses
             </a>
           </li>
         </ul>
@@ -998,7 +998,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             href="/"
             role="link"
           >
-            ls ~/
+            Home
           </a>
         </li>
         <li
@@ -1010,7 +1010,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             href="/contact"
             role="link"
           >
-            ~/hire.sh --now
+            Hire Me!
           </a>
         </li>
         <li
@@ -1022,7 +1022,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             href="/blog"
             role="link"
           >
-            ~/show.sh --recent
+            Recent Posts
           </a>
         </li>
         <li
@@ -1034,7 +1034,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             href="/uses"
             role="link"
           >
-            ~/uses.sh
+            Uses
           </a>
         </li>
       </ul>

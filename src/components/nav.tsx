@@ -40,12 +40,12 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
       <ul className='min-h-10 mx-auto flex max-w-[75%] justify-between'>
         <li className='h-full w-full'>
           <Link href='/' aria-label='Home' className={anchorClass}>
-            ls ~/
+            Home
           </Link>
         </li>
         <li className='h-full w-full'>
           <Link href='/contact' aria-label='Contact' className={anchorClass}>
-            ~/hire.sh --now
+            Hire Me!
           </Link>
         </li>
         <li className='h-full w-full'>
@@ -54,12 +54,12 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
             aria-label='Recent Articles'
             className={anchorClass}
           >
-            ~/show.sh --recent
+            Recent Posts
           </Link>
         </li>
         <li className='h-full w-full'>
           <Link href='/uses' aria-label='Uses' className={anchorClass}>
-            ~/uses.sh
+            Uses
           </Link>
         </li>
       </ul>
