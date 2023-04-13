@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CustomLink as Link } from './custom-link';
 
 const anchorClass =
-  'hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-2 no-underline';
+  'inline-flex py-1 px-1 justify-left h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600';
 
 type NavProps = {
   className?: string;
@@ -34,51 +34,34 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
   return (
     <nav
       className={`${className} border-b-white-50 border-b ${
-        showNavShadow ? ' backdrop-blur-lg' : ''
+        showNavShadow ? ' bg-white/30 backdrop-blur-lg' : ' bg-white/30'
       }`}
     >
-      <ul className='min-h-10 mx-auto flex max-w-[75%] justify-around p-4'>
-        <li>
-          <Link
-            href='/'
-            aria-label='Home'
-            className='inline-flex items-center text-sm'
-          >
-            {/* Home Emoji */}
-            <span className='sr-only'>Home</span>
-            <svg
-              className='h-6 w-6'
-              fill='currentColor'
-              viewBox='0 0 24 24'
-              aria-hidden='true'
-            >
-              <path
-                fillRule='evenodd'
-                d='M5 22h14a2 2 0 0 0 2-2v-9a1 1 0 0 0-.29-.71l-8-8a1 1 0 0 0-1.41 0l-8 8A1 1 0 0 0 3 11v9a2 2 0 0 0 2 2zm5-2v-5h4v5zm-5-8.59 7-7 7 7V20h-3v-5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v5H5z'
-                clipRule='evenodd'
-              ></path>
-            </svg>
+      <ul className='min-h-10 mx-auto flex max-w-[75%] justify-between'>
+        <li className='h-full w-full'>
+          <Link href='/' aria-label='Home' className={anchorClass}>
+            ls ~/
           </Link>
         </li>
-        <li>
+        <li className='h-full w-full'>
           <Link href='/contact' aria-label='Contact' className={anchorClass}>
-            Let&apos;s Work Together!
+            ~/hire.sh --now
           </Link>
         </li>
-        <li>
+        <li className='h-full w-full'>
           <Link
             href='/blog'
             aria-label='Recent Articles'
             className={anchorClass}
           >
-            Recent Articles
+            ~/show.sh --recent
           </Link>
         </li>
-        {/* <li>
+        <li className='h-full w-full'>
           <Link href='/uses' aria-label='Uses' className={anchorClass}>
-            Uses
+            ~/uses.sh
           </Link>
-        </li> */}
+        </li>
       </ul>
     </nav>
   );

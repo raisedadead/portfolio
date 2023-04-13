@@ -21,7 +21,7 @@ export const Layout: React.FC<LayoutProps> = ({
       <Nav className='fixed top-0 z-20 mx-auto w-screen' />
 
       <main
-        className={`relative z-10 mx-auto mb-10 mt-20 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-16 lg:w-[75%] xl:w-[60%] ${
+        className={`relative z-10 mx-auto mb-10 mt-12 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-16 lg:w-[75%] xl:w-[60%] ${
           showGlass
             ? ' rounded-3xl bg-white/60 backdrop-blur-lg'
             : ' rounded-3xl bg-white/30 backdrop-blur-lg'
