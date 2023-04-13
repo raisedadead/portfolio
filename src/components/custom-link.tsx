@@ -14,7 +14,7 @@ export const CustomLink: React.FC<CustomLinkProps> = ({
   children,
   href,
   type = '',
-  className = 'text-blue-500 hover:text-blue-700',
+  className = 'text-blue-500 hover:text-blue-700 inline-flex items-center',
   target = '_blank',
   ariaLabel = ''
 }) => {

@@ -25,8 +25,8 @@ const Blog = ({ posts }: Props) => {
   return (
     <Layout>
       <section>
-        <div className='prose pb-5 pt-5'>
-          <h1 className='px-8 text-2xl font-bold text-slate-600'>
+        <div className='prose prose-slate pb-5 pt-5'>
+          <h1 className='px-8 text-2xl font-bold text-slate-700'>
             Recent articles from my blog:
           </h1>
           <ul role='list' className='list-none divide-y divide-gray-200'>
@@ -40,7 +40,7 @@ const Blog = ({ posts }: Props) => {
                           {new Date(post.publishedDate).toDateString()} •{' '}
                           {post.totalReactions} reactions
                         </p>
-                        <h3 className="my-1 text-sm font-medium after:content-['_↗']">
+                        <h3 className="my-1 text-sm font-bold after:content-['_↗']">
                           {post.title}
                         </h3>
                         <p className='text-sm text-gray-500'>{post.content}</p>

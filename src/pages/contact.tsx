@@ -7,7 +7,7 @@ import Email from '../components/email';
 const Blog: NextPage = () => (
   <Layout>
     <section>
-      <div className='prose prose-stone max-w-none'>
+      <div className='prose prose-slate max-w-none'>
         <h1 className='py-2 text-center'>Let&apos;s work together!</h1>
         <h2>Hey there! 👋🏽</h2>
         <p>
@@ -80,26 +80,36 @@ const Blog: NextPage = () => (
         </p>
         <h4 className='mt-20 text-center'>Elsewhere on the internet</h4>
         <Social />
-        <h4 className='mt-10 text-center'>Business, Billing & Tax Details</h4>
-        <p className='mx-auto max-w-xl text-center text-sm'>
-          <span className='font-bold'>
-            [For Transactions made within India]
-          </span>{' '}
-          <br />
-          Details like GSTIN or other business-related information are available
-          in the documentation such as the pro-forma invoice, billing invoice,
-          etc. that I sent you on your email you provided.
-        </p>
-        <p className='mx-auto max-w-lg text-center text-sm'>
-          <span className='font-bold'>
-            [For Transactions made outside India]
-          </span>{' '}
-          <br />
-          Get in touch if you need any details like tax and billing information.
-          I will be happy to provide you with the same.
-        </p>
-        <p className='mx-auto max-w-lg text-center text-sm'>
-          You can reach me below for such queries
+        <h4 className='mx-auto mt-16 w-[74%] border-t border-gray-400 pt-8 text-center text-gray-500'>
+          Business, Billing & Tax Details
+        </h4>
+        <div className='mx-auto flex max-w-xl flex-col text-sm text-gray-500'>
+          <p>
+            <span className='font-medium'>
+              For Transactions made within India:
+            </span>
+            <br />
+            <span>
+              My GSTIN and other business-related information is available in
+              the documentation such as the pro-forma invoice, billing invoice,
+              etc. I will email such documents to you once I have received a
+              payment.
+            </span>
+          </p>
+          <p>
+            <span className='font-medium'>
+              For Transactions made outside India:
+            </span>
+            <br />
+            <span>
+              Please get in touch after you make a payment and I will provide
+              you with the necessary billing and tax information as per your
+              needs.
+            </span>
+          </p>
+        </div>
+        <p className='mx-auto max-w-lg text-center text-sm text-gray-500'>
+          You can reach me below for any queries
           <br />
           Email: <Email />
         </p>
