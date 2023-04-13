@@ -25,15 +25,15 @@ const Blog = ({ posts }: Props) => {
   return (
     <Layout>
       <section>
-        <div className='px-20 pb-20 pt-5'>
-          <h1 className='text-2xl font-bold text-slate-600'>
+        <div className='prose pb-5 pt-5'>
+          <h1 className='px-8 text-2xl font-bold text-slate-600'>
             Recent articles from my blog:
           </h1>
           <ul role='list' className='list-none divide-y divide-gray-200'>
             {posts.map((post, index) =>
               post.title && post.link ? (
                 <li className='py-4' key={index}>
-                  <Link href={post.link} className=''>
+                  <Link href={post.link} className='no-underline'>
                     <div className='flex space-y-1'>
                       <div className='flex flex-col justify-between'>
                         <p className='text-sm text-gray-500'>

@@ -132,7 +132,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       <li>
         <a
           aria-label=""
-          class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline"
+          class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-2 no-underline"
           href="/contact"
           role="link"
         >
@@ -142,7 +142,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       <li>
         <a
           aria-label=""
-          class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline"
+          class="hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-2 no-underline"
           href="/blog"
           role="link"
         >

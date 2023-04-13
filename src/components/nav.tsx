@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CustomLink as Link } from './custom-link';
 
 const anchorClass =
-  'hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-20 no-underline';
+  'hover:text-gray-800 rounded-sm hover:bg-orange-300 py-2 px-2 no-underline';
 
 type NavProps = {
   className?: string;
