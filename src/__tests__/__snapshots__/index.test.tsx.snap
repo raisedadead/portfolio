@@ -98,17 +98,17 @@ exports[`Home renders a snapshot of the homepage 1`] = `
     </div>
   </div>
   <nav
-    class="fixed top-0 z-20 mx-auto w-screen border-b-white-50 border-b  bg-white/30"
+    class="fixed top-0 z-20 mx-auto max-h-none w-screen border-b-white-50 border-b  bg-white/30"
   >
     <ul
-      class="min-h-10 mx-auto flex max-w-[75%] justify-between"
+      class="min-h-10 mx-auto flex"
     >
       <li
         class="h-full w-full"
       >
         <a
           aria-label=""
-          class="inline-flex py-1 px-1 justify-left h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
           href="/"
           role="link"
         >
@@ -120,23 +120,11 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       >
         <a
           aria-label=""
-          class="inline-flex py-1 px-1 justify-left h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
-          href="/contact"
-          role="link"
-        >
-          Hire Me!
-        </a>
-      </li>
-      <li
-        class="h-full w-full"
-      >
-        <a
-          aria-label=""
-          class="inline-flex py-1 px-1 justify-left h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
           href="/blog"
           role="link"
         >
-          Recent Posts
+          Posts
         </a>
       </li>
       <li
@@ -144,20 +132,32 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       >
         <a
           aria-label=""
-          class="inline-flex py-1 px-1 justify-left h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
           href="/uses"
           role="link"
         >
           Uses
         </a>
       </li>
+      <li
+        class="h-full w-full"
+      >
+        <a
+          aria-label=""
+          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+          href="/contact"
+          role="link"
+        >
+          Hire Me!
+        </a>
+      </li>
     </ul>
   </nav>
   <main
-    class="relative z-10 mx-auto mb-10 mt-12 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-16 lg:w-[75%] xl:w-[60%]  rounded-3xl bg-white/30 backdrop-blur-lg"
+    class="relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%]  rounded-3xl bg-white/30 backdrop-blur-lg"
   >
     <div
-      class="px-20 pb-10 pt-5 "
+      class="px-5 pb-5 pt-5 md:px-20 "
     >
       <div
         class="flex flex-col items-center justify-center py-10 text-center"

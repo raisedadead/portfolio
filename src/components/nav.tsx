@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CustomLink as Link } from './custom-link';
 
 const anchorClass =
-  'inline-flex py-1 px-1 justify-left h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600';
+  'inline-flex py-1 px-1 justify-center h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600';
 
 type NavProps = {
   className?: string;
@@ -37,15 +37,10 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
         showNavShadow ? ' bg-white/30 backdrop-blur-lg' : ' bg-white/30'
       }`}
     >
-      <ul className='min-h-10 mx-auto flex max-w-[75%] justify-between'>
+      <ul className='min-h-10 mx-auto flex'>
         <li className='h-full w-full'>
           <Link href='/' aria-label='Home' className={anchorClass}>
             Home
-          </Link>
-        </li>
-        <li className='h-full w-full'>
-          <Link href='/contact' aria-label='Contact' className={anchorClass}>
-            Hire Me!
           </Link>
         </li>
         <li className='h-full w-full'>
@@ -54,12 +49,17 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
             aria-label='Recent Articles'
             className={anchorClass}
           >
-            Recent Posts
+            Posts
           </Link>
         </li>
         <li className='h-full w-full'>
           <Link href='/uses' aria-label='Uses' className={anchorClass}>
             Uses
+          </Link>
+        </li>
+        <li className='h-full w-full'>
+          <Link href='/contact' aria-label='Contact' className={anchorClass}>
+            Hire Me!
           </Link>
         </li>
       </ul>
