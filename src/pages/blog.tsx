@@ -23,9 +23,7 @@ const fetcher = async (url: string) => {
 };
 
 const Blog: NextPage = () => {
-  const { data: posts, error } = useSWR('/api/hashnode', fetcher, {
-    refreshInterval: 1000 * 60 * 60 * 6 // 6 hours
-  });
+  const { data: posts, error } = useSWR('/api/hashnode', fetcher);
 
   if (error) {
     return (
