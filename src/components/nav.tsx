@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CustomLink as Link } from './custom-link';
 
 const anchorClass =
-  'inline-flex py-1 px-1 justify-center h-full w-full hover:bg-black/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600';
+  'inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600';
 
 type NavProps = {
   className?: string;
