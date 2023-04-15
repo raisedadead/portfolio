@@ -80,7 +80,9 @@ export const hashnodeHandler = async () => {
     {
       status: 200,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        // Cache for 6 hours
+        'Cache-Control': 'max-age=21600'
       }
     }
   );
