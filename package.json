@@ -15,10 +15,7 @@
     "test": "jest .",
     "lint": "prettier --check --plugin-search-dir=. . && eslint .",
     "format": "prettier --write --plugin-search-dir=. .",
-    "prepare": "husky install",
-    "turbo:dev": "turbo dev",
-    "turbo:build": "turbo build",
-    "turbo:build:for-edge": "turbo build:for-edge"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [

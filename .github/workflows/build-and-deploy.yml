@@ -5,6 +5,7 @@ on:
     branches:
       - main
   pull_request:
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 jobs:
@@ -19,10 +20,11 @@ jobs:
   # This job is a quick sanity check to ensure that the build is working.
   # This can be expanded to include e2e testing later.
   build:
-    name: Build
+    name: Build (Normal)
     runs-on: ubuntu-latest
     needs: [lint, test]
     env:
+      CI: true
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
@@ -40,43 +42,56 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - name: Cache
         uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
-            ~/.npm
-            ~/.pnpm-store
+            ${{ steps.pnpm-cache.outputs.STORE_PATH }}
             ${{ github.workspace }}/.next/cache
+            ${{ github.workspace }}/.vercel/output/static
+            ${{ github.workspace }}/.vercel/output/functions
           # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
 
-      - name: Install dependencies and Build (regular)
+      - name: Install dependencies
         run: |
           pnpm install
+
+      - name: Build (Normal)
+        run: |
           pnpm turbo build
-        env:
-          CI: true
 
-      - name: Tar Files
-        run: tar -cf build.tar .next
+      # - name: Tar Files
+      #   run: tar -cf build.tar .next
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
-        with:
-          name: build
-          path: build.tar
+      # - name: Upload build artifacts
+      #   uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
+      #   with:
+      #     name: build
+      #     path: build.tar
 
   build-for-edge:
-    name: Build for Edge
+    name: Build (for Edge)
     runs-on: ubuntu-latest
     needs: [lint, test]
     env:
+      CI: true
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
@@ -94,28 +109,40 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - name: Cache
         uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
-            ~/.npm
-            ~/.pnpm-store
+            ${{ steps.pnpm-cache.outputs.STORE_PATH }}
             ${{ github.workspace }}/.next/cache
+            ${{ github.workspace }}/.vercel/output/static
+            ${{ github.workspace }}/.vercel/output/functions
           # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
 
-      - name: Install dependencies and Build (for Cloudflare Pages)
+      - name: Install dependencies
         run: |
           pnpm install
+
+      - name: Build (for Cloudflare Pages)
+        run: |
           pnpm turbo build:for-edge
-        env:
-          CI: true
 
       - name: Tar Files
         run: tar -cf build-for-edge.tar .vercel/output/static
@@ -132,6 +159,9 @@ jobs:
     needs: [build-for-edge]
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
+
       - name: Download Artifact from build
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3
         with:
@@ -152,7 +182,6 @@ jobs:
           directory: .vercel/output/static
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref_name }}
 
     outputs:
       issue-number: ${{ github.event.pull_request.number }}
