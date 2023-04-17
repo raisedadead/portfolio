@@ -152,6 +152,7 @@ jobs:
           directory: .vercel/output/static
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
     outputs:
       issue-number: ${{ github.event.pull_request.number }}
