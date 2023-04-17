@@ -11,13 +11,13 @@ const Blog: NextPage = () => (
         <h1 className='py-2 text-center'>Let&apos;s work together!</h1>
         <h2>Hey there! 👋🏽</h2>
         <p>
-          I work full-time as the Principal Maintainer for Cloud Infrastructure
-          and Open-source at freeCodeCamp.org
+          I work full-time as the Principal Maintainer at freeCodeCamp.org and
+          help manage their cloud infrastructure and open-source platform.
         </p>
         <p>
-          I have spent years gaining tacit knowledge several areas. I have
-          advised teams and startups in their platform development and
-          go-to-market strategies.
+          I&apos;ve worked for over a decade in the tech industry. I&apos;ve
+          advised numerous teams and startups on platform development and
+          go-to-market strategies, driving success in their projects.
         </p>
         <p>
           {new Date().getFullYear() > 2023 ? 'In 2022, ' : 'Last year, '} I got
@@ -26,19 +26,20 @@ const Blog: NextPage = () => (
             Cloudverse 100: The people building the next generation of the
             internet
           </Link>{' '}
-          for my work in the Cloud Infrastructure and Open-Source space.
+          for my work in the &quot;Cloud Infrastructure&quot; and
+          &quot;Open-Source&quot; spaces.
         </p>
         <h3>How can I help you?</h3>
-        <p>I am happy to help you with any of the following:</p>
+        <p>Broadly, I am happy to help you with these:</p>
         <ul className='list-none'>
           <li>
-            <span>&#x1F4BB;</span> Software Development
+            <span>&#x1F4BB;</span> Full-stack Platform Development &amp; Design
           </li>
           <li>
             <span>&#x2601;</span> Cloud Infrastructure, DevOps &amp; DevSecOps
           </li>
           <li>
-            <span>&#x1F310;</span> Open-Source &amp; Community building
+            <span>&#x1F310;</span> Open-Source &amp; Community Building
           </li>
           <li>
             <span>&#x1F680;</span> and more...
@@ -47,13 +48,15 @@ const Blog: NextPage = () => (
         <p>
           Consider visiting my{' '}
           <Link href='https://linkedin.com/in/mrugeshm'>LinkedIn profile</Link>{' '}
-          which I keep updated with the latest skills I have been gaining.
+          which I keep updated with the latest skills I have been gaining. I am
+          a generalist and a curious technologist, never shy of learning new
+          things.
         </p>
         <h3>How can we work together?</h3>
         <p>
-          Please consider booking a slot to receive consulting or mentoring for
-          your project using the button below. There are free and paid options
-          available.
+          I am available for consulting, mentoring, and similar engagements.
+          Consider booking a session with me using the button below. I have both
+          free and paid sessions listed on the page.
         </p>
         <div className='flex'>
           <Link
