@@ -62,7 +62,7 @@
     "lint-staged": "13.2.1",
     "next-router-mock": "0.9.3",
     "postcss": "8.4.23",
-    "prettier": "2.8.7",
+    "prettier": "2.8.8",
     "prettier-plugin-tailwindcss": "0.2.7",
     "tailwindcss": "3.3.1",
     "turbo": "1.9.3",
