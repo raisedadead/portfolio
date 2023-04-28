@@ -40,8 +40,8 @@ dependencies:
 
 devDependencies:
   '@cloudflare/next-on-pages':
-    specifier: 0.8.0
-    version: 0.8.0(vercel@28.18.5)
+    specifier: 0.10.0
+    version: 0.10.0(vercel@28.18.5)
   '@cloudflare/workers-types':
     specifier: 4.20230404.0
     version: 4.20230404.0
@@ -1366,14 +1366,16 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@0.8.0(vercel@28.18.5):
-    resolution: {integrity: sha512-louT+EtC8i+x0F+iGk7BYm7GIWerqf4f3Uq9QHkH16TivY+07YYXa/4gidUmnSUxmoM3NZbRFPrmu/YGzdpRiw==}
+  /@cloudflare/next-on-pages@0.10.0(vercel@28.18.5):
+    resolution: {integrity: sha512-RWpJAom1XbBOcFSykwNyyoHYLJQYuRqa2nLP8T3DS3hZxc5efD1HEDTydNnzz2mkLzc/cfnV/UaniefxUbSwGQ==}
     hasBin: true
     peerDependencies:
       vercel: ^28.0.2
     dependencies:
       acorn: 8.8.2
+      ast-types: 0.14.2
       astring: 1.8.4
+      chalk: 5.2.0
       chokidar: 3.5.3
       cookie: 0.5.0
       esbuild: 0.15.18
@@ -3620,6 +3622,13 @@ packages:
 
   /ast-types@0.13.4:
     resolution: {integrity: sha512-x1FCFnFifvYDDzTaLII71vG5uvDwgtmDTEVWAxrgeiR8VjMONcCXJx7E+USjDtHlwFmt9MysbqgF9b9Vjr6w+w==}
+    engines: {node: '>=4'}
+    dependencies:
+      tslib: 2.4.0
+    dev: true
+
+  /ast-types@0.14.2:
+    resolution: {integrity: sha512-O0yuUDnZeQDL+ncNGlJ78BiO4jnYI3bvMsD5prT0/nsgijG/LpNBIr63gTjVTNsiGkgQhiyCShTgxt8oXOrklA==}
     engines: {node: '>=4'}
     dependencies:
       tslib: 2.4.0
