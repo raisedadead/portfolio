@@ -1,16 +1,16 @@
 import { Social } from './social';
 import { CustomLink as Link } from './custom-link';
+import Image from 'next/image';
 
 export const Profile: React.FC = () => {
   return (
     <div className='flex flex-col items-center justify-center py-10 text-center'>
-      <div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+      <div className='h-24 w-24 overflow-hidden rounded-full border-4 border-orange-300 shadow-lg shadow-black/50 backdrop-blur-lg md:h-32 md:w-32'>
+        <Image
           id='profile-image'
           alt="Mrugesh Mohapatra's profile picture."
-          src='/images/profile.jpg'
-          className='h-24 w-24 rounded-full border-4 border-orange-300 shadow-lg shadow-black/50 backdrop-blur-lg md:h-32 md:w-32'
+          src='/images/profile.webp'
+          fill={true}
         />
       </div>
       <div className='mt-6 -rotate-12 transform md:mt-20'>

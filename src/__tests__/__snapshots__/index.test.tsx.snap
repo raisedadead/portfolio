@@ -162,12 +162,19 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       <div
         class="flex flex-col items-center justify-center py-10 text-center"
       >
-        <div>
+        <div
+          class="h-24 w-24 overflow-hidden rounded-full border-4 border-orange-300 shadow-lg shadow-black/50 backdrop-blur-lg md:h-32 md:w-32"
+        >
           <img
             alt="Mrugesh Mohapatra's profile picture."
-            class="h-24 w-24 rounded-full border-4 border-orange-300 shadow-lg shadow-black/50 backdrop-blur-lg md:h-32 md:w-32"
+            data-nimg="fill"
+            decoding="async"
             id="profile-image"
-            src="/images/profile.jpg"
+            loading="lazy"
+            sizes="100vw"
+            src="/_next/image?url=%2Fimages%2Fprofile.webp&w=3840&q=75"
+            srcset="/_next/image?url=%2Fimages%2Fprofile.webp&w=640&q=75 640w, /_next/image?url=%2Fimages%2Fprofile.webp&w=750&q=75 750w, /_next/image?url=%2Fimages%2Fprofile.webp&w=828&q=75 828w, /_next/image?url=%2Fimages%2Fprofile.webp&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Fprofile.webp&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Fprofile.webp&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Fprofile.webp&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Fprofile.webp&w=3840&q=75 3840w"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </div>
         <div
