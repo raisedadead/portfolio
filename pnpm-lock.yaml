@@ -41,7 +41,7 @@ dependencies:
 devDependencies:
   '@cloudflare/next-on-pages':
     specifier: 0.10.0
-    version: 0.10.0(vercel@29.0.1)
+    version: 0.10.0(vercel@29.0.3)
   '@cloudflare/workers-types':
     specifier: 4.20230404.0
     version: 4.20230404.0
@@ -127,8 +127,8 @@ devDependencies:
     specifier: 5.0.4
     version: 5.0.4
   vercel:
-    specifier: 29.0.1
-    version: 29.0.1(@types/node@18.16.3)
+    specifier: 29.0.3
+    version: 29.0.3(@types/node@18.16.3)
   wrangler:
     specifier: 2.17.0
     version: 2.17.0
@@ -1371,7 +1371,7 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@0.10.0(vercel@29.0.1):
+  /@cloudflare/next-on-pages@0.10.0(vercel@29.0.3):
     resolution: {integrity: sha512-RWpJAom1XbBOcFSykwNyyoHYLJQYuRqa2nLP8T3DS3hZxc5efD1HEDTydNnzz2mkLzc/cfnV/UaniefxUbSwGQ==}
     hasBin: true
     peerDependencies:
@@ -1385,7 +1385,7 @@ packages:
       cookie: 0.5.0
       esbuild: 0.15.18
       js-yaml: 4.1.0
-      vercel: 29.0.1(@types/node@18.16.3)
+      vercel: 29.0.3(@types/node@18.16.3)
       zod: 3.21.4
       zodcli: 0.0.4(zod@3.21.4)
     dev: true
@@ -3217,8 +3217,8 @@ packages:
     resolution: {integrity: sha512-1rzFB664G6Yzp7j4ezW9hvVjqnaU2BhyUdhchbsxtRuxkMpGgPBZKhjzRQHFvlmkz37XLC658T5Nb1P91b4sBw==}
     dev: true
 
-  /@vercel/next@3.8.0:
-    resolution: {integrity: sha512-N9XP/Dhqc55Z58sksqS91SsxdGEid/nmrf6ulQRND1hJWZswNm80oFVxswoNrXrIkHJeCRWBwQdnUsPsxnVUyA==}
+  /@vercel/next@3.8.2:
+    resolution: {integrity: sha512-tTcfAC+C+3la1g2UJW0cm9lGEU1Mq5O0x73MLQPKWpoHOHqZYjbKBCUm5nAFKnaMSvWS1kFm9b0v1iKQk28mGA==}
     dev: true
 
   /@vercel/nft@0.22.5:
@@ -10724,8 +10724,8 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /vercel@29.0.1(@types/node@18.16.3):
-    resolution: {integrity: sha512-X6QkEiMYjeEJMOn4VRYTYa7xSstVTAQbfjVq47u/hNzeaXotlmz6Auz19cDTlXoNw78oV26RuyiNNMzmCjewFQ==}
+  /vercel@29.0.3(@types/node@18.16.3):
+    resolution: {integrity: sha512-wKc9Ee5jNQAVRNFGen9zAzF/RaaeIJ1dcd5Zkz55CjjunI5UA2+zTYTBbUEqFNyrrRWrBDcqreNfq5/AgiA5BA==}
     engines: {node: '>= 14'}
     hasBin: true
     requiresBuild: true
@@ -10733,7 +10733,7 @@ packages:
       '@vercel/build-utils': 6.7.2
       '@vercel/go': 2.5.1
       '@vercel/hydrogen': 0.0.64
-      '@vercel/next': 3.8.0
+      '@vercel/next': 3.8.2
       '@vercel/node': 2.14.0
       '@vercel/python': 3.1.60
       '@vercel/redwood': 1.1.15
