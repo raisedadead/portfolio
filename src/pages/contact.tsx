@@ -15,9 +15,10 @@ const Blog: NextPage = () => (
           help manage their cloud infrastructure and open-source platform.
         </p>
         <p>
-          I&apos;ve worked for over a decade in the tech industry. I&apos;ve
-          advised numerous teams and startups on platform development and
-          go-to-market strategies, driving success in their projects.
+          I have extensive experience in the tech industry, spanning over 10
+          years. During this time, I have guided various teams and startups on
+          how to develop platforms and go-to-market strategies, enabling them to
+          succeed in their projects.
         </p>
         <p>
           {new Date().getFullYear() > 2023 ? 'In 2022, ' : 'Last year, '} I got
@@ -47,16 +48,16 @@ const Blog: NextPage = () => (
         </ul>
         <p>
           Consider visiting my{' '}
-          <Link href='https://linkedin.com/in/mrugeshm'>LinkedIn profile</Link>{' '}
-          which I keep updated with the latest skills I have been gaining. I am
-          a generalist and a curious technologist, never shy of learning new
-          things.
+          <Link href='https://linkedin.com/in/mrugeshm'>LinkedIn profile,</Link>{' '}
+          where I keep my skills and experiences up to date. As a confident and
+          curious technologist, I always seek ways to expand my knowledge and
+          abilities.
         </p>
         <h3>How can we work together?</h3>
         <p>
-          I am available for consulting, mentoring, and similar engagements.
-          Consider booking a session with me using the button below. I have both
-          free and paid sessions listed on the page.
+          I am available to offer consulting, mentoring, and similar services.
+          You can book a session with me by clicking the button below. On the
+          page, you can find both free and paid sessions available.
         </p>
         <div className='flex'>
           <Link
@@ -69,17 +70,18 @@ const Blog: NextPage = () => (
           </Link>
         </div>
         <p>
-          We can walk through your needs, and do as many follow-ups as you need
-          (usually at additional no-charge). If you think we could be working
-          long-term just go ahead and make an appointment using the same link,
-          we can discuss the details on the same call.
+          I am here to assist you with your needs and can provide as many
+          follow-ups as necessary at no additional cost. If we establish a
+          long-term working relationship, feel free to schedule another
+          appointment using the same link. We can discuss the specifics during
+          the call.
         </p>
         <p>
-          I am also available for speaking engagements, workshops, and
-          conferences. Please reach out to me on{' '}
+          I am open to speaking engagements, workshops, and conferences. If
+          you&apos;re interested, contact me on{' '}
           <Link href='https://twitter.com/mrugeshm'>Twitter</Link> or{' '}
           <Link href='https://linkedin.com/in/mrugeshm'>LinkedIn</Link> to
-          discuss.
+          discuss this.
         </p>
         <h4 className='mt-20 text-center'>Elsewhere on the internet</h4>
         <Social />
