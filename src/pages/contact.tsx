@@ -21,7 +21,8 @@ const Blog: NextPage = () => (
         </p>
         <p>
           {new Date().getFullYear() > 2023 ? 'In 2022, ' : 'Last year, '} I got
-          featured in the{' '}
+          featured in an article by the renowned publication &quot;Insider
+          Business&quot;, titled{' '}
           <Link href='https://www.businessinsider.com/cloudverse-100-top-people-building-the-next-generation-internet-2022-11'>
             Cloudverse 100: The people building the next generation of the
             internet
@@ -61,7 +62,7 @@ const Blog: NextPage = () => (
         <div className='flex'>
           <Link
             aria-label='Schedule a call'
-            className='mx-auto w-[50%] rounded-md bg-orange-500 p-2 text-center font-medium text-slate-100 no-underline backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800'
+            className='mx-auto w-[50%] rounded-md border border-solid border-orange-100 bg-orange-500 p-2 text-center font-medium text-slate-100 no-underline shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800'
             href='https://topmate.io/mrugesh'
             type='button'
           >
