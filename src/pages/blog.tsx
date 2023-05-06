@@ -87,7 +87,7 @@ const Blog: NextPage = () => {
                       {new Date(post.dateAdded).toDateString()} •{' '}
                       {post.totalReactions} reactions
                     </p>
-                    <h3 className="my-1 text-sm font-bold after:content-['_↗']">
+                    <h3 className="my-1 text-sm font-bold text-blue-600 after:content-['_↗']">
                       {post.title}
                     </h3>
                     <p className='text-sm text-gray-500'>{post.brief}</p>

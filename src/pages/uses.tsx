@@ -30,7 +30,10 @@ const Uses: NextPage = () => {
               >
                 <p>
                   I daily drive the{' '}
-                  <Link href='https://support.apple.com/kb/SP854?locale=en_US'>
+                  <Link
+                    className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                    href='https://support.apple.com/kb/SP854?locale=en_US'
+                  >
                     MacBook Pro (14-inch, 2021)
                   </Link>
                   . I use it for work, personal projects, and everything in
@@ -54,7 +57,10 @@ const Uses: NextPage = () => {
               >
                 <p>
                   The{' '}
-                  <Link href='https://deskpi.com/collections/deskpi-super6c'>
+                  <Link
+                    className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                    href='https://deskpi.com/collections/deskpi-super6c'
+                  >
                     DeskPi Super6C
                   </Link>{' '}
                   is a <strong>Raspberry Pi Compute Module 4 </strong>
@@ -82,11 +88,17 @@ const Uses: NextPage = () => {
               >
                 <p>
                   I used to daily drive the{' '}
-                  <Link href='http://web.archive.org/web/20200619220029/https://www.pcmag.com/reviews/dell-xps-15-9500'>
+                  <Link
+                    className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                    href='http://web.archive.org/web/20200619220029/https://www.pcmag.com/reviews/dell-xps-15-9500'
+                  >
                     Dell XPS 15 9500
                   </Link>{' '}
                   running Windows for a few years. In fact, I had been rocking a{' '}
-                  <Link href='https://hn.mrugesh.dev/how-to-dual-boot-dell-xps-9500-windows-and-linux'>
+                  <Link
+                    className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                    href='https://hn.mrugesh.dev/how-to-dual-boot-dell-xps-9500-windows-and-linux'
+                  >
                     dual-boot setup
                   </Link>{' '}
                   for a while. These days, I have turned into a Proxmox VE-based
@@ -117,7 +129,10 @@ const Uses: NextPage = () => {
                 <li>
                   <p>
                     For a good half a decade (2016-2020), I used a{' '}
-                    <Link href='https://support.apple.com/kb/SP715?locale=en_US'>
+                    <Link
+                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                      href='https://support.apple.com/kb/SP715?locale=en_US'
+                    >
                       MacBook Pro (Retina, 13-inch, Early 2015)
                     </Link>{' '}
                     as my sole computer - Sadly it died in 2022. I&apos;ll miss
@@ -126,7 +141,10 @@ const Uses: NextPage = () => {
                 </li>
                 <li>
                   <p>
-                    <Link href='http://web.archive.org/web/20120925105640/http://notebooks.com/2012/07/10/lenovo-ideapad-u310-review/'>
+                    <Link
+                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                      href='http://web.archive.org/web/20120925105640/http://notebooks.com/2012/07/10/lenovo-ideapad-u310-review/'
+                    >
                       Lenovo IdeaPad U310
                     </Link>{' '}
                     - It boots, but I don&apos;t use it anymore.
@@ -138,29 +156,44 @@ const Uses: NextPage = () => {
               <ES title='Peripherals'>
                 <ul className='list-none'>
                   <li>
-                    <Link href='https://www.amazon.in/dp/B07V867LW4'>
+                    <Link
+                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                      href='https://www.amazon.in/dp/B07V867LW4'
+                    >
                       Dell WD19TB Thunderbolt Dock
                     </Link>
                     - 180W Power Delivery, Dual 4K@60Hz, Gigabit LAN
                   </li>
                   <li>
-                    <Link href='https://www.amazon.in/dp/B08196YFMK'>
+                    <Link
+                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                      href='https://www.amazon.in/dp/B08196YFMK'
+                    >
                       Logitech MX Keys
                     </Link>
                   </li>
                   <li>
-                    <Link href='https://www.amazon.in/dp/B071YZJ1G1'>
+                    <Link
+                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                      href='https://www.amazon.in/dp/B071YZJ1G1'
+                    >
                       Logitech MX Master 2S
                     </Link>
                   </li>
                   <li>
-                    <Link href='https://www.amazon.in/dp/B08J5X2LV4'>
+                    <Link
+                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                      href='https://www.amazon.in/dp/B08J5X2LV4'
+                    >
                       LG 27UK650-W
                     </Link>{' '}
                     27&quot; 4K UHD LED Monitors <strong>— x 2 nos.</strong>
                   </li>
                   <li>
-                    <Link href='https://www.amazon.in/dp/B01JOFKL0A'>
+                    <Link
+                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+                      href='https://www.amazon.in/dp/B01JOFKL0A'
+                    >
                       Cannon Pixma AIO Wireless Printer
                     </Link>
                   </li>

@@ -10,14 +10,14 @@ export const Profile: React.FC = () => {
           id='profile-image'
           alt="Mrugesh Mohapatra's profile picture."
           src='/images/profile.jpg'
-          className='h-24 w-24 rounded-full border-4 border-orange-300 shadow-lg shadow-black/50 backdrop-blur-lg md:h-32 md:w-32'
+          className='h-24 w-24 rounded-full border-4 border-orange-200 shadow-[5px_2px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg md:h-32 md:w-32'
         />
       </div>
       <div className='mt-6 -rotate-12 transform md:mt-20'>
         <h1 className='-mt-2 rotate-12 transform text-2xl font-bold text-slate-600 md:-mt-16 md:text-4xl'>
           {'Mrugesh Mohapatra'.toLowerCase()}
         </h1>
-        <div className='m-1 mx-auto -mt-7 w-2/5 rounded-full border-8 border-orange-300 bg-orange-300' />
+        <div className='m-1 mx-auto -mt-7 w-2/5 rounded-full border-8 border-orange-200 bg-orange-200' />
       </div>
       <h2 className='mt-2 max-w-md p-1 text-lg font-bold text-slate-600'>
         nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
@@ -26,7 +26,7 @@ export const Profile: React.FC = () => {
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link
           href='https://www.freecodecamp.org'
-          className='hover:test-gray-50 -ml-1 p-1 text-slate-600 underline decoration-orange-300 underline-offset-4 hover:rounded-sm hover:bg-orange-300 hover:text-slate-800 hover:no-underline'
+          className='hover:test-gray-50 -ml-1 p-1 text-slate-600 underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-4 hover:rounded-sm hover:bg-orange-300 hover:text-slate-800 hover:no-underline'
           aria-label='freecodecamp.org'
         >
           freeCodeCamp.org
