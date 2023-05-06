@@ -108,7 +108,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       >
         <a
           aria-label=""
-          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
           href="/"
           role="link"
         >
@@ -120,7 +120,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       >
         <a
           aria-label=""
-          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
           href="/blog"
           role="link"
         >
@@ -132,7 +132,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       >
         <a
           aria-label=""
-          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
           href="/uses"
           role="link"
         >
@@ -144,7 +144,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
       >
         <a
           aria-label=""
-          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+          class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
           href="/contact"
           role="link"
         >
@@ -165,7 +165,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
         <div>
           <img
             alt="Mrugesh Mohapatra's profile picture."
-            class="h-24 w-24 rounded-full border-4 border-orange-300 shadow-lg shadow-black/50 backdrop-blur-lg md:h-32 md:w-32"
+            class="h-24 w-24 rounded-full border-4 border-orange-200 shadow-[5px_2px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg md:h-32 md:w-32"
             id="profile-image"
             src="/images/profile.jpg"
           />
@@ -179,7 +179,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
             mrugesh mohapatra
           </h1>
           <div
-            class="m-1 mx-auto -mt-7 w-2/5 rounded-full border-8 border-orange-300 bg-orange-300"
+            class="m-1 mx-auto -mt-7 w-2/5 rounded-full border-8 border-orange-200 bg-orange-200"
           />
         </div>
         <h2
@@ -193,7 +193,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
           Principal Maintainer — Cloud Infrastructure & Open-source, 
           <a
             aria-label=""
-            class="hover:test-gray-50 -ml-1 p-1 text-slate-600 underline decoration-orange-300 underline-offset-4 hover:rounded-sm hover:bg-orange-300 hover:text-slate-800 hover:no-underline"
+            class="hover:test-gray-50 -ml-1 p-1 text-slate-600 underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-4 hover:rounded-sm hover:bg-orange-300 hover:text-slate-800 hover:no-underline"
             href="https://www.freecodecamp.org"
             role="link"
             target="_blank"

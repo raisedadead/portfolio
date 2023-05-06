@@ -23,7 +23,10 @@ const Blog: NextPage = () => (
           {new Date().getFullYear() > 2023 ? 'In 2022, ' : 'Last year, '} I got
           featured in an article by the renowned publication &quot;Insider
           Business&quot;, titled{' '}
-          <Link href='https://www.businessinsider.com/cloudverse-100-top-people-building-the-next-generation-internet-2022-11'>
+          <Link
+            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+            href='https://www.businessinsider.com/cloudverse-100-top-people-building-the-next-generation-internet-2022-11'
+          >
             Cloudverse 100: The people building the next generation of the
             internet
           </Link>{' '}
@@ -48,7 +51,12 @@ const Blog: NextPage = () => (
         </ul>
         <p>
           Consider visiting my{' '}
-          <Link href='https://linkedin.com/in/mrugeshm'>LinkedIn profile</Link>{' '}
+          <Link
+            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+            href='https://linkedin.com/in/mrugeshm'
+          >
+            LinkedIn profile
+          </Link>{' '}
           which I keep updated with the latest skills I have been gaining. I am
           a generalist and a curious technologist, never shy of learning new
           things.
@@ -78,9 +86,20 @@ const Blog: NextPage = () => (
         <p>
           I am also available for speaking engagements, workshops, and
           conferences. Please reach out to me on{' '}
-          <Link href='https://twitter.com/mrugeshm'>Twitter</Link> or{' '}
-          <Link href='https://linkedin.com/in/mrugeshm'>LinkedIn</Link> to
-          discuss.
+          <Link
+            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+            href='https://twitter.com/mrugeshm'
+          >
+            Twitter
+          </Link>{' '}
+          or{' '}
+          <Link
+            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+            href='https://linkedin.com/in/mrugeshm'
+          >
+            LinkedIn
+          </Link>{' '}
+          to discuss.
         </p>
         <h4 className='mt-20 text-center'>Elsewhere on the internet</h4>
         <Social />

@@ -111,7 +111,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           >
             <a
               aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
               href="/"
               role="link"
             >
@@ -123,7 +123,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           >
             <a
               aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
               href="/blog"
               role="link"
             >
@@ -135,7 +135,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           >
             <a
               aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
               href="/uses"
               role="link"
             >
@@ -147,7 +147,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           >
             <a
               aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
               href="/contact"
               role="link"
             >
@@ -552,7 +552,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           >
             <a
               aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
               href="/"
               role="link"
             >
@@ -564,7 +564,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           >
             <a
               aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
               href="/blog"
               role="link"
             >
@@ -576,7 +576,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           >
             <a
               aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
               href="/uses"
               role="link"
             >
@@ -588,7 +588,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           >
             <a
               aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
               href="/contact"
               role="link"
             >
@@ -994,7 +994,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         >
           <a
             aria-label=""
-            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
             href="/"
             role="link"
           >
@@ -1006,7 +1006,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         >
           <a
             aria-label=""
-            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
             href="/blog"
             role="link"
           >
@@ -1018,7 +1018,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         >
           <a
             aria-label=""
-            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
             href="/uses"
             role="link"
           >
@@ -1030,7 +1030,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         >
           <a
             aria-label=""
-            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-500/80 hover:text-slate-200 background-blur-sm items-center no-underline rounded-sm font-mono text-sm font-bold text-slate-600"
+            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
             href="/contact"
             role="link"
           >
