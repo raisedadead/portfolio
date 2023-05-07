@@ -62,7 +62,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
     <Disclosure as='div' className={className}>
       {({ open }) => (
         <div>
-          <Disclosure.Button className='text-md flex w-full justify-between rounded-lg text-left font-medium text-slate-700'>
+          <Disclosure.Button className='flex w-full justify-between rounded-lg text-left font-bold text-slate-700'>
             <div className='flex flex-row'>
               {title}
               {labels?.length ? <Labels labels={labels} /> : null}
@@ -73,7 +73,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
               <PlusSmallIcon className='h-5 w-5' aria-hidden='true' />
             )}
           </Disclosure.Button>
-          <Disclosure.Panel className='text-base text-slate-500'>
+          <Disclosure.Panel className='text-slate-500'>
             {children}
           </Disclosure.Panel>
         </div>

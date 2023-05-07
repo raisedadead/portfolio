@@ -7,17 +7,14 @@ const Uses: NextPage = () => {
   return (
     <Layout>
       <section>
-        <div className='prose prose-slate max-w-none'>
-          <h1 className='text-center text-2xl font-bold text-slate-700'>
+        <div className='prose prose-sm prose-slate max-w-none'>
+          <h1 className='text-center font-bold text-slate-700'>
             Everyday Day Carry
           </h1>
           <p className='text-center text-slate-500'>
-            A non-exhaustive list of hardware and software I use on a daily
-            basis.
+            A non-exhaustive list of stuff that I use on a daily basis.
           </p>
-          <h3 className='text-center text-xl font-bold text-slate-700'>
-            Hardware
-          </h3>
+          <h3 className='text-center font-bold text-slate-700'>Hardware</h3>
           <ul className='list-none'>
             <li>
               <ES

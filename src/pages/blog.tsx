@@ -27,8 +27,8 @@ const CommonContainer: React.FC<{
 }> = ({ children }) => (
   <Layout>
     <section>
-      <div className='prose prose-slate max-w-none'>
-        <h1 className='px-8 text-2xl font-bold text-slate-700'>
+      <div className='prose prose-sm prose-slate max-w-none'>
+        <h1 className='pl-6 font-bold text-slate-700'>
           Recent articles from my blog:
         </h1>
         <div className='px-0'>{children}</div>
@@ -44,7 +44,7 @@ const Blog: NextPage = () => {
     console.error('Error: ', error);
     return (
       <CommonContainer>
-        <div className='text-md px-8 text-gray-600'>
+        <div className='pl-6 text-gray-600'>
           <p>
             Sorry, We believe we facing issues fetching articles right now.
             Please try again in a bit. Thanks for your patience.
@@ -76,22 +76,22 @@ const Blog: NextPage = () => {
 
   return (
     <CommonContainer>
-      <ul role='list' className='list-none divide-y divide-gray-200'>
+      <ul role='list' className='divide-y divide-dashed divide-orange-600'>
         {posts.map((post: Post, index: number) =>
           post.title && post.link ? (
-            <li className='py-2' key={index}>
+            <li className='py-1' key={index}>
               <div className='flex space-y-1'>
                 <div className='flex flex-col justify-between'>
-                  <p className='text-sm text-gray-600'>
-                    {new Date(post.dateAdded).toDateString()} •{' '}
-                    {post.totalReactions} reactions
-                  </p>
                   <Link href={post.link} className='no-underline'>
-                    <h3 className="my-1 text-sm font-bold text-blue-600 after:content-['_↗'] hover:text-black">
+                    <h3 className="text-sm font-bold text-blue-600 after:content-['_↗'] hover:text-black">
                       {post.title}
                     </h3>
                   </Link>
                   <p className='text-sm text-black'>{post.brief}</p>
+                  <p className='text-sm text-gray-600'>
+                    {new Date(post.dateAdded).toDateString()} •{' '}
+                    {post.totalReactions} reactions
+                  </p>
                 </div>
               </div>
             </li>
