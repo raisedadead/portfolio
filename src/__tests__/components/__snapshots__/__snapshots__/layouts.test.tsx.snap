@@ -101,63 +101,47 @@ exports[`<Layout /> matches snapshot 1`] = `
         </div>
       </div>
       <nav
-        class="fixed top-0 z-20 mx-auto max-h-none w-screen border-b-white-50 border-b  bg-white/30"
+        class="fixed right-0 top-0 z-20 mx-auto max-h-none w-screen"
       >
-        <ul
-          class="min-h-10 mx-auto flex"
+        <div
+          class="absolute right-8 top-5 text-left md:right-20 lg:right-48"
+          data-headlessui-state=""
         >
-          <li
-            class="h-full w-full"
-          >
-            <a
-              aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-              href="/"
-              role="link"
+          <div>
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="flex items-center rounded border border-white bg-orange-200 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+              data-headlessui-state=""
+              id="headlessui-menu-button-:r0:"
+              type="button"
             >
-              Home
-            </a>
-          </li>
-          <li
-            class="h-full w-full"
-          >
-            <a
-              aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-              href="/blog"
-              role="link"
-            >
-              Posts
-            </a>
-          </li>
-          <li
-            class="h-full w-full"
-          >
-            <a
-              aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-              href="/uses"
-              role="link"
-            >
-              Uses
-            </a>
-          </li>
-          <li
-            class="h-full w-full"
-          >
-            <a
-              aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-              href="/contact"
-              role="link"
-            >
-              Hire Me!
-            </a>
-          </li>
-        </ul>
+              <span
+                class="sr-only"
+              >
+                Open navigation menu
+              </span>
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </nav>
       <main
-        class="relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 backdrop-blur-lg"
+        class="relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
       >
         <div
           class="px-5 pb-5 pt-5 md:px-20 "
@@ -442,7 +426,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         </footer>
       </main>
       <div
-        class="fixed bottom-8 right-10 z-20 md:right-20 lg:right-48"
+        class="fixed bottom-6 right-8 z-20 md:right-20 lg:right-48"
       />
     </div>
     <div>
@@ -542,63 +526,47 @@ exports[`<Layout /> matches snapshot 1`] = `
         </div>
       </div>
       <nav
-        class="fixed top-0 z-20 mx-auto max-h-none w-screen border-b-white-50 border-b  bg-white/30"
+        class="fixed right-0 top-0 z-20 mx-auto max-h-none w-screen"
       >
-        <ul
-          class="min-h-10 mx-auto flex"
+        <div
+          class="absolute right-8 top-5 text-left md:right-20 lg:right-48"
+          data-headlessui-state=""
         >
-          <li
-            class="h-full w-full"
-          >
-            <a
-              aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-              href="/"
-              role="link"
+          <div>
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="flex items-center rounded border border-white bg-orange-200 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+              data-headlessui-state=""
+              id="headlessui-menu-button-:r1:"
+              type="button"
             >
-              Home
-            </a>
-          </li>
-          <li
-            class="h-full w-full"
-          >
-            <a
-              aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-              href="/blog"
-              role="link"
-            >
-              Posts
-            </a>
-          </li>
-          <li
-            class="h-full w-full"
-          >
-            <a
-              aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-              href="/uses"
-              role="link"
-            >
-              Uses
-            </a>
-          </li>
-          <li
-            class="h-full w-full"
-          >
-            <a
-              aria-label=""
-              class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-              href="/contact"
-              role="link"
-            >
-              Hire Me!
-            </a>
-          </li>
-        </ul>
+              <span
+                class="sr-only"
+              >
+                Open navigation menu
+              </span>
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </nav>
       <main
-        class="relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 backdrop-blur-lg"
+        class="relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
       >
         <div
           class="px-5 pb-5 pt-5 md:px-20 "
@@ -883,7 +851,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         </footer>
       </main>
       <div
-        class="fixed bottom-8 right-10 z-20 md:right-20 lg:right-48"
+        class="fixed bottom-6 right-8 z-20 md:right-20 lg:right-48"
       />
     </div>
   </body>,
@@ -984,63 +952,47 @@ exports[`<Layout /> matches snapshot 1`] = `
       </div>
     </div>
     <nav
-      class="fixed top-0 z-20 mx-auto max-h-none w-screen border-b-white-50 border-b  bg-white/30"
+      class="fixed right-0 top-0 z-20 mx-auto max-h-none w-screen"
     >
-      <ul
-        class="min-h-10 mx-auto flex"
+      <div
+        class="absolute right-8 top-5 text-left md:right-20 lg:right-48"
+        data-headlessui-state=""
       >
-        <li
-          class="h-full w-full"
-        >
-          <a
-            aria-label=""
-            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-            href="/"
-            role="link"
+        <div>
+          <button
+            aria-expanded="false"
+            aria-haspopup="menu"
+            class="flex items-center rounded border border-white bg-orange-200 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+            data-headlessui-state=""
+            id="headlessui-menu-button-:r1:"
+            type="button"
           >
-            Home
-          </a>
-        </li>
-        <li
-          class="h-full w-full"
-        >
-          <a
-            aria-label=""
-            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-            href="/blog"
-            role="link"
-          >
-            Posts
-          </a>
-        </li>
-        <li
-          class="h-full w-full"
-        >
-          <a
-            aria-label=""
-            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-            href="/uses"
-            role="link"
-          >
-            Uses
-          </a>
-        </li>
-        <li
-          class="h-full w-full"
-        >
-          <a
-            aria-label=""
-            class="inline-flex py-1 px-1 justify-center h-full w-full hover:bg-orange-200 hover:text-slate-800 background-blur-sm items-center no-underline font-mono text-sm font-bold text-slate-600"
-            href="/contact"
-            role="link"
-          >
-            Hire Me!
-          </a>
-        </li>
-      </ul>
+            <span
+              class="sr-only"
+            >
+              Open navigation menu
+            </span>
+            <svg
+              aria-hidden="true"
+              class="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
     </nav>
     <main
-      class="relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 backdrop-blur-lg"
+      class="relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
     >
       <div
         class="px-5 pb-5 pt-5 md:px-20 "
@@ -1325,7 +1277,7 @@ exports[`<Layout /> matches snapshot 1`] = `
       </footer>
     </main>
     <div
-      class="fixed bottom-8 right-10 z-20 md:right-20 lg:right-48"
+      class="fixed bottom-6 right-8 z-20 md:right-20 lg:right-48"
     />
   </div>,
   "debug": [Function],
