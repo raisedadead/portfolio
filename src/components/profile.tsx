@@ -25,8 +25,8 @@ export const Profile: React.FC = () => {
       <h3 className='text-md mb-4 p-1 font-medium text-slate-600 '>
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link
-          href='https://www.freecodecamp.org'
-          className='hover:test-gray-50 -ml-1 p-1 text-slate-600 underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-4 hover:rounded-sm hover:bg-orange-300 hover:text-slate-800 hover:no-underline'
+          href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'
+          className='-ml-1 p-1 text-slate-600 underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-2 hover:text-white hover:decoration-white'
           aria-label='freecodecamp.org'
         >
           freeCodeCamp.org

@@ -96,6 +96,9 @@ devDependencies:
   husky:
     specifier: 8.0.3
     version: 8.0.3
+  is-ci:
+    specifier: 3.0.1
+    version: 3.0.1
   jest:
     specifier: 29.5.0
     version: 29.5.0(@types/node@18.16.5)
@@ -6639,6 +6642,13 @@ packages:
   /is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
+    dev: true
+
+  /is-ci@3.0.1:
+    resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
+    hasBin: true
+    dependencies:
+      ci-info: 3.7.1
     dev: true
 
   /is-core-module@2.12.0:
