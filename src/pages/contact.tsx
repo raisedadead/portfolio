@@ -24,7 +24,7 @@ const Blog: NextPage = () => (
           featured in an article by the renowned publication &quot;Insider
           Business&quot;, titled{' '}
           <Link
-            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
             href='https://www.businessinsider.com/cloudverse-100-top-people-building-the-next-generation-internet-2022-11'
           >
             Cloudverse 100: The people building the next generation of the
@@ -52,7 +52,7 @@ const Blog: NextPage = () => (
         <p>
           Consider visiting my{' '}
           <Link
-            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
             href='https://linkedin.com/in/mrugeshm'
           >
             LinkedIn profile
@@ -87,14 +87,14 @@ const Blog: NextPage = () => (
           I am also available for speaking engagements, workshops, and
           conferences. Please reach out to me on{' '}
           <Link
-            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
             href='https://twitter.com/mrugeshm'
           >
             Twitter
           </Link>{' '}
           or{' '}
           <Link
-            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2'
+            className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
             href='https://linkedin.com/in/mrugeshm'
           >
             LinkedIn
