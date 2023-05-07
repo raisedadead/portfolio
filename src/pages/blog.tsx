@@ -80,20 +80,20 @@ const Blog: NextPage = () => {
         {posts.map((post: Post, index: number) =>
           post.title && post.link ? (
             <li className='py-2' key={index}>
-              <Link href={post.link} className='no-underline'>
-                <div className='flex space-y-1'>
-                  <div className='flex flex-col justify-between'>
-                    <p className='text-sm text-gray-500'>
-                      {new Date(post.dateAdded).toDateString()} •{' '}
-                      {post.totalReactions} reactions
-                    </p>
-                    <h3 className="my-1 text-sm font-bold text-blue-600 after:content-['_↗']">
+              <div className='flex space-y-1'>
+                <div className='flex flex-col justify-between'>
+                  <p className='text-sm text-gray-600'>
+                    {new Date(post.dateAdded).toDateString()} •{' '}
+                    {post.totalReactions} reactions
+                  </p>
+                  <Link href={post.link} className='no-underline'>
+                    <h3 className="my-1 text-sm font-bold text-blue-600 after:content-['_↗'] hover:text-black">
                       {post.title}
                     </h3>
-                    <p className='text-sm text-gray-500'>{post.brief}</p>
-                  </div>
+                  </Link>
+                  <p className='text-sm text-black'>{post.brief}</p>
                 </div>
-              </Link>
+              </div>
             </li>
           ) : null
         )}
