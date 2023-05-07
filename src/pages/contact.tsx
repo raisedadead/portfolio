@@ -7,7 +7,7 @@ import Email from '../components/email';
 const Blog: NextPage = () => (
   <Layout>
     <section>
-      <div className='prose prose-slate max-w-none'>
+      <div className='prose prose-sm prose-slate max-w-none'>
         <h1 className='py-2 text-center'>Let&apos;s work together!</h1>
         <h2>Hey there! 👋🏽</h2>
         <p>
