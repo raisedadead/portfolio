@@ -81,8 +81,8 @@ export const hashnodeHandler = async () => {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        // Cache for 6 hours
-        'Cache-Control': 'max-age=21600'
+        'Cache-Control':
+          'max-age=604800, s-maxage=604800, stale-while-revalidate'
       }
     }
   );

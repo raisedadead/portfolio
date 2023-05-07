@@ -22,7 +22,7 @@ jobs:
   build:
     name: Build (Normal)
     runs-on: ubuntu-latest
-    needs: [lint, test]
+    needs: [test] # Dont need to depend on lint because it is already in turbo:build pipeline
     env:
       CI: true
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -60,9 +60,10 @@ jobs:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
             ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-            ${{ github.workspace }}/.next/cache
-            ${{ github.workspace }}/.vercel/output/static
-            ${{ github.workspace }}/.vercel/output/functions
+            ${{ github.workspace }}/.next
+            ${{ github.workspace }}/.turbo
+            ${{ github.workspace }}/.vercel
+            ${{ github.workspace }}/.vercel
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
@@ -75,7 +76,7 @@ jobs:
 
       - name: Build (Normal)
         run: |
-          pnpm turbo build
+          pnpm turbo:build
 
       # - name: Tar Files
       #   run: tar -cf build.tar .next
@@ -89,7 +90,7 @@ jobs:
   build-for-edge:
     name: Build (for Edge)
     runs-on: ubuntu-latest
-    needs: [lint, test]
+    needs: [test] # Dont need to depend on lint because it is already in turbo:build pipeline
     env:
       CI: true
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -127,9 +128,10 @@ jobs:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
             ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-            ${{ github.workspace }}/.next/cache
-            ${{ github.workspace }}/.vercel/output/static
-            ${{ github.workspace }}/.vercel/output/functions
+            ${{ github.workspace }}/.next
+            ${{ github.workspace }}/.turbo
+            ${{ github.workspace }}/.vercel
+            ${{ github.workspace }}/.vercel
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
@@ -142,7 +144,7 @@ jobs:
 
       - name: Build (for Cloudflare Pages)
         run: |
-          pnpm turbo build:for-edge
+          pnpm turbo:build:for-edge
 
       - name: Tar Files
         run: tar -cf build-for-edge.tar .vercel/output/static
