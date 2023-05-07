@@ -22,9 +22,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
       <main
         className={`relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%] ${
-          showGlass
-            ? ' rounded-3xl bg-white/60 backdrop-blur-lg'
-            : ' rounded-3xl bg-white/30 backdrop-blur-lg'
+          showGlass ? ' rounded bg-white/30 backdrop-blur-lg' : ''
         }`}
       >
         <div className='px-5 pb-5 pt-5 md:px-20 '>{children}</div>

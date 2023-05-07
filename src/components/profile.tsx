@@ -36,7 +36,7 @@ export const Profile: React.FC = () => {
       <div className='mb-4 mt-2 flex flex-col items-center justify-center space-y-2'>
         <Link
           aria-label='Schedule a call'
-          className='w-80 items-center rounded-md border border-solid border-orange-200 bg-orange-500 px-1 py-1 text-sm font-medium text-slate-100 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
+          className='w-80 items-center rounded-md border border-solid border-orange-50 bg-orange-500 px-1 py-1 text-sm font-medium text-white shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
           href='https://topmate.io/mrugesh'
           type='button'
         >
@@ -45,7 +45,7 @@ export const Profile: React.FC = () => {
         <div className='flex flex-row justify-between space-x-8'>
           <Link
             aria-label='Browse my blog'
-            className='w-36 items-center rounded-md border border-solid border-orange-200 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
+            className='w-36 items-center rounded-md border border-solid border-orange-50 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
             href='https://hn.mrugesh.dev'
             type='button'
           >
@@ -53,7 +53,7 @@ export const Profile: React.FC = () => {
           </Link>
           <Link
             aria-label='Ask me anything'
-            className='w-36 items-center rounded-md border border-solid border-orange-200 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
+            className='w-36 items-center rounded-md border border-solid border-orange-50 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
             href='https://bio.link/mrugesh'
             type='button'
           >

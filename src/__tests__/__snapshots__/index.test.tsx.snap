@@ -154,7 +154,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
     </ul>
   </nav>
   <main
-    class="relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%]  rounded-3xl bg-white/30 backdrop-blur-lg"
+    class="relative z-10 mx-auto mb-10 mt-16 h-auto max-h-none w-[90%] overflow-y-auto pb-10 pt-5 lg:w-[75%] xl:w-[60%] "
   >
     <div
       class="px-5 pb-5 pt-5 md:px-20 "
@@ -207,7 +207,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
         >
           <a
             aria-label=""
-            class="w-80 items-center rounded-md border border-solid border-orange-200 bg-orange-500 px-1 py-1 text-sm font-medium text-slate-100 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2"
+            class="w-80 items-center rounded-md border border-solid border-orange-50 bg-orange-500 px-1 py-1 text-sm font-medium text-white shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2"
             href="https://topmate.io/mrugesh"
             role="link"
             target="_blank"
@@ -220,7 +220,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
           >
             <a
               aria-label=""
-              class="w-36 items-center rounded-md border border-solid border-orange-200 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2"
+              class="w-36 items-center rounded-md border border-solid border-orange-50 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2"
               href="https://hn.mrugesh.dev"
               role="link"
               target="_blank"
@@ -230,7 +230,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
             </a>
             <a
               aria-label=""
-              class="w-36 items-center rounded-md border border-solid border-orange-200 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2"
+              class="w-36 items-center rounded-md border border-solid border-orange-50 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2"
               href="https://bio.link/mrugesh"
               role="link"
               target="_blank"
