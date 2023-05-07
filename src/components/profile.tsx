@@ -1,5 +1,10 @@
 import { Social } from './social';
 import { CustomLink as Link } from './custom-link';
+import {
+  BookmarkIcon,
+  ChatBubbleLeftRightIcon,
+  LinkIcon
+} from '@heroicons/react/24/solid';
 
 export const Profile: React.FC = () => {
   return (
@@ -40,7 +45,13 @@ export const Profile: React.FC = () => {
           href='https://topmate.io/mrugesh'
           type='button'
         >
-          Book a consulting session
+          <span className='inline-flex items-center'>
+            <ChatBubbleLeftRightIcon
+              className='mr-2 h-4 w-4'
+              aria-hidden='true'
+            />
+            Book a consulting session
+          </span>
         </Link>
         <div className='flex flex-row justify-between space-x-8'>
           <Link
@@ -49,7 +60,10 @@ export const Profile: React.FC = () => {
             href='https://hn.mrugesh.dev'
             type='button'
           >
-            Browse my blog
+            <span className='inline-flex items-center'>
+              <BookmarkIcon className='mr-2 h-3 w-3' aria-hidden='true' />
+              Blog
+            </span>
           </Link>
           <Link
             aria-label='Ask me anything'
@@ -57,7 +71,10 @@ export const Profile: React.FC = () => {
             href='https://bio.link/mrugesh'
             type='button'
           >
-            Links
+            <span className='inline-flex items-center'>
+              <LinkIcon className='mr-2 h-3 w-3' aria-hidden='true' />
+              Links
+            </span>
           </Link>
         </div>
       </div>

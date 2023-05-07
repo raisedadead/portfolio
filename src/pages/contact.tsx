@@ -3,6 +3,7 @@ import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
 import { Social } from '../components/social';
 import Email from '../components/email';
+import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
 
 const Blog: NextPage = () => (
   <Layout>
@@ -74,7 +75,13 @@ const Blog: NextPage = () => (
             href='https://topmate.io/mrugesh'
             type='button'
           >
-            Book a session
+            <span className='inline-flex items-center'>
+              <ChatBubbleLeftRightIcon
+                className='mr-2 h-4 w-4'
+                aria-hidden='true'
+              />
+              Book a consulting session
+            </span>
           </Link>
         </div>
         <p>

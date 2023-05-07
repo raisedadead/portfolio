@@ -197,7 +197,25 @@ exports[`Home renders a snapshot of the homepage 1`] = `
             target="_blank"
             type="button"
           >
-            Book a consulting session
+            <span
+              class="inline-flex items-center"
+            >
+              <svg
+                aria-hidden="true"
+                class="mr-2 h-4 w-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 00-1.032-.211 50.89 50.89 0 00-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 002.433 3.984L7.28 21.53A.75.75 0 016 21v-4.03a48.527 48.527 0 01-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979z"
+                />
+                <path
+                  d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 001.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0015.75 7.5z"
+                />
+              </svg>
+              Book a consulting session
+            </span>
           </a>
           <div
             class="flex flex-row justify-between space-x-8"
@@ -210,7 +228,24 @@ exports[`Home renders a snapshot of the homepage 1`] = `
               target="_blank"
               type="button"
             >
-              Browse my blog
+              <span
+                class="inline-flex items-center"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="mr-2 h-3 w-3"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                Blog
+              </span>
             </a>
             <a
               aria-label=""
@@ -220,7 +255,24 @@ exports[`Home renders a snapshot of the homepage 1`] = `
               target="_blank"
               type="button"
             >
-              Links
+              <span
+                class="inline-flex items-center"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="mr-2 h-3 w-3"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M19.902 4.098a3.75 3.75 0 00-5.304 0l-4.5 4.5a3.75 3.75 0 001.035 6.037.75.75 0 01-.646 1.353 5.25 5.25 0 01-1.449-8.45l4.5-4.5a5.25 5.25 0 117.424 7.424l-1.757 1.757a.75.75 0 11-1.06-1.06l1.757-1.757a3.75 3.75 0 000-5.304zm-7.389 4.267a.75.75 0 011-.353 5.25 5.25 0 011.449 8.45l-4.5 4.5a5.25 5.25 0 11-7.424-7.424l1.757-1.757a.75.75 0 111.06 1.06l-1.757 1.757a3.75 3.75 0 105.304 5.304l4.5-4.5a3.75 3.75 0 00-1.035-6.037.75.75 0 01-.354-1z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                Links
+              </span>
             </a>
           </div>
         </div>
