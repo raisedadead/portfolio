@@ -22,7 +22,7 @@ export const MetaHead = () => {
           itemProp='description'
           content='Namaste! I am a software engineer based out of Bengaluru, India. I am passionate about Aviation, Open Source, Education for All, and Site Reliability Engineering.'
         />
-        <meta itemProp='image' content='http://mrugesh.dev/cover.png' />
+        <meta itemProp='image' content='http://mrugesh.dev/og-image.webp' />
         {/* Facebook Meta Tags */}
         <meta property='og:url' content='https://mrugesh.dev' />
         <meta property='og:type' content='website' />
@@ -34,7 +34,7 @@ export const MetaHead = () => {
           property='og:description'
           content='Namaste! I am a software engineer based out of Bengaluru, India. I am passionate about Aviation, Open Source, Education for All, and Site Reliability Engineering.'
         />
-        <meta property='og:image' content='http://mrugesh.dev/cover.png' />
+        <meta property='og:image' content='http://mrugesh.dev/og-image.webp' />
         {/* Twitter Meta Tags */}
         <meta name='twitter:card' content='summary_large_image' />
         <meta
@@ -45,7 +45,7 @@ export const MetaHead = () => {
           name='twitter:description'
           content='Namaste! I am a software engineer based out of Bengaluru, India. I am passionate about Aviation, Open Source, Education for All, and Site Reliability Engineering.'
         />
-        <meta name='twitter:image' content='http://mrugesh.dev/cover.png' />
+        <meta name='twitter:image' content='http://mrugesh.dev/og-image.webp' />
       </Head>
       <Script
         id='google-analytics'
