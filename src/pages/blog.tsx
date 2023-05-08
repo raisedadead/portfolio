@@ -2,25 +2,11 @@ import React from 'react';
 import { NextPage } from 'next';
 import useSWR from 'swr';
 
-import type { Post } from './api/hashnode';
-
 import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
 
-const fetcher = async (url: string) => {
-  const res = await fetch(url);
-  const data: {
-    posts?: Post[];
-    message?: string;
-  } = await res.json();
-
-  if (res.status !== 200) {
-    const { message = 'An error occurred' } = data;
-    throw new Error(message);
-  }
-
-  return data.posts;
-};
+import { postsFetcher } from '../lib/posts-fetcher';
+import type { Post } from '../lib/posts-fetcher';
 
 const CommonContainer: React.FC<{
   children: React.ReactNode;
@@ -38,7 +24,10 @@ const CommonContainer: React.FC<{
 );
 
 const Blog: NextPage = () => {
-  const { data: posts, error } = useSWR('/api/hashnode', fetcher);
+  const { data: posts, error } = useSWR(
+    'https://api.hashnode.com',
+    postsFetcher
+  );
 
   if (error) {
     console.error('Error: ', error);
