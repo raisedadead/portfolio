@@ -101,14 +101,14 @@ exports[`Home renders a snapshot of the homepage 1`] = `
     class="fixed right-0 top-0 z-20 mx-auto max-h-none w-screen"
   >
     <div
-      class="absolute right-8 top-5 text-left md:right-20 lg:right-48"
+      class="absolute right-6 top-4 text-left sm:right-9 md:right-12 lg:right-48"
       data-headlessui-state=""
     >
       <div>
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="flex items-center rounded border border-white bg-orange-200 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+          class="flex items-center rounded border border-white bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
           data-headlessui-state=""
           id="headlessui-menu-button-:r3:"
           type="button"

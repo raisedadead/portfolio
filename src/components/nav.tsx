@@ -24,10 +24,10 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
     <nav className={`${className}`}>
       <Menu
         as='div'
-        className='absolute right-8 top-5 text-left md:right-20 lg:right-48'
+        className='absolute right-6 top-4 text-left sm:right-9 md:right-12 lg:right-48'
       >
         <div>
-          <Menu.Button className='flex items-center rounded border border-white bg-orange-200 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none'>
+          <Menu.Button className='flex items-center rounded border border-white bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none'>
             <span className='sr-only'>Open navigation menu</span>
             <Bars4Icon className='h-6 w-6' aria-hidden='true' />
           </Menu.Button>
