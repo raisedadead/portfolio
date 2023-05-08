@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import useSWR from 'swr';
 
@@ -8,86 +8,122 @@ import { CustomLink as Link } from '../components/custom-link';
 import { postsFetcher } from '../lib/posts-fetcher';
 import type { Post } from '../lib/posts-fetcher';
 
-const CommonContainer: React.FC<{
+const PageWrapper: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => (
   <Layout>
     <section>
-      <div className='prose prose-sm prose-slate max-w-none'>
-        <h1 className='pl-6 font-bold text-slate-700'>
+      <div className='container max-w-none'>
+        <h1 className='text-lg font-bold text-slate-600'>
           Recent articles from my blog:
         </h1>
-        <div className='px-0'>{children}</div>
+        <div className='px-0 py-4'>{children}</div>
       </div>
     </section>
   </Layout>
 );
 
+const ErrorBlock = () => (
+  <PageWrapper>
+    <div className='text-gray-600'>
+      <p>
+        Sorry, We believe we facing issues fetching articles right now. Please
+        try again in a bit. Thanks for your patience.
+      </p>
+      <p>Details of the error are logged in the developer console.</p>
+    </div>
+  </PageWrapper>
+);
+
+const SkeletonBlock = () => (
+  <PageWrapper>
+    <ul role='list' className='list-none divide-y divide-gray-200'>
+      <li className='py-4'>
+        <div role='status' className='max-w-sm animate-pulse'>
+          <div className='mb-2.5 h-2 max-w-[360px] bg-blue-600'></div>
+          <div className='mb-2.5 h-2 max-w-[330px] bg-gray-500'></div>
+          <div className='mb-2.5 h-2 max-w-[300px] bg-gray-500'></div>
+          <div className='mb-4 h-2 max-w-[360px] bg-gray-500'></div>
+          <div className='h-2 w-48 bg-gray-200 dark:bg-gray-500'></div>
+          <span className='sr-only'>Loading...</span>
+        </div>
+      </li>
+    </ul>
+  </PageWrapper>
+);
+
 const Blog: NextPage = () => {
-  const { data: posts, error } = useSWR(
-    'https://api.hashnode.com',
-    postsFetcher
+  const [pageIndex, setPageIndex] = useState(0);
+  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [disableLoadMore, setDisableLoadMore] = useState(false);
+
+  const { data: currentPosts, error } = useSWR(`${pageIndex}`, (key) =>
+    postsFetcher(key, pageIndex)
   );
+
+  useEffect(() => {
+    if (currentPosts) {
+      setPosts((prevPosts) => {
+        if (prevPosts) {
+          return [...prevPosts, ...currentPosts];
+        }
+        return currentPosts;
+      });
+    }
+    setDisableLoadMore(!currentPosts?.length);
+  }, [currentPosts]);
 
   if (error) {
     console.error('Error: ', error);
-    return (
-      <CommonContainer>
-        <div className='pl-6 text-gray-600'>
-          <p>
-            Sorry, We believe we facing issues fetching articles right now.
-            Please try again in a bit. Thanks for your patience.
-          </p>
-          <p>Details of the error are logged in the developer console.</p>
-        </div>
-      </CommonContainer>
-    );
+    return <ErrorBlock />;
   }
 
   if (!posts) {
-    return (
-      <CommonContainer>
-        <ul role='list' className='list-none divide-y divide-gray-200'>
-          <li className='py-4'>
-            <div role='status' className='max-w-sm animate-pulse'>
-              <div className='mb-4 h-2.5 w-48 rounded-full bg-gray-200 dark:bg-gray-500'></div>
-              <div className='mb-2.5 h-2 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700'></div>
-              <div className='mb-2.5 h-2 max-w-[330px] rounded-full bg-gray-200 dark:bg-gray-500'></div>
-              <div className='mb-2.5 h-2 max-w-[300px] rounded-full bg-gray-200 dark:bg-gray-500'></div>
-              <div className='h-2 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-500'></div>
-              <span className='sr-only'>Loading...</span>
-            </div>
-          </li>
-        </ul>
-      </CommonContainer>
-    );
+    return <SkeletonBlock />;
   }
 
   return (
-    <CommonContainer>
-      <ul role='list' className='divide-y divide-dashed divide-orange-600'>
+    <PageWrapper>
+      <ul role='list' className='list-none divide-y divide-slate-400'>
         {posts.map((post: Post, index: number) =>
-          post.title && post.link ? (
-            <li className='py-1' key={index}>
-              <div className='flex space-y-1'>
-                <div className='flex flex-col justify-between'>
-                  <Link href={post.link} className='no-underline'>
-                    <h3 className="text-sm font-bold text-blue-600 after:content-['_↗'] hover:text-black">
-                      {post.title}
-                    </h3>
-                  </Link>
-                  <p className='text-sm text-black'>{post.brief}</p>
-                  <p className='text-sm text-gray-600'>
-                    {new Date(post.dateAdded).toDateString()} •{' '}
-                    {post.totalReactions} reactions
-                  </p>
-                </div>
+          post.title && post.slug ? (
+            <li className='pb-2 pt-4' key={index}>
+              <div className='flex flex-col space-y-4'>
+                <Link
+                  href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
+                  className='no-underline'
+                >
+                  <h3 className="text-sm font-bold text-blue-600 after:content-['_↗'] hover:text-black">
+                    {post.title}
+                  </h3>
+                </Link>
+                <p className='text-sm text-slate-600'>{post.brief}</p>
+                <p className='text-sm text-slate-500'>
+                  {new Date(post.dateAdded).toDateString()}
+                  {post.totalReactions
+                    ? ` • ${post.totalReactions} reactions`
+                    : ''}
+                  {post.replyCount ? ` • ${post.replyCount} comments` : ''}
+                </p>
               </div>
             </li>
           ) : null
         )}
       </ul>
-    </CommonContainer>
+      <div className='flex justify-center py-5'>
+        <button
+          onClick={() => setPageIndex(pageIndex + 1)}
+          className='items-center rounded border border-solid border-orange-50 bg-orange-400 px-4 py-2 text-sm font-medium text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-50 disabled:hover:bg-gray-100 disabled:hover:text-black'
+          disabled={disableLoadMore}
+        >
+          {disableLoadMore ? (
+            <span>That&apos;s the end. No more articles.</span>
+          ) : (
+            <span>Load more articles...</span>
+          )}
+        </button>
+      </div>
+    </PageWrapper>
   );
 };
 
