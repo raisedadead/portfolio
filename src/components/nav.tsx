@@ -11,7 +11,7 @@ import {
 
 const links = [
   { href: '/', label: 'Home', icon: HomeIcon },
-  { href: '/blog', label: 'Posts', icon: BookOpenIcon },
+  { href: '/blog', label: 'Recent Posts', icon: BookOpenIcon },
   { href: '/uses', label: 'Uses', icon: CpuChipIcon },
   { href: '/contact', label: 'Hire Me!', icon: BriefcaseIcon }
 ];
