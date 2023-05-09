@@ -6,8 +6,8 @@ const Blog: NextPage = () => (
   <Layout>
     <section>
       <div className='prose prose-sm max-w-none'>
-        <h1 className='text-center'>About us and Contact</h1>
-        <h4 className='text-center'>About us</h4>
+        <h1 className='text-center'>About and Contact</h1>
+        <h4 className='text-center'>About</h4>
         <p>
           Mrugesh Mohapatra is a software & cloud infrastructure consultant,
           operating as a sole proprietor of{' '}
@@ -18,7 +18,7 @@ const Blog: NextPage = () => (
           The business is registered under the &quot;Udyam&quot; scheme from
           Ministry of Micro Small and Medium Enterprises, Government of India.
         </p>
-        <h4 className='text-center'>Business, Billing & Tax Details</h4>
+        <h4 className='text-center'>Business, Billing & Tax</h4>
         <p className='text-center'>
           <strong>Udyam Registration Number: UDYAM-OD-19-0026052</strong>
         </p>
@@ -39,7 +39,7 @@ const Blog: NextPage = () => (
             with the necessary billing and tax information as per your needs.
           </span>
         </p>
-        <h4 className='text-center'>Contacting me</h4>
+        <h4 className='text-center'>Contact</h4>
         <p className='text-center'>
           <strong>Email</strong>
           <br />
