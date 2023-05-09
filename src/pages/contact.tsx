@@ -138,10 +138,22 @@ const Blog: NextPage = () => (
             </span>
           </p>
         </div>
+        <p
+          id='legal-contact-anchor'
+          className='mx-auto max-w-lg text-center text-sm text-gray-500'
+        >
+          You can reach me below for any queries:
+        </p>
         <p className='mx-auto max-w-lg text-center text-sm text-gray-500'>
-          You can reach me below for any queries
-          <br />
           Email: <Email />
+        </p>
+        <p className='mx-auto max-w-lg text-center text-sm text-gray-500'>
+          Correspondence (PO Box):
+        </p>
+        <p className='mx-auto max-w-lg text-center text-sm text-gray-500'>
+          Mrugesh Mohapatra, C/O IndianShoppre Pvt Ltd, SD-15D3-240594,
+          #218/190, Outer Ring Road, Agara, Sector 1, H.S.R. Layout, Bengaluru,
+          Karnataka 560102, India
         </p>
       </div>
     </section>
