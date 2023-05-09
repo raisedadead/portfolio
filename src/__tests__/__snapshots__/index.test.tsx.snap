@@ -404,6 +404,15 @@ exports[`Home renders a snapshot of the homepage 1`] = `
           <a
             aria-label=""
             class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+            href="/contact"
+            role="link"
+          >
+            About
+          </a>
+          •
+          <a
+            aria-label=""
+            class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
             href="/terms"
             role="link"
           >
@@ -431,7 +440,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
           <a
             aria-label=""
             class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
-            href="/contact#legal-contact-anchor"
+            href="/contact"
             role="link"
           >
             Contact

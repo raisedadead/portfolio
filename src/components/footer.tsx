@@ -28,6 +28,10 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
               •
             </>
           )}
+          <Link href='/contact' aria-label='About Us' className={anchorClass}>
+            About
+          </Link>
+          •
           <Link
             href='/terms'
             aria-label='Terms & Conditions'
@@ -52,11 +56,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
             Refunds
           </Link>
           •
-          <Link
-            href='/contact#legal-contact-anchor'
-            aria-label='Contact Us'
-            className={anchorClass}
-          >
+          <Link href='/contact' aria-label='Contact Us' className={anchorClass}>
             Contact
           </Link>
         </p>
