@@ -25,12 +25,13 @@ const PageWrapper: React.FC<{
 
 const ErrorBlock = () => (
   <PageWrapper>
-    <div className='text-gray-600'>
+    <div className='flex flex-col space-y-2 text-sm text-gray-600'>
       <p>
         Sorry, We believe we facing issues fetching articles right now. Please
-        try again in a bit. Thanks for your patience.
+        try again in a bit.
       </p>
-      <p>Details of the error are logged in the developer console.</p>
+      <p>Details of the error may be logged in the developer console.</p>
+      <p>Thanks for your patience.</p>
     </div>
   </PageWrapper>
 );
