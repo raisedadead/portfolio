@@ -14,8 +14,8 @@ dependencies:
     specifier: 2.0.2
     version: 2.0.2
   framer-motion:
-    specifier: 10.12.8
-    version: 10.12.8(react-dom@18.2.0)(react@18.2.0)
+    specifier: 10.12.10
+    version: 10.12.10(react-dom@18.2.0)(react@18.2.0)
   graphql:
     specifier: 16.6.0
     version: 16.6.0
@@ -5964,8 +5964,8 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
 
-  /framer-motion@10.12.8(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-ylobYq3tGFjjAmRdBs5pL/R1+4AmOm69g/JbF5DcNETfRe8L9CjaX4acG83MjYdIsbsTGJmtR5qKx4glNmXO4A==}
+  /framer-motion@10.12.10(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-f/VkrpxfG4xSmBi105/NCfcTt219IgglQEUR0BsuFZAg+be6N3QAcujFyBEvBvbDOSP9Ccv6OMiaY0HFMnBoMA==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
