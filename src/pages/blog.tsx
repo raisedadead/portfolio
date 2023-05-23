@@ -7,20 +7,24 @@ import { CustomLink as Link } from '../components/custom-link';
 
 import { postsFetcher } from '../lib/posts-fetcher';
 import type { Post } from '../lib/posts-fetcher';
+import { MetaHead } from '../components/head';
 
 const PageWrapper: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => (
-  <Layout>
-    <section>
-      <div className='container max-w-none'>
-        <h1 className='text-lg font-bold text-slate-600'>
-          Recent articles from my blog:
-        </h1>
-        <div className='px-0 py-4'>{children}</div>
-      </div>
-    </section>
-  </Layout>
+  <>
+    <MetaHead pageTitle='Recent posts' />
+    <Layout>
+      <section>
+        <div className='container max-w-none'>
+          <h1 className='text-lg font-bold text-slate-600'>
+            Recent articles from my blog:
+          </h1>
+          <div className='px-0 py-4'>{children}</div>
+        </div>
+      </section>
+    </Layout>
+  </>
 );
 
 const ErrorBlock = () => (

@@ -13,7 +13,7 @@ const links = [
   { href: '/', label: 'Home', icon: HomeIcon },
   { href: '/blog', label: 'Recent Posts', icon: BookOpenIcon },
   { href: '/uses', label: 'Uses', icon: CpuChipIcon },
-  { href: '/hire-me', label: 'Hire Me!', icon: BriefcaseIcon }
+  { href: '/contact', label: 'Hire Me!', icon: BriefcaseIcon }
 ];
 
 type NavProps = {

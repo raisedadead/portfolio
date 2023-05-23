@@ -1,14 +1,18 @@
 import Head from 'next/head';
 import Script from 'next/script';
 
-export const MetaHead = () => {
+export const MetaHead: React.FC<{ pageTitle?: string }> = ({ pageTitle }) => {
   return (
     <>
       <Head>
         <meta charSet='utf-8' />
         <link rel='icon' href='/favicon.ico' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <title>Mrugesh Mohapatra — Portfolio of a nocturnal developer.</title>
+        <title>
+          {pageTitle
+            ? `${pageTitle} • Mrugesh Mohapatra`
+            : 'Mrugesh Mohapatra — Portfolio of a nocturnal developer.'}
+        </title>
         <meta
           name='description'
           content='Namaste! I am a software engineer based out of Bengaluru, India. I am passionate about Aviation, Open Source, Education for All, and Site Reliability Engineering.'
@@ -72,3 +76,5 @@ export const MetaHead = () => {
     </>
   );
 };
+
+export default MetaHead;
