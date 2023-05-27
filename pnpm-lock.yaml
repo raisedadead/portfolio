@@ -44,7 +44,7 @@ dependencies:
 devDependencies:
   '@cloudflare/next-on-pages':
     specifier: 0.10.1
-    version: 0.10.1(vercel@29.3.6)
+    version: 0.10.1(vercel@29.4.0)
   '@cloudflare/workers-types':
     specifier: 4.20230518.0
     version: 4.20230518.0
@@ -133,8 +133,8 @@ devDependencies:
     specifier: 5.0.4
     version: 5.0.4
   vercel:
-    specifier: 29.3.6
-    version: 29.3.6(@types/node@18.16.16)
+    specifier: 29.4.0
+    version: 29.4.0(@types/node@18.16.16)
   wrangler:
     specifier: 2.20.0
     version: 2.20.0
@@ -336,11 +336,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/types': 7.21.5
-    dev: true
-
-  /@babel/helper-plugin-utils@7.20.2:
-    resolution: {integrity: sha512-8RvlJG2mj4huQ4pZ+rU9lqKi9ZKiRmuvGuM2HlWmkmgOhbs6zEAw6IEiJ5cQqGbDzGZOhwuOQNtZMi/ENLjZoQ==}
-    engines: {node: '>=6.9.0'}
     dev: true
 
   /@babel/helper-plugin-utils@7.21.5:
@@ -741,7 +736,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-      '@babel/helper-plugin-utils': 7.20.2
+      '@babel/helper-plugin-utils': 7.21.5
     dev: true
 
   /@babel/plugin-syntax-logical-assignment-operators@7.10.4(@babel/core@7.21.8):
@@ -825,7 +820,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-      '@babel/helper-plugin-utils': 7.20.2
+      '@babel/helper-plugin-utils': 7.21.5
     dev: true
 
   /@babel/plugin-transform-arrow-functions@7.21.5(@babel/core@7.21.8):
@@ -1393,7 +1388,7 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@0.10.1(vercel@29.3.6):
+  /@cloudflare/next-on-pages@0.10.1(vercel@29.4.0):
     resolution: {integrity: sha512-7VDxKHoW358CXa6LVdUg5+r8tghn9xpRYu1btfFcxEiQHRVjaKB8YJA3c2Brdvu2lZrh2yRHLSoGkrp0ezgbvA==}
     hasBin: true
     peerDependencies:
@@ -1406,7 +1401,7 @@ packages:
       cookie: 0.5.0
       esbuild: 0.15.18
       js-yaml: 4.1.0
-      vercel: 29.3.6(@types/node@18.16.16)
+      vercel: 29.4.0(@types/node@18.16.16)
       zod: 3.21.4
       zodcli: 0.0.4(zod@3.21.4)
     dev: true
@@ -10762,8 +10757,8 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /vercel@29.3.6(@types/node@18.16.16):
-    resolution: {integrity: sha512-fwld21d9WoCTUJcbyTWvq0c9VchUCJ2qs0kaczcYo9Vs8+ORnxC8FFgbysR2f7B4iwL2hUxTMEWkQGV2782LjQ==}
+  /vercel@29.4.0(@types/node@18.16.16):
+    resolution: {integrity: sha512-sVfg87dhF3q6Nhrr5zv2oaOU1zQQd+MlsjhdNkB9MfrQyXqluAdHKiNz0+g/+wJeh/y7sUhWk2/XJb5CDlF70w==}
     engines: {node: '>= 14'}
     hasBin: true
     requiresBuild: true
