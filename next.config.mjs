@@ -23,14 +23,19 @@ export default defineNextConfig({
   redirects: async () => {
     return [
       {
-        source: '/meet',
-        destination: 'https://topmate.io/mrugesh',
+        source: '/links',
+        destination: 'https://bio.link/mrugesh',
         basePath: false,
         permanent: false
       },
       {
-        source: '/links',
-        destination: 'https://bio.link/mrugesh',
+        source: '/contact',
+        destination: '/about',
+        permanent: false
+      },
+      {
+        source: '/meet',
+        destination: 'https://topmate.io/mrugesh',
         basePath: false,
         permanent: false
       },
