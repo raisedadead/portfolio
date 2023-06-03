@@ -82,9 +82,9 @@ const HireMe: NextPage = () => (
           </div>
           <p>
             We can walk through your needs, and do as many follow-ups as you
-            need (usually at additional no-charge). If you think we could be
+            need (usually at no additional fees). If you think we could be
             working long-term just go ahead and make an appointment using the
-            same link, we can discuss the details on the same call.
+            same link, we can discuss the details on the call.
           </p>
           <p>
             I am also available for speaking engagements, workshops, and
