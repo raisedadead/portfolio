@@ -13,7 +13,7 @@ const HireMe: NextPage = () => (
           <h1 className='py-2 text-center'>Let&apos;s work together!</h1>
           <h2>Hey there! 👋🏽</h2>
           <p>
-            I work full-time as the Principal Maintainer at freeCodeCamp.org and
+            I work full-time as a Principal Maintainer at freeCodeCamp.org and
             help manage their cloud infrastructure and open-source platform.
           </p>
           <p>
