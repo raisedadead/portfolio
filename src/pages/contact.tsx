@@ -2,7 +2,6 @@ import type { NextPage } from 'next';
 import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
 import { Social } from '../components/social';
-import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
 import { MetaHead } from '../components/head';
 
 const HireMe: NextPage = () => (
@@ -74,17 +73,11 @@ const HireMe: NextPage = () => (
           <div className='flex'>
             <Link
               aria-label='Schedule a call'
-              className='mx-auto w-[50%] rounded-md border border-solid border-orange-50 bg-orange-400 p-2 text-center font-medium text-black no-underline shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800'
+              className='mx-auto w-[50%] rounded-md bg-white p-2 text-center font-medium text-black no-underline shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800'
               href='https://topmate.io/mrugesh'
               type='button'
             >
-              <span className='inline-flex items-center'>
-                <ChatBubbleLeftRightIcon
-                  className='mr-2 h-4 w-4'
-                  aria-hidden='true'
-                />
-                Book a consulting session
-              </span>
+              <span className='inline-flex items-center'>Book a 1:1 Call</span>
             </Link>
           </div>
           <p>
