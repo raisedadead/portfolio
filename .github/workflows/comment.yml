@@ -18,26 +18,30 @@ name: Comment
 on:
   workflow_call:
     inputs:
+      is-pr-deploying:
+        description: 'Is the PR being deployed'
+        type: boolean
+        default: false
       url:
         description: 'The URL to comment on the PR'
-        required: true
         type: string
+        default: ''
       deployment_id:
         description: 'The ID of the deployment'
-        required: true
         type: string
+        default: ''
       alias:
         description: 'The alias of the deployment'
-        required: true
         type: string
+        default: ''
       environment:
         description: 'The environment of the deployment'
-        required: true
         type: string
+        default: ''
       issue-number:
         description: 'The issue number to comment on'
-        required: true
         type: string
+        default: ''
 
 jobs:
   comment:
@@ -54,6 +58,7 @@ jobs:
 
       - name: Comment previous step output on Pull Request
         uses: peter-evans/create-or-update-comment@ca08ebd5dc95aa0cd97021e9708fcd6b87138c9b # v3
+        if: ${{ inputs.is-pr-deploying == false }}}
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: replace
@@ -74,3 +79,13 @@ jobs:
             | Environment   | ${{ inputs.environment }} |
 
             </details>
+
+      - name: Comment on Pull Request
+        uses: peter-evans/create-or-update-comment@ca08ebd5dc95aa0cd97021e9708fcd6b87138c9b # v3
+        if: ${{ inputs.is-pr-deploying == true }}}
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace
+          issue-number: ${{ inputs.issue-number }}
+          body: |
+            #### _This PR is currently being deployed to Cloudflare Pages..._
