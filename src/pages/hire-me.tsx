@@ -6,7 +6,7 @@ import { MetaHead } from '../components/head';
 
 const HireMe: NextPage = () => (
   <>
-    <MetaHead pageTitle='Contact' />
+    <MetaHead pageTitle='Hire Me' />
     <Layout>
       <section>
         <div className='prose prose-sm prose-slate max-w-none'>
