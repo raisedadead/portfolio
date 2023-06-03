@@ -22,10 +22,7 @@ type NavProps = {
 export const Nav: React.FC<NavProps> = ({ className }) => {
   return (
     <nav className={`${className}`}>
-      <Menu
-        as='div'
-        className='absolute right-6 top-4 text-left sm:right-9 md:right-12 lg:right-48'
-      >
+      <Menu as='div' className='absolute right-4 top-4 text-left'>
         <div>
           <Menu.Button className='flex items-center rounded bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none'>
             <span className='sr-only'>Open navigation menu</span>
@@ -42,7 +39,7 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'
         >
-          <Menu.Items className='absolute right-0 z-10 mt-2 w-48 rounded bg-white/60 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg focus:outline-none'>
+          <Menu.Items className='absolute right-0 z-10 mt-2 w-48 rounded bg-white/90 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg focus:outline-none'>
             <div className='py-1'>
               {links.map((link) => (
                 <Menu.Item key={link.href}>
