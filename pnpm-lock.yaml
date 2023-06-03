@@ -137,8 +137,8 @@ devDependencies:
     specifier: 5.1.3
     version: 5.1.3
   vercel:
-    specifier: 29.4.0
-    version: 29.4.0(@types/node@18.16.16)
+    specifier: 30.1.2
+    version: 30.1.2(@types/node@18.16.16)
   wrangler:
     specifier: 2.20.0
     version: 2.20.0
@@ -3218,8 +3218,12 @@ packages:
     resolution: {integrity: sha512-STSWs66rxX5pVKkhsYNeLx/Vlxjwe+dhy6PfXgBEJua7FXbWDjXjUyjzEyk63yUWysUflEBtLW9ckS/2V0QCZw==}
     dev: true
 
-  /@vercel/build-utils@6.7.3:
-    resolution: {integrity: sha512-BCu5zX8MhzXAvd7X1Hn6b8blSTzKyY7JAEAdT5+FcB8e5fTs4bIQmYNc9JMeCqUgtisSpJvDAt69OLYP/aqEKw==}
+  /@vercel/build-utils@6.7.5:
+    resolution: {integrity: sha512-nzglYEz9BvZH0lptfTtTVDDD3Dyn31gnBGChOUT7J1jkzlMT1IReuysgJPisaWk4v92Ax5SpZL35I0lOQdfKwQ==}
+    dev: true
+
+  /@vercel/error-utils@1.0.10:
+    resolution: {integrity: sha512-nsKy2sy+pjUWyKI1V/XXKspVzHMYgSalmj5+EsKWFXZbnNZicqxNtMR94J8Hs7SB4TQxh0s4KhczJtL59AVGMg==}
     dev: true
 
   /@vercel/error-utils@1.0.8:
@@ -3251,12 +3255,12 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@vercel/gatsby-plugin-vercel-builder@1.3.5:
-    resolution: {integrity: sha512-pZgLNDJTc7qxgzoMkalqFstWo0JVAd4i8MupajRbMQV+Ve5TZcUv3pGn3HcjrjQVZ3fjN5KWnJOiHdXTUCHHAQ==}
+  /@vercel/gatsby-plugin-vercel-builder@1.3.7:
+    resolution: {integrity: sha512-40fqFefaSFiN789tZG6HqvcXilICOXnQ+MlPINWvy8OYFLx37gnaV4A6PF6Sg/6KakczCYcjjE90PF6GjeYXdw==}
     dependencies:
       '@sinclair/typebox': 0.25.24
-      '@vercel/build-utils': 6.7.3
-      '@vercel/node': 2.14.3
+      '@vercel/build-utils': 6.7.5
+      '@vercel/node': 2.14.5
       '@vercel/routing-utils': 2.2.1
       esbuild: 0.14.47
       etag: 1.8.1
@@ -3281,8 +3285,8 @@ packages:
     resolution: {integrity: sha512-tTcfAC+C+3la1g2UJW0cm9lGEU1Mq5O0x73MLQPKWpoHOHqZYjbKBCUm5nAFKnaMSvWS1kFm9b0v1iKQk28mGA==}
     dev: true
 
-  /@vercel/next@3.8.5:
-    resolution: {integrity: sha512-ywD5cDytlCgcTdVTajamU1vpWJZbpDteC0sCxfCGFdlIdaMi3Nh8cv3G1SNWuXd7GbHsSFeQ6S4iVJxWVy84Yg==}
+  /@vercel/next@3.8.6:
+    resolution: {integrity: sha512-q+BxVLAfKFjTcak+z3U0SvYpgsnF8spu3Wz0GdRSVHiZpd1TtmIIp5r5RT5WVJLt4NNgmD4KxLNbvXhwjxOFKA==}
     dev: true
 
   /@vercel/nft@0.22.5:
@@ -3333,14 +3337,14 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@vercel/node@2.14.3:
-    resolution: {integrity: sha512-XEoMTQvqQC11hItfDsTegtBA66jTFXA7PTyI2QHASpoAQFMGcx91XI/sTPvxgK/1u+eXjxpiv6OU3l4/i27G4Q==}
+  /@vercel/node@2.14.5:
+    resolution: {integrity: sha512-0vzzeIheLWSxoF/1zMG8GwZxdxOvNLRgDMlClljCqiSa5MIXtTsmCj93JHeYo6BWgvIbiR5XrD0vt2IYqFQCug==}
     dependencies:
       '@edge-runtime/vm': 2.0.0
       '@types/node': 14.18.33
       '@types/node-fetch': 2.6.3
-      '@vercel/build-utils': 6.7.3
-      '@vercel/error-utils': 1.0.8
+      '@vercel/build-utils': 6.7.5
+      '@vercel/error-utils': 1.0.10
       '@vercel/static-config': 2.0.17
       async-listen: 3.0.0
       edge-runtime: 2.1.4
@@ -3375,11 +3379,11 @@ packages:
       - supports-color
     dev: true
 
-  /@vercel/remix-builder@1.8.10(@types/node@18.16.16):
-    resolution: {integrity: sha512-DXOjz/4HUawFojrbK9AQq1sjA2YxGbG8/bTTwSdqdYJZv0QgeK1vkOioxLmQP5qzZ7DQNK+LgSn9oMrX3Bq/lA==}
+  /@vercel/remix-builder@1.8.12(@types/node@18.16.16):
+    resolution: {integrity: sha512-S/C8ZRFmisrxSSWav21hB6R9qt3TiKPEHutBQK0eiQBhu+5M3B2TFT0ThNSM54M4980P2c3NkPdipGU92+cARg==}
     dependencies:
       '@remix-run/dev': /@vercel/remix-run-dev@1.16.1(@types/node@18.16.16)
-      '@vercel/build-utils': 6.7.3
+      '@vercel/build-utils': 6.7.5
       '@vercel/nft': 0.22.5
       '@vercel/static-config': 2.0.17
       path-to-regexp: 6.2.1
@@ -3606,11 +3610,11 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@vercel/static-build@1.3.32:
-    resolution: {integrity: sha512-pFZ9dG/Ixm72o8ZGc5G78zUsgHUm5t9V6Ob/RI6KtDz+LP3iIXt7Mh0SLd4hWb553i2vgywe5T1KMPyuy3tOvw==}
+  /@vercel/static-build@1.3.34:
+    resolution: {integrity: sha512-i9mjGSyZNuPhjaFxflvGlSWqyWOAMuIfRgIg5tK9mh/H0TnMaVUTQjUe27hN51rgMMY+BoQp3hViu39og9LqUQ==}
     dependencies:
       '@vercel/gatsby-plugin-vercel-analytics': 1.0.10
-      '@vercel/gatsby-plugin-vercel-builder': 1.3.5
+      '@vercel/gatsby-plugin-vercel-builder': 1.3.7
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -10987,22 +10991,22 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /vercel@29.4.0(@types/node@18.16.16):
-    resolution: {integrity: sha512-sVfg87dhF3q6Nhrr5zv2oaOU1zQQd+MlsjhdNkB9MfrQyXqluAdHKiNz0+g/+wJeh/y7sUhWk2/XJb5CDlF70w==}
+  /vercel@30.1.2(@types/node@18.16.16):
+    resolution: {integrity: sha512-DjN8ICpD1QkU3LvG3In2S68J7CgYbfspbqaX/20IBsWaJQAejTnZsFCv6/21zPFSWeIHzihtnmzr6OGTZ6F+Sg==}
     engines: {node: '>= 14'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@vercel/build-utils': 6.7.3
+      '@vercel/build-utils': 6.7.5
       '@vercel/go': 2.5.1
       '@vercel/hydrogen': 0.0.64
-      '@vercel/next': 3.8.5
-      '@vercel/node': 2.14.3
+      '@vercel/next': 3.8.6
+      '@vercel/node': 2.14.5
       '@vercel/python': 3.1.60
       '@vercel/redwood': 1.1.15
-      '@vercel/remix-builder': 1.8.10(@types/node@18.16.16)
+      '@vercel/remix-builder': 1.8.12(@types/node@18.16.16)
       '@vercel/ruby': 1.3.76
-      '@vercel/static-build': 1.3.32
+      '@vercel/static-build': 1.3.34
     transitivePeerDependencies:
       - '@remix-run/serve'
       - '@swc/core'
