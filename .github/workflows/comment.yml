@@ -54,7 +54,7 @@ jobs:
         with:
           issue-number: ${{ inputs.issue-number }}
           comment-author: 'github-actions[bot]'
-          body-includes: 'Deployed to Cloudflare Pages'
+          body-includes: 'Deployment Details'
 
       - name: Comment previous step output on Pull Request
         uses: peter-evans/create-or-update-comment@ca08ebd5dc95aa0cd97021e9708fcd6b87138c9b # v3
@@ -64,9 +64,9 @@ jobs:
           edit-mode: replace
           issue-number: ${{ inputs.issue-number }}
           body: |
-            #### Deployed to Cloudflare Pages:
+            #### Deployment Details:
 
-            **[`${{ inputs.url }}`](${{ inputs.url }})**
+            **Preview Link: [`${{ inputs.url }}`](${{ inputs.url }})**
 
             <details>
             <summary>More details: </summary>
@@ -88,4 +88,6 @@ jobs:
           edit-mode: replace
           issue-number: ${{ inputs.issue-number }}
           body: |
-            #### _This PR is currently being deployed to Cloudflare Pages..._
+            #### Deployment Details:
+
+            _There is a deployment in progress..._
