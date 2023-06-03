@@ -9,12 +9,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  starting-comment:
-    if: ${{ github.event_name == 'pull_request' && github.event.action == 'synchronize' }}
-    uses: raisedadead/portfolio/.github/workflows/comment.yml@main
-    with:
-      is-pr-deploying: true
-
   lint:
     name: Lint
     uses: raisedadead/portfolio/.github/workflows/lint.yml@main
@@ -197,14 +191,3 @@ jobs:
       alias: ${{ steps.deploy.outputs.alias }}
       environment: ${{ steps.deploy.outputs.environment }}
       deployment_id: ${{ steps.deploy.outputs.id }}
-
-  complete-comment:
-    if: ${{ github.event_name == 'pull_request' }}
-    uses: raisedadead/portfolio/.github/workflows/comment.yml@main
-    needs: [deploy]
-    with:
-      issue-number: ${{ github.event.pull_request.number }}
-      url: ${{ needs.deploy.outputs.url }}
-      alias: ${{ needs.deploy.outputs.alias }}
-      environment: ${{ needs.deploy.outputs.environment }}
-      deployment_id: ${{ needs.deploy.outputs.deployment_id }}

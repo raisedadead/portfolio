@@ -18,9 +18,8 @@
     "prepare": "is-ci || husky install"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "npx prettier --write",
-      "npx eslint --fix ."
+    "**/*": [
+      "pnpm format"
     ]
   },
   "dependencies": {
