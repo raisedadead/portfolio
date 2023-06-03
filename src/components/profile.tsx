@@ -1,10 +1,6 @@
 import { Social } from './social';
 import { CustomLink as Link } from './custom-link';
-import {
-  BookmarkIcon,
-  ChatBubbleLeftRightIcon,
-  LinkIcon
-} from '@heroicons/react/24/solid';
+import { BookmarkIcon, LinkIcon } from '@heroicons/react/24/solid';
 
 export const Profile: React.FC = () => {
   return (
@@ -41,22 +37,16 @@ export const Profile: React.FC = () => {
       <div className='mb-4 mt-2 flex flex-col items-center justify-center space-y-2'>
         <Link
           aria-label='Schedule a call'
-          className='w-80 items-center rounded-md border border-solid border-orange-50 bg-orange-400 px-1 py-1 text-sm font-medium text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
+          className='w-80 items-center rounded-md bg-white px-1 py-1 text-sm font-medium text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
           href='https://topmate.io/mrugesh'
           type='button'
         >
-          <span className='inline-flex items-center'>
-            <ChatBubbleLeftRightIcon
-              className='mr-2 h-4 w-4'
-              aria-hidden='true'
-            />
-            Book a consulting session
-          </span>
+          <span className='inline-flex items-center'>Book a 1:1 Call</span>
         </Link>
         <div className='flex flex-row justify-between space-x-8'>
           <Link
             aria-label='Browse my blog'
-            className='w-36 items-center rounded-md border border-solid border-orange-50 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
+            className='w-36 items-center rounded-md bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
             href='https://hn.mrugesh.dev'
             type='button'
           >
@@ -67,7 +57,7 @@ export const Profile: React.FC = () => {
           </Link>
           <Link
             aria-label='Ask me anything'
-            className='w-36 items-center rounded-md border border-solid border-orange-50 bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
+            className='w-36 items-center rounded-md bg-orange-200 px-2 py-1 text-sm font-medium text-slate-600 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 md:px-4 md:py-2'
             href='https://bio.link/mrugesh'
             type='button'
           >

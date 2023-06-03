@@ -111,7 +111,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             <button
               aria-expanded="false"
               aria-haspopup="menu"
-              class="flex items-center rounded border border-white bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+              class="flex items-center rounded bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
               data-headlessui-state=""
               id="headlessui-menu-button-:r0:"
               type="button"
@@ -536,7 +536,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             <button
               aria-expanded="false"
               aria-haspopup="menu"
-              class="flex items-center rounded border border-white bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+              class="flex items-center rounded bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
               data-headlessui-state=""
               id="headlessui-menu-button-:r1:"
               type="button"
@@ -962,7 +962,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           <button
             aria-expanded="false"
             aria-haspopup="menu"
-            class="flex items-center rounded border border-white bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+            class="flex items-center rounded bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
             data-headlessui-state=""
             id="headlessui-menu-button-:r1:"
             type="button"
