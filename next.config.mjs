@@ -45,8 +45,7 @@ export default defineNextConfig({
       },
       {
         source: '/meet/fcc',
-        destination:
-          'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0sgE0ZnfSxZQ9fc8fNMW_3bGoA9im9vJ-0ADu_dcMAkvt4GJxVMhzM7IkclZ-6NV1g7KTNrOxa',
+        destination: 'https://www.getclockwise.com/c/mrugesh/meet',
         basePath: false,
         permanent: false
       }

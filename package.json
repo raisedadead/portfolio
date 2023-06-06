@@ -18,7 +18,7 @@
     "prepare": "is-ci || husky install"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,yaml,yml}": [
+    "**/*.{mjs,cjs,js,jsx,ts,tsx,yaml,yml}": [
       "pnpm format"
     ]
   },
