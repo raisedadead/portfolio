@@ -101,7 +101,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         </div>
       </div>
       <main
-        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] overflow-y-auto pb-8 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
+        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
       >
         <nav
           class="max-h-none w-screen"
@@ -526,7 +526,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         </div>
       </div>
       <main
-        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] overflow-y-auto pb-8 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
+        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
       >
         <nav
           class="max-h-none w-screen"
@@ -952,7 +952,7 @@ exports[`<Layout /> matches snapshot 1`] = `
       </div>
     </div>
     <main
-      class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] overflow-y-auto pb-8 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
+      class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
     >
       <nav
         class="max-h-none w-screen"

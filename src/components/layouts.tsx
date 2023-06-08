@@ -19,7 +19,7 @@ export const Layout: React.FC<LayoutProps> = ({
       </div>
 
       <main
-        className={`relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] overflow-y-auto pb-8 pt-5 lg:w-[75%] xl:w-[60%] ${
+        className={`relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%] ${
           showGlass
             ? ' rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg'
             : ''

@@ -98,7 +98,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
     </div>
   </div>
   <main
-    class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] overflow-y-auto pb-8 pt-5 lg:w-[75%] xl:w-[60%] "
+    class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%] "
   >
     <nav
       class="max-h-none w-screen"
