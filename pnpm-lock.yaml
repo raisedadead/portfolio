@@ -48,7 +48,7 @@ dependencies:
 devDependencies:
   '@cloudflare/next-on-pages':
     specifier: 1.1.0
-    version: 1.1.0(vercel@30.2.3)(wrangler@3.1.0)
+    version: 1.1.0(vercel@30.2.3)(wrangler@3.1.1)
   '@cloudflare/workers-types':
     specifier: 4.20230518.0
     version: 4.20230518.0
@@ -140,8 +140,8 @@ devDependencies:
     specifier: 30.2.3
     version: 30.2.3(@types/node@18.16.18)
   wrangler:
-    specifier: 3.1.0
-    version: 3.1.0
+    specifier: 3.1.1
+    version: 3.1.1
 
 packages:
 
@@ -1427,7 +1427,7 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@1.1.0(vercel@30.2.3)(wrangler@3.1.0):
+  /@cloudflare/next-on-pages@1.1.0(vercel@30.2.3)(wrangler@3.1.1):
     resolution: {integrity: sha512-W/5c7nG44hZgh/+iP4I7g7IKCLCddb6AEqL+VJDKBgFZrK3v7g8sNO65KeKsnI70vvGv3MHX/rmNYaZoOkOLOA==}
     hasBin: true
     peerDependencies:
@@ -1444,7 +1444,7 @@ packages:
       pcre-to-regexp: 1.1.0
       semver: 7.5.1
       vercel: 30.2.3(@types/node@18.16.18)
-      wrangler: 3.1.0
+      wrangler: 3.1.1
       zod: 3.21.4
       zodcli: 0.0.4(zod@3.21.4)
     dev: true
@@ -11100,8 +11100,8 @@ packages:
       '@cloudflare/workerd-windows-64': 1.20230518.0
     dev: true
 
-  /wrangler@3.1.0:
-    resolution: {integrity: sha512-oqVBJZoOQqSKxhgaPt4LcmtBf0FssIz/4F1VgjWOomeGQ3kN9pg3swPO0Zkf0aAphDodG9rekjrtccvKW7bSsA==}
+  /wrangler@3.1.1:
+    resolution: {integrity: sha512-iG6QGOt+qgSm7UroJ8IJ+JdXEcDcW7yp9ilP0V7alCGhKm8shqa/M1iyMOpukZSCSZo8Vmn5nH2C9OY1PR3dQQ==}
     engines: {node: '>=16.13.0'}
     hasBin: true
     dependencies:
