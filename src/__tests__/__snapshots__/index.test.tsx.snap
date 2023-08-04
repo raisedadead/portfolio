@@ -151,7 +151,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
             alt="Mrugesh Mohapatra's profile picture."
             class="h-24 w-24 rounded-full border-4 border-orange-200 shadow-[5px_2px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg md:h-32 md:w-32"
             id="profile-image"
-            src="/images/profile.jpg"
+            src="/images/profile.small.webp"
           />
         </div>
         <div
