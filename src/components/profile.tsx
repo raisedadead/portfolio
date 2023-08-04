@@ -10,7 +10,7 @@ export const Profile: React.FC = () => {
         <img
           id='profile-image'
           alt="Mrugesh Mohapatra's profile picture."
-          src='/images/profile.jpg'
+          src='/images/profile.small.webp'
           className='h-24 w-24 rounded-full border-4 border-orange-200 shadow-[5px_2px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg md:h-32 md:w-32'
         />
       </div>
