@@ -53,8 +53,8 @@ devDependencies:
     specifier: 4.20230724.0
     version: 4.20230724.0
   '@tailwindcss/forms':
-    specifier: 0.5.3
-    version: 0.5.3(tailwindcss@3.3.3)
+    specifier: 0.5.4
+    version: 0.5.4(tailwindcss@3.3.3)
   '@tailwindcss/typography':
     specifier: 0.5.9
     version: 0.5.9(tailwindcss@3.3.3)
@@ -1404,8 +1404,8 @@ packages:
     dependencies:
       tslib: 2.5.3
 
-  /@tailwindcss/forms@0.5.3(tailwindcss@3.3.3):
-    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
+  /@tailwindcss/forms@0.5.4(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-YAm12D3R7/9Mh4jFbYSMnsd6jG++8KxogWgqs7hbdo/86aWjjlIEvL7+QYdVELmAI0InXTpZqFIg5e7aDVWI2Q==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
