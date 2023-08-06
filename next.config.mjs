@@ -27,6 +27,12 @@ export default defineNextConfig({
   redirects: async () => {
     return [
       {
+        source: '/ama',
+        destination: 'https://github.com/raisedadead/ama/discussions',
+        basePath: false,
+        permanent: false
+      },
+      {
         source: '/links',
         destination: 'https://bio.link/mrugesh',
         basePath: false,
@@ -44,7 +50,7 @@ export default defineNextConfig({
         permanent: false
       },
       {
-        source: '/meet/fcc',
+        source: '/meet/freecodecamp',
         destination: 'https://www.getclockwise.com/c/mrugesh/meet',
         basePath: false,
         permanent: false
