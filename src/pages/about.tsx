@@ -18,37 +18,36 @@ const Blog: NextPage = () => (
             based in Bhubaneswar & Bengaluru, India.
           </p>
           <p>
-            The business is registered under the &quot;Udyam&quot; scheme from
-            Ministry of Micro Small and Medium Enterprises, Government of India.
+            The business is registered with Ministry of Micro Small and Medium
+            Enterprises, Government of India under the &quot;Udyam&quot; scheme.
           </p>
           <h4 className='text-center'>Business, Billing & Tax</h4>
           <p className='text-center'>
             <strong>Udyam Registration Number: UDYAM-OD-19-0026052</strong>
           </p>
           <p>
-            <strong>Tax details for Transactions made within India:</strong>
-            <br />
             <span>
-              My GSTIN and other business-related information is available in
-              the documentation such as the pro-forma invoice, billing invoice,
-              etc. I will email such documents to you once I have received a
-              payment.
+              GSTIN, HSN Codes for services, PAN, and other business-related
+              information is available in the documents, such as the pro-forma
+              invoice, billing invoice, etc., sent automatically on completion
+              of a transaction. Please get in touch if you are still waiting to
+              receive them.
             </span>
           </p>
           <p>
-            <strong>Tax details for Transactions made outside India:</strong>
-            <br />
+            <strong>Tax details for Transactions made outside India: </strong>
             <span>
-              Please get in touch after you make a payment and I will provide
-              you with the necessary billing and tax information as per your
-              needs.
+              Please get in touch, we will accomodate documents where feasible
+              as per your needs.
             </span>
           </p>
           <h4 className='text-center'>Contact</h4>
           <p className='text-center'>
-            <strong>Email</strong>
-            <br />
-            <Email />
+            <strong>
+              Email: <Email />
+              <br />
+              Text: +91 7799259952 (WhatsApp, Telegram, etc. only)
+            </strong>
           </p>
           <p className='text-center'>
             <strong>Correspondence PO Box</strong>
