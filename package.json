@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@builder.io/partytown": "0.8.0",
-    "@headlessui/react": "1.7.16",
+    "@headlessui/react": "1.7.17",
     "@heroicons/react": "2.0.18",
     "@types/react-html-parser": "2.0.2",
     "framer-motion": "10.15.1",
