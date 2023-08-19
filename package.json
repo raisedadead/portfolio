@@ -38,7 +38,7 @@
     "zod": "3.21.4"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "1.5.0",
+    "@cloudflare/next-on-pages": "1.5.1",
     "@cloudflare/workers-types": "4.20230807.0",
     "@tailwindcss/forms": "0.5.4",
     "@tailwindcss/typography": "0.5.9",
