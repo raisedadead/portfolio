@@ -28,7 +28,7 @@
     "@heroicons/react": "2.0.18",
     "@types/react-html-parser": "2.0.2",
     "framer-motion": "10.16.0",
-    "graphql": "16.7.1",
+    "graphql": "16.8.0",
     "graphql-request": "6.1.0",
     "next": "13.4.13",
     "next-sitemap": "4.2.2",
