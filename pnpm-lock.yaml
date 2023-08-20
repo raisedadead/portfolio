@@ -42,8 +42,8 @@ dependencies:
     specifier: 2.2.1
     version: 2.2.1(react@18.2.0)
   zod:
-    specifier: 3.21.4
-    version: 3.21.4
+    specifier: 3.22.2
+    version: 3.22.2
 
 devDependencies:
   '@cloudflare/next-on-pages':
@@ -520,8 +520,8 @@ packages:
       semver: 7.5.4
       vercel: 31.4.0
       wrangler: 3.5.1
-      zod: 3.21.4
-      zodcli: 0.0.4(zod@3.21.4)
+      zod: 3.22.2
+      zodcli: 0.0.4(zod@3.22.2)
     dev: true
 
   /@cloudflare/workerd-darwin-64@1.20230814.1:
@@ -5647,7 +5647,7 @@ packages:
       workerd: 1.20230814.1
       ws: 8.13.0
       youch: 3.2.3
-      zod: 3.21.4
+      zod: 3.22.2
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -7788,11 +7788,14 @@ packages:
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
 
-  /zodcli@0.0.4(zod@3.21.4):
+  /zod@3.22.2:
+    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
+
+  /zodcli@0.0.4(zod@3.22.2):
     resolution: {integrity: sha512-+WdBcf7Z19ueKI/w9SbxRXGyPnn5Fg/hc2nvOL3YKwcnhL2dvp58MvZwScvJS/Zqt4ePwSOLajboFG6su8BM8w==}
     peerDependencies:
       zod: ^3.21.4
     dependencies:
       typescript: 4.9.5
-      zod: 3.21.4
+      zod: 3.22.2
     dev: true
