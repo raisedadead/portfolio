@@ -28,7 +28,7 @@ export default defineNextConfig({
     return [
       {
         source: '/ama',
-        destination: 'https://github.com/raisedadead/ama/discussions',
+        destination: 'https://github.com/raisedadead/ama/discussions/14',
         basePath: false,
         permanent: false
       },
