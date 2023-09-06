@@ -33,14 +33,19 @@ export default defineNextConfig({
         permanent: false
       },
       {
-        source: '/links',
-        destination: 'https://bio.link/mrugesh',
-        basePath: false,
+        source: '/contact',
+        destination: '/about',
         permanent: false
       },
       {
-        source: '/contact',
-        destination: '/about',
+        source: '/dotfiles',
+        destination: 'https://github.com/raisedadead/dotfiles',
+        permanent: false
+      },
+      {
+        source: '/links',
+        destination: 'https://bio.link/mrugesh',
+        basePath: false,
         permanent: false
       },
       {
