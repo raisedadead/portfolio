@@ -2,9 +2,10 @@ import { CustomLink as Link } from './custom-link';
 export const Social = () => (
   <div className='mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-2 space-y-0'>
     <Link
+      href='https://twitter.com/raisedadead'
       aria-label='Twitter'
       className='inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-gray-500 shadow-[2px_2px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-gray-500 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-500 md:px-4 md:py-2'
-      href='https://twitter.com/raisedadead'
+      rel='me'
       type='button'
     >
       <span className='sr-only'>Twitter</span>
@@ -18,9 +19,10 @@ export const Social = () => (
       </svg>
     </Link>
     <Link
+      href='https://github.com/raisedadead'
       aria-label='Github'
       className='inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-gray-500 shadow-[2px_2px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-gray-500 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-500 md:px-4 md:py-2'
-      href='https://github.com/raisedadead'
+      rel='me'
       type='button'
     >
       <span className='sr-only'>GitHub</span>
@@ -38,9 +40,10 @@ export const Social = () => (
       </svg>
     </Link>
     <Link
+      href='https://instagram.com/raisedadead'
       aria-label='Instagram'
       className='inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-gray-500 shadow-[2px_2px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-gray-500 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-500 md:px-4 md:py-2'
-      href='https://instagram.com/raisedadead'
+      rel='me'
       type='button'
     >
       <span className='sr-only'>Instagram</span>
@@ -58,9 +61,10 @@ export const Social = () => (
       </svg>
     </Link>
     <Link
+      href='https://linkedin.com/in/mrugeshm'
       aria-label='LinkedIn'
       className='inline-flex items-center rounded-md bg-gray-50/50 px-1 py-1 text-sm font-medium text-gray-500 shadow-[2px_2px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-gray-500 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-500 md:px-4 md:py-2'
-      href='https://linkedin.com/in/mrugeshm'
+      rel='me'
       type='button'
     >
       <span className='sr-only'>LinkedIn</span>
