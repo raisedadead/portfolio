@@ -4,19 +4,21 @@ import Link from 'next/link';
 interface CustomLinkProps {
   children: React.ReactNode | string;
   href: string;
-  type?: string;
-  className?: string;
-  target?: string;
   ariaLabel?: string;
+  className?: string;
+  rel?: string;
+  target?: string;
+  type?: string;
 }
 
 export const CustomLink: React.FC<CustomLinkProps> = ({
   children,
   href,
-  type = '',
+  ariaLabel = '',
   className = 'text-blue-500 hover:text-blue-700 inline-flex items-center',
+  rel = '',
   target = '_blank',
-  ariaLabel = ''
+  type = ''
 }) => {
   const isInternal = href.startsWith('/');
 
@@ -27,11 +29,12 @@ export const CustomLink: React.FC<CustomLinkProps> = ({
   ) : (
     <a
       href={href}
-      type={type}
-      className={className}
       aria-label={ariaLabel}
-      target={target}
+      className={className}
       role='link'
+      rel={target == '_blank' ? `${rel} noopener noreferrer` : `${rel}`}
+      target={target}
+      type={type}
     >
       {children}
     </a>
