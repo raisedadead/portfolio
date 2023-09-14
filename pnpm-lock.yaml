@@ -48,7 +48,7 @@ dependencies:
 devDependencies:
   '@cloudflare/next-on-pages':
     specifier: 1.6.0
-    version: 1.6.0(vercel@32.2.0)(wrangler@3.7.0)
+    version: 1.6.0(vercel@32.2.0)(wrangler@3.8.0)
   '@cloudflare/workers-types':
     specifier: 4.20230904.0
     version: 4.20230904.0
@@ -140,8 +140,8 @@ devDependencies:
     specifier: 32.2.0
     version: 32.2.0
   wrangler:
-    specifier: 3.7.0
-    version: 3.7.0
+    specifier: 3.8.0
+    version: 3.8.0
 
 packages:
 
@@ -503,7 +503,7 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@1.6.0(vercel@32.2.0)(wrangler@3.7.0):
+  /@cloudflare/next-on-pages@1.6.0(vercel@32.2.0)(wrangler@3.8.0):
     resolution: {integrity: sha512-AeTs0Poqw70HEG6hynO25qx/gYdhTh8hH8E+qjYO+ji0LCKkP7FH12yvOobWKNfsUiTP95+3qz5AF9nvA+2z1g==}
     hasBin: true
     peerDependencies:
@@ -520,7 +520,7 @@ packages:
       pcre-to-regexp: 1.1.0
       semver: 7.5.4
       vercel: 32.2.0
-      wrangler: 3.7.0
+      wrangler: 3.8.0
       zod: 3.22.2
       zodcli: 0.0.4(zod@3.22.2)
     dev: true
@@ -5636,7 +5636,7 @@ packages:
       kleur: 4.1.5
       source-map-support: 0.5.21
       stoppable: 1.1.0
-      undici: 5.22.1
+      undici: 5.23.0
       workerd: 1.20230904.0
       ws: 8.13.0
       youch: 3.2.3
@@ -7377,13 +7377,6 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
-  /undici@5.22.1:
-    resolution: {integrity: sha512-Ji2IJhFXZY0x/0tVBXeQwgPlLWw13GVzpsWPQ3rV50IFMMof2I55PZZxtm4P6iNq+L5znYN9nSTAq0ZyE6lSJw==}
-    engines: {node: '>=14.0'}
-    dependencies:
-      busboy: 1.6.0
-    dev: true
-
   /undici@5.23.0:
     resolution: {integrity: sha512-1D7w+fvRsqlQ9GscLBwcAJinqcZGHUKjbOmXdlE/v8BvEGXjeWAax+341q44EuTcHXXnfyKNbKRq4Lg7OzhMmg==}
     engines: {node: '>=14.0'}
@@ -7614,8 +7607,8 @@ packages:
       '@cloudflare/workerd-windows-64': 1.20230904.0
     dev: true
 
-  /wrangler@3.7.0:
-    resolution: {integrity: sha512-7823G5U7WwDIkqaZrxSh/BQ/pxA4WIX3R9GwYfh+MYJj+k5s56KGQ+K/NmY/JbgZsxVEHDjhoYzqDqJebQMZeg==}
+  /wrangler@3.8.0:
+    resolution: {integrity: sha512-sTdD+6fMEpM9ROxv+gcyxgTKpnf7tB5ftRV5+wupsdljWkow5C00UCWU/IWSOUfuitAGAj1PWATjKfrRp9Bk9w==}
     engines: {node: '>=16.13.0'}
     hasBin: true
     dependencies:
