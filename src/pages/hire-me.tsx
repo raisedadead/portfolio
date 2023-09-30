@@ -73,7 +73,7 @@ const HireMe: NextPage = () => (
           <div className='flex'>
             <Link
               aria-label='Schedule a call'
-              className='mx-auto w-[50%] rounded-md bg-white p-2 text-center font-medium text-black no-underline shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800'
+              className='mx-auto w-[50%] rounded-md border-2 border-gray-600 bg-white p-2 text-center font-medium text-black no-underline shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800'
               href='https://topmate.io/mrugesh'
               type='button'
             >
