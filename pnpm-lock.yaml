@@ -50,8 +50,8 @@ devDependencies:
     specifier: 1.6.3
     version: 1.6.3(vercel@32.3.1)(wrangler@3.10.1)
   '@cloudflare/workers-types':
-    specifier: 4.20230922.0
-    version: 4.20230922.0
+    specifier: 4.20231002.0
+    version: 4.20231002.0
   '@tailwindcss/forms':
     specifier: 0.5.6
     version: 0.5.6(tailwindcss@3.3.3)
@@ -564,8 +564,8 @@ packages:
     dev: true
     optional: true
 
-  /@cloudflare/workers-types@4.20230922.0:
-    resolution: {integrity: sha512-0N3fg4uv9pS7PXMVYmEmEGs1P1yzMIsqym0sO//o2IjtZhsf7RwOozJtdazDAL0fBIWsl1PRX7BmKe92RV+5qw==}
+  /@cloudflare/workers-types@4.20231002.0:
+    resolution: {integrity: sha512-gQMKf3THqAFWH426OXXfVx0gFLXiSiL2fo6mKjQYx4PU74MgmVDFh25NvpAIBK+XN+xXlrImClfYeqErXIT7jA==}
     dev: true
 
   /@corex/deepmerge@4.0.43:
