@@ -69,6 +69,6 @@
     "turbo": "1.10.15",
     "typescript": "5.2.2",
     "vercel": "32.4.1",
-    "wrangler": "3.11.0"
+    "wrangler": "3.13.1"
   }
 }
