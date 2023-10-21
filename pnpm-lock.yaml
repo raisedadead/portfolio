@@ -47,8 +47,8 @@ dependencies:
 
 devDependencies:
   '@cloudflare/next-on-pages':
-    specifier: 1.6.3
-    version: 1.6.3(vercel@32.4.1)(wrangler@3.13.1)
+    specifier: 1.7.2
+    version: 1.7.2(vercel@32.4.1)(wrangler@3.13.1)
   '@cloudflare/workers-types':
     specifier: 4.20231010.0
     version: 4.20231010.0
@@ -497,8 +497,8 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@1.6.3(vercel@32.4.1)(wrangler@3.13.1):
-    resolution: {integrity: sha512-v+gmG3M8mOUJxeby3Odtuz64D5ta/6bF9rjAiKiq7YQtoRNgYaMZwLOFz7sejabEC2CukjW1Zbj8YULFM1jcOw==}
+  /@cloudflare/next-on-pages@1.7.2(vercel@32.4.1)(wrangler@3.13.1):
+    resolution: {integrity: sha512-Jr1s8CIo/S1e6/5R0jKmUueOcJMEGYp96viBUvw0rCRLo3Uw88V+tYr0eubzlTbvhI0Vq4aSLLtiyco9kLsJBQ==}
     hasBin: true
     peerDependencies:
       vercel: '>=30.0.0'
@@ -511,6 +511,7 @@ packages:
       cookie: 0.5.0
       esbuild: 0.15.18
       js-yaml: 4.1.0
+      package-manager-manager: 0.2.0
       pcre-to-regexp: 1.1.0
       semver: 7.5.4
       vercel: 32.4.1
@@ -6111,6 +6112,13 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /package-manager-manager@0.2.0:
+    resolution: {integrity: sha512-V02gl0bafXJ2gcY6j+5IHM7UdnYwmF+2OsFZuqVcha6iMSStD4dpIOBOsypnUIwOi4jLcPz6RQuyifmAE3mG8g==}
+    dependencies:
+      js-yaml: 4.1.0
+      shellac: 0.8.0
+    dev: true
+
   /parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
@@ -6559,6 +6567,10 @@ packages:
       functions-have-names: 1.2.3
     dev: true
 
+  /reghex@1.0.2:
+    resolution: {integrity: sha512-bYtyDmFGHxn1Y4gxIs12+AUQ1WRDNvaIhn6ZuKc5KUbSVcmm6U6vx/RA66s26xGhTWBErKKDKK7lorkvvIBB5g==}
+    dev: true
+
   /require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -6756,6 +6768,12 @@ packages:
   /shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+    dev: true
+
+  /shellac@0.8.0:
+    resolution: {integrity: sha512-M3F2vzYIM7frKOs0+kgs/ITMlXhGpgtqs9HxDPciz3bckzAqqfd4LrBn+CCmSbICyJS+Jz5UDkmkR1jE+m+g+Q==}
+    dependencies:
+      reghex: 1.0.2
     dev: true
 
   /side-channel@1.0.4:
