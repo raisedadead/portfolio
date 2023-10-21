@@ -66,7 +66,7 @@
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.4",
     "tailwindcss": "3.3.3",
-    "turbo": "1.10.15",
+    "turbo": "1.10.16",
     "typescript": "5.2.2",
     "vercel": "32.4.1",
     "wrangler": "3.13.1"
