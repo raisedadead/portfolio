@@ -15,8 +15,8 @@ dependencies:
     specifier: 2.0.18
     version: 2.0.18(react@18.2.0)
   '@types/react-html-parser':
-    specifier: 2.0.3
-    version: 2.0.3
+    specifier: 2.0.4
+    version: 2.0.4
   framer-motion:
     specifier: 10.16.4
     version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
@@ -1601,8 +1601,8 @@ packages:
       '@types/react': 18.2.31
     dev: true
 
-  /@types/react-html-parser@2.0.3:
-    resolution: {integrity: sha512-pDinuMjC+u4BDTit6VW7Rwot1ToIrzlRK/Eymssndfuamno6ydf7UdyzXz+VjNdf2xtSUSuW1bYHk7S/SecikA==}
+  /@types/react-html-parser@2.0.4:
+    resolution: {integrity: sha512-RV2ZIwJcgD+s+VawKuTcnyINE9i0u4OgvgWg0+BI5osGC69FMioBIgCmFibqryFDRbHfIOoT9Q9JvUpXZ+3zWg==}
     dependencies:
       '@types/htmlparser2': 3.10.3
       '@types/react': 18.2.31
