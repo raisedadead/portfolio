@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { NextPage } from 'next';
 import useSWR from 'swr';
 
@@ -60,23 +60,22 @@ const SkeletonBlock = () => (
 const Blog: NextPage = () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [posts, setPosts] = useState<Post[] | null>(null);
-  const [disableLoadMore, setDisableLoadMore] = useState(false);
 
-  const { data: currentPosts, error } = useSWR(`${pageIndex}`, (key) =>
-    postsFetcher(key, pageIndex)
-  );
+  const {
+    data: currentPosts,
+    error,
+    isValidating
+  } = useSWR(`${pageIndex}`, () => postsFetcher(`${pageIndex}`, pageIndex));
 
   useEffect(() => {
     if (currentPosts) {
-      setPosts((prevPosts) => {
-        if (prevPosts) {
-          return [...prevPosts, ...currentPosts];
-        }
-        return currentPosts;
-      });
+      setPosts((prevPosts) => [...(prevPosts ?? []), ...currentPosts]);
     }
-    setDisableLoadMore(!currentPosts?.length);
   }, [currentPosts]);
+
+  const loadMoreArticles = useCallback(() => {
+    setPageIndex(pageIndex + 1);
+  }, [pageIndex]);
 
   if (error) {
     console.error('Error: ', error);
@@ -86,6 +85,18 @@ const Blog: NextPage = () => {
   if (!posts) {
     return <SkeletonBlock />;
   }
+
+  const disableLoadMore = !currentPosts?.length;
+
+  const getButtonState = () => {
+    if (isValidating) {
+      return <span>Loading...</span>;
+    }
+    if (disableLoadMore) {
+      return <span>That's the end. No more articles.</span>;
+    }
+    return <span>Load more articles...</span>;
+  };
 
   return (
     <PageWrapper>
@@ -117,15 +128,11 @@ const Blog: NextPage = () => {
       </ul>
       <div className='flex justify-center py-5'>
         <button
-          onClick={() => setPageIndex(pageIndex + 1)}
+          onClick={loadMoreArticles}
           className='items-center rounded bg-orange-100 px-4 py-2 text-sm font-medium text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-50 disabled:hover:bg-gray-100 disabled:hover:text-black'
-          disabled={disableLoadMore}
+          disabled={disableLoadMore || isValidating}
         >
-          {disableLoadMore ? (
-            <span>That&apos;s the end. No more articles.</span>
-          ) : (
-            <span>Load more articles...</span>
-          )}
+          {getButtonState()}
         </button>
       </div>
     </PageWrapper>
