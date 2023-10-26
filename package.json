@@ -3,19 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "start": "turbo dev",
-    "turbo:build": "turbo build",
-    "turbo:build:for-edge": "turbo build:for-edge",
-    "build": "next build",
     "build:for-edge": "npx @cloudflare/next-on-pages",
-    "postbuild": "next-sitemap --config='sitemap.config.mjs'",
-    "dev": "next dev",
+    "build": "next build",
     "dev:edge": "pnpm build:for-edge && wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
-    "test": "jest .",
-    "lint": "prettier --check --plugin-search-dir=. . && eslint .",
+    "dev": "next dev",
     "format": "prettier --write --plugin-search-dir=. .",
-    "prepare": "is-ci || husky install"
+    "lint": "prettier --check --plugin-search-dir=. . && eslint .",
+    "postbuild": "next-sitemap --config='sitemap.config.mjs'",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "is-ci || husky install",
+    "start": "turbo dev",
+    "test": "jest .",
+    "turbo:build:for-edge": "turbo build:for-edge",
+    "turbo:build": "turbo build",
+    "turbo:test": "turbo test",
+    "turbo:lint": "turbo lint",
+    "turbo:format": "turbo format"
   },
   "lint-staged": {
     "**/*.{mjs,cjs,js,jsx,ts,tsx,yaml,yml}": [
