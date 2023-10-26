@@ -93,7 +93,7 @@ const Blog: NextPage = () => {
       return <span>Loading...</span>;
     }
     if (disableLoadMore) {
-      return <span>That's the end. No more articles.</span>;
+      return <span>That&apos;s the end. No more articles.</span>;
     }
     return <span>Load more articles...</span>;
   };
@@ -101,9 +101,9 @@ const Blog: NextPage = () => {
   return (
     <PageWrapper>
       <ul role='list' className='list-none divide-y divide-slate-400'>
-        {posts.map((post: Post, index: number) =>
+        {posts.map((post: Post) =>
           post.title && post.slug ? (
-            <li className='pb-2 pt-4' key={index}>
+            <li className='pb-2 pt-4' key={post.slug}>
               <div className='flex flex-col space-y-4'>
                 <Link
                   href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
