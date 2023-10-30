@@ -8,7 +8,7 @@
 
 ## What is this about?
 
-- It's just a basic identity website. Nothing more [...as of now].
+- This is my tiny property on the internet.
 - I keep updating it as a part of learning new stuff like react, svelte or
   anything that I am just interested at the moment. The code is expected to be
   buggy and overly complicated, as a result.

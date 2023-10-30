@@ -5,6 +5,7 @@
   "scripts": {
     "build:for-edge": "npx @cloudflare/next-on-pages",
     "build": "next build",
+    "develop": "pnpm dev",
     "dev:edge": "pnpm build:for-edge && wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
     "dev": "next dev",
     "format": "prettier --write --plugin-search-dir=. .",
