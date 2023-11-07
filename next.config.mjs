@@ -55,8 +55,15 @@ export default defineNextConfig({
         permanent: false
       },
       {
+        source: '/meet/personal',
+        destination:
+          'https://cal.com/mrugesh/meet?duration=30&layout=month_view',
+        basePath: false,
+        permanent: false
+      },
+      {
         source: '/meet/freecodecamp',
-        destination: 'https://www.getclockwise.com/c/mrugesh/meet',
+        destination: 'https://calendar.app.google/AfQByQkijweg98736',
         basePath: false,
         permanent: false
       }
