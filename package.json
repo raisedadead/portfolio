@@ -30,7 +30,7 @@
     "@builder.io/partytown": "0.8.1",
     "@headlessui/react": "1.7.17",
     "@heroicons/react": "2.0.18",
-    "@types/react-html-parser": "2.0.4",
+    "@types/react-html-parser": "2.0.5",
     "framer-motion": "10.16.4",
     "graphql": "16.8.1",
     "graphql-request": "6.1.0",
