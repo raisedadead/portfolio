@@ -48,7 +48,7 @@ dependencies:
 devDependencies:
   '@cloudflare/next-on-pages':
     specifier: 1.7.2
-    version: 1.7.2(vercel@32.5.1)(wrangler@3.15.0)
+    version: 1.7.2(vercel@32.5.2)(wrangler@3.15.0)
   '@cloudflare/workers-types':
     specifier: 4.20231025.0
     version: 4.20231025.0
@@ -137,8 +137,8 @@ devDependencies:
     specifier: 5.2.2
     version: 5.2.2
   vercel:
-    specifier: 32.5.1
-    version: 32.5.1
+    specifier: 32.5.2
+    version: 32.5.2
   wrangler:
     specifier: 3.15.0
     version: 3.15.0
@@ -497,7 +497,7 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@1.7.2(vercel@32.5.1)(wrangler@3.15.0):
+  /@cloudflare/next-on-pages@1.7.2(vercel@32.5.2)(wrangler@3.15.0):
     resolution: {integrity: sha512-Jr1s8CIo/S1e6/5R0jKmUueOcJMEGYp96viBUvw0rCRLo3Uw88V+tYr0eubzlTbvhI0Vq4aSLLtiyco9kLsJBQ==}
     hasBin: true
     peerDependencies:
@@ -514,7 +514,7 @@ packages:
       package-manager-manager: 0.2.0
       pcre-to-regexp: 1.1.0
       semver: 7.5.4
-      vercel: 32.5.1
+      vercel: 32.5.2
       wrangler: 3.15.0
       zod: 3.22.4
       zodcli: 0.0.4(zod@3.22.4)
@@ -1858,8 +1858,8 @@ packages:
       ts-morph: 12.0.0
     dev: true
 
-  /@vercel/next@4.0.12:
-    resolution: {integrity: sha512-MggOAo8Juxrnoi6F4zmUQPJs/Ly1dGpo/5Nj1ZcIot8k5ABhkkT8IotKaa7fY6L+HYyWcdcq8qwVJ0TrFMjvOQ==}
+  /@vercel/next@4.0.13:
+    resolution: {integrity: sha512-zTeowu/yZjenGPAfLvLikrq4+rEynMu2MQ/HzxFb4HoQgjRQmSPJ3zQWVRp1CPm2VQe23AvhORIupxMXKr8SNw==}
     dependencies:
       '@vercel/nft': 0.24.2
     transitivePeerDependencies:
@@ -7602,8 +7602,8 @@ packages:
       convert-source-map: 1.9.0
     dev: true
 
-  /vercel@32.5.1:
-    resolution: {integrity: sha512-C4V1Jirp7Q+CiLbHEExGFN4H1LF4qMN0SiT32+sZxaD6YdzMMvvDo6rlYi8kY4I9qxh5BTim7hz+cljIg5AdqA==}
+  /vercel@32.5.2:
+    resolution: {integrity: sha512-OTsG7cDphtebJ+S/3NelS9p0LHpzDW0Otv+JZ1ptibjhkzJaYURK9tP58oUL+z5feU796LDJpJoIHFgG+37o7A==}
     engines: {node: '>= 16'}
     hasBin: true
     dependencies:
@@ -7611,7 +7611,7 @@ packages:
       '@vercel/fun': 1.1.0
       '@vercel/go': 3.0.3
       '@vercel/hydrogen': 1.0.1
-      '@vercel/next': 4.0.12
+      '@vercel/next': 4.0.13
       '@vercel/node': 3.0.8
       '@vercel/python': 4.1.0
       '@vercel/redwood': 2.0.5
