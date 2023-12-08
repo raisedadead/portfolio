@@ -31,7 +31,7 @@
     "@headlessui/react": "1.7.17",
     "@heroicons/react": "2.0.18",
     "@types/react-html-parser": "2.0.6",
-    "framer-motion": "10.16.15",
+    "framer-motion": "10.16.16",
     "graphql": "16.8.1",
     "graphql-request": "6.1.0",
     "next": "14.0.4",
