@@ -16,7 +16,7 @@
     "format": {
       "dependsOn": ["lint"]
     },
-    "dev": {
+    "develop": {
       "persistent": true,
       "cache": false
     }
