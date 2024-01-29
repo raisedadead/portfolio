@@ -48,7 +48,7 @@ dependencies:
 devDependencies:
   '@cloudflare/next-on-pages':
     specifier: 1.8.5
-    version: 1.8.5(vercel@33.3.0)(wrangler@3.25.0)
+    version: 1.8.5(vercel@33.4.0)(wrangler@3.25.0)
   '@cloudflare/workers-types':
     specifier: 4.20240117.0
     version: 4.20240117.0
@@ -137,8 +137,8 @@ devDependencies:
     specifier: 5.3.3
     version: 5.3.3
   vercel:
-    specifier: 33.3.0
-    version: 33.3.0
+    specifier: 33.4.0
+    version: 33.4.0
   wrangler:
     specifier: 3.25.0
     version: 3.25.0
@@ -497,7 +497,7 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@1.8.5(vercel@33.3.0)(wrangler@3.25.0):
+  /@cloudflare/next-on-pages@1.8.5(vercel@33.4.0)(wrangler@3.25.0):
     resolution: {integrity: sha512-mY7ovjE6NM9ZPhWH3HZMW7lT9f3242KpHjz94NYaQ3Seu7BzXoHd23QVotxEpWZ1AtGeymrQ3Bmzy32cRToBSw==}
     hasBin: true
     peerDependencies:
@@ -516,7 +516,7 @@ packages:
       package-manager-manager: 0.2.0
       pcre-to-regexp: 1.1.0
       semver: 7.5.4
-      vercel: 33.3.0
+      vercel: 33.4.0
       wrangler: 3.25.0
     transitivePeerDependencies:
       - bufferutil
@@ -7869,8 +7869,8 @@ packages:
       convert-source-map: 1.9.0
     dev: true
 
-  /vercel@33.3.0:
-    resolution: {integrity: sha512-+lPMEFDBhH85yHa1m2qyUuNH+Oz0kgv2MV4DqUu4TsMysLDq031sVP/g7AybOIl34xb26qtp2L7EPbWy8ZK5Nw==}
+  /vercel@33.4.0:
+    resolution: {integrity: sha512-uB8XcTvARBsJtXCbhm/+F3qtV/FQXYYxx6jyUMfMU8izmOmWUlcSOmARbctL4vZ3Izj4ku+P4S25aDQFNmhGYQ==}
     engines: {node: '>= 16'}
     hasBin: true
     dependencies:
