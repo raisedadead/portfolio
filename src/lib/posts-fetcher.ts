@@ -4,73 +4,97 @@ export type Post = {
   title: string;
   brief: string;
   slug: string;
-  totalReactions: number;
-  dateAdded: string;
-  popularity: number;
+  publishedAt: string;
+  reactionCount: number;
   replyCount: number;
+  readTimeInMinutes: number;
+  coverImage: string;
 };
 
 interface UserArticlesResponse {
-  user: {
-    publication: {
-      posts: Array<Post>;
+  publication: {
+    posts: {
+      edges: Array<{
+        node: Post;
+      }>;
+      pageInfo: {
+        endCursor: string;
+        hasNextPage: boolean;
+      };
     };
   };
 }
 
-const getUserArticlesQuery = (page: number) => {
-  return gql`
-    query GetUserArticles {
-      user(username: "mrugesh") {
-        publication {
-          posts(page: ${page}) {
-            title
-            brief
-            slug
-            totalReactions
-            dateAdded
-            popularity
-            replyCount
+const postFieldsFragment = gql`
+  fragment PostFields on Post {
+    title
+    brief
+    slug
+    publishedAt
+    reactionCount
+    readTimeInMinutes
+    replyCount
+    coverImage {
+      url
+    }
+  }
+`;
+
+const getUserArticlesQuery = gql`
+  ${postFieldsFragment}
+  query PostsByPublication($host: String!, $first: Int!, $after: String) {
+    publication(host: $host) {
+      id
+      posts(first: $first, after: $after) {
+        edges {
+          node {
+            ...PostFields
           }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
         }
       }
     }
-  `;
-};
+  }
+`;
 
-export const postsFetcher = async (_key: string, pageIndex = 0) => {
+export const postsFetcher = async (
+  _key: string,
+  pageCursor = '',
+  first: number = 5
+) => {
   let posts: Post[] = [];
+  let pageInfo = {
+    endCursor: '',
+    hasNextPage: false
+  };
 
   try {
     const data = await request<UserArticlesResponse>(
-      'https://api.hashnode.com',
-      getUserArticlesQuery(pageIndex)
-    );
-    posts = data.user.publication.posts.map(
-      ({
-        title,
-        brief,
-        slug,
-        totalReactions,
-        dateAdded,
-        popularity,
-        replyCount
-      }) => {
-        return {
-          title,
-          brief,
-          slug,
-          totalReactions,
-          dateAdded,
-          popularity,
-          replyCount
-        };
+      'https://gql.hashnode.com',
+      getUserArticlesQuery,
+      {
+        host: 'hn.mrugesh.dev',
+        first,
+        after: pageCursor || null
       }
     );
+
+    posts = data?.publication?.posts?.edges.map(({ node }) => node) || [];
+
+    pageInfo = data?.publication?.posts?.pageInfo || {
+      endCursor: '',
+      hasNextPage: false
+    };
   } catch (error) {
-    console.error(error);
-    throw new Error('Error fetching posts');
+    // console.error('Error fetching posts:', error);
+    throw new Error('Error fetching posts. Errors logged to console.');
   }
 
-  return posts;
+  return {
+    posts,
+    pageInfo
+  };
 };

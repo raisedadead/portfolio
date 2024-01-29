@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NextPage } from 'next';
 import useSWR from 'swr';
 
 import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
-
-import { postsFetcher } from '../lib/posts-fetcher';
-import type { Post } from '../lib/posts-fetcher';
+import { postsFetcher, Post } from '../lib/posts-fetcher';
 import { MetaHead } from '../components/head';
 
 const PageWrapper: React.FC<{
@@ -31,8 +29,8 @@ const ErrorBlock = () => (
   <PageWrapper>
     <div className='flex flex-col space-y-2 text-sm text-gray-600'>
       <p>
-        Sorry, We believe we facing issues fetching articles right now. Please
-        try again in a bit.
+        Sorry, we are facing issues fetching articles right now. Please try
+        again in a bit.
       </p>
       <p>Details of the error may be logged in the developer console.</p>
       <p>Thanks for your patience.</p>
@@ -57,51 +55,57 @@ const SkeletonBlock = () => (
   </PageWrapper>
 );
 
-const Blog: NextPage = () => {
-  const [pageIndex, setPageIndex] = useState(0);
-  const [posts, setPosts] = useState<Post[] | null>(null);
+const usePosts = (pageCursor: string) => {
+  const { data, error, isValidating } = useSWR(['/api/posts', pageCursor], () =>
+    postsFetcher('posts', pageCursor)
+  );
+
+  const isLoadingMore = isValidating && data && data.pageInfo.hasNextPage;
 
   const {
-    data: currentPosts,
-    error,
-    isValidating
-  } = useSWR(`${pageIndex}`, () => postsFetcher(`${pageIndex}`, pageIndex));
+    posts,
+    pageInfo: { endCursor, hasNextPage }
+  } = data || {
+    posts: [],
+    pageInfo: {
+      endCursor: '',
+      hasNextPage: false
+    }
+  };
+
+  return { posts, endCursor, hasNextPage, error, isLoadingMore };
+};
+
+const Blog: NextPage = () => {
+  const [pageCursor, setPageCursor] = useState('');
+  const [allPosts, setAllPosts] = useState<Post[]>([]);
+  const { posts, endCursor, hasNextPage, error, isLoadingMore } =
+    usePosts(pageCursor);
 
   useEffect(() => {
-    if (currentPosts) {
-      setPosts((prevPosts) => [...(prevPosts ?? []), ...currentPosts]);
+    if (posts) {
+      setAllPosts((prevPosts) => [...prevPosts, ...posts]);
     }
-  }, [currentPosts]);
+  }, [posts]);
 
-  const loadMoreArticles = useCallback(() => {
-    setPageIndex(pageIndex + 1);
-  }, [pageIndex]);
+  const loadMoreArticles = () => {
+    if (!hasNextPage || isLoadingMore) return;
+    setPageCursor(endCursor);
+  };
 
   if (error) {
     console.error('Error: ', error);
     return <ErrorBlock />;
   }
 
-  if (!posts) {
+  if (allPosts.length === 0) {
     return <SkeletonBlock />;
   }
-
-  const disableLoadMore = !currentPosts?.length;
-
-  const getButtonState = () => {
-    if (isValidating) {
-      return <span>Loading...</span>;
-    }
-    if (disableLoadMore) {
-      return <span>That&apos;s the end. No more articles.</span>;
-    }
-    return <span>Load more articles...</span>;
-  };
 
   return (
     <PageWrapper>
       <ul role='list' className='list-none divide-y divide-slate-400'>
-        {posts.map((post: Post) =>
+        {allPosts.map((post: Post) =>
           post.title && post.slug ? (
             <li className='pb-2 pt-4' key={post.slug}>
               <div className='flex flex-col space-y-4'>
@@ -115,9 +119,12 @@ const Blog: NextPage = () => {
                 </Link>
                 <p className='text-sm text-slate-600'>{post.brief}</p>
                 <p className='text-sm text-slate-500'>
-                  {new Date(post.dateAdded).toDateString()}
-                  {post.totalReactions
-                    ? ` • ${post.totalReactions} reactions`
+                  {new Date(post.publishedAt).toDateString()}
+                  {post.readTimeInMinutes
+                    ? ` • ${post.readTimeInMinutes} min read`
+                    : ''}
+                  {post.reactionCount
+                    ? ` • ${post.reactionCount} reactions`
                     : ''}
                   {post.replyCount ? ` • ${post.replyCount} comments` : ''}
                 </p>
@@ -130,9 +137,15 @@ const Blog: NextPage = () => {
         <button
           onClick={loadMoreArticles}
           className='items-center rounded bg-orange-100 px-4 py-2 text-sm font-medium text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-50 disabled:hover:bg-gray-100 disabled:hover:text-black'
-          disabled={disableLoadMore || isValidating}
+          disabled={!hasNextPage || isLoadingMore}
         >
-          {getButtonState()}
+          {isLoadingMore ? (
+            <span>Loading...</span>
+          ) : hasNextPage ? (
+            <span>Load more articles</span>
+          ) : (
+            <span>That&apos;s the end. No more articles.</span>
+          )}
         </button>
       </div>
     </PageWrapper>
