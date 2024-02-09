@@ -48,7 +48,7 @@ dependencies:
 devDependencies:
   '@cloudflare/next-on-pages':
     specifier: 1.8.6
-    version: 1.8.6(vercel@33.4.1)(wrangler@3.27.0)
+    version: 1.8.6(vercel@33.4.1)(wrangler@3.28.0)
   '@cloudflare/workers-types':
     specifier: 4.20240208.0
     version: 4.20240208.0
@@ -140,8 +140,8 @@ devDependencies:
     specifier: 33.4.1
     version: 33.4.1
   wrangler:
-    specifier: 3.27.0
-    version: 3.27.0
+    specifier: 3.28.0
+    version: 3.28.0(@cloudflare/workers-types@4.20240208.0)
 
 packages:
 
@@ -497,7 +497,7 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/next-on-pages@1.8.6(vercel@33.4.1)(wrangler@3.27.0):
+  /@cloudflare/next-on-pages@1.8.6(vercel@33.4.1)(wrangler@3.28.0):
     resolution: {integrity: sha512-7slZwLTdhBz/HOFMfNft8MtrxPy12iGK1+hS/c+6HUhxUE36f1sOnXwuLMsATYzV4g1kscrN7jAllUnhpYczOg==}
     hasBin: true
     peerDependencies:
@@ -517,7 +517,7 @@ packages:
       pcre-to-regexp: 1.1.0
       semver: 7.5.4
       vercel: 33.4.1
-      wrangler: 3.27.0
+      wrangler: 3.28.0(@cloudflare/workers-types@4.20240208.0)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -8031,12 +8031,18 @@ packages:
       '@cloudflare/workerd-windows-64': 1.20240129.0
     dev: true
 
-  /wrangler@3.27.0:
-    resolution: {integrity: sha512-VV2QXH+4OfNwWRR2cgMw5Xh6WQXec8h1cPjgKMWuUTR1q0Ha8TiEhU1rBOraRYTZbUuM4tqqO4GYeOE0AX7oVQ==}
+  /wrangler@3.28.0(@cloudflare/workers-types@4.20240208.0):
+    resolution: {integrity: sha512-28lqaO4THoGyvnRtrC5+GvyFthn8E9brRSiz4sMJU8Wf5UT8JRq31Pp4leHuQ3sCzSI2yqzB4+NTo6YZaoXMfw==}
     engines: {node: '>=16.17.0'}
     hasBin: true
+    peerDependencies:
+      '@cloudflare/workers-types': ^4.20230914.0
+    peerDependenciesMeta:
+      '@cloudflare/workers-types':
+        optional: true
     dependencies:
       '@cloudflare/kv-asset-handler': 0.2.0
+      '@cloudflare/workers-types': 4.20240208.0
       '@esbuild-plugins/node-globals-polyfill': 0.2.3(esbuild@0.17.19)
       '@esbuild-plugins/node-modules-polyfill': 0.2.2(esbuild@0.17.19)
       blake3-wasm: 2.1.5
