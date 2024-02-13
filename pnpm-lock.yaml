@@ -116,8 +116,8 @@ devDependencies:
     specifier: 15.2.2
     version: 15.2.2
   next-router-mock:
-    specifier: 0.9.11
-    version: 0.9.11(next@14.1.0)(react@18.2.0)
+    specifier: 0.9.12
+    version: 0.9.12(next@14.1.0)(react@18.2.0)
   postcss:
     specifier: 8.4.35
     version: 8.4.35
@@ -6023,8 +6023,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-router-mock@0.9.11(next@14.1.0)(react@18.2.0):
-    resolution: {integrity: sha512-3w7DdXDtjsBbPvHk3kBtmzyvn5BwRh133JM4G3gdjqt8zBzs08dvdU6EEPMZIiQv3mgxZwp7nFKGYEmUnMV/rQ==}
+  /next-router-mock@0.9.12(next@14.1.0)(react@18.2.0):
+    resolution: {integrity: sha512-PzKn70RSqO50GHyYyhd4WJb9I526Abfq2VDP+YPV8yqlaR38OKtQAcWr3njR75UG+Ik6HououZHm7ucxl6LSnA==}
     peerDependencies:
       next: '>=10.0.0'
       react: '>=17.0.0'
