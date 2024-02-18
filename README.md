@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/1884376/236912632-c7491fc9-dff2-4248-9000-855fbb2256b2.png" width="1000" />
-</p>
-
 # portfolio
 
 > Nothing fancy here, just my [portfolio website][personal-website].
