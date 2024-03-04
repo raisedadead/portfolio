@@ -39,28 +39,24 @@ const ErrorBlock = () => (
 );
 
 const SkeletonBlock = () => (
-  <PageWrapper>
-    <ul role='list' className='list-none divide-y divide-gray-200'>
-      <li className='py-4'>
-        <div role='status' className='max-w-sm animate-pulse'>
-          <div className='mb-2.5 h-2 max-w-[360px] bg-blue-600'></div>
-          <div className='mb-2.5 h-2 max-w-[330px] bg-gray-500'></div>
-          <div className='mb-2.5 h-2 max-w-[300px] bg-gray-500'></div>
-          <div className='mb-4 h-2 max-w-[360px] bg-gray-500'></div>
-          <div className='h-2 w-48 bg-gray-200 dark:bg-gray-500'></div>
-          <span className='sr-only'>Loading...</span>
-        </div>
-      </li>
-    </ul>
-  </PageWrapper>
+  <ul role='list' className='list-none divide-y divide-gray-200'>
+    <li className='py-4'>
+      <div role='status' className='max-w-sm animate-pulse'>
+        <div className='mb-2.5 h-2 max-w-[360px] bg-blue-600'></div>
+        <div className='mb-2.5 h-2 max-w-[330px] bg-gray-500'></div>
+        <div className='mb-2.5 h-2 max-w-[300px] bg-gray-500'></div>
+        <div className='mb-4 h-2 max-w-[360px] bg-gray-500'></div>
+        <div className='h-2 w-48 bg-gray-200 dark:bg-gray-500'></div>
+        <span className='sr-only'>Loading...</span>
+      </div>
+    </li>
+  </ul>
 );
 
 const usePosts = (pageCursor: string) => {
   const { data, error, isValidating } = useSWR(['/api/posts', pageCursor], () =>
     postsFetcher('posts', pageCursor)
   );
-
-  const isLoadingMore = isValidating && data && data.pageInfo.hasNextPage;
 
   const {
     posts,
@@ -73,13 +69,13 @@ const usePosts = (pageCursor: string) => {
     }
   };
 
-  return { posts, endCursor, hasNextPage, error, isLoadingMore };
+  return { posts, endCursor, hasNextPage, error, isValidating };
 };
 
 const Blog: NextPage = () => {
   const [pageCursor, setPageCursor] = useState('');
   const [allPosts, setAllPosts] = useState<Post[]>([]);
-  const { posts, endCursor, hasNextPage, error, isLoadingMore } =
+  const { posts, endCursor, hasNextPage, error, isValidating } =
     usePosts(pageCursor);
 
   useEffect(() => {
@@ -89,17 +85,25 @@ const Blog: NextPage = () => {
   }, [posts]);
 
   const loadMoreArticles = () => {
-    if (!hasNextPage || isLoadingMore) return;
+    if (!hasNextPage || isValidating) return;
     setPageCursor(endCursor);
   };
 
   if (error) {
     console.error('Error: ', error);
-    return <ErrorBlock />;
+    return (
+      <PageWrapper>
+        <ErrorBlock />
+      </PageWrapper>
+    );
   }
 
   if (allPosts.length === 0) {
-    return <SkeletonBlock />;
+    return (
+      <PageWrapper>
+        <SkeletonBlock />
+      </PageWrapper>
+    );
   }
 
   return (
@@ -133,13 +137,14 @@ const Blog: NextPage = () => {
           ) : null
         )}
       </ul>
+      {isValidating ? <SkeletonBlock /> : null}
       <div className='flex justify-center py-5'>
         <button
           onClick={loadMoreArticles}
           className='items-center rounded border-b-2 border-r-2 border-gray-600 bg-orange-100 px-4 py-2 text-sm font-medium text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:border-transparent hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 active:hover:shadow-transparent disabled:cursor-not-allowed disabled:border-transparent disabled:bg-gray-100 disabled:opacity-50 disabled:hover:bg-gray-100 disabled:hover:text-black'
-          disabled={!hasNextPage || isLoadingMore}
+          disabled={!hasNextPage || isValidating}
         >
-          {isLoadingMore ? (
+          {isValidating ? (
             <span>Loading...</span>
           ) : hasNextPage ? (
             <span>Load more articles</span>
