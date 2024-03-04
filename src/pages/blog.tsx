@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { NextPage } from 'next';
 import useSWR from 'swr';
 
@@ -82,7 +82,7 @@ const Blog: NextPage = () => {
   const { posts, endCursor, hasNextPage, error, isLoadingMore } =
     usePosts(pageCursor);
 
-  useEffect(() => {
+  useMemo(() => {
     if (posts) {
       setAllPosts((prevPosts) => [...prevPosts, ...posts]);
     }

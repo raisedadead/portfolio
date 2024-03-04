@@ -93,6 +93,8 @@ export const postsFetcher = async (
     throw new Error('Error fetching posts. Errors logged to console.');
   }
 
+  // debug -- add a delay to simulate network latency
+  // await new Promise((resolve) => setTimeout(resolve, 2000));
   return {
     posts,
     pageInfo
