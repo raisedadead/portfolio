@@ -39,8 +39,8 @@ const ErrorBlock = () => (
 );
 
 const SkeletonBlock = () => (
-  <ul role='list' className='list-none divide-y divide-gray-200'>
-    <li className='py-4'>
+  <ul role='list' className='list-none'>
+    <li className='border-2 border-black bg-white p-2 shadow-[4px_2px_0px_rgba(0,0,0,1)]'>
       <div role='status' className='max-w-sm animate-pulse'>
         <div className='mb-2.5 h-2 max-w-[360px] bg-blue-600'></div>
         <div className='mb-2.5 h-2 max-w-[330px] bg-gray-500'></div>
@@ -108,10 +108,13 @@ const Blog: NextPage = () => {
 
   return (
     <PageWrapper>
-      <ul role='list' className='list-none divide-y divide-slate-400'>
+      <ul role='list' className='list-none'>
         {allPosts.map((post: Post) =>
           post.title && post.slug ? (
-            <li className='pb-2 pt-4' key={post.slug}>
+            <li
+              className='my-2 border-2 border-black bg-blue-100 p-2 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
+              key={post.slug}
+            >
               <div className='flex flex-col space-y-4'>
                 <Link
                   href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
@@ -121,8 +124,8 @@ const Blog: NextPage = () => {
                     {post.title}
                   </h3>
                 </Link>
-                <p className='text-sm text-slate-600'>{post.brief}</p>
-                <p className='text-sm text-slate-500'>
+                <p className='text-sm text-slate-900'>{post.brief}</p>
+                <p className='text-sm text-slate-600'>
                   {new Date(post.publishedAt).toDateString()}
                   {post.readTimeInMinutes
                     ? ` • ${post.readTimeInMinutes} min read`
@@ -141,7 +144,7 @@ const Blog: NextPage = () => {
       <div className='flex justify-center py-5'>
         <button
           onClick={loadMoreArticles}
-          className='items-center rounded border-b-2 border-r-2 border-gray-600 bg-orange-100 px-4 py-2 text-sm font-medium text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:border-transparent hover:bg-orange-300 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 active:hover:shadow-transparent disabled:cursor-not-allowed disabled:border-transparent disabled:bg-gray-100 disabled:opacity-50 disabled:hover:bg-gray-100 disabled:hover:text-black'
+          className='w-[50%] items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:cursor-not-allowed disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none disabled:hover:bg-orange-100 disabled:hover:text-gray-400 disabled:hover:shadow-none disabled:active:bg-orange-100 disabled:active:shadow-none'
           disabled={!hasNextPage || isValidating}
         >
           {isValidating ? (

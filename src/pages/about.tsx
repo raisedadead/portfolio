@@ -7,7 +7,7 @@ const Blog: NextPage = () => (
   <>
     <MetaHead pageTitle='Legal - About & Contact' />
     <Layout>
-      <section>
+      <section className='mt-10 border-2 border-black bg-blue-100 p-5 shadow-[2px_2px_0px_rgba(0,0,0,1)]'>
         <div className='prose prose-sm max-w-none'>
           <h1 className='text-center'>About & Contact</h1>
           <h4 className='text-center'>About</h4>

@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react';
-import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline';
+import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 
 type ExpandableSectionProps = {
   title: string;
@@ -16,19 +16,19 @@ const Label: React.FC<{ children: React.ReactNode; labelColor: string }> = ({
   labelColor
 }) => {
   const preClasses =
-    'mx-1 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium';
+    'mx-1 inline-flex items-center rounded-full shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] border-2 px-2 py-0.5 text-xs font-medium';
 
   const colorVariants: {
     [key: string]: string;
   } = {
-    red: 'bg-red-100 text-red-800',
-    green: 'bg-green-100 text-green-800',
-    blue: 'bg-blue-100 text-blue-800',
-    orange: 'bg-orange-100 text-orange-800',
-    yellow: 'bg-yellow-100 text-yellow-800',
-    purple: 'bg-purple-100 text-purple-800',
-    pink: 'bg-pink-100 text-pink-800',
-    gray: 'bg-gray-100 text-gray-800'
+    red: 'border-black bg-red-100 text-red-800',
+    green: 'border-black bg-green-100 text-green-800',
+    blue: 'border-black bg-blue-100 text-blue-800',
+    orange: 'border-black bg-orange-100 text-orange-800',
+    yellow: 'border-black bg-yellow-100 text-yellow-800',
+    purple: 'border-black bg-purple-100 text-purple-800',
+    pink: 'border-black bg-pink-100 text-pink-800',
+    gray: 'border-black bg-gray-100 text-gray-800'
   };
 
   return (
@@ -61,19 +61,26 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
   return (
     <Disclosure as='div' className={className}>
       {({ open }) => (
-        <div>
-          <Disclosure.Button className='flex w-full justify-between rounded-lg text-left font-bold text-slate-700'>
-            <div className='flex flex-row'>
+        <div
+          className={`${open ? 'border-2' : 'border-l-2 border-r-2 border-t-2'} my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]`}
+        >
+          <Disclosure.Button
+            className={`
+            ${open ? 'bg-purple-300' : 'bg-red-200'} h-12 w-full border-b-2 border-black px-2 text-left font-bold text-slate-900`}
+          >
+            <div className='flex flex-row justify-between py-2'>
               {title}
-              {labels?.length ? <Labels labels={labels} /> : null}
+              <div className='flex flex-row items-center'>
+                {labels?.length ? <Labels labels={labels} /> : null}
+                {open ? (
+                  <MinusIcon className='h-5 w-5' aria-hidden='true' />
+                ) : (
+                  <PlusIcon className='h-5 w-5' aria-hidden='true' />
+                )}
+              </div>
             </div>
-            {open ? (
-              <MinusSmallIcon className='h-5 w-5' aria-hidden='true' />
-            ) : (
-              <PlusSmallIcon className='h-5 w-5' aria-hidden='true' />
-            )}
           </Disclosure.Button>
-          <Disclosure.Panel className='text-slate-500'>
+          <Disclosure.Panel className='bg-blue-100 p-4 text-slate-700'>
             {children}
           </Disclosure.Panel>
         </div>

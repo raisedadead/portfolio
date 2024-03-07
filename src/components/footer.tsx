@@ -10,8 +10,8 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
     ? 'font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto'
     : 'text-center';
   const anchorClass = isDefault
-    ? 'text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2'
-    : 'text-gray-500 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2 no-underline';
+    ? 'text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2'
+    : 'text-gray-500 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2 no-underline';
   return (
     <footer className={className}>
       <div className={footerType}>

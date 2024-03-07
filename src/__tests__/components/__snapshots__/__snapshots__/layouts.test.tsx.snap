@@ -101,7 +101,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         </div>
       </div>
       <main
-        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
+        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
       >
         <nav
           class="max-h-none w-screen"
@@ -114,7 +114,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               <button
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="flex items-center rounded bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+                class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
                 data-headlessui-state=""
                 id="headlessui-menu-button-:r0:"
                 type="button"
@@ -145,7 +145,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           </div>
         </nav>
         <div
-          class="px-5 pb-5 pt-5 md:px-20 "
+          class="px-5 pb-5 pt-5 md:px-16"
         >
           <section>
             <div
@@ -389,7 +389,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             >
               <a
                 aria-label=""
-                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
                 href="/terms"
                 role="link"
               >
@@ -398,7 +398,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               •
               <a
                 aria-label=""
-                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
                 href="/privacy"
                 role="link"
               >
@@ -407,7 +407,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               •
               <a
                 aria-label=""
-                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
                 href="/refunds"
                 role="link"
               >
@@ -416,7 +416,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               •
               <a
                 aria-label=""
-                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
                 href="/about"
                 role="link"
               >
@@ -527,7 +527,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         </div>
       </div>
       <main
-        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
+        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
       >
         <nav
           class="max-h-none w-screen"
@@ -540,7 +540,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               <button
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="flex items-center rounded bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+                class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
                 data-headlessui-state=""
                 id="headlessui-menu-button-:r1:"
                 type="button"
@@ -571,7 +571,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           </div>
         </nav>
         <div
-          class="px-5 pb-5 pt-5 md:px-20 "
+          class="px-5 pb-5 pt-5 md:px-16"
         >
           <section>
             <div
@@ -815,7 +815,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             >
               <a
                 aria-label=""
-                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
                 href="/terms"
                 role="link"
               >
@@ -824,7 +824,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               •
               <a
                 aria-label=""
-                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
                 href="/privacy"
                 role="link"
               >
@@ -833,7 +833,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               •
               <a
                 aria-label=""
-                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
                 href="/refunds"
                 role="link"
               >
@@ -842,7 +842,7 @@ exports[`<Layout /> matches snapshot 1`] = `
               •
               <a
                 aria-label=""
-                class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+                class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
                 href="/about"
                 role="link"
               >
@@ -954,7 +954,7 @@ exports[`<Layout /> matches snapshot 1`] = `
       </div>
     </div>
     <main
-      class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]  rounded bg-white/30 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg"
+      class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
     >
       <nav
         class="max-h-none w-screen"
@@ -967,7 +967,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             <button
               aria-expanded="false"
               aria-haspopup="menu"
-              class="flex items-center rounded bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none"
+              class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
               data-headlessui-state=""
               id="headlessui-menu-button-:r1:"
               type="button"
@@ -998,7 +998,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         </div>
       </nav>
       <div
-        class="px-5 pb-5 pt-5 md:px-20 "
+        class="px-5 pb-5 pt-5 md:px-16"
       >
         <section>
           <div
@@ -1242,7 +1242,7 @@ exports[`<Layout /> matches snapshot 1`] = `
           >
             <a
               aria-label=""
-              class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+              class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
               href="/terms"
               role="link"
             >
@@ -1251,7 +1251,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             •
             <a
               aria-label=""
-              class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+              class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
               href="/privacy"
               role="link"
             >
@@ -1260,7 +1260,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             •
             <a
               aria-label=""
-              class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+              class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
               href="/refunds"
               role="link"
             >
@@ -1269,7 +1269,7 @@ exports[`<Layout /> matches snapshot 1`] = `
             •
             <a
               aria-label=""
-              class="text-gray-700 hover:text-gray-50 rounded-full hover:bg-gray-500 py-1 px-2"
+              class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
               href="/about"
               role="link"
             >

@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  @apply focus:outline-none;
+  @apply active:outline-none;
+}

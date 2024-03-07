@@ -24,7 +24,7 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
     <nav className={`${className}`}>
       <Menu as='div' className='absolute right-4 top-4 text-left'>
         <div>
-          <Menu.Button className='flex items-center rounded bg-orange-200 p-2 text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none'>
+          <Menu.Button className='flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none'>
             <span className='sr-only'>Open navigation menu</span>
             <Bars4Icon className='h-6 w-6' aria-hidden='true' />
           </Menu.Button>
@@ -39,13 +39,13 @@ export const Nav: React.FC<NavProps> = ({ className }) => {
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'
         >
-          <Menu.Items className='absolute right-0 z-10 mt-2 w-48 rounded bg-white/90 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-lg focus:outline-none'>
+          <Menu.Items className='absolute right-0 z-10 mt-2 w-48 border-2 border-black bg-orange-200 shadow-[2px_2px_0px_rgba(0,0,0,1)] focus:outline-none'>
             <div className='py-1'>
               {links.map((link) => (
                 <Menu.Item key={link.href}>
                   <Link
                     href={link.href}
-                    className='background-blur-sm inline-flex h-full w-full justify-start py-1 pl-4 text-slate-600 no-underline hover:bg-orange-200 hover:text-slate-800'
+                    className='inline-flex h-full w-full justify-start border-b-2 border-black py-2 pl-4 text-black first:-mt-1 last:-mb-1 last:border-b-0 hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none'
                     ariaLabel={link.label}
                   >
                     <link.icon

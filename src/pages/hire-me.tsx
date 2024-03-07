@@ -8,7 +8,7 @@ const HireMe: NextPage = () => (
   <>
     <MetaHead pageTitle='Hire Me' />
     <Layout>
-      <section>
+      <section className='mt-10 border-2 border-black bg-fuchsia-100 p-5 shadow-[2px_2px_0px_rgba(0,0,0,1)]'>
         <div className='prose prose-sm prose-slate max-w-none'>
           <h1 className='py-2 text-center'>Let&apos;s work together!</h1>
           <h2>Hey there! 👋🏽</h2>
@@ -73,11 +73,11 @@ const HireMe: NextPage = () => (
           <div className='flex'>
             <Link
               aria-label='Schedule a call'
-              className='mx-auto w-[50%] rounded-md border-b-2 border-r-2 border-gray-600 bg-white p-2 text-center font-medium text-black no-underline shadow-[4px_4px_0_0_rgba(60,64,43,.2)] backdrop-blur-sm hover:border-transparent hover:bg-orange-300 hover:text-slate-800 hover:shadow-transparent'
+              className='mx-auto w-[50%] border-2 border-black bg-white p-2.5 text-center text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
               href='https://topmate.io/mrugesh'
               type='button'
             >
-              <span className='inline-flex items-center'>Book a 1:1 Call</span>
+              <span className='inline-flex items-center'>Get in touch!</span>
             </Link>
           </div>
           <p>
