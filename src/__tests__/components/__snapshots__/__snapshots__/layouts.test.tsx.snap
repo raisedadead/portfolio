@@ -101,10 +101,10 @@ exports[`<Layout /> matches snapshot 1`] = `
         </div>
       </div>
       <main
-        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
+        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-white/50 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
       >
         <nav
-          class="mb-2 max-h-none w-screen"
+          class="mb-6 max-h-none w-screen"
         >
           <div
             class="absolute right-4 top-4 text-left"
@@ -559,10 +559,10 @@ exports[`<Layout /> matches snapshot 1`] = `
         </div>
       </div>
       <main
-        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
+        class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-white/50 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
       >
         <nav
-          class="mb-2 max-h-none w-screen"
+          class="mb-6 max-h-none w-screen"
         >
           <div
             class="absolute right-4 top-4 text-left"
@@ -1018,10 +1018,10 @@ exports[`<Layout /> matches snapshot 1`] = `
       </div>
     </div>
     <main
-      class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
+      class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-white/50 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
     >
       <nav
-        class="mb-2 max-h-none w-screen"
+        class="mb-6 max-h-none w-screen"
       >
         <div
           class="absolute right-4 top-4 text-left"
