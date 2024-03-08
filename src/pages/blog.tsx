@@ -12,7 +12,7 @@ const PageWrapper: React.FC<{
 }> = ({ children }) => (
   <>
     <MetaHead pageTitle='Recent posts' />
-    <Layout>
+    <Layout animatedLayout={false}>
       <section>
         <div className='prose prose-sm prose-slate max-w-none'>
           <h1 className='py-2 text-center font-bold text-slate-700'>

@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import Background from './background';
 import { Footer } from '../components/footer';
 import Nav from './nav';
@@ -7,12 +9,34 @@ export type LayoutProps = {
   children: React.ReactNode;
   showGlass?: boolean;
   showHomeButton?: boolean;
+  animatedLayout?: boolean;
+};
+
+export const AnimatedLayout: React.FC<LayoutProps> = ({
+  children
+}: LayoutProps) => {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0
+      }}
+      animate={{
+        opacity: 1
+      }}
+      transition={{
+        ease: 'easeInOut'
+      }}
+    >
+      {children}
+    </motion.div>
+  );
 };
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
   showGlass = true,
-  showHomeButton = true
+  showHomeButton = true,
+  animatedLayout = true
 }: LayoutProps) => {
   return (
     <>
@@ -29,7 +53,13 @@ export const Layout: React.FC<LayoutProps> = ({
           className='mb-6 max-h-none w-screen'
           showHomeButton={showHomeButton}
         />
-        <div className='px-5 pb-5 pt-5 md:px-16'>{children}</div>
+        {animatedLayout ? (
+          <AnimatedLayout>
+            <div className='px-5 pb-5 pt-5 md:px-16'>{children}</div>
+          </AnimatedLayout>
+        ) : (
+          <div className='px-5 pb-5 pt-5 md:px-16'>{children}</div>
+        )}
         <Footer isDefault={true} className='p-2' />
         <ScrollButton className='fixed bottom-4 right-4 z-20' />
       </main>
