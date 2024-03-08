@@ -115,27 +115,27 @@ const Blog: NextPage = () => {
               className='my-2 border-2 border-black bg-blue-100 p-2 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
               key={post.slug}
             >
-              <div className='flex flex-col space-y-4'>
-                <Link
-                  href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
-                  className='no-underline'
-                >
-                  <h3 className="text-sm font-bold text-blue-600 after:content-['_↗'] hover:text-black">
+              <Link
+                href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
+                className='no-underline'
+              >
+                <div className='flex flex-col space-y-4'>
+                  <h3 className="text-sm font-bold text-blue-600 after:content-['_↗']">
                     {post.title}
                   </h3>
-                </Link>
-                <p className='text-sm text-slate-900'>{post.brief}</p>
-                <p className='text-sm text-slate-600'>
-                  {new Date(post.publishedAt).toDateString()}
-                  {post.readTimeInMinutes
-                    ? ` • ${post.readTimeInMinutes} min read`
-                    : ''}
-                  {post.reactionCount
-                    ? ` • ${post.reactionCount} reactions`
-                    : ''}
-                  {post.replyCount ? ` • ${post.replyCount} comments` : ''}
-                </p>
-              </div>
+                  <p className='text-sm text-slate-900'>{post.brief}</p>
+                  <p className='text-sm text-slate-600'>
+                    {new Date(post.publishedAt).toDateString()}
+                    {post.readTimeInMinutes
+                      ? ` • ${post.readTimeInMinutes} min read`
+                      : ''}
+                    {post.reactionCount
+                      ? ` • ${post.reactionCount} reactions`
+                      : ''}
+                    {post.replyCount ? ` • ${post.replyCount} comments` : ''}
+                  </p>
+                </div>
+              </Link>
             </li>
           ) : null
         )}
