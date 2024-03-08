@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NextPage, GetStaticProps } from 'next';
-import useSWRImmutable, { SWRConfig } from 'swr';
+import useSWRImmutable, { SWRConfig, preload } from 'swr';
 
 import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
@@ -100,10 +100,11 @@ const Blog: NextPage<{
   };
 
   useEffect(() => {
+    preload(['/api/posts', endCursor], () => postsFetcher('posts', endCursor));
     if (posts.length > 0) {
-      setAllPosts((prevPosts) => [...prevPosts, ...posts]);
+      setAllPosts(Array.from(new Set([...allPosts, ...posts])));
     }
-  }, [posts]);
+  }, [posts, endCursor, allPosts]);
 
   const loadMoreArticles = () => {
     if (!hasNextPage || isValidating) return;
