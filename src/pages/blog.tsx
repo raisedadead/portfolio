@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { NextPage } from 'next';
-import useSWR from 'swr';
+import { NextPage, GetStaticProps } from 'next';
+import useSWR, { SWRConfig } from 'swr';
 
 import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
@@ -59,9 +59,39 @@ const SkeletonBlock = () => (
   </li>
 );
 
-const usePosts = (pageCursor: string) => {
-  const { data, error, isValidating } = useSWR(['/api/posts', pageCursor], () =>
-    postsFetcher('posts', pageCursor)
+export const getStaticProps = (async () => {
+  const data = await postsFetcher('posts', '');
+  return {
+    props: {
+      fallback: {
+        '/api/posts': data
+      }
+    }
+  };
+}) satisfies GetStaticProps;
+
+const Blog: NextPage<{
+  fallback: {
+    '/api/posts': {
+      posts: Post[];
+      pageInfo: {
+        endCursor: string;
+        hasNextPage: boolean;
+      };
+    };
+  };
+}> = ({ fallback }) => {
+  const [pageCursor, setPageCursor] = useState('');
+  const [allPosts, setAllPosts] = useState<Post[]>([]);
+  const { data, error, isValidating } = useSWR(
+    ['/api/posts', pageCursor],
+    () => postsFetcher('posts', pageCursor),
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false
+      // revalidateOnReconnect: false,
+      // refreshInterval: 2000
+    }
   );
 
   const {
@@ -75,17 +105,8 @@ const usePosts = (pageCursor: string) => {
     }
   };
 
-  return { posts, endCursor, hasNextPage, error, isValidating };
-};
-
-const Blog: NextPage = () => {
-  const [pageCursor, setPageCursor] = useState('');
-  const [allPosts, setAllPosts] = useState<Post[]>([]);
-  const { posts, endCursor, hasNextPage, error, isValidating } =
-    usePosts(pageCursor);
-
   useEffect(() => {
-    if (posts) {
+    if (posts.length > 0) {
       setAllPosts((prevPosts) => [...prevPosts, ...posts]);
     }
   }, [posts]);
@@ -117,54 +138,56 @@ const Blog: NextPage = () => {
   }
 
   return (
-    <PageWrapper>
-      <ul role='list' className='list-none p-0'>
-        {allPosts.map((post: Post) =>
-          post.title && post.slug ? (
-            <li
-              className='my-2 border-2 border-black bg-blue-100 px-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
-              key={post.slug}
-            >
-              <Link
-                href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
-                className='no-underline'
+    <SWRConfig value={{ fallback }}>
+      <PageWrapper>
+        <ul role='list' className='list-none p-0'>
+          {allPosts.map((post: Post) =>
+            post.title && post.slug ? (
+              <li
+                className='my-2 border-2 border-black bg-blue-100 px-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
+                key={post.slug}
               >
-                <p className="text-lg text-blue-600 after:content-['_↗']">
-                  {post.title}
-                </p>
-                <p className='text-slate-900'>{post.brief}</p>
-                <p className='text-slate-600'>
-                  {new Date(post.publishedAt).toDateString()}
-                  {post.readTimeInMinutes
-                    ? ` • ${post.readTimeInMinutes} min read`
-                    : ''}
-                  {post.reactionCount
-                    ? ` • ${post.reactionCount} reactions`
-                    : ''}
-                  {post.replyCount ? ` • ${post.replyCount} comments` : ''}
-                </p>
-              </Link>
-            </li>
-          ) : null
-        )}
-        {isValidating ? <SkeletonBlock /> : null}
-      </ul>
-      <div className='flex justify-center py-5'>
-        <button
-          onClick={loadMoreArticles}
-          className='w-[50%] items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none disabled:hover:bg-orange-100 disabled:hover:text-gray-400 disabled:hover:shadow-none disabled:active:bg-orange-100 disabled:active:shadow-none'
-          disabled={!hasNextPage || isValidating}
-        >
-          {isValidating ? (
-            <span>Loading...</span>
-          ) : hasNextPage ? (
-            <span>Load more articles</span>
-          ) : (
-            <span>That&apos;s the end. No more articles.</span>
+                <Link
+                  href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
+                  className='no-underline'
+                >
+                  <p className="text-lg text-blue-600 after:content-['_↗']">
+                    {post.title}
+                  </p>
+                  <p className='text-slate-900'>{post.brief}</p>
+                  <p className='text-slate-600'>
+                    {new Date(post.publishedAt).toDateString()}
+                    {post.readTimeInMinutes
+                      ? ` • ${post.readTimeInMinutes} min read`
+                      : ''}
+                    {post.reactionCount
+                      ? ` • ${post.reactionCount} reactions`
+                      : ''}
+                    {post.replyCount ? ` • ${post.replyCount} comments` : ''}
+                  </p>
+                </Link>
+              </li>
+            ) : null
           )}
-        </button>
-      </div>
-    </PageWrapper>
+          {isValidating ? <SkeletonBlock /> : null}
+        </ul>
+        <div className='flex justify-center py-5'>
+          <button
+            onClick={loadMoreArticles}
+            className='w-[50%] items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none disabled:hover:bg-orange-100 disabled:hover:text-gray-400 disabled:hover:shadow-none disabled:active:bg-orange-100 disabled:active:shadow-none'
+            disabled={!hasNextPage || isValidating}
+          >
+            {isValidating ? (
+              <span>Loading...</span>
+            ) : hasNextPage ? (
+              <span>Load more articles</span>
+            ) : (
+              <span>That&apos;s the end. No more articles.</span>
+            )}
+          </button>
+        </div>
+      </PageWrapper>
+    </SWRConfig>
   );
 };
 
