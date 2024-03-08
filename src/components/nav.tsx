@@ -43,23 +43,18 @@ export const Nav: React.FC<NavProps> = ({
           leaveTo='transform opacity-0 scale-95'
         >
           <Menu.Items className='absolute right-0 z-10 mt-2 w-48 border-2 border-black bg-orange-200 shadow-[2px_2px_0px_rgba(0,0,0,1)] focus:outline-none'>
-            <div className='py-1'>
-              {links.map((link) => (
-                <Menu.Item key={link.href}>
-                  <Link
-                    href={link.href}
-                    className='inline-flex h-full w-full justify-start border-b-2 border-black py-2 pl-4 text-black first:-mt-1 last:-mb-1 last:border-b-0 hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none'
-                    ariaLabel={link.label}
-                  >
-                    <link.icon
-                      className='mr-2 flex h-6 w-6'
-                      aria-hidden='true'
-                    />
-                    {link.label}
-                  </Link>
-                </Menu.Item>
-              ))}
-            </div>
+            {links.map((link) => (
+              <Menu.Item key={link.href}>
+                <Link
+                  href={link.href}
+                  className='inline-flex h-full w-full justify-start border-b-2 border-black py-2 pl-4 text-black last:border-b-0 hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none'
+                  ariaLabel={link.label}
+                >
+                  <link.icon className='mr-2 flex h-6 w-6' aria-hidden='true' />
+                  {link.label}
+                </Link>
+              </Menu.Item>
+            ))}
           </Menu.Items>
         </Transition>
       </Menu>
