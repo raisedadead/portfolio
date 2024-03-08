@@ -2,15 +2,22 @@ import type { NextPage } from 'next';
 import Layout from '../components/layouts';
 import Email from '../components/email';
 import { MetaHead } from '../components/head';
+import { Social } from '../components/social';
 
 const Blog: NextPage = () => (
   <>
     <MetaHead pageTitle='Legal - About & Contact' />
     <Layout>
+      <section>
+        <div className='prose prose-sm prose-slate max-w-none'>
+          <h1 className='py-2 text-center font-bold text-slate-700'>
+            About & Contact
+          </h1>
+        </div>
+      </section>
       <section className='mt-10 border-2 border-black bg-blue-100 p-5 shadow-[2px_2px_0px_rgba(0,0,0,1)]'>
-        <div className='prose prose-sm max-w-none'>
-          <h1 className='text-center'>About & Contact</h1>
-          <h4 className='text-center'>About</h4>
+        <div className='prose prose-sm prose-slate max-w-none'>
+          <h3 className='text-center font-bold text-slate-700'>About</h3>
           <p>
             Mrugesh Mohapatra is a software & cloud infrastructure consultant,
             operating as a sole proprietor of{' '}
@@ -21,10 +28,12 @@ const Blog: NextPage = () => (
             The business is registered with Ministry of Micro Small and Medium
             Enterprises, Government of India under the &quot;Udyam&quot; scheme.
           </p>
-          <h4 className='text-center'>Business, Billing & Tax</h4>
-          <p className='text-center'>
+          <h3 className='text-center font-bold text-slate-700'>
+            Business, Billing & Tax
+          </h3>
+          <h4 className='text-center font-bold text-slate-700'>
             <strong>Udyam Registration Number: UDYAM-OD-19-0026052</strong>
-          </p>
+          </h4>
           <p>
             <span>
               GSTIN, HSN Codes for services, PAN, and other business-related
@@ -41,7 +50,7 @@ const Blog: NextPage = () => (
               as per your needs.
             </span>
           </p>
-          <h4 className='text-center'>Contact</h4>
+          <h3 className='text-center font-bold text-slate-700'>Contact</h3>
           <p className='text-center'>
             <strong>
               Email: <Email />
@@ -56,6 +65,14 @@ const Blog: NextPage = () => (
             #218/190, Outer Ring Road, Agara, Sector 1, H.S.R. Layout,
             Bengaluru, Karnataka 560102, India
           </p>
+        </div>
+      </section>
+      <section>
+        <div className='prose prose-sm prose-slate mt-4 max-w-none'>
+          <h4 className='text-center font-bold text-slate-700'>
+            Elsewhere on the internet
+          </h4>
+          <Social />
         </div>
       </section>
     </Layout>

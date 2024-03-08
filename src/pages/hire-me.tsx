@@ -1,17 +1,23 @@
 import type { NextPage } from 'next';
 import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
-import { Social } from '../components/social';
 import { MetaHead } from '../components/head';
+import { Social } from '../components/social';
 
 const HireMe: NextPage = () => (
   <>
     <MetaHead pageTitle='Hire Me' />
     <Layout>
+      <section>
+        <div className='prose prose-sm prose-slate max-w-none'>
+          <h1 className='py-2 text-center font-bold text-slate-700'>
+            Let&apos;s work together!
+          </h1>
+        </div>
+      </section>
       <section className='mt-10 border-2 border-black bg-fuchsia-100 p-5 shadow-[2px_2px_0px_rgba(0,0,0,1)]'>
         <div className='prose prose-sm prose-slate max-w-none'>
-          <h1 className='py-2 text-center'>Let&apos;s work together!</h1>
-          <h2>Hey there! 👋🏽</h2>
+          <h3 className='font-bold text-slate-700'>Hey there! 👋🏽</h3>
           <p>
             I work full-time as a Principal Maintainer at freeCodeCamp.org and
             help manage their cloud infrastructure and open-source platform.
@@ -35,7 +41,7 @@ const HireMe: NextPage = () => (
             for my work in the &quot;Cloud Infrastructure&quot; and
             &quot;Open-Source&quot; spaces.
           </p>
-          <h3>How can I help you?</h3>
+          <h3 className='font-bold text-slate-700'>How can I help you?</h3>
           <p>Broadly, I am happy to help you with these:</p>
           <ul className='list-none'>
             <li>
@@ -64,7 +70,9 @@ const HireMe: NextPage = () => (
             am a generalist and a curious technologist, never shy of learning
             new things.
           </p>
-          <h3>How can we work together?</h3>
+          <h3 className='font-bold text-slate-700'>
+            How can we work together?
+          </h3>
           <p>
             I am available for consulting, mentoring, and similar engagements.
             Consider booking a session with me using the button below. I have
@@ -104,7 +112,13 @@ const HireMe: NextPage = () => (
             </Link>{' '}
             to discuss.
           </p>
-          <h4 className='mt-20 text-center'>Elsewhere on the internet</h4>
+        </div>
+      </section>
+      <section>
+        <div className='prose prose-sm prose-slate mt-4 max-w-none'>
+          <h4 className='text-center font-bold text-slate-700'>
+            Elsewhere on the internet
+          </h4>
           <Social />
         </div>
       </section>

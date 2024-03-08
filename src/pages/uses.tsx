@@ -3,6 +3,7 @@ import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
 import { ExpandableSection as ES } from '../components/expandable-section';
 import { MetaHead } from '../components/head';
+import { Social } from '../components/social';
 
 const Uses: NextPage = () => {
   return (
@@ -11,9 +12,13 @@ const Uses: NextPage = () => {
       <Layout>
         <section>
           <div className='prose prose-sm prose-slate max-w-none'>
-            <h1 className='text-center font-bold text-slate-700'>
+            <h1 className='py-2 text-center font-bold text-slate-700'>
               Everyday Day Carry
             </h1>
+          </div>
+        </section>
+        <section>
+          <div className='prose prose-sm prose-slate max-w-none'>
             <p className='text-center text-slate-500'>
               A non-exhaustive list of stuff that I use on a daily basis.
             </p>
@@ -210,6 +215,14 @@ const Uses: NextPage = () => {
                 <ES title='Operating Systems'>TBD — Updating this soon.</ES>
               </li>
             </ul>
+          </div>
+        </section>
+        <section>
+          <div className='prose prose-sm prose-slate mt-4 max-w-none'>
+            <h4 className='text-center font-bold text-slate-700'>
+              Elsewhere on the internet
+            </h4>
+            <Social />
           </div>
         </section>
       </Layout>

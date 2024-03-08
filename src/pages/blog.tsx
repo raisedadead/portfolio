@@ -14,11 +14,18 @@ const PageWrapper: React.FC<{
     <MetaHead pageTitle='Recent posts' />
     <Layout>
       <section>
-        <div className='container max-w-none'>
-          <h1 className='text-lg font-bold text-slate-600'>
-            Recent articles from my blog:
+        <div className='prose prose-sm prose-slate max-w-none'>
+          <h1 className='py-2 text-center font-bold text-slate-700'>
+            My Musings
           </h1>
-          <div className='px-0 py-4'>{children}</div>
+        </div>
+      </section>
+      <section>
+        <div className='prose prose-sm prose-slate max-w-none'>
+          <p className='text-center text-slate-500'>
+            Stuff that I write about, mostly tech, sometimes life.
+          </p>
+          {children}
         </div>
       </section>
     </Layout>
@@ -26,31 +33,30 @@ const PageWrapper: React.FC<{
 );
 
 const ErrorBlock = () => (
-  <PageWrapper>
-    <div className='flex flex-col space-y-2 text-sm text-gray-600'>
-      <p>
-        Sorry, we are facing issues fetching articles right now. Please try
-        again in a bit.
-      </p>
-      <p>Details of the error may be logged in the developer console.</p>
-      <p>Thanks for your patience.</p>
-    </div>
-  </PageWrapper>
+  <li className='border-2 border-black bg-red-100 p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'>
+    <h3 className='text-red-800'>Oops! Something went wrong.</h3>
+    <p className='text-red-800'>
+      There seems to be an issue fetching articles right now. Please try
+      visiting this page after a while. Additional details about this might
+      logged in the developer console.
+    </p>
+    <p className='text-red-800'>
+      Sorry about this and thanks for your patience!
+    </p>
+  </li>
 );
 
 const SkeletonBlock = () => (
-  <ul role='list' className='list-none'>
-    <li className='border-2 border-black bg-white p-2 shadow-[4px_2px_0px_rgba(0,0,0,1)]'>
-      <div role='status' className='max-w-sm animate-pulse'>
-        <div className='mb-2.5 h-2 max-w-[360px] bg-blue-600'></div>
-        <div className='mb-2.5 h-2 max-w-[330px] bg-gray-500'></div>
-        <div className='mb-2.5 h-2 max-w-[300px] bg-gray-500'></div>
-        <div className='mb-4 h-2 max-w-[360px] bg-gray-500'></div>
-        <div className='h-2 w-48 bg-gray-200 dark:bg-gray-500'></div>
-        <span className='sr-only'>Loading...</span>
-      </div>
-    </li>
-  </ul>
+  <li className='border-2 border-black bg-blue-100 p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'>
+    <div role='status' className='max-w-sm animate-pulse'>
+      <div className='mb-4 h-5 max-w-[360px] bg-blue-500'></div>
+      <div className='mb-2 h-3 max-w-[330px] bg-slate-500'></div>
+      <div className='mb-2 h-3 max-w-[300px] bg-slate-500'></div>
+      <div className='mb-4 h-3 max-w-[360px] bg-slate-500'></div>
+      <div className='h-3 w-48 bg-slate-400'></div>
+      <span className='sr-only'>Loading...</span>
+    </div>
+  </li>
 );
 
 const usePosts = (pageCursor: string) => {
@@ -93,7 +99,9 @@ const Blog: NextPage = () => {
     console.error('Error: ', error);
     return (
       <PageWrapper>
-        <ErrorBlock />
+        <ul role='list' className='list-none p-0'>
+          <ErrorBlock />
+        </ul>
       </PageWrapper>
     );
   }
@@ -101,46 +109,46 @@ const Blog: NextPage = () => {
   if (allPosts.length === 0) {
     return (
       <PageWrapper>
-        <SkeletonBlock />
+        <ul role='list' className='list-none p-0'>
+          <SkeletonBlock />
+        </ul>
       </PageWrapper>
     );
   }
 
   return (
     <PageWrapper>
-      <ul role='list' className='list-none'>
+      <ul role='list' className='list-none p-0'>
         {allPosts.map((post: Post) =>
           post.title && post.slug ? (
             <li
-              className='my-2 border-2 border-black bg-blue-100 p-2 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
+              className='my-2 border-2 border-black bg-blue-100 px-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
               key={post.slug}
             >
               <Link
                 href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
                 className='no-underline'
               >
-                <div className='flex flex-col space-y-4'>
-                  <h3 className="text-sm font-bold text-blue-600 after:content-['_↗']">
-                    {post.title}
-                  </h3>
-                  <p className='text-sm text-slate-900'>{post.brief}</p>
-                  <p className='text-sm text-slate-600'>
-                    {new Date(post.publishedAt).toDateString()}
-                    {post.readTimeInMinutes
-                      ? ` • ${post.readTimeInMinutes} min read`
-                      : ''}
-                    {post.reactionCount
-                      ? ` • ${post.reactionCount} reactions`
-                      : ''}
-                    {post.replyCount ? ` • ${post.replyCount} comments` : ''}
-                  </p>
-                </div>
+                <p className="text-lg text-blue-600 after:content-['_↗']">
+                  {post.title}
+                </p>
+                <p className='text-slate-900'>{post.brief}</p>
+                <p className='text-slate-600'>
+                  {new Date(post.publishedAt).toDateString()}
+                  {post.readTimeInMinutes
+                    ? ` • ${post.readTimeInMinutes} min read`
+                    : ''}
+                  {post.reactionCount
+                    ? ` • ${post.reactionCount} reactions`
+                    : ''}
+                  {post.replyCount ? ` • ${post.replyCount} comments` : ''}
+                </p>
               </Link>
             </li>
           ) : null
         )}
+        {isValidating ? <SkeletonBlock /> : null}
       </ul>
-      {isValidating ? <SkeletonBlock /> : null}
       <div className='flex justify-center py-5'>
         <button
           onClick={loadMoreArticles}
