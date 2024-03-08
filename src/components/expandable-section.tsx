@@ -66,18 +66,16 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
         >
           <Disclosure.Button
             className={`
-            ${open ? 'bg-purple-300' : 'bg-red-200'} h-12 w-full border-b-2 border-black px-2 text-left font-bold text-slate-900`}
+            ${open ? 'bg-purple-300' : 'bg-red-200'} flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900`}
           >
-            <div className='flex flex-row justify-between py-2'>
-              {title}
-              <div className='flex flex-row items-center'>
-                {labels?.length ? <Labels labels={labels} /> : null}
-                {open ? (
-                  <MinusIcon className='h-5 w-5' aria-hidden='true' />
-                ) : (
-                  <PlusIcon className='h-5 w-5' aria-hidden='true' />
-                )}
-              </div>
+            {title}
+            <div className='flex flex-row items-center'>
+              {labels?.length ? <Labels labels={labels} /> : null}
+              {open ? (
+                <MinusIcon className='h-5 w-5' aria-hidden='true' />
+              ) : (
+                <PlusIcon className='h-5 w-5' aria-hidden='true' />
+              )}
             </div>
           </Disclosure.Button>
           <Disclosure.Panel className='bg-blue-100 p-4 text-slate-700'>
