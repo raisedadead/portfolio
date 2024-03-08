@@ -15,6 +15,13 @@ const Blog: NextPage = () => (
           </h1>
         </div>
       </section>
+      <section>
+        <div className='prose prose-sm prose-slate max-w-none'>
+          <p className='text-center text-slate-500'>
+            Legal stuff that you should know about.
+          </p>
+        </div>
+      </section>
       <section className='mt-10 border-2 border-black bg-blue-100 p-5 shadow-[2px_2px_0px_rgba(0,0,0,1)]'>
         <div className='prose prose-sm prose-slate max-w-none'>
           <h3 className='text-center font-bold text-slate-700'>About</h3>

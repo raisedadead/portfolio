@@ -15,6 +15,13 @@ const HireMe: NextPage = () => (
           </h1>
         </div>
       </section>
+      <section>
+        <div className='prose prose-sm prose-slate max-w-none'>
+          <p className='text-center text-slate-500'>
+            Seriously, get in touch. I am happy to help.
+          </p>
+        </div>
+      </section>
       <section className='mt-10 border-2 border-black bg-fuchsia-100 p-5 shadow-[2px_2px_0px_rgba(0,0,0,1)]'>
         <div className='prose prose-sm prose-slate max-w-none'>
           <h3 className='font-bold text-slate-700'>Hey there! 👋🏽</h3>

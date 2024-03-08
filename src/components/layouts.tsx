@@ -6,11 +6,13 @@ import ScrollButton from './scroll-button';
 export type LayoutProps = {
   children: React.ReactNode;
   showGlass?: boolean;
+  showHomeButton?: boolean;
 };
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
-  showGlass = true
+  showGlass = true,
+  showHomeButton = true
 }: LayoutProps) => {
   return (
     <>
@@ -23,7 +25,10 @@ export const Layout: React.FC<LayoutProps> = ({
           showGlass ? '  bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]' : ''
         }`}
       >
-        <Nav className='max-h-none w-screen' />
+        <Nav
+          className='mb-2 max-h-none w-screen'
+          showHomeButton={showHomeButton}
+        />
         <div className='px-5 pb-5 pt-5 md:px-16'>{children}</div>
         <Footer isDefault={true} className='p-2' />
         <ScrollButton className='fixed bottom-4 right-4 z-20' />

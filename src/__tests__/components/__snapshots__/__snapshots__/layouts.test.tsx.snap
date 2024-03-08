@@ -104,7 +104,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
       >
         <nav
-          class="max-h-none w-screen"
+          class="mb-2 max-h-none w-screen"
         >
           <div
             class="absolute right-4 top-4 text-left"
@@ -142,6 +142,38 @@ exports[`<Layout /> matches snapshot 1`] = `
                 </svg>
               </button>
             </div>
+          </div>
+          <div
+            class="absolute left-4 top-4 text-left"
+          >
+            <a
+              aria-label="Go Home"
+              class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
+              href="/"
+              role="link"
+            >
+              <span
+                class="sr-only"
+              >
+                Go Home
+              </span>
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6"
+                data-slot="icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
           </div>
         </nav>
         <div
@@ -530,7 +562,7 @@ exports[`<Layout /> matches snapshot 1`] = `
         class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
       >
         <nav
-          class="max-h-none w-screen"
+          class="mb-2 max-h-none w-screen"
         >
           <div
             class="absolute right-4 top-4 text-left"
@@ -568,6 +600,38 @@ exports[`<Layout /> matches snapshot 1`] = `
                 </svg>
               </button>
             </div>
+          </div>
+          <div
+            class="absolute left-4 top-4 text-left"
+          >
+            <a
+              aria-label="Go Home"
+              class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
+              href="/"
+              role="link"
+            >
+              <span
+                class="sr-only"
+              >
+                Go Home
+              </span>
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6"
+                data-slot="icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
           </div>
         </nav>
         <div
@@ -957,7 +1021,7 @@ exports[`<Layout /> matches snapshot 1`] = `
       class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%]   bg-teal-100/80 shadow-[8px_6px_0px_rgba(0,0,0,1)]"
     >
       <nav
-        class="max-h-none w-screen"
+        class="mb-2 max-h-none w-screen"
       >
         <div
           class="absolute right-4 top-4 text-left"
@@ -995,6 +1059,38 @@ exports[`<Layout /> matches snapshot 1`] = `
               </svg>
             </button>
           </div>
+        </div>
+        <div
+          class="absolute left-4 top-4 text-left"
+        >
+          <a
+            aria-label="Go Home"
+            class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
+            href="/"
+            role="link"
+          >
+            <span
+              class="sr-only"
+            >
+              Go Home
+            </span>
+            <svg
+              aria-hidden="true"
+              class="h-6 w-6"
+              data-slot="icon"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
         </div>
       </nav>
       <div
