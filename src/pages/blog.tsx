@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NextPage, GetStaticProps } from 'next';
-import useSWR, { SWRConfig } from 'swr';
+import useSWRImmutable, { SWRConfig } from 'swr';
 
 import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
@@ -83,15 +83,9 @@ const Blog: NextPage<{
 }> = ({ fallback }) => {
   const [pageCursor, setPageCursor] = useState('');
   const [allPosts, setAllPosts] = useState<Post[]>([]);
-  const { data, error, isValidating } = useSWR(
+  const { data, error, isValidating } = useSWRImmutable(
     ['/api/posts', pageCursor],
-    () => postsFetcher('posts', pageCursor),
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false
-      // revalidateOnReconnect: false,
-      // refreshInterval: 2000
-    }
+    () => postsFetcher('posts', pageCursor)
   );
 
   const {
