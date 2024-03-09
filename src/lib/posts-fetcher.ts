@@ -11,6 +11,13 @@ export type Post = {
   coverImage: string;
 };
 
+export type ResponseData = {
+  posts: Post[];
+  pageInfo: {
+    endCursor: string;
+    hasNextPage: boolean;
+  };
+};
 interface UserArticlesResponse {
   publication: {
     posts: {
@@ -64,7 +71,7 @@ export const postsFetcher = async (
   _key: string,
   pageCursor = '',
   first: number = 5
-) => {
+): Promise<ResponseData> => {
   let posts: Post[] = [];
   let pageInfo = {
     endCursor: '',
