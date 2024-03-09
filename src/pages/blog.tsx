@@ -111,8 +111,8 @@ const Blog: NextPage<{
   useEffect(() => {
     if (posts.length > 0) {
       setAllPosts((prevPosts) => {
-        const uniquePosts = new Set([...prevPosts, ...posts]); // Remove duplicates
-        return Array.from(uniquePosts); // Convert back to array
+        const uniquePosts = Array.from(new Set([...prevPosts, ...posts]));
+        return uniquePosts;
       });
     }
   }, [posts]);
