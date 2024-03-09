@@ -153,8 +153,15 @@ exports[`Home renders a snapshot of the homepage 1`] = `
           <img
             alt="Mrugesh Mohapatra's profile picture."
             class="h-24 w-24 border-4 border-orange-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:h-32 md:w-32"
+            data-nimg="1"
+            decoding="async"
+            height="128"
             id="profile-image"
-            src="/images/profile.small.webp"
+            loading="lazy"
+            src="/_next/image?url=%2Fimages%2Fprofile.small.webp&w=256&q=75"
+            srcset="/_next/image?url=%2Fimages%2Fprofile.small.webp&w=128&q=75 1x, /_next/image?url=%2Fimages%2Fprofile.small.webp&w=256&q=75 2x"
+            style="color: transparent;"
+            width="128"
           />
         </div>
         <div
