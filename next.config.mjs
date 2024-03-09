@@ -21,6 +21,9 @@ export default defineNextConfig({
   },
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    nextScriptWorkers: true
+  },
   redirects: async () => {
     return [
       {

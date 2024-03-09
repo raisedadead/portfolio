@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild:for-edge": "pnpm partytown",
     "build:for-edge": "npx @cloudflare/next-on-pages",
-    "partytown": "partytown copylib public/~partytown",
-    "prebuild": "pnpm partytown",
     "build": "next build",
     "dev": "pnpm turbo:develop",
     "develop": "next dev",
