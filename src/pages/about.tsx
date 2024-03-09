@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import Layout from '../components/layouts';
-import Email from '../components/email';
-import { MetaHead } from '../components/head';
-import { Social } from '../components/social';
+import Layout from '@/components/layouts';
+import Email from '@/components/email';
+import { MetaHead } from '@/components/head';
+import { Social } from '@/components/social';
 
 const Blog: NextPage = () => (
   <>

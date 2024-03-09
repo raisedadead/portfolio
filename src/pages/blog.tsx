@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import useSWR, { SWRConfig, unstable_serialize } from 'swr';
 
-import Layout from '../components/layouts';
-import { CustomLink as Link } from '../components/custom-link';
+import Layout from '@/components/layouts';
+import { CustomLink as Link } from '@/components/custom-link';
 import { postsFetcher, Post } from '../lib/posts-fetcher';
-import { MetaHead } from '../components/head';
+import { MetaHead } from '@/components/head';
 
 const SWR_Key_Prefix = '/api/posts';
 const SWR_var__firstPageCursor = '';

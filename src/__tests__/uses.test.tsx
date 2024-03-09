@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import Uses from '../pages/uses';
-import '@testing-library/jest-dom';
 
 describe('Uses', () => {
   it('renders the heading', () => {

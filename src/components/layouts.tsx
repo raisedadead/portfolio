@@ -1,5 +1,5 @@
 import Background from './background';
-import { Footer } from '../components/footer';
+import { Footer } from '@/components/footer';
 import Nav from './nav';
 import ScrollButton from './scroll-button';
 

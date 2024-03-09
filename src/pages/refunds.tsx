@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import type { NextPage } from 'next';
-import { Email } from '../components/email';
-import { MetaHead } from '../components/head';
-import Layout from '../components/layouts';
+import { Email } from '@/components/email';
+import { MetaHead } from '@/components/head';
+import Layout from '@/components/layouts';
 
 const Refunds: NextPage = () => (
   <>

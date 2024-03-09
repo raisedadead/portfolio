@@ -15,12 +15,11 @@
     "jsx": "preserve",
     "incremental": true,
     "noUncheckedIndexedAccess": true,
-    "types": [
-      "@cloudflare/workers-types",
-      "jest",
-      "node",
-      "@testing-library/jest-dom"
-    ]
+    "types": ["@cloudflare/workers-types", "jest", "node"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/components/*": ["components/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
   "exclude": ["node_modules"]

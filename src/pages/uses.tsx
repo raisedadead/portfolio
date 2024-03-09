@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
-import Layout from '../components/layouts';
-import { CustomLink as Link } from '../components/custom-link';
-import { ExpandableSection as ES } from '../components/expandable-section';
-import { MetaHead } from '../components/head';
-import { Social } from '../components/social';
+import Layout from '@/components/layouts';
+import { CustomLink as Link } from '@/components/custom-link';
+import { ExpandableSection as ES } from '@/components/expandable-section';
+import { MetaHead } from '@/components/head';
+import { Social } from '@/components/social';
 
 const Uses: NextPage = () => {
   return (

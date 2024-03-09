@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import Layout from '../components/layouts';
-import { CustomLink as Link } from '../components/custom-link';
-import { MetaHead } from '../components/head';
-import { Social } from '../components/social';
+import Layout from '@/components/layouts';
+import { CustomLink as Link } from '@/components/custom-link';
+import { MetaHead } from '@/components/head';
+import { Social } from '@/components/social';
 
 const HireMe: NextPage = () => (
   <>

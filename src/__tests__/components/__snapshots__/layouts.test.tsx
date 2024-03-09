@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
 import Contents from '../../../__mocks__/components/layouts-test--contents';
-import '@testing-library/jest-dom';
 
 describe('<Layout />', () => {
   beforeAll(() => {
