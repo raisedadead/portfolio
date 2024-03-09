@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { NextPage, GetStaticProps } from 'next';
-import useSWR, { SWRConfig } from 'swr';
+import useSWR, { SWRConfig, unstable_serialize } from 'swr';
 
 import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
 import { postsFetcher, Post } from '../lib/posts-fetcher';
 import { MetaHead } from '../components/head';
+
+const SWR_API_Key = '/api/posts';
+const SWR_API_var__initial_cursor = '';
 
 const PageWrapper: React.FC<{
   children: React.ReactNode;
@@ -60,11 +63,11 @@ const SkeletonBlock = () => (
 );
 
 export const getStaticProps = (async () => {
-  const data = await postsFetcher('posts', '');
+  const data = await postsFetcher(SWR_API_Key, SWR_API_var__initial_cursor);
   return {
     props: {
       fallback: {
-        '/api/posts': data
+        [unstable_serialize([SWR_API_Key, SWR_API_var__initial_cursor])]: data
       }
     }
   };
@@ -72,7 +75,7 @@ export const getStaticProps = (async () => {
 
 const Blog: NextPage<{
   fallback: {
-    '/api/posts': {
+    SWR_API_Key: {
       posts: Post[];
       pageInfo: {
         endCursor: string;
@@ -81,15 +84,16 @@ const Blog: NextPage<{
     };
   };
 }> = ({ fallback }) => {
-  const [pageCursor, setPageCursor] = useState('');
+  const [pageCursor, setPageCursor] = useState(SWR_API_var__initial_cursor);
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const { data, error, isValidating } = useSWR(
-    ['/api/posts', pageCursor],
+    [SWR_API_Key, pageCursor],
     () => postsFetcher('posts', pageCursor),
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,
-      revalidateOnReconnect: false
+      revalidateOnReconnect: false,
+      fallback
     }
   );
 
