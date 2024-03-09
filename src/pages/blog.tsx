@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NextPage, GetStaticProps } from 'next';
-import useSWRImmutable, { SWRConfig } from 'swr';
+import useSWR, { SWRConfig } from 'swr';
 
 import Layout from '../components/layouts';
 import { CustomLink as Link } from '../components/custom-link';
@@ -83,9 +83,14 @@ const Blog: NextPage<{
 }> = ({ fallback }) => {
   const [pageCursor, setPageCursor] = useState('');
   const [allPosts, setAllPosts] = useState<Post[]>([]);
-  const { data, error, isValidating } = useSWRImmutable(
+  const { data, error, isValidating } = useSWR(
     ['/api/posts', pageCursor],
-    () => postsFetcher('posts', pageCursor)
+    () => postsFetcher('posts', pageCursor),
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false
+    }
   );
 
   const {
@@ -101,7 +106,10 @@ const Blog: NextPage<{
 
   useEffect(() => {
     if (posts.length > 0) {
-      setAllPosts((prevPosts) => [...prevPosts, ...posts]);
+      setAllPosts((prevPosts) => {
+        const uniquePosts = new Set([...prevPosts, ...posts]); // Remove duplicates
+        return Array.from(uniquePosts); // Convert back to array
+      });
     }
   }, [posts]);
 
