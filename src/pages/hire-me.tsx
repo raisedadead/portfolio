@@ -18,7 +18,7 @@ const HireMe: NextPage = () => (
       <section>
         <div className='prose prose-sm prose-slate max-w-none'>
           <p className='text-center text-slate-500'>
-            Seriously, get in touch. I am happy to help.
+            Avilable for consulting, mentoring, and speaking engagements.
           </p>
         </div>
       </section>
