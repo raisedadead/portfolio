@@ -158,11 +158,11 @@ const Blog: NextPage<{
                   href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
                   className='no-underline'
                 >
-                  <p className="text-lg text-blue-600 after:content-['_↗']">
+                  <p className="font-sans text-lg text-blue-600 after:content-['_↗']">
                     {post.title}
                   </p>
                   <p className='text-slate-900'>{post.brief}</p>
-                  <p className='text-slate-600'>
+                  <p className='font-sans text-slate-600'>
                     {new Date(post.publishedAt).toDateString()}
                     {post.readTimeInMinutes
                       ? ` • ${post.readTimeInMinutes} min read`
