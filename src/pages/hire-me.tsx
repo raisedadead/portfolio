@@ -35,9 +35,8 @@ const HireMe: NextPage = () => (
             go-to-market strategies, driving success in their projects.
           </p>
           <p>
-            {new Date().getFullYear() > 2023 ? 'In 2022, ' : 'Last year, '} I
-            got featured in an article by the renowned publication &quot;Insider
-            Business&quot;, titled{' '}
+            In 2022, I was featured in an article by the renowned publication
+            &quot;Insider Business&quot;, titled{' '}
             <Link
               className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
               href='https://www.businessinsider.com/cloudverse-100-top-people-building-the-next-generation-internet-2022-11'
@@ -82,8 +81,7 @@ const HireMe: NextPage = () => (
           </h3>
           <p>
             I am available for consulting, mentoring, and similar engagements.
-            Consider booking a session with me using the button below. I have
-            both free and paid sessions listed on the page.
+            Consider booking a session with me using the button below.
           </p>
           <div className='flex'>
             <Link
@@ -97,9 +95,9 @@ const HireMe: NextPage = () => (
           </div>
           <p>
             We can walk through your needs, and do as many follow-ups as you
-            need (usually at no additional fees). If you think we could be
-            working long-term just go ahead and make an appointment using the
-            same link, we can discuss the details on the call.
+            need (sometimes for free!). If you think we could be working
+            long-term just go ahead and make an appointment using the same link,
+            we can discuss the details on the call.
           </p>
           <p>
             I am also available for speaking engagements, workshops, and
