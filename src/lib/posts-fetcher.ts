@@ -11,16 +11,20 @@ export type Post = {
   coverImage: {
     url: string;
   };
+  content: {
+    markdown: string;
+  };
 };
 
-export type ResponseData = {
+export type GetPaginatedPostsResponseData = {
   posts: Post[];
   pageInfo: {
     endCursor: string;
     hasNextPage: boolean;
   };
 };
-interface UserArticlesResponse {
+
+interface GetPaginatedPostsResponse {
   publication: {
     posts: {
       edges: Array<{
@@ -34,7 +38,13 @@ interface UserArticlesResponse {
   };
 }
 
-const postFieldsFragment = gql`
+interface GetSinglePostResponse {
+  publication: {
+    post: Post;
+  };
+}
+
+const GQLFragmentPostFieldsBasic = gql`
   fragment PostFields on Post {
     title
     brief
@@ -49,8 +59,8 @@ const postFieldsFragment = gql`
   }
 `;
 
-const getUserArticlesQuery = gql`
-  ${postFieldsFragment}
+const GQLQueryGetPaginatedPosts = gql`
+  ${GQLFragmentPostFieldsBasic}
   query PostsByPublication($host: String!, $first: Int!, $after: String) {
     publication(host: $host) {
       id
@@ -73,7 +83,7 @@ export const postsFetcher = async (
   _key: string,
   pageCursor = '',
   first: number = 5
-): Promise<ResponseData> => {
+): Promise<GetPaginatedPostsResponseData> => {
   let posts: Post[] = [];
   let pageInfo = {
     endCursor: '',
@@ -81,9 +91,9 @@ export const postsFetcher = async (
   };
 
   try {
-    const data = await request<UserArticlesResponse>(
+    const data = await request<GetPaginatedPostsResponse>(
       'https://gql.hashnode.com',
-      getUserArticlesQuery,
+      GQLQueryGetPaginatedPosts,
       {
         host: 'hn.mrugesh.dev',
         first,
@@ -98,7 +108,7 @@ export const postsFetcher = async (
       hasNextPage: false
     };
   } catch (error) {
-    // console.error('Error fetching posts:', error);
+    console.error('Error fetching posts:', JSON.stringify(error, null, 2));
     throw new Error('Error fetching posts. Errors logged to console.');
   }
 
@@ -108,4 +118,52 @@ export const postsFetcher = async (
     posts,
     pageInfo
   };
+};
+
+const GQLFragmentPostFieldsFull = gql`
+  fragment PostFieldsFull on Post {
+    title
+    brief
+    slug
+    publishedAt
+    reactionCount
+    readTimeInMinutes
+    replyCount
+    coverImage {
+      url
+    }
+    content {
+      markdown
+    }
+  }
+`;
+const GQLQueryGetSinglePost = gql`
+  ${GQLFragmentPostFieldsFull}
+  query PostBySlug($host: String!, $slug: String!) {
+    publication(host: $host) {
+      id
+      post(slug: $slug) {
+        ...PostFieldsFull
+      }
+    }
+  }
+`;
+
+export const fetchPostBySlug = async (slug: string): Promise<Post | null> => {
+  try {
+    const data = await request<GetSinglePostResponse>(
+      'https://gql.hashnode.com',
+      GQLQueryGetSinglePost,
+      {
+        host: 'hn.mrugesh.dev',
+        slug
+      }
+    );
+    // DEBUG: Simulate slow network
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+    return data?.publication?.post || null;
+  } catch (error) {
+    console.error('Error fetching post:', JSON.stringify(error, null, 2));
+    throw new Error('Error fetching post. Errors logged to console.');
+  }
 };

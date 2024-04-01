@@ -14,7 +14,9 @@ describe('postsFetcher', () => {
       reactionCount: 10,
       replyCount: 2,
       readTimeInMinutes: 5,
-      coverImage: 'https://image-url-1'
+      coverImage: {
+        url: 'https://image-url-1'
+      }
     },
     {
       title: 'Test Title 2',
@@ -24,7 +26,9 @@ describe('postsFetcher', () => {
       reactionCount: 20,
       replyCount: 4,
       readTimeInMinutes: 10,
-      coverImage: 'https://image-url-2'
+      coverImage: {
+        url: 'https://image-url-2'
+      }
     }
   ];
 

@@ -5,7 +5,11 @@ import Image from 'next/image';
 
 import Layout from '@/components/layouts';
 import { CustomLink as Link } from '@/components/custom-link';
-import { postsFetcher, Post, ResponseData } from '../lib/posts-fetcher';
+import {
+  postsFetcher,
+  Post,
+  GetPaginatedPostsResponseData
+} from '../lib/posts-fetcher';
 import { MetaHead } from '@/components/head';
 
 const SWR_Key_Prefix = '/api/posts';
@@ -82,7 +86,7 @@ export const getStaticProps = (async () => {
 
 const Blog: NextPage<{
   fallback: {
-    '': ResponseData;
+    '': GetPaginatedPostsResponseData;
   };
 }> = ({ fallback }) => {
   const [pageCursor, setPageCursor] = useState(SWR_Cursor_for_firstPage);
@@ -167,7 +171,7 @@ const Blog: NextPage<{
           {allPosts.map((post: Post, index: number) =>
             post.title && post.slug ? (
               <Link
-                href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
+                href={`/posts/${post.slug}`}
                 key={post.slug}
                 className={`group block overflow-hidden border-2 border-black bg-white no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] ${getConsistentSpan(index)}`}
               >
