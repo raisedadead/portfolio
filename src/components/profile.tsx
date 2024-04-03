@@ -15,9 +15,33 @@ export const Profile: React.FC = () => {
           height={128}
         />
       </div>
-      <div className='mt-6 -rotate-12 transform md:mt-20'>
-        <h1 className='-mt-2 rotate-12 transform text-2xl font-bold text-slate-700 md:-mt-16 md:text-4xl'>
+      <div className='relative mt-6 flex -rotate-12 transform flex-col items-center md:mt-20'>
+        <h1 className='group -mt-2 rotate-12 transform cursor-pointer text-2xl font-bold text-slate-700 md:-mt-16 md:text-4xl'>
           {'Mrugesh Mohapatra'.toLowerCase()}
+          <span
+            className='absolute left-1/4 hidden w-auto rounded-md bg-black p-3 text-sm text-white group-hover:block'
+            style={{
+              top: '100%',
+              marginTop: '0.5rem',
+              transform: 'translateX(-50%)'
+            }}
+          >
+            <Link
+              href='https://itinerarium.github.io/phoneme-synthesis/?w= /ˈm.ruː.geɪ.ʃ/'
+              className='no-underline'
+              aria-label='Pronunciation of my name'
+            >
+              🗣 /ˈm.ruː.geɪ.ʃ/
+            </Link>
+            <svg
+              className='absolute left-1/4 h-4 w-full text-black'
+              style={{ top: '-0.5rem', transform: 'translateX(-50%)' }}
+              viewBox='0 0 255 255'
+              xmlSpace='preserve'
+            >
+              <polygon className='fill-current' points='128,0 128,128 0,128' />
+            </svg>
+          </span>
         </h1>
         <div className='m-1 mx-auto -mt-7 w-2/5 border-8 border-orange-200 bg-orange-200' />
       </div>

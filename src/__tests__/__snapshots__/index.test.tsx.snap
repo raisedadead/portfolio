@@ -165,12 +165,39 @@ exports[`Home renders a snapshot of the homepage 1`] = `
           />
         </div>
         <div
-          class="mt-6 -rotate-12 transform md:mt-20"
+          class="relative mt-6 flex -rotate-12 transform flex-col items-center md:mt-20"
         >
           <h1
-            class="-mt-2 rotate-12 transform text-2xl font-bold text-slate-700 md:-mt-16 md:text-4xl"
+            class="group -mt-2 rotate-12 transform cursor-pointer text-2xl font-bold text-slate-700 md:-mt-16 md:text-4xl"
           >
             mrugesh mohapatra
+            <span
+              class="absolute left-1/4 hidden w-auto rounded-md bg-black p-3 text-sm text-white group-hover:block"
+              style="top: 100%; margin-top: 0.5rem; transform: translateX(-50%);"
+            >
+              <a
+                aria-label=""
+                class="no-underline"
+                href="https://itinerarium.github.io/phoneme-synthesis/?w= /ˈm.ruː.geɪ.ʃ/"
+                rel=" noopener noreferrer"
+                role="link"
+                target="_blank"
+                type=""
+              >
+                🗣 /ˈm.ruː.geɪ.ʃ/
+              </a>
+              <svg
+                class="absolute left-1/4 h-4 w-full text-black"
+                style="top: -0.5rem; transform: translateX(-50%);"
+                viewBox="0 0 255 255"
+                xml:space="preserve"
+              >
+                <polygon
+                  class="fill-current"
+                  points="128,0 128,128 0,128"
+                />
+              </svg>
+            </span>
           </h1>
           <div
             class="m-1 mx-auto -mt-7 w-2/5 border-8 border-orange-200 bg-orange-200"
