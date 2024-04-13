@@ -85,7 +85,7 @@ const HireMe: NextPage = () => (
           </p>
           <div className='flex'>
             <Link
-              aria-label='Schedule a call'
+              aria-label='Book a 1-on-1 Call'
               className='mx-auto w-[50%] border-2 border-black bg-white p-2.5 text-center text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
               href='https://topmate.io/mrugesh'
               type='button'

@@ -61,7 +61,7 @@ export const Profile: React.FC = () => {
 
       <div className='mb-4 mt-2 flex flex-col items-center justify-center space-y-2'>
         <Link
-          aria-label='Schedule a call'
+          aria-label='Book a 1-on-1 Call'
           className='h-12 w-80 border-2 border-black bg-white p-2.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
           href='https://topmate.io/mrugesh'
           type='button'
