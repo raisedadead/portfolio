@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "1.11.0",
-    "@cloudflare/workers-types": "4.20240405.0",
+    "@cloudflare/workers-types": "4.20240419.0",
     "@tailwindcss/forms": "0.5.7",
     "@tailwindcss/typography": "0.5.12",
     "@testing-library/jest-dom": "6.4.2",
