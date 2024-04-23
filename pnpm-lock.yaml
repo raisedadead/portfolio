@@ -45,8 +45,8 @@ dependencies:
     specifier: 2.2.5
     version: 2.2.5(react@18.2.0)
   zod:
-    specifier: 3.22.4
-    version: 3.22.4
+    specifier: 3.23.4
+    version: 3.23.4
 
 devDependencies:
   '@cloudflare/next-on-pages':
@@ -6042,7 +6042,7 @@ packages:
       workerd: 1.20240405.0
       ws: 8.13.0
       youch: 3.2.3
-      zod: 3.22.4
+      zod: 3.23.4
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -8388,5 +8388,5 @@ packages:
       stacktracey: 2.1.8
     dev: true
 
-  /zod@3.22.4:
-    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+  /zod@3.23.4:
+    resolution: {integrity: sha512-/AtWOKbBgjzEYYQRNfoGKHObgfAZag6qUJX1VbHo2PRBgS+wfWagEY2mizjfyAPcGesrJOcx/wcl0L9WnVrHFw==}
