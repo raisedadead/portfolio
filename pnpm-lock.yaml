@@ -100,8 +100,8 @@ importers:
         specifier: 9.1.0
         version: 9.1.0(eslint@8.57.0)
       eslint-plugin-next-on-pages:
-        specifier: 1.11.1
-        version: 1.11.1(eslint@8.57.0)
+        specifier: 1.11.2
+        version: 1.11.2(eslint@8.57.0)
       eslint-plugin-react:
         specifier: 7.34.1
         version: 7.34.1(eslint@8.57.0)
@@ -2134,8 +2134,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-next-on-pages@1.11.1:
-    resolution: {integrity: sha512-lt/P7iAtXImMvnUaQCtsE00fdiKAmkhEWltHGhvATSLLF7Lh7KWsh+vDoQ6FchlsYtcGrHnhlfLvnfQNmo+hiw==}
+  eslint-plugin-next-on-pages@1.11.2:
+    resolution: {integrity: sha512-iupdXGL8f5sDYAzzbxDp5LMT71ZEJYt0syWfxdIyxbn2jfvQYR0/mIAszlbz7DVJJVmTuF7dzLLhQDJslP49lg==}
     peerDependencies:
       eslint: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
 
@@ -6626,7 +6626,7 @@ snapshots:
       object.entries: 1.1.8
       object.fromentries: 2.0.8
 
-  eslint-plugin-next-on-pages@1.11.1(eslint@8.57.0):
+  eslint-plugin-next-on-pages@1.11.2(eslint@8.57.0):
     dependencies:
       '@types/estree-jsx': 1.0.5
       comment-parser: 1.4.1
