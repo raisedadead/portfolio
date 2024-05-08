@@ -115,7 +115,7 @@ exports[`Uses renders a snapshot of the page 1`] = `
             aria-haspopup="menu"
             class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
             data-headlessui-state=""
-            id="headlessui-menu-button-:rq:"
+            id="headlessui-menu-button-:rt:"
             type="button"
           >
             <span
@@ -218,7 +218,7 @@ exports[`Uses renders a snapshot of the page 1`] = `
                     class="
             bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                     data-headlessui-state=""
-                    id="headlessui-disclosure-button-:rr:"
+                    id="headlessui-disclosure-button-:ru:"
                     type="button"
                   >
                     Apple MacBook Pro (14-inch, 2021)
@@ -277,7 +277,7 @@ exports[`Uses renders a snapshot of the page 1`] = `
                     class="
             bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                     data-headlessui-state=""
-                    id="headlessui-disclosure-button-:rt:"
+                    id="headlessui-disclosure-button-:r10:"
                     type="button"
                   >
                     DeskPi Super6C (2022)
@@ -336,7 +336,7 @@ exports[`Uses renders a snapshot of the page 1`] = `
                     class="
             bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                     data-headlessui-state=""
-                    id="headlessui-disclosure-button-:rv:"
+                    id="headlessui-disclosure-button-:r12:"
                     type="button"
                   >
                     Dell XPS 15 9500 (15-inch, 2020)
@@ -395,7 +395,7 @@ exports[`Uses renders a snapshot of the page 1`] = `
                     class="
             bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                     data-headlessui-state=""
-                    id="headlessui-disclosure-button-:r11:"
+                    id="headlessui-disclosure-button-:r14:"
                     type="button"
                   >
                     Other Machines
@@ -449,7 +449,7 @@ exports[`Uses renders a snapshot of the page 1`] = `
                     class="
             bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                     data-headlessui-state=""
-                    id="headlessui-disclosure-button-:r13:"
+                    id="headlessui-disclosure-button-:r16:"
                     type="button"
                   >
                     Peripherals
@@ -498,7 +498,7 @@ exports[`Uses renders a snapshot of the page 1`] = `
                     class="
             bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                     data-headlessui-state=""
-                    id="headlessui-disclosure-button-:r15:"
+                    id="headlessui-disclosure-button-:r18:"
                     type="button"
                   >
                     Operating Systems
