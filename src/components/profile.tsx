@@ -13,6 +13,7 @@ export const Profile: React.FC = () => {
           className='h-24 w-24 border-4 border-orange-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:h-32 md:w-32'
           width={128}
           height={128}
+          priority
         />
       </div>
       <div className='relative mt-6 flex -rotate-12 transform flex-col items-center md:mt-20'>
