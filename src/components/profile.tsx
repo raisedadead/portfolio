@@ -49,7 +49,7 @@ export const Profile: React.FC = () => {
       <h2 className='mt-2 max-w-md p-1 text-lg font-bold text-slate-700'>
         nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
       </h2>
-      <h3 className='text-md mb-4 p-1 font-medium text-slate-700 '>
+      <h3 className='text-md mb-4 p-1 font-medium text-slate-700'>
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link
           href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'

@@ -98,9 +98,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
     </div>
   </div>
   <main
-    class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5
-        lg:w-[75%] xl:w-[60%]
-        "
+    class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%] "
   >
     <nav
       class="mb-6 max-h-none w-screen"
@@ -209,7 +207,7 @@ exports[`Home renders a snapshot of the homepage 1`] = `
           nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
         </h2>
         <h3
-          class="text-md mb-4 p-1 font-medium text-slate-700 "
+          class="text-md mb-4 p-1 font-medium text-slate-700"
         >
           Principal Maintainer — Cloud Infrastructure & Open-source, 
           <a
