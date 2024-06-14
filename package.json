@@ -79,7 +79,7 @@
     "turbo": "2.0.3",
     "typescript": "5.4.5",
     "vercel": "34.2.7",
-    "wrangler": "3.60.2"
+    "wrangler": "3.60.3"
   },
   "packageManager": "pnpm@9.3.0"
 }
