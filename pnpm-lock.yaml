@@ -53,7 +53,7 @@ importers:
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.11.3
-        version: 1.11.3(@cloudflare/workers-types@4.20240605.0)(vercel@34.2.6)(wrangler@3.60.2(@cloudflare/workers-types@4.20240605.0))
+        version: 1.11.3(@cloudflare/workers-types@4.20240605.0)(vercel@34.2.7)(wrangler@3.60.2(@cloudflare/workers-types@4.20240605.0))
       '@cloudflare/workers-types':
         specifier: 4.20240605.0
         version: 4.20240605.0
@@ -154,8 +154,8 @@ importers:
         specifier: 5.4.5
         version: 5.4.5
       vercel:
-        specifier: 34.2.6
-        version: 34.2.6
+        specifier: 34.2.7
+        version: 34.2.7
       wrangler:
         specifier: 3.60.2
         version: 3.60.2(@cloudflare/workers-types@4.20240605.0)
@@ -1220,8 +1220,8 @@ packages:
   '@vercel/hydrogen@1.0.2':
     resolution: {integrity: sha512-/Q2MKk1GfOuZAnkE9jQexjtUQqanbY65R+xtJWd9yKIgwcfRI1hxiNH3uXyVM5AvLoY+fxxULkSuxDtUKpkJpQ==}
 
-  '@vercel/next@4.2.16':
-    resolution: {integrity: sha512-rQW9FgTInwLTlfGU0jLMPD0w2+/tzQyIMkRq+yu3LFeWoceJjUj9vTyu7d5GoRjWg59RBDB6JmHFTye7JeiP0Q==}
+  '@vercel/next@4.2.17':
+    resolution: {integrity: sha512-b1ZwH/3sL4+CrrIjncZLAqjd+ts0KyVGL0HEOWU340OI3hXmQQAN+2k0MWlqm8Vu8rFGfk9VEQ9yJG/pmPx6mg==}
 
   '@vercel/nft@0.27.2':
     resolution: {integrity: sha512-7LeioS1yE5hwPpQfD3DdH04tuugKjo5KrJk3yK5kAI3Lh76iSsK/ezoFQfzuT08X3ZASQOd1y9ePjLNI9+TxTQ==}
@@ -4408,8 +4408,8 @@ packages:
     resolution: {integrity: sha512-/EH/sDgxU2eGxajKdwLCDmQ4FWq+kpi3uCmBGpw1xJtnAxEjlD8j8PEiGWpCIMIs3ciNAgH0d3TTJiUkYzyZjA==}
     engines: {node: '>=10.12.0'}
 
-  vercel@34.2.6:
-    resolution: {integrity: sha512-fXI4z3GFkHOMm3d61Bqf5mIVoXVKfpPMg14jGYZeEP+Uw5D33DsHbkSh6lrgI6iEc7sX6A/Y4wpSfbUmnF8KSw==}
+  vercel@34.2.7:
+    resolution: {integrity: sha512-cc6NmaPeLhg7UJuuI6jKu92xppVYbuZRtQib/hDEaEPFSZgiUNw0sbtRfbzvXUZjxzJeLNeSGKLwazBbpXOvkQ==}
     engines: {node: '>= 16'}
     hasBin: true
 
@@ -4808,7 +4808,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.11.3(@cloudflare/workers-types@4.20240605.0)(vercel@34.2.6)(wrangler@3.60.2(@cloudflare/workers-types@4.20240605.0))':
+  '@cloudflare/next-on-pages@1.11.3(@cloudflare/workers-types@4.20240605.0)(vercel@34.2.7)(wrangler@3.60.2(@cloudflare/workers-types@4.20240605.0))':
     dependencies:
       acorn: 8.11.3
       ast-types: 0.14.2
@@ -4822,7 +4822,7 @@ snapshots:
       package-manager-manager: 0.2.0
       pcre-to-regexp: 1.1.0
       semver: 7.6.0
-      vercel: 34.2.6
+      vercel: 34.2.7
       wrangler: 3.60.2(@cloudflare/workers-types@4.20240605.0)
     optionalDependencies:
       '@cloudflare/workers-types': 4.20240605.0
@@ -5754,7 +5754,7 @@ snapshots:
       '@vercel/static-config': 3.0.0
       ts-morph: 12.0.0
 
-  '@vercel/next@4.2.16':
+  '@vercel/next@4.2.17':
     dependencies:
       '@vercel/nft': 0.27.2
     transitivePeerDependencies:
@@ -9314,13 +9314,13 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       convert-source-map: 2.0.0
 
-  vercel@34.2.6:
+  vercel@34.2.7:
     dependencies:
       '@vercel/build-utils': 8.2.2
       '@vercel/fun': 1.1.0
       '@vercel/go': 3.1.1
       '@vercel/hydrogen': 1.0.2
-      '@vercel/next': 4.2.16
+      '@vercel/next': 4.2.17
       '@vercel/node': 3.1.7
       '@vercel/python': 4.3.0
       '@vercel/redwood': 2.0.10
