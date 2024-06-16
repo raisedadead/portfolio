@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/dom';
 import Refunds from '../pages/refunds';
 
 describe('Refunds', () => {

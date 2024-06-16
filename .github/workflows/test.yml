@@ -51,6 +51,6 @@ jobs:
       - name: Install dependencies and test
         run: |
           pnpm install
-          pnpm test
+          pnpm run test
         env:
           CI: true

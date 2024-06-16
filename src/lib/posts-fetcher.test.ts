@@ -1,7 +1,8 @@
 import { postsFetcher } from './posts-fetcher';
 import { request } from 'graphql-request';
+import { vi } from 'vitest';
 
-jest.mock('graphql-request');
+vi.mock('graphql-request');
 
 describe('postsFetcher', () => {
   const mockPosts = [
@@ -40,7 +41,7 @@ describe('postsFetcher', () => {
   };
 
   it('should fetch posts data and return formatted result', async () => {
-    (request as jest.Mock).mockResolvedValueOnce(mockResponse);
+    vi.mocked(request).mockResolvedValueOnce(mockResponse);
     const { posts, pageInfo } = await postsFetcher('test_key', '');
     expect(posts).toEqual(mockPosts);
     expect(pageInfo).toEqual({
@@ -50,7 +51,7 @@ describe('postsFetcher', () => {
   });
 
   it('should correctly handle UserArticlesResponse structure', async () => {
-    (request as jest.Mock).mockResolvedValueOnce(mockResponse);
+    vi.mocked(request).mockResolvedValueOnce(mockResponse);
     const result = await postsFetcher('test_key', '');
     expect(result.posts).toEqual(mockPosts);
     expect(result.pageInfo).toEqual({
@@ -60,7 +61,7 @@ describe('postsFetcher', () => {
   });
 
   it('should handle empty response gracefully', async () => {
-    (request as jest.Mock).mockResolvedValueOnce({});
+    vi.mocked(request).mockResolvedValueOnce({});
     await expect(postsFetcher('test_key', '')).resolves.toEqual({
       posts: [],
       pageInfo: {
@@ -71,14 +72,14 @@ describe('postsFetcher', () => {
   });
 
   it('should throw an error when request fails', async () => {
-    (request as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
+    vi.mocked(request).mockRejectedValueOnce(new Error('Network error'));
     await expect(postsFetcher('test_key', '')).rejects.toThrow(
       'Error fetching posts'
     );
   });
 
   it('should correctly map post fields', async () => {
-    (request as jest.Mock).mockResolvedValueOnce(mockResponse);
+    vi.mocked(request).mockResolvedValueOnce(mockResponse);
 
     const result = await postsFetcher('test_key', '');
     result.posts.forEach((post, index) => {

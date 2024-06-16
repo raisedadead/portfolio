@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render } from '@testing-library/dom';
 import Contents from '../../../__mocks__/components/layouts-test--contents';
 
 describe('<Layout />', () => {

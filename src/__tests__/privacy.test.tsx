@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/dom';
 import Privacy from '../pages/privacy';
 
 describe('Privacy', () => {
