@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@builder.io/partytown':
-        specifier: 0.10.2
-        version: 0.10.2
       '@headlessui/react':
         specifier: 2.0.4
         version: 2.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -20,9 +17,6 @@ importers:
       '@next/third-parties':
         specifier: 14.2.4
         version: 14.2.4(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@types/react-html-parser':
-        specifier: 2.0.6
-        version: 2.0.6
       framer-motion:
         specifier: 11.2.10
         version: 11.2.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -277,11 +271,6 @@ packages:
   '@babel/types@7.24.7':
     resolution: {integrity: sha512-XEFXSlxiG5td2EJRe8vOmRbaXVgfcBlszKujvVmWIK/UpywWljQCfzAv3RQCGujWQ1RD4YYWEAqDXfuJiy8f5Q==}
     engines: {node: '>=6.9.0'}
-
-  '@builder.io/partytown@0.10.2':
-    resolution: {integrity: sha512-A9U+4PREWcS+CCYzKGIPovtGB/PBgnH/8oQyCE6Nr9drDJk6cMPpLQIEajpGPmG9tYF7N3FkRvhXm/AS9+0iKg==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
 
   '@cloudflare/kv-asset-handler@0.3.2':
     resolution: {integrity: sha512-EeEjMobfuJrwoctj7FA1y1KEbM0+Q1xSjobIEyie9k4haVEBB7vkDvsasw1pM3rO39mL2akxIAzLMUAtrMHZhA==}
@@ -1132,20 +1121,11 @@ packages:
   '@types/babel__traverse@7.20.6':
     resolution: {integrity: sha512-r1bzfrm0tomOI8g1SzvCaQHo6Lcv6zu0EA+W2kHrt8dyrHQxGzBBL4kdkzIS+jBMV+EYcMAEAqXqYaLJq5rOZg==}
 
-  '@types/domhandler@2.4.5':
-    resolution: {integrity: sha512-lANhC2grmFG1gBac/8sDAKdIXx+TzAdkJIAjEOSMA+qW3297ybACEbacJnG15aNYfrzDO6fdcoouokqAKsy6aQ==}
-
-  '@types/domutils@1.7.8':
-    resolution: {integrity: sha512-iZGboDV79ibrO3D625p9yD+VgmMDnyJocdIRJvu9Xz66R8SHfOY/XNgdjY5SFoFiLgILceVfSLt7IUhlk1Vhhg==}
-
   '@types/estree-jsx@1.0.5':
     resolution: {integrity: sha512-52CcUVNFyfb1A2ALocQw/Dd1BQFNmSdkuC3BkZ6iqhdMfQz7JWOFRuJFloOzjk+6WijU56m9oKXFAXc7o3Towg==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
-
-  '@types/htmlparser2@3.10.7':
-    resolution: {integrity: sha512-ycBs4PNr9rY9XFFp4WkP+M1UcO49ahn0+9b24cmIY6KWy0w35rW0G8+JTTe9Rp6Wnyqn5SEHZrhCBMa0TIOxBw==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -1167,9 +1147,6 @@ packages:
 
   '@types/react-dom@18.3.0':
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
-
-  '@types/react-html-parser@2.0.6':
-    resolution: {integrity: sha512-xqo8u7iqr5eOIulM1BFAlpoBgdhVleLcDHySy8/k7Le9wgdRgZY1UdKtEcdlc2jMS8cqEx8+U4Mz/e5Ves66Fg==}
 
   '@types/react@18.3.3':
     resolution: {integrity: sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==}
@@ -1851,12 +1828,6 @@ packages:
 
   dom-accessibility-api@0.5.16:
     resolution: {integrity: sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==}
-
-  domelementtype@1.3.1:
-    resolution: {integrity: sha512-BSKB+TSpMpFI/HOxCNr1O8aMOTZ8hT3pM3GQ0w/mWRmkhEDSFJkkyzz4XQsBV44BChwGkrDfMyjVD0eA2aFV3w==}
-
-  domhandler@2.4.2:
-    resolution: {integrity: sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==}
 
   dprint@0.45.1:
     resolution: {integrity: sha512-OYefcDgxd6jSdig/Cfkw1vdvyiOIRruCPnqGBbXpc95buDt9kvwL+Lic1OHc+SaQSsQub0BUZMd5+TNgy8Sh3A==}
@@ -4560,8 +4531,6 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  '@builder.io/partytown@0.10.2': {}
-
   '@cloudflare/kv-asset-handler@0.3.2':
     dependencies:
       mime: 3.0.0
@@ -5224,24 +5193,11 @@ snapshots:
     dependencies:
       '@babel/types': 7.24.7
 
-  '@types/domhandler@2.4.5': {}
-
-  '@types/domutils@1.7.8':
-    dependencies:
-      '@types/domhandler': 2.4.5
-
   '@types/estree-jsx@1.0.5':
     dependencies:
       '@types/estree': 1.0.5
 
   '@types/estree@1.0.5': {}
-
-  '@types/htmlparser2@3.10.7':
-    dependencies:
-      '@types/domhandler': 2.4.5
-      '@types/domutils': 1.7.8
-      '@types/node': 20.14.2
-      domhandler: 2.4.2
 
   '@types/json-schema@7.0.15': {}
 
@@ -5261,11 +5217,6 @@ snapshots:
 
   '@types/react-dom@18.3.0':
     dependencies:
-      '@types/react': 18.3.3
-
-  '@types/react-html-parser@2.0.6':
-    dependencies:
-      '@types/htmlparser2': 3.10.7
       '@types/react': 18.3.3
 
   '@types/react@18.3.3':
@@ -6079,12 +6030,6 @@ snapshots:
       esutils: 2.0.3
 
   dom-accessibility-api@0.5.16: {}
-
-  domelementtype@1.3.1: {}
-
-  domhandler@2.4.2:
-    dependencies:
-      domelementtype: 1.3.1
 
   dprint@0.45.1:
     optionalDependencies:
