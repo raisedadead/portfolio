@@ -14,6 +14,7 @@
     "test": {
       "dependsOn": ["lint"]
     },
+    "test:watch": {},
     "format": {
       "dependsOn": ["lint"]
     },
