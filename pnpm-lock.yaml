@@ -47,10 +47,10 @@ importers:
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.11.3
-        version: 1.11.3(@cloudflare/workers-types@4.20240614.0)(vercel@34.2.7)(wrangler@3.61.0(@cloudflare/workers-types@4.20240614.0))
+        version: 1.11.3(@cloudflare/workers-types@4.20240620.0)(vercel@34.2.7)(wrangler@3.61.0(@cloudflare/workers-types@4.20240620.0))
       '@cloudflare/workers-types':
-        specifier: 4.20240614.0
-        version: 4.20240614.0
+        specifier: 4.20240620.0
+        version: 4.20240620.0
       '@eslint/compat':
         specifier: 1.1.0
         version: 1.1.0
@@ -149,7 +149,7 @@ importers:
         version: 1.6.0(@edge-runtime/vm@3.2.0)(@types/node@20.14.6)(jsdom@24.1.0)
       wrangler:
         specifier: 3.61.0
-        version: 3.61.0(@cloudflare/workers-types@4.20240614.0)
+        version: 3.61.0(@cloudflare/workers-types@4.20240620.0)
 
 packages:
 
@@ -347,8 +347,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@cloudflare/workers-types@4.20240614.0':
-    resolution: {integrity: sha512-fnV3uXD1Hpq5EWnY7XYb+smPcjzIoUFiZpTSV/Tk8qKL3H+w6IqcngZwXQBZ/2U/DwYkDilXHW3FfPhnyD7FZA==}
+  '@cloudflare/workers-types@4.20240620.0':
+    resolution: {integrity: sha512-CQD8YS6evRob7LChvIX3gE3zYo0KVgaLDOu1SwNP1BVIS2Sa0b+FC8S1e1hhrNN8/E4chYlVN+FDAgA4KRDUEQ==}
 
   '@corex/deepmerge@4.0.43':
     resolution: {integrity: sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==}
@@ -4536,7 +4536,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.11.3(@cloudflare/workers-types@4.20240614.0)(vercel@34.2.7)(wrangler@3.61.0(@cloudflare/workers-types@4.20240614.0))':
+  '@cloudflare/next-on-pages@1.11.3(@cloudflare/workers-types@4.20240620.0)(vercel@34.2.7)(wrangler@3.61.0(@cloudflare/workers-types@4.20240620.0))':
     dependencies:
       acorn: 8.11.3
       ast-types: 0.14.2
@@ -4551,9 +4551,9 @@ snapshots:
       pcre-to-regexp: 1.1.0
       semver: 7.6.0
       vercel: 34.2.7
-      wrangler: 3.61.0(@cloudflare/workers-types@4.20240614.0)
+      wrangler: 3.61.0(@cloudflare/workers-types@4.20240620.0)
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20240614.0
+      '@cloudflare/workers-types': 4.20240620.0
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -4589,7 +4589,7 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20240610.1':
     optional: true
 
-  '@cloudflare/workers-types@4.20240614.0': {}
+  '@cloudflare/workers-types@4.20240620.0': {}
 
   '@corex/deepmerge@4.0.43': {}
 
@@ -8658,7 +8658,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20240610.1
       '@cloudflare/workerd-windows-64': 1.20240610.1
 
-  wrangler@3.61.0(@cloudflare/workers-types@4.20240614.0):
+  wrangler@3.61.0(@cloudflare/workers-types@4.20240620.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.3
       '@esbuild-plugins/node-globals-polyfill': 0.2.3(esbuild@0.17.19)
@@ -8676,7 +8676,7 @@ snapshots:
       unenv: unenv-nightly@1.10.0-1717606461.a117952
       xxhash-wasm: 1.0.2
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20240614.0
+      '@cloudflare/workers-types': 4.20240620.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
