@@ -4,7 +4,11 @@ import useSWR, { SWRConfig, unstable_serialize } from 'swr';
 
 import Layout from '@/components/layouts';
 import { CustomLink as Link } from '@/components/custom-link';
-import { postsFetcher, Post, ResponseData } from '../lib/posts-fetcher';
+import {
+  postsFetcher,
+  Post,
+  GetPaginatedPostsResponseData
+} from '../lib/posts-fetcher';
 import { MetaHead } from '@/components/head';
 
 const SWR_Key_Prefix = '/api/posts';
@@ -81,7 +85,7 @@ export const getStaticProps = (async () => {
 
 const Blog: NextPage<{
   fallback: {
-    '': ResponseData;
+    '': GetPaginatedPostsResponseData;
   };
 }> = ({ fallback }) => {
   const [pageCursor, setPageCursor] = useState(SWR_Cursor_for_firstPage);
@@ -154,10 +158,7 @@ const Blog: NextPage<{
                 className='my-2 border-2 border-black bg-blue-100 px-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
                 key={post.slug}
               >
-                <Link
-                  href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
-                  className='no-underline'
-                >
+                <Link href={`/posts/${post.slug}`} className='no-underline'>
                   <p className="font-sans text-lg text-blue-600 after:content-['_↗']">
                     {post.title}
                   </p>
