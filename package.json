@@ -77,7 +77,7 @@
     "tailwindcss": "3.4.4",
     "turbo": "2.0.5",
     "typescript": "5.5.2",
-    "vercel": "34.2.7",
+    "vercel": "34.2.8",
     "vitest": "1.6.0",
     "wrangler": "3.61.0"
   },
