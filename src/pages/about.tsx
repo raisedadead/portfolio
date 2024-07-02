@@ -53,7 +53,7 @@ const About: NextPage = () => (
           <p>
             <strong>Tax details for Transactions made outside India: </strong>
             <span>
-              Please get in touch, we will accomodate documents where feasible
+              Please get in touch, we will accommodate documents where feasible
               as per your needs.
             </span>
           </p>
@@ -61,8 +61,6 @@ const About: NextPage = () => (
           <p className='text-center'>
             <strong>
               Email: <Email />
-              <br />
-              Text: +91 7799259952 (WhatsApp, Telegram, etc. only)
             </strong>
           </p>
           <p className='text-center'>

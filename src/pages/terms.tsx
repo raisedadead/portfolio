@@ -11,7 +11,7 @@ const Terms: NextPage = () => (
       <section className='mt-10 border-2 border-black bg-white p-5 shadow-[2px_2px_0px_rgba(0,0,0,1)]'>
         <div className='prose prose-sm prose-slate max-w-none'>
           <h1>Terms and Conditions</h1>
-          <p>Last updated: Nov 11, 2022</p>
+          <p>Last updated: Jul 1, 2024</p>
           <p>
             Please read these terms and conditions carefully before using Our
             Service.

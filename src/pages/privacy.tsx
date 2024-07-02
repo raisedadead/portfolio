@@ -11,7 +11,7 @@ const Terms: NextPage = () => (
       <section className='mt-10 border-2 border-black bg-white p-5 shadow-[2px_2px_0px_rgba(0,0,0,1)]'>
         <div className='prose prose-sm prose-slate max-w-none'>
           <h1>Privacy Policy</h1>
-          <p>Last updated: Nov 11, 2022</p>
+          <p>Last updated: Jul 1, 2024</p>
           <p>
             This Privacy Policy describes Our policies and procedures on the
             collection, use and disclosure of Your information when You use the
@@ -467,39 +467,48 @@ const Terms: NextPage = () => (
             We may use third-party Service providers to monitor and analyze the
             use of our Service.
           </p>
-          <ul>
-            <li>
-              <p>
-                <strong>Google Analytics</strong>
-              </p>
-              <p>
-                Google Analytics is a web analytics service offered by Google
-                that tracks and reports website traffic. Google uses the data
-                collected to track and monitor the use of our Service. This data
-                is shared with other Google services. Google may use the
-                collected data to contextualize and personalize the ads of its
-                own advertising network.
-              </p>
-              <p>
-                You can opt-out of having made your activity on the Service
-                available to Google Analytics by installing the Google Analytics
-                opt-out browser add-on. The add-on prevents the Google Analytics
-                JavaScript (ga.js, analytics.js and dc.js) from sharing
-                information with Google Analytics about visits activity.
-              </p>
-              <p>
-                For more information on the privacy practices of Google, please
-                visit the Google Privacy &amp; Terms web page:{' '}
-                <a
-                  href='https://policies.google.com/privacy'
-                  rel='external nofollow noopener noreferrer'
-                  target='_blank'
-                >
-                  https://policies.google.com/privacy
-                </a>
-              </p>
-            </li>
-          </ul>
+          <table className='w-full border-collapse'>
+            <thead>
+              <tr className='bg-gray-100'>
+                <th className='border border-gray-300 p-2 text-left'>
+                  Analytics Processor
+                </th>
+                <th className='border border-gray-300 p-2 text-left'>
+                  Privacy Policy
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className='border border-gray-300 p-2'>
+                  <strong>Google Analytics</strong>
+                </td>
+                <td className='border border-gray-300 p-2'>
+                  <a
+                    href='https://policies.google.com/privacy'
+                    rel='external nofollow noopener noreferrer'
+                    target='_blank'
+                  >
+                    https://policies.google.com/privacy
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className='border border-gray-300 p-2'>
+                  <strong>Cloudflare</strong>
+                </td>
+                <td className='border border-gray-300 p-2'>
+                  <a
+                    href='https://www.cloudflare.com/privacypolicy/'
+                    rel='external nofollow noopener noreferrer'
+                    target='_blank'
+                  >
+                    https://www.cloudflare.com/privacypolicy/
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           <h2>Email Marketing</h2>
           <p>
             We may use Your Personal Data to contact You with newsletters,
@@ -518,7 +527,7 @@ const Terms: NextPage = () => (
             We will not store or collect Your payment card details. That
             information is provided directly to Our third-party payment
             processors whose use of Your personal information is governed by
-            their Privacy Policy.{' '}
+            their Privacy Policy.
           </p>
           <p>
             These payment processors adhere to the standards set by PCI-DSS as
@@ -528,53 +537,62 @@ const Terms: NextPage = () => (
             payment information.
           </p>
           <p>The payment processors We use are:</p>
-          <ul>
-            <li>
-              <p>
-                <strong>PayPal</strong>
-              </p>
-              <p>
-                Their Privacy Policy can be viewed at{' '}
-                <a
-                  href='https://www.paypal.com/webapps/mpp/ua/privacy-full'
-                  rel='external nofollow noopener noreferrer'
-                  target='_blank'
-                >
-                  https://www.paypal.com/webapps/mpp/ua/privacy-full
-                </a>
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>RazorPay</strong>
-              </p>
-              <p>
-                Their Privacy Policy can be viewed at{' '}
-                <a
-                  href='https://razorpay.com/privacy'
-                  rel='external nofollow noopener noreferrer'
-                  target='_blank'
-                >
-                  https://razorpay.com/privacy
-                </a>
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Stripe</strong>
-              </p>
-              <p>
-                Their Privacy Policy can be viewed at{' '}
-                <a
-                  href='https://stripe.com/en-in/privacy'
-                  rel='external nofollow noopener noreferrer'
-                  target='_blank'
-                >
-                  https://stripe.com/en-in/privacy
-                </a>
-              </p>
-            </li>
-          </ul>
+          <table className='w-full border-collapse'>
+            <thead>
+              <tr className='bg-gray-100'>
+                <th className='border border-gray-300 p-2 text-left'>
+                  Payment Processor
+                </th>
+                <th className='border border-gray-300 p-2 text-left'>
+                  Privacy Policy
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className='border border-gray-300 p-2'>
+                  <strong>PayPal</strong>
+                </td>
+                <td className='border border-gray-300 p-2'>
+                  <a
+                    href='https://www.paypal.com/webapps/mpp/ua/privacy-full'
+                    rel='external nofollow noopener noreferrer'
+                    target='_blank'
+                  >
+                    https://www.paypal.com/webapps/mpp/ua/privacy-full
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className='border border-gray-300 p-2'>
+                  <strong>RazorPay</strong>
+                </td>
+                <td className='border border-gray-300 p-2'>
+                  <a
+                    href='https://razorpay.com/privacy'
+                    rel='external nofollow noopener noreferrer'
+                    target='_blank'
+                  >
+                    https://razorpay.com/privacy
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className='border border-gray-300 p-2'>
+                  <strong>Stripe</strong>
+                </td>
+                <td className='border border-gray-300 p-2'>
+                  <a
+                    href='https://stripe.com/en-in/privacy'
+                    rel='external nofollow noopener noreferrer'
+                    target='_blank'
+                  >
+                    https://stripe.com/en-in/privacy
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           <h1>GDPR Privacy</h1>
           <h2>Legal Basis for Processing Personal Data under GDPR</h2>
           <p>We may process Personal Data under the following conditions:</p>

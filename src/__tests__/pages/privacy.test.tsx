@@ -6,11 +6,13 @@ import Privacy from '@/pages/privacy';
 describe('Privacy', () => {
   it('renders a heading', () => {
     render(<Privacy />);
-    expect(screen.getByText('Privacy')).toBeDefined();
+    expect(
+      screen.getByText('Privacy Policy', { selector: 'h1' })
+    ).toBeDefined();
   });
 
   it('renders a sub-heading', () => {
     render(<Privacy />);
-    expect(screen.getByText('Privacy Policy')).toBeDefined();
+    expect(screen.getByText('Analytics', { selector: 'h2' })).toBeDefined();
   });
 });
