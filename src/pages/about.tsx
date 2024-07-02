@@ -4,7 +4,7 @@ import Email from '@/components/email';
 import { MetaHead } from '@/components/head';
 import { Social } from '@/components/social';
 
-const Blog: NextPage = () => (
+const About: NextPage = () => (
   <>
     <MetaHead pageTitle='Legal - About & Contact' />
     <Layout>
@@ -86,4 +86,4 @@ const Blog: NextPage = () => (
   </>
 );
 
-export default Blog;
+export default About;
