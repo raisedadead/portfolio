@@ -68,7 +68,7 @@
     "globals": "15.8.0",
     "husky": "9.1.1",
     "is-ci": "3.0.1",
-    "jsdom": "24.1.0",
+    "jsdom": "24.1.1",
     "lint-staged": "15.2.7",
     "next-router-mock": "0.9.13",
     "postcss": "8.4.39",
