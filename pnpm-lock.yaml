@@ -47,7 +47,7 @@ importers:
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.12.1
-        version: 1.12.1(@cloudflare/workers-types@4.20240722.0)(vercel@34.4.0)(wrangler@3.65.1(@cloudflare/workers-types@4.20240722.0))
+        version: 1.12.1(@cloudflare/workers-types@4.20240722.0)(vercel@34.4.0)(wrangler@3.66.0(@cloudflare/workers-types@4.20240722.0))
       '@cloudflare/workers-types':
         specifier: 4.20240722.0
         version: 4.20240722.0
@@ -148,8 +148,8 @@ importers:
         specifier: 1.6.0
         version: 1.6.0(@edge-runtime/vm@3.2.0)(@types/node@20.14.12)(jsdom@24.1.1)
       wrangler:
-        specifier: 3.65.1
-        version: 3.65.1(@cloudflare/workers-types@4.20240722.0)
+        specifier: 3.66.0
+        version: 3.66.0(@cloudflare/workers-types@4.20240722.0)
 
 packages:
 
@@ -4223,8 +4223,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@3.65.1:
-    resolution: {integrity: sha512-Z5NyrbpGMQCpim/6VnI1im0/Weh5+CU1sdep1JbfFxHjn/Jt9K+MeUq+kCns5ubkkdRx2EYsusB/JKyX2JdJ4w==}
+  wrangler@3.66.0:
+    resolution: {integrity: sha512-5fEyXsP8qvrUeR13kCfA3OG1z/ABx+/a8hzIA55nCUM2/tjI67ZkfeN1VdOmG6cipZDvs4HfN8rp7j+e+21nKA==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -4494,7 +4494,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.12.1(@cloudflare/workers-types@4.20240722.0)(vercel@34.4.0)(wrangler@3.65.1(@cloudflare/workers-types@4.20240722.0))':
+  '@cloudflare/next-on-pages@1.12.1(@cloudflare/workers-types@4.20240722.0)(vercel@34.4.0)(wrangler@3.66.0(@cloudflare/workers-types@4.20240722.0))':
     dependencies:
       acorn: 8.11.3
       ast-types: 0.14.2
@@ -4509,7 +4509,7 @@ snapshots:
       pcre-to-regexp: 1.1.0
       semver: 7.6.0
       vercel: 34.4.0
-      wrangler: 3.65.1(@cloudflare/workers-types@4.20240722.0)
+      wrangler: 3.66.0(@cloudflare/workers-types@4.20240722.0)
     optionalDependencies:
       '@cloudflare/workers-types': 4.20240722.0
     transitivePeerDependencies:
@@ -7292,7 +7292,7 @@ snapshots:
       stoppable: 1.1.0
       undici: 5.28.4
       workerd: 1.20240718.0
-      ws: 8.17.1
+      ws: 8.18.0
       youch: 3.3.3
       zod: 3.23.8
     transitivePeerDependencies:
@@ -8569,7 +8569,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20240718.0
       '@cloudflare/workerd-windows-64': 1.20240718.0
 
-  wrangler@3.65.1(@cloudflare/workers-types@4.20240722.0):
+  wrangler@3.66.0(@cloudflare/workers-types@4.20240722.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@esbuild-plugins/node-globals-polyfill': 0.2.3(esbuild@0.17.19)
@@ -8586,6 +8586,7 @@ snapshots:
       selfsigned: 2.4.1
       source-map: 0.6.1
       unenv: unenv-nightly@1.10.0-1717606461.a117952
+      workerd: 1.20240718.0
       xxhash-wasm: 1.0.2
     optionalDependencies:
       '@cloudflare/workers-types': 4.20240722.0
