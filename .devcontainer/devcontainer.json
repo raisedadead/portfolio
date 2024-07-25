@@ -1,8 +1,9 @@
 {
   "name": "portfolio",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:latest",
-  "postCreateCommand": "pnpm install",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20-bookworm",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
+  },
+  "postCreateCommand": "npm install -g npm pnpm && pnpm install",
   "forwardPorts": [3000]
-  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-  // "remoteUser": "root"
 }

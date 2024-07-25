@@ -46,3 +46,6 @@ yarn-error.log*
 public/sitemap.xml
 public/sitemap-*.xml
 public/robots.txt
+
+/.pnpm-store/
+/.vscode/
