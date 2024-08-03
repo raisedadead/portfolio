@@ -69,7 +69,7 @@
     "husky": "9.1.4",
     "is-ci": "3.0.1",
     "jsdom": "24.1.1",
-    "lint-staged": "15.2.7",
+    "lint-staged": "15.2.8",
     "next-router-mock": "0.9.13",
     "postcss": "8.4.40",
     "prettier": "3.3.3",
