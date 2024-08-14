@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   content: ['./src/**/*.{html,js,jsx,tsx}'],
   theme: {
     extend: {
@@ -10,5 +10,14 @@ module.exports = {
       }
     }
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')]
+  plugins: [
+    // Use dynamic imports for plugins
+    async () => {
+      const forms = await import('@tailwindcss/forms');
+      const typography = await import('@tailwindcss/typography');
+      return [forms.default, typography.default];
+    }
+  ]
 };
+
+export default config;
