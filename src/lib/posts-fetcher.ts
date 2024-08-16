@@ -98,8 +98,9 @@ export const postsFetcher = async (
       hasNextPage: false
     };
   } catch (error) {
-    // console.error('Error fetching posts:', error);
-    throw new Error('Error fetching posts. Errors logged to console.');
+    throw new Error('Error fetching posts. Errors logged to console.', {
+      cause: error
+    });
   }
 
   // DEBUG: Simulate slow network
