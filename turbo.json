@@ -3,11 +3,9 @@
   "ui": "stream",
   "tasks": {
     "build": {
-      "outputs": [".next/**", "!.next/cache/**"],
-      "dependsOn": ["lint"]
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "build:for-edge": {
-      "dependsOn": ["lint"],
       "outputs": [".vercel/output/**"]
     },
     "lint": {},
