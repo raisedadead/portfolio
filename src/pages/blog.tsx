@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import Layout from '@/components/layouts';
 import { CustomLink as Link } from '@/components/custom-link';
-import { postsFetcher, Post, ResponseData } from '../lib/posts-fetcher';
+import { postsFetcher, Post, ResponseData } from '@/lib/posts-fetcher';
 import { MetaHead } from '@/components/head';
 
 const SWR_Key_Prefix = '/api/posts';
@@ -169,11 +169,11 @@ const Blog: NextPage<{
               <Link
                 href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
                 key={post.slug}
-                className={`group block overflow-hidden border-2 border-black bg-white no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] ${getConsistentSpan(index)}`}
+                className={`group flex flex-col overflow-hidden border-2 border-black bg-white no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] ${getConsistentSpan(index)}`}
               >
                 <div
                   className={`relative ${
-                    index % 5 === 0 ? 'h-64 lg:h-96' : 'h-48'
+                    index % 5 === 0 ? 'h-64 lg:h-96' : 'h-48 sm:h-56 lg:h-64'
                   } w-full overflow-hidden`}
                 >
                   {post.coverImage ? (
@@ -181,6 +181,7 @@ const Blog: NextPage<{
                       src={post.coverImage.url}
                       alt={post.title}
                       fill
+                      sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
                       className='object-cover transition-transform duration-300 group-hover:scale-105'
                     />
                   ) : (
@@ -189,7 +190,7 @@ const Blog: NextPage<{
                     </div>
                   )}
                 </div>
-                <div className='p-4'>
+                <div className='flex flex-grow flex-col p-4'>
                   <h2
                     className={`font-sans font-bold text-slate-800 transition-colors duration-300 group-hover:text-blue-600 ${
                       index % 5 === 0 ? 'text-2xl lg:text-3xl' : 'text-lg'
@@ -197,7 +198,7 @@ const Blog: NextPage<{
                   >
                     {post.title}
                   </h2>
-                  <p className={`mt-2 line-clamp-2 text-slate-600`}>
+                  <p className={`mt-2 line-clamp-2 flex-grow text-slate-600`}>
                     {post.brief}
                   </p>
                   <div className='mt-4 flex flex-wrap items-center text-sm text-slate-500'>
