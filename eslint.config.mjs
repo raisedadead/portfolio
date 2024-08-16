@@ -29,7 +29,6 @@ const config = [
       'plugin:react/recommended',
       'next/core-web-vitals',
       'plugin:@typescript-eslint/recommended',
-      eslintConfigPrettier,
       'plugin:next-on-pages/recommended'
     )
   ),
@@ -58,7 +57,8 @@ const config = [
       semi: ['error', 'always'],
       'next-on-pages/no-unsupported-configs': 'warn'
     }
-  }
+  },
+  eslintConfigPrettier
 ];
 
 export default config;

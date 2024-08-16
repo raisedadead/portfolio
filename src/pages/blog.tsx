@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import useSWR, { SWRConfig, unstable_serialize } from 'swr';
+import Image from 'next/image';
 
 import Layout from '@/components/layouts';
 import { CustomLink as Link } from '@/components/custom-link';
@@ -144,40 +145,92 @@ const Blog: NextPage<{
     );
   }
 
+  const getConsistentSpan = (index: number) => {
+    switch (index % 5) {
+      case 0:
+        return 'sm:col-span-2 lg:col-span-3';
+      case 1:
+        return 'sm:col-span-1 lg:col-span-1';
+      case 2:
+      case 3:
+        return 'sm:col-span-2 lg:col-span-2';
+      case 4:
+      default:
+        return 'sm:col-span-1 lg:col-span-1';
+    }
+  };
+
   return (
     <SWRConfig value={{ fallback }}>
       <PageWrapper>
-        <ul role='list' className='list-none p-0'>
-          {allPosts.map((post: Post) =>
+        <div className='grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3'>
+          {allPosts.map((post: Post, index: number) =>
             post.title && post.slug ? (
-              <li
-                className='my-2 border-2 border-black bg-blue-100 px-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
+              <Link
+                href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
                 key={post.slug}
+                className={`group block overflow-hidden border-2 border-black bg-white no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] ${getConsistentSpan(index)}`}
               >
-                <Link
-                  href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
-                  className='no-underline'
+                <div
+                  className={`relative ${
+                    index % 5 === 0 ? 'h-64 lg:h-96' : 'h-48'
+                  } w-full overflow-hidden`}
                 >
-                  <p className="font-sans text-lg text-blue-600 after:content-['_↗']">
+                  {post.coverImage ? (
+                    <Image
+                      src={post.coverImage.url}
+                      alt={post.title}
+                      fill
+                      className='object-cover transition-transform duration-300 group-hover:scale-105'
+                    />
+                  ) : (
+                    <div className='flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100'>
+                      <span className='text-4xl'>📝</span>
+                    </div>
+                  )}
+                </div>
+                <div className='p-4'>
+                  <h2
+                    className={`font-sans font-bold text-slate-800 transition-colors duration-300 group-hover:text-blue-600 ${
+                      index % 5 === 0 ? 'text-2xl lg:text-3xl' : 'text-lg'
+                    }`}
+                  >
                     {post.title}
+                  </h2>
+                  <p className={`mt-2 line-clamp-2 text-slate-600`}>
+                    {post.brief}
                   </p>
-                  <p className='text-slate-900'>{post.brief}</p>
-                  <p className='font-sans text-slate-600'>
-                    {new Date(post.publishedAt).toDateString()}
-                    {post.readTimeInMinutes
-                      ? ` • ${post.readTimeInMinutes} min read`
-                      : ''}
-                    {post.reactionCount
-                      ? ` • ${post.reactionCount} reactions`
-                      : ''}
-                    {post.replyCount ? ` • ${post.replyCount} comments` : ''}
-                  </p>
-                </Link>
-              </li>
+                  <div className='mt-4 flex flex-wrap items-center text-sm text-slate-500'>
+                    <span>{new Date(post.publishedAt).toDateString()}</span>
+                    {post.readTimeInMinutes && (
+                      <>
+                        <span className='mx-2'>•</span>
+                        <span>{post.readTimeInMinutes} min read</span>
+                      </>
+                    )}
+                    {post.reactionCount > 0 && (
+                      <>
+                        <span className='mx-2'>•</span>
+                        <span>{post.reactionCount} reactions</span>
+                      </>
+                    )}
+                    {post.replyCount > 0 && (
+                      <>
+                        <span className='mx-2'>•</span>
+                        <span>{post.replyCount} comments</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </Link>
             ) : null
           )}
-          {isValidating ? <SkeletonBlock /> : null}
-        </ul>
+          {isValidating && (
+            <div className='sm:col-span-2 lg:col-span-3'>
+              <SkeletonBlock />
+            </div>
+          )}
+        </div>
         <div className='flex justify-center py-5'>
           <button
             onClick={loadMoreArticles}

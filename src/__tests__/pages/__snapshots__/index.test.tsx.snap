@@ -255,11 +255,8 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
             <a
               aria-label=""
               class="h-10 w-36 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-              href="https://hn.mrugesh.dev"
-              rel=" noopener noreferrer"
+              href="/blog"
               role="link"
-              target="_blank"
-              type="button"
             >
               <span
                 class="inline-flex items-center"

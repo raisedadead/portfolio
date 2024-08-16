@@ -73,7 +73,7 @@ export const Profile: React.FC = () => {
           <Link
             aria-label='Browse my blog'
             className='h-10 w-36 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
-            href='https://hn.mrugesh.dev'
+            href='/blog'
             type='button'
           >
             <span className='inline-flex items-center'>Blog</span>

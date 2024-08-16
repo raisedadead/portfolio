@@ -8,7 +8,9 @@ export type Post = {
   reactionCount: number;
   replyCount: number;
   readTimeInMinutes: number;
-  coverImage: string;
+  coverImage: {
+    url: string;
+  };
 };
 
 export type ResponseData = {
