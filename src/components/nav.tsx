@@ -5,14 +5,12 @@ import {
   Bars4Icon,
   HomeIcon,
   BookOpenIcon,
-  CpuChipIcon,
-  BriefcaseIcon
+  CpuChipIcon
 } from '@heroicons/react/24/outline';
 
 const links = [
   { href: '/blog', label: 'Recent Posts', icon: BookOpenIcon },
-  { href: '/uses', label: 'Uses', icon: CpuChipIcon },
-  { href: '/hire-me', label: 'Hire Me!', icon: BriefcaseIcon }
+  { href: '/uses', label: 'Uses', icon: CpuChipIcon }
 ];
 
 type NavProps = {
