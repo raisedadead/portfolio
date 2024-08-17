@@ -4,26 +4,29 @@ import { CustomLink as Link } from '@/components/custom-link';
 import { ExpandableSection as ES } from '@/components/expandable-section';
 import { MetaHead } from '@/components/head';
 import { Social } from '@/components/social';
+import { cn } from '@/lib/utils';
 
 const Uses: NextPage = () => {
   return (
     <>
       <MetaHead pageTitle='Uses' />
-      <Layout variant='main'>
-        <section>
-          <div className='prose prose-sm prose-slate max-w-none'>
-            <h1 className='py-2 text-center font-bold text-slate-700'>
+      <Layout variant='main' className={cn('')}>
+        <section className={cn('')}>
+          <div className={cn('prose prose-sm prose-slate max-w-none')}>
+            <h1 className={cn('py-2 text-center font-bold text-slate-700')}>
               Everyday Day Carry
             </h1>
           </div>
         </section>
-        <section>
-          <div className='prose prose-sm prose-slate max-w-none'>
-            <p className='text-center text-slate-600'>
+        <section className={cn('')}>
+          <div className={cn('prose prose-sm prose-slate max-w-none')}>
+            <p className={cn('text-center text-slate-600')}>
               A non-exhaustive list of stuff that I use on a daily basis.
             </p>
-            <h3 className='text-center font-bold text-slate-700'>Hardware</h3>
-            <ul className='list-none'>
+            <h3 className={cn('text-center font-bold text-slate-700')}>
+              Hardware
+            </h3>
+            <ul className={cn('list-none')}>
               <li>
                 <ES
                   title='Apple MacBook Pro (14-inch, 2021)'
@@ -36,7 +39,9 @@ const Uses: NextPage = () => {
                   <p>
                     I daily drive the{' '}
                     <Link
-                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                      className={cn(
+                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                      )}
                       href='https://support.apple.com/kb/SP854?locale=en_US'
                     >
                       MacBook Pro (14-inch, 2021)
@@ -63,7 +68,9 @@ const Uses: NextPage = () => {
                   <p>
                     The{' '}
                     <Link
-                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                      className={cn(
+                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                      )}
                       href='https://deskpi.com/collections/deskpi-super6c'
                     >
                       DeskPi Super6C
@@ -94,7 +101,9 @@ const Uses: NextPage = () => {
                   <p>
                     I used to daily drive the{' '}
                     <Link
-                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                      className={cn(
+                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                      )}
                       href='http://web.archive.org/web/20200619220029/https://www.pcmag.com/reviews/dell-xps-15-9500'
                     >
                       Dell XPS 15 9500
@@ -102,7 +111,9 @@ const Uses: NextPage = () => {
                     running Windows for a few years. In fact, I had been rocking
                     a{' '}
                     <Link
-                      className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                      className={cn(
+                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                      )}
                       href='https://hn.mrugesh.dev/how-to-dual-boot-dell-xps-9500-windows-and-linux'
                     >
                       dual-boot setup
@@ -136,7 +147,9 @@ const Uses: NextPage = () => {
                     <p>
                       For a good half a decade (2016-2020), I used a{' '}
                       <Link
-                        className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        className={cn(
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        )}
                         href='https://support.apple.com/kb/SP715?locale=en_US'
                       >
                         MacBook Pro (Retina, 13-inch, Early 2015)
@@ -148,7 +161,9 @@ const Uses: NextPage = () => {
                   <li>
                     <p>
                       <Link
-                        className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        className={cn(
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        )}
                         href='http://web.archive.org/web/20120925105640/http://notebooks.com/2012/07/10/lenovo-ideapad-u310-review/'
                       >
                         Lenovo IdeaPad U310
@@ -160,10 +175,12 @@ const Uses: NextPage = () => {
               </li>
               <li>
                 <ES title='Peripherals'>
-                  <ul className='list-none'>
+                  <ul className={cn('list-none')}>
                     <li>
                       <Link
-                        className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        className={cn(
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        )}
                         href='https://www.amazon.in/dp/B07V867LW4'
                       >
                         Dell WD19TB Thunderbolt Dock
@@ -172,7 +189,9 @@ const Uses: NextPage = () => {
                     </li>
                     <li>
                       <Link
-                        className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        className={cn(
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        )}
                         href='https://www.amazon.in/dp/B08196YFMK'
                       >
                         Logitech MX Keys
@@ -180,7 +199,9 @@ const Uses: NextPage = () => {
                     </li>
                     <li>
                       <Link
-                        className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        className={cn(
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        )}
                         href='https://www.amazon.in/dp/B071YZJ1G1'
                       >
                         Logitech MX Master 2S
@@ -188,7 +209,9 @@ const Uses: NextPage = () => {
                     </li>
                     <li>
                       <Link
-                        className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        className={cn(
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        )}
                         href='https://www.amazon.in/dp/B08J5X2LV4'
                       >
                         LG 27UK650-W
@@ -197,7 +220,9 @@ const Uses: NextPage = () => {
                     </li>
                     <li>
                       <Link
-                        className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        className={cn(
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        )}
                         href='https://www.amazon.in/dp/B01JOFKL0A'
                       >
                         Cannon Pixma AIO Wireless Printer
@@ -207,19 +232,19 @@ const Uses: NextPage = () => {
                 </ES>
               </li>
             </ul>
-            <h3 className='text-center text-xl font-bold text-slate-700'>
+            <h3 className={cn('text-center text-xl font-bold text-slate-700')}>
               Software
             </h3>
-            <ul className='list-none'>
+            <ul className={cn('list-none')}>
               <li>
                 <ES title='Operating Systems'>TBD — Updating this soon.</ES>
               </li>
             </ul>
           </div>
         </section>
-        <section>
-          <div className='prose prose-sm prose-slate mt-4 max-w-none'>
-            <h4 className='text-center font-bold text-slate-700'>
+        <section className={cn('')}>
+          <div className={cn('prose prose-sm prose-slate mt-4 max-w-none')}>
+            <h4 className={cn('text-center font-bold text-slate-700')}>
               Elsewhere on the internet
             </h4>
             <Social />
