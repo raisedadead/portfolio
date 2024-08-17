@@ -1,15 +1,16 @@
-import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
+import { Bricolage_Grotesque } from 'next/font/google';
+import { Space_Mono } from 'next/font/google';
 
-export const IBMPlexMono = IBM_Plex_Mono({
+export const fontMono = Space_Mono({
+  subsets: ['latin'],
   display: 'swap',
-  subsets: ['latin-ext'],
-  variable: '--font-ibm-plex-mono',
+  variable: '--font-mono',
   weight: '400'
 });
 
-export const IBMPlexSans = IBM_Plex_Sans({
+export const fontSans = Bricolage_Grotesque({
+  subsets: ['latin'],
   display: 'swap',
-  subsets: ['latin-ext'],
-  variable: '--font-ibm-plex-sans',
+  variable: '--font-sans',
   weight: '400'
 });

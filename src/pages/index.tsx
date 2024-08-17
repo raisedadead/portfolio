@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <>
       <MetaHead />
-      <Layout showGlass={false} showHomeButton={false}>
+      <Layout variant='main'>
         <Profile />
       </Layout>
     </>

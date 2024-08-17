@@ -9,7 +9,7 @@ const Uses: NextPage = () => {
   return (
     <>
       <MetaHead pageTitle='Uses' />
-      <Layout>
+      <Layout variant='main'>
         <section>
           <div className='prose prose-sm prose-slate max-w-none'>
             <h1 className='py-2 text-center font-bold text-slate-700'>
@@ -19,7 +19,7 @@ const Uses: NextPage = () => {
         </section>
         <section>
           <div className='prose prose-sm prose-slate max-w-none'>
-            <p className='text-center text-slate-500'>
+            <p className='text-center text-slate-600'>
               A non-exhaustive list of stuff that I use on a daily basis.
             </p>
             <h3 className='text-center font-bold text-slate-700'>Hardware</h3>

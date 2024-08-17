@@ -16,7 +16,7 @@ const PageWrapper: React.FC<{
 }> = ({ children }) => (
   <>
     <MetaHead pageTitle='Recent posts' />
-    <Layout>
+    <Layout variant='main'>
       <section>
         <div className='prose prose-sm prose-slate max-w-none'>
           <h1 className='py-2 text-center font-bold text-slate-700'>
@@ -26,7 +26,7 @@ const PageWrapper: React.FC<{
       </section>
       <section>
         <div className='prose prose-sm prose-slate max-w-none'>
-          <p className='text-center text-slate-500'>
+          <p className='text-center text-slate-600'>
             Stuff that I write about, mostly tech, sometimes life.
           </p>
           {children}
@@ -181,11 +181,13 @@ const Blog: NextPage<{
                       src={post.coverImage.url}
                       alt={post.title}
                       fill
+                      placeholder='blur'
+                      blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8d33VGQAIpwNNk7v4uAAAAABJRU5ErkJggg=='
                       sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-                      className='object-cover transition-transform duration-300 group-hover:scale-105'
+                      className='object-cover px-4 py-2 transition-transform duration-200 group-hover:scale-95'
                     />
                   ) : (
-                    <div className='flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100'>
+                    <div className='flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 px-4 py-2'>
                       <span className='text-4xl'>📝</span>
                     </div>
                   )}

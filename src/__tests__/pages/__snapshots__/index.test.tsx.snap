@@ -3,132 +3,113 @@
 exports[`Home > renders a snapshot of the homepage 1`] = `
 <DocumentFragment>
   <div
-    class="fixed inset-0 -z-10"
+    class="container"
   >
     <div
-      class="-z-50 h-screen w-screen bg-orange-200"
-    >
-      <svg
-        class="transition delay-150 duration-300 ease-in-out"
-        height="100%"
-        id="svg"
-        preserveAspectRatio="none"
-        viewBox="0 0 1000 800"
-        width="100%"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g
-          id="one"
-        >
-          <lineargradient
-            gradientUnits="userSpaceOnUse"
-            id="svg1"
-            x1="-207.2916"
-            x2="1991.9283"
-            y1="270.9562"
-            y2="270.9562"
-          >
-            <stop
-              offset="0"
-              style="stop-color: rgb(50, 222, 212);"
-            />
-            <stop
-              offset="1"
-              style="stop-color: rgb(50, 222, 212); stop-opacity: 0;"
-            />
-          </lineargradient>
-          <path
-            d="M-206.084,515.811c0,0,217.208-66.007,453.867,3c0.017,0.005,0.034,0.01,0.051,0.015
-    c118.716,34.611,243.627,53.152,366.838,35.887c136.417-19.115,258.875-65.218,397.701-35.334
-    c107.947,23.237,196.916,83.712,311.488,53.499c122.896-32.409,228.996-83.684,359.183-76.458
-    c111.262,6.176,199.042,51.051,308.884,10.389V-39.245h-2199.22L-206.084,515.811z"
-            fill="url(#svg1)"
-          />
-        </g>
-        <g
-          id="two"
-        >
-          <lineargradient
-            gradientUnits="userSpaceOnUse"
-            id="svg2"
-            x1="-306.3015"
-            x2="1892.9183"
-            y1="246.9538"
-            y2="246.9538"
-          >
-            <stop
-              offset="0"
-              style="stop-color: rgb(50, 222, 212);"
-            />
-            <stop
-              offset="1"
-              style="stop-color: rgb(50, 222, 212); stop-opacity: 0;"
-            />
-          </lineargradient>
-          <path
-            d="M-305.094,491.808c0,0,217.208-66.007,453.867,3c0.017,0.005,0.034,0.01,0.051,0.015
-    c118.716,34.611,243.627,53.152,366.838,35.887c136.417-19.115,258.875-65.218,397.701-35.334
-    c107.946,23.237,196.916,83.712,311.488,53.499c122.896-32.409,228.996-83.684,359.183-76.458
-            c111.262,6.176,199.041,51.051,308.884,10.389V-63.247h-2199.22L-305.094,491.808z"
-            fill="url(#svg2)"
-            opacity="0.5"
-          />
-        </g>
-        <g
-          id="three"
-        >
-          <lineargradient
-            gradientUnits="userSpaceOnUse"
-            id="svg3"
-            x1="-107.0737"
-            x2="2090.9382"
-            y1="237.9529"
-            y2="237.9529"
-          >
-            <stop
-              offset="0"
-              style="stop-color: rgb(50, 222, 212);"
-            />
-            <stop
-              offset="1"
-              style="stop-color: rgb(50, 222, 212); stop-opacity: 0;"
-            />
-          </lineargradient>
-          <path
-            d="M-107.074,466.23c0,0,217.208-61.538,453.867,2.797
-    c0.017,0.005,0.034,0.009,0.051,0.014c118.716,32.268,243.627,49.553,366.838,33.458c136.417-17.821,258.875-60.803,397.701-32.941
-    c107.947,21.664,196.916,78.045,311.488,49.876c122.896-30.215,228.996-78.018,359.183-71.281
-    c111.262,5.758,199.042,47.594,308.884,9.686V-51.246l-2194.283,0.088L-107.074,466.23z"
-            fill="url(#svg3)"
-            opacity="0.5"
-          />
-        </g>
-      </svg>
-    </div>
-  </div>
-  <main
-    class="relative z-10 mx-auto mb-8 mt-8 h-auto max-h-none w-[90%] pb-8 pt-5 lg:w-[75%] xl:w-[60%] "
-  >
-    <nav
-      class="mb-6 max-h-none w-screen"
+      class="fixed inset-0 -z-10"
     >
       <div
-        class="absolute right-4 top-4 text-left"
-        data-headlessui-state=""
+        class="relative h-screen w-screen overflow-hidden bg-gradient-to-b from-teal-300 via-orange-200 via-50% to-orange-100"
       >
-        <div>
-          <button
-            aria-expanded="false"
-            aria-haspopup="menu"
+        <svg
+          class="absolute bottom-0 left-0 w-full"
+          preserveAspectRatio="none"
+          viewBox="0 0 1000 800"
+        >
+          <path
+            d="M0 800 C 200 750, 300 850, 500 800 S 700 750, 1000 800 V 800 H 0 Z"
+            fill="rgba(50, 222, 212, 0.1)"
+          />
+          <path
+            d="M0 795 C 200 750, 300 840, 500 795 S 700 750, 1000 795 V 800 H 0 Z"
+            fill="rgba(50, 222, 212, 0.15000000000000002)"
+          />
+          <path
+            d="M0 790 C 200 750, 300 830, 500 790 S 700 750, 1000 790 V 800 H 0 Z"
+            fill="rgba(50, 222, 212, 0.2)"
+          />
+          <path
+            d="M0 785 C 200 750, 300 820, 500 785 S 700 750, 1000 785 V 800 H 0 Z"
+            fill="rgba(50, 222, 212, 0.25)"
+          />
+          <path
+            d="M0 780 C 200 750, 300 810, 500 780 S 700 750, 1000 780 V 800 H 0 Z"
+            fill="rgba(50, 222, 212, 0.30000000000000004)"
+          />
+          <path
+            d="M0 775 C 200 750, 300 800, 500 775 S 700 750, 1000 775 V 800 H 0 Z"
+            fill="rgba(50, 222, 212, 0.35)"
+          />
+          <path
+            d="M0 770 C 200 750, 300 790, 500 770 S 700 750, 1000 770 V 800 H 0 Z"
+            fill="rgba(50, 222, 212, 0.4)"
+          />
+          <path
+            d="M0 765 C 200 750, 300 780, 500 765 S 700 750, 1000 765 V 800 H 0 Z"
+            fill="rgba(50, 222, 212, 0.45000000000000007)"
+          />
+        </svg>
+        <div
+          class="absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-teal-300 to-transparent opacity-30"
+        />
+      </div>
+    </div>
+    <main
+      class="mx-auto my-2 w-[90%] py-8 lg:w-[75%] xl:w-[80%]"
+    >
+      <nav
+        class="m-2 max-h-none pt-2"
+      >
+        <div
+          class="absolute right-4 top-4 text-left"
+          data-headlessui-state=""
+        >
+          <div>
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
+              data-headlessui-state=""
+              id="headlessui-menu-button-:rb:"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Open navigation menu
+              </span>
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6"
+                data-slot="icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div
+          class="absolute left-4 top-4 text-left"
+        >
+          <a
+            aria-label="Go Home"
             class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
-            data-headlessui-state=""
-            id="headlessui-menu-button-:rb:"
-            type="button"
+            href="/"
+            role="link"
           >
             <span
               class="sr-only"
             >
-              Open navigation menu
+              Go Home
             </span>
             <svg
               aria-hidden="true"
@@ -141,312 +122,316 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
             </svg>
-          </button>
+          </a>
         </div>
-      </div>
-    </nav>
-    <div
-      class="px-5 pb-5 pt-5 md:px-16"
-    >
+      </nav>
       <div
-        class="flex flex-col items-center justify-center py-10 text-center"
+        class="p-5"
       >
-        <div>
-          <img
-            alt="Mrugesh Mohapatra's profile picture."
-            class="h-24 w-24 border-4 border-orange-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:h-32 md:w-32"
-            data-nimg="1"
-            decoding="async"
-            fetchpriority="high"
-            height="128"
-            id="profile-image"
-            src="/_next/image?url=%2Fimages%2Fprofile.small.webp&w=256&q=75"
-            srcset="/_next/image?url=%2Fimages%2Fprofile.small.webp&w=128&q=75 1x, /_next/image?url=%2Fimages%2Fprofile.small.webp&w=256&q=75 2x"
-            style="color: transparent;"
-            width="128"
-          />
-        </div>
         <div
-          class="relative mt-6 flex -rotate-12 transform flex-col items-center md:mt-20"
+          class="mx-auto"
         >
-          <h1
-            class="group -mt-2 rotate-12 transform cursor-pointer text-2xl font-bold text-slate-700 md:-mt-16 md:text-4xl"
+          <div
+            class="flex flex-col items-center justify-center py-10 text-center"
           >
-            mrugesh mohapatra
-            <span
-              class="absolute left-1/4 hidden w-auto rounded-md bg-black p-3 text-sm text-white group-hover:block"
-              style="top: 100%; margin-top: 0.5rem; transform: translateX(-50%);"
+            <div>
+              <img
+                alt="Mrugesh Mohapatra's profile picture."
+                class="h-24 w-24 border-4 border-orange-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:h-32 md:w-32"
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="128"
+                id="profile-image"
+                src="/_next/image?url=%2Fimages%2Fprofile.small.webp&w=256&q=75"
+                srcset="/_next/image?url=%2Fimages%2Fprofile.small.webp&w=128&q=75 1x, /_next/image?url=%2Fimages%2Fprofile.small.webp&w=256&q=75 2x"
+                style="color: transparent;"
+                width="128"
+              />
+            </div>
+            <div
+              class="relative mt-6 flex -rotate-12 transform flex-col items-center md:mt-20"
             >
+              <h1
+                class="group -mt-2 rotate-12 transform cursor-pointer text-2xl font-bold text-slate-700 md:-mt-16 md:text-4xl"
+              >
+                mrugesh mohapatra
+                <span
+                  class="absolute left-1/4 hidden w-auto rounded-md bg-black p-3 text-sm text-white group-hover:block"
+                  style="top: 100%; margin-top: 0.5rem; transform: translateX(-50%);"
+                >
+                  <a
+                    aria-label=""
+                    class="no-underline"
+                    href="https://itinerarium.github.io/phoneme-synthesis/?w= /ˈm.ruː.geɪ.ʃ/"
+                    rel=" noopener noreferrer"
+                    role="link"
+                    target="_blank"
+                    type=""
+                  >
+                    🗣 /ˈm.ruː.geɪ.ʃ/
+                  </a>
+                  <svg
+                    class="absolute left-1/4 h-4 w-full text-black"
+                    style="top: -0.5rem; transform: translateX(-50%);"
+                    viewBox="0 0 255 255"
+                    xml:space="preserve"
+                  >
+                    <polygon
+                      class="fill-current"
+                      points="128,0 128,128 0,128"
+                    />
+                  </svg>
+                </span>
+              </h1>
+              <div
+                class="m-1 mx-auto -mt-7 w-2/5 border-8 border-orange-200 bg-orange-200"
+              />
+            </div>
+            <h2
+              class="mt-2 max-w-md p-1 text-lg font-bold text-slate-700"
+            >
+              nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
+            </h2>
+            <h3
+              class="text-md mb-4 p-1 font-medium text-slate-700"
+            >
+              Principal Maintainer — Cloud Infrastructure & Open-source, 
               <a
                 aria-label=""
-                class="no-underline"
-                href="https://itinerarium.github.io/phoneme-synthesis/?w= /ˈm.ruː.geɪ.ʃ/"
+                class="-ml-1 p-1 text-slate-700 underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-2 hover:text-white hover:decoration-white"
+                href="https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India"
                 rel=" noopener noreferrer"
                 role="link"
                 target="_blank"
                 type=""
               >
-                🗣 /ˈm.ruː.geɪ.ʃ/
+                freeCodeCamp.org
               </a>
-              <svg
-                class="absolute left-1/4 h-4 w-full text-black"
-                style="top: -0.5rem; transform: translateX(-50%);"
-                viewBox="0 0 255 255"
-                xml:space="preserve"
-              >
-                <polygon
-                  class="fill-current"
-                  points="128,0 128,128 0,128"
-                />
-              </svg>
-            </span>
-          </h1>
-          <div
-            class="m-1 mx-auto -mt-7 w-2/5 border-8 border-orange-200 bg-orange-200"
-          />
-        </div>
-        <h2
-          class="mt-2 max-w-md p-1 text-lg font-bold text-slate-700"
-        >
-          nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
-        </h2>
-        <h3
-          class="text-md mb-4 p-1 font-medium text-slate-700"
-        >
-          Principal Maintainer — Cloud Infrastructure & Open-source, 
-          <a
-            aria-label=""
-            class="-ml-1 p-1 text-slate-700 underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-2 hover:text-white hover:decoration-white"
-            href="https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India"
-            rel=" noopener noreferrer"
-            role="link"
-            target="_blank"
-            type=""
-          >
-            freeCodeCamp.org
-          </a>
-        </h3>
-        <div
-          class="mb-4 mt-2 flex flex-col items-center justify-center space-y-2"
-        >
-          <a
-            aria-label=""
-            class="h-12 w-80 border-2 border-black bg-white p-2.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-            href="https://topmate.io/mrugesh"
-            rel=" noopener noreferrer"
-            role="link"
-            target="_blank"
-            type="button"
-          >
-            <span
-              class="inline-flex items-center"
+            </h3>
+            <div
+              class="mb-4 mt-2 flex flex-col items-center justify-center space-y-2"
             >
-              Get in touch!
-            </span>
-          </a>
-          <div
-            class="flex flex-row justify-between space-x-8"
-          >
-            <a
-              aria-label=""
-              class="h-10 w-36 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-              href="/blog"
-              role="link"
-            >
-              <span
-                class="inline-flex items-center"
+              <a
+                aria-label=""
+                class="h-12 w-80 border-2 border-black bg-white p-2.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                href="https://topmate.io/mrugesh"
+                rel=" noopener noreferrer"
+                role="link"
+                target="_blank"
+                type="button"
               >
-                Blog
-              </span>
-            </a>
-            <a
-              aria-label=""
-              class="h-10 w-36 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-              href="https://bio.link/mrugesh"
-              rel=" noopener noreferrer"
-              role="link"
-              target="_blank"
-              type="button"
-            >
-              <span
-                class="inline-flex items-center"
+                <span
+                  class="inline-flex items-center"
+                >
+                  Get in touch!
+                </span>
+              </a>
+              <div
+                class="flex flex-row justify-between space-x-8"
               >
-                Links
-              </span>
-            </a>
+                <a
+                  aria-label=""
+                  class="h-10 w-36 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                  href="/blog"
+                  role="link"
+                >
+                  <span
+                    class="inline-flex items-center"
+                  >
+                    Blog
+                  </span>
+                </a>
+                <a
+                  aria-label=""
+                  class="h-10 w-36 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                  href="https://bio.link/mrugesh"
+                  rel=" noopener noreferrer"
+                  role="link"
+                  target="_blank"
+                  type="button"
+                >
+                  <span
+                    class="inline-flex items-center"
+                  >
+                    Links
+                  </span>
+                </a>
+              </div>
+            </div>
+            <p
+              class="text-slate-700-0 mx-auto p-0 text-sm font-medium text-slate-700 lg:mt-4"
+            >
+              Elsewhere on the internet
+            </p>
+            <div
+              class="mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-2 space-y-0"
+            >
+              <a
+                aria-label=""
+                class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                href="https://twitter.com/raisedadead"
+                rel="me noopener noreferrer"
+                role="link"
+                target="_blank"
+                type="button"
+              >
+                <span
+                  class="sr-only"
+                >
+                  Twitter
+                </span>
+                <svg
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  />
+                </svg>
+              </a>
+              <a
+                aria-label=""
+                class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                href="https://github.com/raisedadead"
+                rel="me noopener noreferrer"
+                role="link"
+                target="_blank"
+                type="button"
+              >
+                <span
+                  class="sr-only"
+                >
+                  GitHub
+                </span>
+                <svg
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a
+                aria-label=""
+                class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                href="https://instagram.com/raisedadead"
+                rel="me noopener noreferrer"
+                role="link"
+                target="_blank"
+                type="button"
+              >
+                <span
+                  class="sr-only"
+                >
+                  Instagram
+                </span>
+                <svg
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a
+                aria-label=""
+                class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                href="https://linkedin.com/in/mrugeshm"
+                rel="me noopener noreferrer"
+                role="link"
+                target="_blank"
+                type="button"
+              >
+                <span
+                  class="sr-only"
+                >
+                  LinkedIn
+                </span>
+                <svg
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
-        <p
-          class="text-slate-700-0 mx-auto p-0 text-sm font-medium text-slate-700 lg:mt-4"
-        >
-          Elsewhere on the internet
-        </p>
-        <div
-          class="mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-2 space-y-0"
-        >
-          <a
-            aria-label=""
-            class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-            href="https://twitter.com/raisedadead"
-            rel="me noopener noreferrer"
-            role="link"
-            target="_blank"
-            type="button"
-          >
-            <span
-              class="sr-only"
-            >
-              Twitter
-            </span>
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
-              />
-            </svg>
-          </a>
-          <a
-            aria-label=""
-            class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-            href="https://github.com/raisedadead"
-            rel="me noopener noreferrer"
-            role="link"
-            target="_blank"
-            type="button"
-          >
-            <span
-              class="sr-only"
-            >
-              GitHub
-            </span>
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                clip-rule="evenodd"
-                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </a>
-          <a
-            aria-label=""
-            class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-            href="https://instagram.com/raisedadead"
-            rel="me noopener noreferrer"
-            role="link"
-            target="_blank"
-            type="button"
-          >
-            <span
-              class="sr-only"
-            >
-              Instagram
-            </span>
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                clip-rule="evenodd"
-                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </a>
-          <a
-            aria-label=""
-            class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-            href="https://linkedin.com/in/mrugeshm"
-            rel="me noopener noreferrer"
-            role="link"
-            target="_blank"
-            type="button"
-          >
-            <span
-              class="sr-only"
-            >
-              LinkedIn
-            </span>
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                clip-rule="evenodd"
-                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </a>
-        </div>
       </div>
-    </div>
-    <footer
-      class="p-2"
-    >
-      <div
-        class="font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto"
+      <footer
+        class="p-2"
       >
-        <p>
-          © 2012-2024 Mrugesh Mohapatra Co. — All rights reserved.
-        </p>
-        <p
-          class="mt-2"
+        <div
+          class="font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto"
         >
-          <a
-            aria-label=""
-            class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
-            href="/terms"
-            role="link"
+          <p>
+            © 2012-2024 Mrugesh Mohapatra Co. — All rights reserved.
+          </p>
+          <p
+            class="mt-2"
           >
-            Terms
-          </a>
-          •
-          <a
-            aria-label=""
-            class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
-            href="/privacy"
-            role="link"
-          >
-            Privacy
-          </a>
-          •
-          <a
-            aria-label=""
-            class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
-            href="/refunds"
-            role="link"
-          >
-            Refunds
-          </a>
-          •
-          <a
-            aria-label=""
-            class="text-gray-700 hover:text-black rounded-full hover:bg-orange-200 py-1 px-2"
-            href="/about"
-            role="link"
-          >
-            About & Contact
-          </a>
-        </p>
-      </div>
-    </footer>
-    <div
-      class="fixed bottom-4 right-4 z-20"
-    />
-  </main>
+            <a
+              aria-label=""
+              class="text-gray-700 hover:text-black rounded-full hover:bg-white py-1 px-2"
+              href="/terms"
+              role="link"
+            >
+              Terms
+            </a>
+            •
+            <a
+              aria-label=""
+              class="text-gray-700 hover:text-black rounded-full hover:bg-white py-1 px-2"
+              href="/privacy"
+              role="link"
+            >
+              Privacy
+            </a>
+            •
+            <a
+              aria-label=""
+              class="text-gray-700 hover:text-black rounded-full hover:bg-white py-1 px-2"
+              href="/refunds"
+              role="link"
+            >
+              Refunds
+            </a>
+            •
+            <a
+              aria-label=""
+              class="text-gray-700 hover:text-black rounded-full hover:bg-white py-1 px-2"
+              href="/about"
+              role="link"
+            >
+              About & Contact
+            </a>
+          </p>
+        </div>
+      </footer>
+      <div
+        class="fixed bottom-4 right-4 z-20"
+      />
+    </main>
+  </div>
 </DocumentFragment>
 `;
