@@ -40,7 +40,7 @@ const WaveBackground = () => {
     <div
       className={cn(
         'relative h-screen w-screen overflow-hidden',
-        'bg-gradient-to-b from-teal-300 via-orange-200 via-50% to-orange-100'
+        'bg-gradient-to-b from-emerald-300 via-orange-200 to-teal-200'
       )}
     >
       <svg
@@ -50,7 +50,7 @@ const WaveBackground = () => {
       >
         {Array.from({ length: 8 }, (_, i) => createWave(i, 10))}
       </svg>
-      <div className='absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-teal-300 to-transparent opacity-30' />
+      <div className='absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-teal-600 to-transparent opacity-30' />
     </div>
   );
 };

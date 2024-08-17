@@ -9,7 +9,7 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
       class="fixed inset-0 -z-10"
     >
       <div
-        class="relative h-screen w-screen overflow-hidden bg-gradient-to-b from-teal-300 via-orange-200 via-50% to-orange-100"
+        class="relative h-screen w-screen overflow-hidden bg-gradient-to-b from-emerald-300 via-orange-200 to-teal-200"
       >
         <svg
           class="absolute bottom-0 left-0 w-full"
@@ -50,7 +50,7 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
           />
         </svg>
         <div
-          class="absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-teal-300 to-transparent opacity-30"
+          class="absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-teal-600 to-transparent opacity-30"
         />
       </div>
     </div>
