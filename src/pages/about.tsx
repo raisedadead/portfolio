@@ -2,23 +2,24 @@ import type { NextPage } from 'next';
 import Layout from '@/components/layouts';
 import Email from '@/components/email';
 import { MetaHead } from '@/components/head';
+import { cn } from '@/lib/utils';
 
 const About: NextPage = () => (
   <>
     <MetaHead pageTitle='Legal - About & Contact' />
     <Layout variant='legal'>
       <section>
-        <h1 className='py-2 text-center font-bold text-slate-700'>
+        <h1 className={cn('py-2 text-center font-bold text-slate-700')}>
           About & Contact
         </h1>
       </section>
       <section>
-        <p className='text-center text-slate-600'>
+        <p className={cn('text-center text-slate-600')}>
           Legal stuff that you should know about.
         </p>
       </section>
       <section>
-        <h3 className='text-center font-bold text-slate-700'>About</h3>
+        <h3 className={cn('text-center font-bold text-slate-700')}>About</h3>
         <p>
           Mrugesh Mohapatra is a software & cloud infrastructure consultant,
           operating as a sole proprietor of{' '}
@@ -29,10 +30,10 @@ const About: NextPage = () => (
           The business is registered with Ministry of Micro Small and Medium
           Enterprises, Government of India under the &quot;Udyam&quot; scheme.
         </p>
-        <h3 className='text-center font-bold text-slate-700'>
+        <h3 className={cn('text-center font-bold text-slate-700')}>
           Business, Billing & Tax
         </h3>
-        <h4 className='text-center font-bold text-slate-700'>
+        <h4 className={cn('text-center font-bold text-slate-700')}>
           <strong>Udyam Registration Number: UDYAM-OD-19-0026052</strong>
         </h4>
         <p>
@@ -51,13 +52,13 @@ const About: NextPage = () => (
             per your needs.
           </span>
         </p>
-        <h3 className='text-center font-bold text-slate-700'>Contact</h3>
-        <p className='text-center'>
+        <h3 className={cn('text-center font-bold text-slate-700')}>Contact</h3>
+        <p className={cn('text-center')}>
           <strong>
             Email: <Email />
           </strong>
         </p>
-        <p className='text-center'>
+        <p className={cn('text-center')}>
           <strong>Correspondence PO Box</strong>
           <br />
           Mrugesh Mohapatra, C/O IndianShoppre Pvt Ltd, SD-15D3-240594,
