@@ -66,12 +66,14 @@ export const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
               src={post.coverImage.url}
               alt={post.title}
               fill
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              priority={index < 3}
               className={cn(
                 'object-cover',
                 'transition-opacity duration-500 ease-in-out',
                 isLoading ? 'opacity-0' : 'opacity-100'
               )}
-              onLoadingComplete={() => setIsLoading(false)}
+              onLoad={() => setIsLoading(false)}
             />
           </>
         ) : (

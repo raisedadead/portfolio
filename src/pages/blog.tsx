@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import useSWR, { SWRConfig, unstable_serialize } from 'swr';
 
 import Layout from '@/components/layouts';
-import { postsFetcher, Post, ResponseData } from '@/lib/posts-fetcher';
+import {
+  postsFetcher,
+  Post,
+  ResponseData,
+  APIErrorResponse
+} from '@/lib/posts-fetcher';
 import { MetaHead } from '@/components/head';
 import { cn } from '@/lib/utils';
 import { Social } from '@/components/social';
@@ -55,28 +60,28 @@ const PageWrapper: React.FC<{
   </>
 );
 
-const ErrorBlock = () => (
-  <li
+const ErrorBlock = ({ message }: { message: string }) => (
+  <div
     className={cn(
-      'border-2 border-black bg-red-100 p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
+      'border-2 border-black bg-white p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)]',
+      'transition-all duration-300 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)]',
+      'mx-auto my-8 max-w-2xl'
     )}
   >
-    <h3 className={cn('text-red-800')}>Oops! Something went wrong.</h3>
-    <p className={cn('text-red-800')}>
-      There seems to be an issue fetching articles right now. Please try
-      visiting this page after a while. Additional details about this might
-      logged in the developer console.
-    </p>
-    <p className={cn('text-red-800')}>
+    <h2 className={cn('mb-4 text-center text-2xl font-bold text-red-800')}>
+      Oops! Something went wrong.
+    </h2>
+    <p className={cn('mb-4 text-lg text-slate-700')}>{message}</p>
+    <p className={cn('text-slate-500')}>
       Sorry about this and thanks for your patience!
     </p>
-  </li>
+  </div>
 );
 
 const SkeletonBlock = () => (
   <div
     className={cn(
-      'border-2 border-black bg-blue-100 p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)] transition-all duration-300 fade-in-30'
+      'border-2 border-black bg-white p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)] transition-all duration-300 fade-in-30'
     )}
   >
     <div role='status' className={cn('animate-pulse')}>
@@ -109,15 +114,17 @@ export const getStaticProps = (async () => {
 
 const Blog: NextPage<{
   fallback: {
-    [key: string]: ResponseData;
+    [key: string]: ResponseData | APIErrorResponse;
   };
 }> = ({ fallback }) => {
   const [pageCursor, setPageCursor] = useState(SWR_Cursor_for_firstPage);
   const [allPosts, setAllPosts] = useState<Post[]>([]);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  const { data, error, isValidating } = useSWR(
+  const { data, error, isValidating } = useSWR<ResponseData | APIErrorResponse>(
     [`${SWR_Key_Prefix}//${pageCursor}`, pageCursor],
-    () => postsFetcher(`${SWR_Key_Prefix}//${pageCursor}`, pageCursor),
+    ([, cursor]) =>
+      postsFetcher(`${SWR_Key_Prefix}//${cursor}`, cursor as string),
     {
       fallback,
       revalidateOnFocus: false,
@@ -126,48 +133,48 @@ const Blog: NextPage<{
     }
   );
 
-  const {
-    posts,
-    pageInfo: { endCursor, hasNextPage }
-  } = data || {
-    posts: [],
-    pageInfo: {
-      endCursor: '',
-      hasNextPage: false
-    }
-  };
+  const { pageInfo = { endCursor: '', hasNextPage: false } } = (
+    data && 'posts' in data
+      ? data
+      : { posts: [], pageInfo: { endCursor: '', hasNextPage: false } }
+  ) as ResponseData;
+  const { endCursor, hasNextPage } = pageInfo;
+
+  const loadMoreArticles = useCallback(() => {
+    if (!hasNextPage || isValidating || isLoadingMore) return;
+    setIsLoadingMore(true);
+    setPageCursor(endCursor);
+  }, [hasNextPage, isValidating, isLoadingMore, endCursor]);
 
   useEffect(() => {
-    if (posts.length > 0) {
+    if (data && 'posts' in data && data.posts.length > 0) {
       setAllPosts((prevPosts) => {
-        const uniquePosts = Array.from(new Set([...prevPosts, ...posts]));
+        const uniquePosts = Array.from(new Set([...prevPosts, ...data.posts]));
         return uniquePosts;
       });
+      setIsLoadingMore(false);
     }
-  }, [posts]);
-
-  const loadMoreArticles = () => {
-    if (!hasNextPage || isValidating) return;
-    setPageCursor(endCursor);
-  };
+  }, [data]);
 
   if (error) {
     console.error('Error: ', error);
     return (
       <PageWrapper>
-        <ul role='list' className={cn('list-none p-0')}>
-          <ErrorBlock />
-        </ul>
+        <ErrorBlock
+          message={
+            error instanceof Error
+              ? error.message
+              : 'An unknown error occurred.'
+          }
+        />
       </PageWrapper>
     );
   }
 
-  if (allPosts.length === 0) {
+  if ('error' in (data || {})) {
     return (
       <PageWrapper>
-        <ul role='list' className={cn('list-none p-0')}>
-          <SkeletonBlock />
-        </ul>
+        <ErrorBlock message={(data as APIErrorResponse).error.message} />
       </PageWrapper>
     );
   }
@@ -183,7 +190,7 @@ const Blog: NextPage<{
               <BlogPostCard key={post.slug} post={post} index={index} />
             ) : null
           )}
-          {isValidating && (
+          {isLoadingMore && (
             <>
               <div className={cn('sm:col-span-2 lg:col-span-2')}>
                 <SkeletonBlock />
@@ -198,9 +205,9 @@ const Blog: NextPage<{
           <button
             onClick={loadMoreArticles}
             className='w-1/2 border-2 border-black bg-orange-200 p-2 text-lg font-medium text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none'
-            disabled={!hasNextPage || isValidating}
+            disabled={!hasNextPage || isValidating || isLoadingMore}
           >
-            {isValidating ? (
+            {isLoadingMore ? (
               <span>Loading...</span>
             ) : hasNextPage ? (
               <span>Load more articles</span>

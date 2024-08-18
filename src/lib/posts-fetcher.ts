@@ -1,4 +1,4 @@
-import { gql, request } from 'graphql-request';
+import { gql, request, ClientError } from 'graphql-request';
 
 export type Post = {
   title: string;
@@ -19,6 +19,13 @@ export type ResponseData = {
   pageInfo: {
     endCursor: string;
     hasNextPage: boolean;
+  };
+};
+
+export type APIErrorResponse = {
+  error: {
+    message: string;
+    code: string;
   };
 };
 interface UserArticlesResponse {
@@ -75,14 +82,11 @@ export const postsFetcher = async (
   _key: string,
   pageCursor = '',
   first: number = 3
-): Promise<ResponseData> => {
-  let posts: Post[] = [];
-  let pageInfo = {
-    endCursor: '',
-    hasNextPage: false
-  };
-
+): Promise<ResponseData | APIErrorResponse> => {
   try {
+    // DEBUG: Simulate error
+    // throw new Error('Simulated fetch failure');
+
     const data = await request<UserArticlesResponse>(
       'https://gql.hashnode.com',
       getUserArticlesQuery,
@@ -93,25 +97,53 @@ export const postsFetcher = async (
       }
     );
 
-    posts = data?.publication?.posts?.edges.map(({ node }) => node) || [];
+    const posts = data?.publication?.posts?.edges.map(({ node }) => node) || [];
 
     // Sort posts by views in descending order
     posts.sort((a, b) => b.views - a.views);
 
-    pageInfo = data?.publication?.posts?.pageInfo || {
-      endCursor: '',
-      hasNextPage: false
+    const pageInfo = {
+      endCursor: data?.publication?.posts?.pageInfo?.endCursor || '',
+      hasNextPage: data?.publication?.posts?.pageInfo?.hasNextPage || false
+    };
+
+    // DEBUG: Simulate slow network
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
+    return {
+      posts,
+      pageInfo
     };
   } catch (error) {
-    throw new Error('Error fetching posts. Errors logged to console.', {
-      cause: error
-    });
-  }
+    // DEBUG: Log error
+    // console.log('Error fetching posts:', error);
 
-  // DEBUG: Simulate slow network
-  // await new Promise((resolve) => setTimeout(resolve, 2000));
-  return {
-    posts,
-    pageInfo
-  };
+    if (error instanceof ClientError) {
+      // GraphQL error
+      return {
+        error: {
+          message:
+            'Unable to fetch posts due to a GraphQL error. Please try again later.',
+          code: 'GRAPHQL_ERROR'
+        }
+      };
+    } else if (error instanceof Error) {
+      // Network or other errors
+      return {
+        error: {
+          message:
+            'Unable to fetch posts due to a network error. Please check your connection and try again.',
+          code: 'NETWORK_ERROR'
+        }
+      };
+    } else {
+      // Unknown errors
+      return {
+        error: {
+          message:
+            'An unexpected error occurred while fetching posts. Please try again later.',
+          code: 'UNKNOWN_ERROR'
+        }
+      };
+    }
+  }
 };
