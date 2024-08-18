@@ -8,6 +8,7 @@ import { postsFetcher, Post, ResponseData } from '@/lib/posts-fetcher';
 import { MetaHead } from '@/components/head';
 import { cn } from '@/lib/utils';
 import ShimmerImage from '@/components/shimmer-image';
+import { Social } from '@/components/social';
 
 const SWR_Key_Prefix = '/api/posts';
 const SWR_Cursor_for_firstPage = '';
@@ -18,19 +19,37 @@ const PageWrapper: React.FC<{
   <>
     <MetaHead pageTitle='Recent posts' />
     <Layout variant='main'>
-      <section>
-        <div className={cn('prose prose-sm prose-slate max-w-none')}>
-          <h1 className={cn('py-2 text-center font-bold text-slate-700')}>
+      <section className={cn('mb-8')}>
+        <div className={cn('prose prose-lg prose-slate max-w-none')}>
+          <h1
+            className={cn(
+              'py-4 text-center text-3xl font-extrabold tracking-tight text-slate-900'
+            )}
+          >
             My Musings
           </h1>
         </div>
       </section>
-      <section>
-        <div className={cn('max-w-none')}>
-          <p className={cn('pb-4 text-center text-slate-600')}>
+      <section className={cn('mb-12')}>
+        <div className={cn('mx-auto max-w-4xl')}>
+          <p
+            className={cn(
+              'pb-6 text-center text-lg font-medium text-slate-700'
+            )}
+          >
             Stuff that I write about, mostly tech, sometimes life.
           </p>
           {children}
+        </div>
+      </section>
+      <section>
+        <div
+          className={cn('prose prose-lg prose-slate mx-auto mt-8 max-w-3xl')}
+        >
+          <h3 className={cn('mb-4 text-center font-bold text-slate-700')}>
+            Elsewhere on the internet
+          </h3>
+          <Social />
         </div>
       </section>
     </Layout>
@@ -96,18 +115,18 @@ const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
   const getConsistentSpan = (index: number) => {
     switch (index % 6) {
       case 0:
-        return 'sm:col-span-2 lg:col-span-2';
-      case 1:
-        return 'sm:col-span-2 lg:col-span-1';
-      case 2:
         return 'sm:col-span-2 lg:col-span-3';
+      case 1:
+        return 'sm:col-span-2 lg:col-span-2';
+      case 2:
+        return 'sm:col-span-2 lg:col-span-5';
       case 3:
-        return 'sm:col-span-1 lg:col-span-1';
+        return 'sm:col-span-1 lg:col-span-2';
       case 4:
-        return 'sm:col-span-2 lg:col-span-1';
+        return 'sm:col-span-2 lg:col-span-3';
       case 5:
       default:
-        return 'sm:col-span-1 lg:col-span-1';
+        return 'sm:col-span-1 lg:col-span-5';
     }
   };
 
@@ -148,7 +167,11 @@ const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
     <Link
       href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
       className={cn(
-        'group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]',
+        'group flex flex-col overflow-hidden p-4',
+        'border-2 border-black bg-white',
+        'no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)]',
+        'hover:bg-gray-700',
+        'transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]',
         getConsistentSpan(index)
       )}
     >
@@ -179,17 +202,22 @@ const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
       <div className={cn('flex flex-grow flex-col')}>
         <h2
           className={cn(
-            'my-4 font-sans font-bold text-slate-800 transition-colors duration-300 group-hover:text-blue-600',
-            index % 6 === 2 ? 'text-2xl lg:text-3xl' : 'text-lg'
+            'my-4 font-sans text-2xl font-bold text-slate-900 transition-colors group-hover:text-white'
           )}
         >
           {post.title}
         </h2>
-        <p className={cn('mb-4 flex-grow text-sm text-slate-600')}>
+        <p
+          className={cn(
+            'mb-4 flex-grow text-lg text-slate-600 transition-colors group-hover:text-gray-200'
+          )}
+        >
           {post.brief}
         </p>
         <div
-          className={cn('flex flex-wrap items-center text-xs text-slate-500')}
+          className={cn(
+            'flex flex-wrap items-center text-base text-slate-500 transition-colors group-hover:text-gray-300'
+          )}
         >
           <span>{new Date(post.publishedAt).toDateString()}</span>
           {post.readTimeInMinutes && (
@@ -285,7 +313,7 @@ const Blog: NextPage<{
     <SWRConfig value={{ fallback }}>
       <PageWrapper>
         <div
-          className={cn('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3')}
+          className={cn('grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5')}
         >
           {allPosts.map((post: Post, index: number) =>
             post.title && post.slug ? (
@@ -298,11 +326,11 @@ const Blog: NextPage<{
             </div>
           )}
         </div>
-        <div className={cn('flex justify-center py-5')}>
+        <div className={cn('flex justify-center py-8')}>
           <button
             onClick={loadMoreArticles}
             className={cn(
-              'w-[50%] items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none disabled:hover:bg-orange-100 disabled:hover:text-gray-400 disabled:hover:shadow-none disabled:active:bg-orange-100 disabled:active:shadow-none'
+              'w-[50%] items-center border-2 border-black bg-orange-200 p-2 text-lg font-medium text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none disabled:hover:bg-orange-100 disabled:hover:text-gray-400 disabled:hover:shadow-none disabled:active:bg-orange-100 disabled:active:shadow-none'
             )}
             disabled={!hasNextPage || isValidating}
           >

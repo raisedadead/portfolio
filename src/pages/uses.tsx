@@ -11,22 +11,30 @@ const Uses: NextPage = () => {
     <>
       <MetaHead pageTitle='Uses' />
       <Layout variant='main'>
-        <section>
-          <div className={cn('prose prose-sm prose-slate max-w-none')}>
-            <h1 className={cn('py-2 text-center font-bold text-slate-700')}>
+        <section className={cn('mb-8')}>
+          <div className={cn('prose prose-lg prose-slate max-w-none')}>
+            <h1
+              className={cn(
+                'py-4 text-center text-3xl font-bold text-slate-800'
+              )}
+            >
               Everyday Day Carry
             </h1>
           </div>
         </section>
-        <section>
-          <div className={cn('prose prose-sm prose-slate max-w-none')}>
-            <p className={cn('text-center text-slate-600')}>
+        <section className={cn('mb-12')}>
+          <div className={cn('mx-auto max-w-3xl')}>
+            <p className={cn('pb-6 text-center text-lg text-slate-600')}>
               A non-exhaustive list of stuff that I use on a daily basis.
             </p>
-            <h3 className={cn('text-center font-bold text-slate-700')}>
+            <h2
+              className={cn(
+                'mb-6 text-center text-2xl font-bold text-slate-700'
+              )}
+            >
               Hardware
-            </h3>
-            <ul className={cn('list-none')}>
+            </h2>
+            <ul className={cn('list-none space-y-6')}>
               <li>
                 <ES
                   title='Apple MacBook Pro (14-inch, 2021)'
@@ -35,12 +43,13 @@ const Uses: NextPage = () => {
                     { name: 'work', color: 'orange' },
                     { name: 'personal', color: 'yellow' }
                   ]}
+                  defaultOpen={true}
                 >
-                  <p>
+                  <p className={cn('mb-4 text-lg')}>
                     I daily drive the{' '}
                     <Link
                       className={cn(
-                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                       )}
                       href='https://support.apple.com/kb/SP854?locale=en_US'
                     >
@@ -50,7 +59,7 @@ const Uses: NextPage = () => {
                     between. The 14-inch display is a great size for me when on
                     the move, and the ARM-based M1 is a beast!
                   </p>
-                  <p>
+                  <p className={cn('text-lg')}>
                     At home, this is connected to a dual monitor setup with a
                     thunderbolt dock to connect to my external peripherals.
                   </p>
@@ -64,12 +73,13 @@ const Uses: NextPage = () => {
                     { name: 'homelab', color: 'purple' },
                     { name: 'personal', color: 'yellow' }
                   ]}
+                  defaultOpen={true}
                 >
-                  <p>
+                  <p className={cn('mb-4 text-lg')}>
                     The{' '}
                     <Link
                       className={cn(
-                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                       )}
                       href='https://deskpi.com/collections/deskpi-super6c'
                     >
@@ -80,7 +90,7 @@ const Uses: NextPage = () => {
                     populated it with 4 x 8GB Lite editions, 2 x 2GB Lite
                     editions and 128 SanDisk SD cards for the boot drives.
                   </p>
-                  <p>
+                  <p className={cn('text-lg')}>
                     I use it as a home lab for learning and experimenting with
                     Hashicorp products like Nomad, Consul, Vault, etc.,
                     Kubernetes, Docker, and other technologies. The CM4s are
@@ -98,11 +108,11 @@ const Uses: NextPage = () => {
                     { name: 'personal', color: 'yellow' }
                   ]}
                 >
-                  <p>
+                  <p className={cn('mb-4 text-lg')}>
                     I used to daily drive the{' '}
                     <Link
                       className={cn(
-                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                       )}
                       href='http://web.archive.org/web/20200619220029/https://www.pcmag.com/reviews/dell-xps-15-9500'
                     >
@@ -112,24 +122,24 @@ const Uses: NextPage = () => {
                     a{' '}
                     <Link
                       className={cn(
-                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                        'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                       )}
                       href='https://hn.mrugesh.dev/how-to-dual-boot-dell-xps-9500-windows-and-linux'
                     >
                       dual-boot setup
                     </Link>{' '}
-                    for a while. These days, I have turned into a Proxmox
+                    for a while. These days, I have turned it into a Proxmox
                     VE-based homelab and I use the XPS 15 as a workstation for
                     my personal projects.
                   </p>
-                  <p>
+                  <p className={cn('mb-4 text-lg')}>
                     I have virtualized several flavors of Linux on it, including
-                    Home Assitant OS, Debian, and Ubuntu. I also use it to run a
-                    few VMs for testing and development. The nice bit is now I
+                    Home Assistant OS, Debian, and Ubuntu. I also use it to run
+                    a few VMs for testing and development. The nice bit is now I
                     can run LXC-based instances as I need. Quite handy when I
                     need a VM on the whim.
                   </p>
-                  <p>
+                  <p className={cn('text-lg')}>
                     I do plan to replace this machine with a more powerful one.
                     Until then this will do.
                   </p>
@@ -143,43 +153,45 @@ const Uses: NextPage = () => {
                     { name: 'personal', color: 'yellow' }
                   ]}
                 >
-                  <li>
-                    <p>
-                      For a good half a decade (2016-2020), I used a{' '}
-                      <Link
-                        className={cn(
-                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
-                        )}
-                        href='https://support.apple.com/kb/SP715?locale=en_US'
-                      >
-                        MacBook Pro (Retina, 13-inch, Early 2015)
-                      </Link>{' '}
-                      as my sole computer - Sadly it died in 2022. I&apos;ll
-                      miss the times we have had and will get it mummified.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      <Link
-                        className={cn(
-                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
-                        )}
-                        href='http://web.archive.org/web/20120925105640/http://notebooks.com/2012/07/10/lenovo-ideapad-u310-review/'
-                      >
-                        Lenovo IdeaPad U310
-                      </Link>{' '}
-                      - It boots, but I don&apos;t use it anymore.
-                    </p>
-                  </li>
+                  <ul className={cn('list-disc space-y-2 pl-5')}>
+                    <li>
+                      <p className={cn('text-lg')}>
+                        For a good half a decade (2016-2020), I used a{' '}
+                        <Link
+                          className={cn(
+                            'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+                          )}
+                          href='https://support.apple.com/kb/SP715?locale=en_US'
+                        >
+                          MacBook Pro (Retina, 13-inch, Early 2015)
+                        </Link>{' '}
+                        as my sole computer - Sadly it died in 2022. I&apos;ll
+                        miss the times we have had and will get it mummified.
+                      </p>
+                    </li>
+                    <li>
+                      <p className={cn('text-lg')}>
+                        <Link
+                          className={cn(
+                            'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+                          )}
+                          href='http://web.archive.org/web/20120925105640/http://notebooks.com/2012/07/10/lenovo-ideapad-u310-review/'
+                        >
+                          Lenovo IdeaPad U310
+                        </Link>{' '}
+                        - It boots, but I don&apos;t use it anymore.
+                      </p>
+                    </li>
+                  </ul>
                 </ES>
               </li>
               <li>
                 <ES title='Peripherals'>
-                  <ul className={cn('list-none')}>
+                  <ul className={cn('list-disc space-y-2 pl-5')}>
                     <li>
                       <Link
                         className={cn(
-                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                         )}
                         href='https://www.amazon.in/dp/B07V867LW4'
                       >
@@ -190,7 +202,7 @@ const Uses: NextPage = () => {
                     <li>
                       <Link
                         className={cn(
-                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                         )}
                         href='https://www.amazon.in/dp/B08196YFMK'
                       >
@@ -200,7 +212,7 @@ const Uses: NextPage = () => {
                     <li>
                       <Link
                         className={cn(
-                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                         )}
                         href='https://www.amazon.in/dp/B071YZJ1G1'
                       >
@@ -210,7 +222,7 @@ const Uses: NextPage = () => {
                     <li>
                       <Link
                         className={cn(
-                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                         )}
                         href='https://www.amazon.in/dp/B08J5X2LV4'
                       >
@@ -221,7 +233,7 @@ const Uses: NextPage = () => {
                     <li>
                       <Link
                         className={cn(
-                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-2 hover:text-black hover:decoration-black'
+                          'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                         )}
                         href='https://www.amazon.in/dp/B01JOFKL0A'
                       >
@@ -232,10 +244,14 @@ const Uses: NextPage = () => {
                 </ES>
               </li>
             </ul>
-            <h3 className={cn('text-center text-xl font-bold text-slate-700')}>
+            <h2
+              className={cn(
+                'mb-6 mt-12 text-center text-2xl font-bold text-slate-700'
+              )}
+            >
               Software
-            </h3>
-            <ul className={cn('list-none')}>
+            </h2>
+            <ul className={cn('list-none space-y-6')}>
               <li>
                 <ES title='Operating Systems'>TBD — Updating this soon.</ES>
               </li>
@@ -243,10 +259,12 @@ const Uses: NextPage = () => {
           </div>
         </section>
         <section>
-          <div className={cn('prose prose-sm prose-slate mt-4 max-w-none')}>
-            <h4 className={cn('text-center font-bold text-slate-700')}>
+          <div
+            className={cn('prose prose-lg prose-slate mx-auto mt-8 max-w-3xl')}
+          >
+            <h3 className={cn('mb-4 text-center font-bold text-slate-700')}>
               Elsewhere on the internet
-            </h4>
+            </h3>
             <Social />
           </div>
         </section>

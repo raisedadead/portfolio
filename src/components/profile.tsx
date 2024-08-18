@@ -4,26 +4,26 @@ import Image from 'next/image';
 
 export const Profile: React.FC = () => {
   return (
-    <div className='flex flex-col items-center justify-center py-10 text-center'>
-      <div>
+    <div className='flex flex-col items-center justify-center py-12 text-center'>
+      <div className='mb-8 md:mb-10'>
         <Image
           id='profile-image'
           alt="Mrugesh Mohapatra's profile picture."
           src='/images/profile.small.webp'
-          className='h-24 w-24 border-4 border-orange-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:h-32 md:w-32'
-          width={128}
-          height={128}
+          className='h-28 w-28 border-4 border-orange-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:h-36 md:w-36'
+          width={144}
+          height={144}
           priority
         />
       </div>
-      <div className='relative mt-6 flex -rotate-12 transform flex-col items-center md:mt-20'>
-        <h1 className='group -mt-2 rotate-12 transform cursor-pointer text-2xl font-bold text-slate-700 md:-mt-16 md:text-4xl'>
+      <div className='relative mb-8 flex -rotate-12 transform flex-col items-center md:mb-10'>
+        <h1 className='group rotate-12 transform cursor-pointer text-3xl font-extrabold text-slate-800 md:text-5xl'>
           {'Mrugesh Mohapatra'.toLowerCase()}
           <span
-            className='absolute left-1/4 hidden w-auto rounded-md bg-black p-3 text-sm text-white group-hover:block'
+            className='absolute left-1/4 hidden w-auto rounded-md bg-black p-3 text-sm font-normal text-white group-hover:block'
             style={{
               top: '100%',
-              marginTop: '0.5rem',
+              marginTop: '0.75rem',
               transform: 'translateX(-50%)'
             }}
           >
@@ -44,12 +44,12 @@ export const Profile: React.FC = () => {
             </svg>
           </span>
         </h1>
-        <div className='m-1 mx-auto -mt-7 w-2/5 border-8 border-orange-200 bg-orange-200' />
+        <div className='m-1 mx-auto -mt-8 w-2/5 border-8 border-orange-50 bg-orange-50' />
       </div>
-      <h2 className='mt-2 max-w-md p-1 text-lg font-bold text-slate-700'>
+      <h2 className='mb-4 max-w-md p-1 text-xl font-bold leading-relaxed text-slate-700 md:text-2xl'>
         nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
       </h2>
-      <h3 className='text-md mb-4 p-1 font-medium text-slate-700'>
+      <h3 className='mb-8 p-1 text-lg font-medium leading-relaxed text-slate-700 md:text-xl'>
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link
           href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'
@@ -60,10 +60,10 @@ export const Profile: React.FC = () => {
         </Link>
       </h3>
 
-      <div className='mb-4 mt-2 flex flex-col items-center justify-center space-y-2'>
+      <div className='mb-10 flex flex-col items-center justify-center space-y-4'>
         <Link
           aria-label='Book a 1-on-1 Call'
-          className='h-12 w-80 border-2 border-black bg-white p-2.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+          className='h-14 w-80 border-2 border-black bg-orange-50 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
           href='https://topmate.io/mrugesh'
           type='button'
         >
@@ -72,26 +72,28 @@ export const Profile: React.FC = () => {
         <div className='flex flex-row justify-between space-x-8'>
           <Link
             aria-label='Browse my blog'
-            className='h-10 w-36 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+            className='flex h-12 w-36 items-center justify-center border-2 border-black bg-orange-200 text-base font-medium text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
             href='/blog'
             type='button'
           >
-            <span className='inline-flex items-center'>Blog</span>
+            <span>Blog</span>
           </Link>
           <Link
             aria-label='Browse my links'
-            className='h-10 w-36 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+            className='flex h-12 w-36 items-center justify-center border-2 border-black bg-orange-200 text-base font-medium text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
             href='https://bio.link/mrugesh'
             type='button'
           >
-            <span className='inline-flex items-center'>Links</span>
+            <span>Links</span>
           </Link>
         </div>
       </div>
-      <p className='text-slate-700-0 mx-auto p-0 text-sm font-medium text-slate-700 lg:mt-4'>
-        Elsewhere on the internet
-      </p>
-      <Social />
+      <div className='prose prose-lg prose-slate mx-auto mt-8 max-w-3xl'>
+        <h3 className='mb-4 text-center font-bold text-slate-700'>
+          Elsewhere on the internet
+        </h3>
+        <Social />
+      </div>
     </div>
   );
 };
