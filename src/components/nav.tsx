@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { CustomLink as Link } from './custom-link';
-import { Menu, Transition } from '@headlessui/react';
+import { Menu, Transition, MenuButton } from '@headlessui/react';
 import {
   Bars4Icon,
   HomeIcon,
@@ -25,10 +25,10 @@ export const Nav: React.FC<NavProps> = ({
     <nav className={`${className}`}>
       <Menu as='div' className='absolute right-4 top-4 text-left'>
         <div>
-          <Menu.Button className='flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none'>
+          <MenuButton className='flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none'>
             <span className='sr-only'>Open navigation menu</span>
             <Bars4Icon className='h-6 w-6' aria-hidden='true' />
-          </Menu.Button>
+          </MenuButton>
         </div>
 
         <Transition

@@ -1,5 +1,9 @@
 import React from 'react';
-import { Disclosure } from '@headlessui/react';
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel
+} from '@headlessui/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 
 type ExpandableSectionProps = {
@@ -10,7 +14,7 @@ type ExpandableSectionProps = {
   }[];
   children: React.ReactNode;
   className?: string;
-  defaultOpen?: boolean; // New prop
+  defaultOpen?: boolean;
 };
 
 const Label: React.FC<{ children: React.ReactNode; labelColor: string }> = ({
@@ -59,7 +63,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
   labels,
   children,
   className,
-  defaultOpen = false // New prop with default value
+  defaultOpen = false
 }) => {
   return (
     <Disclosure as='div' className={className} defaultOpen={defaultOpen}>
@@ -67,10 +71,10 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
         <div
           className={`${open ? 'border-2' : 'border-l-2 border-r-2 border-t-2'} my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]`}
         >
-          <Disclosure.Button
-            className={` ${open ? 'bg-purple-300' : 'bg-red-200'} flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900`}
+          <DisclosureButton
+            className={`${open ? 'bg-purple-300' : 'bg-red-200'} flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900`}
           >
-            {title}
+            <span>{title}</span>
             <div className='flex flex-row items-center'>
               {labels && labels.length > 0 ? <Labels labels={labels} /> : null}
               {open ? (
@@ -79,10 +83,10 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
                 <PlusIcon className='h-5 w-5' aria-hidden='true' />
               )}
             </div>
-          </Disclosure.Button>
-          <Disclosure.Panel className='bg-blue-100 p-4 text-slate-700'>
+          </DisclosureButton>
+          <DisclosurePanel className='bg-blue-100 p-4 text-slate-700'>
             {children}
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </div>
       )}
     </Disclosure>

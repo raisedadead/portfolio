@@ -178,13 +178,15 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                       <button
                         aria-controls="headlessui-disclosure-panel-:r12:"
                         aria-expanded="true"
-                        class=" bg-purple-300 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
+                        class="bg-purple-300 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                         data-headlessui-state="open"
                         data-open=""
                         id="headlessui-disclosure-button-:r11:"
                         type="button"
                       >
-                        Apple MacBook Pro (14-inch, 2021)
+                        <span>
+                          Apple MacBook Pro (14-inch, 2021)
+                        </span>
                         <div
                           class="flex flex-row items-center"
                         >
@@ -263,13 +265,15 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                       <button
                         aria-controls="headlessui-disclosure-panel-:r14:"
                         aria-expanded="true"
-                        class=" bg-purple-300 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
+                        class="bg-purple-300 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                         data-headlessui-state="open"
                         data-open=""
                         id="headlessui-disclosure-button-:r13:"
                         type="button"
                       >
-                        DeskPi Super6C (2022)
+                        <span>
+                          DeskPi Super6C (2022)
+                        </span>
                         <div
                           class="flex flex-row items-center"
                         >
@@ -350,12 +354,14 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                     >
                       <button
                         aria-expanded="false"
-                        class=" bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
+                        class="bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                         data-headlessui-state=""
                         id="headlessui-disclosure-button-:r15:"
                         type="button"
                       >
-                        Dell XPS 15 9500 (15-inch, 2020)
+                        <span>
+                          Dell XPS 15 9500 (15-inch, 2020)
+                        </span>
                         <div
                           class="flex flex-row items-center"
                         >
@@ -408,12 +414,14 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                     >
                       <button
                         aria-expanded="false"
-                        class=" bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
+                        class="bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                         data-headlessui-state=""
                         id="headlessui-disclosure-button-:r17:"
                         type="button"
                       >
-                        Other Machines
+                        <span>
+                          Other Machines
+                        </span>
                         <div
                           class="flex flex-row items-center"
                         >
@@ -461,12 +469,14 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                     >
                       <button
                         aria-expanded="false"
-                        class=" bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
+                        class="bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                         data-headlessui-state=""
                         id="headlessui-disclosure-button-:r19:"
                         type="button"
                       >
-                        Peripherals
+                        <span>
+                          Peripherals
+                        </span>
                         <div
                           class="flex flex-row items-center"
                         >
@@ -509,12 +519,14 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                     >
                       <button
                         aria-expanded="false"
-                        class=" bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
+                        class="bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
                         data-headlessui-state=""
                         id="headlessui-disclosure-button-:r1b:"
                         type="button"
                       >
-                        Operating Systems
+                        <span>
+                          Operating Systems
+                        </span>
                         <div
                           class="flex flex-row items-center"
                         >
