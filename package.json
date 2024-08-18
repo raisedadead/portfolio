@@ -34,7 +34,7 @@
     "@headlessui/react": "2.1.2",
     "@heroicons/react": "2.1.5",
     "@next/third-parties": "14.2.5",
-    "@sentry/nextjs": "^8",
+    "@sentry/nextjs": "8.26.0",
     "clsx": "2.1.1",
     "framer-motion": "11.3.28",
     "graphql": "16.9.0",
