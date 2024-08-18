@@ -1,5 +1,12 @@
 // @ts-check
+import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
 
+// Here we use the @cloudflare/next-on-pages next-dev module to allow us to use bindings during local development
+// (when running the application with `next dev`), for more information see:
+// https://github.com/cloudflare/next-on-pages/blob/main/internal-packages/next-dev/README.md
+if (process.env.NODE_ENV === 'development') {
+  await setupDevPlatform();
+}
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { env } from './src/env/server.mjs';
 
@@ -8,6 +15,7 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const isProductionBuild = process.env.NODE_ENV === 'production';
 const shouldOpenAnalyzer = process.env.OPEN_ANALYZER === 'true';
+const sentryAuthToken = process.env.SENTRY_AUTH_TOKEN;
 
 /**
  * Don't be scared of the generics here.
@@ -94,7 +102,7 @@ const configSentry = withSentryConfig(nextConfig, {
   hideSourceMaps: true,
   disableLogger: true,
   automaticVercelMonitors: true,
-  authToken: process.env.SENTRY_AUTH_TOKEN
+  authToken: sentryAuthToken
 });
 
 const configAnalyzerAndSentry = withBundleAnalyzer({
