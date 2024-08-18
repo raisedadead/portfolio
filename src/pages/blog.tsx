@@ -3,12 +3,11 @@ import { NextPage, GetStaticProps } from 'next';
 import useSWR, { SWRConfig, unstable_serialize } from 'swr';
 
 import Layout from '@/components/layouts';
-import { CustomLink as Link } from '@/components/custom-link';
 import { postsFetcher, Post, ResponseData } from '@/lib/posts-fetcher';
 import { MetaHead } from '@/components/head';
 import { cn } from '@/lib/utils';
-import ShimmerImage from '@/components/shimmer-image';
 import { Social } from '@/components/social';
+import BlogPostCard from '@/components/blog-post-card';
 
 const SWR_Key_Prefix = '/api/posts';
 const SWR_Cursor_for_firstPage = '';
@@ -75,20 +74,20 @@ const ErrorBlock = () => (
 );
 
 const SkeletonBlock = () => (
-  <li
+  <div
     className={cn(
       'border-2 border-black bg-blue-100 p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
     )}
   >
-    <div role='status' className={cn('max-w-sm animate-pulse')}>
-      <div className={cn('mb-4 h-5 max-w-[360px] bg-blue-500')}></div>
-      <div className={cn('mb-2 h-3 max-w-[330px] bg-slate-500')}></div>
+    <div role='status' className={cn('animate-pulse')}>
+      <div className={cn('mb-4 h-32 w-full max-w-none bg-orange-200')}></div>
+      <div className={cn('mb-2 h-3 max-w-[330px] bg-slate-600')}></div>
       <div className={cn('mb-2 h-3 max-w-[300px] bg-slate-500')}></div>
       <div className={cn('mb-4 h-3 max-w-[360px] bg-slate-500')}></div>
       <div className={cn('h-3 w-48 bg-slate-400')}></div>
       <span className={cn('sr-only')}>Loading...</span>
     </div>
-  </li>
+  </div>
 );
 
 export const getStaticProps = (async () => {
@@ -108,145 +107,9 @@ export const getStaticProps = (async () => {
   };
 }) satisfies GetStaticProps;
 
-const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
-  post,
-  index
-}) => {
-  const getConsistentSpan = (index: number) => {
-    switch (index % 6) {
-      case 0:
-        return 'sm:col-span-2 lg:col-span-3';
-      case 1:
-        return 'sm:col-span-2 lg:col-span-2';
-      case 2:
-        return 'sm:col-span-2 lg:col-span-5';
-      case 3:
-        return 'sm:col-span-1 lg:col-span-2';
-      case 4:
-        return 'sm:col-span-2 lg:col-span-3';
-      case 5:
-      default:
-        return 'sm:col-span-1 lg:col-span-5';
-    }
-  };
-
-  const getAspectRatio = (index: number) => {
-    switch (index % 3) {
-      case 0:
-        return 'aspect-[16/9]';
-      case 1:
-        return 'aspect-[4/3]';
-      case 2:
-        return 'aspect-[21/9]';
-      case 3:
-        return 'aspect-square';
-      case 4:
-        return 'aspect-[3/4]';
-      case 5:
-      default:
-        return 'aspect-[4/3]';
-    }
-  };
-
-  const getImageHeight = (index: number) => {
-    switch (index % 6) {
-      case 0:
-      case 2:
-        return 'h-64';
-      case 1:
-      case 4:
-        return 'h-48';
-      case 3:
-      case 5:
-      default:
-        return 'h-40';
-    }
-  };
-
-  return (
-    <Link
-      href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
-      className={cn(
-        'group flex flex-col overflow-hidden p-4',
-        'border-2 border-black bg-white',
-        'no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)]',
-        'hover:bg-gray-700',
-        'transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]',
-        getConsistentSpan(index)
-      )}
-    >
-      <div
-        className={cn(
-          'relative w-full overflow-hidden',
-          getAspectRatio(index),
-          getImageHeight(index)
-        )}
-      >
-        {post.coverImage ? (
-          <ShimmerImage
-            src={post.coverImage.url}
-            alt={post.title}
-            fill
-            className={cn('object-cover')}
-          />
-        ) : (
-          <div
-            className={cn(
-              'flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-orange-100'
-            )}
-          >
-            <span className={cn('text-6xl')}>📝</span>
-          </div>
-        )}
-      </div>
-      <div className={cn('flex flex-grow flex-col')}>
-        <h2
-          className={cn(
-            'my-4 font-sans text-2xl font-bold text-slate-900 transition-colors group-hover:text-white'
-          )}
-        >
-          {post.title}
-        </h2>
-        <p
-          className={cn(
-            'mb-4 flex-grow text-lg text-slate-600 transition-colors group-hover:text-gray-200'
-          )}
-        >
-          {post.brief}
-        </p>
-        <div
-          className={cn(
-            'flex flex-wrap items-center text-base text-slate-500 transition-colors group-hover:text-gray-300'
-          )}
-        >
-          <span>{new Date(post.publishedAt).toDateString()}</span>
-          {post.readTimeInMinutes && (
-            <>
-              <span className={cn('mx-2')}>•</span>
-              <span>{post.readTimeInMinutes} min read</span>
-            </>
-          )}
-          {post.reactionCount > 0 && (
-            <>
-              <span className={cn('mx-2')}>•</span>
-              <span>{post.reactionCount} reactions</span>
-            </>
-          )}
-          {post.replyCount > 0 && (
-            <>
-              <span className={cn('mx-2')}>•</span>
-              <span>{post.replyCount} comments</span>
-            </>
-          )}
-        </div>
-      </div>
-    </Link>
-  );
-};
-
 const Blog: NextPage<{
   fallback: {
-    '': ResponseData;
+    [key: string]: ResponseData;
   };
 }> = ({ fallback }) => {
   const [pageCursor, setPageCursor] = useState(SWR_Cursor_for_firstPage);
@@ -321,9 +184,14 @@ const Blog: NextPage<{
             ) : null
           )}
           {isValidating && (
-            <div className={cn('sm:col-span-2 lg:col-span-3')}>
-              <SkeletonBlock />
-            </div>
+            <>
+              <div className={cn('sm:col-span-2 lg:col-span-2')}>
+                <SkeletonBlock />
+              </div>
+              <div className={cn('sm:col-span-2 lg:col-span-3')}>
+                <SkeletonBlock />
+              </div>
+            </>
           )}
         </div>
         <div className={cn('flex justify-center py-8')}>
