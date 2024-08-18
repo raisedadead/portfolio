@@ -135,9 +135,6 @@ importers:
       lint-staged:
         specifier: 15.2.9
         version: 15.2.9
-      next-recompose-plugins:
-        specifier: 3.0.0
-        version: 3.0.0(next@14.2.5(@babel/core@7.24.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       postcss:
         specifier: 8.4.41
         version: 8.4.41
@@ -2283,9 +2280,6 @@ packages:
   end-of-stream@1.4.4:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
 
-  enhanced-exception@1.0.2:
-    resolution: {integrity: sha512-wxcuNOKPZ+THvc/lByuenDj1YT74Eh0DKC86h/HEYOv++dj65BgwqDp//K062kUpIlYjBpqT8ovq5OR8tukYPQ==}
-
   enhanced-resolve@5.17.1:
     resolution: {integrity: sha512-LMHl3dXhTcfv8gM4kEzIUeTQ+7fpdA0l2tUf34BddXPkz2A5xJ5L/Pchd5BL6rdccM9QGvu0sWZzK1Z1t4wwyg==}
     engines: {node: '>=10.13.0'}
@@ -3222,9 +3216,6 @@ packages:
   is-potential-custom-element-name@1.0.1:
     resolution: {integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==}
 
-  is-promise@4.0.0:
-    resolution: {integrity: sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==}
-
   is-reference@1.2.1:
     resolution: {integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==}
 
@@ -3608,11 +3599,6 @@ packages:
 
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
-
-  next-recompose-plugins@3.0.0:
-    resolution: {integrity: sha512-a+Y6mKyuvcocdNek5RE1wdDi5YwtLoVLAJoD1/UDKSowFDTKkVGGl0Ax3xgeDBfPNIh2ta10VvdkhMAPiMbWlQ==}
-    peerDependencies:
-      next: '>=14'
 
   next-sitemap@4.2.3:
     resolution: {integrity: sha512-vjdCxeDuWDzldhCnyFCQipw5bfpl4HmZA7uoo3GAaYGjGgfL4Cxb1CiztPuWGmS+auYs7/8OekRS8C2cjdAsjQ==}
@@ -4511,9 +4497,6 @@ packages:
     resolution: {integrity: sha512-KWZkVPm7yJRhdu4SRSl9d4AK2wM3a50UsvgHZO7xY77NQr2V+fIrEuoDGQcbvswWvFGbS2f6e+jC/6WJm1Dl0w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
-
-  take-n-pipe@1.1.2:
-    resolution: {integrity: sha512-PFkCips2WFAToQ6x+qcOKdOV6/OV28di1axYJzSkSuwWPOFjqflwFficMzNoxJwoKm2AcwmCMEgp+kgjWDVTUw==}
 
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
@@ -7356,8 +7339,6 @@ snapshots:
     dependencies:
       once: 1.4.0
 
-  enhanced-exception@1.0.2: {}
-
   enhanced-resolve@5.17.1:
     dependencies:
       graceful-fs: 4.2.11
@@ -8429,8 +8410,6 @@ snapshots:
 
   is-potential-custom-element-name@1.0.1: {}
 
-  is-promise@4.0.0: {}
-
   is-reference@1.2.1:
     dependencies:
       '@types/estree': 1.0.5
@@ -8834,14 +8813,6 @@ snapshots:
   natural-compare@1.4.0: {}
 
   neo-async@2.6.2: {}
-
-  next-recompose-plugins@3.0.0(next@14.2.5(@babel/core@7.24.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
-    dependencies:
-      enhanced-exception: 1.0.2
-      is-promise: 4.0.0
-      next: 14.2.5(@babel/core@7.24.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      semver: 7.6.0
-      take-n-pipe: 1.1.2
 
   next-sitemap@4.2.3(next@14.2.5(@babel/core@7.24.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
     dependencies:
@@ -9700,8 +9671,6 @@ snapshots:
       sucrase: 3.35.0
     transitivePeerDependencies:
       - ts-node
-
-  take-n-pipe@1.1.2: {}
 
   tapable@2.2.1: {}
 
