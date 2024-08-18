@@ -10,15 +10,15 @@ const Uses: NextPage = () => {
   return (
     <>
       <MetaHead pageTitle='Uses' />
-      <Layout variant='main' className={cn('')}>
-        <section className={cn('')}>
+      <Layout variant='main'>
+        <section>
           <div className={cn('prose prose-sm prose-slate max-w-none')}>
             <h1 className={cn('py-2 text-center font-bold text-slate-700')}>
               Everyday Day Carry
             </h1>
           </div>
         </section>
-        <section className={cn('')}>
+        <section>
           <div className={cn('prose prose-sm prose-slate max-w-none')}>
             <p className={cn('text-center text-slate-600')}>
               A non-exhaustive list of stuff that I use on a daily basis.
@@ -242,7 +242,7 @@ const Uses: NextPage = () => {
             </ul>
           </div>
         </section>
-        <section className={cn('')}>
+        <section>
           <div className={cn('prose prose-sm prose-slate mt-4 max-w-none')}>
             <h4 className={cn('text-center font-bold text-slate-700')}>
               Elsewhere on the internet

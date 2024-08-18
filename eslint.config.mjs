@@ -21,7 +21,13 @@ const compat = new FlatCompat({
 
 const config = [
   {
-    ignores: ['**/pnpm-lock.yaml', '.next/**', 'node_modules/**', '.turbo/**']
+    ignores: [
+      '**/pnpm-lock.yaml',
+      '.next/**',
+      'node_modules/**',
+      '.turbo/**',
+      '.vercel/**'
+    ]
   },
   ...fixupConfigRules(
     compat.extends(

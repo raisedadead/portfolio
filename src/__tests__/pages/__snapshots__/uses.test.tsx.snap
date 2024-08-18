@@ -136,9 +136,7 @@ exports[`Uses > renders a snapshot of the page 1`] = `
         <div
           class="mx-auto"
         >
-          <section
-            class=""
-          >
+          <section>
             <div
               class="prose prose-sm prose-slate max-w-none"
             >
@@ -149,9 +147,7 @@ exports[`Uses > renders a snapshot of the page 1`] = `
               </h1>
             </div>
           </section>
-          <section
-            class=""
-          >
+          <section>
             <div
               class="prose prose-sm prose-slate max-w-none"
             >
@@ -485,9 +481,7 @@ exports[`Uses > renders a snapshot of the page 1`] = `
               </ul>
             </div>
           </section>
-          <section
-            class=""
-          >
+          <section>
             <div
               class="prose prose-sm prose-slate mt-4 max-w-none"
             >
