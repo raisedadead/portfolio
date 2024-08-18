@@ -1,3 +1,4 @@
+import React from 'react';
 import { Disclosure } from '@headlessui/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 
@@ -9,6 +10,7 @@ type ExpandableSectionProps = {
   }[];
   children: React.ReactNode;
   className?: string;
+  defaultOpen?: boolean; // New prop
 };
 
 const Label: React.FC<{ children: React.ReactNode; labelColor: string }> = ({
@@ -40,11 +42,11 @@ const Label: React.FC<{ children: React.ReactNode; labelColor: string }> = ({
 
 const Labels: React.FC<{
   labels: ExpandableSectionProps['labels'];
-}> = ({ labels = [{ name: '', color: '' }] }) => {
+}> = ({ labels = [] }) => {
   return (
     <div className='mx-2'>
       {labels.map((label, index) => (
-        <Label key={`${label}-${index}`} labelColor={label.color}>
+        <Label key={`${label.name}-${index}`} labelColor={label.color}>
           {label.name}
         </Label>
       ))}
@@ -56,10 +58,11 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
   title,
   labels,
   children,
-  className
+  className,
+  defaultOpen = false // New prop with default value
 }) => {
   return (
-    <Disclosure as='div' className={className}>
+    <Disclosure as='div' className={className} defaultOpen={defaultOpen}>
       {({ open }) => (
         <div
           className={`${open ? 'border-2' : 'border-l-2 border-r-2 border-t-2'} my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]`}
@@ -69,7 +72,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
           >
             {title}
             <div className='flex flex-row items-center'>
-              {labels?.length ? <Labels labels={labels} /> : null}
+              {labels && labels.length > 0 ? <Labels labels={labels} /> : null}
               {open ? (
                 <MinusIcon className='h-5 w-5' aria-hidden='true' />
               ) : (

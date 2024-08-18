@@ -136,45 +136,52 @@ exports[`Uses > renders a snapshot of the page 1`] = `
         <div
           class="mx-auto"
         >
-          <section>
+          <section
+            class="mb-8"
+          >
             <div
-              class="prose prose-sm prose-slate max-w-none"
+              class="prose prose-lg prose-slate max-w-none"
             >
               <h1
-                class="py-2 text-center font-bold text-slate-700"
+                class="py-4 text-center text-3xl font-bold text-slate-800"
               >
                 Everyday Day Carry
               </h1>
             </div>
           </section>
-          <section>
+          <section
+            class="mb-12"
+          >
             <div
-              class="prose prose-sm prose-slate max-w-none"
+              class="mx-auto max-w-3xl"
             >
               <p
-                class="text-center text-slate-600"
+                class="pb-6 text-center text-lg text-slate-600"
               >
                 A non-exhaustive list of stuff that I use on a daily basis.
               </p>
-              <h3
-                class="text-center font-bold text-slate-700"
+              <h2
+                class="mb-6 text-center text-2xl font-bold text-slate-700"
               >
                 Hardware
-              </h3>
+              </h2>
               <ul
-                class="list-none"
+                class="list-none space-y-6"
               >
                 <li>
                   <div
-                    data-headlessui-state=""
+                    data-headlessui-state="open"
+                    data-open=""
                   >
                     <div
-                      class="border-l-2 border-r-2 border-t-2 my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                      class="border-2 my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
                     >
                       <button
-                        aria-expanded="false"
-                        class=" bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
-                        data-headlessui-state=""
+                        aria-controls="headlessui-disclosure-panel-:r12:"
+                        aria-expanded="true"
+                        class=" bg-purple-300 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
+                        data-headlessui-state="open"
+                        data-open=""
                         id="headlessui-disclosure-button-:r11:"
                         type="button"
                       >
@@ -212,27 +219,59 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M12 4.5v15m7.5-7.5h-15"
+                              d="M5 12h14"
                               stroke-linecap="round"
                               stroke-linejoin="round"
                             />
                           </svg>
                         </div>
                       </button>
+                      <div
+                        class="bg-blue-100 p-4 text-slate-700"
+                        data-headlessui-state="open"
+                        data-open=""
+                        id="headlessui-disclosure-panel-:r12:"
+                      >
+                        <p
+                          class="mb-4 text-lg"
+                        >
+                          I daily drive the 
+                          <a
+                            aria-label=""
+                            class="text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black"
+                            href="https://support.apple.com/kb/SP854?locale=en_US"
+                            rel=" noopener noreferrer"
+                            role="link"
+                            target="_blank"
+                            type=""
+                          >
+                            MacBook Pro (14-inch, 2021)
+                          </a>
+                          . I use it for work, personal projects, and everything in between. The 14-inch display is a great size for me when on the move, and the ARM-based M1 is a beast!
+                        </p>
+                        <p
+                          class="text-lg"
+                        >
+                          At home, this is connected to a dual monitor setup with a thunderbolt dock to connect to my external peripherals.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </li>
                 <li>
                   <div
-                    data-headlessui-state=""
+                    data-headlessui-state="open"
+                    data-open=""
                   >
                     <div
-                      class="border-l-2 border-r-2 border-t-2 my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                      class="border-2 my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
                     >
                       <button
-                        aria-expanded="false"
-                        class=" bg-red-200 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
-                        data-headlessui-state=""
+                        aria-controls="headlessui-disclosure-panel-:r14:"
+                        aria-expanded="true"
+                        class=" bg-purple-300 flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900"
+                        data-headlessui-state="open"
+                        data-open=""
                         id="headlessui-disclosure-button-:r13:"
                         type="button"
                       >
@@ -270,13 +309,46 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M12 4.5v15m7.5-7.5h-15"
+                              d="M5 12h14"
                               stroke-linecap="round"
                               stroke-linejoin="round"
                             />
                           </svg>
                         </div>
                       </button>
+                      <div
+                        class="bg-blue-100 p-4 text-slate-700"
+                        data-headlessui-state="open"
+                        data-open=""
+                        id="headlessui-disclosure-panel-:r14:"
+                      >
+                        <p
+                          class="mb-4 text-lg"
+                        >
+                          The 
+                          <a
+                            aria-label=""
+                            class="text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black"
+                            href="https://deskpi.com/collections/deskpi-super6c"
+                            rel=" noopener noreferrer"
+                            role="link"
+                            target="_blank"
+                            type=""
+                          >
+                            DeskPi Super6C
+                          </a>
+                           is a 
+                          <strong>
+                            Raspberry Pi Compute Module 4 
+                          </strong>
+                          Cluster Mini-ITX board that supports up to 6 CM4s. I have populated it with 4 x 8GB Lite editions, 2 x 2GB Lite editions and 128 SanDisk SD cards for the boot drives.
+                        </p>
+                        <p
+                          class="text-lg"
+                        >
+                          I use it as a home lab for learning and experimenting with Hashicorp products like Nomad, Consul, Vault, etc., Kubernetes, Docker, and other technologies. The CM4s are running Raspberry Pi OS (debian) and I manage them with Ansible from my laptop.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -431,13 +503,13 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                   </div>
                 </li>
               </ul>
-              <h3
-                class="text-center text-xl font-bold text-slate-700"
+              <h2
+                class="mb-6 mt-12 text-center text-2xl font-bold text-slate-700"
               >
                 Software
-              </h3>
+              </h2>
               <ul
-                class="list-none"
+                class="list-none space-y-6"
               >
                 <li>
                   <div
@@ -483,13 +555,13 @@ exports[`Uses > renders a snapshot of the page 1`] = `
           </section>
           <section>
             <div
-              class="prose prose-sm prose-slate mt-4 max-w-none"
+              class="prose prose-lg prose-slate mx-auto mt-8 max-w-3xl"
             >
-              <h4
-                class="text-center font-bold text-slate-700"
+              <h3
+                class="mb-4 text-center font-bold text-slate-700"
               >
                 Elsewhere on the internet
-              </h4>
+              </h3>
               <div
                 class="mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-2 space-y-0"
               >
