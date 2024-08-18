@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:for-edge": "npx @cloudflare/next-on-pages",
     "build": "next build",
+    "build:for-edge": "npx @cloudflare/next-on-pages",
+    "build:with-op": "op run --env-file='.env' -- pnpm build",
     "dev": "pnpm turbo:develop",
     "develop": "next dev",
     "develop:edge": "pnpm build:for-edge && wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
