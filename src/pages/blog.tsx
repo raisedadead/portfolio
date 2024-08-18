@@ -26,8 +26,8 @@ const PageWrapper: React.FC<{
         </div>
       </section>
       <section>
-        <div className={cn('prose prose-sm prose-slate max-w-none')}>
-          <p className={cn('text-center text-slate-600')}>
+        <div className={cn('max-w-none')}>
+          <p className={cn('pb-4 text-center text-slate-600')}>
             Stuff that I write about, mostly tech, sometimes life.
           </p>
           {children}
@@ -88,6 +88,133 @@ export const getStaticProps = (async () => {
     }
   };
 }) satisfies GetStaticProps;
+
+const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
+  post,
+  index
+}) => {
+  const getConsistentSpan = (index: number) => {
+    switch (index % 6) {
+      case 0:
+        return 'sm:col-span-2 lg:col-span-2';
+      case 1:
+        return 'sm:col-span-2 lg:col-span-1';
+      case 2:
+        return 'sm:col-span-2 lg:col-span-3';
+      case 3:
+        return 'sm:col-span-1 lg:col-span-1';
+      case 4:
+        return 'sm:col-span-2 lg:col-span-1';
+      case 5:
+      default:
+        return 'sm:col-span-1 lg:col-span-1';
+    }
+  };
+
+  const getAspectRatio = (index: number) => {
+    switch (index % 3) {
+      case 0:
+        return 'aspect-[16/9]';
+      case 1:
+        return 'aspect-[4/3]';
+      case 2:
+        return 'aspect-[21/9]';
+      case 3:
+        return 'aspect-square';
+      case 4:
+        return 'aspect-[3/4]';
+      case 5:
+      default:
+        return 'aspect-[4/3]';
+    }
+  };
+
+  const getImageHeight = (index: number) => {
+    switch (index % 6) {
+      case 0:
+      case 2:
+        return 'h-64';
+      case 1:
+      case 4:
+        return 'h-48';
+      case 3:
+      case 5:
+      default:
+        return 'h-40';
+    }
+  };
+
+  return (
+    <Link
+      href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
+      className={cn(
+        'group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]',
+        getConsistentSpan(index)
+      )}
+    >
+      <div
+        className={cn(
+          'relative w-full overflow-hidden',
+          getAspectRatio(index),
+          getImageHeight(index)
+        )}
+      >
+        {post.coverImage ? (
+          <ShimmerImage
+            src={post.coverImage.url}
+            alt={post.title}
+            fill
+            className={cn('object-cover')}
+          />
+        ) : (
+          <div
+            className={cn(
+              'flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-orange-100'
+            )}
+          >
+            <span className={cn('text-6xl')}>📝</span>
+          </div>
+        )}
+      </div>
+      <div className={cn('flex flex-grow flex-col')}>
+        <h2
+          className={cn(
+            'my-4 font-sans font-bold text-slate-800 transition-colors duration-300 group-hover:text-blue-600',
+            index % 6 === 2 ? 'text-2xl lg:text-3xl' : 'text-lg'
+          )}
+        >
+          {post.title}
+        </h2>
+        <p className={cn('mb-4 flex-grow text-sm text-slate-600')}>
+          {post.brief}
+        </p>
+        <div
+          className={cn('flex flex-wrap items-center text-xs text-slate-500')}
+        >
+          <span>{new Date(post.publishedAt).toDateString()}</span>
+          {post.readTimeInMinutes && (
+            <>
+              <span className={cn('mx-2')}>•</span>
+              <span>{post.readTimeInMinutes} min read</span>
+            </>
+          )}
+          {post.reactionCount > 0 && (
+            <>
+              <span className={cn('mx-2')}>•</span>
+              <span>{post.reactionCount} reactions</span>
+            </>
+          )}
+          {post.replyCount > 0 && (
+            <>
+              <span className={cn('mx-2')}>•</span>
+              <span>{post.replyCount} comments</span>
+            </>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 const Blog: NextPage<{
   fallback: {
@@ -154,105 +281,15 @@ const Blog: NextPage<{
     );
   }
 
-  const getConsistentSpan = (index: number) => {
-    switch (index % 5) {
-      case 0:
-        return 'sm:col-span-2 lg:col-span-3';
-      case 1:
-        return 'sm:col-span-1 lg:col-span-1';
-      case 2:
-      case 3:
-        return 'sm:col-span-2 lg:col-span-2';
-      case 4:
-      default:
-        return 'sm:col-span-1 lg:col-span-1';
-    }
-  };
-
   return (
     <SWRConfig value={{ fallback }}>
       <PageWrapper>
         <div
-          className={cn(
-            'grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3'
-          )}
+          className={cn('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3')}
         >
           {allPosts.map((post: Post, index: number) =>
             post.title && post.slug ? (
-              <Link
-                href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
-                key={post.slug}
-                className={cn(
-                  'group flex flex-col overflow-hidden border-2 border-black bg-white no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]',
-                  getConsistentSpan(index)
-                )}
-              >
-                <div
-                  className={cn(
-                    'relative p-4',
-                    index % 5 === 0 ? 'h-64 lg:h-96' : 'h-48 sm:h-56 lg:h-64',
-                    'w-full overflow-hidden'
-                  )}
-                >
-                  {post.coverImage ? (
-                    <ShimmerImage
-                      src={post.coverImage.url}
-                      alt={post.title}
-                      fill
-                      sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-                      className={cn('object-cover p-4')}
-                    />
-                  ) : (
-                    <div
-                      className={cn(
-                        'flex h-full w-full items-center justify-center rounded-md bg-gradient-to-br from-blue-100 to-purple-100'
-                      )}
-                    >
-                      <span className={cn('text-6xl')}>📝</span>
-                    </div>
-                  )}
-                </div>
-                <div className={cn('flex flex-grow flex-col p-4')}>
-                  <h2
-                    className={cn(
-                      'mb-2 font-sans font-bold text-slate-800 transition-colors duration-300 group-hover:text-blue-600',
-                      index % 5 === 0 ? 'text-2xl lg:text-3xl' : 'text-lg'
-                    )}
-                  >
-                    {post.title}
-                  </h2>
-                  <p
-                    className={cn('mb-4 line-clamp-2 flex-grow text-slate-600')}
-                  >
-                    {post.brief}
-                  </p>
-                  <div
-                    className={cn(
-                      'flex flex-wrap items-center text-sm text-slate-500'
-                    )}
-                  >
-                    <span>{new Date(post.publishedAt).toDateString()}</span>
-                    {post.readTimeInMinutes && (
-                      <>
-                        <span className={cn('mx-2')}>•</span>
-                        <span>{post.readTimeInMinutes} min read</span>
-                      </>
-                    )}
-                    {post.reactionCount > 0 && (
-                      <>
-                        <span className={cn('mx-2')}>•</span>
-                        <span>{post.reactionCount} reactions</span>
-                      </>
-                    )}
-                    {post.replyCount > 0 && (
-                      <>
-                        <span className={cn('mx-2')}>•</span>
-                        <span>{post.replyCount} comments</span>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </Link>
+              <BlogPostCard key={post.slug} post={post} index={index} />
             ) : null
           )}
           {isValidating && (

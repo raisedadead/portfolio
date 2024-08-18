@@ -72,7 +72,7 @@ const getUserArticlesQuery = gql`
 export const postsFetcher = async (
   _key: string,
   pageCursor = '',
-  first: number = 5
+  first: number = 3
 ): Promise<ResponseData> => {
   let posts: Post[] = [];
   let pageInfo = {
