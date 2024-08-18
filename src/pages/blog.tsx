@@ -121,12 +121,12 @@ const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
       case 2:
         return 'sm:col-span-2 lg:col-span-5';
       case 3:
-        return 'sm:col-span-1 lg:col-span-2';
+        return 'sm:col-span-2 lg:col-span-2';
       case 4:
         return 'sm:col-span-2 lg:col-span-3';
       case 5:
       default:
-        return 'sm:col-span-1 lg:col-span-5';
+        return 'sm:col-span-2 lg:col-span-5';
     }
   };
 
@@ -209,14 +209,14 @@ const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
         </h2>
         <p
           className={cn(
-            'mb-4 flex-grow text-lg text-slate-600 transition-colors group-hover:text-gray-200'
+            'mb-4 flex-grow text-slate-600 transition-colors group-hover:text-gray-200'
           )}
         >
           {post.brief}
         </p>
         <div
           className={cn(
-            'flex flex-wrap items-center text-base text-slate-500 transition-colors group-hover:text-gray-300'
+            'flex flex-wrap items-center text-sm text-slate-500 transition-colors group-hover:text-gray-300'
           )}
         >
           <span>{new Date(post.publishedAt).toDateString()}</span>
@@ -236,6 +236,12 @@ const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
             <>
               <span className={cn('mx-2')}>•</span>
               <span>{post.replyCount} comments</span>
+            </>
+          )}
+          {post.views > 100 && (
+            <>
+              <span className={cn('mx-2')}>•</span>
+              <span>{post.views} views</span>
             </>
           )}
         </div>

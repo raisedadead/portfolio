@@ -3,6 +3,7 @@ import { gql, request } from 'graphql-request';
 export type Post = {
   title: string;
   brief: string;
+  views: number;
   slug: string;
   publishedAt: string;
   reactionCount: number;
@@ -38,6 +39,7 @@ const postFieldsFragment = gql`
   fragment PostFields on Post {
     title
     brief
+    views
     slug
     publishedAt
     reactionCount
@@ -92,6 +94,9 @@ export const postsFetcher = async (
     );
 
     posts = data?.publication?.posts?.edges.map(({ node }) => node) || [];
+
+    // Sort posts by views in descending order
+    posts.sort((a, b) => b.views - a.views);
 
     pageInfo = data?.publication?.posts?.pageInfo || {
       endCursor: '',
