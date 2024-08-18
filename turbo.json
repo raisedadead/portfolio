@@ -1,11 +1,13 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "stream",
+  "globalEnv": ["SENTRY_AUTH_TOKEN"],
   "tasks": {
     "build": {
       "outputs": [".next/**", "!.next/cache/**"]
     },
-    "build:for-edge": {
+    "preview": {},
+    "pages:build": {
       "outputs": [".vercel/output/**"]
     },
     "lint": {},
