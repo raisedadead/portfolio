@@ -2,7 +2,6 @@ import { Footer } from '@/components/footer';
 import Background from '@/components/background';
 import Nav from '@/components/nav';
 import ScrollButton from '@/components/scroll-button';
-import { fontSans, fontMono } from '@/components/fonts';
 import { cn } from '@/lib/utils';
 
 export type BaseLayoutProps = {
@@ -25,7 +24,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
   showHomeButton = true
 }) => (
   <>
-    <div className={cn('container', fontSans.className, fontMono.className)}>
+    <div className={cn('container')}>
       <div className='fixed inset-0 -z-10'>
         <Background />
       </div>
