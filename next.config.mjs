@@ -74,22 +74,27 @@ const config = new Config(() => ({
       withBundleAnalyzer({ enabled: phase === PHASE_PRODUCTION_BUILD })(config),
     '@next/bundle-analyzer'
   )
-  .applyPlugin(
-    (_phase, _args, config) =>
-      withSentryConfig(config, {
-        org: 'mrugesh',
-        project: 'portfolio-nextjs',
-        silent: !process.env.CI,
-        widenClientFileUpload: true,
-        reactComponentAnnotation: { enabled: true },
-        tunnelRoute: '/monitoring',
-        hideSourceMaps: true,
-        disableLogger: true,
-        automaticVercelMonitors: true,
-        authToken: process.env.SENTRY_AUTH_TOKEN
-      }),
-    '@sentry/nextjs'
-  )
+  .applyPlugin((_phase, _args, config) => {
+    let newConfig = withSentryConfig(config, {
+      org: 'mrugesh',
+      telemetry: false,
+      project: 'portfolio-nextjs',
+      silent: !process.env.CI,
+      widenClientFileUpload: true,
+      reactComponentAnnotation: { enabled: true },
+      tunnelRoute: '/monitoring',
+      hideSourceMaps: true,
+      disableLogger: true,
+      automaticVercelMonitors: true,
+      authToken: process.env.SENTRY_AUTH_TOKEN
+    });
+
+    if (newConfig && typeof newConfig === 'object') {
+      return newConfig;
+    } else {
+      throw new Error('Invalid configuration returned by withSentryConfig');
+    }
+  }, '@sentry/nextjs')
   .build();
 
 export default config;
