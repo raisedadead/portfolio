@@ -104,7 +104,6 @@ exports[`Uses > renders a snapshot of the page 1`] = `
             aria-label="Go Home"
             class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
             href="/"
-            role="link"
           >
             <span
               class="sr-only"
@@ -237,13 +236,8 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                         >
                           I daily drive the 
                           <a
-                            aria-label=""
                             class="text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black"
                             href="https://support.apple.com/kb/SP854?locale=en_US"
-                            rel=" noopener noreferrer"
-                            role="link"
-                            target="_blank"
-                            type=""
                           >
                             MacBook Pro (14-inch, 2021)
                           </a>
@@ -327,13 +321,8 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                         >
                           The 
                           <a
-                            aria-label=""
                             class="text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black"
                             href="https://deskpi.com/collections/deskpi-super6c"
-                            rel=" noopener noreferrer"
-                            role="link"
-                            target="_blank"
-                            type=""
                           >
                             DeskPi Super6C
                           </a>
@@ -566,12 +555,8 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                 class="mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-2 space-y-0"
               >
                 <a
-                  aria-label=""
                   class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
                   href="https://twitter.com/raisedadead"
-                  rel="me noopener noreferrer"
-                  role="link"
-                  target="_blank"
                   type="button"
                 >
                   <span
@@ -590,12 +575,8 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                   </svg>
                 </a>
                 <a
-                  aria-label=""
                   class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
                   href="https://github.com/raisedadead"
-                  rel="me noopener noreferrer"
-                  role="link"
-                  target="_blank"
                   type="button"
                 >
                   <span
@@ -616,12 +597,8 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                   </svg>
                 </a>
                 <a
-                  aria-label=""
                   class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
                   href="https://instagram.com/raisedadead"
-                  rel="me noopener noreferrer"
-                  role="link"
-                  target="_blank"
                   type="button"
                 >
                   <span
@@ -642,12 +619,8 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                   </svg>
                 </a>
                 <a
-                  aria-label=""
                   class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
                   href="https://linkedin.com/in/mrugeshm"
-                  rel="me noopener noreferrer"
-                  role="link"
-                  target="_blank"
                   type="button"
                 >
                   <span
@@ -685,37 +658,29 @@ exports[`Uses > renders a snapshot of the page 1`] = `
             class="mt-2"
           >
             <a
-              aria-label=""
               class="text-gray-700 hover:text-black rounded-full hover:bg-white py-1 px-2"
               href="/terms"
-              role="link"
             >
               Terms
             </a>
             •
             <a
-              aria-label=""
               class="text-gray-700 hover:text-black rounded-full hover:bg-white py-1 px-2"
               href="/privacy"
-              role="link"
             >
               Privacy
             </a>
             •
             <a
-              aria-label=""
               class="text-gray-700 hover:text-black rounded-full hover:bg-white py-1 px-2"
               href="/refunds"
-              role="link"
             >
               Refunds
             </a>
             •
             <a
-              aria-label=""
               class="text-gray-700 hover:text-black rounded-full hover:bg-white py-1 px-2"
               href="/about"
-              role="link"
             >
               About & Contact
             </a>

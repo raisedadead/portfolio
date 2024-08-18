@@ -1,44 +1,55 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import Link from 'next/link';
 
 interface CustomLinkProps {
-  children: React.ReactNode | string;
+  children: React.ReactNode;
   href: string;
   ariaLabel?: string;
   className?: string;
   rel?: string;
-  target?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
   type?: string;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
-export const CustomLink: React.FC<CustomLinkProps> = ({
-  children,
-  href,
-  ariaLabel = '',
-  className = 'text-blue-500 hover:text-blue-700 inline-flex items-center',
-  rel = '',
-  target = '_blank',
-  type = ''
-}) => {
-  const isInternal = href.startsWith('/');
+export const CustomLink = forwardRef<HTMLAnchorElement, CustomLinkProps>(
+  (
+    {
+      children,
+      href,
+      ariaLabel,
+      className = 'text-blue-500 hover:text-blue-700 inline-flex items-center',
+      rel,
+      target,
+      type,
+      onClick
+    },
+    ref
+  ) => {
+    const isExternal = !href.startsWith('/') && !href.startsWith('#');
 
-  return isInternal ? (
-    <Link href={href} className={className} aria-label={ariaLabel} role='link'>
-      {children}
-    </Link>
-  ) : (
-    <a
-      href={href}
-      aria-label={ariaLabel}
-      className={className}
-      role='link'
-      rel={target == '_blank' ? `${rel} noopener noreferrer` : `${rel}`}
-      target={target}
-      type={type}
-    >
-      {children}
-    </a>
-  );
-};
+    const linkProps = {
+      ref,
+      href,
+      className,
+      'aria-label': ariaLabel,
+      onClick,
+      ...(type && { type }),
+      ...(target && { target }),
+      ...(isExternal &&
+        target === '_blank' && {
+          rel: `${rel ? `${rel} ` : ''}noopener noreferrer`
+        })
+    };
+
+    return isExternal ? (
+      <a {...linkProps}>{children}</a>
+    ) : (
+      <Link {...linkProps}>{children}</Link>
+    );
+  }
+);
+
+CustomLink.displayName = 'CustomLink';
 
 export default CustomLink;
