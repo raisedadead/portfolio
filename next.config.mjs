@@ -77,8 +77,8 @@ const config = new Config(() => ({
   .applyPlugin(
     (_phase, _args, config) =>
       withSentryConfig(config, {
-        org: 'mrugesh-mohapatra',
-        project: 'javascript-nextjs',
+        org: 'mrugesh',
+        project: 'portfolio-nextjs',
         silent: !process.env.CI,
         widenClientFileUpload: true,
         reactComponentAnnotation: { enabled: true },
