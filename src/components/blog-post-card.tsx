@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Image from 'next/image';
 import { CustomLink as Link } from './custom-link';
-import ShimmerImage from './shimmer-image';
 import { cn } from '@/lib/utils';
 import { Post } from '@/lib/posts-fetcher';
+import { motion } from 'framer-motion';
 
-const getConsistentSpan = (index: number) => {
+const getGridSpan = (index: number) => {
   const spans = [
     'sm:col-span-2 lg:col-span-3',
     'sm:col-span-2 lg:col-span-2',
@@ -16,27 +17,35 @@ const getConsistentSpan = (index: number) => {
   return spans[index % 6];
 };
 
-const getAspectRatio = (index: number) => {
-  const ratios = [
-    'aspect-[16/9]',
-    'aspect-[4/3]',
-    'aspect-[21/9]',
-    'aspect-square',
-    'aspect-[3/4]',
-    'aspect-[4/3]'
+const getImageProperties = (
+  index: number
+): { aspect: string; height: string } => {
+  const properties = [
+    { aspect: 'aspect-[16/9]', height: 'h-64' },
+    { aspect: 'aspect-[4/3]', height: 'h-48' },
+    { aspect: 'aspect-[21/9]', height: 'h-56' },
+    { aspect: 'aspect-[3/2]', height: 'h-48' },
+    { aspect: 'aspect-[3/4]', height: 'h-64' },
+    { aspect: 'aspect-[2/1]', height: 'h-40' }
   ];
-  return ratios[index % 6];
+  return properties[index % 6] || { aspect: 'aspect-[16/9]', height: 'h-64' };
 };
 
-const getImageHeight = (index: number) => {
-  const heights = ['h-64', 'h-48', 'h-64', 'h-48', 'h-48', 'h-40'];
-  return heights[index % 6];
-};
+const ShimmerEffect = () => (
+  <motion.div
+    className={cn('absolute inset-0 bg-orange-100')}
+    animate={{ opacity: [0.3, 0.7, 0.3] }}
+    transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+  />
+);
 
 export const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
   post,
   index
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const { aspect, height } = getImageProperties(index);
+
   return (
     <Link
       href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
@@ -46,23 +55,25 @@ export const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
         'no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)]',
         'hover:bg-gray-700',
         'transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]',
-        getConsistentSpan(index)
+        getGridSpan(index)
       )}
     >
-      <div
-        className={cn(
-          'relative w-full overflow-hidden',
-          getAspectRatio(index),
-          getImageHeight(index)
-        )}
-      >
+      <div className={cn('relative w-full overflow-hidden', aspect, height)}>
         {post.coverImage ? (
-          <ShimmerImage
-            src={post.coverImage.url}
-            alt={post.title}
-            fill
-            className={cn('object-cover')}
-          />
+          <>
+            {isLoading && <ShimmerEffect />}
+            <Image
+              src={post.coverImage.url}
+              alt={post.title}
+              fill
+              className={cn(
+                'object-cover',
+                'transition-opacity duration-500 ease-in-out',
+                isLoading ? 'opacity-0' : 'opacity-100'
+              )}
+              onLoadingComplete={() => setIsLoading(false)}
+            />
+          </>
         ) : (
           <div
             className={cn(

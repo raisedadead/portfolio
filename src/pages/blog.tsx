@@ -76,7 +76,7 @@ const ErrorBlock = () => (
 const SkeletonBlock = () => (
   <div
     className={cn(
-      'border-2 border-black bg-blue-100 p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)]'
+      'border-2 border-black bg-blue-100 p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)] transition-all duration-300 fade-in-30'
     )}
   >
     <div role='status' className={cn('animate-pulse')}>
@@ -194,12 +194,10 @@ const Blog: NextPage<{
             </>
           )}
         </div>
-        <div className={cn('flex justify-center py-8')}>
+        <div className='flex justify-center py-8'>
           <button
             onClick={loadMoreArticles}
-            className={cn(
-              'w-[50%] items-center border-2 border-black bg-orange-200 p-2 text-lg font-medium text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none disabled:hover:bg-orange-100 disabled:hover:text-gray-400 disabled:hover:shadow-none disabled:active:bg-orange-100 disabled:active:shadow-none'
-            )}
+            className='w-1/2 border-2 border-black bg-orange-200 p-2 text-lg font-medium text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none'
             disabled={!hasNextPage || isValidating}
           >
             {isValidating ? (

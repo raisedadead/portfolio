@@ -109,7 +109,7 @@ export const postsFetcher = async (
   }
 
   // DEBUG: Simulate slow network
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
+  // await new Promise((resolve) => setTimeout(resolve, 2000));
   return {
     posts,
     pageInfo
