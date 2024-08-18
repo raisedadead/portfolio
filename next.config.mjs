@@ -17,6 +17,18 @@ const isProductionBuild = process.env.NODE_ENV === 'production';
 const shouldOpenAnalyzer = process.env.OPEN_ANALYZER === 'true';
 const sentryAuthToken = process.env.SENTRY_AUTH_TOKEN;
 
+if (
+  !sentryAuthToken ||
+  (sentryAuthToken && !sentryAuthToken.startsWith('sntrys'))
+) {
+  console.warn(`
+####################################################################
+Warning: Sentry auth token is not set correctly. Please set the
+SENTRY_AUTH_TOKEN environment variable to a valid Sentry auth token.
+####################################################################
+`);
+}
+
 /**
  * Don't be scared of the generics here.
  * All they do is to give us autocompletion when using this.
@@ -101,7 +113,6 @@ const configSentry = withSentryConfig(nextConfig, {
   tunnelRoute: '/monitoring',
   hideSourceMaps: true,
   disableLogger: true,
-  automaticVercelMonitors: true,
   authToken: sentryAuthToken
 });
 
