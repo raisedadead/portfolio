@@ -136,7 +136,7 @@ jobs:
 
       - name: Build (for Cloudflare Pages)
         run: |
-          pnpm turbo:pages:build
+          pnpm turbo:build:for-edge
 
       - name: Tar Files
         run: tar -cf build-for-edge.tar .vercel/output/static

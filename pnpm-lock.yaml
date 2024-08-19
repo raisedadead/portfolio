@@ -102,6 +102,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: 4.3.1
         version: 4.3.1(vite@5.3.1(@types/node@20.16.1)(terser@5.31.6))
+      '@vitest/ui':
+        specifier: 2.0.5
+        version: 2.0.5(vitest@2.0.5)
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.41)
@@ -158,7 +161,7 @@ importers:
         version: 36.0.0
       vitest:
         specifier: 2.0.5
-        version: 2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(jsdom@24.1.1)(terser@5.31.6)
+        version: 2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(@vitest/ui@2.0.5)(jsdom@24.1.1)(terser@5.31.6)
       wrangler:
         specifier: 3.72.0
         version: 3.72.0(@cloudflare/workers-types@4.20240815.0)
@@ -1629,6 +1632,11 @@ packages:
   '@vitest/spy@2.0.5':
     resolution: {integrity: sha512-c/jdthAhvJdpfVuaexSrnawxZz6pywlTPe84LUB2m/4t3rl2fTo9NFGBG4oWgaD+FTgDDV8hJ/nibT7IfH3JfA==}
 
+  '@vitest/ui@2.0.5':
+    resolution: {integrity: sha512-m+ZpVt/PVi/nbeRKEjdiYeoh0aOfI9zr3Ria9LO7V2PlMETtAXJS3uETEZkc8Be2oOl8mhd7Ew+5SRBXRYncNw==}
+    peerDependencies:
+      vitest: 2.0.5
+
   '@vitest/utils@2.0.5':
     resolution: {integrity: sha512-d8HKbqIcya+GR67mkZbrzhS5kKhtp8dQLcmRZLGTscGVg7yImT82cIrhtn2L8+VujWcy6KZweApgNmPsTAO/UQ==}
 
@@ -2782,6 +2790,9 @@ packages:
 
   fd-slicer@1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
+
+  fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
 
   file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -6670,6 +6681,17 @@ snapshots:
     dependencies:
       tinyspy: 3.0.0
 
+  '@vitest/ui@2.0.5(vitest@2.0.5)':
+    dependencies:
+      '@vitest/utils': 2.0.5
+      fast-glob: 3.3.2
+      fflate: 0.8.2
+      flatted: 3.3.1
+      pathe: 1.1.2
+      sirv: 2.0.4
+      tinyrainbow: 1.2.0
+      vitest: 2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(@vitest/ui@2.0.5)(jsdom@24.1.1)(terser@5.31.6)
+
   '@vitest/utils@2.0.5':
     dependencies:
       '@vitest/pretty-format': 2.0.5
@@ -7973,6 +7995,8 @@ snapshots:
   fd-slicer@1.1.0:
     dependencies:
       pend: 1.2.0
+
+  fflate@0.8.2: {}
 
   file-entry-cache@6.0.1:
     dependencies:
@@ -10015,7 +10039,7 @@ snapshots:
       fsevents: 2.3.3
       terser: 5.31.6
 
-  vitest@2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(jsdom@24.1.1)(terser@5.31.6):
+  vitest@2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(@vitest/ui@2.0.5)(jsdom@24.1.1)(terser@5.31.6):
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@vitest/expect': 2.0.5
@@ -10039,6 +10063,7 @@ snapshots:
     optionalDependencies:
       '@edge-runtime/vm': 3.2.0
       '@types/node': 20.16.1
+      '@vitest/ui': 2.0.5(vitest@2.0.5)
       jsdom: 24.1.1
     transitivePeerDependencies:
       - less
