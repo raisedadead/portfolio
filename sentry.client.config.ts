@@ -7,6 +7,7 @@ import { SENTRY_DSN } from './src/lib/utils';
 
 Sentry.init({
   dsn: SENTRY_DSN,
+  enabled: process.env.NODE_ENV === 'production',
   tracesSampleRate: 1,
   debug: false,
   replaysOnErrorSampleRate: 1.0,
