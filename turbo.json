@@ -4,21 +4,15 @@
   "globalEnv": ["SENTRY_AUTH_TOKEN"],
   "tasks": {
     "build": {
-      "outputs": [".next/**", "!.next/cache/**", "public/sitemap*.xml"]
+      "outputs": [".next/**", "!.next/cache/**", "public/sitemap*.xml"],
+      "dependsOn": ["lint", "test"]
     },
     "build:for-edge": {
-      "outputs": [".vercel/output/**"]
-    },
-    "preview": {
-      "dependsOn": ["build:for-edge"]
-    },
-    "deploy": {
-      "dependsOn": ["build:for-edge"]
+      "outputs": [".vercel/output/**"],
+      "dependsOn": ["lint", "test"]
     },
     "lint": {},
-    "test": {
-      "dependsOn": ["lint"]
-    },
+    "test": {},
     "test:watch": {},
     "format": {
       "dependsOn": ["lint"]

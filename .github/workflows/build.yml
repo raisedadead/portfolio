@@ -22,7 +22,7 @@ jobs:
   build:
     name: Build (Normal)
     runs-on: ubuntu-latest
-    needs: [test] # Dont need to depend on lint because it is already in turbo:build pipeline
+    needs: [lint, test]
     env:
       CI: true
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -77,12 +77,12 @@ jobs:
 
       - name: Build (Normal)
         run: |
-          pnpm turbo:build
+          pnpm build
 
   build-for-edge:
     name: Build (for Edge)
     runs-on: ubuntu-latest
-    needs: [test] # Dont need to depend on lint because it is already in turbo:build pipeline
+    needs: [lint, test]
     env:
       CI: true
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -136,7 +136,7 @@ jobs:
 
       - name: Build (for Cloudflare Pages)
         run: |
-          pnpm turbo:build:for-edge
+          pnpm build:for-edge
 
       - name: Tar Files
         run: tar -cf build-for-edge.tar .vercel/output/static
