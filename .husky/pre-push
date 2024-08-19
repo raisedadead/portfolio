@@ -1,1 +1,2 @@
+pnpm turbo:lint
 pnpm turbo:test

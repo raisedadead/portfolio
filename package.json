@@ -4,13 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build",
-    "build:with-op": "op run --env-file='.env' -- pnpm build",
-    "build:for-edge": "npx @cloudflare/next-on-pages",
     "dev": "pnpm turbo:develop",
+    "build": "next build",
+    "build:for-next-server": "next build",
+    "build:for-edge": "npx @cloudflare/next-on-pages",
+    "build:for-edge:preview": "npx @cloudflare/next-on-pages && wrangler pages dev",
+    "build:with-op": "op run --env-file='.env' -- pnpm build",
     "develop": "next dev",
-    "preview": "wrangler pages dev",
-    "deploy": "wrangler pages deploy",
+    "develop:for-edge": "npx @cloudflare/next-on-pages --watch",
+    "develop:for-edge:preview": "npx @cloudflare/next-on-pages --watch && wrangler pages dev",
+    "deploy": "npx @cloudflare/next-on-pages && wrangler pages deploy",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
     "postbuild": "next-sitemap --config='sitemap.config.mjs'",
@@ -20,13 +23,15 @@
     "test:update": "vitest --update",
     "test:watch": "vitest",
     "test:watch:ui": "vitest --ui",
-    "turbo:develop": "turbo develop",
-    "turbo:build": "turbo build",
-    "turbo:build:for-edge": "turbo build:for-edge",
-    "turbo:test": "turbo test"
+    "turbo:develop": "turbo run develop",
+    "turbo:build": "turbo run build",
+    "turbo:build:for-edge": "turbo run build:for-edge",
+    "turbo:lint": "turbo run lint",
+    "turbo:format": "turbo run format",
+    "turbo:test": "turbo run test"
   },
   "lint-staged": {
-    "**/*.{mjs,cjs,js,jsx,ts,tsx,yaml,yml}": [
+    "**/*.{mjs,cjs,js,jsx,ts,tsx,yaml,yml,json}": [
       "pnpm format"
     ]
   },
