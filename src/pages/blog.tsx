@@ -7,7 +7,8 @@ import {
   postsFetcher,
   Post,
   ResponseData,
-  APIErrorResponse
+  APIErrorResponse,
+  POSTS_PER_PAGE
 } from '@/lib/posts-fetcher';
 import { MetaHead } from '@/components/head';
 import { cn } from '@/lib/utils';
@@ -16,7 +17,6 @@ import BlogPostCard from '@/components/blog-post-card';
 
 const SWR_Key_Prefix = '/api/posts';
 const SWR_Cursor_for_firstPage = '';
-const POSTS_PER_PAGE = 3;
 
 const PageWrapper: React.FC<{
   children: React.ReactNode;
@@ -87,9 +87,11 @@ const SkeletonBlock = () => (
   >
     <div role='status' className={cn('animate-pulse')}>
       <div className={cn('mb-4 h-32 w-full max-w-none bg-orange-200')}></div>
-      <div className={cn('mb-2 h-3 max-w-[330px] bg-slate-600')}></div>
-      <div className={cn('mb-2 h-3 max-w-[300px] bg-slate-500')}></div>
-      <div className={cn('mb-4 h-3 max-w-[360px] bg-slate-500')}></div>
+      <div className={cn('mb-2 h-4 max-w-[330px] bg-slate-600')}></div>
+      <div className={cn('mb-2 h-4 max-w-[300px] bg-slate-500')}></div>
+      <div className={cn('mb-4 h-4 max-w-[360px] bg-slate-500')}></div>
+      <div className={cn('mb-2 h-4 max-w-[300px] bg-slate-500')}></div>
+      <div className={cn('mb-4 h-4 max-w-[360px] bg-slate-500')}></div>
       <div className={cn('h-3 w-48 bg-slate-400')}></div>
       <span className={cn('sr-only')}>Loading...</span>
     </div>
@@ -181,7 +183,8 @@ const Blog: NextPage<{
   }
 
   const visiblePosts = allPosts.slice(0, allPosts.length);
-  const remainingPosts = POSTS_PER_PAGE - visiblePosts.length;
+  const shouldShowSkeletons = isLoadingMore || isValidating;
+  const skeletonsToShow = shouldShowSkeletons ? POSTS_PER_PAGE : 0;
 
   return (
     <SWRConfig value={{ fallback }}>
@@ -194,17 +197,20 @@ const Blog: NextPage<{
               <BlogPostCard key={post.slug} post={post} index={index} />
             ) : null
           )}
-          {Array.from({ length: remainingPosts }).map((_, index) => (
-            <div
-              key={`skeleton-${index}`}
-              className={cn('sm:col-span-2 lg:col-span-3')}
-            >
-              <SkeletonBlock />
-            </div>
-          ))}
+          {Array.from({ length: skeletonsToShow }).map((_, index) => {
+            const lgColSpan = [2, 3, 5][index % 3];
+            return (
+              <div
+                key={`skeleton-${index}`}
+                className={cn(`sm:col-span-2 lg:col-span-${lgColSpan}`)}
+              >
+                <SkeletonBlock />
+              </div>
+            );
+          })}
         </div>
         <div className='flex justify-center py-8'>
-          {hasNextPage && (
+          {(hasNextPage || isLoadingMore) && (
             <button
               onClick={loadMoreArticles}
               className='w-1/2 border-2 border-black bg-orange-200 p-2 text-lg font-medium text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none'
@@ -217,7 +223,7 @@ const Blog: NextPage<{
               )}
             </button>
           )}
-          {!hasNextPage && allPosts.length > 0 && (
+          {!hasNextPage && !isLoadingMore && allPosts.length > 0 && (
             <p className='text-center text-gray-600'>
               That&apos;s the end. No more articles.
             </p>

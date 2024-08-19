@@ -1,4 +1,5 @@
 import { gql, request, ClientError } from 'graphql-request';
+export const POSTS_PER_PAGE = 3;
 
 export type Post = {
   title: string;
@@ -81,7 +82,7 @@ const getUserArticlesQuery = gql`
 export const postsFetcher = async (
   _key: string,
   pageCursor = '',
-  first: number = 3
+  first: number = POSTS_PER_PAGE
 ): Promise<ResponseData | APIErrorResponse> => {
   try {
     // DEBUG: Simulate error
