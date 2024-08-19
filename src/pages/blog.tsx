@@ -16,6 +16,7 @@ import BlogPostCard from '@/components/blog-post-card';
 
 const SWR_Key_Prefix = '/api/posts';
 const SWR_Cursor_for_firstPage = '';
+const POSTS_PER_PAGE = 3;
 
 const PageWrapper: React.FC<{
   children: React.ReactNode;
@@ -179,42 +180,48 @@ const Blog: NextPage<{
     );
   }
 
+  const visiblePosts = allPosts.slice(0, allPosts.length);
+  const remainingPosts = POSTS_PER_PAGE - visiblePosts.length;
+
   return (
     <SWRConfig value={{ fallback }}>
       <PageWrapper>
         <div
           className={cn('grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5')}
         >
-          {allPosts.map((post: Post, index: number) =>
+          {visiblePosts.map((post: Post, index: number) =>
             post.title && post.slug ? (
               <BlogPostCard key={post.slug} post={post} index={index} />
             ) : null
           )}
-          {isLoadingMore && (
-            <>
-              <div className={cn('sm:col-span-2 lg:col-span-2')}>
-                <SkeletonBlock />
-              </div>
-              <div className={cn('sm:col-span-2 lg:col-span-3')}>
-                <SkeletonBlock />
-              </div>
-            </>
-          )}
+          {Array.from({ length: remainingPosts }).map((_, index) => (
+            <div
+              key={`skeleton-${index}`}
+              className={cn('sm:col-span-2 lg:col-span-3')}
+            >
+              <SkeletonBlock />
+            </div>
+          ))}
         </div>
         <div className='flex justify-center py-8'>
-          <button
-            onClick={loadMoreArticles}
-            className='w-1/2 border-2 border-black bg-orange-200 p-2 text-lg font-medium text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none'
-            disabled={!hasNextPage || isValidating || isLoadingMore}
-          >
-            {isLoadingMore ? (
-              <span>Loading...</span>
-            ) : hasNextPage ? (
-              <span>Load more articles</span>
-            ) : (
-              <span>That&apos;s the end. No more articles.</span>
-            )}
-          </button>
+          {hasNextPage && (
+            <button
+              onClick={loadMoreArticles}
+              className='w-1/2 border-2 border-black bg-orange-200 p-2 text-lg font-medium text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none'
+              disabled={isValidating || isLoadingMore}
+            >
+              {isLoadingMore ? (
+                <span>Loading...</span>
+              ) : (
+                <span>Load more articles</span>
+              )}
+            </button>
+          )}
+          {!hasNextPage && allPosts.length > 0 && (
+            <p className='text-center text-gray-600'>
+              That&apos;s the end. No more articles.
+            </p>
+          )}
         </div>
       </PageWrapper>
     </SWRConfig>
