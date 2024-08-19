@@ -564,10 +564,10 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                 Elsewhere on the internet
               </h3>
               <div
-                class="mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-2 space-y-0"
+                class="mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-3 space-y-0"
               >
                 <a
-                  class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                  class="h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
                   href="https://twitter.com/raisedadead"
                   type="button"
                 >
@@ -587,7 +587,7 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                   </svg>
                 </a>
                 <a
-                  class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                  class="h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
                   href="https://github.com/raisedadead"
                   type="button"
                 >
@@ -609,7 +609,7 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                   </svg>
                 </a>
                 <a
-                  class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                  class="h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
                   href="https://instagram.com/raisedadead"
                   type="button"
                 >
@@ -631,7 +631,7 @@ exports[`Uses > renders a snapshot of the page 1`] = `
                   </svg>
                 </a>
                 <a
-                  class="h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                  class="h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
                   href="https://linkedin.com/in/mrugeshm"
                   type="button"
                 >

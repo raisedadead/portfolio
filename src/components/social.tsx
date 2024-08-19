@@ -1,10 +1,10 @@
 import { CustomLink as Link } from './custom-link';
 export const Social = () => (
-  <div className='mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-2 space-y-0'>
+  <div className='mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-3 space-y-0'>
     <Link
       href='https://twitter.com/raisedadead'
       aria-label='Twitter'
-      className='h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+      className='h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
       rel='me'
       type='button'
     >
@@ -16,7 +16,7 @@ export const Social = () => (
     <Link
       href='https://github.com/raisedadead'
       aria-label='Github'
-      className='h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+      className='h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
       rel='me'
       type='button'
     >
@@ -32,7 +32,7 @@ export const Social = () => (
     <Link
       href='https://instagram.com/raisedadead'
       aria-label='Instagram'
-      className='h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+      className='h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
       rel='me'
       type='button'
     >
@@ -48,7 +48,7 @@ export const Social = () => (
     <Link
       href='https://linkedin.com/in/mrugeshm'
       aria-label='LinkedIn'
-      className='h-8 w-8 border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+      className='h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
       rel='me'
       type='button'
     >
