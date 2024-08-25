@@ -133,8 +133,8 @@ importers:
         specifier: 3.0.1
         version: 3.0.1
       jsdom:
-        specifier: 24.1.1
-        version: 24.1.1
+        specifier: 24.1.2
+        version: 24.1.2
       lint-staged:
         specifier: 15.2.9
         version: 15.2.9
@@ -161,7 +161,7 @@ importers:
         version: 36.0.0
       vitest:
         specifier: 2.0.5
-        version: 2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(@vitest/ui@2.0.5)(jsdom@24.1.1)(terser@5.31.6)
+        version: 2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(@vitest/ui@2.0.5)(jsdom@24.1.2)(terser@5.31.6)
       wrangler:
         specifier: 3.72.2
         version: 3.72.2(@cloudflare/workers-types@4.20240821.1)
@@ -3304,8 +3304,8 @@ packages:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
 
-  jsdom@24.1.1:
-    resolution: {integrity: sha512-5O1wWV99Jhq4DV7rCLIoZ/UIhyQeDR7wHVyZAHAshbrvZsLs+Xzz7gtwnlJTJDjleiTKh54F4dXrX70vJQTyJQ==}
+  jsdom@24.1.2:
+    resolution: {integrity: sha512-Fzeg0F93nMZ/dJncmxsXqL7oU/RBvE33RAvr+8otVU9719wHEyV9bUoIfylWWKiuARRV/6tHLX/0W1pe2IixsA==}
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^2.11.2
@@ -6687,7 +6687,7 @@ snapshots:
       pathe: 1.1.2
       sirv: 2.0.4
       tinyrainbow: 1.2.0
-      vitest: 2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(@vitest/ui@2.0.5)(jsdom@24.1.1)(terser@5.31.6)
+      vitest: 2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(@vitest/ui@2.0.5)(jsdom@24.1.2)(terser@5.31.6)
 
   '@vitest/utils@2.0.5':
     dependencies:
@@ -8511,7 +8511,7 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jsdom@24.1.1:
+  jsdom@24.1.2:
     dependencies:
       cssstyle: 4.0.1
       data-urls: 5.0.0
@@ -10034,7 +10034,7 @@ snapshots:
       fsevents: 2.3.3
       terser: 5.31.6
 
-  vitest@2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(@vitest/ui@2.0.5)(jsdom@24.1.1)(terser@5.31.6):
+  vitest@2.0.5(@edge-runtime/vm@3.2.0)(@types/node@20.16.1)(@vitest/ui@2.0.5)(jsdom@24.1.2)(terser@5.31.6):
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@vitest/expect': 2.0.5
@@ -10059,7 +10059,7 @@ snapshots:
       '@edge-runtime/vm': 3.2.0
       '@types/node': 20.16.1
       '@vitest/ui': 2.0.5(vitest@2.0.5)
-      jsdom: 24.1.1
+      jsdom: 24.1.2
     transitivePeerDependencies:
       - less
       - lightningcss
