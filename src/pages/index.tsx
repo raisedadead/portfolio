@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
       <MetaHead />
-      <Layout variant='main'>
+      <Layout variant='main' showHomeButton={false}>
         <section className={cn('mb-12')}>
           <div className={cn('mx-auto max-w-4xl')}>
             <Profile />
