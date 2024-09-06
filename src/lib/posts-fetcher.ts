@@ -79,7 +79,7 @@ const getUserArticlesQuery = gql`
   }
 `;
 
-export const postsFetcher = async (
+export const fetchPostsList = async (
   _key: string,
   pageCursor = '',
   first: number = POSTS_PER_PAGE

@@ -4,7 +4,7 @@ import useSWR, { SWRConfig, unstable_serialize } from 'swr';
 
 import Layout from '@/components/layouts';
 import {
-  postsFetcher,
+  fetchPostsList,
   Post,
   ResponseData,
   APIErrorResponse,
@@ -99,7 +99,7 @@ const SkeletonBlock = () => (
 );
 
 export const getStaticProps = (async () => {
-  const data = await postsFetcher(
+  const data = await fetchPostsList(
     `${SWR_Key_Prefix}//${SWR_Cursor_for_firstPage}`,
     SWR_Cursor_for_firstPage
   );
@@ -127,7 +127,7 @@ const Blog: NextPage<{
   const { data, error, isValidating } = useSWR<ResponseData | APIErrorResponse>(
     [`${SWR_Key_Prefix}//${pageCursor}`, pageCursor],
     ([, cursor]) =>
-      postsFetcher(`${SWR_Key_Prefix}//${cursor}`, cursor as string),
+      fetchPostsList(`${SWR_Key_Prefix}//${cursor}`, cursor as string),
     {
       fallback,
       revalidateOnFocus: false,
