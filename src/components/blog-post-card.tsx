@@ -48,13 +48,13 @@ export const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
 
   return (
     <Link
-      href={`https://hn.mrugesh.dev/${post.slug}?source=website`}
+      href={`/blog/${post.slug}`}
       className={cn(
         'group flex flex-col overflow-hidden p-4',
-        'border-2 border-black bg-white',
-        'no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)]',
-        'hover:bg-gray-700',
-        'transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]',
+        'bg-white dark:bg-gray-800',
+        'no-underline shadow-[6px_6px_0px_theme(colors.black)]',
+        'hover:bg-orange-100 dark:hover:bg-orange-900',
+        'transition-all duration-300 hover:shadow-[8px_8px_0px_theme(colors.black)]',
         getGridSpan(index)
       )}
     >
@@ -89,21 +89,24 @@ export const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
       <div className={cn('flex flex-grow flex-col')}>
         <h2
           className={cn(
-            'my-4 font-sans text-2xl font-bold text-slate-900 transition-colors group-hover:text-white'
+            'my-4 font-sans text-2xl font-bold text-slate-900 dark:text-orange-100',
+            'transition-colors group-hover:text-orange-800 dark:group-hover:text-orange-200'
           )}
         >
           {post.title}
         </h2>
         <p
           className={cn(
-            'mb-4 flex-grow text-slate-600 transition-colors group-hover:text-gray-200'
+            'mb-4 flex-grow text-slate-600 dark:text-slate-300',
+            'transition-colors group-hover:text-slate-700 dark:group-hover:text-orange-100'
           )}
         >
           {post.brief}
         </p>
         <div
           className={cn(
-            'flex flex-wrap items-center text-sm text-slate-500 transition-colors group-hover:text-gray-300'
+            'flex flex-wrap items-center text-sm text-slate-500 dark:text-slate-400',
+            'transition-colors group-hover:text-slate-600 dark:group-hover:text-orange-200'
           )}
         >
           <span>{new Date(post.publishedAt).toDateString()}</span>

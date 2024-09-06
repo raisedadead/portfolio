@@ -57,47 +57,11 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
     <main
       class="mx-auto my-2 w-[90%] py-8 lg:w-[75%] xl:w-[80%]"
     >
-      <nav
-        class="m-2 max-h-none pt-2"
+      <div
+        data-testid="mocked-nav"
       >
-        <div
-          class="absolute right-4 top-4 text-left"
-          data-headlessui-state=""
-        >
-          <div>
-            <button
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="flex h-10 items-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-none active:bg-black active:shadow-none"
-              data-headlessui-state=""
-              id="headlessui-menu-button-:rb:"
-              type="button"
-            >
-              <span
-                class="sr-only"
-              >
-                Open navigation menu
-              </span>
-              <svg
-                aria-hidden="true"
-                class="h-6 w-6"
-                data-slot="icon"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </nav>
+        Mocked Nav
+      </div>
       <div
         class="p-5"
       >

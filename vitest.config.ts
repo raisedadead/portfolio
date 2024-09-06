@@ -16,9 +16,7 @@ export default defineConfig({
       provider: 'v8'
     },
     alias: {
-      '@/components': `${__dirname}/src/components`,
-      '@/lib': `${__dirname}/src/lib`,
-      '@/pages': `${__dirname}/src/pages`
+      '@/': `${__dirname}/src/`
     }
   }
 });

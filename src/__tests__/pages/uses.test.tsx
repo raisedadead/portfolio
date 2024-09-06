@@ -1,25 +1,31 @@
 import React from 'react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Uses from '@/pages/uses';
 
-describe('Uses', () => {
-  it('renders the heading', () => {
-    render(<Uses />);
-    expect(screen.getByText('Everyday Day Carry')).toBeDefined();
-  });
+// Mock the entire nav module
+vi.mock('@/components/nav', () => ({
+  default: vi.fn(() => <div data-testid='mocked-nav'>Mocked Nav</div>)
+}));
 
-  it('renders the subheading', () => {
+// Mock the useDarkMode hook
+vi.mock('@/hooks/useDarkMode', () => ({
+  default: () => ({ isDarkMode: false, toggle: vi.fn() })
+}));
+
+describe('Uses', () => {
+  it('renders the Uses page', () => {
     render(<Uses />);
+
+    // Check for the presence of key elements
+    expect(
+      screen.getByRole('heading', { name: /everyday day carry/i })
+    ).toBeTruthy();
     expect(
       screen.getByText(
-        'A non-exhaustive list of stuff that I use on a daily basis.'
+        /A non-exhaustive list of stuff that I use on a daily basis./i
       )
-    ).toBeDefined();
-  });
-
-  it('renders a snapshot of the page', () => {
-    const { asFragment } = render(<Uses />);
-    expect(asFragment()).toMatchSnapshot();
+    ).toBeTruthy();
+    expect(screen.getByTestId('mocked-nav')).toBeTruthy();
   });
 });

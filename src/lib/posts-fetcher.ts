@@ -148,3 +148,136 @@ export const fetchPostsList = async (
     }
   }
 };
+export type DetailedPost = {
+  id: string;
+  slug: string;
+  author: {
+    id: string;
+    username: string;
+    name: string;
+    bio: {
+      text: string;
+    };
+    profilePicture: string;
+    socialMediaLinks: {
+      website?: string;
+      twitter?: string;
+      facebook?: string;
+    };
+    location?: string;
+  };
+  title: string;
+  tags: {
+    id: string;
+    name: string;
+    slug: string;
+  }[];
+  brief: string;
+  readTimeInMinutes: number;
+  coverImage: {
+    url: string;
+    attribution?: string;
+  };
+  content: {
+    html: string;
+  };
+  publishedAt: string;
+  updatedAt: string;
+};
+
+export interface SinglePostResponse {
+  publication: {
+    post: DetailedPost;
+  };
+}
+
+const getDetailedPostQuery = gql`
+  query GetDetailedPost($host: String!, $slug: String!) {
+    publication(host: $host) {
+      post(slug: $slug) {
+        id
+        slug
+        author {
+          id
+          username
+          name
+          bio {
+            text
+          }
+          profilePicture
+          socialMediaLinks {
+            website
+            twitter
+            facebook
+          }
+          location
+        }
+        title
+        tags {
+          id
+          name
+          slug
+        }
+        brief
+        readTimeInMinutes
+        coverImage {
+          url
+          attribution
+        }
+        content {
+          html
+        }
+        publishedAt
+        updatedAt
+      }
+    }
+  }
+`;
+
+export const fetchPostDetails = async (
+  slug: string
+): Promise<DetailedPost | APIErrorResponse> => {
+  try {
+    const data = await request<SinglePostResponse>(
+      'https://gql.hashnode.com',
+      getDetailedPostQuery,
+      {
+        slug,
+        host: 'hn.mrugesh.dev'
+      }
+    );
+
+    if (!data.publication.post) {
+      throw new Error('Post not found');
+    }
+
+    return data.publication.post;
+  } catch (error) {
+    // Error handling similar to postsFetcher
+    if (error instanceof ClientError) {
+      return {
+        error: {
+          message:
+            'Unable to fetch post details due to a GraphQL error. Please try again later.',
+          code: 'GRAPHQL_ERROR'
+        }
+      };
+    } else if (error instanceof Error) {
+      return {
+        error: {
+          message:
+            'Unable to fetch post details due to a network error. Please check your connection and try again.',
+          code: 'NETWORK_ERROR'
+        }
+      };
+    } else {
+      return {
+        error: {
+          message:
+            'An unexpected error occurred while fetching post details. Please try again later.',
+          code: 'UNKNOWN_ERROR'
+        }
+      };
+    }
+  }
+};

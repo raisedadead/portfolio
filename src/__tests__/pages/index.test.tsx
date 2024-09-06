@@ -1,6 +1,17 @@
-import { describe, it, expect } from 'vitest';
+import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Home from '@/pages/index';
+
+// Mock the Nav component
+vi.mock('@/components/nav', () => ({
+  default: vi.fn(() => <div data-testid='mocked-nav'>Mocked Nav</div>)
+}));
+
+// Mock the useDarkMode hook
+vi.mock('@/hooks/useDarkMode', () => ({
+  default: () => ({ isDarkMode: false, toggle: vi.fn() })
+}));
 
 describe('Home', () => {
   it('renders the name on the homepage', () => {

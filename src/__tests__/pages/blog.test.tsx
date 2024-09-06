@@ -4,11 +4,23 @@ import { render, screen, waitFor } from '@testing-library/react';
 import Blog from '@/pages/blog';
 import { SWRConfig } from 'swr';
 import { fetchPostsList } from '@/lib/posts-fetcher';
+import { MockedFunction } from 'vitest';
+import { PostsResponse } from '@/lib/posts-fetcher'; // Add this import
 
 // Mock the fetchPostsList function
 vi.mock('@/lib/posts-fetcher', () => ({
   fetchPostsList: vi.fn(),
   POSTS_PER_PAGE: 3
+}));
+
+// Mock the Nav component
+vi.mock('@/components/nav', () => ({
+  default: vi.fn(() => <div data-testid='mocked-nav'>Mocked Nav</div>)
+}));
+
+// Mock the useDarkMode hook
+vi.mock('@/hooks/useDarkMode', () => ({
+  default: () => ({ isDarkMode: false, toggle: vi.fn() })
 }));
 
 describe('Blog', () => {
@@ -39,8 +51,8 @@ describe('Blog', () => {
     vi.resetAllMocks();
 
     // Mock the fetchPostsList function to return the mockFallback data
-    (fetchPostsList as jest.Mock).mockResolvedValue(
-      mockFallback['/api/posts//']
+    (fetchPostsList as MockedFunction<typeof fetchPostsList>).mockResolvedValue(
+      mockFallback['/api/posts//'] as PostsResponse
     );
   });
 

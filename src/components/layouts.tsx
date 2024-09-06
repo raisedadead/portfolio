@@ -13,11 +13,15 @@ export type MainLayoutProps = BaseLayoutProps & {
   variant: 'main';
 };
 
+export type ProseLayoutProps = BaseLayoutProps & {
+  variant: 'prose';
+};
+
 export type LegalLayoutProps = BaseLayoutProps & {
   variant: 'legal';
 };
 
-export type LayoutProps = MainLayoutProps | LegalLayoutProps;
+export type LayoutProps = MainLayoutProps | ProseLayoutProps | LegalLayoutProps;
 
 const BaseLayout: React.FC<BaseLayoutProps> = ({
   children,
@@ -29,7 +33,10 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
         <Background />
       </div>
       <main className='mx-auto my-2 w-[90%] py-8 lg:w-[75%] xl:w-[80%]'>
-        <Nav className='m-2 max-h-none pt-2' showHomeButton={showHomeButton} />
+        <Nav
+          className='z-20 m-2 max-h-none pt-2'
+          showHomeButton={showHomeButton}
+        />
         <div className='p-5'>{children}</div>
         <Footer isDefault={true} className='p-2' />
         <ScrollButton className='fixed bottom-4 right-4 z-20' />
@@ -44,22 +51,49 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => (
   </BaseLayout>
 );
 
+const ProseLayout: React.FC<ProseLayoutProps> = (props) => (
+  <BaseLayout {...props}>{props.children}</BaseLayout>
+);
+
 const LegalLayout: React.FC<LegalLayoutProps> = (props) => (
   <BaseLayout {...props}>
-    <div className='border-2 border-black bg-white p-5 shadow-[2px_2px_0px_rgba(0,0,0,1)]'>
-      <article className='prose prose-sm prose-slate max-w-none'>
-        {props.children}
-      </article>
+    <div
+      className={cn(
+        'prose prose-sm max-w-none p-8',
+        'bg-white dark:bg-gray-900',
+
+        // Text styles
+        'prose-p:text-gray-700 dark:prose-p:text-gray-300',
+        'prose-p:my-2 prose-p:leading-relaxed',
+        'prose-strong:text-gray-900 dark:prose-strong:text-gray-100',
+
+        // Heading styles
+        'prose-headings:font-semibold',
+        'prose-headings:text-gray-900 dark:prose-headings:text-gray-100',
+
+        // List styles
+        'prose-ul:list-none',
+        'prose-li:text-gray-800 dark:prose-li:text-gray-200',
+
+        // Link styles
+        'prose-a:text-blue-600 dark:prose-a:text-blue-400',
+        'prose-a:no-underline hover:prose-a:underline'
+      )}
+    >
+      {props.children}
     </div>
   </BaseLayout>
 );
 
 export const Layout: React.FC<LayoutProps> = (props) => {
   switch (props.variant) {
-    case 'main':
-      return <MainLayout {...props} />;
+    case 'prose':
+      return <ProseLayout {...props} />;
     case 'legal':
       return <LegalLayout {...props} />;
+    case 'main':
+    default:
+      return <MainLayout {...props} />;
   }
 };
 
