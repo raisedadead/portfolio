@@ -22,6 +22,7 @@ vi.mock('next/image', () => ({
     fill,
     ...props
   }: React.ComponentProps<'img'> & { fill?: boolean }) => (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src as string}
       alt={alt as string}
