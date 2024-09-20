@@ -110,7 +110,6 @@ const configSentry = withSentryConfig(nextConfig, {
   silent: !process.env.CI,
   widenClientFileUpload: true,
   reactComponentAnnotation: { enabled: true },
-  tunnelRoute: '/monitoring',
   hideSourceMaps: true,
   disableLogger: true,
   authToken: sentryAuthToken
