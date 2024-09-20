@@ -41,7 +41,7 @@
     "@next/third-parties": "14.2.13",
     "@sentry/nextjs": "8.30.0",
     "clsx": "2.1.1",
-    "framer-motion": "11.5.5",
+    "framer-motion": "11.5.6",
     "graphql": "16.9.0",
     "graphql-request": "7.1.0",
     "next": "14.2.13",
