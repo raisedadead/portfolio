@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { useDarkMode } from '@/hooks/useDarkMode';
+import { useDarkMode } from '@/contexts/dark-mode-context';
 import { CustomLink as Link } from './custom-link';
 import {
   Menu,
@@ -32,10 +32,8 @@ export const Nav: React.FC<NavProps> = ({
   className,
   showHomeButton = true
 }) => {
-  const [darkMode, setDarkMode] = useDarkMode();
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   useEffect(() => {
     if (isMenuOpen) {

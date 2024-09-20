@@ -5,6 +5,7 @@ import ConsentBanner from '@/components/consent-banner';
 import Script from 'next/script';
 import { useState, useEffect } from 'react';
 import { GA_TRACKING_ID, updateGAConsent } from '@/lib/utils';
+import { DarkModeProvider } from '@/contexts/dark-mode-context';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const [hasConsent, setHasConsent] = useState<boolean | null>(null);
@@ -15,7 +16,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   }, []);
 
   return (
-    <>
+    <DarkModeProvider>
       <style jsx global>{`
         html {
           font-family: ${fontSans.style.fontFamily};
@@ -33,7 +34,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       )}
       <Component {...pageProps} />
       <ConsentBanner setHasConsent={setHasConsent} />
-    </>
+    </DarkModeProvider>
   );
 };
 

@@ -42,12 +42,3 @@ Testing:
 - Use testing-library for UI testing
 - Use vi.mocked for mocking external dependencies
 
-Key Conventions:
-- Use 'nuqs' for URL search parameter state management
-- Optimize Web Vitals (LCP, CLS, FID)
-- Limit 'use client':
-  - Favor server components and Next.js SSR
-  - Use only for Web API access in small components
-  - Avoid for data fetching or state management
-
-Follow Next.js docs for Data Fetching, Rendering, and Routing

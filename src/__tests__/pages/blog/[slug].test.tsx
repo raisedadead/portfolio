@@ -5,41 +5,55 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import BlogPost from '@/pages/blog/[slug]';
 import { DetailedPost, APIErrorResponse } from '@/lib/posts-fetcher';
+import { DarkModeProvider } from '@/contexts/dark-mode-context';
 
-// Mock the next/router module
 vi.mock('next/router', () => ({
   useRouter: vi.fn()
 }));
 
-// Mock the SWR hook
 vi.mock('swr');
 
-// Mock the next/image component
 vi.mock('next/image', () => ({
   default: ({
     src,
     alt,
     fill,
+    priority,
     ...props
-  }: React.ComponentProps<'img'> & { fill?: boolean }) => (
+  }: React.ComponentProps<typeof import('next/image').default> & {
+    fill?: boolean;
+    priority?: boolean;
+  }) => (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src as string}
       alt={alt as string}
-      {...(fill
-        ? { style: { objectFit: 'cover', width: '100%', height: '100%' } }
-        : {})}
+      style={
+        fill ? { objectFit: 'cover', width: '100%', height: '100%' } : undefined
+      }
+      {...(priority ? { 'data-priority': priority.toString() } : {})}
       {...props}
     />
   )
 }));
 
-// Mock the Layout component
 vi.mock('@/components/layouts', () => ({
   default: ({ children }: { children: React.ReactNode }) => (
     <div data-testid='layout'>{children}</div>
   )
 }));
+
+vi.mock('@/components/code-block', () => ({
+  default: ({ language, code }: { language: string; code: string }) => (
+    <pre data-testid='code-block' data-language={language}>
+      {code}
+    </pre>
+  )
+}));
+
+const renderWithDarkMode = (ui: React.ReactElement) => {
+  return render(<DarkModeProvider>{ui}</DarkModeProvider>);
+};
 
 describe('BlogPost component', () => {
   const mockPost: DetailedPost = {
@@ -47,7 +61,9 @@ describe('BlogPost component', () => {
     slug: 'test-slug',
     title: 'Test Post',
     coverImage: { url: '/test-image.jpg' },
-    content: { html: '<p>Test content</p>' },
+    content: {
+      html: '<p>Test content</p><pre><code class="lang-typescript">console.log("Hello");</code></pre>'
+    },
     author: {
       id: '1',
       username: 'test-author',
@@ -94,7 +110,7 @@ describe('BlogPost component', () => {
       data: undefined,
       error: undefined
     } as ReturnType<typeof useSWR>);
-    render(<BlogPost />);
+    renderWithDarkMode(<BlogPost />);
     expect(screen.getByTestId('layout')).toBeDefined();
     expect(screen.getByRole('article')).toBeDefined();
     expect(screen.getByTestId('skeleton-block')).toBeDefined();
@@ -105,7 +121,7 @@ describe('BlogPost component', () => {
       data: undefined,
       error: new Error('Test error')
     } as ReturnType<typeof useSWR>);
-    render(<BlogPost />);
+    renderWithDarkMode(<BlogPost />);
     expect(screen.getByText('Error loading post')).toBeDefined();
   });
 
@@ -114,7 +130,7 @@ describe('BlogPost component', () => {
       data: { error: { message: 'API Error' } } as APIErrorResponse,
       error: undefined
     } as ReturnType<typeof useSWR>);
-    render(<BlogPost />);
+    renderWithDarkMode(<BlogPost />);
     expect(screen.getByText('Error: API Error')).toBeDefined();
   });
 
@@ -123,12 +139,17 @@ describe('BlogPost component', () => {
       data: mockPost,
       error: undefined
     } as ReturnType<typeof useSWR>);
-    render(<BlogPost />);
+    renderWithDarkMode(<BlogPost />);
 
     await waitFor(() => {
       expect(screen.getByText('Test Post')).toBeDefined();
       expect(screen.getByAltText('Test Post')).toBeDefined();
       expect(screen.getByText('Test content')).toBeDefined();
+      expect(screen.getByTestId('code-block')).toBeDefined();
+      expect(
+        screen.getByTestId('code-block').getAttribute('data-language')
+      ).toBe('typescript');
+      expect(screen.getByText('console.log("Hello");')).toBeDefined();
     });
   });
 
@@ -137,7 +158,7 @@ describe('BlogPost component', () => {
       data: mockPost,
       error: undefined
     } as ReturnType<typeof useSWR>);
-    render(<BlogPost />);
+    renderWithDarkMode(<BlogPost />);
 
     await waitFor(() => {
       const article = screen.getByRole('article');
@@ -160,7 +181,7 @@ describe('BlogPost component', () => {
       data: mockPost,
       error: undefined
     } as ReturnType<typeof useSWR>);
-    render(<BlogPost />);
+    renderWithDarkMode(<BlogPost />);
 
     await waitFor(() => {
       const title = screen.getByRole('heading', { level: 1 });
@@ -178,18 +199,16 @@ describe('BlogPost component', () => {
       data: mockPost,
       error: undefined
     } as ReturnType<typeof useSWR>);
-    render(<BlogPost />);
+    renderWithDarkMode(<BlogPost />);
 
     await waitFor(() => {
       const content = screen.getByText('Test content').closest('div');
       expect(content).toBeDefined();
       if (content) {
-        expect(content.classList.contains('prose-h2:mt-8')).toBe(true);
-        expect(content.classList.contains('prose-h2:mb-2')).toBe(true);
-        expect(content.classList.contains('prose-h3:mt-6')).toBe(true);
-        expect(content.classList.contains('prose-h3:mb-2')).toBe(true);
-        expect(content.classList.contains('prose-h4:mt-4')).toBe(true);
-        expect(content.classList.contains('prose-h4:mb-2')).toBe(true);
+        expect(content.classList.contains('prose')).toBe(true);
+        expect(content.classList.contains('prose-lg')).toBe(true);
+        expect(content.classList.contains('max-w-none')).toBe(true);
+        expect(content.classList.contains('dark:prose-invert')).toBe(true);
       }
     });
   });
@@ -199,7 +218,7 @@ describe('BlogPost component', () => {
       data: undefined,
       error: undefined
     } as ReturnType<typeof useSWR>);
-    render(<BlogPost />);
+    renderWithDarkMode(<BlogPost />);
 
     const skeletonBlock = screen.getByTestId('skeleton-block');
     expect(skeletonBlock).toBeDefined();
