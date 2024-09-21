@@ -81,10 +81,10 @@ export const Profile: React.FC = () => {
           <Link
             aria-label='Browse my links'
             className='flex h-12 w-36 items-center justify-center border-2 border-black bg-orange-200 text-base font-medium text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
-            href='https://bio.link/mrugesh'
+            href='/uses'
             type='button'
           >
-            <span>Links</span>
+            <span>Uses</span>
           </Link>
         </div>
       </div>

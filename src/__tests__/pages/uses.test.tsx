@@ -19,7 +19,7 @@ describe('Uses', () => {
 
     // Check for the presence of key elements
     expect(
-      screen.getByRole('heading', { name: /everyday day carry/i })
+      screen.getByRole('heading', { name: /everyday carry/i })
     ).toBeTruthy();
     expect(
       screen.getByText(

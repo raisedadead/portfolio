@@ -18,7 +18,7 @@ const Uses: NextPage = () => {
                 'py-4 text-center text-3xl font-bold text-slate-800'
               )}
             >
-              Everyday Day Carry
+              Everyday Carry
             </h1>
           </div>
         </section>
