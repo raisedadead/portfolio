@@ -34,7 +34,7 @@ importers:
         version: 7.1.0(@dprint/formatter@0.3.0)(graphql@16.9.0)
       html-react-parser:
         specifier: 5.1.16
-        version: 5.1.16(@types/react@18.3.9)(react@18.3.1)
+        version: 5.1.16(@types/react@18.3.10)(react@18.3.1)
       next:
         specifier: 14.2.13
         version: 14.2.13(@babel/core@7.24.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -89,13 +89,13 @@ importers:
         version: 0.5.15(tailwindcss@3.4.13(ts-node@10.9.1(@types/node@20.16.10)(typescript@5.6.2)))
       '@testing-library/react':
         specifier: 16.0.1
-        version: 16.0.1(@testing-library/dom@10.0.0)(@types/react-dom@18.3.0)(@types/react@18.3.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 16.0.1(@testing-library/dom@10.0.0)(@types/react-dom@18.3.0)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/node':
         specifier: 20.16.10
         version: 20.16.10
       '@types/react':
-        specifier: 18.3.9
-        version: 18.3.9
+        specifier: 18.3.10
+        version: 18.3.10
       '@types/react-dom':
         specifier: 18.3.0
         version: 18.3.0
@@ -1516,8 +1516,8 @@ packages:
   '@types/react-syntax-highlighter@15.5.13':
     resolution: {integrity: sha512-uLGJ87j6Sz8UaBAooU0T6lWJ0dBmjZgN1PZTrj05TNql2/XpC6+4HhMT5syIdFUUt+FASfCeLLv4kBygNU+8qA==}
 
-  '@types/react@18.3.9':
-    resolution: {integrity: sha512-+BpAVyTpJkNWWSSnaLBk6ePpHLOGJKnEQNbINNovPWzvEUyAe3e+/d494QdEh71RekM/qV7lw6jzf1HGrJyAtQ==}
+  '@types/react@18.3.10':
+    resolution: {integrity: sha512-02sAAlBnP39JgXwkAq3PeU9DVaaGpZyF3MGcC0MKgQVkZor5IiiDAipVaxQHtDJAmO4GIy/rVBy/LzVj76Cyqg==}
 
   '@types/shimmer@1.2.0':
     resolution: {integrity: sha512-UE7oxhQLLd9gub6JKIAhDq06T0F6FnztwMNRvYgjeQSBeMc1ZG/tA47EwfduvkuQS8apbkM/lpLpWsaCeYsXVg==}
@@ -6413,14 +6413,14 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/react@16.0.1(@testing-library/dom@10.0.0)(@types/react-dom@18.3.0)(@types/react@18.3.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react@16.0.1(@testing-library/dom@10.0.0)(@types/react-dom@18.3.0)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
       '@testing-library/dom': 10.0.0
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     optionalDependencies:
-      '@types/react': 18.3.9
+      '@types/react': 18.3.10
       '@types/react-dom': 18.3.0
 
   '@tootallnate/once@2.0.0': {}
@@ -6519,13 +6519,13 @@ snapshots:
 
   '@types/react-dom@18.3.0':
     dependencies:
-      '@types/react': 18.3.9
+      '@types/react': 18.3.10
 
   '@types/react-syntax-highlighter@15.5.13':
     dependencies:
-      '@types/react': 18.3.9
+      '@types/react': 18.3.10
 
-  '@types/react@18.3.9':
+  '@types/react@18.3.10':
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
@@ -8401,7 +8401,7 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
-  html-react-parser@5.1.16(@types/react@18.3.9)(react@18.3.1):
+  html-react-parser@5.1.16(@types/react@18.3.10)(react@18.3.1):
     dependencies:
       domhandler: 5.0.3
       html-dom-parser: 5.0.10
@@ -8409,7 +8409,7 @@ snapshots:
       react-property: 2.0.2
       style-to-js: 1.1.14
     optionalDependencies:
-      '@types/react': 18.3.9
+      '@types/react': 18.3.10
 
   htmlparser2@9.1.0:
     dependencies:
