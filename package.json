@@ -91,7 +91,7 @@
     "typescript": "5.6.2",
     "vercel": "37.6.0",
     "vitest": "2.1.1",
-    "wrangler": "3.78.12"
+    "wrangler": "3.79.0"
   },
   "packageManager": "pnpm@9.11.0"
 }
