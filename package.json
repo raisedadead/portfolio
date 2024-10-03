@@ -36,7 +36,7 @@
     ]
   },
   "dependencies": {
-    "@headlessui/react": "2.1.8",
+    "@headlessui/react": "2.1.9",
     "@heroicons/react": "2.1.5",
     "@sentry/nextjs": "8.33.0",
     "@types/react-syntax-highlighter": "15.5.13",
