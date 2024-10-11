@@ -41,7 +41,7 @@
     "@sentry/nextjs": "8.33.1",
     "@types/react-syntax-highlighter": "15.5.13",
     "clsx": "2.1.1",
-    "framer-motion": "11.11.7",
+    "framer-motion": "11.11.8",
     "graphql": "16.9.0",
     "graphql-request": "7.1.0",
     "html-react-parser": "5.1.18",
