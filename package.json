@@ -38,7 +38,7 @@
   "dependencies": {
     "@headlessui/react": "2.1.10",
     "@heroicons/react": "2.1.5",
-    "@sentry/nextjs": "8.34.0",
+    "@sentry/nextjs": "8.35.0",
     "@types/react-syntax-highlighter": "15.5.13",
     "clsx": "2.1.1",
     "framer-motion": "11.11.9",
