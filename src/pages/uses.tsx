@@ -51,7 +51,7 @@ const Uses: NextPage = () => {
                       className={cn(
                         'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                       )}
-                      href='https://support.apple.com/kb/SP854?locale=en_US'
+                      href='https://support.apple.com/en-us/111902'
                     >
                       MacBook Pro (14-inch, 2021)
                     </Link>
@@ -161,7 +161,7 @@ const Uses: NextPage = () => {
                           className={cn(
                             'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                           )}
-                          href='https://support.apple.com/kb/SP715?locale=en_US'
+                          href='https://support.apple.com/en-us/111959'
                         >
                           MacBook Pro (Retina, 13-inch, Early 2015)
                         </Link>{' '}
