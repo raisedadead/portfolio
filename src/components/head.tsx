@@ -16,7 +16,7 @@ export const MetaHead: React.FC<MetaHeadProps> = ({
   const defaultTitle =
     'Mrugesh Mohapatra — Portfolio of a nocturnal developer.';
   const defaultDescription =
-    'Namaste! I am a software engineer based out of Bengaluru, India. I am passionate about Aviation, Open Source, Education for All, and Site Reliability Engineering.';
+    'Namaste! I am a technologist based out of Bengaluru, India. I am passionate about Aviation, Open Source, Education for All, and Site Reliability Engineering.';
   const defaultUrl = 'https://mrugesh.dev';
   const defaultImage = 'http://mrugesh.dev/images/og-image.webp';
 
