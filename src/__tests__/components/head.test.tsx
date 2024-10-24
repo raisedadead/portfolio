@@ -30,9 +30,7 @@ describe('MetaHead', () => {
       container
         .querySelector('meta[name="description"]')
         ?.getAttribute('content')
-    ).toContain(
-      'Namaste! I am a software engineer based out of Bengaluru, India.'
-    );
+    ).toContain('Namaste! I am a technologist based out of Bengaluru, India.');
     expect(
       container.querySelector('link[rel="canonical"]')?.getAttribute('href')
     ).toBe('https://mrugesh.dev');
