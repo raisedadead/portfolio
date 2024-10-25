@@ -58,7 +58,7 @@ importers:
         version: 2.5.4
       tailwindcss-animate:
         specifier: 1.0.7
-        version: 1.0.7(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3)))
+        version: 1.0.7(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3)))
       zod:
         specifier: 3.23.8
         version: 3.23.8
@@ -83,16 +83,16 @@ importers:
         version: 14.2.16
       '@tailwindcss/forms':
         specifier: 0.5.9
-        version: 0.5.9(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3)))
+        version: 0.5.9(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3)))
       '@tailwindcss/typography':
         specifier: 0.5.15
-        version: 0.5.15(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3)))
+        version: 0.5.15(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3)))
       '@testing-library/react':
         specifier: 16.0.1
         version: 16.0.1(@testing-library/dom@10.0.0)(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/node':
-        specifier: 20.17.0
-        version: 20.17.0
+        specifier: 20.17.1
+        version: 20.17.1
       '@types/react':
         specifier: 18.3.12
         version: 18.3.12
@@ -107,7 +107,7 @@ importers:
         version: 8.11.0(eslint@8.57.1)(typescript@5.6.3)
       '@vitejs/plugin-react':
         specifier: 4.3.3
-        version: 4.3.3(vite@5.3.1(@types/node@20.17.0)(terser@5.31.6))
+        version: 4.3.3(vite@5.3.1(@types/node@20.17.1)(terser@5.31.6))
       '@vitest/ui':
         specifier: 2.1.3
         version: 2.1.3(vitest@2.1.3)
@@ -155,7 +155,7 @@ importers:
         version: 0.6.8(prettier@3.3.3)
       tailwindcss:
         specifier: 3.4.14
-        version: 3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3))
+        version: 3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3))
       turbo:
         specifier: 2.2.3
         version: 2.2.3
@@ -167,7 +167,7 @@ importers:
         version: 37.12.1
       vitest:
         specifier: 2.1.3
-        version: 2.1.3(@edge-runtime/vm@3.2.0)(@types/node@20.17.0)(@vitest/ui@2.1.3)(jsdom@25.0.1)(terser@5.31.6)
+        version: 2.1.3(@edge-runtime/vm@3.2.0)(@types/node@20.17.1)(@vitest/ui@2.1.3)(jsdom@25.0.1)(terser@5.31.6)
       wrangler:
         specifier: 3.83.0
         version: 3.83.0(@cloudflare/workers-types@4.20241022.0)
@@ -1493,8 +1493,8 @@ packages:
   '@types/node@16.18.11':
     resolution: {integrity: sha512-3oJbGBUWuS6ahSnEq1eN2XrCyf4YsWI8OyCvo7c64zQJNplk3mO84t53o8lfTk+2ji59g5ycfc6qQ3fdHliHuA==}
 
-  '@types/node@20.17.0':
-    resolution: {integrity: sha512-a7zRo0f0eLo9K5X9Wp5cAqTUNGzuFLDG2R7C4HY2BhcMAsxgSPuRvAC1ZB6QkuUQXf0YZAgfOX2ZyrBa2n4nHQ==}
+  '@types/node@20.17.1':
+    resolution: {integrity: sha512-j2VlPv1NnwPJbaCNv69FO/1z4lId0QmGvpT41YxitRtWlg96g/j8qcv2RKsLKe2F6OJgyXhupN1Xo17b2m139Q==}
 
   '@types/pg-pool@2.0.6':
     resolution: {integrity: sha512-TaAUE5rq2VQYxab5Ts7WZhKNmuN78Q6PiFonTDdpbx8a1H0M1vhy3rhiMjl+e2iHmogyMw7jZF4FrE6eJUy5HQ==}
@@ -6366,18 +6366,18 @@ snapshots:
       '@swc/counter': 0.1.3
       tslib: 2.6.2
 
-  '@tailwindcss/forms@0.5.9(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3)))':
+  '@tailwindcss/forms@0.5.9(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3)))':
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3))
+      tailwindcss: 3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3))
 
-  '@tailwindcss/typography@0.5.15(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3)))':
+  '@tailwindcss/typography@0.5.15(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3)))':
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3))
+      tailwindcss: 3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3))
 
   '@tanstack/react-virtual@3.8.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -6450,7 +6450,7 @@ snapshots:
 
   '@types/connect@3.4.36':
     dependencies:
-      '@types/node': 20.17.0
+      '@types/node': 20.17.1
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -6478,15 +6478,15 @@ snapshots:
 
   '@types/mysql@2.15.26':
     dependencies:
-      '@types/node': 20.17.0
+      '@types/node': 20.17.1
 
   '@types/node-forge@1.3.11':
     dependencies:
-      '@types/node': 20.17.0
+      '@types/node': 20.17.1
 
   '@types/node@16.18.11': {}
 
-  '@types/node@20.17.0':
+  '@types/node@20.17.1':
     dependencies:
       undici-types: 6.19.6
 
@@ -6496,7 +6496,7 @@ snapshots:
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 20.17.0
+      '@types/node': 20.17.1
       pg-protocol: 1.6.1
       pg-types: 2.2.0
 
@@ -6749,14 +6749,14 @@ snapshots:
       json-schema-to-ts: 1.6.4
       ts-morph: 12.0.0
 
-  '@vitejs/plugin-react@4.3.3(vite@5.3.1(@types/node@20.17.0)(terser@5.31.6))':
+  '@vitejs/plugin-react@4.3.3(vite@5.3.1(@types/node@20.17.1)(terser@5.31.6))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.25.2)
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.25.2)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.3.1(@types/node@20.17.0)(terser@5.31.6)
+      vite: 5.3.1(@types/node@20.17.1)(terser@5.31.6)
     transitivePeerDependencies:
       - supports-color
 
@@ -6767,13 +6767,13 @@ snapshots:
       chai: 5.1.1
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.3(@vitest/spy@2.1.3)(vite@5.3.1(@types/node@20.17.0)(terser@5.31.6))':
+  '@vitest/mocker@2.1.3(@vitest/spy@2.1.3)(vite@5.3.1(@types/node@20.17.1)(terser@5.31.6))':
     dependencies:
       '@vitest/spy': 2.1.3
       estree-walker: 3.0.3
       magic-string: 0.30.11
     optionalDependencies:
-      vite: 5.3.1(@types/node@20.17.0)(terser@5.31.6)
+      vite: 5.3.1(@types/node@20.17.1)(terser@5.31.6)
 
   '@vitest/pretty-format@2.1.3':
     dependencies:
@@ -6803,7 +6803,7 @@ snapshots:
       sirv: 2.0.4
       tinyglobby: 0.2.6
       tinyrainbow: 1.2.0
-      vitest: 2.1.3(@edge-runtime/vm@3.2.0)(@types/node@20.17.0)(@vitest/ui@2.1.3)(jsdom@25.0.1)(terser@5.31.6)
+      vitest: 2.1.3(@edge-runtime/vm@3.2.0)(@types/node@20.17.1)(@vitest/ui@2.1.3)(jsdom@25.0.1)(terser@5.31.6)
 
   '@vitest/utils@2.1.3':
     dependencies:
@@ -8657,7 +8657,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 20.17.0
+      '@types/node': 20.17.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -9265,13 +9265,13 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.47
 
-  postcss-load-config@4.0.2(postcss@8.4.47)(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3)):
+  postcss-load-config@4.0.2(postcss@8.4.47)(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3)):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.5.0
     optionalDependencies:
       postcss: 8.4.47
-      ts-node: 10.9.1(@types/node@20.17.0)(typescript@5.6.3)
+      ts-node: 10.9.1(@types/node@20.17.1)(typescript@5.6.3)
 
   postcss-nested@6.0.1(postcss@8.4.47):
     dependencies:
@@ -9838,11 +9838,11 @@ snapshots:
 
   tailwind-merge@2.5.4: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3))):
+  tailwindcss-animate@1.0.7(tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3))):
     dependencies:
-      tailwindcss: 3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3))
+      tailwindcss: 3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3))
 
-  tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3)):
+  tailwindcss@3.4.14(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -9861,7 +9861,7 @@ snapshots:
       postcss: 8.4.47
       postcss-import: 15.1.0(postcss@8.4.47)
       postcss-js: 4.0.1(postcss@8.4.47)
-      postcss-load-config: 4.0.2(postcss@8.4.47)(ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3))
+      postcss-load-config: 4.0.2(postcss@8.4.47)(ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3))
       postcss-nested: 6.0.1(postcss@8.4.47)
       postcss-selector-parser: 6.0.16
       resolve: 1.22.8
@@ -9994,14 +9994,14 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  ts-node@10.9.1(@types/node@20.17.0)(typescript@5.6.3):
+  ts-node@10.9.1(@types/node@20.17.1)(typescript@5.6.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.17.0
+      '@types/node': 20.17.1
       acorn: 8.11.3
       acorn-walk: 8.3.2
       arg: 4.1.3
@@ -10178,12 +10178,12 @@ snapshots:
       - encoding
       - supports-color
 
-  vite-node@2.1.3(@types/node@20.17.0)(terser@5.31.6):
+  vite-node@2.1.3(@types/node@20.17.1)(terser@5.31.6):
     dependencies:
       cac: 6.7.14
       debug: 4.3.6
       pathe: 1.1.2
-      vite: 5.3.1(@types/node@20.17.0)(terser@5.31.6)
+      vite: 5.3.1(@types/node@20.17.1)(terser@5.31.6)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -10194,20 +10194,20 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.3.1(@types/node@20.17.0)(terser@5.31.6):
+  vite@5.3.1(@types/node@20.17.1)(terser@5.31.6):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47
       rollup: 4.18.0
     optionalDependencies:
-      '@types/node': 20.17.0
+      '@types/node': 20.17.1
       fsevents: 2.3.3
       terser: 5.31.6
 
-  vitest@2.1.3(@edge-runtime/vm@3.2.0)(@types/node@20.17.0)(@vitest/ui@2.1.3)(jsdom@25.0.1)(terser@5.31.6):
+  vitest@2.1.3(@edge-runtime/vm@3.2.0)(@types/node@20.17.1)(@vitest/ui@2.1.3)(jsdom@25.0.1)(terser@5.31.6):
     dependencies:
       '@vitest/expect': 2.1.3
-      '@vitest/mocker': 2.1.3(@vitest/spy@2.1.3)(vite@5.3.1(@types/node@20.17.0)(terser@5.31.6))
+      '@vitest/mocker': 2.1.3(@vitest/spy@2.1.3)(vite@5.3.1(@types/node@20.17.1)(terser@5.31.6))
       '@vitest/pretty-format': 2.1.3
       '@vitest/runner': 2.1.3
       '@vitest/snapshot': 2.1.3
@@ -10222,12 +10222,12 @@ snapshots:
       tinyexec: 0.3.0
       tinypool: 1.0.0
       tinyrainbow: 1.2.0
-      vite: 5.3.1(@types/node@20.17.0)(terser@5.31.6)
-      vite-node: 2.1.3(@types/node@20.17.0)(terser@5.31.6)
+      vite: 5.3.1(@types/node@20.17.1)(terser@5.31.6)
+      vite-node: 2.1.3(@types/node@20.17.1)(terser@5.31.6)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@edge-runtime/vm': 3.2.0
-      '@types/node': 20.17.0
+      '@types/node': 20.17.1
       '@vitest/ui': 2.1.3(vitest@2.1.3)
       jsdom: 25.0.1
     transitivePeerDependencies:
