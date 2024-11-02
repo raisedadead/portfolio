@@ -10,24 +10,10 @@ if (process.env.NODE_ENV === 'development') {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { env } from './src/env/server.mjs';
 
-import { withSentryConfig } from '@sentry/nextjs';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const isProductionBuild = process.env.NODE_ENV === 'production';
 const shouldOpenAnalyzer = process.env.OPEN_ANALYZER === 'true';
-const sentryAuthToken = process.env.SENTRY_AUTH_TOKEN;
-
-if (
-  !sentryAuthToken ||
-  (sentryAuthToken && !sentryAuthToken.startsWith('sntrys'))
-) {
-  console.warn(`
-####################################################################
-Warning: Sentry auth token is not set correctly. Please set the
-SENTRY_AUTH_TOKEN environment variable to a valid Sentry auth token.
-####################################################################
-`);
-}
 
 /**
  * Don't be scared of the generics here.
@@ -103,22 +89,10 @@ const nextConfig = defineNextConfig({
   }
 });
 
-const configSentry = withSentryConfig(nextConfig, {
-  org: 'mrugesh',
-  telemetry: false,
-  project: 'portfolio-nextjs',
-  silent: !process.env.CI,
-  widenClientFileUpload: true,
-  reactComponentAnnotation: { enabled: true },
-  hideSourceMaps: true,
-  disableLogger: true,
-  authToken: sentryAuthToken
-});
-
-const configAnalyzerAndSentry = withBundleAnalyzer({
+const configAnalyzer = withBundleAnalyzer({
   enabled: isProductionBuild,
   openAnalyzer: shouldOpenAnalyzer
-})(configSentry);
+})(nextConfig);
 
-const config = isProductionBuild ? configAnalyzerAndSentry : configSentry;
+const config = isProductionBuild ? configAnalyzer : nextConfig;
 export default config;
