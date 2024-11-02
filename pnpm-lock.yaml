@@ -30,8 +30,8 @@ importers:
         specifier: 16.9.0
         version: 16.9.0
       graphql-request:
-        specifier: 7.1.1
-        version: 7.1.1(graphql@16.9.0)
+        specifier: 7.1.2
+        version: 7.1.2(graphql@16.9.0)
       html-react-parser:
         specifier: 5.1.18
         version: 5.1.18(@types/react@18.3.12)(react@18.3.1)
@@ -3033,8 +3033,8 @@ packages:
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
-  graphql-request@7.1.1:
-    resolution: {integrity: sha512-bFrwPQwJjx5uU28j0JDnejNW2UzD85S9V6O0POdjgohFMyzhfOQMJBCSKTMAAjImN5q3hmfa1yUCG/3nmNGCKw==}
+  graphql-request@7.1.2:
+    resolution: {integrity: sha512-+XE3iuC55C2di5ZUrB4pjgwe+nIQBuXVIK9J98wrVwojzDW3GMdSBZfxUk8l4j9TieIpjpggclxhNEU9ebGF8w==}
     peerDependencies:
       graphql: 14 - 16
 
@@ -8268,7 +8268,7 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  graphql-request@7.1.1(graphql@16.9.0):
+  graphql-request@7.1.2(graphql@16.9.0):
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.9.0)
       graphql: 16.9.0
