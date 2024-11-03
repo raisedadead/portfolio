@@ -2,7 +2,7 @@ import { CustomLink as Link } from '@/components/custom-link';
 import { useState, useEffect } from 'react';
 import { updateGAConsent, loadGAScript } from '@/lib/utils';
 
-interface ConsentBannerProps {
+export interface ConsentBannerProps {
   setHasConsent: (value: boolean) => void;
 }
 
@@ -33,7 +33,10 @@ function ConsentBanner({ setHasConsent }: ConsentBannerProps) {
         <p className='mb-2 text-sm text-white sm:mb-0 sm:text-base'>
           We use third-party services to improve how users interact with our
           website. Refer to our{' '}
-          <Link href='/privacy' className='text-blue-300 hover:text-blue-400'>
+          <Link
+            href='/privacy'
+            className='text-blue-300 transition-colors duration-200 hover:text-blue-400 hover:underline'
+          >
             privacy policy
           </Link>
           . Do you accept this?
@@ -41,13 +44,13 @@ function ConsentBanner({ setHasConsent }: ConsentBannerProps) {
         <div className='flex space-x-4'>
           <button
             onClick={() => handleConsent(true)}
-            className='rounded bg-blue-500 px-4 py-1 text-sm font-medium text-white transition-colors hover:bg-blue-600'
+            className='transform rounded bg-blue-700 px-4 py-1 text-sm font-medium text-white transition-colors duration-200 hover:scale-105 hover:bg-blue-800'
           >
             Accept
           </button>
           <button
             onClick={() => handleConsent(false)}
-            className='rounded bg-gray-600 px-4 py-1 text-sm font-medium text-white transition-colors hover:bg-gray-700'
+            className='transform rounded border border-white px-4 py-1 text-sm font-medium text-white transition-colors duration-200 hover:scale-105 hover:bg-white hover:text-gray-800'
           >
             Decline
           </button>
