@@ -35,7 +35,7 @@ function ConsentBanner({ setHasConsent }: ConsentBannerProps) {
           website. Refer to our{' '}
           <Link
             href='/privacy'
-            className='text-blue-300 transition-colors duration-200 hover:text-blue-400 hover:underline'
+            className='text-blue-300 underline transition-colors duration-200 hover:text-blue-400'
           >
             privacy policy
           </Link>
