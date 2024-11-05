@@ -85,7 +85,6 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
                     class="h-28 w-28 border-4 border-orange-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:h-36 md:w-36"
                     data-nimg="1"
                     decoding="async"
-                    fetchpriority="high"
                     height="144"
                     id="profile-image"
                     src="/_next/image?url=%2Fimages%2Fprofile.small.webp&w=384&q=75"
