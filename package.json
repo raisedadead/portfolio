@@ -40,7 +40,7 @@
     "@heroicons/react": "2.1.5",
     "@types/react-syntax-highlighter": "15.5.13",
     "clsx": "2.1.1",
-    "framer-motion": "11.11.16",
+    "framer-motion": "11.11.17",
     "graphql": "16.9.0",
     "graphql-request": "7.1.2",
     "html-react-parser": "5.1.18",
