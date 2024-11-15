@@ -62,7 +62,7 @@ importers:
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.13.5
-        version: 1.13.5(@cloudflare/workers-types@4.20241112.0)(vercel@37.14.0)(wrangler@3.86.1(@cloudflare/workers-types@4.20241112.0))
+        version: 1.13.5(@cloudflare/workers-types@4.20241112.0)(vercel@37.14.0)(wrangler@3.87.0(@cloudflare/workers-types@4.20241112.0))
       '@cloudflare/workers-types':
         specifier: 4.20241112.0
         version: 4.20241112.0
@@ -166,8 +166,8 @@ importers:
         specifier: 2.1.5
         version: 2.1.5(@edge-runtime/vm@3.2.0)(@types/node@20.17.6)(@vitest/ui@2.1.5)(jsdom@25.0.1)(terser@5.31.6)
       wrangler:
-        specifier: 3.86.1
-        version: 3.86.1(@cloudflare/workers-types@4.20241112.0)
+        specifier: 3.87.0
+        version: 3.87.0(@cloudflare/workers-types@4.20241112.0)
 
 packages:
 
@@ -1670,6 +1670,10 @@ packages:
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
+
+  chokidar@4.0.1:
+    resolution: {integrity: sha512-n8enUVCED/KVRQlab1hr3MVpcVMvxtZjmEa956u+4YijlmQED223XMSYj2tLuKvr4jcCTzNNMpQDUer72MMmzA==}
+    engines: {node: '>= 14.16.0'}
 
   chownr@1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
@@ -3753,6 +3757,10 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
 
+  readdirp@4.0.2:
+    resolution: {integrity: sha512-yDMz9g+VaZkqBYS/ozoBJwaBhTbZo3UNYQHNRw1D3UFQB8oHB4uS/tAODO+ZLjGWmUbKnIlOWO+aaIiAxrUWHA==}
+    engines: {node: '>= 14.16.0'}
+
   reflect.getprototypeof@1.0.6:
     resolution: {integrity: sha512-fmfw4XgoDke3kdI6h4xcUz1dG8uaiv5q9gcEwLS4Pnth2kxT+GZ7YehS1JTMGBQmtV7Y4GFGbs2re2NqhdozUg==}
     engines: {node: '>= 0.4'}
@@ -4502,8 +4510,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@3.86.1:
-    resolution: {integrity: sha512-ujN74lPQCQRsMcvf48WLLZUqOqUbJJzt5+Xm5T3tGrpRJLW+dTB0ffvT/e2DBBvHZ7R52ZzZdm1akyLPsZmZ9Q==}
+  wrangler@3.87.0:
+    resolution: {integrity: sha512-BExktnSLeGgG+uxgnr4h9eZ5nefdpTVcTHR+gEIWRvqk07XL04nJwpPYAOIPKPpB7E2tMdDJgNLGQN/CY6e1xQ==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -4752,7 +4760,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.13.5(@cloudflare/workers-types@4.20241112.0)(vercel@37.14.0)(wrangler@3.86.1(@cloudflare/workers-types@4.20241112.0))':
+  '@cloudflare/next-on-pages@1.13.5(@cloudflare/workers-types@4.20241112.0)(vercel@37.14.0)(wrangler@3.87.0(@cloudflare/workers-types@4.20241112.0))':
     dependencies:
       acorn: 8.11.3
       ast-types: 0.14.2
@@ -4767,7 +4775,7 @@ snapshots:
       pcre-to-regexp: 1.1.0
       semver: 7.6.0
       vercel: 37.14.0
-      wrangler: 3.86.1(@cloudflare/workers-types@4.20241112.0)
+      wrangler: 3.87.0(@cloudflare/workers-types@4.20241112.0)
     optionalDependencies:
       '@cloudflare/workers-types': 4.20241112.0
     transitivePeerDependencies:
@@ -6107,6 +6115,10 @@ snapshots:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
+
+  chokidar@4.0.1:
+    dependencies:
+      readdirp: 4.0.2
 
   chownr@1.1.4: {}
 
@@ -8176,6 +8188,8 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
+  readdirp@4.0.2: {}
+
   reflect.getprototypeof@1.0.6:
     dependencies:
       call-bind: 1.0.7
@@ -9085,14 +9099,14 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20241106.1
       '@cloudflare/workerd-windows-64': 1.20241106.1
 
-  wrangler@3.86.1(@cloudflare/workers-types@4.20241112.0):
+  wrangler@3.87.0(@cloudflare/workers-types@4.20241112.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@cloudflare/workers-shared': 0.7.1
       '@esbuild-plugins/node-globals-polyfill': 0.2.3(esbuild@0.17.19)
       '@esbuild-plugins/node-modules-polyfill': 0.2.2(esbuild@0.17.19)
       blake3-wasm: 2.1.5
-      chokidar: 3.6.0
+      chokidar: 4.0.1
       date-fns: 4.1.0
       esbuild: 0.17.19
       itty-time: 1.0.6
