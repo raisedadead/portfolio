@@ -33,7 +33,6 @@ const nextConfig = defineNextConfig({
     defaultLocale: 'en'
   },
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     remotePatterns: [
       {
