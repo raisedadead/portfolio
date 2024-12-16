@@ -5,7 +5,9 @@ import { MetaHead } from '../../components/head';
 
 vi.mock('next/head', () => ({
   __esModule: true,
-  default: ({ children }: { children: React.ReactNode }) => <>{children}</>
+  default: ({ children }: { children: React.ReactNode }) => {
+    return <>{children}</>;
+  }
 }));
 
 describe('MetaHead', () => {
@@ -20,22 +22,27 @@ describe('MetaHead', () => {
     return render(<MetaHead {...{ ...defaultProps, ...props }} />);
   }
 
-  it('renders default meta tags', () => {
-    const { container } = renderMetaHead();
+  beforeEach(() => {
+    // Clear any previous head elements
+    document.head.innerHTML = '';
+  });
 
-    expect(container.querySelector('title')?.textContent).toBe(
+  it('renders default meta tags', () => {
+    renderMetaHead();
+
+    expect(document.title).toBe(
       'Mrugesh Mohapatra — Portfolio of a nocturnal developer.'
     );
     expect(
-      container
+      document
         .querySelector('meta[name="description"]')
         ?.getAttribute('content')
     ).toContain('Namaste! I am a technologist based out of Bengaluru, India.');
     expect(
-      container.querySelector('link[rel="canonical"]')?.getAttribute('href')
+      document.querySelector('link[rel="canonical"]')?.getAttribute('href')
     ).toBe('https://mrugesh.dev');
     expect(
-      container
+      document
         .querySelector('meta[property="og:image"]')
         ?.getAttribute('content')
     ).toBe('http://mrugesh.dev/images/og-image.webp');
@@ -48,59 +55,57 @@ describe('MetaHead', () => {
       pageUrl: 'https://example.com',
       pageImage: 'https://example.com/image.jpg'
     };
-    const { container } = renderMetaHead(customProps);
+    renderMetaHead(customProps);
 
-    expect(container.querySelector('title')?.textContent).toBe(
-      'Custom Title • Mrugesh Mohapatra'
-    );
+    expect(document.title).toBe('Custom Title • Mrugesh Mohapatra');
     expect(
-      container
+      document
         .querySelector('meta[name="description"]')
         ?.getAttribute('content')
     ).toBe('Custom description');
     expect(
-      container.querySelector('link[rel="canonical"]')?.getAttribute('href')
+      document.querySelector('link[rel="canonical"]')?.getAttribute('href')
     ).toBe('https://example.com');
     expect(
-      container
+      document
         .querySelector('meta[property="og:image"]')
         ?.getAttribute('content')
     ).toBe('https://example.com/image.jpg');
   });
 
   it('renders correct Open Graph and Twitter tags', () => {
-    const { container } = renderMetaHead();
+    renderMetaHead();
 
     expect(
-      container
+      document
         .querySelector('meta[property="og:type"]')
         ?.getAttribute('content')
     ).toBe('website');
     expect(
-      container
+      document
         .querySelector('meta[property="og:site_name"]')
         ?.getAttribute('content')
     ).toBe('Mrugesh Mohapatra');
     expect(
-      container
+      document
         .querySelector('meta[name="twitter:card"]')
         ?.getAttribute('content')
     ).toBe('summary_large_image');
     expect(
-      container
+      document
         .querySelector('meta[name="twitter:creator"]')
         ?.getAttribute('content')
     ).toBe('@raisedadead');
   });
 
   it('renders favicon and theme color', () => {
-    const { container } = renderMetaHead();
+    renderMetaHead();
 
     expect(
-      container.querySelector('link[rel="icon"]')?.getAttribute('href')
+      document.querySelector('link[rel="icon"]')?.getAttribute('href')
     ).toBe('/favicon.ico');
     expect(
-      container
+      document
         .querySelector('meta[name="theme-color"]')
         ?.getAttribute('content')
     ).toBe('#32ded4');
