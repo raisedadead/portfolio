@@ -15,7 +15,7 @@ tracker. If you catch a typo, or something broken, please let me know.
 
 ## Demo
 
-> <https://mrugesh.dev/>
+> <https://mrugesh.dev>
 
 ## License
 
