@@ -77,7 +77,7 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-next-on-pages": "1.13.7",
     "eslint-plugin-react": "7.37.2",
-    "globals": "15.13.0",
+    "globals": "15.14.0",
     "husky": "9.1.7",
     "is-ci": "4.1.0",
     "jsdom": "25.0.1",
