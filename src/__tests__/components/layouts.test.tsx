@@ -79,7 +79,7 @@ describe('Layout', () => {
     );
 
     const footer = screen.getByRole('contentinfo');
-    expect(footer.textContent).toContain('© 2012-2024 Mrugesh Mohapatra Co.');
+    expect(footer.textContent).toContain('© 2012-2025 Mrugesh Mohapatra Co.');
     expect(footer.textContent).toContain('All rights reserved');
     expect(footer.textContent).toContain('Terms');
     expect(footer.textContent).toContain('Privacy');

@@ -291,7 +291,7 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
           class="font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto"
         >
           <p>
-            © 2012-2024 Mrugesh Mohapatra Co. — All rights reserved.
+            © 2012-2025 Mrugesh Mohapatra Co. — All rights reserved.
           </p>
           <p
             class="mt-2"
