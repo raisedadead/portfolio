@@ -22,7 +22,7 @@ const PageWrapper: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => (
   <>
-    <MetaHead pageTitle='Recent posts' />
+    <MetaHead pageTitle='Recent posts' setCanonicalBlogBaseURL={true} />
     <Layout variant='main'>
       <section className={cn('mb-8')}>
         <div className={cn('prose prose-lg prose-slate max-w-none')}>

@@ -10,6 +10,14 @@ vi.mock('next/head', () => ({
   }
 }));
 
+const mockRouter = {
+  asPath: '/'
+};
+
+vi.mock('next/router', () => ({
+  useRouter: () => mockRouter
+}));
+
 describe('MetaHead', () => {
   const defaultProps = {
     pageTitle: undefined,
@@ -25,6 +33,8 @@ describe('MetaHead', () => {
   beforeEach(() => {
     // Clear any previous head elements
     document.head.innerHTML = '';
+    // Reset router mock to default state
+    mockRouter.asPath = '/';
   });
 
   it('renders default meta tags', () => {
@@ -109,5 +119,37 @@ describe('MetaHead', () => {
         .querySelector('meta[name="theme-color"]')
         ?.getAttribute('content')
     ).toBe('#32ded4');
+  });
+
+  it('renders blog canonical URLs correctly', () => {
+    const props = {
+      setCanonicalBlogBaseURL: true,
+      blogSlug: 'test-post'
+    };
+    renderMetaHead(props);
+
+    expect(
+      document.querySelector('link[rel="canonical"]')?.getAttribute('href')
+    ).toBe('https://hn.mrugesh.dev/test-post');
+  });
+
+  it('renders blog base URL when no slug is provided', () => {
+    const props = {
+      setCanonicalBlogBaseURL: true
+    };
+    renderMetaHead(props);
+
+    expect(
+      document.querySelector('link[rel="canonical"]')?.getAttribute('href')
+    ).toBe('https://hn.mrugesh.dev');
+  });
+
+  it('renders clean URLs without query strings', () => {
+    mockRouter.asPath = '/about?ref=twitter';
+    renderMetaHead();
+
+    expect(
+      document.querySelector('link[rel="canonical"]')?.getAttribute('href')
+    ).toBe('https://mrugesh.dev/about');
   });
 });

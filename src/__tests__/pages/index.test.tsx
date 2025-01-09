@@ -13,6 +13,15 @@ vi.mock('@/hooks/useDarkMode', () => ({
   default: () => ({ isDarkMode: false, toggle: vi.fn() })
 }));
 
+// Mock next/router
+const mockRouter = {
+  asPath: '/'
+};
+
+vi.mock('next/router', () => ({
+  useRouter: () => mockRouter
+}));
+
 describe('Home', () => {
   it('renders the name on the homepage', () => {
     render(<Home />);

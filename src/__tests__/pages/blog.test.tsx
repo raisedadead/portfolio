@@ -23,6 +23,19 @@ vi.mock('@/hooks/useDarkMode', () => ({
   default: () => ({ isDarkMode: false, toggle: vi.fn() })
 }));
 
+// Mock next/router with blog-specific properties
+const mockRouter = {
+  asPath: '/blog',
+  query: {},
+  push: vi.fn(),
+  replace: vi.fn(),
+  prefetch: vi.fn()
+};
+
+vi.mock('next/router', () => ({
+  useRouter: () => mockRouter
+}));
+
 describe('Blog', () => {
   const mockPost = {
     title: 'Test Post',
@@ -49,6 +62,9 @@ describe('Blog', () => {
   beforeEach(() => {
     // Reset all mocks before each test
     vi.resetAllMocks();
+    mockRouter.push.mockReset();
+    mockRouter.replace.mockReset();
+    mockRouter.prefetch.mockReset();
 
     // Mock the fetchPostsList function to return the mockFallback data
     (fetchPostsList as MockedFunction<typeof fetchPostsList>).mockResolvedValue(

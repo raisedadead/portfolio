@@ -13,6 +13,15 @@ vi.mock('@/hooks/useDarkMode', () => ({
   default: () => ({ isDarkMode: false, toggle: vi.fn() })
 }));
 
+// Mock next/router
+const mockRouter = {
+  asPath: '/privacy'
+};
+
+vi.mock('next/router', () => ({
+  useRouter: () => mockRouter
+}));
+
 describe('Privacy', () => {
   it('renders a heading', () => {
     render(<Privacy />);
