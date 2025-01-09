@@ -70,7 +70,11 @@ const BlogPost = () => {
 
   return (
     <>
-      <MetaHead pageTitle={post.title} />
+      <MetaHead
+        pageTitle={post.title}
+        setCanonicalBlogBaseURL={true}
+        blogSlug={post.slug}
+      />
       <Layout variant='prose'>
         <article
           className={cn(

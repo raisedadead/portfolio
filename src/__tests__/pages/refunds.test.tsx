@@ -13,6 +13,15 @@ vi.mock('@/hooks/useDarkMode', () => ({
   default: () => ({ isDarkMode: false, toggle: vi.fn() })
 }));
 
+// Mock next/router
+const mockRouter = {
+  asPath: '/refunds'
+};
+
+vi.mock('next/router', () => ({
+  useRouter: () => mockRouter
+}));
+
 describe('Refunds', () => {
   it('renders a heading', () => {
     render(<Refunds />);
