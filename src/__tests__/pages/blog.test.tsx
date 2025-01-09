@@ -5,7 +5,7 @@ import Blog from '@/pages/blog';
 import { SWRConfig } from 'swr';
 import { fetchPostsList } from '@/lib/posts-fetcher';
 import { MockedFunction } from 'vitest';
-import { PostsResponse } from '@/lib/posts-fetcher'; // Add this import
+import { ResponseData } from '@/lib/posts-fetcher';
 
 // Mock the fetchPostsList function
 vi.mock('@/lib/posts-fetcher', () => ({
@@ -52,7 +52,7 @@ describe('Blog', () => {
 
     // Mock the fetchPostsList function to return the mockFallback data
     (fetchPostsList as MockedFunction<typeof fetchPostsList>).mockResolvedValue(
-      mockFallback['/api/posts//'] as PostsResponse
+      mockFallback['/api/posts//'] as ResponseData
     );
   });
 
