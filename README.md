@@ -1,3 +1,5 @@
+[![Gitpod][gitpod-img]][gitpod]
+
 # portfolio
 
 > Nothing fancy here, just my [portfolio website][personal-website].
@@ -13,9 +15,20 @@
 Nonetheless, please feel free to browse, and leave feedbacks on the issue
 tracker. If you catch a typo, or something broken, please let me know.
 
-## Demo
+## Link
 
-> <https://mrugesh.dev>
+> ### <https://mrugesh.dev>
+
+<details>
+<summary>Screenshot</summary>
+
+![Screenshot][screenshot]
+
+</details>
+
+## Stats
+
+![Repobeats][repobeats-img]
 
 ## License
 
@@ -28,9 +41,9 @@ personal information, imagery, etc. is licensed under the [CC BY-NC-ND
 
 ---
 
-[![Gitpod][gitpod-img]][gitpod]
-
+[screenshot]: https://github.com/user-attachments/assets/70b057ec-a3d3-49c7-8cfa-5e65a7486148 'Website screenshot'
 [gitpod-img]: https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod
 [gitpod]: https://gitpod.io/#https://github.com/raisedadead/portfolio
 [personal-website]: https://mrugesh.dev
 [by-nc-nd-4]: https://creativecommons.org/licenses/by-nc-nd/4.0/
+[repobeats-img]: https://repobeats.axiom.co/api/embed/7554011ecd870f9d366a22f913161e180165ec85.svg 'Repobeats analytics image'
