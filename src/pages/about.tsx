@@ -91,15 +91,14 @@ const About: NextPage = () => (
                 </p>
                 <div className={cn('text-center text-lg')}>
                   <p className={cn('mb-2 font-semibold')}>
-                    Correspondence PO Box
+                    Registered Office Address
                   </p>
                   <p>
-                    Mrugesh Mohapatra, C/O IndianShoppre Pvt Ltd,
-                    SD-15D3-240594,
+                    Mrugesh Mohapatra Co. - 2nd Floor (Proworks),
                     <br />
-                    #218/190, Outer Ring Road, Agara, Sector 1, H.S.R. Layout,
+                    235, 13th Cross Rd, Indira Nagar II Stage,
                     <br />
-                    Bengaluru, Karnataka 560102, India
+                    Bengaluru, Karnataka, India - 560038
                   </p>
                 </div>
               </ES>
