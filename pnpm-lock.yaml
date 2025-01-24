@@ -62,7 +62,7 @@ importers:
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.13.7
-        version: 1.13.7(@cloudflare/workers-types@4.20241230.0)(vercel@39.2.5(rollup@4.18.0))(wrangler@3.99.0(@cloudflare/workers-types@4.20241230.0))
+        version: 1.13.7(@cloudflare/workers-types@4.20241230.0)(vercel@39.3.0(rollup@4.18.0))(wrangler@3.99.0(@cloudflare/workers-types@4.20241230.0))
       '@cloudflare/workers-types':
         specifier: 4.20241230.0
         version: 4.20241230.0
@@ -160,8 +160,8 @@ importers:
         specifier: 5.7.2
         version: 5.7.2
       vercel:
-        specifier: 39.2.5
-        version: 39.2.5(rollup@4.18.0)
+        specifier: 39.3.0
+        version: 39.3.0(rollup@4.18.0)
       vitest:
         specifier: 2.1.8
         version: 2.1.8(@edge-runtime/vm@3.2.0)(@types/node@22.10.5)(@vitest/ui@2.1.8)(jsdom@25.0.1)(terser@5.31.6)
@@ -1333,8 +1333,8 @@ packages:
   '@vercel/node@5.0.2':
     resolution: {integrity: sha512-UcUVBC6i4j3WPxLA5GYnSvRd/E1fpqJ5dnMZMLromGCTzIXaw+Uzj7bsSSQ2Y9yPtwnWWrcEDmF3IumSTcdr/w==}
 
-  '@vercel/python@4.6.0':
-    resolution: {integrity: sha512-43bpxcas3d3ep+F5zdziva6gW1LBc71YGQiG/XmajGlDv4cCNO312Vf8BE5SYafb5ft6rwl69+WOoFwGkI26qA==}
+  '@vercel/python@4.7.0':
+    resolution: {integrity: sha512-mkHmzYYZBLFLdvSdgrnBl1Qc1+LI5YIafSNJOj8oW4YU8vvALLMbwgZp42pZnyXW0e/3uHcesiRp4P0jSB0wyg==}
 
   '@vercel/redwood@2.1.12':
     resolution: {integrity: sha512-9CLwF8QKmxWlt1CMxoVD5gxTfwnojo1UlFONRSoUfjpNC+nTHEMCADVyawmDkANXs7Olx4QQSwJqsaWT8A9Jgg==}
@@ -4518,8 +4518,8 @@ packages:
   v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
 
-  vercel@39.2.5:
-    resolution: {integrity: sha512-mPrXm2Va5uPmajy3sEXf50ExEPAlZtYkKJpCvKMCGWNl6J/AH+n9qYrBo0GsKTYrMSnzGzeGZgzNCGoVFI4xCA==}
+  vercel@39.3.0:
+    resolution: {integrity: sha512-VyGaH5tnVVsgACcbU4PCRyQBDg/SST7/HQBaIXNnmOW7Ngjcn04wamjPgYAdFUGroiTm+ZpmNbCO1DQXzNeTjQ==}
     engines: {node: '>= 16'}
     hasBin: true
 
@@ -4916,7 +4916,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.13.7(@cloudflare/workers-types@4.20241230.0)(vercel@39.2.5(rollup@4.18.0))(wrangler@3.99.0(@cloudflare/workers-types@4.20241230.0))':
+  '@cloudflare/next-on-pages@1.13.7(@cloudflare/workers-types@4.20241230.0)(vercel@39.3.0(rollup@4.18.0))(wrangler@3.99.0(@cloudflare/workers-types@4.20241230.0))':
     dependencies:
       acorn: 8.11.3
       ast-types: 0.14.2
@@ -4930,7 +4930,7 @@ snapshots:
       package-manager-manager: 0.2.0
       pcre-to-regexp: 1.1.0
       semver: 7.6.3
-      vercel: 39.2.5(rollup@4.18.0)
+      vercel: 39.3.0(rollup@4.18.0)
       wrangler: 3.99.0(@cloudflare/workers-types@4.20241230.0)
     optionalDependencies:
       '@cloudflare/workers-types': 4.20241230.0
@@ -5852,7 +5852,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/python@4.6.0': {}
+  '@vercel/python@4.7.0': {}
 
   '@vercel/redwood@2.1.12(rollup@4.18.0)':
     dependencies:
@@ -9323,7 +9323,7 @@ snapshots:
 
   v8-compile-cache-lib@3.0.1: {}
 
-  vercel@39.2.5(rollup@4.18.0):
+  vercel@39.3.0(rollup@4.18.0):
     dependencies:
       '@vercel/build-utils': 9.0.1
       '@vercel/fun': 1.1.2
@@ -9331,7 +9331,7 @@ snapshots:
       '@vercel/hydrogen': 1.0.11
       '@vercel/next': 4.4.2(rollup@4.18.0)
       '@vercel/node': 5.0.2(rollup@4.18.0)
-      '@vercel/python': 4.6.0
+      '@vercel/python': 4.7.0
       '@vercel/redwood': 2.1.12(rollup@4.18.0)
       '@vercel/remix-builder': 5.0.2(rollup@4.18.0)
       '@vercel/ruby': 2.1.0
