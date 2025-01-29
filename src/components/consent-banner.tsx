@@ -28,7 +28,7 @@ function ConsentBanner({ setHasConsent }: ConsentBannerProps) {
   if (!showBanner) return null;
 
   return (
-    <div className='fixed bottom-0 left-0 right-0 bg-gray-800 px-4 py-2 shadow-lg'>
+    <div className='fixed right-0 bottom-0 left-0 bg-gray-800 px-4 py-2 shadow-lg'>
       <div className='container mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between'>
         <p className='mb-2 text-sm text-white sm:mb-0 sm:text-base'>
           We use third-party services to improve how users interact with our

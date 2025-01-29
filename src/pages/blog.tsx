@@ -82,7 +82,7 @@ const ErrorBlock = ({ message }: { message: string }) => (
 const SkeletonBlock = () => (
   <div
     className={cn(
-      'border-2 border-black bg-white p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)] transition-all duration-300 fade-in-30'
+      'fade-in-30 border-2 border-black bg-white p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)] transition-all duration-300'
     )}
   >
     <div role='status' className={cn('animate-pulse')}>

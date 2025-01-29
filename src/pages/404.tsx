@@ -44,7 +44,7 @@ const NotFound: NextPage = () => (
             'inline-flex items-center border-2 border-black bg-orange-200 px-4 py-2',
             'text-black shadow-[2px_2px_0px_rgba(0,0,0,1)]',
             'hover:bg-gray-700 hover:text-white hover:shadow-none',
-            'focus:outline-none active:bg-black active:shadow-none'
+            'focus:outline-hidden active:bg-black active:shadow-none'
           )}
         >
           Return to Home

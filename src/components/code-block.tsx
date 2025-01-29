@@ -53,13 +53,13 @@ function CodeBlock({ language, code }: CodeBlockProps) {
 
   return (
     <div key={key} className='group relative'>
-      <div className='absolute right-2 top-2'>
+      <div className='absolute top-2 right-2'>
         <button
           onClick={handleCopy}
           className={cn(
             'rounded-md p-2 transition-opacity duration-200',
             'bg-gray-800 hover:bg-gray-700 dark:bg-gray-100 dark:hover:bg-gray-200',
-            'opacity-20 focus:opacity-100 group-hover:opacity-100'
+            'opacity-20 group-hover:opacity-100 focus:opacity-100'
           )}
           aria-label='Copy code'
         >

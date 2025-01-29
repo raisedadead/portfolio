@@ -9,7 +9,7 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
       class="fixed inset-0 -z-10"
     >
       <div
-        class="relative h-screen w-screen overflow-hidden bg-gradient-to-b from-emerald-300 via-orange-200 to-teal-200"
+        class="relative h-screen w-screen overflow-hidden bg-linear-to-b from-emerald-300 via-orange-200 to-teal-200"
       >
         <svg
           class="absolute bottom-0 left-0 w-full"
@@ -50,7 +50,7 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
           />
         </svg>
         <div
-          class="absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-teal-600 to-transparent opacity-30"
+          class="absolute bottom-0 left-0 h-32 w-full bg-linear-to-t from-teal-600 to-transparent opacity-30"
         />
       </div>
     </div>
@@ -128,12 +128,12 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
                   />
                 </div>
                 <h2
-                  class="mb-4 max-w-md p-1 text-xl font-bold leading-relaxed text-slate-700 md:text-2xl"
+                  class="mb-4 max-w-md p-1 text-xl leading-relaxed font-bold text-slate-700 md:text-2xl"
                 >
                   nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
                 </h2>
                 <h3
-                  class="mb-8 p-1 text-lg font-medium leading-relaxed text-slate-700 md:text-xl"
+                  class="mb-8 p-1 text-lg leading-relaxed font-medium text-slate-700 md:text-xl"
                 >
                   Principal Maintainer — Cloud Infrastructure & Open-source, 
                   <a
@@ -189,7 +189,7 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
                     Elsewhere on the internet
                   </h3>
                   <div
-                    class="mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-3 space-y-0"
+                    class="mx-auto mt-2 mb-1 flex flex-row items-center justify-center space-y-0 space-x-3"
                   >
                     <a
                       class="h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
@@ -327,7 +327,7 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
         </div>
       </footer>
       <div
-        class="fixed bottom-4 right-4 z-20"
+        class="fixed right-4 bottom-4 z-20"
       />
     </main>
   </div>
