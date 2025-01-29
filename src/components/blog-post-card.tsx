@@ -21,14 +21,14 @@ const getImageProperties = (
   index: number
 ): { aspect: string; height: string } => {
   const properties = [
-    { aspect: 'aspect-[16/9]', height: 'h-64' },
-    { aspect: 'aspect-[4/3]', height: 'h-48' },
-    { aspect: 'aspect-[21/9]', height: 'h-56' },
-    { aspect: 'aspect-[3/2]', height: 'h-48' },
-    { aspect: 'aspect-[3/4]', height: 'h-64' },
-    { aspect: 'aspect-[2/1]', height: 'h-40' }
+    { aspect: 'aspect-16/9', height: 'h-64' },
+    { aspect: 'aspect-4/3', height: 'h-48' },
+    { aspect: 'aspect-21/9', height: 'h-56' },
+    { aspect: 'aspect-3/2', height: 'h-48' },
+    { aspect: 'aspect-3/4', height: 'h-64' },
+    { aspect: 'aspect-2/1', height: 'h-40' }
   ];
-  return properties[index % 6] || { aspect: 'aspect-[16/9]', height: 'h-64' };
+  return properties[index % 6] || { aspect: 'aspect-16/9', height: 'h-64' };
 };
 
 const ShimmerEffect = () => (
@@ -52,9 +52,9 @@ export const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
       className={cn(
         'group flex flex-col overflow-hidden p-4',
         'bg-white dark:bg-gray-800',
-        'no-underline shadow-[6px_6px_0px_theme(colors.black)]',
+        'no-underline shadow-[6px_6px_0px_var(--color-black)]',
         'hover:bg-orange-100 dark:hover:bg-orange-900',
-        'transition-all duration-300 hover:shadow-[8px_8px_0px_theme(colors.black)]',
+        'transition-all duration-300 hover:shadow-[8px_8px_0px_var(--color-black)]',
         getGridSpan(index)
       )}
     >
@@ -79,14 +79,14 @@ export const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
         ) : (
           <div
             className={cn(
-              'flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-orange-100'
+              'flex h-full w-full items-center justify-center bg-linear-to-br from-blue-100 to-orange-100'
             )}
           >
             <span className={cn('text-6xl')}>📝</span>
           </div>
         )}
       </div>
-      <div className={cn('flex flex-grow flex-col')}>
+      <div className={cn('flex grow flex-col')}>
         <h2
           className={cn(
             'my-4 font-sans text-2xl font-bold text-slate-900 dark:text-orange-100',
@@ -97,7 +97,7 @@ export const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
         </h2>
         <p
           className={cn(
-            'mb-4 flex-grow text-slate-600 dark:text-slate-300',
+            'mb-4 grow text-slate-600 dark:text-slate-300',
             'transition-colors group-hover:text-slate-700 dark:group-hover:text-orange-100'
           )}
         >

@@ -4,7 +4,7 @@ const Contents: React.FC = () => {
   return (
     <Layout>
       <section>
-        <div className='prose prose-stone max-w-none px-20 pb-20 pt-5'>
+        <div className='prose prose-stone max-w-none px-20 pt-5 pb-20'>
           <h1 className='py-2 text-center'>Blog</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel

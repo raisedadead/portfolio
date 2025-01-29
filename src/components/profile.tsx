@@ -46,10 +46,10 @@ export const Profile: React.FC = () => {
         </h1>
         <div className='m-1 mx-auto -mt-8 w-2/5 border-8 border-orange-50 bg-orange-50' />
       </div>
-      <h2 className='mb-4 max-w-md p-1 text-xl font-bold leading-relaxed text-slate-700 md:text-2xl'>
+      <h2 className='mb-4 max-w-md p-1 text-xl leading-relaxed font-bold text-slate-700 md:text-2xl'>
         nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
       </h2>
-      <h3 className='mb-8 p-1 text-lg font-medium leading-relaxed text-slate-700 md:text-xl'>
+      <h3 className='mb-8 p-1 text-lg leading-relaxed font-medium text-slate-700 md:text-xl'>
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link
           href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'

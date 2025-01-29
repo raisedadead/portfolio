@@ -168,7 +168,7 @@ describe('BlogPost component', () => {
       expect(article.classList.contains('bg-white')).toBe(true);
       expect(article.classList.contains('no-underline')).toBe(true);
       expect(
-        article.classList.contains('shadow-[6px_8px_0px_theme(colors.black)]')
+        article.classList.contains('shadow-[6px_8px_0px_var(--color-black)]')
       ).toBe(true);
       expect(article.classList.contains('transition-colors')).toBe(true);
       expect(article.classList.contains('duration-300')).toBe(true);

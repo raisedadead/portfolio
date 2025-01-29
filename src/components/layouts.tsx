@@ -39,7 +39,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
         />
         <div className='p-5'>{children}</div>
         <Footer isDefault={true} className='p-2' />
-        <ScrollButton className='fixed bottom-4 right-4 z-20' />
+        <ScrollButton className='fixed right-4 bottom-4 z-20' />
       </main>
     </div>
   </>
@@ -77,7 +77,7 @@ const LegalLayout: React.FC<LegalLayoutProps> = (props) => (
 
         // Link styles
         'prose-a:text-blue-600 dark:prose-a:text-blue-400',
-        'prose-a:no-underline hover:prose-a:underline'
+        'prose-a:no-underline prose-a:hover:underline'
       )}
     >
       {props.children}
