@@ -1,6 +1,6 @@
 import { CustomLink as Link } from './custom-link';
 export const Social = () => (
-  <div className='mx-auto mb-1 mt-2 flex flex-row items-center justify-center space-x-3 space-y-0'>
+  <div className='mx-auto mt-2 mb-1 flex flex-row items-center justify-center space-y-0 space-x-3'>
     <Link
       href='https://twitter.com/raisedadead'
       aria-label='Twitter'

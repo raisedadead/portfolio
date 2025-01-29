@@ -69,7 +69,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
     <Disclosure as='div' className={className} defaultOpen={defaultOpen}>
       {({ open }) => (
         <div
-          className={`${open ? 'border-2' : 'border-l-2 border-r-2 border-t-2'} my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]`}
+          className={`${open ? 'border-2' : 'border-t-2 border-r-2 border-l-2'} my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]`}
         >
           <DisclosureButton
             className={`${open ? 'bg-purple-300' : 'bg-red-200'} flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900`}

@@ -57,8 +57,8 @@ const BlogPost = () => {
             'mx-auto max-w-4xl overflow-hidden',
             'bg-white dark:bg-gray-800',
             'no-underline',
-            'shadow-[6px_8px_0px_theme(colors.gray.300)]',
-            'dark:shadow-[6px_8px_0px_theme(colors.gray.700)]',
+            'shadow-[6px_8px_0px_var(--color-gray-300)]',
+            'dark:shadow-[6px_8px_0px_var(--color-gray-700)]',
             'transition-colors duration-300'
           )}
         >
@@ -81,8 +81,8 @@ const BlogPost = () => {
             'mx-auto max-w-4xl overflow-hidden',
             'bg-white dark:bg-gray-800',
             'no-underline',
-            'shadow-[6px_8px_0px_theme(colors.black)]',
-            'dark:shadow-[6px_8px_0px_theme(colors.white)]',
+            'shadow-[6px_8px_0px_var(--color-black)]',
+            'dark:shadow-[6px_8px_0px_var(--color-white)]',
             'transition-colors duration-300'
           )}
         >
@@ -97,12 +97,12 @@ const BlogPost = () => {
             />
           </div>
           <div className='p-6 sm:p-10'>
-            <h1 className='mb-10 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl'>
+            <h1 className='mb-10 text-3xl font-bold text-gray-900 sm:text-4xl dark:text-gray-100'>
               {post.title}
             </h1>
             <div
               className={cn(
-                'prose prose-lg max-w-none dark:prose-invert',
+                'prose prose-lg dark:prose-invert max-w-none',
                 'prose-p:text-gray-700 dark:prose-p:text-gray-300',
                 'prose-p:my-2 prose-p:leading-relaxed',
                 'prose-strong:text-gray-800 dark:prose-strong:text-gray-200',
@@ -110,8 +110,8 @@ const BlogPost = () => {
                 'prose-h2:mb-2 prose-h2:mt-8',
                 'prose-h3:mb-2 prose-h3:mt-6',
                 'prose-h4:mb-2 prose-h4:mt-4',
-                'prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:text-blue-400',
-                'marker:bg-gray-300 marker:text-gray-700 prose-ol:list-outside prose-ul:list-disc dark:marker:text-gray-300',
+                'prose-a:text-blue-600 prose-a:no-underline prose-a:hover:underline dark:prose-a:text-blue-400',
+                'prose-ol:list-outside prose-ul:list-disc marker:bg-gray-300 marker:text-gray-700 dark:marker:text-gray-300',
                 'prose-li:text-gray-700 dark:prose-li:text-gray-300',
                 'prose-img:my-4 prose-img:rounded-md prose-img:shadow-md',
                 'prose-hr:border-gray-200 dark:prose-hr:border-gray-700',

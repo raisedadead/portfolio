@@ -246,7 +246,7 @@ const Uses: NextPage = () => {
             </ul>
             <h2
               className={cn(
-                'mb-6 mt-12 text-center text-2xl font-bold text-slate-700'
+                'mt-12 mb-6 text-center text-2xl font-bold text-slate-700'
               )}
             >
               Software

@@ -40,7 +40,7 @@ const ScrollButton = ({ className }: { className: string }) => {
     window.scrollTo({ top: scrollTo, behavior: 'smooth' });
   };
 
-  const arrowClassName = `cursor-pointer rounded-full bg-white text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-none ${
+  const arrowClassName = `cursor-pointer rounded-full bg-white text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-hidden ${
     bounceButton ? 'animate-bounce' : ''
   }`;
 
