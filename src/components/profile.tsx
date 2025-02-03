@@ -60,7 +60,7 @@ export const Profile: React.FC = () => {
         </Link>
       </h3>
 
-      <div className='mb-10 flex flex-col items-center justify-center space-y-4'>
+      <div className='mb-10 flex flex-row items-center justify-center space-x-4'>
         <Link
           aria-label='Book a 1-on-1 Call'
           className='h-14 w-80 border-2 border-black bg-orange-50 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
@@ -69,24 +69,14 @@ export const Profile: React.FC = () => {
         >
           <span className='inline-flex items-center'>Get in touch!</span>
         </Link>
-        <div className='flex flex-row justify-between space-x-8'>
-          <Link
-            aria-label='Browse my blog'
-            className='flex h-12 w-36 items-center justify-center border-2 border-black bg-orange-200 text-base font-medium text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
-            href='/blog'
-            type='button'
-          >
-            <span>Blog</span>
-          </Link>
-          <Link
-            aria-label='Browse my links'
-            className='flex h-12 w-36 items-center justify-center border-2 border-black bg-orange-200 text-base font-medium text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
-            href='/uses'
-            type='button'
-          >
-            <span>Uses</span>
-          </Link>
-        </div>
+        <Link
+          aria-label='Browse my blog'
+          className='h-14 w-36 border-2 border-black bg-orange-200 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+          href='/blog'
+          type='button'
+        >
+          <span className='inline-flex items-center'>Blog</span>
+        </Link>
       </div>
       <div className='prose prose-lg prose-slate mx-auto mt-8 max-w-3xl'>
         <h3 className='mb-4 text-center font-bold text-slate-700'>

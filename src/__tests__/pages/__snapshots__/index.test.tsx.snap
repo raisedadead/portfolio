@@ -144,7 +144,7 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
                   </a>
                 </h3>
                 <div
-                  class="mb-10 flex flex-col items-center justify-center space-y-4"
+                  class="mb-10 flex flex-row items-center justify-center space-x-4"
                 >
                   <a
                     class="h-14 w-80 border-2 border-black bg-orange-50 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
@@ -157,28 +157,17 @@ exports[`Home > renders a snapshot of the homepage 1`] = `
                       Get in touch!
                     </span>
                   </a>
-                  <div
-                    class="flex flex-row justify-between space-x-8"
+                  <a
+                    class="h-14 w-36 border-2 border-black bg-orange-200 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
+                    href="/blog"
+                    type="button"
                   >
-                    <a
-                      class="flex h-12 w-36 items-center justify-center border-2 border-black bg-orange-200 text-base font-medium text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-                      href="/blog"
-                      type="button"
+                    <span
+                      class="inline-flex items-center"
                     >
-                      <span>
-                        Blog
-                      </span>
-                    </a>
-                    <a
-                      class="flex h-12 w-36 items-center justify-center border-2 border-black bg-orange-200 text-base font-medium text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none"
-                      href="/uses"
-                      type="button"
-                    >
-                      <span>
-                        Uses
-                      </span>
-                    </a>
-                  </div>
+                      Blog
+                    </span>
+                  </a>
                 </div>
                 <div
                   class="prose prose-lg prose-slate mx-auto mt-8 max-w-3xl"
