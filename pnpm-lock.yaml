@@ -82,7 +82,7 @@ importers:
         specifier: 0.5.10
         version: 0.5.10(tailwindcss@4.0.0)
       '@tailwindcss/postcss':
-        specifier: ^4.0.0
+        specifier: 4.0.0
         version: 4.0.0
       '@tailwindcss/typography':
         specifier: 0.5.16
