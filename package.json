@@ -71,7 +71,7 @@
     "@typescript-eslint/eslint-plugin": "8.26.0",
     "@typescript-eslint/parser": "8.26.0",
     "@vitejs/plugin-react": "4.3.4",
-    "@vitest/ui": "3.0.7",
+    "@vitest/ui": "3.0.8",
     "eslint": "8.57.1",
     "eslint-config-next": "15.2.1",
     "eslint-config-prettier": "10.0.2",
@@ -89,7 +89,7 @@
     "turbo": "2.4.4",
     "typescript": "5.8.2",
     "vercel": "41.3.1",
-    "vitest": "3.0.7",
+    "vitest": "3.0.8",
     "wrangler": "3.113.0"
   },
   "packageManager": "pnpm@10.5.2"
