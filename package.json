@@ -92,5 +92,10 @@
     "vitest": "3.0.8",
     "wrangler": "3.114.0"
   },
-  "packageManager": "pnpm@10.5.2"
+  "packageManager": "pnpm@10.5.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "workerd"
+    ]
+  }
 }
