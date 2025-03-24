@@ -90,7 +90,7 @@
     "typescript": "5.8.2",
     "vercel": "41.4.1",
     "vitest": "3.0.9",
-    "wrangler": "3.114.2"
+    "wrangler": "4.4.0"
   },
   "packageManager": "pnpm@10.6.5",
   "pnpm": {
