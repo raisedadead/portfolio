@@ -61,8 +61,8 @@ importers:
         version: 3.24.2
     devDependencies:
       '@cloudflare/next-on-pages':
-        specifier: 1.13.10
-        version: 1.13.10(@cloudflare/workers-types@4.20250327.0)(vercel@41.4.1(rollup@4.18.0))(wrangler@4.6.0(@cloudflare/workers-types@4.20250327.0))
+        specifier: 1.13.12
+        version: 1.13.12(@cloudflare/workers-types@4.20250327.0)(vercel@41.4.1(rollup@4.18.0))(wrangler@4.6.0(@cloudflare/workers-types@4.20250327.0))
       '@cloudflare/workers-types':
         specifier: 4.20250327.0
         version: 4.20250327.0
@@ -290,8 +290,8 @@ packages:
     resolution: {integrity: sha512-+tv3z+SPp+gqTIcImN9o0hqE9xyfQjI1XD9pL6NuKjua9B1y7mNYv0S9cP+QEbA4ppVgGZEmKOvHX5G5Ei1CVA==}
     engines: {node: '>=18.0.0'}
 
-  '@cloudflare/next-on-pages@1.13.10':
-    resolution: {integrity: sha512-miboFA675/RzpHNe3nri1XO5cwtJCPfEZbL7mdlwwXqYw6DMlrppPaBNNjgbgXdLylHBV7h1+zfKdVDaQ20B8w==}
+  '@cloudflare/next-on-pages@1.13.12':
+    resolution: {integrity: sha512-rPy7x9c2+0RDDdJ5o0TeRUwXJ1b7N1epnqF6qKSp5Wz1r9KHOyvaZh1ACoOC6Vu5k9su5WZOgy+8fPLIyrldMQ==}
     hasBin: true
     peerDependencies:
       '@cloudflare/workers-types': ^4.20240208.0
@@ -4688,7 +4688,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.13.10(@cloudflare/workers-types@4.20250327.0)(vercel@41.4.1(rollup@4.18.0))(wrangler@4.6.0(@cloudflare/workers-types@4.20250327.0))':
+  '@cloudflare/next-on-pages@1.13.12(@cloudflare/workers-types@4.20250327.0)(vercel@41.4.1(rollup@4.18.0))(wrangler@4.6.0(@cloudflare/workers-types@4.20250327.0))':
     dependencies:
       acorn: 8.14.0
       ast-types: 0.14.2
