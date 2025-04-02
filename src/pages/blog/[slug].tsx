@@ -59,7 +59,7 @@ const BlogPost = () => {
             'no-underline',
             'shadow-[6px_8px_0px_var(--color-gray-300)]',
             'dark:shadow-[6px_8px_0px_var(--color-gray-700)]',
-            'transition-colors duration-300'
+            'transition-colors duration-100'
           )}
         >
           <SkeletonBlock />
@@ -83,7 +83,7 @@ const BlogPost = () => {
             'no-underline',
             'shadow-[6px_8px_0px_var(--color-black)]',
             'dark:shadow-[6px_8px_0px_var(--color-white)]',
-            'transition-colors duration-300'
+            'transition-colors duration-100'
           )}
         >
           <div className='relative aspect-video w-full'>

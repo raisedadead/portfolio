@@ -65,7 +65,7 @@ const ErrorBlock = ({ message }: { message: string }) => (
   <div
     className={cn(
       'border-2 border-black bg-white p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)]',
-      'transition-all duration-300 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)]',
+      'transition-all duration-100 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)]',
       'mx-auto my-8 max-w-2xl'
     )}
   >
@@ -82,7 +82,7 @@ const ErrorBlock = ({ message }: { message: string }) => (
 const SkeletonBlock = () => (
   <div
     className={cn(
-      'fade-in-30 border-2 border-black bg-white p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)] transition-all duration-300'
+      'fade-in-30 border-2 border-black bg-white p-4 shadow-[4px_2px_0px_rgba(0,0,0,1)] transition-all duration-100'
     )}
   >
     <div role='status' className={cn('animate-pulse')}>
