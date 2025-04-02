@@ -54,7 +54,7 @@ export const BlogPostCard: React.FC<{ post: Post; index: number }> = ({
         'bg-white dark:bg-gray-800',
         'no-underline shadow-[6px_6px_0px_var(--color-black)]',
         'hover:bg-orange-100 dark:hover:bg-orange-900',
-        'transition-all duration-300 hover:shadow-[8px_8px_0px_var(--color-black)]',
+        'transition-all duration-100 hover:shadow-[8px_8px_0px_var(--color-black)]',
         getGridSpan(index)
       )}
     >

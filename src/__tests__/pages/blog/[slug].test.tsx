@@ -171,7 +171,7 @@ describe('BlogPost component', () => {
         article.classList.contains('shadow-[6px_8px_0px_var(--color-black)]')
       ).toBe(true);
       expect(article.classList.contains('transition-colors')).toBe(true);
-      expect(article.classList.contains('duration-300')).toBe(true);
+      expect(article.classList.contains('duration-100')).toBe(true);
       expect(article.classList.contains('dark:bg-gray-800')).toBe(true);
     });
   });
