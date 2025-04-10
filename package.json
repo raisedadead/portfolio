@@ -74,7 +74,7 @@
     "@vitest/ui": "3.1.1",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.0",
-    "eslint-config-prettier": "10.1.1",
+    "eslint-config-prettier": "10.1.2",
     "eslint-plugin-next-on-pages": "1.13.12",
     "eslint-plugin-react": "7.37.5",
     "globals": "16.0.0",
