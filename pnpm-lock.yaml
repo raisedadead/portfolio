@@ -62,7 +62,7 @@ importers:
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.13.12
-        version: 1.13.12(@cloudflare/workers-types@4.20250416.0)(vercel@41.6.0(rollup@4.18.0))(wrangler@4.11.1(@cloudflare/workers-types@4.20250416.0))
+        version: 1.13.12(@cloudflare/workers-types@4.20250416.0)(vercel@41.6.1(rollup@4.18.0))(wrangler@4.11.1(@cloudflare/workers-types@4.20250416.0))
       '@cloudflare/workers-types':
         specifier: 4.20250416.0
         version: 4.20250416.0
@@ -160,8 +160,8 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
       vercel:
-        specifier: 41.6.0
-        version: 41.6.0(rollup@4.18.0)
+        specifier: 41.6.1
+        version: 41.6.1(rollup@4.18.0)
       vitest:
         specifier: 3.1.1
         version: 3.1.1(@edge-runtime/vm@3.2.0)(@types/node@22.14.1)(@vitest/ui@3.1.1)(jsdom@26.1.0)(lightningcss@1.29.2)(terser@5.31.6)
@@ -4403,8 +4403,8 @@ packages:
   v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
 
-  vercel@41.6.0:
-    resolution: {integrity: sha512-wig7fUZqU6Xb5/CdW49NUrwssA5GuG18WUP5vxl84KZigUcmQM5CKySyxgeFcugBtqelQSlg1+4ytfjcfQxQuw==}
+  vercel@41.6.1:
+    resolution: {integrity: sha512-Xly6uozzOHm6VT2nB6l0IydEyhRNGvxU7aBnIA5CD2rt+HjLq+Dz9qIYC6XmcpBbR1EWkG2uCyM11k7pt+uHXA==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -4799,7 +4799,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.13.12(@cloudflare/workers-types@4.20250416.0)(vercel@41.6.0(rollup@4.18.0))(wrangler@4.11.1(@cloudflare/workers-types@4.20250416.0))':
+  '@cloudflare/next-on-pages@1.13.12(@cloudflare/workers-types@4.20250416.0)(vercel@41.6.1(rollup@4.18.0))(wrangler@4.11.1(@cloudflare/workers-types@4.20250416.0))':
     dependencies:
       acorn: 8.14.0
       ast-types: 0.14.2
@@ -4813,7 +4813,7 @@ snapshots:
       package-manager-manager: 0.2.0
       pcre-to-regexp: 1.1.0
       semver: 7.6.3
-      vercel: 41.6.0(rollup@4.18.0)
+      vercel: 41.6.1(rollup@4.18.0)
       wrangler: 4.11.1(@cloudflare/workers-types@4.20250416.0)
     optionalDependencies:
       '@cloudflare/workers-types': 4.20250416.0
@@ -8880,7 +8880,7 @@ snapshots:
 
   v8-compile-cache-lib@3.0.1: {}
 
-  vercel@41.6.0(rollup@4.18.0):
+  vercel@41.6.1(rollup@4.18.0):
     dependencies:
       '@vercel/build-utils': 10.5.1
       '@vercel/fun': 1.1.5
