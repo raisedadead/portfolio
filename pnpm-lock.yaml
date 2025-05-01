@@ -62,7 +62,7 @@ importers:
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.13.12
-        version: 1.13.12(@cloudflare/workers-types@4.20250430.0)(vercel@41.7.0(rollup@4.18.0))(wrangler@4.14.0(@cloudflare/workers-types@4.20250430.0))
+        version: 1.13.12(@cloudflare/workers-types@4.20250430.0)(vercel@41.7.0(rollup@4.18.0))(wrangler@4.14.1(@cloudflare/workers-types@4.20250430.0))
       '@cloudflare/workers-types':
         specifier: 4.20250430.0
         version: 4.20250430.0
@@ -166,8 +166,8 @@ importers:
         specifier: 3.1.2
         version: 3.1.2(@edge-runtime/vm@3.2.0)(@types/node@22.15.3)(@vitest/ui@3.1.2)(jsdom@26.1.0)(lightningcss@1.29.2)(terser@5.31.6)
       wrangler:
-        specifier: 4.14.0
-        version: 4.14.0(@cloudflare/workers-types@4.20250430.0)
+        specifier: 4.14.1
+        version: 4.14.1(@cloudflare/workers-types@4.20250430.0)
 
 packages:
 
@@ -3350,8 +3350,8 @@ packages:
     engines: {node: '>=16.13'}
     hasBin: true
 
-  miniflare@4.20250428.0:
-    resolution: {integrity: sha512-3kKJNcdh5zUSXoFD3kGSRWc+ETZS36O7ygkCJJF/bwN7lxcB5mOXq+2DPqV/nVyu2DGLDAqsAvjXhpPKCHuPOQ==}
+  miniflare@4.20250428.1:
+    resolution: {integrity: sha512-M3qcJXjeAEimHrEeWXEhrJiC3YHB5M3QSqqK67pOTI+lHn0QyVG/2iFUjVJ/nv+i10uxeAEva8GRGeu+tKRCmQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -4535,10 +4535,9 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.14.0:
-    resolution: {integrity: sha512-WhypgOBEYuUMo/ZFw8MgZ0wtyE7EmDanytjD8Me+OMm62raKU9V9DZTlF1UVLkNfilfQNlRbMnFRdzSBji/MEA==}
+  wrangler@4.14.1:
+    resolution: {integrity: sha512-EU7IThP7i68TBftJJSveogvWZ5k/WRijcJh3UclDWiWWhDZTPbL6LOJEFhHKqFzHOaC4Y2Aewt48rfTz0e7oCw==}
     engines: {node: '>=18.0.0'}
-    deprecated: Workers with configured tail consumers would sometimes prevent wrangler dev from running. Downgrade to 4.13.2 to workaround this issue
     hasBin: true
     peerDependencies:
       '@cloudflare/workers-types': ^4.20250428.0
@@ -4787,7 +4786,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.13.12(@cloudflare/workers-types@4.20250430.0)(vercel@41.7.0(rollup@4.18.0))(wrangler@4.14.0(@cloudflare/workers-types@4.20250430.0))':
+  '@cloudflare/next-on-pages@1.13.12(@cloudflare/workers-types@4.20250430.0)(vercel@41.7.0(rollup@4.18.0))(wrangler@4.14.1(@cloudflare/workers-types@4.20250430.0))':
     dependencies:
       acorn: 8.14.0
       ast-types: 0.14.2
@@ -4802,7 +4801,7 @@ snapshots:
       pcre-to-regexp: 1.1.0
       semver: 7.6.3
       vercel: 41.7.0(rollup@4.18.0)
-      wrangler: 4.14.0(@cloudflare/workers-types@4.20250430.0)
+      wrangler: 4.14.1(@cloudflare/workers-types@4.20250430.0)
     optionalDependencies:
       '@cloudflare/workers-types': 4.20250430.0
     transitivePeerDependencies:
@@ -7817,7 +7816,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  miniflare@4.20250428.0:
+  miniflare@4.20250428.1:
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       acorn: 8.14.0
@@ -9071,13 +9070,13 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250428.0
       '@cloudflare/workerd-windows-64': 1.20250428.0
 
-  wrangler@4.14.0(@cloudflare/workers-types@4.20250430.0):
+  wrangler@4.14.1(@cloudflare/workers-types@4.20250430.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250428.0)
       blake3-wasm: 2.1.5
       esbuild: 0.25.2
-      miniflare: 4.20250428.0
+      miniflare: 4.20250428.1
       path-to-regexp: 6.3.0
       unenv: 2.0.0-rc.15
       workerd: 1.20250428.0
