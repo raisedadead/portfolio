@@ -30,8 +30,8 @@ importers:
         specifier: 7.1.2
         version: 7.1.2(graphql@16.11.0)
       html-react-parser:
-        specifier: 5.2.4
-        version: 5.2.4(@types/react@19.1.3)(react@19.1.0)
+        specifier: 5.2.5
+        version: 5.2.5(@types/react@19.1.3)(react@19.1.0)
       next:
         specifier: 15.3.2
         version: 15.3.2(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -2875,8 +2875,8 @@ packages:
   highlightjs-vue@1.0.0:
     resolution: {integrity: sha512-PDEfEF102G23vHmPhLyPboFCD+BkMGu+GuJe2d9/eH4FsCwvgBpnc9n0pGE+ffKdph38s6foEZiEjdgHdzp+IA==}
 
-  html-dom-parser@5.1.0:
-    resolution: {integrity: sha512-d06vEzAhorKFrgtW4zsG4EgwUUdkOWp2hXtWdM/Fwpx0k6YT/IL6qneK2AH/UOf/sKtWQEdcoGK0PZ0veNDs/A==}
+  html-dom-parser@5.1.1:
+    resolution: {integrity: sha512-+o4Y4Z0CLuyemeccvGN4bAO20aauB2N9tFEAep5x4OW34kV4PTarBHm6RL02afYt2BMKcr0D2Agep8S3nJPIBg==}
 
   html-encoding-sniffer@4.0.0:
     resolution: {integrity: sha512-Y22oTqIU4uuPgEemfz7NDJz6OeKf12Lsu+QC+s3BVpda64lTiMYCyGwg5ki4vFxkMwQdeZDl2adZoqUgdFuTgQ==}
@@ -2885,8 +2885,8 @@ packages:
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
 
-  html-react-parser@5.2.4:
-    resolution: {integrity: sha512-qh3meye/n5TBOkUR+q3O8UsL9X2pEhb8/JWKBFySkofosHyfBwwTW78ES5CGHPlzPBh3EA5i7zaDmlqUfQEyqQ==}
+  html-react-parser@5.2.5:
+    resolution: {integrity: sha512-bRPdv8KTqG9CEQPMNGksDqmbiRfVQeOidry8pVetdh/1jQ1Edx4KX5m0lWvDD89Pt4CqTYjK1BLz6NoNVxN/Uw==}
     peerDependencies:
       '@types/react': 0.14 || 15 || 16 || 17 || 18 || 19
       react: 0.14 || 15 || 16 || 17 || 18 || 19
@@ -7343,7 +7343,7 @@ snapshots:
 
   highlightjs-vue@1.0.0: {}
 
-  html-dom-parser@5.1.0:
+  html-dom-parser@5.1.1:
     dependencies:
       domhandler: 5.0.3
       htmlparser2: 10.0.0
@@ -7354,10 +7354,10 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
-  html-react-parser@5.2.4(@types/react@19.1.3)(react@19.1.0):
+  html-react-parser@5.2.5(@types/react@19.1.3)(react@19.1.0):
     dependencies:
       domhandler: 5.0.3
-      html-dom-parser: 5.1.0
+      html-dom-parser: 5.1.1
       react: 19.1.0
       react-property: 2.0.2
       style-to-js: 1.1.16
