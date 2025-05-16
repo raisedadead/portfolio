@@ -59,7 +59,7 @@
     "@cloudflare/workers-types": "4.20250515.0",
     "@eslint/compat": "1.2.9",
     "@eslint/eslintrc": "3.3.1",
-    "@eslint/js": "9.26.0",
+    "@eslint/js": "9.27.0",
     "@next/bundle-analyzer": "15.3.2",
     "@tailwindcss/forms": "0.5.10",
     "@tailwindcss/postcss": "4.1.7",
