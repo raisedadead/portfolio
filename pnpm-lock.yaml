@@ -57,8 +57,8 @@ importers:
         specifier: 1.0.7
         version: 1.0.7(tailwindcss@4.1.8)
       zod:
-        specifier: 3.25.42
-        version: 3.25.42
+        specifier: 3.25.45
+        version: 3.25.45
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.13.12
@@ -4671,8 +4671,8 @@ packages:
   zod@3.22.3:
     resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
 
-  zod@3.25.42:
-    resolution: {integrity: sha512-PcALTLskaucbeHc41tU/xfjfhcz8z0GdhhDcSgrCTmSazUuqnYqiXO63M0QUBVwpBlsLsNVn5qHSC5Dw3KZvaQ==}
+  zod@3.25.45:
+    resolution: {integrity: sha512-kv1swJBZqv98NQibL0oVvkQE8rXT+6qGNM1FpZkFcJG2jnz4vbtu48bgaitp85CaBPLSKXibrEsU7MzJoVoZAA==}
 
 snapshots:
 
@@ -9223,4 +9223,4 @@ snapshots:
 
   zod@3.22.3: {}
 
-  zod@3.25.42: {}
+  zod@3.25.45: {}
