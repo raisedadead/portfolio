@@ -8,6 +8,18 @@
     "binding": "ASSETS",
     "directory": ".open-next/assets"
   },
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "portfolio-cache"
+    }
+  ],
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "portfolio"
+    }
+  ],
   "observability": {
     "enabled": true
   },
