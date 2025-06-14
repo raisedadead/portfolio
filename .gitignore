@@ -49,3 +49,5 @@ public/robots.txt
 
 /.pnpm-store/
 /.vscode/
+
+/.open-next/

@@ -1,7 +1,6 @@
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import react from 'eslint-plugin-react';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import nextOnPages from 'eslint-plugin-next-on-pages';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
 import path from 'node:path';
@@ -22,6 +21,7 @@ const compat = new FlatCompat({
 const config = [
   {
     ignores: [
+      '.open-next/**',
       '**/pnpm-lock.yaml',
       '.next/**',
       'node_modules/**',
@@ -34,15 +34,13 @@ const config = [
       'eslint:recommended',
       'plugin:react/recommended',
       'next/core-web-vitals',
-      'plugin:@typescript-eslint/recommended',
-      'plugin:next-on-pages/recommended'
+      'plugin:@typescript-eslint/recommended'
     )
   ),
   {
     plugins: {
       react: fixupPluginRules(react),
-      '@typescript-eslint': fixupPluginRules(typescriptEslint),
-      'next-on-pages': fixupPluginRules(nextOnPages)
+      '@typescript-eslint': fixupPluginRules(typescriptEslint)
     },
 
     languageOptions: {
@@ -60,8 +58,7 @@ const config = [
       indent: ['error', 2],
       'linebreak-style': ['error', 'unix'],
       quotes: ['error', 'single'],
-      semi: ['error', 'always'],
-      'next-on-pages/no-unsupported-configs': 'warn'
+      semi: ['error', 'always']
     }
   },
   eslintConfigPrettier

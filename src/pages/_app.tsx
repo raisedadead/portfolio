@@ -17,14 +17,6 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
   return (
     <DarkModeProvider>
-      <style jsx global>{`
-        html {
-          font-family: ${fontSans.style.fontFamily};
-        }
-        code {
-          font-family: ${fontMono.style.fontFamily};
-        }
-      `}</style>
       {hasConsent && (
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}

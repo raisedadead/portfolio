@@ -1,33 +1,10 @@
-// @ts-check
-import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
-
-// Here we use the @cloudflare/next-on-pages next-dev module to allow us to use bindings during local development
-// (when running the application with `next dev`), for more information see:
-// https://github.com/cloudflare/next-on-pages/blob/main/internal-packages/next-dev/README.md
-if (process.env.NODE_ENV === 'development') {
-  await setupDevPlatform();
-}
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { env } from './src/env/server.mjs';
-
+import type { NextConfig } from 'next';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const isProductionBuild = process.env.NODE_ENV === 'production';
 const shouldOpenAnalyzer = process.env.OPEN_ANALYZER === 'true';
 
-/**
- * Don't be scared of the generics here.
- * All they do is to give us autocompletion when using this.
- *
- * @template {import('next').NextConfig} T
- * @param {T} config - A generic parameter that flows through to the return type
- * @constraint {{import('next').NextConfig}}
- */
-function defineNextConfig(config) {
-  return config;
-}
-
-const nextConfig = defineNextConfig({
+const nextConfig: NextConfig = {
   i18n: {
     locales: ['en'],
     defaultLocale: 'en'
@@ -86,7 +63,7 @@ const nextConfig = defineNextConfig({
       }
     ];
   }
-});
+};
 
 const configAnalyzer = withBundleAnalyzer({
   enabled: isProductionBuild,
@@ -95,3 +72,9 @@ const configAnalyzer = withBundleAnalyzer({
 
 const config = isProductionBuild ? configAnalyzer : nextConfig;
 export default config;
+
+if (process.env.NODE_ENV === 'development') {
+  import('@opennextjs/cloudflare').then(({ initOpenNextCloudflareForDev }) => {
+    initOpenNextCloudflareForDev();
+  });
+}
