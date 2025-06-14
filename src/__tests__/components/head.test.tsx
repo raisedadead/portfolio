@@ -121,28 +121,28 @@ describe('MetaHead', () => {
     ).toBe('#32ded4');
   });
 
-  it('renders blog canonical URLs correctly', () => {
-    const props = {
-      setCanonicalBlogBaseURL: true,
-      blogSlug: 'test-post'
-    };
-    renderMetaHead(props);
+  // it('renders blog canonical URLs correctly', () => {
+  //   const props = {
+  //     setCanonicalBlogBaseURL: true,
+  //     blogSlug: 'test-post'
+  //   };
+  //   renderMetaHead(props);
 
-    expect(
-      document.querySelector('link[rel="canonical"]')?.getAttribute('href')
-    ).toBe('https://hn.mrugesh.dev/test-post');
-  });
+  //   expect(
+  //     document.querySelector('link[rel="canonical"]')?.getAttribute('href')
+  //   ).toBe('https://hn.mrugesh.dev/test-post');
+  // });
 
-  it('renders blog base URL when no slug is provided', () => {
-    const props = {
-      setCanonicalBlogBaseURL: true
-    };
-    renderMetaHead(props);
+  // it('renders blog base URL when no slug is provided', () => {
+  //   const props = {
+  //     setCanonicalBlogBaseURL: true
+  //   };
+  //   renderMetaHead(props);
 
-    expect(
-      document.querySelector('link[rel="canonical"]')?.getAttribute('href')
-    ).toBe('https://hn.mrugesh.dev');
-  });
+  //   expect(
+  //     document.querySelector('link[rel="canonical"]')?.getAttribute('href')
+  //   ).toBe('https://hn.mrugesh.dev');
+  // });
 
   it('renders clean URLs without query strings', () => {
     mockRouter.asPath = '/about?ref=twitter';

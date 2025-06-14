@@ -19,7 +19,7 @@ import {
 import { cn } from '@/lib/utils';
 
 const links = [
-  { href: '/blog', label: 'Recent Posts', icon: BookOpenIcon },
+  { href: 'https://hn.mrugesh.dev', label: 'Recent Posts', icon: BookOpenIcon },
   { href: '/uses', label: 'Uses', icon: CpuChipIcon }
 ];
 
