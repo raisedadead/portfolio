@@ -1,7 +1,6 @@
-import React from 'react';
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
 import Profile from '@/components/profile';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 describe('Profile', () => {
   it('renders the profile name', () => {

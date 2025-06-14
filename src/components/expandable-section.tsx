@@ -1,10 +1,10 @@
-import React from 'react';
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel
 } from '@headlessui/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
+import type React from 'react';
 
 type ExpandableSectionProps = {
   title: string;
@@ -72,7 +72,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
           className={`${open ? 'border-2' : 'border-t-2 border-r-2 border-l-2'} my-4 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]`}
         >
           <DisclosureButton
-            className={`${open ? 'bg-purple-300' : 'bg-red-200'} flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900`}
+            className={`${open ? 'bg-purple-300' : 'bg-red-200'} flex w-full flex-row justify-between border-black border-b-2 px-2 py-2 text-left font-bold text-slate-900`}
           >
             <span>{title}</span>
             <div className='flex flex-row items-center'>

@@ -1,13 +1,12 @@
-import React from 'react';
-import { motion, Variants } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { type Variants, motion } from 'framer-motion';
 
 const WaveBackground = () => {
   const waveVariants: Variants = {
     animate: (custom: { yValues: number[]; duration: number }) => ({
       y: custom.yValues,
       transition: {
-        repeat: Infinity,
+        repeat: Number.POSITIVE_INFINITY,
         repeatType: 'reverse',
         duration: custom.duration,
         ease: 'easeInOut'

@@ -1,8 +1,8 @@
-import type { NextPage } from 'next';
 import { MetaHead } from '@/components/head';
-import { Profile } from '@/components/profile';
 import { Layout } from '@/components/layouts';
+import { Profile } from '@/components/profile';
 import { cn } from '@/lib/utils';
+import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return (

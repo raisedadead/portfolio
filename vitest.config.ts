@@ -1,7 +1,7 @@
-import { defineConfig } from 'vitest/config';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { defineConfig } from 'vitest/config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

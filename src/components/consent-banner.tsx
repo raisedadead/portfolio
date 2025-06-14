@@ -1,6 +1,6 @@
 import { CustomLink as Link } from '@/components/custom-link';
-import { useState, useEffect } from 'react';
-import { updateGAConsent, loadGAScript } from '@/lib/utils';
+import { loadGAScript, updateGAConsent } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 
 export interface ConsentBannerProps {
   setHasConsent: (value: boolean) => void;
@@ -44,13 +44,13 @@ function ConsentBanner({ setHasConsent }: ConsentBannerProps) {
         <div className='flex space-x-4'>
           <button
             onClick={() => handleConsent(true)}
-            className='transform rounded bg-blue-700 px-4 py-1 text-sm font-medium text-white transition-colors duration-200 hover:scale-105 hover:bg-blue-800'
+            className='transform rounded bg-blue-700 px-4 py-1 font-medium text-sm text-white transition-colors duration-200 hover:scale-105 hover:bg-blue-800'
           >
             Accept
           </button>
           <button
             onClick={() => handleConsent(false)}
-            className='transform rounded border border-white px-4 py-1 text-sm font-medium text-white transition-colors duration-200 hover:scale-105 hover:bg-white hover:text-gray-800'
+            className='transform rounded border border-white px-4 py-1 font-medium text-sm text-white transition-colors duration-200 hover:scale-105 hover:bg-white hover:text-gray-800'
           >
             Decline
           </button>

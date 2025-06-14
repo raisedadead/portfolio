@@ -1,7 +1,6 @@
-import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
 import About from '@/pages/about';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 // Mock the entire nav module
 vi.mock('@/components/nav', () => ({

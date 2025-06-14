@@ -1,12 +1,12 @@
+import { useDarkMode } from '@/contexts/dark-mode-context';
+import { cn } from '@/lib/utils';
+import { DocumentDuplicateIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {
   coldarkCold,
   coldarkDark
 } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { useDarkMode } from '@/contexts/dark-mode-context';
-import { DocumentDuplicateIcon } from '@heroicons/react/24/outline';
-import { cn } from '@/lib/utils';
 
 interface CodeBlockProps {
   language: string;
@@ -59,7 +59,7 @@ function CodeBlock({ language, code }: CodeBlockProps) {
           className={cn(
             'rounded-md p-2 transition-opacity duration-200',
             'bg-gray-800 hover:bg-gray-700 dark:bg-gray-100 dark:hover:bg-gray-200',
-            'opacity-20 group-hover:opacity-100 focus:opacity-100'
+            'opacity-20 focus:opacity-100 group-hover:opacity-100'
           )}
           aria-label='Copy code'
         >
@@ -68,8 +68,8 @@ function CodeBlock({ language, code }: CodeBlockProps) {
         {isCopied && (
           <span
             className={cn(
-              'absolute -right-3 bottom-10 rounded-sm bg-green-800 px-2 py-1 text-sm text-white dark:bg-green-500 dark:text-black',
-              'mb-1 -translate-y-full transform',
+              '-right-3 absolute bottom-10 rounded-sm bg-green-800 px-2 py-1 text-sm text-white dark:bg-green-500 dark:text-black',
+              '-translate-y-full mb-1 transform',
               'animate-slide-in-fade'
             )}
           >

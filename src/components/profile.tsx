@@ -1,6 +1,6 @@
-import { Social } from './social';
-import { CustomLink as Link } from './custom-link';
 import Image from 'next/image';
+import { CustomLink as Link } from './custom-link';
+import { Social } from './social';
 
 export const Profile: React.FC = () => {
   return (
@@ -16,11 +16,11 @@ export const Profile: React.FC = () => {
           priority
         />
       </div>
-      <div className='relative mb-8 flex -rotate-12 transform flex-col items-center md:mb-10'>
-        <h1 className='group rotate-12 transform cursor-pointer text-3xl font-extrabold text-slate-800 md:text-5xl'>
+      <div className='-rotate-12 relative mb-8 flex transform flex-col items-center md:mb-10'>
+        <h1 className='group rotate-12 transform cursor-pointer font-extrabold text-3xl text-slate-800 md:text-5xl'>
           {'Mrugesh Mohapatra'.toLowerCase()}
           <span
-            className='absolute left-1/4 hidden w-auto rounded-md bg-black p-3 text-sm font-normal text-white group-hover:block'
+            className='absolute left-1/4 hidden w-auto rounded-md bg-black p-3 font-normal text-sm text-white group-hover:block'
             style={{
               top: '100%',
               marginTop: '0.75rem',
@@ -44,16 +44,16 @@ export const Profile: React.FC = () => {
             </svg>
           </span>
         </h1>
-        <div className='m-1 mx-auto -mt-8 w-2/5 border-8 border-orange-50 bg-orange-50' />
+        <div className='-mt-8 m-1 mx-auto w-2/5 border-8 border-orange-50 bg-orange-50' />
       </div>
-      <h2 className='mb-4 max-w-md p-1 text-xl leading-relaxed font-bold text-slate-700 md:text-2xl'>
+      <h2 className='mb-4 max-w-md p-1 font-bold text-slate-700 text-xl leading-relaxed md:text-2xl'>
         nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
       </h2>
-      <h3 className='mb-8 p-1 text-lg leading-relaxed font-medium text-slate-700 md:text-xl'>
+      <h3 className='mb-8 p-1 font-medium text-lg text-slate-700 leading-relaxed md:text-xl'>
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link
           href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'
-          className='-ml-1 p-1 text-slate-700 underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-2 hover:text-white hover:decoration-white'
+          className='-ml-1 p-1 text-slate-700 underline decoration-2 decoration-orange-200 decoration-wavy underline-offset-2 hover:text-white hover:decoration-white'
           aria-label='freecodecamp.org'
         >
           freeCodeCamp.org
@@ -63,7 +63,7 @@ export const Profile: React.FC = () => {
       <div className='mb-10 flex flex-row items-center justify-center space-x-4'>
         <Link
           aria-label='Book a 1-on-1 Call'
-          className='h-14 w-80 border-2 border-black bg-orange-50 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+          className='h-14 w-80 border-2 border-black bg-orange-50 p-3 font-semibold text-black text-lg shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
           href='https://topmate.io/mrugesh'
           type='button'
         >
@@ -71,7 +71,7 @@ export const Profile: React.FC = () => {
         </Link>
         <Link
           aria-label='Browse my blog'
-          className='h-14 w-36 border-2 border-black bg-orange-200 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+          className='h-14 w-36 border-2 border-black bg-orange-200 p-3 font-semibold text-black text-lg shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
           href='https://hn.mrugesh.dev'
           type='button'
         >

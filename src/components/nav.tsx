@@ -1,22 +1,23 @@
-import React, { Fragment, useState, useEffect } from 'react';
 import { useDarkMode } from '@/contexts/dark-mode-context';
-import { CustomLink as Link } from './custom-link';
+import { cn } from '@/lib/utils';
 import {
   Menu,
+  MenuButton,
   MenuItem,
   MenuItems,
-  MenuButton,
   Transition
 } from '@headlessui/react';
 import {
   Bars4Icon,
-  HomeIcon,
   BookOpenIcon,
   CpuChipIcon,
-  SunIcon,
-  MoonIcon
+  HomeIcon,
+  MoonIcon,
+  SunIcon
 } from '@heroicons/react/24/outline';
-import { cn } from '@/lib/utils';
+import type React from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { CustomLink as Link } from './custom-link';
 
 const links = [
   { href: 'https://hn.mrugesh.dev', label: 'Recent Posts', icon: BookOpenIcon },
@@ -72,7 +73,7 @@ export const Nav: React.FC<NavProps> = ({
                   <MenuItem key={link.href}>
                     <Link
                       href={link.href}
-                      className='inline-flex h-full w-full justify-start border-b-2 border-black py-2 pl-4 text-black last:border-b-0 hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-hidden active:bg-black active:shadow-none'
+                      className='inline-flex h-full w-full justify-start border-black border-b-2 py-2 pl-4 text-black last:border-b-0 hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-hidden active:bg-black active:shadow-none'
                       ariaLabel={link.label}
                     >
                       <link.icon
@@ -87,7 +88,7 @@ export const Nav: React.FC<NavProps> = ({
                   <button
                     onClick={toggleDarkMode}
                     className={cn(
-                      'inline-flex h-full w-full justify-start border-b-2 border-black py-2 pl-4',
+                      'inline-flex h-full w-full justify-start border-black border-b-2 py-2 pl-4',
                       'text-black last:border-b-0 hover:bg-gray-700 hover:text-white',
                       'hover:shadow-none focus:outline-hidden active:bg-black active:shadow-none'
                     )}
