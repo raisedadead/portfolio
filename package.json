@@ -95,6 +95,7 @@
   "packageManager": "pnpm@10.12.1",
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
       "esbuild",
       "sharp",
       "workerd"
