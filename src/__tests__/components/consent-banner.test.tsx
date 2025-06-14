@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
 import ConsentBanner from '@/components/consent-banner';
-import { updateGAConsent, loadGAScript } from '@/lib/utils';
+import { loadGAScript, updateGAConsent } from '@/lib/utils';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/lib/utils');
 

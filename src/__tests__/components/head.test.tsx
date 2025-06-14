@@ -1,6 +1,6 @@
-import React from 'react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
+import type React from 'react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { MetaHead } from '../../components/head';
 
 vi.mock('next/head', () => ({

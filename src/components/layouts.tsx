@@ -1,5 +1,5 @@
-import { Footer } from '@/components/footer';
 import Background from '@/components/background';
+import { Footer } from '@/components/footer';
 import Nav from '@/components/nav';
 import ScrollButton from '@/components/scroll-button';
 import { cn } from '@/lib/utils';
@@ -29,7 +29,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
 }) => (
   <>
     <div className={cn('container')}>
-      <div className='fixed inset-0 -z-10'>
+      <div className='-z-10 fixed inset-0'>
         <Background />
       </div>
       <main className='mx-auto my-2 w-[90%] py-8 lg:w-[75%] xl:w-[80%]'>
@@ -91,7 +91,6 @@ export const Layout: React.FC<LayoutProps> = (props) => {
       return <ProseLayout {...props} />;
     case 'legal':
       return <LegalLayout {...props} />;
-    case 'main':
     default:
       return <MainLayout {...props} />;
   }

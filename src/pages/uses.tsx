@@ -1,10 +1,10 @@
-import type { NextPage } from 'next';
-import Layout from '@/components/layouts';
 import { CustomLink as Link } from '@/components/custom-link';
 import { ExpandableSection as ES } from '@/components/expandable-section';
 import { MetaHead } from '@/components/head';
+import Layout from '@/components/layouts';
 import { Social } from '@/components/social';
 import { cn } from '@/lib/utils';
+import type { NextPage } from 'next';
 
 const Uses: NextPage = () => {
   return (
@@ -15,7 +15,7 @@ const Uses: NextPage = () => {
           <div className={cn('prose prose-lg prose-slate max-w-none')}>
             <h1
               className={cn(
-                'py-4 text-center text-3xl font-bold text-slate-800'
+                'py-4 text-center font-bold text-3xl text-slate-800'
               )}
             >
               Everyday Carry
@@ -29,7 +29,7 @@ const Uses: NextPage = () => {
             </p>
             <h2
               className={cn(
-                'mb-6 text-center text-2xl font-bold text-slate-700'
+                'mb-6 text-center font-bold text-2xl text-slate-700'
               )}
             >
               Hardware
@@ -246,7 +246,7 @@ const Uses: NextPage = () => {
             </ul>
             <h2
               className={cn(
-                'mt-12 mb-6 text-center text-2xl font-bold text-slate-700'
+                'mt-12 mb-6 text-center font-bold text-2xl text-slate-700'
               )}
             >
               Software

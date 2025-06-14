@@ -1,5 +1,5 @@
-import type { NextConfig } from 'next';
 import withBundleAnalyzer from '@next/bundle-analyzer';
+import type { NextConfig } from 'next';
 
 const isProductionBuild = process.env.NODE_ENV === 'production';
 const shouldOpenAnalyzer = process.env.OPEN_ANALYZER === 'true';

@@ -1,10 +1,9 @@
-import React from 'react';
 import type { NextPage } from 'next';
-import Layout from '../components/layouts';
-import { MetaHead } from '../components/head';
-import { cn } from '../lib/utils';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { MetaHead } from '../components/head';
+import Layout from '../components/layouts';
+import { cn } from '../lib/utils';
 
 const NotFound: NextPage = () => (
   <>
@@ -16,12 +15,12 @@ const NotFound: NextPage = () => (
         >
           <h1
             className={cn(
-              'py-4 text-4xl font-extrabold tracking-tight text-slate-900'
+              'py-4 font-extrabold text-4xl text-slate-900 tracking-tight'
             )}
           >
             Page Not Found
           </h1>
-          <p className={cn('text-xl font-medium text-slate-700')}>
+          <p className={cn('font-medium text-slate-700 text-xl')}>
             Oops! It seems you&apos;ve wandered into uncharted territory.
           </p>
         </div>
@@ -31,11 +30,11 @@ const NotFound: NextPage = () => (
           )}
         >
           <Image src='/images/404.svg' alt='404' width={640} height={640} />
-          <p className={cn('mt-2 text-xs text-slate-500')}>
+          <p className={cn('mt-2 text-slate-500 text-xs')}>
             Image by storyset on Freepik
           </p>
         </div>
-        <p className={cn('mb-6 text-lg font-medium text-slate-700')}>
+        <p className={cn('mb-6 font-medium text-lg text-slate-700')}>
           Don&apos;t worry, even the best explorers get lost sometimes!
         </p>
         <Link

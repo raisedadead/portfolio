@@ -1,0 +1,151 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "ignore": [
+      ".open-next/**",
+      "**/pnpm-lock.yaml",
+      ".next/**",
+      "node_modules/**",
+      ".turbo/**",
+      ".vercel/**",
+      "static/**",
+      "build/**"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto"
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "javascript": {
+    "globals": ["React"],
+    "formatter": {
+      "jsxQuoteStyle": "single",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "none",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "bracketSameLine": false,
+      "quoteStyle": "single",
+      "attributePosition": "auto"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedVariables": "error",
+        "noUnusedImports": "error",
+        "useExhaustiveDependencies": "warn",
+        "noUndeclaredVariables": "error",
+        "noUnreachable": "error",
+        "noConstAssign": "error",
+        "noEmptyPattern": "error",
+        "noGlobalObjectCalls": "error",
+        "noInvalidConstructorSuper": "error",
+        "noNewSymbol": "error",
+        "noSetterReturn": "error",
+        "noUnsafeFinally": "error",
+        "noUnsafeOptionalChaining": "error",
+        "useIsNan": "error",
+        "useValidForDirection": "error"
+      },
+      "style": {
+        "noImplicitBoolean": "off",
+        "useImportType": "warn",
+        "useConst": "error",
+        "useTemplate": "error",
+        "noVar": "error",
+        "useExponentiationOperator": "error",
+        "useNumericLiterals": "error",
+        "useSingleVarDeclarator": "error",
+        "noNegationElse": "off",
+        "noShoutyConstants": "off",
+        "useBlockStatements": "off",
+        "useCollapsedElseIf": "off",
+        "useShorthandArrayType": "off",
+        "useShorthandAssign": "off",
+        "useNodejsImportProtocol": "warn"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noArrayIndexKey": "warn",
+        "noAssignInExpressions": "error",
+        "noAsyncPromiseExecutor": "error",
+        "noCatchAssign": "error",
+        "noClassAssign": "error",
+        "noCommentText": "error",
+        "noCompareNegZero": "error",
+        "noControlCharactersInRegex": "error",
+        "noDebugger": "error",
+        "noDoubleEquals": "error",
+        "noDuplicateCase": "error",
+        "noDuplicateClassMembers": "error",
+        "noDuplicateObjectKeys": "error",
+        "noDuplicateParameters": "error",
+        "noEmptyBlockStatements": "error",
+        "noFallthroughSwitchClause": "error",
+        "noFunctionAssign": "error",
+        "noGlobalAssign": "error",
+        "noImportAssign": "error",
+        "noMisleadingCharacterClass": "error",
+        "noPrototypeBuiltins": "error",
+        "noRedeclare": "error",
+        "noShadowRestrictedNames": "error",
+        "noUnsafeNegation": "error",
+        "useValidTypeof": "error"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "warn",
+        "noBannedTypes": "error",
+        "noUselessConstructor": "error",
+        "noUselessEmptyExport": "error",
+        "noUselessFragments": "error",
+        "noUselessLabel": "error",
+        "noUselessRename": "error",
+        "noUselessSwitchCase": "warn",
+        "noUselessTypeConstraint": "error",
+        "noWith": "error"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "error",
+        "noDangerouslySetInnerHtmlWithChildren": "error"
+      },
+      "nursery": {
+        "useSortedClasses": "warn"
+      },
+      "a11y": {
+        "useButtonType": "warn"
+      }
+    }
+  },
+  "json": {
+    "formatter": {
+      "trailingCommas": "none"
+    }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 80,
+      "quoteStyle": "double"
+    }
+  }
+}

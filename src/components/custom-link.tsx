@@ -1,5 +1,6 @@
-import React, { forwardRef } from 'react';
 import Link from 'next/link';
+import type React from 'react';
+import { forwardRef } from 'react';
 
 interface CustomLinkProps {
   children: React.ReactNode;

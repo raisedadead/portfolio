@@ -1,9 +1,9 @@
-import type { NextPage } from 'next';
-import Layout from '@/components/layouts';
 import Email from '@/components/email';
-import { MetaHead } from '@/components/head';
-import { cn } from '@/lib/utils';
 import { ExpandableSection as ES } from '@/components/expandable-section';
+import { MetaHead } from '@/components/head';
+import Layout from '@/components/layouts';
+import { cn } from '@/lib/utils';
+import type { NextPage } from 'next';
 
 const About: NextPage = () => (
   <>
@@ -13,7 +13,7 @@ const About: NextPage = () => (
         <div className={cn('prose prose-lg prose-slate max-w-none')}>
           <h1
             className={cn(
-              'py-4 text-center text-3xl font-extrabold tracking-tight text-slate-900'
+              'py-4 text-center font-extrabold text-3xl text-slate-900 tracking-tight'
             )}
           >
             About & Contact
@@ -24,7 +24,7 @@ const About: NextPage = () => (
         <div className={cn('mx-auto max-w-4xl')}>
           <p
             className={cn(
-              'pb-6 text-center text-lg font-medium text-slate-700'
+              'pb-6 text-center font-medium text-lg text-slate-700'
             )}
           >
             Legal information you should be aware of.
@@ -61,7 +61,7 @@ const About: NextPage = () => (
                 ]}
                 defaultOpen={true}
               >
-                <h4 className={cn('mb-4 text-center text-lg font-bold')}>
+                <h4 className={cn('mb-4 text-center font-bold text-lg')}>
                   Udyam Registration Number: UDYAM-OD-19-0026052
                 </h4>
                 <p className={cn('mb-4 text-lg')}>
@@ -86,7 +86,7 @@ const About: NextPage = () => (
                 labels={[{ name: 'contact', color: 'orange' }]}
                 defaultOpen={true}
               >
-                <p className={cn('mb-4 text-center text-lg font-bold')}>
+                <p className={cn('mb-4 text-center font-bold text-lg')}>
                   Email: <Email />
                 </p>
                 <div className={cn('text-center text-lg')}>

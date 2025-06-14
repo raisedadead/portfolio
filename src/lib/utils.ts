@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 import type { DOMNode, Element } from 'html-react-parser';
+import { twMerge } from 'tailwind-merge';
 
 export const GA_TRACKING_ID = 'G-VD9T0P1KLN';
 
