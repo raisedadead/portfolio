@@ -1,53 +1,21 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Dependency directories
+node_modules/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# database
-/prisma/db.sqlite
-/prisma/db.sqlite-journal
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# local env files
+# dotenv environment variable files
 .env
-.env*.local
+.env.*
+!.env.example
 
-# turbo
-.turbo
+# VSCode
+.vscode/
 
-# vercel
-.vercel
+# Astro
+dist/
+.astro/
 
-# typescript
-*.tsbuildinfo
+# Cursor
+.cursor/
 
-# next-sitemap
-public/sitemap.xml
-public/sitemap-*.xml
-public/robots.txt
-
-/.pnpm-store/
-/.vscode/
-
-/.open-next/
+# Wrangler
+.wrangler/
+worker-configuration.d.ts

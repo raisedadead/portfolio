@@ -1,16 +1,10 @@
-import { Bricolage_Grotesque } from 'next/font/google';
-import { Space_Mono } from 'next/font/google';
-
-export const fontMono = Space_Mono({
-  subsets: ['latin'],
-  display: 'swap',
+// Font variables for Astro - fonts are loaded through CSS
+export const fontMono = {
   variable: '--font-mono',
-  weight: '400'
-});
+  className: 'font-mono',
+};
 
-export const fontSans = Bricolage_Grotesque({
-  subsets: ['latin'],
-  display: 'swap',
+export const fontSans = {
   variable: '--font-sans',
-  weight: '400'
-});
+  className: 'font-sans',
+};

@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import { cn } from '@/lib/utils';
+import { describe, expect, it } from 'vitest';
 
 describe('utils', () => {
   describe('cn function', () => {

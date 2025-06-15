@@ -1,22 +1,34 @@
-import { defineConfig } from 'vitest/config';
+import path from 'node:path';
 import react from '@vitejs/plugin-react';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+/// <reference types="vitest" />
+import { defineConfig } from 'vite';
+import type { UserConfig } from 'vite';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+// For Astro component testing
 export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: 'happy-dom',
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
-      provider: 'v8'
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: [
+        'node_modules/',
+        'dist/',
+        'coverage/',
+        '**/*.config.*',
+        '**/*.setup.*',
+        'src/__tests__/**',
+        'src/__mocks__/**',
+      ],
     },
+    exclude: ['**/node_modules/**', '**/dist/**', '**/.astro/**', '**/coverage/**'],
+  },
+  resolve: {
     alias: {
-      '@/': `${__dirname}/src/`
-    }
-  }
-});
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+} satisfies UserConfig);
