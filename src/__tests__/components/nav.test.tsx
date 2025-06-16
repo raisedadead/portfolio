@@ -6,7 +6,7 @@ import type {
   MockLinkProps,
   MockMenuButtonProps,
   MockMenuItemsProps,
-  MockMenuProps,
+  MockMenuProps
 } from '../test-utils';
 
 // Mock the custom-link component
@@ -15,42 +15,51 @@ vi.mock('@/components/custom-link', () => ({
     <a href={href} className={className} aria-label={ariaLabel}>
       {children}
     </a>
-  ),
+  )
 }));
 
 // Mock heroicons
 vi.mock('@heroicons/react/24/outline', () => ({
   Bars4Icon: ({ className }: MockIconProps) => (
-    <div className={className} data-testid="bars4-icon" />
+    <div className={className} data-testid='bars4-icon' />
   ),
-  HomeIcon: ({ className }: MockIconProps) => <div className={className} data-testid="home-icon" />,
+  HomeIcon: ({ className }: MockIconProps) => (
+    <div className={className} data-testid='home-icon' />
+  ),
   BookOpenIcon: ({ className }: MockIconProps) => (
-    <div className={className} data-testid="book-open-icon" />
+    <div className={className} data-testid='book-open-icon' />
   ),
   CpuChipIcon: ({ className }: MockIconProps) => (
-    <div className={className} data-testid="cpu-chip-icon" />
-  ),
+    <div className={className} data-testid='cpu-chip-icon' />
+  )
 }));
 
 // Mock headlessui
 vi.mock('@headlessui/react', () => ({
-  Menu: ({ children }: MockMenuProps) => <div data-testid="menu">{children({ open: false })}</div>,
+  Menu: ({ children }: MockMenuProps) => (
+    <div data-testid='menu'>{children({ open: false })}</div>
+  ),
   MenuButton: ({ children, className, onClick }: MockMenuButtonProps) => (
-    <button type="button" className={className} onClick={onClick} data-testid="menu-button">
+    <button
+      type='button'
+      className={className}
+      onClick={onClick}
+      data-testid='menu-button'
+    >
       {children}
     </button>
   ),
   MenuItems: ({ children, className }: MockMenuItemsProps) => (
-    <div className={className} data-testid="menu-items">
+    <div className={className} data-testid='menu-items'>
       {children}
     </div>
   ),
   MenuItem: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="menu-item">{children}</div>
+    <div data-testid='menu-item'>{children}</div>
   ),
   Transition: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="transition">{children}</div>
-  ),
+    <div data-testid='transition'>{children}</div>
+  )
 }));
 
 describe('Nav Component', () => {
@@ -66,7 +75,13 @@ describe('Nav Component', () => {
 
       const menuButton = screen.getByTestId('menu-button');
       expect(menuButton).toBeInTheDocument();
-      expect(menuButton).toHaveClass('flex', 'h-10', 'items-center', 'border-2', 'border-black');
+      expect(menuButton).toHaveClass(
+        'flex',
+        'h-10',
+        'items-center',
+        'border-2',
+        'border-black'
+      );
     });
 
     it('renders home button by default', () => {
@@ -99,7 +114,7 @@ describe('Nav Component', () => {
 
       // Check for Recent Posts link
       const recentPostsLink = screen.getByRole('link', {
-        name: /recent posts/i,
+        name: /recent posts/i
       });
       expect(recentPostsLink).toBeInTheDocument();
       expect(recentPostsLink).toHaveAttribute('href', 'https://hn.mrugesh.dev');
@@ -121,7 +136,7 @@ describe('Nav Component', () => {
       render(<Nav />);
 
       const recentPostsLink = screen.getByRole('link', {
-        name: /recent posts/i,
+        name: /recent posts/i
       });
       expect(recentPostsLink).toHaveClass(
         'inline-flex',
@@ -181,7 +196,7 @@ describe('Nav Component', () => {
       render(<Nav />);
 
       const homeButtonContainer = screen.getByRole('link', {
-        name: /go home/i,
+        name: /go home/i
       }).parentElement;
       expect(homeButtonContainer).toHaveClass('absolute', 'top-4', 'left-4');
     });
@@ -222,7 +237,7 @@ describe('Nav Component', () => {
       render(<Nav />);
 
       const recentPostsLink = screen.getByRole('link', {
-        name: /recent posts/i,
+        name: /recent posts/i
       });
       expect(recentPostsLink).toHaveAttribute('href', 'https://hn.mrugesh.dev');
     });

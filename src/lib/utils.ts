@@ -9,7 +9,7 @@ export const updateGAConsent = () => {
     ad_user_data: 'granted',
     ad_personalization: 'granted',
     ad_storage: 'granted',
-    analytics_storage: 'granted',
+    analytics_storage: 'granted'
   });
 };
 

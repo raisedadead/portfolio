@@ -7,11 +7,11 @@ export const Email = () => {
     .join('');
   return (
     <span
-      className="font-medium underline"
+      className='font-medium underline'
       style={{
         unicodeBidi: 'bidi-override',
         direction: 'rtl',
-        textAlign: 'left',
+        textAlign: 'left'
       }}
     >
       {email}

@@ -5,18 +5,22 @@ import ClientProviders from '../../components/ClientProviders';
 // Mock the utilities
 vi.mock('@/lib/utils', () => ({
   GA_TRACKING_ID: 'GA-TEST-123',
-  updateGAConsent: vi.fn(),
+  updateGAConsent: vi.fn()
 }));
 
 // Mock ConsentBanner component
 vi.mock('@/components/consent-banner', () => ({
   default: ({ setHasConsent }: { setHasConsent: (value: boolean) => void }) => (
-    <div data-testid="consent-banner">
-      <button type="button" data-testid="accept-consent" onClick={() => setHasConsent(true)}>
+    <div data-testid='consent-banner'>
+      <button
+        type='button'
+        data-testid='accept-consent'
+        onClick={() => setHasConsent(true)}
+      >
         Accept
       </button>
     </div>
-  ),
+  )
 }));
 
 describe('ClientProviders Component', () => {
@@ -25,7 +29,7 @@ describe('ClientProviders Component', () => {
     src: '',
     async: false,
     onload: null as (() => void) | null,
-    onerror: null as (() => void) | null,
+    onerror: null as (() => void) | null
   };
 
   beforeEach(() => {
@@ -64,7 +68,7 @@ describe('ClientProviders Component', () => {
     it('renders children content', () => {
       render(
         <ClientProviders>
-          <div data-testid="test-child">Test Content</div>
+          <div data-testid='test-child'>Test Content</div>
         </ClientProviders>
       );
 
@@ -144,8 +148,8 @@ describe('ClientProviders Component', () => {
     it('renders multiple children correctly', () => {
       render(
         <ClientProviders>
-          <div data-testid="child1">Child 1</div>
-          <div data-testid="child2">Child 2</div>
+          <div data-testid='child1'>Child 1</div>
+          <div data-testid='child2'>Child 2</div>
         </ClientProviders>
       );
 

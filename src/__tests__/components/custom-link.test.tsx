@@ -6,7 +6,7 @@ import { testExternalLink, testInternalLink } from '../test-utils';
 describe('CustomLink Component', () => {
   describe('Basic Rendering', () => {
     it('renders a link with children', () => {
-      render(<CustomLink href="/test">Test Link</CustomLink>);
+      render(<CustomLink href='/test'>Test Link</CustomLink>);
 
       const link = screen.getByRole('link', { name: 'Test Link' });
       expect(link).toBeInTheDocument();
@@ -14,7 +14,7 @@ describe('CustomLink Component', () => {
     });
 
     it('applies default className when none provided', () => {
-      render(<CustomLink href="/test">Test Link</CustomLink>);
+      render(<CustomLink href='/test'>Test Link</CustomLink>);
 
       const link = screen.getByRole('link');
       expect(link).toHaveClass(
@@ -28,7 +28,7 @@ describe('CustomLink Component', () => {
     it('applies custom className when provided', () => {
       const customClass = 'custom-link-class';
       render(
-        <CustomLink href="/test" className={customClass}>
+        <CustomLink href='/test' className={customClass}>
           Test Link
         </CustomLink>
       );
@@ -41,7 +41,7 @@ describe('CustomLink Component', () => {
 
   describe('Internal Links', () => {
     it('identifies internal links starting with /', () => {
-      render(<CustomLink href="/internal-page">Internal Link</CustomLink>);
+      render(<CustomLink href='/internal-page'>Internal Link</CustomLink>);
 
       const link = screen.getByRole('link') as HTMLAnchorElement;
       expect(link).toHaveAttribute('href', '/internal-page');
@@ -50,7 +50,7 @@ describe('CustomLink Component', () => {
     });
 
     it('identifies anchor links starting with #', () => {
-      render(<CustomLink href="#section">Anchor Link</CustomLink>);
+      render(<CustomLink href='#section'>Anchor Link</CustomLink>);
 
       const link = screen.getByRole('link') as HTMLAnchorElement;
       expect(link).toHaveAttribute('href', '#section');
@@ -60,21 +60,27 @@ describe('CustomLink Component', () => {
 
     it('does not add noopener/noreferrer to internal links', () => {
       render(
-        <CustomLink href="/internal" rel="bookmark">
+        <CustomLink href='/internal' rel='bookmark'>
           Internal Link
         </CustomLink>
       );
 
       const link = screen.getByRole('link') as HTMLAnchorElement;
-      expect(link).not.toHaveAttribute('rel', expect.stringContaining('noopener'));
-      expect(link).not.toHaveAttribute('rel', expect.stringContaining('noreferrer'));
+      expect(link).not.toHaveAttribute(
+        'rel',
+        expect.stringContaining('noopener')
+      );
+      expect(link).not.toHaveAttribute(
+        'rel',
+        expect.stringContaining('noreferrer')
+      );
     });
   });
 
   describe('External Links', () => {
     it('identifies external links', () => {
       render(
-        <CustomLink href="https://example.com" target="_blank">
+        <CustomLink href='https://example.com' target='_blank'>
           External Link
         </CustomLink>
       );
@@ -86,7 +92,7 @@ describe('CustomLink Component', () => {
 
     it('adds noopener noreferrer to external links with target="_blank"', () => {
       render(
-        <CustomLink href="https://example.com" target="_blank">
+        <CustomLink href='https://example.com' target='_blank'>
           External Link
         </CustomLink>
       );
@@ -97,7 +103,7 @@ describe('CustomLink Component', () => {
 
     it('preserves existing rel and adds noopener noreferrer for external links', () => {
       render(
-        <CustomLink href="https://example.com" target="_blank" rel="me">
+        <CustomLink href='https://example.com' target='_blank' rel='me'>
           External Link
         </CustomLink>
       );
@@ -107,7 +113,7 @@ describe('CustomLink Component', () => {
     });
 
     it('does not add noopener noreferrer to external links without target="_blank"', () => {
-      render(<CustomLink href="https://example.com">External Link</CustomLink>);
+      render(<CustomLink href='https://example.com'>External Link</CustomLink>);
 
       const link = screen.getByRole('link') as HTMLAnchorElement;
       expect(link).not.toHaveAttribute('rel');
@@ -117,7 +123,7 @@ describe('CustomLink Component', () => {
   describe('Props Handling', () => {
     it('applies aria-label when provided', () => {
       render(
-        <CustomLink href="/test" ariaLabel="Custom aria label">
+        <CustomLink href='/test' ariaLabel='Custom aria label'>
           Test Link
         </CustomLink>
       );
@@ -128,7 +134,7 @@ describe('CustomLink Component', () => {
 
     it('applies type attribute when provided', () => {
       render(
-        <CustomLink href="/test" type="button">
+        <CustomLink href='/test' type='button'>
           Test Link
         </CustomLink>
       );
@@ -139,7 +145,7 @@ describe('CustomLink Component', () => {
 
     it('applies target attribute when provided', () => {
       render(
-        <CustomLink href="/test" target="_self">
+        <CustomLink href='/test' target='_self'>
           Test Link
         </CustomLink>
       );
@@ -150,7 +156,7 @@ describe('CustomLink Component', () => {
 
     it('applies custom rel attribute for external links with target="_blank"', () => {
       render(
-        <CustomLink href="https://example.com" rel="bookmark" target="_blank">
+        <CustomLink href='https://example.com' rel='bookmark' target='_blank'>
           Test Link
         </CustomLink>
       );
@@ -164,7 +170,7 @@ describe('CustomLink Component', () => {
     it('calls onClick handler when provided', () => {
       const mockClick = vi.fn();
       render(
-        <CustomLink href="/test" onClick={mockClick}>
+        <CustomLink href='/test' onClick={mockClick}>
           Test Link
         </CustomLink>
       );
@@ -175,13 +181,13 @@ describe('CustomLink Component', () => {
       expect(mockClick).toHaveBeenCalledTimes(1);
       expect(mockClick).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'click',
+          type: 'click'
         })
       );
     });
 
     it('does not throw error when onClick is not provided', () => {
-      render(<CustomLink href="/test">Test Link</CustomLink>);
+      render(<CustomLink href='/test'>Test Link</CustomLink>);
 
       const link = screen.getByRole('link');
       expect(() => fireEvent.click(link)).not.toThrow();
@@ -192,7 +198,7 @@ describe('CustomLink Component', () => {
     it('forwards ref to the anchor element', () => {
       const ref = { current: null };
       render(
-        <CustomLink href="/test" ref={ref}>
+        <CustomLink href='/test' ref={ref}>
           Test Link
         </CustomLink>
       );
@@ -204,7 +210,9 @@ describe('CustomLink Component', () => {
 
   describe('Complex Link Scenarios', () => {
     it('handles mailto links correctly', () => {
-      render(<CustomLink href="mailto:test@example.com">Email Link</CustomLink>);
+      render(
+        <CustomLink href='mailto:test@example.com'>Email Link</CustomLink>
+      );
 
       const link = screen.getByRole('link') as HTMLAnchorElement;
       expect(link).toHaveAttribute('href', 'mailto:test@example.com');
@@ -213,7 +221,7 @@ describe('CustomLink Component', () => {
     });
 
     it('handles tel links correctly', () => {
-      render(<CustomLink href="tel:+1234567890">Phone Link</CustomLink>);
+      render(<CustomLink href='tel:+1234567890'>Phone Link</CustomLink>);
 
       const link = screen.getByRole('link') as HTMLAnchorElement;
       expect(link).toHaveAttribute('href', 'tel:+1234567890');
@@ -223,7 +231,7 @@ describe('CustomLink Component', () => {
 
     it('handles protocol-relative URLs as external', () => {
       render(
-        <CustomLink href="//example.com" target="_blank">
+        <CustomLink href='//example.com' target='_blank'>
           Protocol Relative Link
         </CustomLink>
       );
@@ -243,7 +251,7 @@ describe('CustomLink Component', () => {
   describe('All Target Options', () => {
     it('handles target="_blank"', () => {
       render(
-        <CustomLink href="https://example.com" target="_blank">
+        <CustomLink href='https://example.com' target='_blank'>
           Blank Target
         </CustomLink>
       );
@@ -254,7 +262,7 @@ describe('CustomLink Component', () => {
 
     it('handles target="_self"', () => {
       render(
-        <CustomLink href="/test" target="_self">
+        <CustomLink href='/test' target='_self'>
           Self Target
         </CustomLink>
       );
@@ -265,7 +273,7 @@ describe('CustomLink Component', () => {
 
     it('handles target="_parent"', () => {
       render(
-        <CustomLink href="/test" target="_parent">
+        <CustomLink href='/test' target='_parent'>
           Parent Target
         </CustomLink>
       );
@@ -276,7 +284,7 @@ describe('CustomLink Component', () => {
 
     it('handles target="_top"', () => {
       render(
-        <CustomLink href="/test" target="_top">
+        <CustomLink href='/test' target='_top'>
           Top Target
         </CustomLink>
       );

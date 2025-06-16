@@ -1,7 +1,10 @@
 import { ScrollButton } from '@/components/scroll-button';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '../test-utils';
-import type { MockAnimatePresenceProps, MockMotionButtonProps } from '../test-utils';
+import type {
+  MockAnimatePresenceProps,
+  MockMotionButtonProps
+} from '../test-utils';
 
 // Mock framer-motion
 vi.mock('framer-motion', () => ({
@@ -19,7 +22,7 @@ vi.mock('framer-motion', () => ({
       <button
         onClick={onMouseDown}
         className={className}
-        data-testid="motion-button"
+        data-testid='motion-button'
         data-initial={JSON.stringify(initial)}
         data-animate={JSON.stringify(animate)}
         data-exit={JSON.stringify(exit)}
@@ -28,16 +31,16 @@ vi.mock('framer-motion', () => ({
       >
         {children}
       </button>
-    ),
+    )
   },
   AnimatePresence: ({ children }: MockAnimatePresenceProps) => (
-    <div data-testid="animate-presence">{children}</div>
-  ),
+    <div data-testid='animate-presence'>{children}</div>
+  )
 }));
 
 // Mock scroll-arrows component
 vi.mock('@/components/scroll-arrows', () => ({
-  ArrowUp: () => <div data-testid="arrow-up" />,
+  ArrowUp: () => <div data-testid='arrow-up' />
 }));
 
 describe('ScrollButton Component', () => {
@@ -49,23 +52,23 @@ describe('ScrollButton Component', () => {
     // Mock window.scrollTo
     Object.defineProperty(window, 'scrollTo', {
       value: mockScrollTo,
-      writable: true,
+      writable: true
     });
 
     // Reset window properties
     Object.defineProperty(window, 'pageYOffset', {
       value: 0,
-      writable: true,
+      writable: true
     });
 
     Object.defineProperty(window, 'innerHeight', {
       value: 1000,
-      writable: true,
+      writable: true
     });
 
     Object.defineProperty(document.documentElement, 'scrollHeight', {
       value: 2000,
-      writable: true,
+      writable: true
     });
 
     // Mock addEventListener and removeEventListener
@@ -87,7 +90,7 @@ describe('ScrollButton Component', () => {
     });
 
     it('renders AnimatePresence wrapper', () => {
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       expect(screen.getByTestId('animate-presence')).toBeInTheDocument();
     });
@@ -97,20 +100,32 @@ describe('ScrollButton Component', () => {
     it('adds scroll and resize event listeners on mount', () => {
       const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
-      expect(addEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
-      expect(addEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        'scroll',
+        expect.any(Function)
+      );
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        'resize',
+        expect.any(Function)
+      );
     });
 
     it('removes event listeners on unmount', () => {
       const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
-      const { unmount } = render(<ScrollButton className="test" />);
+      const { unmount } = render(<ScrollButton className='test' />);
       unmount();
 
-      expect(removeEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
-      expect(removeEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        'scroll',
+        expect.any(Function)
+      );
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        'resize',
+        expect.any(Function)
+      );
     });
   });
 
@@ -119,18 +134,18 @@ describe('ScrollButton Component', () => {
       // Setup scrollable page, not at top
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 2000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'pageYOffset', {
         value: 100,
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event
       fireEvent.scroll(window);
@@ -142,14 +157,14 @@ describe('ScrollButton Component', () => {
       // Setup non-scrollable page
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 800,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event
       fireEvent.scroll(window);
@@ -161,18 +176,18 @@ describe('ScrollButton Component', () => {
       // Setup scrollable page, at top
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 2000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'pageYOffset', {
         value: 0,
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event
       fireEvent.scroll(window);
@@ -186,18 +201,18 @@ describe('ScrollButton Component', () => {
       // Setup page at bottom
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 2000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'pageYOffset', {
         value: 1000, // At bottom: pageYOffset + innerHeight >= scrollHeight
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event
       fireEvent.scroll(window);
@@ -212,18 +227,18 @@ describe('ScrollButton Component', () => {
       // Setup page not at bottom
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 2000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'pageYOffset', {
         value: 500, // Not at bottom
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event
       fireEvent.scroll(window);
@@ -240,18 +255,18 @@ describe('ScrollButton Component', () => {
       // Setup scrollable page
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 2000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'pageYOffset', {
         value: 500,
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event to show button
       fireEvent.scroll(window);
@@ -262,7 +277,7 @@ describe('ScrollButton Component', () => {
 
         expect(mockScrollTo).toHaveBeenCalledWith({
           top: 0,
-          behavior: 'smooth',
+          behavior: 'smooth'
         });
       }
     });
@@ -273,18 +288,18 @@ describe('ScrollButton Component', () => {
       // Setup to show button
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 2000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'pageYOffset', {
         value: 500,
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event
       fireEvent.scroll(window);
@@ -304,18 +319,18 @@ describe('ScrollButton Component', () => {
       // Setup to show button
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 2000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'pageYOffset', {
         value: 500,
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event
       fireEvent.scroll(window);
@@ -336,25 +351,27 @@ describe('ScrollButton Component', () => {
       // Setup to show button
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 2000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'pageYOffset', {
         value: 500,
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event
       fireEvent.scroll(window);
 
       const button = screen.queryByTestId('motion-button');
       if (button) {
-        expect(button.className).toContain('shadow-[4px_4px_0_0_rgba(60,64,43,.2)]');
+        expect(button.className).toContain(
+          'shadow-[4px_4px_0_0_rgba(60,64,43,.2)]'
+        );
       }
     });
   });
@@ -364,18 +381,18 @@ describe('ScrollButton Component', () => {
       // Setup to show button
       Object.defineProperty(document.documentElement, 'scrollHeight', {
         value: 2000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'innerHeight', {
         value: 1000,
-        writable: true,
+        writable: true
       });
       Object.defineProperty(window, 'pageYOffset', {
         value: 500,
-        writable: true,
+        writable: true
       });
 
-      render(<ScrollButton className="test" />);
+      render(<ScrollButton className='test' />);
 
       // Trigger scroll event
       fireEvent.scroll(window);
@@ -386,13 +403,13 @@ describe('ScrollButton Component', () => {
 
   describe('Resize Handling', () => {
     it('recalculates button visibility on window resize', () => {
-      const { rerender } = render(<ScrollButton className="test" />);
+      const { rerender } = render(<ScrollButton className='test' />);
 
       // Trigger resize event
       fireEvent(window, new Event('resize'));
 
       // Should not throw and should handle resize properly
-      expect(() => rerender(<ScrollButton className="test" />)).not.toThrow();
+      expect(() => rerender(<ScrollButton className='test' />)).not.toThrow();
     });
   });
 });

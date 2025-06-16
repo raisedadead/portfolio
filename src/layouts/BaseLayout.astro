@@ -19,7 +19,7 @@ const {
   pageImage,
   setCanonicalBlogBaseURL,
   blogSlug,
-  showHomeButton = true,
+  showHomeButton = true
 } = Astro.props;
 
 const defaultTitle = 'Mrugesh Mohapatra — Portfolio of a nocturnal developer.';
@@ -52,7 +52,8 @@ const getCanonicalUrl = (): string => {
   }
 
   // Clean the path: remove query string and trailing slash
-  const cleanPath = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+  const cleanPath =
+    path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
 
   return `${defaultUrl}${cleanPath}`;
 };

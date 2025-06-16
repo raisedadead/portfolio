@@ -7,7 +7,7 @@ describe('Fonts Configuration', () => {
       expect(fontMono).toBeDefined();
       expect(fontMono).toEqual({
         variable: '--font-mono',
-        className: 'font-mono',
+        className: 'font-mono'
       });
     });
 
@@ -35,7 +35,7 @@ describe('Fonts Configuration', () => {
       expect(fontSans).toBeDefined();
       expect(fontSans).toEqual({
         variable: '--font-sans',
-        className: 'font-sans',
+        className: 'font-sans'
       });
     });
 

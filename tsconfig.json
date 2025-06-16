@@ -21,6 +21,12 @@
     },
     "types": ["astro/client", "vite/client"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.astro", ".astro/types.d.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.astro",
+    ".astro/types.d.ts"
+  ],
   "exclude": ["node_modules", ".next", "dist"]
 }

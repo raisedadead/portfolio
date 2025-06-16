@@ -63,7 +63,7 @@ describe('Email Component', () => {
       expect(emailElement).toHaveStyle({
         direction: 'rtl',
         unicodeBidi: 'bidi-override',
-        textAlign: 'left',
+        textAlign: 'left'
       });
     });
 
@@ -143,7 +143,12 @@ describe('Email Component', () => {
     it('handles the specific input format correctly', () => {
       // The component uses a specific obfuscated input
       const testInput = 'supPo    Rt @ mrug esh.dev';
-      const processed = testInput.toLowerCase().replace(/ /g, '').split('').reverse().join('');
+      const processed = testInput
+        .toLowerCase()
+        .replace(/ /g, '')
+        .split('')
+        .reverse()
+        .join('');
 
       expect(processed).toBe('ved.hsegurm@troppus');
     });

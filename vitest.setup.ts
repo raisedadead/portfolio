@@ -13,7 +13,7 @@ interface ImageProps {
 vi.mock('astro:assets', () => ({
   Image: ({ src, alt, ...props }: ImageProps) => {
     return `<img src="${src}" alt="${alt}" {...props} />`;
-  },
+  }
 }));
 
 // Mock client directives (they don't run in test environment)
@@ -25,21 +25,21 @@ global.fetch = vi.fn();
 // Mock window.scrollTo
 Object.defineProperty(window, 'scrollTo', {
   value: vi.fn(),
-  writable: true,
+  writable: true
 });
 
 // Mock IntersectionObserver
 global.IntersectionObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),
   unobserve: vi.fn(),
-  disconnect: vi.fn(),
+  disconnect: vi.fn()
 }));
 
 // Mock ResizeObserver
 global.ResizeObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),
   unobserve: vi.fn(),
-  disconnect: vi.fn(),
+  disconnect: vi.fn()
 }));
 
 // Mock matchMedia
@@ -53,22 +53,22 @@ Object.defineProperty(window, 'matchMedia', {
     removeListener: vi.fn(),
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  })),
+    dispatchEvent: vi.fn()
+  }))
 });
 
 // Mock clipboard API
 Object.defineProperty(navigator, 'clipboard', {
   value: {
-    writeText: vi.fn().mockResolvedValue(undefined),
+    writeText: vi.fn().mockResolvedValue(undefined)
   },
-  writable: true,
+  writable: true
 });
 
 // Mock document.body.style
 Object.defineProperty(document.body, 'style', {
   value: {
-    paddingRight: '',
+    paddingRight: ''
   },
-  writable: true,
+  writable: true
 });

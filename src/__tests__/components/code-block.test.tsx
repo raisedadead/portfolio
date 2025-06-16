@@ -1,4 +1,10 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor
+} from '@testing-library/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import CodeBlock from '../../components/code-block';
@@ -6,9 +12,17 @@ import CodeBlock from '../../components/code-block';
 // Mock react-syntax-highlighter
 vi.mock('react-syntax-highlighter', () => ({
   Prism: vi.fn(
-    ({ children, language, showLineNumbers, wrapLongLines, style, customStyle, ...props }) => (
+    ({
+      children,
+      language,
+      showLineNumbers,
+      wrapLongLines,
+      style,
+      customStyle,
+      ...props
+    }) => (
       <pre
-        data-testid="syntax-highlighter"
+        data-testid='syntax-highlighter'
         data-language={language}
         data-show-line-numbers={showLineNumbers}
         data-wrap-long-lines={wrapLongLines}
@@ -18,20 +32,20 @@ vi.mock('react-syntax-highlighter', () => ({
         <code>{children}</code>
       </pre>
     )
-  ),
+  )
 }));
 
 // Mock styles import
 vi.mock('react-syntax-highlighter/dist/cjs/styles/prism', () => ({
   coldarkCold: {},
-  coldarkDark: {},
+  coldarkDark: {}
 }));
 
 // Mock clipboard API
 Object.assign(navigator, {
   clipboard: {
-    writeText: vi.fn(),
-  },
+    writeText: vi.fn()
+  }
 });
 
 describe('CodeBlock Component', () => {
@@ -40,7 +54,9 @@ describe('CodeBlock Component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (navigator.clipboard.writeText as ReturnType<typeof vi.fn>).mockResolvedValue(undefined);
+    (
+      navigator.clipboard.writeText as ReturnType<typeof vi.fn>
+    ).mockResolvedValue(undefined);
   });
 
   // Get the mocked SyntaxHighlighter
@@ -77,8 +93,8 @@ describe('CodeBlock Component', () => {
           customStyle: {
             padding: '1rem 0rem',
             fontSize: '1rem',
-            lineHeight: '1.5',
-          },
+            lineHeight: '1.5'
+          }
         },
         undefined
       );
@@ -102,8 +118,8 @@ describe('CodeBlock Component', () => {
             customStyle: {
               padding: '1rem 0rem',
               fontSize: '1rem',
-              lineHeight: '1.5',
-            },
+              lineHeight: '1.5'
+            }
           },
           undefined
         );
@@ -111,7 +127,7 @@ describe('CodeBlock Component', () => {
     });
 
     it('handles empty language gracefully', () => {
-      render(<CodeBlock code={mockCode} language="" />);
+      render(<CodeBlock code={mockCode} language='' />);
 
       expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
         {
@@ -123,8 +139,8 @@ describe('CodeBlock Component', () => {
           customStyle: {
             padding: '1rem 1rem',
             fontSize: '1rem',
-            lineHeight: '1.5',
-          },
+            lineHeight: '1.5'
+          }
         },
         undefined
       );
@@ -157,7 +173,7 @@ describe('CodeBlock Component', () => {
 
   describe('Line Numbers', () => {
     it('shows line numbers for supported languages', () => {
-      render(<CodeBlock code={mockCode} language="javascript" />);
+      render(<CodeBlock code={mockCode} language='javascript' />);
 
       expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
         {
@@ -169,15 +185,15 @@ describe('CodeBlock Component', () => {
           customStyle: {
             padding: '1rem 0rem',
             fontSize: '1rem',
-            lineHeight: '1.5',
-          },
+            lineHeight: '1.5'
+          }
         },
         undefined
       );
     });
 
     it('hides line numbers for bash and console languages', () => {
-      render(<CodeBlock code={mockCode} language="bash" />);
+      render(<CodeBlock code={mockCode} language='bash' />);
 
       expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
         {
@@ -189,8 +205,8 @@ describe('CodeBlock Component', () => {
           customStyle: {
             padding: '1rem 1rem',
             fontSize: '1rem',
-            lineHeight: '1.5',
-          },
+            lineHeight: '1.5'
+          }
         },
         undefined
       );
@@ -206,14 +222,19 @@ describe('CodeBlock Component', () => {
     });
 
     it('positions copy button correctly', () => {
-      render(<CodeBlock code={mockCode} language="javascript" />);
+      render(<CodeBlock code={mockCode} language='javascript' />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
-      expect(copyButton).toHaveClass('rounded-md', 'p-2', 'transition-opacity', 'duration-200');
+      expect(copyButton).toHaveClass(
+        'rounded-md',
+        'p-2',
+        'transition-opacity',
+        'duration-200'
+      );
     });
 
     it('applies proper button styling', () => {
-      render(<CodeBlock code={mockCode} language="javascript" />);
+      render(<CodeBlock code={mockCode} language='javascript' />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
       expect(copyButton).toHaveClass(
@@ -233,7 +254,10 @@ describe('CodeBlock Component', () => {
       render(<CodeBlock code={mockCode} language={mockLanguage} />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
-      expect(copyButton).toHaveAttribute('aria-label', expect.stringContaining('Copy'));
+      expect(copyButton).toHaveAttribute(
+        'aria-label',
+        expect.stringContaining('Copy')
+      );
     });
 
     it('provides keyboard accessibility', () => {
@@ -248,7 +272,7 @@ describe('CodeBlock Component', () => {
 
   describe('Edge Cases', () => {
     it('handles empty code gracefully', () => {
-      render(<CodeBlock code="" language="javascript" />);
+      render(<CodeBlock code='' language='javascript' />);
 
       expect(screen.getByTestId('syntax-highlighter')).toBeInTheDocument();
       expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
@@ -261,8 +285,8 @@ describe('CodeBlock Component', () => {
           customStyle: {
             padding: '1rem 0rem',
             fontSize: '1rem',
-            lineHeight: '1.5',
-          },
+            lineHeight: '1.5'
+          }
         },
         undefined
       );

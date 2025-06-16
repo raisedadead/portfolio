@@ -22,7 +22,9 @@
     "cf-typegen": "wrangler types"
   },
   "lint-staged": {
-    "**/*.{mjs,cjs,js,jsx,ts,tsx,json,astro}": ["biome check --write --no-errors-on-unmatched"]
+    "**/*.{mjs,cjs,js,jsx,ts,tsx,json,astro}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
   },
   "dependencies": {
     "@astrojs/cloudflare": "12.5.4",
@@ -70,6 +72,12 @@
   },
   "packageManager": "pnpm@10.12.1",
   "pnpm": {
-    "onlyBuiltDependencies": ["@biomejs/biome", "@tailwindcss/oxide", "esbuild", "sharp", "workerd"]
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "@tailwindcss/oxide",
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
   }
 }

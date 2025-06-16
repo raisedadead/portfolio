@@ -9,11 +9,11 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: 'compile',
     runtime: {
-      mode: 'remote',
+      mode: 'remote'
     },
     platformProxy: {
-      enabled: true,
-    },
+      enabled: true
+    }
   }),
   integrations: [
     react(),
@@ -22,36 +22,40 @@ export default defineConfig({
       changefreq: 'monthly',
       priority: 1,
       filter: (page) => {
-        return !page.includes('/terms') && !page.includes('/refunds') && !page.includes('/privacy');
-      },
-    }),
+        return (
+          !page.includes('/terms') &&
+          !page.includes('/refunds') &&
+          !page.includes('/privacy')
+        );
+      }
+    })
   ],
 
   vite: {
     build: {
-      minify: false,
+      minify: false
     },
     resolve: {
       // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
       // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
       alias: import.meta.env.PROD
         ? {
-            'react-dom/server': 'react-dom/server.edge',
+            'react-dom/server': 'react-dom/server.edge'
           }
-        : undefined,
-    },
+        : undefined
+    }
   },
 
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'auto'
   },
 
   image: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn.hashnode.com',
-      },
-    ],
-  },
+        hostname: 'cdn.hashnode.com'
+      }
+    ]
+  }
 });

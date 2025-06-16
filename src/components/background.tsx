@@ -20,8 +20,8 @@ const WaveBackground = () => {
             repeat: Number.POSITIVE_INFINITY,
             repeatType: 'reverse' as const,
             duration: 5 + index * 0.5,
-            ease: 'easeInOut',
-          },
+            ease: 'easeInOut'
+          }
         }}
       />
     );
@@ -35,15 +35,15 @@ const WaveBackground = () => {
       )}
     >
       <svg
-        className="absolute bottom-0 left-0 w-full"
-        viewBox="0 0 1000 800"
-        preserveAspectRatio="none"
-        role="img"
-        aria-label="Animated wave background decoration"
+        className='absolute bottom-0 left-0 w-full'
+        viewBox='0 0 1000 800'
+        preserveAspectRatio='none'
+        role='img'
+        aria-label='Animated wave background decoration'
       >
         {Array.from({ length: 8 }, (_, i) => createWave(i, 10))}
       </svg>
-      <div className="absolute bottom-0 left-0 h-32 w-full bg-linear-to-t from-teal-600 to-transparent opacity-30" />
+      <div className='absolute bottom-0 left-0 h-32 w-full bg-linear-to-t from-teal-600 to-transparent opacity-30' />
     </div>
   );
 };

@@ -11,16 +11,16 @@ export const GET: APIRoute = async ({ request }) => {
       headers: {
         'user-agent': request.headers.get('user-agent') || 'unknown',
         'cf-ray': request.headers.get('cf-ray') || 'unknown',
-        'cf-connecting-ip': request.headers.get('cf-connecting-ip') || 'unknown',
-      },
+        'cf-connecting-ip': request.headers.get('cf-connecting-ip') || 'unknown'
+      }
     }),
     {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'no-cache',
-      },
+        'Cache-Control': 'no-cache'
+      }
     }
   );
 };

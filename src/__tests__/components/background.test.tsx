@@ -7,11 +7,11 @@ import type { MockFramerMotionProps } from '../test-utils';
 vi.mock('framer-motion', () => ({
   motion: {
     path: ({ children, ...props }: MockFramerMotionProps) => (
-      <path data-testid="wave-path" {...props}>
+      <path data-testid='wave-path' {...props}>
         {children}
       </path>
-    ),
-  },
+    )
+  }
 }));
 
 describe('WaveBackground Component', () => {
@@ -21,7 +21,12 @@ describe('WaveBackground Component', () => {
 
       const waveContainer = container.firstChild as HTMLElement;
       expect(waveContainer).toBeInTheDocument();
-      expect(waveContainer).toHaveClass('relative', 'h-screen', 'w-screen', 'overflow-hidden');
+      expect(waveContainer).toHaveClass(
+        'relative',
+        'h-screen',
+        'w-screen',
+        'overflow-hidden'
+      );
     });
 
     it('renders the SVG container', () => {
@@ -201,8 +206,14 @@ describe('WaveBackground Component', () => {
     it('uses teal color scheme throughout', () => {
       const { container } = render(<WaveBackground />);
 
-      const mainContainer = container.querySelector('.relative.h-screen.w-screen');
-      expect(mainContainer).toHaveClass('from-emerald-300', 'via-orange-200', 'to-teal-200');
+      const mainContainer = container.querySelector(
+        '.relative.h-screen.w-screen'
+      );
+      expect(mainContainer).toHaveClass(
+        'from-emerald-300',
+        'via-orange-200',
+        'to-teal-200'
+      );
 
       const overlay = container.querySelector('.from-teal-600');
       expect(overlay).toHaveClass('from-teal-600');

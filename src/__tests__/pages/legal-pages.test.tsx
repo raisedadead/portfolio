@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Mock utility functions
 vi.mock('@/lib/utils', () => ({
-  cn: (...classes: string[]) => classes.filter(Boolean).join(' '),
+  cn: (...classes: string[]) => classes.filter(Boolean).join(' ')
 }));
 
 // Since these are Astro pages, we'll test the component parts
@@ -14,20 +14,22 @@ describe('Legal Pages Content', () => {
 
   const renderTermsContent = () => {
     return render(
-      <div data-testid="legal-content" data-variant="legal">
-        <section className="mb-8">
-          <h1 className="py-4 text-center text-3xl font-extrabold tracking-tight text-slate-900">
+      <div data-testid='legal-content' data-variant='legal'>
+        <section className='mb-8'>
+          <h1 className='py-4 text-center text-3xl font-extrabold tracking-tight text-slate-900'>
             Terms & Conditions
           </h1>
         </section>
-        <section className="mb-12">
-          <p className="pb-6 text-center text-lg font-medium text-slate-700">
+        <section className='mb-12'>
+          <p className='pb-6 text-center text-lg font-medium text-slate-700'>
             Please read these terms and conditions carefully.
           </p>
-          <div className="space-y-8">
+          <div className='space-y-8'>
             <div>
-              <h2 className="mb-4 text-2xl font-bold text-slate-800">1. Acceptance of Terms</h2>
-              <p className="text-lg text-slate-700">
+              <h2 className='mb-4 text-2xl font-bold text-slate-800'>
+                1. Acceptance of Terms
+              </h2>
+              <p className='text-lg text-slate-700'>
                 By accessing this website, you accept these terms.
               </p>
             </div>
@@ -39,38 +41,46 @@ describe('Legal Pages Content', () => {
 
   const renderPrivacyContent = () => {
     return render(
-      <div data-testid="legal-content" data-variant="legal">
-        <section className="mb-8">
-          <div className="prose prose-lg prose-slate max-w-none">
-            <h1 className="py-4 text-center text-3xl font-extrabold tracking-tight text-slate-900">
+      <div data-testid='legal-content' data-variant='legal'>
+        <section className='mb-8'>
+          <div className='prose prose-lg prose-slate max-w-none'>
+            <h1 className='py-4 text-center text-3xl font-extrabold tracking-tight text-slate-900'>
               Privacy Policy
             </h1>
           </div>
         </section>
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
-            <p className="pb-6 text-center text-lg font-medium text-slate-700">
-              Your privacy is important to us. This privacy statement explains what personal data we
-              collect and how we use it.
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
+            <p className='pb-6 text-center text-lg font-medium text-slate-700'>
+              Your privacy is important to us. This privacy statement explains
+              what personal data we collect and how we use it.
             </p>
-            <div className="space-y-8">
+            <div className='space-y-8'>
               <div>
-                <h2 className="mb-4 text-2xl font-bold text-slate-800">Information We Collect</h2>
-                <p className="text-lg text-slate-700">
-                  We may collect information you provide directly to us, such as when you contact us
-                  through our website.
+                <h2 className='mb-4 text-2xl font-bold text-slate-800'>
+                  Information We Collect
+                </h2>
+                <p className='text-lg text-slate-700'>
+                  We may collect information you provide directly to us, such as
+                  when you contact us through our website.
                 </p>
               </div>
               <div>
-                <h2 className="mb-4 text-2xl font-bold text-slate-800">How We Use Information</h2>
-                <p className="text-lg text-slate-700">
-                  We use the information we collect to provide, maintain, and improve our services.
+                <h2 className='mb-4 text-2xl font-bold text-slate-800'>
+                  How We Use Information
+                </h2>
+                <p className='text-lg text-slate-700'>
+                  We use the information we collect to provide, maintain, and
+                  improve our services.
                 </p>
               </div>
               <div>
-                <h2 className="mb-4 text-2xl font-bold text-slate-800">Data Security</h2>
-                <p className="text-lg text-slate-700">
-                  We implement appropriate security measures to protect your personal information.
+                <h2 className='mb-4 text-2xl font-bold text-slate-800'>
+                  Data Security
+                </h2>
+                <p className='text-lg text-slate-700'>
+                  We implement appropriate security measures to protect your
+                  personal information.
                 </p>
               </div>
             </div>
@@ -82,39 +92,46 @@ describe('Legal Pages Content', () => {
 
   const renderRefundsContent = () => {
     return render(
-      <div data-testid="legal-content" data-variant="legal">
-        <section className="mb-8">
-          <div className="prose prose-lg prose-slate max-w-none">
-            <h1 className="py-4 text-center text-3xl font-extrabold tracking-tight text-slate-900">
+      <div data-testid='legal-content' data-variant='legal'>
+        <section className='mb-8'>
+          <div className='prose prose-lg prose-slate max-w-none'>
+            <h1 className='py-4 text-center text-3xl font-extrabold tracking-tight text-slate-900'>
               Refunds & Cancellation Policy
             </h1>
           </div>
         </section>
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
-            <p className="pb-6 text-center text-lg font-medium text-slate-700">
-              Please review our refund and cancellation policy before engaging our services.
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
+            <p className='pb-6 text-center text-lg font-medium text-slate-700'>
+              Please review our refund and cancellation policy before engaging
+              our services.
             </p>
-            <div className="space-y-8">
+            <div className='space-y-8'>
               <div>
-                <h2 className="mb-4 text-2xl font-bold text-slate-800">Refund Eligibility</h2>
-                <p className="text-lg text-slate-700">
-                  Refunds may be available under certain circumstances as outlined in our service
-                  agreements.
+                <h2 className='mb-4 text-2xl font-bold text-slate-800'>
+                  Refund Eligibility
+                </h2>
+                <p className='text-lg text-slate-700'>
+                  Refunds may be available under certain circumstances as
+                  outlined in our service agreements.
                 </p>
               </div>
               <div>
-                <h2 className="mb-4 text-2xl font-bold text-slate-800">Cancellation Process</h2>
-                <p className="text-lg text-slate-700">
-                  Service cancellations must be requested in writing with appropriate notice
-                  periods.
+                <h2 className='mb-4 text-2xl font-bold text-slate-800'>
+                  Cancellation Process
+                </h2>
+                <p className='text-lg text-slate-700'>
+                  Service cancellations must be requested in writing with
+                  appropriate notice periods.
                 </p>
               </div>
               <div>
-                <h2 className="mb-4 text-2xl font-bold text-slate-800">Processing Time</h2>
-                <p className="text-lg text-slate-700">
-                  Approved refunds will be processed within 5-10 business days using the original
-                  payment method.
+                <h2 className='mb-4 text-2xl font-bold text-slate-800'>
+                  Processing Time
+                </h2>
+                <p className='text-lg text-slate-700'>
+                  Approved refunds will be processed within 5-10 business days
+                  using the original payment method.
                 </p>
               </div>
             </div>
@@ -130,7 +147,12 @@ describe('Legal Pages Content', () => {
 
       const heading = screen.getByRole('heading', { level: 1 });
       expect(heading).toHaveTextContent('Terms & Conditions');
-      expect(heading).toHaveClass('py-4', 'text-center', 'text-3xl', 'font-extrabold');
+      expect(heading).toHaveClass(
+        'py-4',
+        'text-center',
+        'text-3xl',
+        'font-extrabold'
+      );
     });
 
     it('displays terms introduction', () => {
@@ -147,7 +169,7 @@ describe('Legal Pages Content', () => {
       expect(
         screen.getByRole('heading', {
           level: 2,
-          name: '1. Acceptance of Terms',
+          name: '1. Acceptance of Terms'
         })
       ).toBeInTheDocument();
     });
@@ -185,28 +207,36 @@ describe('Legal Pages Content', () => {
       expect(
         screen.getByRole('heading', {
           level: 2,
-          name: 'Information We Collect',
+          name: 'Information We Collect'
         })
       ).toBeInTheDocument();
       expect(
         screen.getByRole('heading', {
           level: 2,
-          name: 'How We Use Information',
+          name: 'How We Use Information'
         })
       ).toBeInTheDocument();
-      expect(screen.getByRole('heading', { level: 2, name: 'Data Security' })).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { level: 2, name: 'Data Security' })
+      ).toBeInTheDocument();
     });
 
     it('displays privacy content', () => {
       renderPrivacyContent();
 
       expect(
-        screen.getByText(/We may collect information you provide directly to us/)
+        screen.getByText(
+          /We may collect information you provide directly to us/
+        )
       ).toBeInTheDocument();
       expect(
-        screen.getByText(/We use the information we collect to provide, maintain/)
+        screen.getByText(
+          /We use the information we collect to provide, maintain/
+        )
       ).toBeInTheDocument();
-      expect(screen.getByText(/We implement appropriate security measures/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/We implement appropriate security measures/)
+      ).toBeInTheDocument();
     });
   });
 
@@ -260,7 +290,9 @@ describe('Legal Pages Content', () => {
         screen.getByText(/Service cancellations must be requested in writing/)
       ).toBeInTheDocument();
       expect(
-        screen.getByText(/Approved refunds will be processed within 5-10 business days/)
+        screen.getByText(
+          /Approved refunds will be processed within 5-10 business days/
+        )
       ).toBeInTheDocument();
     });
   });
@@ -271,8 +303,14 @@ describe('Legal Pages Content', () => {
       const privacyContainer = renderPrivacyContent().container;
       const refundsContainer = renderRefundsContent().container;
 
-      for (const container of [termsContainer, privacyContainer, refundsContainer]) {
-        const legalContent = container.querySelector('[data-testid="legal-content"]');
+      for (const container of [
+        termsContainer,
+        privacyContainer,
+        refundsContainer
+      ]) {
+        const legalContent = container.querySelector(
+          '[data-testid="legal-content"]'
+        );
         expect(legalContent).toHaveAttribute('data-variant', 'legal');
 
         const sections = container.querySelectorAll('section');
@@ -285,7 +323,9 @@ describe('Legal Pages Content', () => {
     it('all legal pages have proper prose styling', () => {
       const { container: privacyContainer } = renderPrivacyContent();
 
-      const proseContainer = privacyContainer.querySelector('.prose.prose-lg.prose-slate');
+      const proseContainer = privacyContainer.querySelector(
+        '.prose.prose-lg.prose-slate'
+      );
       expect(proseContainer).toBeInTheDocument();
       expect(proseContainer).toHaveClass('max-w-none');
     });
@@ -303,7 +343,9 @@ describe('Legal Pages Content', () => {
       }
 
       const bodyParagraphs = Array.from(paragraphs).filter(
-        (p) => p.classList.contains('text-lg') && p.classList.contains('text-slate-700')
+        (p) =>
+          p.classList.contains('text-lg') &&
+          p.classList.contains('text-slate-700')
       );
       expect(bodyParagraphs.length).toBeGreaterThan(0);
     });
@@ -326,7 +368,9 @@ describe('Legal Pages Content', () => {
     it('should use legal layout variant', () => {
       const { container } = renderTermsContent();
 
-      const legalContent = container.querySelector('[data-testid="legal-content"]');
+      const legalContent = container.querySelector(
+        '[data-testid="legal-content"]'
+      );
       expect(legalContent).toHaveAttribute('data-variant', 'legal');
     });
 
@@ -360,7 +404,9 @@ describe('Legal Pages Content', () => {
     it('has descriptive content for screen readers', () => {
       renderTermsContent();
 
-      const introText = screen.getByText('Please read these terms and conditions carefully.');
+      const introText = screen.getByText(
+        'Please read these terms and conditions carefully.'
+      );
       expect(introText).toBeInTheDocument();
 
       // Check that sections have meaningful content
@@ -403,7 +449,9 @@ describe('Legal Pages Content', () => {
       const bodyText = container.querySelectorAll('p.text-lg.text-slate-700');
       expect(bodyText.length).toBeGreaterThan(0);
 
-      const headings = container.querySelectorAll('h2.text-2xl.font-bold.text-slate-800');
+      const headings = container.querySelectorAll(
+        'h2.text-2xl.font-bold.text-slate-800'
+      );
       expect(headings.length).toBeGreaterThan(0);
     });
   });

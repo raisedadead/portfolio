@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import React from 'react';
 
 const SkeletonBlock = () => (
-  <div className={cn('animate-pulse')} data-testid="skeleton-block">
+  <div className={cn('animate-pulse')} data-testid='skeleton-block'>
     <div className={cn('relative aspect-video w-full bg-gray-200')} />
     <div className={cn('p-6 sm:p-10')}>
       <div className={cn('mb-6 h-8 w-3/4 bg-gray-200')} />

@@ -22,11 +22,12 @@ export const CustomLink = forwardRef<HTMLAnchorElement, CustomLinkProps>(
       rel,
       target,
       type,
-      onClick,
+      onClick
     },
     ref
   ) => {
-    const isExternal = (!href.startsWith('/') && !href.startsWith('#')) || href.startsWith('//');
+    const isExternal =
+      (!href.startsWith('/') && !href.startsWith('#')) || href.startsWith('//');
 
     const linkProps = {
       ref,
@@ -38,8 +39,8 @@ export const CustomLink = forwardRef<HTMLAnchorElement, CustomLinkProps>(
       ...(target && { target }),
       ...(isExternal &&
         target === '_blank' && {
-          rel: `${rel ? `${rel} ` : ''}noopener noreferrer`,
-        }),
+          rel: `${rel ? `${rel} ` : ''}noopener noreferrer`
+        })
     };
 
     return <a {...linkProps}>{children}</a>;

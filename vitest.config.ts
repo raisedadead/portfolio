@@ -21,14 +21,19 @@ export default defineConfig({
         '**/*.config.*',
         '**/*.setup.*',
         'src/__tests__/**',
-        'src/__mocks__/**',
-      ],
+        'src/__mocks__/**'
+      ]
     },
-    exclude: ['**/node_modules/**', '**/dist/**', '**/.astro/**', '**/coverage/**'],
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/.astro/**',
+      '**/coverage/**'
+    ]
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
+      '@': path.resolve(__dirname, './src')
+    }
+  }
 } satisfies UserConfig);

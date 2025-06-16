@@ -4,15 +4,29 @@ import type { MockImageProps } from '../test-utils';
 
 // Mock utility functions
 vi.mock('@/lib/utils', () => ({
-  cn: (...classes: string[]) => classes.filter(Boolean).join(' '),
+  cn: (...classes: string[]) => classes.filter(Boolean).join(' ')
 }));
 
 // Mock Astro Image component
 vi.mock('astro:assets', () => ({
-  // biome-ignore lint/a11y/useAltText: This is a test mock with proper alt handling
-  Image: ({ src, alt = 'Image', width, height, format, ...props }: MockImageProps) => (
-    <img src={src} alt={alt} width={width} height={height} data-format={format} {...props} />
-  ),
+  Image: ({
+    src,
+    alt = 'Image',
+    width,
+    height,
+    format,
+    ...props
+  }: MockImageProps) => (
+    // biome-ignore lint/a11y/useAltText: This is a test mock with proper alt handling
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      data-format={format}
+      {...props}
+    />
+  )
 }));
 
 // Since this is an Astro page, we'll test the component parts
@@ -23,25 +37,33 @@ describe('404 Page Content', () => {
 
   const render404Content = () => {
     return render(
-      <section className="mb-8 flex flex-col items-center justify-center">
-        <div className="prose prose-lg prose-slate max-w-none text-center">
-          <h1 className="py-4 text-4xl font-extrabold tracking-tight text-slate-900">
+      <section className='mb-8 flex flex-col items-center justify-center'>
+        <div className='prose prose-lg prose-slate max-w-none text-center'>
+          <h1 className='py-4 text-4xl font-extrabold tracking-tight text-slate-900'>
             Page Not Found
           </h1>
-          <p className="text-xl font-medium text-slate-700">
+          <p className='text-xl font-medium text-slate-700'>
             Oops! It seems you've wandered into uncharted territory.
           </p>
         </div>
-        <div className="my-8 flex w-full flex-col items-center justify-center">
-          <img src="/images/404.svg" alt="404" width={640} height={640} data-format="svg" />
-          <p className="mt-2 text-xs text-slate-500">Image by storyset on Freepik</p>
+        <div className='my-8 flex w-full flex-col items-center justify-center'>
+          <img
+            src='/images/404.svg'
+            alt='404'
+            width={640}
+            height={640}
+            data-format='svg'
+          />
+          <p className='mt-2 text-xs text-slate-500'>
+            Image by storyset on Freepik
+          </p>
         </div>
-        <p className="mb-6 text-lg font-medium text-slate-700">
+        <p className='mb-6 text-lg font-medium text-slate-700'>
           Don't worry, even the best explorers get lost sometimes!
         </p>
         <a
-          href="/"
-          className="inline-flex items-center border-2 border-black bg-orange-200 px-4 py-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-hidden active:bg-black active:shadow-none"
+          href='/'
+          className='inline-flex items-center border-2 border-black bg-orange-200 px-4 py-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-hidden active:bg-black active:shadow-none'
         >
           Return to Home
         </a>
@@ -54,14 +76,22 @@ describe('404 Page Content', () => {
       const { container } = render404Content();
 
       const section = container.querySelector('section');
-      expect(section).toHaveClass('mb-8', 'flex', 'flex-col', 'items-center', 'justify-center');
+      expect(section).toHaveClass(
+        'mb-8',
+        'flex',
+        'flex-col',
+        'items-center',
+        'justify-center'
+      );
     });
 
     it('renders heading and content sections', () => {
       render404Content();
 
       expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: /return to home/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole('link', { name: /return to home/i })
+      ).toBeInTheDocument();
     });
   });
 
@@ -84,23 +114,34 @@ describe('404 Page Content', () => {
       render404Content();
 
       expect(
-        screen.getByText("Oops! It seems you've wandered into uncharted territory.")
+        screen.getByText(
+          "Oops! It seems you've wandered into uncharted territory."
+        )
       ).toBeInTheDocument();
       expect(
-        screen.getByText("Don't worry, even the best explorers get lost sometimes!")
+        screen.getByText(
+          "Don't worry, even the best explorers get lost sometimes!"
+        )
       ).toBeInTheDocument();
     });
 
     it('applies correct typography classes', () => {
       const { container } = render404Content();
 
-      const subtitle = screen.getByText("Oops! It seems you've wandered into uncharted territory.");
+      const subtitle = screen.getByText(
+        "Oops! It seems you've wandered into uncharted territory."
+      );
       expect(subtitle).toHaveClass('text-xl', 'font-medium', 'text-slate-700');
 
       const encouragement = screen.getByText(
         "Don't worry, even the best explorers get lost sometimes!"
       );
-      expect(encouragement).toHaveClass('mb-6', 'text-lg', 'font-medium', 'text-slate-700');
+      expect(encouragement).toHaveClass(
+        'mb-6',
+        'text-lg',
+        'font-medium',
+        'text-slate-700'
+      );
     });
   });
 
@@ -118,7 +159,9 @@ describe('404 Page Content', () => {
     it('displays image attribution', () => {
       render404Content();
 
-      expect(screen.getByText('Image by storyset on Freepik')).toBeInTheDocument();
+      expect(
+        screen.getByText('Image by storyset on Freepik')
+      ).toBeInTheDocument();
     });
 
     it('image container has correct styling', () => {
@@ -178,7 +221,9 @@ describe('404 Page Content', () => {
     it('uses prose styling for content sections', () => {
       const { container } = render404Content();
 
-      const proseContainer = container.querySelector('.prose.prose-lg.prose-slate');
+      const proseContainer = container.querySelector(
+        '.prose.prose-lg.prose-slate'
+      );
       expect(proseContainer).toBeInTheDocument();
       expect(proseContainer).toHaveClass('max-w-none', 'text-center');
     });
@@ -187,7 +232,12 @@ describe('404 Page Content', () => {
       const { container } = render404Content();
 
       const section = container.querySelector('section');
-      expect(section).toHaveClass('flex', 'flex-col', 'items-center', 'justify-center');
+      expect(section).toHaveClass(
+        'flex',
+        'flex-col',
+        'items-center',
+        'justify-center'
+      );
     });
 
     it('applies proper spacing between elements', () => {
@@ -249,7 +299,9 @@ describe('404 Page Content', () => {
       render404Content();
 
       const heading = screen.getByRole('heading', { level: 1 });
-      const subtitle = screen.getByText("Oops! It seems you've wandered into uncharted territory.");
+      const subtitle = screen.getByText(
+        "Oops! It seems you've wandered into uncharted territory."
+      );
 
       expect(heading).toHaveClass('text-4xl');
       expect(subtitle).toHaveClass('text-xl');

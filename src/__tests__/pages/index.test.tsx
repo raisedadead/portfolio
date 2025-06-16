@@ -5,21 +5,27 @@ import type { MockMainLayoutProps } from '../test-utils';
 
 // Mock the Profile component
 vi.mock('@/components/profile', () => ({
-  Profile: vi.fn(() => <div data-testid="profile-component">Profile Component</div>),
+  Profile: vi.fn(() => (
+    <div data-testid='profile-component'>Profile Component</div>
+  ))
 }));
 
 // Mock MainLayout
 vi.mock('@/layouts/MainLayout.astro', () => ({
   default: ({ children, variant, showHomeButton }: MockMainLayoutProps) => (
-    <div data-testid="main-layout" data-variant={variant} data-show-home-button={showHomeButton}>
+    <div
+      data-testid='main-layout'
+      data-variant={variant}
+      data-show-home-button={showHomeButton}
+    >
       {children}
     </div>
-  ),
+  )
 }));
 
 // Mock utility functions
 vi.mock('@/lib/utils', () => ({
-  cn: (...classes: string[]) => classes.filter(Boolean).join(' '),
+  cn: (...classes: string[]) => classes.filter(Boolean).join(' ')
 }));
 
 // Since this is an Astro page, we'll test the component parts
@@ -31,8 +37,8 @@ describe('Index Page Content', () => {
   describe('Basic Structure', () => {
     it('renders main section with correct classes', () => {
       const { container } = render(
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
             <Profile />
           </div>
         </section>
@@ -47,8 +53,8 @@ describe('Index Page Content', () => {
 
     it('renders profile component', () => {
       render(
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
             <Profile />
           </div>
         </section>
@@ -72,8 +78,8 @@ describe('Index Page Content', () => {
   describe('Content Structure', () => {
     it('has proper semantic HTML structure', () => {
       const { container } = render(
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
             <Profile />
           </div>
         </section>
@@ -85,8 +91,8 @@ describe('Index Page Content', () => {
 
     it('applies responsive container classes', () => {
       const { container } = render(
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
             <Profile />
           </div>
         </section>
@@ -100,8 +106,8 @@ describe('Index Page Content', () => {
   describe('Profile Integration', () => {
     it('profile component is client-side loaded', () => {
       render(
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
             <Profile />
           </div>
         </section>
@@ -113,23 +119,25 @@ describe('Index Page Content', () => {
 
     it('profile is within the correct container', () => {
       const { container } = render(
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
             <Profile />
           </div>
         </section>
       );
 
       const profileContainer = container.querySelector('.max-w-4xl');
-      expect(profileContainer).toContainElement(screen.getByTestId('profile-component'));
+      expect(profileContainer).toContainElement(
+        screen.getByTestId('profile-component')
+      );
     });
   });
 
   describe('Accessibility', () => {
     it('uses semantic section element', () => {
       const { container } = render(
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
             <Profile />
           </div>
         </section>
@@ -141,8 +149,8 @@ describe('Index Page Content', () => {
 
     it('has proper content hierarchy', () => {
       const { container } = render(
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
             <Profile />
           </div>
         </section>
@@ -160,8 +168,8 @@ describe('Index Page Content', () => {
   describe('Responsive Design', () => {
     it('applies mobile-first responsive classes', () => {
       const { container } = render(
-        <section className="mb-12">
-          <div className="mx-auto max-w-4xl">
+        <section className='mb-12'>
+          <div className='mx-auto max-w-4xl'>
             <Profile />
           </div>
         </section>

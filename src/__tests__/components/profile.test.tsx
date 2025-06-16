@@ -6,7 +6,7 @@ import type { MockLinkProps } from '../test-utils';
 
 // Mock the Social component
 vi.mock('../../components/social', () => ({
-  Social: () => <div data-testid="mocked-social">Social Links</div>,
+  Social: () => <div data-testid='mocked-social'>Social Links</div>
 }));
 
 // Mock the CustomLink component
@@ -15,7 +15,7 @@ vi.mock('../../components/custom-link', () => ({
     <a href={href} {...props}>
       {children}
     </a>
-  ),
+  )
 }));
 
 describe('Profile Component', () => {
@@ -36,7 +36,9 @@ describe('Profile Component', () => {
   it('renders profile image with correct alt text', () => {
     render(<Profile />);
 
-    const profileImage = screen.getByAltText("Mrugesh Mohapatra's profile picture.");
+    const profileImage = screen.getByAltText(
+      "Mrugesh Mohapatra's profile picture."
+    );
     expect(profileImage).toBeTruthy();
     expect(profileImage).toHaveAttribute('width', '144');
     expect(profileImage).toHaveAttribute('height', '144');

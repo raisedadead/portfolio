@@ -8,7 +8,7 @@ vi.mock('@/components/custom-link', () => ({
     <a href={href} className={className} aria-label={ariaLabel}>
       {children}
     </a>
-  ),
+  )
 }));
 
 describe('Footer Component', () => {
@@ -25,7 +25,9 @@ describe('Footer Component', () => {
 
       const currentYear = new Date().getFullYear();
       expect(
-        screen.getByText(/© 2012-\d{4} Mrugesh Mohapatra Co. — All rights reserved./)
+        screen.getByText(
+          /© 2012-\d{4} Mrugesh Mohapatra Co. — All rights reserved./
+        )
       ).toBeInTheDocument();
     });
 
@@ -33,8 +35,12 @@ describe('Footer Component', () => {
       render(<Footer />);
 
       expect(screen.getByRole('link', { name: /terms/i })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: /privacy/i })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: /refunds/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole('link', { name: /privacy/i })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('link', { name: /refunds/i })
+      ).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
     });
   });
@@ -87,7 +93,9 @@ describe('Footer Component', () => {
     it('does not show home link when default', () => {
       render(<Footer isDefault={true} />);
 
-      expect(screen.queryByRole('link', { name: /home/i })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole('link', { name: /home/i })
+      ).not.toBeInTheDocument();
     });
 
     it('has proper default link styling', () => {
@@ -128,21 +136,46 @@ describe('Footer Component', () => {
     it('all navigation links have correct hrefs', () => {
       render(<Footer />);
 
-      expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute('href', '/');
-      expect(screen.getByRole('link', { name: /terms/i })).toHaveAttribute('href', '/terms');
-      expect(screen.getByRole('link', { name: /privacy/i })).toHaveAttribute('href', '/privacy');
-      expect(screen.getByRole('link', { name: /refunds/i })).toHaveAttribute('href', '/refunds');
-      expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute('href', '/about');
+      expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute(
+        'href',
+        '/'
+      );
+      expect(screen.getByRole('link', { name: /terms/i })).toHaveAttribute(
+        'href',
+        '/terms'
+      );
+      expect(screen.getByRole('link', { name: /privacy/i })).toHaveAttribute(
+        'href',
+        '/privacy'
+      );
+      expect(screen.getByRole('link', { name: /refunds/i })).toHaveAttribute(
+        'href',
+        '/refunds'
+      );
+      expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute(
+        'href',
+        '/about'
+      );
     });
 
     it('all navigation links have proper aria labels', () => {
       render(<Footer />);
 
-      expect(screen.getByRole('link', { name: /home/i })).toHaveAccessibleName('Home');
-      expect(screen.getByRole('link', { name: /terms/i })).toHaveAccessibleName('Terms');
-      expect(screen.getByRole('link', { name: /privacy/i })).toHaveAccessibleName('Privacy');
-      expect(screen.getByRole('link', { name: /refunds/i })).toHaveAccessibleName('Refunds');
-      expect(screen.getByRole('link', { name: /about/i })).toHaveAccessibleName('About & Contact');
+      expect(screen.getByRole('link', { name: /home/i })).toHaveAccessibleName(
+        'Home'
+      );
+      expect(screen.getByRole('link', { name: /terms/i })).toHaveAccessibleName(
+        'Terms'
+      );
+      expect(
+        screen.getByRole('link', { name: /privacy/i })
+      ).toHaveAccessibleName('Privacy');
+      expect(
+        screen.getByRole('link', { name: /refunds/i })
+      ).toHaveAccessibleName('Refunds');
+      expect(screen.getByRole('link', { name: /about/i })).toHaveAccessibleName(
+        'About & Contact'
+      );
     });
   });
 
@@ -162,7 +195,9 @@ describe('Footer Component', () => {
 
       rerender(<Footer isDefault={true} />);
 
-      expect(screen.queryByRole('link', { name: /home/i })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole('link', { name: /home/i })
+      ).not.toBeInTheDocument();
     });
   });
 
@@ -193,7 +228,9 @@ describe('Footer Component', () => {
       const secondParagraph = paragraphs[1];
 
       expect(secondParagraph).toHaveClass('mt-2');
-      expect(secondParagraph).toContainElement(screen.getByRole('link', { name: /terms/i }));
+      expect(secondParagraph).toContainElement(
+        screen.getByRole('link', { name: /terms/i })
+      );
     });
   });
 

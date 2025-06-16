@@ -8,14 +8,14 @@ export const GET: APIRoute = async ({ request }) => {
       message: 'pong',
       timestamp: new Date().toISOString(),
       url: request.url,
-      status: 'ok',
+      status: 'ok'
     }),
     {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
+        'Access-Control-Allow-Origin': '*'
+      }
     }
   );
 };
@@ -30,14 +30,14 @@ export const POST: APIRoute = async ({ request }) => {
       url: request.url,
       method: 'POST',
       body: body,
-      status: 'ok',
+      status: 'ok'
     }),
     {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
+        'Access-Control-Allow-Origin': '*'
+      }
     }
   );
 };

@@ -6,18 +6,25 @@ import type { MockCustomLinkProps } from '../test-utils';
 
 // Mock the custom-link component
 vi.mock('@/components/custom-link', () => ({
-  CustomLink: ({ children, href, className, ariaLabel, rel, type }: MockCustomLinkProps) => (
+  CustomLink: ({
+    children,
+    href,
+    className,
+    ariaLabel,
+    rel,
+    type
+  }: MockCustomLinkProps) => (
     <a
       href={href}
       className={className}
       aria-label={ariaLabel}
       rel={rel}
       type={type}
-      target="_blank"
+      target='_blank'
     >
       {children}
     </a>
-  ),
+  )
 }));
 
 describe('Social Component', () => {
@@ -42,10 +49,16 @@ describe('Social Component', () => {
     it('renders all social platform links', () => {
       render(<Social />);
 
-      expect(screen.getByRole('link', { name: /twitter/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole('link', { name: /twitter/i })
+      ).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: /instagram/i })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: /linkedin/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole('link', { name: /instagram/i })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('link', { name: /linkedin/i })
+      ).toBeInTheDocument();
     });
   });
 
@@ -54,7 +67,10 @@ describe('Social Component', () => {
       render(<Social />);
 
       const twitterLink = screen.getByRole('link', { name: /twitter/i });
-      expect(twitterLink).toHaveAttribute('href', 'https://twitter.com/raisedadead');
+      expect(twitterLink).toHaveAttribute(
+        'href',
+        'https://twitter.com/raisedadead'
+      );
     });
 
     it('has proper styling', () => {
@@ -94,7 +110,10 @@ describe('Social Component', () => {
       render(<Social />);
 
       const githubLink = screen.getByRole('link', { name: /github/i });
-      expect(githubLink).toHaveAttribute('href', 'https://github.com/raisedadead');
+      expect(githubLink).toHaveAttribute(
+        'href',
+        'https://github.com/raisedadead'
+      );
     });
 
     it('has proper styling', () => {
@@ -134,7 +153,10 @@ describe('Social Component', () => {
       render(<Social />);
 
       const instagramLink = screen.getByRole('link', { name: /instagram/i });
-      expect(instagramLink).toHaveAttribute('href', 'https://instagram.com/raisedadead');
+      expect(instagramLink).toHaveAttribute(
+        'href',
+        'https://instagram.com/raisedadead'
+      );
     });
 
     it('has proper styling', () => {
@@ -174,7 +196,10 @@ describe('Social Component', () => {
       render(<Social />);
 
       const linkedinLink = screen.getByRole('link', { name: /linkedin/i });
-      expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/mrugeshm');
+      expect(linkedinLink).toHaveAttribute(
+        'href',
+        'https://linkedin.com/in/mrugeshm'
+      );
     });
 
     it('has proper styling', () => {
@@ -241,10 +266,18 @@ describe('Social Component', () => {
     it('all links have proper aria-labels', () => {
       render(<Social />);
 
-      expect(screen.getByRole('link', { name: /twitter/i })).toHaveAccessibleName('Twitter');
-      expect(screen.getByRole('link', { name: /github/i })).toHaveAccessibleName('GitHub');
-      expect(screen.getByRole('link', { name: /instagram/i })).toHaveAccessibleName('Instagram');
-      expect(screen.getByRole('link', { name: /linkedin/i })).toHaveAccessibleName('LinkedIn');
+      expect(
+        screen.getByRole('link', { name: /twitter/i })
+      ).toHaveAccessibleName('Twitter');
+      expect(
+        screen.getByRole('link', { name: /github/i })
+      ).toHaveAccessibleName('GitHub');
+      expect(
+        screen.getByRole('link', { name: /instagram/i })
+      ).toHaveAccessibleName('Instagram');
+      expect(
+        screen.getByRole('link', { name: /linkedin/i })
+      ).toHaveAccessibleName('LinkedIn');
     });
 
     it('all SVG icons are hidden from screen readers', () => {
@@ -273,7 +306,11 @@ describe('Social Component', () => {
       const links = screen.getAllByRole('link');
 
       for (const link of links) {
-        expect(link).toHaveClass('hover:bg-gray-700', 'hover:text-white', 'hover:shadow-none');
+        expect(link).toHaveClass(
+          'hover:bg-gray-700',
+          'hover:text-white',
+          'hover:shadow-none'
+        );
       }
     });
 
@@ -293,7 +330,12 @@ describe('Social Component', () => {
       const { container } = render(<Social />);
 
       const socialContainer = container.firstChild as HTMLElement;
-      expect(socialContainer).toHaveClass('flex', 'flex-row', 'items-center', 'justify-center');
+      expect(socialContainer).toHaveClass(
+        'flex',
+        'flex-row',
+        'items-center',
+        'justify-center'
+      );
     });
 
     it('has proper spacing', () => {
