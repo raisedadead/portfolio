@@ -1,6 +1,5 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import type { DOMNode, Element } from 'html-react-parser';
 
 export const GA_TRACKING_ID = 'G-VD9T0P1KLN';
 
@@ -10,7 +9,7 @@ export const updateGAConsent = () => {
     ad_user_data: 'granted',
     ad_personalization: 'granted',
     ad_storage: 'granted',
-    analytics_storage: 'granted'
+    analytics_storage: 'granted',
   });
 };
 
@@ -23,18 +22,4 @@ export const loadGAScript = () => {
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
-};
-
-const isElement = (node: DOMNode): node is Element => {
-  return node.type === 'tag';
-};
-
-export const extractTextContent = (node: DOMNode): string => {
-  if (node.type === 'text') {
-    return node.data || '';
-  }
-  if (isElement(node) && node.children) {
-    return (node.children as DOMNode[]).map(extractTextContent).join('');
-  }
-  return '';
 };

@@ -3,11 +3,11 @@
   "dockerFile": "Dockerfile",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
-  "forwardPorts": [3000],
+  "forwardPorts": [4321],
 
   "portsAttributes": {
-    "3000": {
-      "label": "Next.js",
+    "4321": {
+      "label": "Astro",
       "onAutoForward": "openBrowser"
     }
   },
@@ -16,5 +16,5 @@
   },
 
   "onCreateCommand": "pnpm install",
-  "postCreateCommand": "pnpm run develop"
+  "postCreateCommand": "pnpm run dev"
 }

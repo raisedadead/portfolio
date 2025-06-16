@@ -1,6 +1,6 @@
 import { CustomLink as Link } from './custom-link';
 
-export type FooterProps = {
+type FooterProps = {
   isDefault?: boolean;
   className?: string;
 };
@@ -15,44 +15,29 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
   return (
     <footer className={className}>
       <div className={footerType}>
-        <p>
-          © 2012-{new Date().getFullYear()} Mrugesh Mohapatra Co. — All rights
-          reserved.
-        </p>
-        <p className='mt-2'>
+        <p>© 2012-{new Date().getFullYear()} Mrugesh Mohapatra Co. — All rights reserved.</p>
+        <p className="mt-2">
           {!isDefault && (
             <>
-              <Link href='/' aria-label='Home' className={anchorClass}>
+              <Link href="/" aria-label="Home" className={anchorClass}>
                 Home
               </Link>
               •
             </>
           )}
-          <Link
-            href='/terms'
-            aria-label='Terms & Conditions'
-            className={anchorClass}
-          >
+          <Link href="/terms" aria-label="Terms & Conditions" className={anchorClass}>
             Terms
           </Link>
           •
-          <Link
-            href='/privacy'
-            aria-label='Privacy Policy'
-            className={anchorClass}
-          >
+          <Link href="/privacy" aria-label="Privacy Policy" className={anchorClass}>
             Privacy
           </Link>
           •
-          <Link
-            href='/refunds'
-            aria-label='Refunds & Cancellation Policy'
-            className={anchorClass}
-          >
+          <Link href="/refunds" aria-label="Refunds & Cancellation Policy" className={anchorClass}>
             Refunds
           </Link>
           •
-          <Link href='/about' aria-label='Contact Us' className={anchorClass}>
+          <Link href="/about" aria-label="Contact Us" className={anchorClass}>
             About & Contact
           </Link>
         </p>

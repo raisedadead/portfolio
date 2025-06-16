@@ -1,28 +1,58 @@
-import React from 'react';
-import { describe, it, expect } from 'vitest';
+import { Profile } from '@/components/profile';
 import { render, screen } from '@testing-library/react';
-import Profile from '@/components/profile';
+import React from 'react';
+import { describe, expect, it, vi } from 'vitest';
+import type { MockLinkProps } from '../test-utils';
 
-describe('Profile', () => {
+// Mock the Social component
+vi.mock('../../components/social', () => ({
+  Social: () => <div data-testid="mocked-social">Social Links</div>,
+}));
+
+// Mock the CustomLink component
+vi.mock('../../components/custom-link', () => ({
+  CustomLink: ({ children, href, ...props }: MockLinkProps) => (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  ),
+}));
+
+describe('Profile Component', () => {
   it('renders the profile name', () => {
     render(<Profile />);
-    expect(screen.getByText('mrugesh mohapatra')).toBeDefined();
+
+    expect(screen.getByText('mrugesh mohapatra')).toBeTruthy();
   });
 
   it('renders the profile description', () => {
     render(<Profile />);
-    expect(
-      screen.getByText(
-        'nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷'
-      )
-    ).toBeDefined();
+
+    expect(screen.getByText(/nocturnal developer/)).toBeTruthy();
+    expect(screen.getByText(/open-source enthusiast/)).toBeTruthy();
+    expect(screen.getByText(/photography noob/)).toBeTruthy();
   });
 
-  it('renders social links', () => {
+  it('renders profile image with correct alt text', () => {
     render(<Profile />);
-    expect(screen.getByRole('link', { name: /twitter/i })).toBeDefined();
-    expect(screen.getByRole('link', { name: /github/i })).toBeDefined();
-    expect(screen.getByRole('link', { name: /instagram/i })).toBeDefined();
-    expect(screen.getByRole('link', { name: /linkedin/i })).toBeDefined();
+
+    const profileImage = screen.getByAltText("Mrugesh Mohapatra's profile picture.");
+    expect(profileImage).toBeTruthy();
+    expect(profileImage).toHaveAttribute('width', '144');
+    expect(profileImage).toHaveAttribute('height', '144');
+  });
+
+  it('renders call-to-action buttons', () => {
+    render(<Profile />);
+
+    expect(screen.getByText('Get in touch!')).toBeTruthy();
+    expect(screen.getByText('Blog')).toBeTruthy();
+  });
+
+  it('renders social links section', () => {
+    render(<Profile />);
+
+    expect(screen.getByTestId('mocked-social')).toBeTruthy();
+    expect(screen.getByText('Elsewhere on the internet')).toBeTruthy();
   });
 });

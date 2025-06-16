@@ -7,10 +7,36 @@
 ## What is this about?
 
 - This is my tiny property on the internet.
-- I keep updating it as a part of learning new stuff like react, svelte or
-  anything that I am just interested at the moment. The code is expected to be
-  buggy and overly complicated, as a result.
-- To test locally, run `pnpm install` followed by `pnpm develop`.
+- Built with [Astro](https://astro.build) and React for optimal performance with partial hydration.
+- Features static site generation with dynamic React components for interactivity.
+- Deployed on [Cloudflare Pages](https://pages.cloudflare.com) for global edge delivery.
+
+## Development
+
+To run locally:
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
+```
+
+## Tech Stack
+
+- **Framework**: [Astro](https://astro.build) with React integration
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Animation**: [Framer Motion](https://framer.com/motion)
+- **Icons**: [Heroicons](https://heroicons.com)
+- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com)
+- **Package Manager**: [pnpm](https://pnpm.io)
 
 Nonetheless, please feel free to browse, and leave feedbacks on the issue
 tracker. If you catch a typo, or something broken, please let me know.

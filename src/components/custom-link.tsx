@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import Link from 'next/link';
+import type React from 'react';
+import { forwardRef } from 'react';
 
 interface CustomLinkProps {
   children: React.ReactNode;
@@ -22,11 +22,11 @@ export const CustomLink = forwardRef<HTMLAnchorElement, CustomLinkProps>(
       rel,
       target,
       type,
-      onClick
+      onClick,
     },
     ref
   ) => {
-    const isExternal = !href.startsWith('/') && !href.startsWith('#');
+    const isExternal = (!href.startsWith('/') && !href.startsWith('#')) || href.startsWith('//');
 
     const linkProps = {
       ref,
@@ -38,18 +38,12 @@ export const CustomLink = forwardRef<HTMLAnchorElement, CustomLinkProps>(
       ...(target && { target }),
       ...(isExternal &&
         target === '_blank' && {
-          rel: `${rel ? `${rel} ` : ''}noopener noreferrer`
-        })
+          rel: `${rel ? `${rel} ` : ''}noopener noreferrer`,
+        }),
     };
 
-    return isExternal ? (
-      <a {...linkProps}>{children}</a>
-    ) : (
-      <Link {...linkProps}>{children}</Link>
-    );
+    return <a {...linkProps}>{children}</a>;
   }
 );
 
 CustomLink.displayName = 'CustomLink';
-
-export default CustomLink;
