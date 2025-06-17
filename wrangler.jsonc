@@ -5,6 +5,17 @@
   "compatibility_date": "2025-06-16",
   "compatibility_flags": ["nodejs_compat"],
   "preview_urls": true,
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "mrugesh.dev",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.mrugesh.dev",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "binding": "ASSETS",
     "directory": "./dist"
