@@ -101,12 +101,93 @@ describe('Uses Page Content', () => {
                         href='https://support.apple.com/en-us/111902'
                       >
                         MacBook Pro (14-inch, 2021)
-                      </a>
-                      . I use it for work, personal projects, and everything in
-                      between.
+                      </a>{' '}
+                      with M1 Pro chip, 32GB RAM, and 1TB SSD. I use it for
+                      work, personal projects, and everything in between. The
+                      14-inch display is a great size for me when on the move,
+                      and the ARM-based M1 Pro is a beast for development and
+                      creative work!
                     </p>
                     <p className='text-lg'>
-                      At home, this is connected to a dual monitor setup.
+                      At home, this is connected to dual{' '}
+                      <a
+                        className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+                        href='https://www.lg.com/us/monitors/lg-27uk650-w-4k-uhd-led-monitor'
+                      >
+                        LG 27" 4K monitors
+                      </a>{' '}
+                      via a{' '}
+                      <a
+                        className='text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+                        href='https://www.dell.com/en-us/shop/dell-thunderbolt-dock-wd19tb/apd/210-arik'
+                      >
+                        Dell WD19TB Thunderbolt dock
+                      </a>
+                      , providing 180W power delivery and dual 4K@60Hz output
+                      with Gigabit ethernet.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  data-testid='expandable-section'
+                  data-title='DeskPi Super6C (2022)'
+                  data-default-open={true}
+                >
+                  <h3>DeskPi Super6C (2022)</h3>
+                  <div data-testid='labels'>
+                    <span data-color='green'>2022</span>
+                    <span data-color='purple'>homelab</span>
+                    <span data-color='yellow'>personal</span>
+                  </div>
+                  <div>
+                    <p className='mb-4 text-lg'>
+                      The DeskPi Super6C is a Raspberry Pi Compute Module 4
+                      Cluster. I use it for learning Hashicorp products.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  data-testid='expandable-section'
+                  data-title='Keychron Q1 V2 - ANSI with Knob'
+                  data-default-open={false}
+                >
+                  <h3>Keychron Q1 V2 - ANSI with Knob</h3>
+                  <div data-testid='labels'>
+                    <span data-color='green'>2022</span>
+                    <span data-color='orange'>work</span>
+                    <span data-color='yellow'>personal</span>
+                  </div>
+                  <div>
+                    <p className='mb-4 text-lg'>
+                      I switched to this Keychron Q1 V2 mechanical keyboard
+                      because I wanted QMK/VIA support. I've equipped it with
+                      Gateron Silent Yellow switches.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  data-testid='expandable-section'
+                  data-title='Audio & Video Setup'
+                  data-default-open={false}
+                >
+                  <h3>Audio & Video Setup</h3>
+                  <div data-testid='labels'>
+                    <span data-color='green'>2022</span>
+                    <span data-color='orange'>work</span>
+                    <span data-color='yellow'>personal</span>
+                  </div>
+                  <div>
+                    <p className='mb-4 text-lg'>
+                      For audio, I switch between Apple AirPods Pro and Sony
+                      WH-1000XM4s. I have a MAONO AU-PM420 USB condenser
+                      microphone. I repurpose my old Nikon D5200 DSLR as a
+                      webcam using an Elgato CamLink adapter.
                     </p>
                   </div>
                 </div>
@@ -120,21 +201,107 @@ describe('Uses Page Content', () => {
               <li>
                 <div
                   data-testid='expandable-section'
-                  data-title='Operating Systems'
+                  data-title='Development Environment'
                   data-default-open={true}
                 >
-                  <h3>Operating Systems</h3>
+                  <h3>Development Environment</h3>
                   <div data-testid='labels'>
-                    <span data-color='blue'>os</span>
+                    <span data-color='green'>2022</span>
+                    <span data-color='orange'>work</span>
+                    <span data-color='yellow'>personal</span>
                   </div>
                   <div>
-                    <ul className='list-disc space-y-2 pl-5'>
-                      <li>macOS - Primary OS on my MacBook Pro</li>
-                      <li>
-                        Linux (Debian/Ubuntu) - For servers and development
-                      </li>
-                      <li>Raspberry Pi OS - On my Raspberry Pi cluster</li>
-                    </ul>
+                    <p className='mb-4 text-lg'>
+                      My primary editor these days is Cursor. I still use VS
+                      Code and keep Neovim with LazyVim around. I use the
+                      Catppuccin theme across all my applications.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  data-testid='expandable-section'
+                  data-title='Terminal & Shell'
+                  data-default-open={false}
+                >
+                  <h3>Terminal & Shell</h3>
+                  <div data-testid='labels'>
+                    <span data-color='green'>2022</span>
+                    <span data-color='orange'>work</span>
+                    <span data-color='yellow'>personal</span>
+                  </div>
+                  <div>
+                    <p className='mb-4 text-lg'>
+                      I use WezTerm as my terminal. For my shell, I run Zsh with
+                      Zinit. My prompt is powered by Starship. Some CLI tools:
+                      Homebrew, Atuin.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  data-testid='expandable-section'
+                  data-title='Browser & Extensions'
+                  data-default-open={false}
+                >
+                  <h3>Browser & Extensions</h3>
+                  <div data-testid='labels'>
+                    <span data-color='green'>2022</span>
+                    <span data-color='orange'>work</span>
+                    <span data-color='yellow'>personal</span>
+                  </div>
+                  <div>
+                    <p className='mb-4 text-lg'>
+                      I use Arc Browser as my main browser. Essential extensions
+                      include uBlock Origin, "Don't F*** With Paste", and
+                      1Password.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  data-testid='expandable-section'
+                  data-title='Entertainment & Media'
+                  data-default-open={false}
+                >
+                  <h3>Entertainment & Media</h3>
+                  <div data-testid='labels'>
+                    <span data-color='green'>2022</span>
+                    <span data-color='red'>gaming</span>
+                  </div>
+                  <div>
+                    <p className='mb-4 text-lg'>
+                      I bounce between Spotify and Apple Music. I watch Twitch
+                      streams. For gaming, I use Steam and PlayStation. Favorite
+                      games include Call of Duty and The Last of Us.
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <h2 className='mt-12 mb-6 text-center text-2xl font-bold text-slate-700'>
+              Philosophy & Principles
+            </h2>
+            <ul className='list-none space-y-6'>
+              <li>
+                <div
+                  data-testid='expandable-section'
+                  data-title='Setup Philosophy'
+                  data-default-open={true}
+                >
+                  <h3>Setup Philosophy</h3>
+                  <div data-testid='labels' />
+                  <div>
+                    <p className='mb-4 text-lg'>
+                      I'm obsessed with customization. Visual consistency is
+                      really important to me. Security and privacy are
+                      non-negotiable for me. I believe in investing in quality.
+                      My homelab setup exists primarily for hands-on learning.
+                    </p>
                   </div>
                 </div>
               </li>
@@ -245,18 +412,13 @@ describe('Uses Page Content', () => {
       expect(softwareHeading).toBeInTheDocument();
     });
 
-    it('lists operating systems', () => {
+    it('renders development environment content', () => {
       renderUsesContent();
 
-      expect(
-        screen.getByText('macOS - Primary OS on my MacBook Pro')
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('Linux (Debian/Ubuntu) - For servers and development')
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('Raspberry Pi OS - On my Raspberry Pi cluster')
-      ).toBeInTheDocument();
+      expect(screen.getByText(/Cursor/)).toBeInTheDocument();
+      expect(screen.getByText(/VS Code/)).toBeInTheDocument();
+      expect(screen.getByText(/Neovim with LazyVim/)).toBeInTheDocument();
+      expect(screen.getByText(/Catppuccin theme/)).toBeInTheDocument();
     });
   });
 
@@ -278,14 +440,177 @@ describe('Uses Page Content', () => {
     });
   });
 
+  describe('Hardware Sections - Extended', () => {
+    it('renders DeskPi Super6C section', () => {
+      renderUsesContent();
+
+      expect(screen.getAllByText(/DeskPi Super6C/)).toHaveLength(2); // Title and content
+      expect(
+        screen.getByText(/Raspberry Pi Compute Module 4/)
+      ).toBeInTheDocument();
+      expect(screen.getByText(/Hashicorp products/)).toBeInTheDocument();
+    });
+
+    it('renders Keychron keyboard section', () => {
+      renderUsesContent();
+
+      expect(screen.getAllByText(/Keychron Q1 V2/)).toHaveLength(2); // Title and content
+      expect(screen.getByText(/QMK\/VIA support/)).toBeInTheDocument();
+      expect(screen.getByText(/Gateron Silent Yellow/)).toBeInTheDocument();
+    });
+
+    it('renders Audio & Video Setup section', () => {
+      renderUsesContent();
+
+      expect(screen.getByText(/Apple AirPods Pro/)).toBeInTheDocument();
+      expect(screen.getByText(/Sony WH-1000XM4s/)).toBeInTheDocument();
+      expect(screen.getByText(/MAONO AU-PM420/)).toBeInTheDocument();
+      expect(screen.getByText(/Nikon D5200 DSLR/)).toBeInTheDocument();
+      expect(screen.getByText(/Elgato CamLink/)).toBeInTheDocument();
+    });
+  });
+
+  describe('Software Sections - Extended', () => {
+    it('renders Development Environment section', () => {
+      renderUsesContent();
+
+      expect(screen.getByText(/Cursor/)).toBeInTheDocument();
+      expect(screen.getByText(/VS Code/)).toBeInTheDocument();
+      expect(screen.getByText(/Neovim with LazyVim/)).toBeInTheDocument();
+      expect(screen.getByText(/Catppuccin theme/)).toBeInTheDocument();
+    });
+
+    it('renders Terminal & Shell section', () => {
+      renderUsesContent();
+
+      expect(screen.getByText(/WezTerm/)).toBeInTheDocument();
+      expect(screen.getByText(/Zsh with Zinit/)).toBeInTheDocument();
+      expect(screen.getByText(/Starship/)).toBeInTheDocument();
+      expect(screen.getByText(/Homebrew/)).toBeInTheDocument();
+      expect(screen.getByText(/Atuin/)).toBeInTheDocument();
+    });
+
+    it('renders Browser & Extensions section', () => {
+      renderUsesContent();
+
+      expect(screen.getByText(/Arc Browser/)).toBeInTheDocument();
+      expect(screen.getByText(/uBlock Origin/)).toBeInTheDocument();
+      expect(screen.getByText(/Don't F\*\*\* With Paste/)).toBeInTheDocument();
+      expect(screen.getByText(/1Password/)).toBeInTheDocument();
+    });
+
+    it('renders Entertainment & Media section', () => {
+      renderUsesContent();
+
+      expect(screen.getByText(/Spotify/)).toBeInTheDocument();
+      expect(screen.getByText(/Apple Music/)).toBeInTheDocument();
+      expect(screen.getByText(/Twitch/)).toBeInTheDocument();
+      expect(screen.getByText(/Steam/)).toBeInTheDocument();
+      expect(screen.getByText(/PlayStation/)).toBeInTheDocument();
+      expect(screen.getByText(/Call of Duty/)).toBeInTheDocument();
+      expect(screen.getByText(/The Last of Us/)).toBeInTheDocument();
+    });
+  });
+
+  describe('Philosophy Section', () => {
+    it('renders Setup Philosophy section', () => {
+      renderUsesContent();
+
+      expect(screen.getByText(/Setup Philosophy/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/obsessed with customization/)
+      ).toBeInTheDocument();
+      expect(screen.getByText(/Visual consistency/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Security and privacy are non-negotiable/)
+      ).toBeInTheDocument();
+    });
+
+    it('validates philosophy principles', () => {
+      renderUsesContent();
+
+      expect(screen.getByText(/investing in quality/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/homelab setup exists primarily for hands-on learning/)
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe('External Links Validation', () => {
+    it('validates Apple product links', () => {
+      renderUsesContent();
+
+      const macbookLink = screen.getByRole('link', {
+        name: /MacBook Pro \(14-inch, 2021\)/
+      });
+      expect(macbookLink).toHaveAttribute(
+        'href',
+        'https://support.apple.com/en-us/111902'
+      );
+    });
+
+    it('validates software tool content', () => {
+      renderUsesContent();
+
+      // These are text content, not actual links in the mock
+      expect(screen.getByText(/Cursor/)).toBeInTheDocument();
+      expect(screen.getByText(/Arc Browser/)).toBeInTheDocument();
+    });
+
+    it('validates hardware vendor links', () => {
+      renderUsesContent();
+
+      const lgLink = screen.getByRole('link', { name: /LG 27" 4K monitors/ });
+      expect(lgLink).toHaveAttribute(
+        'href',
+        'https://www.lg.com/us/monitors/lg-27uk650-w-4k-uhd-led-monitor'
+      );
+
+      const dellLink = screen.getByRole('link', {
+        name: /Dell WD19TB Thunderbolt dock/
+      });
+      expect(dellLink).toHaveAttribute(
+        'href',
+        'https://www.dell.com/en-us/shop/dell-thunderbolt-dock-wd19tb/apd/210-arik'
+      );
+    });
+  });
+
+  describe('Content Organization', () => {
+    it('has proper section count and structure', () => {
+      const { container } = renderUsesContent();
+
+      const hardwareSection = screen.getByRole('heading', { name: 'Hardware' });
+      const softwareSection = screen.getByRole('heading', { name: 'Software' });
+      const philosophySection = screen.getByRole('heading', {
+        name: 'Philosophy & Principles'
+      });
+
+      expect(hardwareSection).toBeInTheDocument();
+      expect(softwareSection).toBeInTheDocument();
+      expect(philosophySection).toBeInTheDocument();
+    });
+
+    it('maintains consistent expandable section structure', () => {
+      renderUsesContent();
+
+      const expandableSections = screen.getAllByTestId('expandable-section');
+      expect(expandableSections.length).toBe(9); // MacBook, DeskPi, Keychron, Audio, Dev Env, Terminal, Browser, Entertainment, Philosophy
+
+      // Check that sections have labels
+      const labelContainers = screen.getAllByTestId('labels');
+      expect(labelContainers.length).toBe(9);
+    });
+  });
+
   describe('Accessibility', () => {
     it('uses semantic HTML structure', () => {
       const { container } = renderUsesContent();
 
       expect(container.querySelectorAll('section')).toHaveLength(2);
       expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
-      expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(2);
-      expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(3);
+      expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(3); // Hardware, Software, Philosophy
+      expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(10); // 9 Expandable sections + Get in touch
     });
 
     it('has proper heading hierarchy', () => {
@@ -296,8 +621,20 @@ describe('Uses Page Content', () => {
       const h3s = screen.getAllByRole('heading', { level: 3 });
 
       expect(h1).toBeInTheDocument();
-      expect(h2s).toHaveLength(2);
+      expect(h2s).toHaveLength(3);
       expect(h3s.length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('has comprehensive link accessibility', () => {
+      renderUsesContent();
+
+      const links = screen.getAllByRole('link');
+      expect(links.length).toBeGreaterThanOrEqual(3); // Several external links in mock content
+
+      // All links should have href attributes
+      for (const link of links) {
+        expect(link).toHaveAttribute('href');
+      }
     });
   });
 });
