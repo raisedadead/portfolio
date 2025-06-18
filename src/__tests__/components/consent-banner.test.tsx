@@ -84,4 +84,93 @@ describe('ConsentBanner Component', () => {
     expect(vi.mocked(updateGAConsent)).not.toHaveBeenCalled();
     expect(vi.mocked(loadGAScript)).not.toHaveBeenCalled();
   });
+
+  describe('Accessibility', () => {
+    it('has proper ARIA labels and roles', () => {
+      render(<ConsentBanner setHasConsent={mockSetHasConsent} />);
+
+      const acceptButton = screen.getByRole('button', { name: /accept/i });
+      const declineButton = screen.getByRole('button', { name: /decline/i });
+
+      expect(acceptButton).toHaveAttribute('type', 'button');
+      expect(declineButton).toHaveAttribute('type', 'button');
+    });
+
+    it('supports keyboard navigation', () => {
+      render(<ConsentBanner setHasConsent={mockSetHasConsent} />);
+
+      const acceptButton = screen.getByRole('button', { name: /accept/i });
+      const declineButton = screen.getByRole('button', { name: /decline/i });
+
+      acceptButton.focus();
+      expect(acceptButton).toHaveFocus();
+
+      fireEvent.keyDown(acceptButton, { key: 'Tab' });
+      declineButton.focus();
+      expect(declineButton).toHaveFocus();
+    });
+
+    it('handles Enter key press on buttons', () => {
+      render(<ConsentBanner setHasConsent={mockSetHasConsent} />);
+
+      const acceptButton = screen.getByRole('button', { name: /accept/i });
+      fireEvent.keyDown(acceptButton, { key: 'Enter' });
+      fireEvent.click(acceptButton);
+
+      expect(localStorage.getItem('ga-consent')).toBe('true');
+      expect(mockSetHasConsent).toHaveBeenCalledWith(true);
+    });
+
+    it('handles Space key press on buttons', () => {
+      render(<ConsentBanner setHasConsent={mockSetHasConsent} />);
+
+      const declineButton = screen.getByRole('button', { name: /decline/i });
+      fireEvent.keyDown(declineButton, { key: ' ' });
+      fireEvent.click(declineButton);
+
+      expect(localStorage.getItem('ga-consent')).toBe('false');
+      expect(mockSetHasConsent).toHaveBeenCalledWith(false);
+    });
+  });
+
+  describe('Edge Cases', () => {
+    it('handles localStorage errors gracefully', () => {
+      const originalSetItem = localStorage.setItem;
+      localStorage.setItem = vi.fn(() => {
+        throw new Error('Storage full');
+      });
+
+      render(<ConsentBanner setHasConsent={mockSetHasConsent} />);
+
+      expect(() => {
+        fireEvent.click(screen.getByText('Accept'));
+      }).not.toThrow();
+
+      localStorage.setItem = originalSetItem;
+    });
+
+    it('handles multiple rapid clicks', () => {
+      render(<ConsentBanner setHasConsent={mockSetHasConsent} />);
+
+      const acceptButton = screen.getByRole('button', { name: /accept/i });
+      fireEvent.click(acceptButton);
+
+      expect(mockSetHasConsent).toHaveBeenCalledTimes(1);
+      expect(localStorage.getItem('ga-consent')).toBe('true');
+    });
+
+    it('preserves consent choice across component remounts', () => {
+      localStorage.setItem('ga-consent', 'true');
+      const { unmount } = render(
+        <ConsentBanner setHasConsent={mockSetHasConsent} />
+      );
+
+      expect(screen.queryByText(/We use third-party services/)).toBeNull();
+
+      unmount();
+      render(<ConsentBanner setHasConsent={mockSetHasConsent} />);
+
+      expect(screen.queryByText(/We use third-party services/)).toBeNull();
+    });
+  });
 });

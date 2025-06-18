@@ -248,6 +248,65 @@ describe('CustomLink Component', () => {
     });
   });
 
+  describe('Keyboard Navigation', () => {
+    it('is focusable via keyboard', () => {
+      render(<CustomLink href='/test'>Test Link</CustomLink>);
+      const link = screen.getByRole('link');
+
+      link.focus();
+      expect(link).toHaveFocus();
+    });
+
+    it('handles Enter key activation', () => {
+      const mockClick = vi.fn();
+      render(
+        <CustomLink href='/test' onClick={mockClick}>
+          Test Link
+        </CustomLink>
+      );
+
+      const link = screen.getByRole('link');
+      fireEvent.keyDown(link, { key: 'Enter' });
+      fireEvent.click(link);
+
+      expect(mockClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('handles Space key activation', () => {
+      const mockClick = vi.fn();
+      render(
+        <CustomLink href='/test' onClick={mockClick}>
+          Test Link
+        </CustomLink>
+      );
+
+      const link = screen.getByRole('link');
+      fireEvent.keyDown(link, { key: ' ' });
+      fireEvent.click(link);
+
+      expect(mockClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('supports Tab navigation', () => {
+      render(
+        <div>
+          <CustomLink href='/first'>First Link</CustomLink>
+          <CustomLink href='/second'>Second Link</CustomLink>
+        </div>
+      );
+
+      const firstLink = screen.getByRole('link', { name: 'First Link' });
+      const secondLink = screen.getByRole('link', { name: 'Second Link' });
+
+      firstLink.focus();
+      expect(firstLink).toHaveFocus();
+
+      fireEvent.keyDown(firstLink, { key: 'Tab' });
+      secondLink.focus();
+      expect(secondLink).toHaveFocus();
+    });
+  });
+
   describe('All Target Options', () => {
     it('handles target="_blank"', () => {
       render(

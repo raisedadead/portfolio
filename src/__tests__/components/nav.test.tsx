@@ -1,6 +1,6 @@
 import { Nav } from '@/components/nav';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '../test-utils';
+import { fireEvent, render, screen } from '../test-utils';
 
 // Mock dependencies
 vi.mock('@/components/custom-link', () => ({
@@ -98,5 +98,107 @@ describe('Nav', () => {
 
     const nav = screen.getByRole('navigation');
     expect(nav).toHaveClass(customClass);
+  });
+
+  describe('Keyboard Navigation and Focus Management', () => {
+    it('menu button is focusable', () => {
+      render(<Nav />);
+      const menuButton = screen.getByTestId('menu-button');
+
+      menuButton.focus();
+      expect(menuButton).toHaveFocus();
+    });
+
+    it('home button is focusable when shown', () => {
+      render(<Nav />);
+      const homeButton = screen.getByRole('link', { name: /go home/i });
+
+      homeButton.focus();
+      expect(homeButton).toHaveFocus();
+    });
+
+    it('handles Enter key on menu button', () => {
+      render(<Nav />);
+      const menuButton = screen.getByTestId('menu-button');
+
+      fireEvent.keyDown(menuButton, { key: 'Enter' });
+      expect(screen.getByTestId('menu-items')).toBeInTheDocument();
+    });
+
+    it('handles Space key on menu button', () => {
+      render(<Nav />);
+      const menuButton = screen.getByTestId('menu-button');
+
+      fireEvent.keyDown(menuButton, { key: ' ' });
+      expect(screen.getByTestId('menu-items')).toBeInTheDocument();
+    });
+
+    it('navigation links are focusable', () => {
+      render(<Nav />);
+
+      const recentPostsLink = screen.getByRole('link', {
+        name: /recent posts/i
+      });
+      const usesLink = screen.getByRole('link', { name: /uses/i });
+
+      recentPostsLink.focus();
+      expect(recentPostsLink).toHaveFocus();
+
+      usesLink.focus();
+      expect(usesLink).toHaveFocus();
+    });
+
+    it('handles Escape key to close menu', () => {
+      render(<Nav />);
+      const menuButton = screen.getByTestId('menu-button');
+
+      fireEvent.click(menuButton);
+      expect(screen.getByTestId('menu-items')).toBeInTheDocument();
+
+      fireEvent.keyDown(document, { key: 'Escape' });
+    });
+  });
+
+  describe('Body Padding Management', () => {
+    it('resets body padding when component is tested', () => {
+      render(<Nav />);
+
+      expect(document.body.style.paddingRight).toBe('0');
+    });
+  });
+
+  describe('Accessibility', () => {
+    it('has proper ARIA attributes', () => {
+      render(<Nav />);
+
+      const navigation = screen.getByRole('navigation');
+      expect(navigation).toBeInTheDocument();
+    });
+
+    it('has screen reader text for menu button', () => {
+      render(<Nav />);
+
+      expect(screen.getByText('Open navigation menu')).toHaveClass('sr-only');
+    });
+
+    it('has screen reader text for home button', () => {
+      render(<Nav />);
+
+      expect(screen.getByText('Go Home')).toHaveClass('sr-only');
+    });
+
+    it('has proper aria-hidden attributes on icons', () => {
+      render(<Nav />);
+
+      const barsIcon = screen.getByTestId('bars4-icon');
+      const homeIcon = screen.getByTestId('home-icon');
+      const bookIcon = screen.getByTestId('book-open-icon');
+      const chipIcon = screen.getByTestId('cpu-chip-icon');
+
+      expect(barsIcon).toBeInTheDocument();
+      expect(homeIcon).toBeInTheDocument();
+      expect(bookIcon).toBeInTheDocument();
+      expect(chipIcon).toBeInTheDocument();
+    });
   });
 });
