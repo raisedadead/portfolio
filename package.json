@@ -23,7 +23,7 @@
   },
   "lint-staged": {
     "**/*.{mjs,cjs,js,jsx,ts,tsx,json,astro}": [
-      "biome check --write --no-errors-on-unmatched"
+      "biome check --no-errors-on-unmatched --files-ignore-unknown=true"
     ]
   },
   "dependencies": {
