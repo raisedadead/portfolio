@@ -1,0 +1,86 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+.astro/
+
+# Coverage reports
+coverage/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Generated files
+worker-configuration.d.ts
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Temporary folders
+tmp/
+temp/
+
+# Build tools and config artifacts
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist/
+
+# Static files that shouldn't be formatted
+public/
+*.min.js
+*.min.css
+
+# Documentation that shouldn't be auto-formatted
+CHANGELOG.md
+LICENSE
+README.md
+
+# Package manager files
+package-lock.json
+yarn.lock
+
+# Test coverage
+.nyc_output/
+lcov.info
+
+# Storybook build outputs
+storybook-static/
+
+# Other common ignores
+*.tgz
+*.tar.gz

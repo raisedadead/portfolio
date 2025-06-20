@@ -1,0 +1,8 @@
+---
+// Email component with obfuscation
+const email = new String('supPo    Rt @ mrug esh.dev').toLowerCase().replace(/ /g, '').split('').reverse().join('');
+---
+
+<span class="font-medium underline" style="unicode-bidi: bidi-override; direction: rtl; text-align: left;">
+  {email}
+</span>

@@ -1,0 +1,27 @@
+---
+export interface Props {
+  href: string;
+  ariaLabel?: string;
+  className?: string;
+  rel?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  type?: string;
+}
+
+const {
+  href,
+  ariaLabel,
+  className = 'text-blue-500 hover:text-blue-700 inline-flex items-center',
+  rel,
+  target,
+  type
+} = Astro.props;
+
+const isExternal = (!href.startsWith('/') && !href.startsWith('#')) || href.startsWith('//');
+
+const linkRel = isExternal && target === '_blank' ? `${rel ? `${rel} ` : ''}noopener noreferrer` : rel;
+---
+
+<a href={href} class={className} aria-label={ariaLabel} rel={linkRel} target={target} type={type}>
+  <slot />
+</a>

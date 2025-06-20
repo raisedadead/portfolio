@@ -1,12 +1,11 @@
 import path from 'node:path';
-import react from '@vitejs/plugin-react';
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import type { UserConfig } from 'vite';
 
 // For Astro component testing
 export default defineConfig({
-  plugins: [react()],
+  plugins: [],
   test: {
     globals: true,
     environment: 'happy-dom',
@@ -24,12 +23,7 @@ export default defineConfig({
         'src/__mocks__/**'
       ]
     },
-    exclude: [
-      '**/node_modules/**',
-      '**/dist/**',
-      '**/.astro/**',
-      '**/coverage/**'
-    ]
+    exclude: ['**/node_modules/**', '**/dist/**', '**/.astro/**', '**/coverage/**']
   },
   resolve: {
     alias: {

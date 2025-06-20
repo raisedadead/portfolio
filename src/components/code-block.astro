@@ -1,0 +1,443 @@
+---
+import { codeToHtml } from 'shiki';
+
+export interface Props {
+  language?: string;
+  code: string;
+  showLineNumbers?: boolean;
+}
+
+const { language = '', code, showLineNumbers = true } = Astro.props;
+
+// Enhanced language detection and formatting
+function detectLanguage(lang: string, codeContent: string): string {
+  // Clean up the language string
+  const cleanLang = lang
+    .replace(/^lang-/, '')
+    .toLowerCase()
+    .trim();
+
+  // If we have a valid language, use it
+  if (cleanLang && cleanLang !== 'text' && cleanLang !== 'plaintext') {
+    return cleanLang;
+  }
+
+  // Try to detect language from code content
+  if (codeContent.includes('#!/bin/bash') || codeContent.includes('#!/bin/sh')) return 'bash';
+  if (codeContent.includes('function ') && codeContent.includes('()')) return 'bash';
+  if (codeContent.includes('const ') || codeContent.includes('let ') || codeContent.includes('var '))
+    return 'javascript';
+  if (codeContent.includes('def ') && codeContent.includes(':')) return 'python';
+  if (codeContent.includes('<?php')) return 'php';
+  if (codeContent.includes('<html') || codeContent.includes('<!DOCTYPE')) return 'html';
+  if (codeContent.includes('ssh-keygen') || codeContent.includes('rm -f') || codeContent.includes('echo '))
+    return 'bash';
+
+  return 'text';
+}
+
+const detectedLanguage = detectLanguage(language, code);
+const shouldShowLineNumbers =
+  showLineNumbers && !['', 'bash', 'console', 'plaintext', 'text', 'txt'].includes(detectedLanguage);
+
+// Use enhanced Shiki themes for better syntax highlighting
+let lightHighlighted = '';
+let darkHighlighted = '';
+
+try {
+  // Generate both light and dark versions with better themes
+  lightHighlighted = await codeToHtml(code, {
+    lang: detectedLanguage,
+    theme: 'github-light',
+    transformers: []
+  });
+
+  darkHighlighted = await codeToHtml(code, {
+    lang: detectedLanguage,
+    theme: 'dracula', // More vibrant dark theme
+    transformers: []
+  });
+} catch (error) {
+  console.warn('Shiki highlighting failed for language:', detectedLanguage, error);
+  // Fallback with HTML escaping
+  const escapedCode = code
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+  lightHighlighted = `<span style="color: #24292e;">${escapedCode}</span>`;
+  darkHighlighted = `<span style="color: #f8f8f2;">${escapedCode}</span>`;
+}
+
+// Generate line numbers if needed
+const lines = code.split('\n');
+const lineNumbers = shouldShowLineNumbers ? Array.from({ length: lines.length }, (_, i) => i + 1) : [];
+---
+
+<div class="code-block-container group relative my-6" data-code={code}>
+  <!-- Enhanced header with brutalist styling -->
+  <div
+    class="code-block-header flex items-center justify-between border-2 border-black bg-orange-100 px-4 py-3 shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+  >
+    {
+      detectedLanguage && detectedLanguage !== 'text' && (
+        <span class="text-sm font-bold text-black uppercase tracking-wider bg-white px-2 py-1 border border-black shadow-[1px_1px_0px_rgba(0,0,0,1)]">
+          {detectedLanguage}
+        </span>
+      )
+    }
+    {
+      (!detectedLanguage || detectedLanguage === 'text') && (
+        <span class="text-sm font-bold text-gray-600 uppercase tracking-wider">Code</span>
+      )
+    }
+
+    <div class="flex items-center gap-3">
+      <!-- Enhanced copy button with brutalist styling -->
+      <button
+        class="copy-button flex items-center gap-2 border-2 border-black bg-white px-3 py-2 text-sm font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-black hover:text-white hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] focus:outline-none focus:ring-2 focus:ring-orange-400 active:shadow-[1px_1px_0px_rgba(0,0,0,1)]"
+        aria-label="Copy code to clipboard"
+        data-copy-code
+      >
+        <svg class="copy-icon h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+          ></path>
+        </svg>
+        <span class="copy-text">COPY</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Enhanced code content with brutalist borders -->
+  <div
+    class="code-block-content flex overflow-hidden border-x-2 border-b-2 border-black bg-white shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+  >
+    <!-- Enhanced line numbers -->
+    {
+      shouldShowLineNumbers && (
+        <div class="line-numbers select-none border-r-2 border-black bg-gray-50 px-3 py-4 text-right text-sm text-gray-600 font-mono font-bold">
+          {lineNumbers.map((num) => (
+            <div class="leading-6 hover:bg-orange-100 px-1">{num}</div>
+          ))}
+        </div>
+      )
+    }
+
+    <!-- Light theme code (shown by default, hidden in dark mode) -->
+    <pre
+      class="light-theme flex-1 overflow-x-auto p-4 text-sm leading-6 font-mono"><code set:html={lightHighlighted} /></pre>
+
+    <!-- Dark theme code (hidden by default, shown in dark mode) -->
+    <pre
+      class="dark-theme hidden flex-1 overflow-x-auto p-4 text-sm leading-6 font-mono"><code set:html={darkHighlighted} /></pre>
+  </div>
+
+  <!-- Enhanced copy success notification -->
+  <div
+    class="copy-notification absolute top-2 right-2 hidden border-2 border-black bg-green-400 px-3 py-2 text-sm font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+  >
+    <div class="flex items-center gap-2">
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+      </svg>
+      COPIED!
+    </div>
+  </div>
+</div>
+
+<script>
+  // Enhanced copy functionality with improved feedback
+  function initCodeBlocks() {
+    const codeBlocks = document.querySelectorAll('.code-block-container');
+
+    codeBlocks.forEach((container) => {
+      const copyButton = container.querySelector('.copy-button') as HTMLButtonElement;
+      const copyIcon = container.querySelector('.copy-icon') as SVGElement;
+      const copyText = container.querySelector('.copy-text') as HTMLSpanElement;
+      const notification = container.querySelector('.copy-notification') as HTMLElement;
+
+      if (!copyButton || !copyIcon || !copyText || !notification) return;
+
+      const originalCode = container.getAttribute('data-code') || '';
+
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(originalCode);
+          showCopySuccess();
+        } catch (err) {
+          console.error('Failed to copy code:', err);
+          fallbackCopy();
+        }
+      });
+
+      function showCopySuccess() {
+        // Update button appearance with success state
+        copyIcon.innerHTML = `
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        `;
+        copyText.textContent = 'COPIED!';
+        copyButton.classList.add('!bg-green-400', '!text-black', '!border-green-600');
+
+        // Show notification with animation
+        notification.classList.remove('hidden');
+        notification.style.animation = 'slideInFromTop 0.3s ease-out';
+
+        // Reset after 2.5 seconds
+        setTimeout(() => {
+          // Reset button
+          copyIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          `;
+          copyText.textContent = 'COPY';
+          copyButton.classList.remove('!bg-green-400', '!text-black', '!border-green-600');
+
+          // Hide notification
+          notification.style.animation = 'slideOutToTop 0.3s ease-in';
+          setTimeout(() => {
+            notification.classList.add('hidden');
+            notification.style.animation = '';
+          }, 300);
+        }, 2500);
+      }
+
+      function fallbackCopy() {
+        const textArea = document.createElement('textarea');
+        textArea.value = originalCode;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        try {
+          document.execCommand('copy');
+          showCopySuccess();
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+    });
+
+    // Handle theme switching
+    updateTheme();
+
+    // Listen for theme changes
+    const observer = new MutationObserver(() => {
+      updateTheme();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  }
+
+  function updateTheme() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const codeBlocks = document.querySelectorAll('.code-block-container');
+
+    codeBlocks.forEach((container) => {
+      const header = container.querySelector('.code-block-header');
+      const content = container.querySelector('.code-block-content');
+      const lineNumbers = container.querySelector('.line-numbers');
+      const lightTheme = container.querySelector('.light-theme');
+      const darkTheme = container.querySelector('.dark-theme');
+      const copyButton = container.querySelector('.copy-button');
+
+      if (isDark) {
+        // Dark mode with brutalist styling
+        header?.classList.add('!bg-gray-800', '!shadow-[2px_2px_0px_rgba(255,255,255,0.3)]');
+        header?.classList.remove('bg-orange-100', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+
+        content?.classList.add('!bg-gray-900', '!shadow-[2px_2px_0px_rgba(255,255,255,0.3)]');
+        content?.classList.remove('bg-white', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+
+        lineNumbers?.classList.add('!bg-gray-800', '!text-gray-300');
+        lineNumbers?.classList.remove('bg-gray-50', 'text-gray-600');
+
+        copyButton?.classList.add('!bg-gray-700', '!text-white', '!border-gray-500');
+        copyButton?.classList.remove('bg-white', 'text-black', 'border-black');
+
+        // Show dark theme code, hide light theme
+        lightTheme?.classList.add('hidden');
+        darkTheme?.classList.remove('hidden');
+      } else {
+        // Light mode with brutalist styling
+        header?.classList.remove('!bg-gray-800', '!shadow-[2px_2px_0px_rgba(255,255,255,0.3)]');
+        header?.classList.add('bg-orange-100', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+
+        content?.classList.remove('!bg-gray-900', '!shadow-[2px_2px_0px_rgba(255,255,255,0.3)]');
+        content?.classList.add('bg-white', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+
+        lineNumbers?.classList.remove('!bg-gray-800', '!text-gray-300');
+        lineNumbers?.classList.add('bg-gray-50', 'text-gray-600');
+
+        copyButton?.classList.remove('!bg-gray-700', '!text-white', '!border-gray-500');
+        copyButton?.classList.add('bg-white', 'text-black', 'border-black');
+
+        // Show light theme code, hide dark theme
+        lightTheme?.classList.remove('hidden');
+        darkTheme?.classList.add('hidden');
+      }
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCodeBlocks);
+  } else {
+    initCodeBlocks();
+  }
+
+  // Also run on page navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', initCodeBlocks);
+</script>
+
+<style>
+  /* Enhanced scrollbar styling for brutalist design */
+  .code-block-content pre::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+  }
+
+  .code-block-content pre::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border: 1px solid #000;
+  }
+
+  .code-block-content pre::-webkit-scrollbar-thumb {
+    background: #374151;
+    border: 1px solid #000;
+  }
+
+  .code-block-content pre::-webkit-scrollbar-thumb:hover {
+    background: #1f2937;
+  }
+
+  .code-block-content pre::-webkit-scrollbar-corner {
+    background: #f3f4f6;
+    border: 1px solid #000;
+  }
+
+  /* Dark mode scrollbar with brutalist styling */
+  [data-theme='dark'] .code-block-content pre::-webkit-scrollbar-track {
+    background: #374151;
+    border: 1px solid #6b7280;
+  }
+
+  [data-theme='dark'] .code-block-content pre::-webkit-scrollbar-thumb {
+    background: #6b7280;
+    border: 1px solid #9ca3af;
+  }
+
+  [data-theme='dark'] .code-block-content pre::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  [data-theme='dark'] .code-block-content pre::-webkit-scrollbar-corner {
+    background: #374151;
+    border: 1px solid #6b7280;
+  }
+
+  /* Enhanced transitions for brutalist theme switching */
+  .code-block-container,
+  .code-block-header,
+  .code-block-content,
+  .line-numbers,
+  .copy-button {
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Line numbers enhanced styling */
+  .line-numbers {
+    min-width: 3rem;
+    width: max-content;
+  }
+
+  /* Enhanced button hover effects with brutalist design */
+  .copy-button {
+    transform: translateY(0);
+  }
+
+  .copy-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .copy-button:active {
+    transform: translateY(2px);
+  }
+
+  /* Enhanced focus states */
+  .copy-button:focus {
+    outline: 3px solid #fb923c;
+    outline-offset: 2px;
+  }
+
+  /* Improved animations */
+  @keyframes slideInFromTop {
+    from {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes slideOutToTop {
+    from {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.9);
+    }
+  }
+
+  /* Enhanced code font styling */
+  .code-block-content code,
+  .code-block-content pre {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  }
+
+  /* Hover effects for line numbers */
+  .line-numbers div:hover {
+    background-color: rgba(251, 146, 60, 0.1);
+    transform: scale(1.05);
+  }
+
+  /* Enhanced code block container styling */
+  .code-block-container {
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  /* Enhanced syntax highlighting overrides for better contrast */
+  .code-block-content pre code {
+    text-shadow: none;
+  }
+
+  /* Ensure proper syntax highlighting inheritance */
+  .code-block-content .light-theme,
+  .code-block-content .dark-theme {
+    background: transparent !important;
+  }
+
+  /* Language badge hover effect */
+  .code-block-header span {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .code-block-header span:hover {
+    transform: scale(1.05);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+  }
+</style>

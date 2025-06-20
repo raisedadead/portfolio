@@ -1,0 +1,112 @@
+---
+// Dark mode toggle component for Astro
+---
+
+<button
+  id="dark-mode-toggle"
+  class="flex h-10 w-10 items-center justify-center border-2 border-black bg-orange-200 p-1.5 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-hidden active:bg-black active:shadow-none"
+  aria-label="Toggle dark mode"
+  title="Toggle dark mode"
+>
+  <span class="sr-only">Toggle dark mode</span>
+  <!-- Sun icon (visible in dark mode) -->
+  <svg id="sun-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+    ></path>
+  </svg>
+  <!-- Moon icon (visible in light mode) -->
+  <svg id="moon-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+  </svg>
+</button>
+
+<script>
+  function initDarkMode() {
+    const toggle = document.getElementById('dark-mode-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    if (!toggle || !sunIcon || !moonIcon) return;
+
+    // Get initial theme from localStorage or system preference
+    const getInitialTheme = () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        return savedTheme;
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    // Update icons based on current theme
+    const updateIcons = (theme) => {
+      if (theme === 'dark') {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    };
+
+    // Apply theme to document
+    const applyTheme = (theme) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      updateIcons(theme);
+    };
+
+    // Toggle theme
+    const toggleTheme = () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(newTheme);
+    };
+
+    // Initialize theme
+    const initialTheme = getInitialTheme();
+    applyTheme(initialTheme);
+
+    // Add click event listener
+    toggle.addEventListener('click', toggleTheme);
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+
+  // Initialize on DOM content loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDarkMode);
+  } else {
+    initDarkMode();
+  }
+</script>
+
+<style>
+  #dark-mode-toggle {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-primary);
+  }
+
+  #dark-mode-toggle:hover {
+    background-color: var(--text-secondary);
+    color: var(--bg-primary);
+  }
+
+  #dark-mode-toggle:active {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+// Wave background component for Astro
+---
+
+<div class="wave-background">
+  <svg
+    class="absolute bottom-0 left-0 w-full"
+    viewBox="0 0 1000 800"
+    preserveAspectRatio="none"
+    role="img"
+    aria-label="Animated wave background decoration"
+  >
+    {
+      Array.from({ length: 8 }, (_, i) => {
+        const baseHeight = 50;
+        const heightMultiplier = (8 - i) / 8;
+        const waveHeight = baseHeight * heightMultiplier;
+        const yOffset = i * 5;
+        const opacity = 0.1 + i * 0.05;
+        const duration = 5 + i * 0.5;
+
+        return (
+          <path
+            class={`wave-path wave-${i}`}
+            d={`M0 ${800 - yOffset} C 200 ${800 - waveHeight - yOffset}, 300 ${800 + waveHeight - yOffset}, 500 ${800 - yOffset} S 700 ${800 - waveHeight - yOffset}, 1000 ${800 - yOffset} V 800 H 0 Z`}
+            fill={`rgba(50, 222, 212, ${opacity})`}
+            style={`animation-duration: ${duration}s`}
+          />
+        );
+      })
+    }
+  </svg>
+  <div class="absolute bottom-0 left-0 h-32 w-full bg-linear-to-t from-teal-600 to-transparent opacity-30"></div>
+</div>
+
+<style>
+  .wave-background {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: linear-gradient(to bottom, rgb(110 231 183), rgb(254 215 170), rgb(153 246 228));
+  }
+
+  @keyframes wave-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    75% {
+      transform: translateY(10px);
+    }
+  }
+
+  .wave-path {
+    animation: wave-float ease-in-out infinite alternate;
+    transform-origin: center bottom;
+  }
+
+  .wave-0 {
+    animation-delay: 0s;
+  }
+  .wave-1 {
+    animation-delay: 0.5s;
+  }
+  .wave-2 {
+    animation-delay: 1s;
+  }
+  .wave-3 {
+    animation-delay: 1.5s;
+  }
+  .wave-4 {
+    animation-delay: 2s;
+  }
+  .wave-5 {
+    animation-delay: 2.5s;
+  }
+  .wave-6 {
+    animation-delay: 3s;
+  }
+  .wave-7 {
+    animation-delay: 3.5s;
+  }
+</style>

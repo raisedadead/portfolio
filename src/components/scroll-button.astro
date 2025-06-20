@@ -1,0 +1,70 @@
+---
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class={className}>
+  <button
+    id="scroll-button"
+    class="scroll-button cursor-pointer rounded-full bg-white p-3 text-black opacity-0 shadow-[4px_4px_0_0_rgba(60,64,43,.2)] transition-opacity duration-300 focus:outline-hidden"
+    aria-label="Scroll to top"
+  >
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M12 8L7.76 12.24C7.36 12.64 7.36 13.26 7.76 13.66C8.16 14.06 8.78 14.06 9.19 13.66L12 10.83L14.81 13.66C15.22 14.06 15.84 14.06 16.24 13.66C16.64 13.26 16.64 12.64 16.24 12.24L12 8Z"
+      ></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const scrollButton = document.getElementById('scroll-button');
+
+    if (scrollButton) {
+      const handleScroll = () => {
+        const isScrollable = document.documentElement.scrollHeight > window.innerHeight;
+        const isAtBottom = window.pageYOffset + window.innerHeight >= document.documentElement.scrollHeight;
+        const isAtTop = window.pageYOffset === 0;
+
+        const shouldShow = isScrollable && !isAtTop;
+
+        if (shouldShow) {
+          scrollButton.classList.remove('opacity-0');
+          scrollButton.classList.add('opacity-100');
+        } else {
+          scrollButton.classList.remove('opacity-100');
+          scrollButton.classList.add('opacity-0');
+        }
+
+        // Add bounce animation when at bottom
+        if (isAtBottom) {
+          scrollButton.classList.add('animate-bounce');
+        } else {
+          scrollButton.classList.remove('animate-bounce');
+        }
+      };
+
+      const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      scrollButton.addEventListener('click', scrollToTop);
+      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('resize', handleScroll);
+
+      // Initial check
+      handleScroll();
+    }
+  });
+</script>

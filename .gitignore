@@ -21,3 +21,6 @@ dist/
 # Wrangler
 .wrangler/
 worker-configuration.d.ts
+
+
+*.txt

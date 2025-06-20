@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import Social from '../components/social.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+
+const posts = await getCollection('blog');
+
+// Helper function to get grid span classes based on index
+function getGridSpan(index: number): string {
+  const spans = [
+    'sm:col-span-2 lg:col-span-3',
+    'sm:col-span-2 lg:col-span-2',
+    'sm:col-span-2 lg:col-span-5',
+    'sm:col-span-2 lg:col-span-2',
+    'sm:col-span-2 lg:col-span-3',
+    'sm:col-span-2 lg:col-span-5'
+  ];
+  return spans[index % 6];
+}
+
+// Helper function to get image aspect ratios based on index
+function getImageProperties(index: number): { aspect: string; height: string } {
+  const properties = [
+    { aspect: 'aspect-video', height: 'h-64' },
+    { aspect: 'aspect-4/3', height: 'h-48' },
+    { aspect: 'aspect-21/9', height: 'h-56' },
+    { aspect: 'aspect-3/2', height: 'h-48' },
+    { aspect: 'aspect-3/4', height: 'h-64' },
+    { aspect: 'aspect-2/1', height: 'h-40' }
+  ];
+  return properties[index % 6] || { aspect: 'aspect-video', height: 'h-64' };
+}
+---
+
+<MainLayout title="My Musings">
+  <section class="mb-8">
+    <div class="prose prose-lg prose-slate max-w-none">
+      <h1 class="py-4 text-center text-3xl font-extrabold tracking-tight text-slate-900">My Musings</h1>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <div class="mx-auto max-w-4xl">
+      <p class="pb-6 text-center text-lg font-medium text-slate-700">
+        Stuff that I write about, mostly tech, sometimes life.
+      </p>
+
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          posts.map((post, index) => {
+            const gridSpan = getGridSpan(index);
+            const { aspect, height } = getImageProperties(index);
+
+            return (
+              <a
+                href={`/blog/${post.id}`}
+                class={`group flex flex-col overflow-hidden bg-white p-4 no-underline shadow-[6px_6px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[8px_8px_0px_var(--color-black)] ${gridSpan}`}
+              >
+                <div class={`relative w-full overflow-hidden ${aspect} ${height}`}>
+                  {post.data.coverImage ? (
+                    <div class="shimmer-container relative h-full w-full">
+                      <div class="shimmer-overlay absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-50" />
+                      <img
+                        src={post.data.coverImage.url}
+                        alt={post.data.coverImage.alt || post.data.title}
+                        class="h-full w-full object-cover transition-opacity duration-300"
+                        loading={index < 3 ? 'eager' : 'lazy'}
+                        onload="this.parentElement.querySelector('.shimmer-overlay').style.display = 'none'"
+                      />
+                    </div>
+                  ) : (
+                    <div class="flex h-full w-full items-center justify-center bg-linear-to-br from-blue-100 to-orange-100">
+                      <span class="text-6xl">📝</span>
+                    </div>
+                  )}
+                </div>
+
+                <div class="flex grow flex-col">
+                  <h2 class="my-4 font-sans text-2xl font-bold text-slate-900 transition-colors group-hover:text-orange-800">
+                    {post.data.title}
+                  </h2>
+
+                  <p class="mb-4 grow text-slate-600 transition-colors group-hover:text-slate-700">{post.data.brief}</p>
+
+                  <div class="flex flex-wrap items-center text-sm text-slate-500 transition-colors group-hover:text-slate-600">
+                    <span>{new Date(post.data.publishedAt).toDateString()}</span>
+                    {post.data.readingTime && (
+                      <>
+                        <span class="mx-2">•</span>
+                        <span>{post.data.readingTime} min read</span>
+                      </>
+                    )}
+                    {post.data.reactions > 0 && (
+                      <>
+                        <span class="mx-2">•</span>
+                        <span>{post.data.reactions} reactions</span>
+                      </>
+                    )}
+                    {post.data.comments > 0 && (
+                      <>
+                        <span class="mx-2">•</span>
+                        <span>{post.data.comments} comments</span>
+                      </>
+                    )}
+                    {post.data.views > 100 && (
+                      <>
+                        <span class="mx-2">•</span>
+                        <span>{post.data.views} views</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="prose prose-lg prose-slate mx-auto mt-8 max-w-3xl">
+      <h3 class="mb-4 text-center font-bold text-slate-700">Elsewhere on the internet</h3>
+      <Social />
+    </div>
+  </section>
+</MainLayout>

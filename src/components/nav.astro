@@ -1,0 +1,245 @@
+---
+// import DarkModeToggle from './dark-mode-toggle.astro';
+
+export interface Props {
+  className?: string;
+  showHomeButton?: boolean;
+}
+
+const { className, showHomeButton = true } = Astro.props;
+
+const links = [
+  { href: '/blog', label: 'Recent Posts' },
+  { href: '/uses', label: 'Uses' }
+];
+---
+
+<nav class={className}>
+  <div class="nav-menu absolute top-4 right-4 text-left flex items-center space-x-2">
+    <!-- <DarkModeToggle /> -->
+    <button
+      class="menu-button flex h-10 items-center border-2 p-1.5 shadow-[2px_2px_0px] transition-all duration-200 hover:shadow-none focus:outline-hidden active:shadow-none"
+      aria-label="Open navigation menu"
+    >
+      <span class="sr-only">Open navigation menu</span>
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <div
+      class="menu-items pointer-events-none absolute right-0 z-10 mt-2 w-48 scale-95 transform border-2 opacity-0 shadow-[2px_2px_0px] transition-all duration-300 ease-in-out focus:outline-hidden"
+    >
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="inline-flex h-full w-full justify-start border-b-2 py-2 pl-4 transition-colors duration-200 last:border-b-0 hover:shadow-none focus:outline-hidden active:shadow-none"
+            aria-label={link.label}
+          >
+            {link.label === 'Recent Posts' && (
+              <svg class="mr-2 flex h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                />
+              </svg>
+            )}
+            {link.label === 'Uses' && (
+              <svg class="mr-2 flex h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                />
+              </svg>
+            )}
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  {
+    showHomeButton && (
+      <div class="absolute top-4 left-4 text-left">
+        <a
+          href="/"
+          class="flex h-10 items-center border-2 p-1.5 shadow-[2px_2px_0px] transition-all duration-200 hover:shadow-none focus:outline-hidden active:shadow-none"
+          aria-label="Go Home"
+        >
+          <span class="sr-only">Go Home</span>
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+            />
+          </svg>
+        </a>
+      </div>
+    )
+  }
+</nav>
+
+<style>
+  .menu-button,
+  .menu-items a,
+  nav a[aria-label='Go Home'] {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-primary);
+    box-shadow: 2px 2px 0px var(--border-primary);
+  }
+
+  .menu-button:hover,
+  .menu-items a:hover,
+  nav a[aria-label='Go Home']:hover {
+    background-color: var(--text-secondary);
+    color: var(--bg-primary);
+  }
+
+  .menu-button:active,
+  .menu-items a:active,
+  nav a[aria-label='Go Home']:active {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+  }
+
+  .menu-items {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-primary);
+    box-shadow: 2px 2px 0px var(--border-primary);
+  }
+
+  .menu-items a {
+    border-bottom-color: var(--border-primary);
+  }
+
+  /* Focus styles for accessibility */
+  .menu-button:focus,
+  .menu-items a:focus,
+  nav a[aria-label='Go Home']:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
+
+  /* Enhanced hover animations */
+  .menu-button,
+  .menu-items a,
+  nav a[aria-label='Go Home'] {
+    transform: translateY(0);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .menu-button:hover,
+  .menu-items a:hover,
+  nav a[aria-label='Go Home']:hover {
+    transform: translateY(-2px);
+  }
+
+  .menu-button:active,
+  .menu-items a:active,
+  nav a[aria-label='Go Home']:active {
+    transform: translateY(1px);
+  }
+
+  /* Menu animation improvements */
+  .menu-items {
+    backdrop-filter: blur(8px);
+    transform-origin: top right;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuButton = document.querySelector('.menu-button');
+    const menuItems = document.querySelector('.menu-items');
+    const menuLinks = menuItems?.querySelectorAll('a');
+    let isOpen = false;
+
+    if (menuButton && menuItems) {
+      // Toggle menu function
+      const toggleMenu = (open?: boolean) => {
+        isOpen = open !== undefined ? open : !isOpen;
+
+        if (isOpen) {
+          menuItems.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+          menuItems.classList.add('opacity-100', 'scale-100');
+          menuButton.setAttribute('aria-expanded', 'true');
+          menuButton.setAttribute('aria-label', 'Close navigation menu');
+
+          // Focus first menu item for keyboard navigation
+          if (menuLinks?.[0]) {
+            setTimeout(() => menuLinks[0].focus(), 150);
+          }
+        } else {
+          menuItems.classList.remove('opacity-100', 'scale-100');
+          menuItems.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'Open navigation menu');
+          menuButton.focus();
+        }
+      };
+
+      // Click event
+      menuButton.addEventListener('click', () => toggleMenu());
+
+      // Keyboard navigation
+      menuButton.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleMenu();
+        }
+        if (event.key === 'Escape' && isOpen) {
+          toggleMenu(false);
+        }
+      });
+
+      // Menu item keyboard navigation
+      if (menuLinks) {
+        menuLinks.forEach((link, index) => {
+          link.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+              toggleMenu(false);
+            }
+            if (event.key === 'ArrowDown') {
+              event.preventDefault();
+              const nextIndex = (index + 1) % menuLinks.length;
+              menuLinks[nextIndex].focus();
+            }
+            if (event.key === 'ArrowUp') {
+              event.preventDefault();
+              const prevIndex = (index - 1 + menuLinks.length) % menuLinks.length;
+              menuLinks[prevIndex].focus();
+            }
+          });
+        });
+      }
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function (event) {
+        const target = event.target as HTMLElement;
+        if (!menuButton.contains(target) && !menuItems.contains(target)) {
+          toggleMenu(false);
+        }
+      });
+
+      // Close menu when pressing Escape anywhere
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && isOpen) {
+          toggleMenu(false);
+        }
+      });
+
+      // Initialize ARIA attributes
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-haspopup', 'true');
+    }
+  });
+</script>

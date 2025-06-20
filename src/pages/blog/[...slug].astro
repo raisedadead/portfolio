@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { data } = post;
+---
+
+<MainLayout title={data.title}>
+  <article
+    class="mx-auto max-w-4xl overflow-hidden bg-white no-underline shadow-[6px_8px_0px_var(--color-black)] transition-colors duration-100"
+  >
+    <div class="relative aspect-video w-full">
+      {
+        data.coverImage ? (
+          <img src={data.coverImage.url} alt={data.coverImage.alt || data.title} class="h-full w-full object-cover" />
+        ) : (
+          <div class="flex h-full w-full items-center justify-center bg-linear-to-br from-blue-100 to-orange-100">
+            <span class="text-8xl">📝</span>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="p-6 sm:p-10">
+      <h1 class="mb-10 text-3xl font-bold text-gray-900 sm:text-4xl">
+        {data.title}
+      </h1>
+
+      <div class="mb-8 flex items-center gap-4 text-sm text-gray-500">
+        <div class="flex items-center gap-2">
+          {
+            data.author.profilePicture && (
+              <img src={data.author.profilePicture} alt={data.author.name} class="h-6 w-6 rounded-full" />
+            )
+          }
+          <span class="font-medium">{data.author.name}</span>
+        </div>
+        <span>•</span>
+        <time datetime={data.publishedAt}>
+          {
+            new Date(data.publishedAt).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })
+          }
+        </time>
+        <span>•</span>
+        <span>{data.readingTime} min read</span>
+        {
+          data.views > 0 && (
+            <>
+              <span>•</span>
+              <span>{data.views} views</span>
+            </>
+          )
+        }
+      </div>
+
+      <div class="prose prose-lg max-w-none" set:html={data.content.html} />
+
+      {
+        data.tags.length > 0 && (
+          <div class="mt-8 flex gap-2 border-t border-gray-200 pt-8">
+            <span class="mr-2 text-sm font-medium text-gray-700">Tags:</span>
+            {data.tags.map((tag: { name: string; slug?: string }) => (
+              <span class="border border-orange-200 bg-orange-100 px-3 py-1 text-sm font-medium text-orange-800 transition-colors hover:bg-orange-200">
+                {tag.name}
+              </span>
+            ))}
+          </div>
+        )
+      }
+
+      {
+        (data.reactions > 0 || data.comments > 0) && (
+          <div class="mt-8 flex items-center gap-6 border-t border-gray-200 pt-8 text-sm text-gray-500">
+            {data.reactions > 0 && (
+              <div class="flex items-center gap-1">
+                <span>❤️</span>
+                <span>{data.reactions} reactions</span>
+              </div>
+            )}
+            {data.comments > 0 && (
+              <div class="flex items-center gap-1">
+                <span>💬</span>
+                <span>{data.comments} comments</span>
+              </div>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </article>
+</MainLayout>

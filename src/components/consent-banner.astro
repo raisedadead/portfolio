@@ -1,0 +1,68 @@
+---
+// Consent banner component for Astro
+---
+
+<div id="consent-banner" class="fixed right-0 bottom-0 left-0 hidden bg-gray-800 px-4 py-2 shadow-lg">
+  <div class="container mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between">
+    <p class="mb-2 text-sm text-white sm:mb-0 sm:text-base">
+      We use third-party services to improve how users interact with our website. Refer to our{' '}
+      <a href="/privacy" class="text-blue-300 underline transition-colors duration-200 hover:text-blue-400">
+        privacy policy
+      </a>
+      . Do you accept this?
+    </p>
+    <div class="flex space-x-4">
+      <button
+        type="button"
+        id="consent-accept"
+        class="transform rounded bg-blue-700 px-4 py-1 text-sm font-medium text-white transition-colors duration-200 hover:scale-105 hover:bg-blue-800"
+      >
+        Accept
+      </button>
+      <button
+        type="button"
+        id="consent-decline"
+        class="transform rounded border border-white px-4 py-1 text-sm font-medium text-white transition-colors duration-200 hover:scale-105 hover:bg-white hover:text-gray-800"
+      >
+        Decline
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const consentBanner = document.getElementById('consent-banner');
+    const acceptButton = document.getElementById('consent-accept');
+    const declineButton = document.getElementById('consent-decline');
+
+    if (consentBanner && acceptButton && declineButton) {
+      // Check if consent has already been given
+      const hasConsent = localStorage.getItem('ga-consent');
+
+      if (!hasConsent) {
+        consentBanner.classList.remove('hidden');
+      }
+
+      const handleConsent = (granted: boolean) => {
+        localStorage.setItem('ga-consent', granted.toString());
+        consentBanner.classList.add('hidden');
+
+        // Dispatch custom event for other scripts to listen to
+        window.dispatchEvent(
+          new CustomEvent('consent-updated', {
+            detail: { granted }
+          })
+        );
+
+        if (granted) {
+          // Load GA or other analytics scripts here
+          console.log('Analytics consent granted');
+        }
+      };
+
+      acceptButton.addEventListener('click', () => handleConsent(true));
+      declineButton.addEventListener('click', () => handleConsent(false));
+    }
+  });
+</script>
