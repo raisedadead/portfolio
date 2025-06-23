@@ -69,7 +69,7 @@
     "vitest": "3.2.4",
     "wrangler": "4.20.5"
   },
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.12.2",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@biomejs/biome",
