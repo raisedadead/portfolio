@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "prepare": "is-ci || husky",
-    "preinstall": "npx only-allow pnpm",
-    "predevelop": "pnpm cf-typegen",
+    "postinstall": "pnpm cf-typegen",
     "develop": "astro dev",
     "prebuild": "pnpm cf-typegen",
     "build": "astro build",
