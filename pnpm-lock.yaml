@@ -124,8 +124,8 @@ importers:
         specifier: 3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(@vitest/ui@3.2.4)(happy-dom@18.0.1)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(yaml@2.8.0)
       wrangler:
-        specifier: 4.24.1
-        version: 4.24.1(@cloudflare/workers-types@4.20250710.0)
+        specifier: 4.24.2
+        version: 4.24.2(@cloudflare/workers-types@4.20250710.0)
 
 packages:
 
@@ -3183,9 +3183,10 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.24.1:
-    resolution: {integrity: sha512-n7d5BQyOQU7WyEYMC3zNarWzsqWttsusP6qWz4rbbydmnWKSP1wLtsv0yKiyz/LYFumpolz48d5phHp04nR6uw==}
+  wrangler@4.24.2:
+    resolution: {integrity: sha512-T1FKXUOlhDnVb1lna+xxr8ev7VbocISj4/ncNdPMwawjbH2OP5XxRXCf8lW45z1fqYDUCv0Ug7UU0pcdKt0hQg==}
     engines: {node: '>=18.0.0'}
+    deprecated: '⚠️ Deprecated: 4.24.1 and 4.24.2 have a regression with redeploying a container. Please downgrade to 4.24.0 or upgrade to 4.24.3 when it is published.'
     hasBin: true
     peerDependencies:
       '@cloudflare/workers-types': ^4.20250709.0
@@ -3322,7 +3323,7 @@ snapshots:
       astro: 5.11.0(@types/node@24.0.12)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0)
       tinyglobby: 0.2.14
       vite: 6.3.5(@types/node@24.0.12)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
-      wrangler: 4.24.1(@cloudflare/workers-types@4.20250710.0)
+      wrangler: 4.24.2(@cloudflare/workers-types@4.20250710.0)
     transitivePeerDependencies:
       - '@types/node'
       - bufferutil
@@ -6574,7 +6575,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250709.0
       '@cloudflare/workerd-windows-64': 1.20250709.0
 
-  wrangler@4.24.1(@cloudflare/workers-types@4.20250710.0):
+  wrangler@4.24.2(@cloudflare/workers-types@4.20250710.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.3(unenv@2.0.0-rc.17)(workerd@1.20250709.0)
