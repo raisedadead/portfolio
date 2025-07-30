@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@astrojs/cloudflare':
         specifier: 12.6.0
-        version: 12.6.0(@types/node@24.1.0)(astro@5.12.5(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0))(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
+        version: 12.6.0(@types/node@24.1.0)(astro@5.12.6(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0))(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
       '@astrojs/react':
         specifier: 4.3.0
         version: 4.3.0(@types/node@24.1.0)(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(jiti@2.4.2)(lightningcss@1.30.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(yaml@2.8.0)
@@ -30,8 +30,8 @@ importers:
         specifier: 15.5.13
         version: 15.5.13
       astro:
-        specifier: 5.12.5
-        version: 5.12.5(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0)
+        specifier: 5.12.6
+        version: 5.12.6(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0)
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -1432,8 +1432,8 @@ packages:
   ast-v8-to-istanbul@0.3.3:
     resolution: {integrity: sha512-MuXMrSLVVoA6sYN/6Hke18vMzrT4TZNbZIj/hvh0fnYFpO+/kFXcLIaiPwXXWaQUPg4yJD8fj+lfJ7/1EBconw==}
 
-  astro@5.12.5:
-    resolution: {integrity: sha512-cq+2h13F/aznM91bxXxKgqYj36gbXe6jC5kiUAXgWlh2nTyNtiCNMdDFpL2wIWSzac5+KzvRjKmxsYWbcmD4EQ==}
+  astro@5.12.6:
+    resolution: {integrity: sha512-vDtuDYj/XlxyI2Ex63BM4/Awde8Pl3U3wS5I1NhogFIBPohBaJ1g9puu42XEm7GMZxRn9N3xFEpSP9uEO0W9/w==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -3321,12 +3321,12 @@ snapshots:
       '@csstools/css-tokenizer': 3.0.4
       lru-cache: 10.4.3
 
-  '@astrojs/cloudflare@12.6.0(@types/node@24.1.0)(astro@5.12.5(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0))(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)':
+  '@astrojs/cloudflare@12.6.0(@types/node@24.1.0)(astro@5.12.6(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0))(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)':
     dependencies:
       '@astrojs/internal-helpers': 0.6.1
       '@astrojs/underscore-redirects': 1.0.0
       '@cloudflare/workers-types': 4.20250730.0
-      astro: 5.12.5(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0)
+      astro: 5.12.6(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0)
       tinyglobby: 0.2.14
       vite: 6.3.5(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
       wrangler: 4.26.1(@cloudflare/workers-types@4.20250730.0)
@@ -4495,7 +4495,7 @@ snapshots:
       estree-walker: 3.0.3
       js-tokens: 9.0.1
 
-  astro@5.12.5(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0):
+  astro@5.12.6(@types/node@24.1.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.43.0)(typescript@5.8.3)(yaml@2.8.0):
     dependencies:
       '@astrojs/compiler': 2.12.2
       '@astrojs/internal-helpers': 0.6.1
