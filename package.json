@@ -63,7 +63,7 @@
     "jsdom": "26.1.0",
     "lint-staged": "16.1.2",
     "tailwindcss": "4.1.11",
-    "typescript": "5.8.3",
+    "typescript": "5.9.2",
     "vite": "6.3.5",
     "vitest": "3.2.4",
     "wrangler": "4.27.0"
