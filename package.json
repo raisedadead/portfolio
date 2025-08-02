@@ -29,7 +29,7 @@
     "@astrojs/cloudflare": "12.6.2",
     "@astrojs/react": "4.3.0",
     "@astrojs/sitemap": "3.4.2",
-    "@calcom/embed-react": "^1.5.3",
+    "@calcom/embed-react": "1.5.3",
     "@headlessui/react": "2.2.7",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/vite": "4.1.11",
