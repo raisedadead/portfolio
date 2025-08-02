@@ -1,3 +1,4 @@
+import CalButton from './cal-embed';
 import { CustomLink as Link } from './custom-link';
 import { Social } from './social';
 
@@ -60,14 +61,12 @@ export const Profile: React.FC = () => {
       </h3>
 
       <div className='mb-10 flex flex-row items-center justify-center space-x-4'>
-        <Link
-          aria-label='Book a 1-on-1 Call'
+        <CalButton
+          aria-label='Schedule a meeting with me'
           className='h-14 w-80 border-2 border-black bg-orange-50 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
-          href='https://cal.com/mrugesh'
-          type='button'
         >
-          <span className='inline-flex items-center'>Get in touch!</span>
-        </Link>
+          <span className='inline-flex items-center'>Schedule a Meeting</span>
+        </CalButton>
         <Link
           aria-label='Browse my blog'
           className='h-14 w-36 border-2 border-black bg-orange-200 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
