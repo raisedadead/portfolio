@@ -1,8 +1,8 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["DOM", "DOM.Iterable", "ES6"],
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
