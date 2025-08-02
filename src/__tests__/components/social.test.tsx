@@ -52,6 +52,10 @@ describe('Social', () => {
       'href',
       'https://instagram.com/raisedadead'
     );
+    expect(screen.getByRole('link', { name: /peerlist/i })).toHaveAttribute(
+      'href',
+      'https://peerlist.io/mrugesh/signup'
+    );
   });
 
   it('all social links are external', () => {
@@ -68,6 +72,6 @@ describe('Social', () => {
     render(<Social />);
     const links = screen.getAllByRole('link');
 
-    expect(links).toHaveLength(4);
+    expect(links).toHaveLength(5);
   });
 });
