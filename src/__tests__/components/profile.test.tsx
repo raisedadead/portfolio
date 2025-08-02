@@ -1,6 +1,6 @@
 import { Profile } from '@/components/profile';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
+import type React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import type { MockLinkProps } from '../test-utils';
 
@@ -15,6 +15,18 @@ vi.mock('../../components/custom-link', () => ({
     <a href={href} {...props}>
       {children}
     </a>
+  )
+}));
+
+// Mock the CalButton component
+vi.mock('../../components/cal-embed', () => ({
+  default: ({
+    className,
+    children
+  }: { className?: string; children: React.ReactNode }) => (
+    <button type='button' className={className} data-testid='cal-button'>
+      {children}
+    </button>
   )
 }));
 
@@ -47,8 +59,15 @@ describe('Profile Component', () => {
   it('renders call-to-action buttons', () => {
     render(<Profile />);
 
-    expect(screen.getByText('Get in touch!')).toBeTruthy();
+    expect(screen.getByText('Schedule a Meeting')).toBeTruthy();
     expect(screen.getByText('Blog')).toBeTruthy();
+  });
+
+  it('passes className to CalButton component', () => {
+    render(<Profile />);
+
+    const calButton = screen.getByTestId('cal-button');
+    expect(calButton).toHaveClass('h-14', 'w-80', 'border-2', 'border-black');
   });
 
   it('renders social links section', () => {
