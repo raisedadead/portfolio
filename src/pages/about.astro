@@ -1,11 +1,11 @@
 ---
 import { Email } from '@/components/email';
 import { ExpandableSection as ES } from '@/components/expandable-section';
-import MainLayout from '@/layouts/MainLayout.astro';
+import MainLayout from '@/layouts/main-layout.astro';
 import { cn } from '@/lib/utils';
 ---
 
-<MainLayout pageTitle='Legal - About & Contact' variant='main'>
+<MainLayout pageTitle="Legal - About & Contact" variant="main">
   <section class={cn('mb-8')}>
     <div class={cn('prose prose-lg prose-slate max-w-none')}>
       <h1
@@ -25,7 +25,7 @@ import { cn } from '@/lib/utils';
       <ul class={cn('list-none space-y-6')}>
         <li>
           <ES
-            title='About'
+            title="About"
             labels={[{ name: 'legal', color: 'blue' }]}
             defaultOpen={true}
             client:load
@@ -33,7 +33,7 @@ import { cn } from '@/lib/utils';
             <p class={cn('mb-4 text-lg')}>
               Mrugesh Mohapatra is a software & cloud infrastructure consultant,
               operating as a sole proprietor of{' '}
-              <strong class='font-semibold'> Mrugesh Mohapatra Co. </strong>{
+              <strong class="font-semibold"> Mrugesh Mohapatra Co. </strong>{
                 ' '
               }
               ("the business") based in Bhubaneswar & Bengaluru, India.
@@ -46,7 +46,7 @@ import { cn } from '@/lib/utils';
         </li>
         <li>
           <ES
-            title='Business, Billing & Tax'
+            title="Business, Billing & Tax"
             labels={[
               { name: 'legal', color: 'blue' },
               { name: 'business', color: 'green' }
@@ -65,7 +65,7 @@ import { cn } from '@/lib/utils';
               receive them.
             </p>
             <p class={cn('text-lg')}>
-              <strong class='font-semibold'>
+              <strong class="font-semibold">
                 Tax details for Transactions made outside India:{' '}
               </strong>
               Please get in touch, we will accommodate documents where feasible as
@@ -75,7 +75,7 @@ import { cn } from '@/lib/utils';
         </li>
         <li>
           <ES
-            title='Contact'
+            title="Contact"
             labels={[{ name: 'contact', color: 'orange' }]}
             defaultOpen={true}
             client:load

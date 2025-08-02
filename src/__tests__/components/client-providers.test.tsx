@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import ClientProviders from '../../components/ClientProviders';
+import ClientProviders from '../../components/client-providers';
 
 // Mock the utilities
 vi.mock('@/lib/utils', () => ({
