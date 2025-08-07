@@ -102,12 +102,8 @@ describe('Scroll Arrows Components', () => {
       const upSvg = upContainer.querySelector('svg');
 
       expect(downSvg?.getAttribute('width')).toBe(upSvg?.getAttribute('width'));
-      expect(downSvg?.getAttribute('height')).toBe(
-        upSvg?.getAttribute('height')
-      );
-      expect(downSvg?.getAttribute('viewBox')).toBe(
-        upSvg?.getAttribute('viewBox')
-      );
+      expect(downSvg?.getAttribute('height')).toBe(upSvg?.getAttribute('height'));
+      expect(downSvg?.getAttribute('viewBox')).toBe(upSvg?.getAttribute('viewBox'));
       expect(downSvg?.getAttribute('fill')).toBe(upSvg?.getAttribute('fill'));
     });
 

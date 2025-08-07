@@ -22,16 +22,12 @@ const { showHomeButton = true, variant = 'main', ...baseProps } = Astro.props;
 
 <BaseLayout {...baseProps} showHomeButton={showHomeButton}>
   <div class={cn('container')}>
-    <div class="fixed inset-0 -z-10">
+    <div class='fixed inset-0 -z-10'>
       <WaveBackground client:load />
     </div>
-    <main class="mx-auto my-2 w-[90%] py-8 lg:w-[75%] xl:w-[80%]">
-      <Nav
-        className="z-20 m-2 max-h-none pt-2"
-        showHomeButton={showHomeButton}
-        client:load
-      />
-      <div class="p-5">
+    <main class='mx-auto my-2 w-[90%] py-8 lg:w-[75%] xl:w-[80%]'>
+      <Nav className='z-20 m-2 max-h-none pt-2' showHomeButton={showHomeButton} client:load />
+      <div class='p-5'>
         {
           variant === 'legal' ? (
             <div
@@ -56,7 +52,7 @@ const { showHomeButton = true, variant = 'main', ...baseProps } = Astro.props;
               <slot />
             </div>
           ) : variant === 'main' ? (
-            <div class="mx-auto">
+            <div class='mx-auto'>
               <slot />
             </div>
           ) : (
@@ -64,8 +60,8 @@ const { showHomeButton = true, variant = 'main', ...baseProps } = Astro.props;
           )
         }
       </div>
-      <Footer isDefault={true} className="p-2" />
-      <ScrollButton className="fixed right-4 bottom-4 z-20" client:load />
+      <Footer isDefault={true} className='p-2' />
+      <ScrollButton className='fixed right-4 bottom-4 z-20' client:load />
     </main>
   </div>
 </BaseLayout>

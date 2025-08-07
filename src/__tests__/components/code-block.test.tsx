@@ -1,38 +1,22 @@
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor
-} from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import CodeBlock from '../../components/code-block';
 
 // Mock react-syntax-highlighter
 vi.mock('react-syntax-highlighter', () => ({
-  Prism: vi.fn(
-    ({
-      children,
-      language,
-      showLineNumbers,
-      wrapLongLines,
-      style,
-      customStyle,
-      ...props
-    }) => (
-      <pre
-        data-testid='syntax-highlighter'
-        data-language={language}
-        data-show-line-numbers={showLineNumbers}
-        data-wrap-long-lines={wrapLongLines}
-        style={customStyle}
-        {...props}
-      >
-        <code>{children}</code>
-      </pre>
-    )
-  )
+  Prism: vi.fn(({ children, language, showLineNumbers, wrapLongLines, customStyle, ...props }) => (
+    <pre
+      data-testid='syntax-highlighter'
+      data-language={language}
+      data-show-line-numbers={showLineNumbers}
+      data-wrap-long-lines={wrapLongLines}
+      style={customStyle}
+      {...props}
+    >
+      <code>{children}</code>
+    </pre>
+  ))
 }));
 
 // Mock styles import
@@ -54,9 +38,7 @@ describe('CodeBlock Component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (
-      navigator.clipboard.writeText as ReturnType<typeof vi.fn>
-    ).mockResolvedValue(undefined);
+    (navigator.clipboard.writeText as ReturnType<typeof vi.fn>).mockResolvedValue(undefined);
   });
 
   // Get the mocked SyntaxHighlighter
@@ -225,12 +207,7 @@ describe('CodeBlock Component', () => {
       render(<CodeBlock code={mockCode} language='javascript' />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
-      expect(copyButton).toHaveClass(
-        'rounded-md',
-        'p-2',
-        'transition-opacity',
-        'duration-200'
-      );
+      expect(copyButton).toHaveClass('rounded-md', 'p-2', 'transition-opacity', 'duration-200');
     });
 
     it('applies proper button styling', () => {
@@ -254,10 +231,7 @@ describe('CodeBlock Component', () => {
       render(<CodeBlock code={mockCode} language={mockLanguage} />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
-      expect(copyButton).toHaveAttribute(
-        'aria-label',
-        expect.stringContaining('Copy')
-      );
+      expect(copyButton).toHaveAttribute('aria-label', expect.stringContaining('Copy'));
     });
 
     it('provides keyboard accessibility', () => {

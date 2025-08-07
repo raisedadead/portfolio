@@ -20,10 +20,7 @@ vi.mock('../../components/custom-link', () => ({
 
 // Mock the CalButton component
 vi.mock('../../components/cal-embed', () => ({
-  default: ({
-    className,
-    children
-  }: { className?: string; children: React.ReactNode }) => (
+  default: ({ className, children }: { className?: string; children: React.ReactNode }) => (
     <button type='button' className={className} data-testid='cal-button'>
       {children}
     </button>
@@ -48,9 +45,7 @@ describe('Profile Component', () => {
   it('renders profile image with correct alt text', () => {
     render(<Profile />);
 
-    const profileImage = screen.getByAltText(
-      "Mrugesh Mohapatra's profile picture."
-    );
+    const profileImage = screen.getByAltText("Mrugesh Mohapatra's profile picture.");
     expect(profileImage).toBeTruthy();
     expect(profileImage).toHaveAttribute('width', '144');
     expect(profileImage).toHaveAttribute('height', '144');

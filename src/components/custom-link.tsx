@@ -26,8 +26,7 @@ export const CustomLink = forwardRef<HTMLAnchorElement, CustomLinkProps>(
     },
     ref
   ) => {
-    const isExternal =
-      (!href.startsWith('/') && !href.startsWith('#')) || href.startsWith('//');
+    const isExternal = (!href.startsWith('/') && !href.startsWith('#')) || href.startsWith('//');
 
     const linkProps = {
       ref,

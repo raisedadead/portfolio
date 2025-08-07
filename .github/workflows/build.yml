@@ -54,8 +54,7 @@ jobs:
         with:
           path: |
             ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key:
-            ${{ runner.os }}-astro-${{ hashFiles('**/pnpm-lock.yaml') }}-${{
+          key: ${{ runner.os }}-astro-${{ hashFiles('**/pnpm-lock.yaml') }}-${{
             hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-astro-${{ hashFiles('**/pnpm-lock.yaml') }}-

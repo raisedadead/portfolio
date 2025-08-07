@@ -1,17 +1,5 @@
-import { cn } from '@/lib/utils';
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  Transition
-} from '@headlessui/react';
-import {
-  Bars4Icon,
-  BookOpenIcon,
-  CpuChipIcon,
-  HomeIcon
-} from '@heroicons/react/24/outline';
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
+import { Bars4Icon, BookOpenIcon, CpuChipIcon, HomeIcon } from '@heroicons/react/24/outline';
 import type React from 'react';
 import { Fragment, useEffect, useState } from 'react';
 // Dark mode removed for Astro migration
@@ -27,10 +15,7 @@ type NavProps = {
   showHomeButton?: boolean;
 };
 
-export const Nav: React.FC<NavProps> = ({
-  className,
-  showHomeButton = true
-}) => {
+export const Nav: React.FC<NavProps> = ({ className, showHomeButton = true }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -73,10 +58,7 @@ export const Nav: React.FC<NavProps> = ({
                       className='inline-flex h-full w-full justify-start border-b-2 border-black py-2 pl-4 text-black last:border-b-0 hover:bg-gray-700 hover:text-white hover:shadow-none focus:outline-hidden active:bg-black active:shadow-none'
                       ariaLabel={link.label}
                     >
-                      <link.icon
-                        className='mr-2 flex h-6 w-6'
-                        aria-hidden='true'
-                      />
+                      <link.icon className='mr-2 flex h-6 w-6' aria-hidden='true' />
                       {link.label}
                     </Link>
                   </MenuItem>

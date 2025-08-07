@@ -1,7 +1,6 @@
 import { CustomLink } from '@/components/custom-link';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '../test-utils';
-import { testExternalLink, testInternalLink } from '../test-utils';
 
 describe('CustomLink Component', () => {
   describe('Basic Rendering', () => {
@@ -17,12 +16,7 @@ describe('CustomLink Component', () => {
       render(<CustomLink href='/test'>Test Link</CustomLink>);
 
       const link = screen.getByRole('link');
-      expect(link).toHaveClass(
-        'text-blue-500',
-        'hover:text-blue-700',
-        'inline-flex',
-        'items-center'
-      );
+      expect(link).toHaveClass('text-blue-500', 'hover:text-blue-700', 'inline-flex', 'items-center');
     });
 
     it('applies custom className when provided', () => {
@@ -66,14 +60,8 @@ describe('CustomLink Component', () => {
       );
 
       const link = screen.getByRole('link') as HTMLAnchorElement;
-      expect(link).not.toHaveAttribute(
-        'rel',
-        expect.stringContaining('noopener')
-      );
-      expect(link).not.toHaveAttribute(
-        'rel',
-        expect.stringContaining('noreferrer')
-      );
+      expect(link).not.toHaveAttribute('rel', expect.stringContaining('noopener'));
+      expect(link).not.toHaveAttribute('rel', expect.stringContaining('noreferrer'));
     });
   });
 
@@ -210,9 +198,7 @@ describe('CustomLink Component', () => {
 
   describe('Complex Link Scenarios', () => {
     it('handles mailto links correctly', () => {
-      render(
-        <CustomLink href='mailto:test@example.com'>Email Link</CustomLink>
-      );
+      render(<CustomLink href='mailto:test@example.com'>Email Link</CustomLink>);
 
       const link = screen.getByRole('link') as HTMLAnchorElement;
       expect(link).toHaveAttribute('href', 'mailto:test@example.com');

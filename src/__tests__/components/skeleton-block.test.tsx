@@ -17,12 +17,7 @@ describe('SkeletonBlock Component', () => {
 
       const videoContainer = container.querySelector('.aspect-video');
       expect(videoContainer).toBeInTheDocument();
-      expect(videoContainer).toHaveClass(
-        'relative',
-        'aspect-video',
-        'w-full',
-        'bg-gray-200'
-      );
+      expect(videoContainer).toHaveClass('relative', 'aspect-video', 'w-full', 'bg-gray-200');
     });
 
     it('renders the content padding container', () => {

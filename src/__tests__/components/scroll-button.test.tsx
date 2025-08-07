@@ -1,10 +1,7 @@
 import { ScrollButton } from '@/components/scroll-button';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen, waitFor } from '../test-utils';
-import type {
-  MockAnimatePresenceProps,
-  MockMotionButtonProps
-} from '../test-utils';
+import { fireEvent, render, screen } from '../test-utils';
+import type { MockAnimatePresenceProps, MockMotionButtonProps } from '../test-utils';
 
 // Mock framer-motion
 vi.mock('framer-motion', () => ({
@@ -33,9 +30,7 @@ vi.mock('framer-motion', () => ({
       </button>
     )
   },
-  AnimatePresence: ({ children }: MockAnimatePresenceProps) => (
-    <div data-testid='animate-presence'>{children}</div>
-  )
+  AnimatePresence: ({ children }: MockAnimatePresenceProps) => <div data-testid='animate-presence'>{children}</div>
 }));
 
 // Mock scroll-arrows component
@@ -72,8 +67,8 @@ describe('ScrollButton Component', () => {
     });
 
     // Mock addEventListener and removeEventListener
-    const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
-    const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
+    vi.spyOn(window, 'addEventListener');
+    vi.spyOn(window, 'removeEventListener');
   });
 
   afterEach(() => {
@@ -102,14 +97,8 @@ describe('ScrollButton Component', () => {
 
       render(<ScrollButton className='test' />);
 
-      expect(addEventListenerSpy).toHaveBeenCalledWith(
-        'scroll',
-        expect.any(Function)
-      );
-      expect(addEventListenerSpy).toHaveBeenCalledWith(
-        'resize',
-        expect.any(Function)
-      );
+      expect(addEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
+      expect(addEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
     });
 
     it('removes event listeners on unmount', () => {
@@ -118,14 +107,8 @@ describe('ScrollButton Component', () => {
       const { unmount } = render(<ScrollButton className='test' />);
       unmount();
 
-      expect(removeEventListenerSpy).toHaveBeenCalledWith(
-        'scroll',
-        expect.any(Function)
-      );
-      expect(removeEventListenerSpy).toHaveBeenCalledWith(
-        'resize',
-        expect.any(Function)
-      );
+      expect(removeEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
+      expect(removeEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
     });
   });
 
@@ -337,13 +320,7 @@ describe('ScrollButton Component', () => {
 
       const button = screen.queryByTestId('motion-button');
       if (button) {
-        expect(button).toHaveClass(
-          'cursor-pointer',
-          'rounded-full',
-          'bg-white',
-          'text-black',
-          'focus:outline-hidden'
-        );
+        expect(button).toHaveClass('cursor-pointer', 'rounded-full', 'bg-white', 'text-black', 'focus:outline-hidden');
       }
     });
 
@@ -369,9 +346,7 @@ describe('ScrollButton Component', () => {
 
       const button = screen.queryByTestId('motion-button');
       if (button) {
-        expect(button.className).toContain(
-          'shadow-[4px_4px_0_0_rgba(60,64,43,.2)]'
-        );
+        expect(button.className).toContain('shadow-[4px_4px_0_0_rgba(60,64,43,.2)]');
       }
     });
   });

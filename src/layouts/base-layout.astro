@@ -9,18 +9,9 @@ export interface Props {
   pageImage?: string;
   setCanonicalBlogBaseURL?: boolean;
   blogSlug?: string;
-  showHomeButton?: boolean;
 }
 
-const {
-  pageTitle,
-  pageDescription,
-  pageUrl,
-  pageImage,
-  setCanonicalBlogBaseURL,
-  blogSlug,
-  showHomeButton = true
-} = Astro.props;
+const { pageTitle, pageDescription, pageUrl, pageImage, setCanonicalBlogBaseURL, blogSlug } = Astro.props;
 
 const defaultTitle = 'Mrugesh Mohapatra — Portfolio of a nocturnal developer.';
 const defaultDescription =
@@ -52,8 +43,7 @@ const getCanonicalUrl = (): string => {
   }
 
   // Clean the path: remove query string and trailing slash
-  const cleanPath =
-    path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+  const cleanPath = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
 
   return `${defaultUrl}${cleanPath}`;
 };
@@ -65,41 +55,38 @@ const image = pageImage || defaultImage;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
-    <meta name="author" content="Mrugesh Mohapatra" />
+    <meta name='description' content={description} />
+    <link rel='canonical' href={canonicalUrl} />
+    <meta name='author' content='Mrugesh Mohapatra' />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    <meta property="og:site_name" content="Mrugesh Mohapatra" />
+    <meta property='og:type' content='website' />
+    <meta property='og:url' content={canonicalUrl} />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={image} />
+    <meta property='og:site_name' content='Mrugesh Mohapatra' />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonicalUrl} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
-    <meta name="twitter:creator" content="@raisedadead" />
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:url' content={canonicalUrl} />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={image} />
+    <meta name='twitter:creator' content='@raisedadead' />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <link rel='icon' type='image/png' href='/favicon.ico' />
 
     <!-- Theme Color -->
-    <meta name="theme-color" content="#32ded4" />
+    <meta name='theme-color' content='#32ded4' />
 
-    <meta name="generator" content={Astro.generator} />
+    <meta name='generator' content={Astro.generator} />
   </head>
   <body>
     <ClientProviders client:load>

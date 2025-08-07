@@ -1,19 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type {
-  MockCustomLinkProps,
-  MockExpandableSectionLabel,
-  MockExpandableSectionProps
-} from '../test-utils';
+import type { MockCustomLinkProps, MockExpandableSectionLabel, MockExpandableSectionProps } from '../test-utils';
 
 // Mock components
 vi.mock('@/components/custom-link', () => ({
-  CustomLink: ({
-    href,
-    className,
-    children,
-    ...props
-  }: MockCustomLinkProps) => (
+  CustomLink: ({ href, className, children, ...props }: MockCustomLinkProps) => (
     <a href={href} className={className} {...props}>
       {children}
     </a>
@@ -21,19 +12,8 @@ vi.mock('@/components/custom-link', () => ({
 }));
 
 vi.mock('@/components/expandable-section', () => ({
-  ExpandableSection: ({
-    title,
-    labels,
-    defaultOpen,
-    children,
-    ...props
-  }: MockExpandableSectionProps) => (
-    <div
-      data-testid='expandable-section'
-      data-title={title}
-      data-default-open={defaultOpen}
-      {...props}
-    >
+  ExpandableSection: ({ title, labels, defaultOpen, children, ...props }: MockExpandableSectionProps) => (
+    <div data-testid='expandable-section' data-title={title} data-default-open={defaultOpen} {...props}>
       <h3>{title}</h3>
       <div data-testid='labels'>
         {labels?.map((label: MockExpandableSectionLabel) => (
@@ -67,9 +47,7 @@ describe('Uses Page Content', () => {
       <div>
         <section className='mb-8'>
           <div className='prose prose-lg prose-slate max-w-none'>
-            <h1 className='py-4 text-center text-3xl font-bold text-slate-800'>
-              Everyday Carry
-            </h1>
+            <h1 className='py-4 text-center text-3xl font-bold text-slate-800'>Everyday Carry</h1>
           </div>
         </section>
         <section className='mb-12'>
@@ -77,9 +55,7 @@ describe('Uses Page Content', () => {
             <p className='pb-6 text-center text-lg text-slate-600'>
               A non-exhaustive list of stuff that I use on a daily basis.
             </p>
-            <h2 className='mb-6 text-center text-2xl font-bold text-slate-700'>
-              Hardware
-            </h2>
+            <h2 className='mb-6 text-center text-2xl font-bold text-slate-700'>Hardware</h2>
             <ul className='list-none space-y-6'>
               <li>
                 <div
@@ -102,11 +78,9 @@ describe('Uses Page Content', () => {
                       >
                         MacBook Pro (14-inch, 2021)
                       </a>{' '}
-                      with M1 Pro chip, 32GB RAM, and 1TB SSD. I use it for
-                      work, personal projects, and everything in between. The
-                      14-inch display is a great size for me when on the move,
-                      and the ARM-based M1 Pro is a beast for development and
-                      creative work!
+                      with M1 Pro chip, 32GB RAM, and 1TB SSD. I use it for work, personal projects, and everything in
+                      between. The 14-inch display is a great size for me when on the move, and the ARM-based M1 Pro is
+                      a beast for development and creative work!
                     </p>
                     <p className='text-lg'>
                       At home, this is connected to dual{' '}
@@ -123,18 +97,13 @@ describe('Uses Page Content', () => {
                       >
                         Dell WD19TB Thunderbolt dock
                       </a>
-                      , providing 180W power delivery and dual 4K@60Hz output
-                      with Gigabit ethernet.
+                      , providing 180W power delivery and dual 4K@60Hz output with Gigabit ethernet.
                     </p>
                   </div>
                 </div>
               </li>
               <li>
-                <div
-                  data-testid='expandable-section'
-                  data-title='DeskPi Super6C (2022)'
-                  data-default-open={true}
-                >
+                <div data-testid='expandable-section' data-title='DeskPi Super6C (2022)' data-default-open={true}>
                   <h3>DeskPi Super6C (2022)</h3>
                   <div data-testid='labels'>
                     <span data-color='green'>2022</span>
@@ -143,8 +112,8 @@ describe('Uses Page Content', () => {
                   </div>
                   <div>
                     <p className='mb-4 text-lg'>
-                      The DeskPi Super6C is a Raspberry Pi Compute Module 4
-                      Cluster. I use it for learning Hashicorp products.
+                      The DeskPi Super6C is a Raspberry Pi Compute Module 4 Cluster. I use it for learning Hashicorp
+                      products.
                     </p>
                   </div>
                 </div>
@@ -163,19 +132,14 @@ describe('Uses Page Content', () => {
                   </div>
                   <div>
                     <p className='mb-4 text-lg'>
-                      I switched to this Keychron Q1 V2 mechanical keyboard
-                      because I wanted QMK/VIA support. I've equipped it with
-                      Gateron Silent Yellow switches.
+                      I switched to this Keychron Q1 V2 mechanical keyboard because I wanted QMK/VIA support. I've
+                      equipped it with Gateron Silent Yellow switches.
                     </p>
                   </div>
                 </div>
               </li>
               <li>
-                <div
-                  data-testid='expandable-section'
-                  data-title='Audio & Video Setup'
-                  data-default-open={false}
-                >
+                <div data-testid='expandable-section' data-title='Audio & Video Setup' data-default-open={false}>
                   <h3>Audio & Video Setup</h3>
                   <div data-testid='labels'>
                     <span data-color='green'>2022</span>
@@ -184,26 +148,19 @@ describe('Uses Page Content', () => {
                   </div>
                   <div>
                     <p className='mb-4 text-lg'>
-                      For audio, I switch between Apple AirPods Pro and Sony
-                      WH-1000XM4s. I have a MAONO AU-PM420 USB condenser
-                      microphone. I repurpose my old Nikon D5200 DSLR as a
-                      webcam using an Elgato CamLink adapter.
+                      For audio, I switch between Apple AirPods Pro and Sony WH-1000XM4s. I have a MAONO AU-PM420 USB
+                      condenser microphone. I repurpose my old Nikon D5200 DSLR as a webcam using an Elgato CamLink
+                      adapter.
                     </p>
                   </div>
                 </div>
               </li>
             </ul>
 
-            <h2 className='mt-12 mb-6 text-center text-2xl font-bold text-slate-700'>
-              Software
-            </h2>
+            <h2 className='mt-12 mb-6 text-center text-2xl font-bold text-slate-700'>Software</h2>
             <ul className='list-none space-y-6'>
               <li>
-                <div
-                  data-testid='expandable-section'
-                  data-title='Development Environment'
-                  data-default-open={true}
-                >
+                <div data-testid='expandable-section' data-title='Development Environment' data-default-open={true}>
                   <h3>Development Environment</h3>
                   <div data-testid='labels'>
                     <span data-color='green'>2022</span>
@@ -212,19 +169,14 @@ describe('Uses Page Content', () => {
                   </div>
                   <div>
                     <p className='mb-4 text-lg'>
-                      My primary editor these days is Cursor. I still use VS
-                      Code and keep Neovim with LazyVim around. I use the
-                      Catppuccin theme across all my applications.
+                      My primary editor these days is Cursor. I still use VS Code and keep Neovim with LazyVim around. I
+                      use the Catppuccin theme across all my applications.
                     </p>
                   </div>
                 </div>
               </li>
               <li>
-                <div
-                  data-testid='expandable-section'
-                  data-title='Terminal & Shell'
-                  data-default-open={false}
-                >
+                <div data-testid='expandable-section' data-title='Terminal & Shell' data-default-open={false}>
                   <h3>Terminal & Shell</h3>
                   <div data-testid='labels'>
                     <span data-color='green'>2022</span>
@@ -233,19 +185,14 @@ describe('Uses Page Content', () => {
                   </div>
                   <div>
                     <p className='mb-4 text-lg'>
-                      I use WezTerm as my terminal. For my shell, I run Zsh with
-                      Zinit. My prompt is powered by Starship. Some CLI tools:
-                      Homebrew, Atuin.
+                      I use WezTerm as my terminal. For my shell, I run Zsh with Zinit. My prompt is powered by
+                      Starship. Some CLI tools: Homebrew, Atuin.
                     </p>
                   </div>
                 </div>
               </li>
               <li>
-                <div
-                  data-testid='expandable-section'
-                  data-title='Browser & Extensions'
-                  data-default-open={false}
-                >
+                <div data-testid='expandable-section' data-title='Browser & Extensions' data-default-open={false}>
                   <h3>Browser & Extensions</h3>
                   <div data-testid='labels'>
                     <span data-color='green'>2022</span>
@@ -254,19 +201,14 @@ describe('Uses Page Content', () => {
                   </div>
                   <div>
                     <p className='mb-4 text-lg'>
-                      I use Arc Browser as my main browser. Essential extensions
-                      include uBlock Origin, "Don't F*** With Paste", and
-                      1Password.
+                      I use Arc Browser as my main browser. Essential extensions include uBlock Origin, "Don't F*** With
+                      Paste", and 1Password.
                     </p>
                   </div>
                 </div>
               </li>
               <li>
-                <div
-                  data-testid='expandable-section'
-                  data-title='Entertainment & Media'
-                  data-default-open={false}
-                >
+                <div data-testid='expandable-section' data-title='Entertainment & Media' data-default-open={false}>
                   <h3>Entertainment & Media</h3>
                   <div data-testid='labels'>
                     <span data-color='green'>2022</span>
@@ -274,33 +216,25 @@ describe('Uses Page Content', () => {
                   </div>
                   <div>
                     <p className='mb-4 text-lg'>
-                      I bounce between Spotify and Apple Music. I watch Twitch
-                      streams. For gaming, I use Steam and PlayStation. Favorite
-                      games include Call of Duty and The Last of Us.
+                      I bounce between Spotify and Apple Music. I watch Twitch streams. For gaming, I use Steam and
+                      PlayStation. Favorite games include Call of Duty and The Last of Us.
                     </p>
                   </div>
                 </div>
               </li>
             </ul>
 
-            <h2 className='mt-12 mb-6 text-center text-2xl font-bold text-slate-700'>
-              Philosophy & Principles
-            </h2>
+            <h2 className='mt-12 mb-6 text-center text-2xl font-bold text-slate-700'>Philosophy & Principles</h2>
             <ul className='list-none space-y-6'>
               <li>
-                <div
-                  data-testid='expandable-section'
-                  data-title='Setup Philosophy'
-                  data-default-open={true}
-                >
+                <div data-testid='expandable-section' data-title='Setup Philosophy' data-default-open={true}>
                   <h3>Setup Philosophy</h3>
                   <div data-testid='labels' />
                   <div>
                     <p className='mb-4 text-lg'>
-                      I'm obsessed with customization. Visual consistency is
-                      really important to me. Security and privacy are
-                      non-negotiable for me. I believe in investing in quality.
-                      My homelab setup exists primarily for hands-on learning.
+                      I'm obsessed with customization. Visual consistency is really important to me. Security and
+                      privacy are non-negotiable for me. I believe in investing in quality. My homelab setup exists
+                      primarily for hands-on learning.
                     </p>
                   </div>
                 </div>
@@ -308,12 +242,9 @@ describe('Uses Page Content', () => {
             </ul>
 
             <div className='prose prose-lg prose-slate mx-auto mt-12 max-w-3xl'>
-              <h3 className='mb-4 text-center font-bold text-slate-700'>
-                Get in touch
-              </h3>
+              <h3 className='mb-4 text-center font-bold text-slate-700'>Get in touch</h3>
               <p className='text-center text-lg text-slate-600'>
-                Have questions about any of the gear or software I use? Feel
-                free to reach out!
+                Have questions about any of the gear or software I use? Feel free to reach out!
               </p>
               <div data-testid='social-component'>Social Links</div>
             </div>
@@ -329,23 +260,13 @@ describe('Uses Page Content', () => {
 
       const heading = screen.getByRole('heading', { level: 1 });
       expect(heading).toHaveTextContent('Everyday Carry');
-      expect(heading).toHaveClass(
-        'py-4',
-        'text-center',
-        'text-3xl',
-        'font-bold',
-        'text-slate-800'
-      );
+      expect(heading).toHaveClass('py-4', 'text-center', 'text-3xl', 'font-bold', 'text-slate-800');
     });
 
     it('renders descriptive subtitle', () => {
       renderUsesContent();
 
-      expect(
-        screen.getByText(
-          'A non-exhaustive list of stuff that I use on a daily basis.'
-        )
-      ).toBeInTheDocument();
+      expect(screen.getByText('A non-exhaustive list of stuff that I use on a daily basis.')).toBeInTheDocument();
     });
 
     it('has proper section structure', () => {
@@ -365,13 +286,7 @@ describe('Uses Page Content', () => {
         name: 'Hardware'
       });
       expect(hardwareHeading).toBeInTheDocument();
-      expect(hardwareHeading).toHaveClass(
-        'mb-6',
-        'text-center',
-        'text-2xl',
-        'font-bold',
-        'text-slate-700'
-      );
+      expect(hardwareHeading).toHaveClass('mb-6', 'text-center', 'text-2xl', 'font-bold', 'text-slate-700');
     });
 
     it('renders MacBook Pro section', () => {
@@ -379,9 +294,7 @@ describe('Uses Page Content', () => {
 
       const sections = screen.getAllByTestId('expandable-section');
       const macbookSection = sections.find(
-        (section) =>
-          section.getAttribute('data-title') ===
-          'Apple MacBook Pro (14-inch, 2021)'
+        (section) => section.getAttribute('data-title') === 'Apple MacBook Pro (14-inch, 2021)'
       );
 
       expect(macbookSection).toBeInTheDocument();
@@ -394,10 +307,7 @@ describe('Uses Page Content', () => {
         name: /MacBook Pro \(14-inch, 2021\)/
       });
       expect(macbookLink).toBeInTheDocument();
-      expect(macbookLink).toHaveAttribute(
-        'href',
-        'https://support.apple.com/en-us/111902'
-      );
+      expect(macbookLink).toHaveAttribute('href', 'https://support.apple.com/en-us/111902');
     });
   });
 
@@ -445,9 +355,7 @@ describe('Uses Page Content', () => {
       renderUsesContent();
 
       expect(screen.getAllByText(/DeskPi Super6C/)).toHaveLength(2); // Title and content
-      expect(
-        screen.getByText(/Raspberry Pi Compute Module 4/)
-      ).toBeInTheDocument();
+      expect(screen.getByText(/Raspberry Pi Compute Module 4/)).toBeInTheDocument();
       expect(screen.getByText(/Hashicorp products/)).toBeInTheDocument();
     });
 
@@ -517,22 +425,16 @@ describe('Uses Page Content', () => {
       renderUsesContent();
 
       expect(screen.getByText(/Setup Philosophy/)).toBeInTheDocument();
-      expect(
-        screen.getByText(/obsessed with customization/)
-      ).toBeInTheDocument();
+      expect(screen.getByText(/obsessed with customization/)).toBeInTheDocument();
       expect(screen.getByText(/Visual consistency/)).toBeInTheDocument();
-      expect(
-        screen.getByText(/Security and privacy are non-negotiable/)
-      ).toBeInTheDocument();
+      expect(screen.getByText(/Security and privacy are non-negotiable/)).toBeInTheDocument();
     });
 
     it('validates philosophy principles', () => {
       renderUsesContent();
 
       expect(screen.getByText(/investing in quality/)).toBeInTheDocument();
-      expect(
-        screen.getByText(/homelab setup exists primarily for hands-on learning/)
-      ).toBeInTheDocument();
+      expect(screen.getByText(/homelab setup exists primarily for hands-on learning/)).toBeInTheDocument();
     });
   });
 
@@ -543,10 +445,7 @@ describe('Uses Page Content', () => {
       const macbookLink = screen.getByRole('link', {
         name: /MacBook Pro \(14-inch, 2021\)/
       });
-      expect(macbookLink).toHaveAttribute(
-        'href',
-        'https://support.apple.com/en-us/111902'
-      );
+      expect(macbookLink).toHaveAttribute('href', 'https://support.apple.com/en-us/111902');
     });
 
     it('validates software tool content', () => {
@@ -561,10 +460,7 @@ describe('Uses Page Content', () => {
       renderUsesContent();
 
       const lgLink = screen.getByRole('link', { name: /LG 27" 4K monitors/ });
-      expect(lgLink).toHaveAttribute(
-        'href',
-        'https://www.lg.com/us/monitors/lg-27uk650-w-4k-uhd-led-monitor'
-      );
+      expect(lgLink).toHaveAttribute('href', 'https://www.lg.com/us/monitors/lg-27uk650-w-4k-uhd-led-monitor');
 
       const dellLink = screen.getByRole('link', {
         name: /Dell WD19TB Thunderbolt dock/
@@ -578,7 +474,7 @@ describe('Uses Page Content', () => {
 
   describe('Content Organization', () => {
     it('has proper section count and structure', () => {
-      const { container } = renderUsesContent();
+      renderUsesContent();
 
       const hardwareSection = screen.getByRole('heading', { name: 'Hardware' });
       const softwareSection = screen.getByRole('heading', { name: 'Software' });

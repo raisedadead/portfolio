@@ -8,12 +8,9 @@ const ScrollButton = ({ className }: { className: string }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrollable =
-        document.documentElement.scrollHeight > window.innerHeight;
+      const isScrollable = document.documentElement.scrollHeight > window.innerHeight;
 
-      const isAtBottom =
-        window.pageYOffset + window.innerHeight >=
-        document.documentElement.scrollHeight;
+      const isAtBottom = window.pageYOffset + window.innerHeight >= document.documentElement.scrollHeight;
 
       const isAtTop = window.pageYOffset === 0;
 

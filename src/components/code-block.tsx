@@ -3,10 +3,7 @@ import { cn } from '@/lib/utils';
 import { DocumentDuplicateIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import {
-  coldarkCold,
-  coldarkDark
-} from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { coldarkCold } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 interface CodeBlockProps {
   language: string;
@@ -26,14 +23,7 @@ function CodeBlock({ language, code }: CodeBlockProps) {
   }
 
   const formattedLanguage = language.replace(/^lang-/, '');
-  const showLineNumbers = ![
-    '',
-    'bash',
-    'console',
-    'plaintext',
-    'text',
-    'txt'
-  ].includes(formattedLanguage);
+  const showLineNumbers = !['', 'bash', 'console', 'plaintext', 'text', 'txt'].includes(formattedLanguage);
 
   const handleCopy = async () => {
     try {

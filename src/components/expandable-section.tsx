@@ -1,8 +1,4 @@
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel
-} from '@headlessui/react';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import type React from 'react';
 
@@ -17,10 +13,7 @@ type ExpandableSectionProps = {
   defaultOpen?: boolean;
 };
 
-const Label: React.FC<{ children: React.ReactNode; labelColor: string }> = ({
-  children,
-  labelColor
-}) => {
+const Label: React.FC<{ children: React.ReactNode; labelColor: string }> = ({ children, labelColor }) => {
   const preClasses =
     'mx-1 inline-flex items-center rounded-full shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] border-2 px-2 py-0.5 text-xs font-medium';
 
@@ -37,11 +30,7 @@ const Label: React.FC<{ children: React.ReactNode; labelColor: string }> = ({
     gray: 'border-black bg-gray-100 text-gray-800'
   };
 
-  return (
-    <span className={`${colorVariants[labelColor]} ${preClasses}`}>
-      {children}
-    </span>
-  );
+  return <span className={`${colorVariants[labelColor]} ${preClasses}`}>{children}</span>;
 };
 
 const Labels: React.FC<{
@@ -84,9 +73,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
               )}
             </div>
           </DisclosureButton>
-          <DisclosurePanel className='bg-blue-100 p-4 text-slate-700'>
-            {children}
-          </DisclosurePanel>
+          <DisclosurePanel className='bg-blue-100 p-4 text-slate-700'>{children}</DisclosurePanel>
         </div>
       )}
     </Disclosure>

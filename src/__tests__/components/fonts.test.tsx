@@ -20,7 +20,6 @@ describe('Fonts Configuration', () => {
     });
 
     it('maintains immutability of font configuration', () => {
-      const originalMono = { ...fontMono };
       // Attempt to modify (should not affect original)
       fontMono.variable = 'modified';
       expect(fontMono.variable).toBe('modified'); // Local change

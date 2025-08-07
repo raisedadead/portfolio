@@ -77,9 +77,7 @@ export const Profile: React.FC = () => {
         </Link>
       </div>
       <div className='prose prose-lg prose-slate mx-auto mt-8 max-w-3xl'>
-        <h3 className='mb-4 text-center font-bold text-slate-700'>
-          Elsewhere on the internet
-        </h3>
+        <h3 className='mb-4 text-center font-bold text-slate-700'>Elsewhere on the internet</h3>
         <Social />
       </div>
     </div>

@@ -12,11 +12,7 @@ vi.mock('@/lib/utils', () => ({
 vi.mock('@/components/consent-banner', () => ({
   default: ({ setHasConsent }: { setHasConsent: (value: boolean) => void }) => (
     <div data-testid='consent-banner'>
-      <button
-        type='button'
-        data-testid='accept-consent'
-        onClick={() => setHasConsent(true)}
-      >
+      <button type='button' data-testid='accept-consent' onClick={() => setHasConsent(true)}>
         Accept
       </button>
     </div>

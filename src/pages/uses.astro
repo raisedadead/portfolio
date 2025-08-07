@@ -6,12 +6,10 @@ import MainLayout from '@/layouts/main-layout.astro';
 import { cn } from '@/lib/utils';
 ---
 
-<MainLayout pageTitle="Uses" variant="main">
+<MainLayout pageTitle='Uses' variant='main'>
   <section class={cn('mb-8')}>
     <div class={cn('prose prose-lg prose-slate max-w-none')}>
-      <h1 class={cn('py-4 text-center text-3xl font-bold text-slate-800')}>
-        Everyday Carry
-      </h1>
+      <h1 class={cn('py-4 text-center text-3xl font-bold text-slate-800')}>Everyday Carry</h1>
     </div>
   </section>
   <section class={cn('mb-12')}>
@@ -19,13 +17,11 @@ import { cn } from '@/lib/utils';
       <p class={cn('pb-6 text-center text-lg text-slate-600')}>
         A non-exhaustive list of stuff that I use on a daily basis.
       </p>
-      <h2 class={cn('mb-6 text-center text-2xl font-bold text-slate-700')}>
-        Hardware
-      </h2>
+      <h2 class={cn('mb-6 text-center text-2xl font-bold text-slate-700')}>Hardware</h2>
       <ul class={cn('list-none space-y-6')}>
         <li>
           <ES
-            title="Apple MacBook Pro (14-inch, 2021)"
+            title='Apple MacBook Pro (14-inch, 2021)'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -39,14 +35,13 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://support.apple.com/en-us/111902"
+                href='https://support.apple.com/en-us/111902'
               >
                 MacBook Pro (14-inch, 2021)
               </Link>{' '}
-              with M1 Pro chip, 32GB RAM, and 1TB SSD. I use it for work, personal
-              projects, and everything in between. The 14-inch display is a great
-              size for me when on the move, and the ARM-based M1 Pro is a beast for
-              development and creative work!
+              with M1 Pro chip, 32GB RAM, and 1TB SSD. I use it for work, personal projects, and everything in between. The
+              14-inch display is a great size for me when on the move, and the ARM-based M1 Pro is a beast for development
+              and creative work!
             </p>
             <p class={cn('text-lg')}>
               At home, this is connected to dual{' '}
@@ -54,7 +49,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.lg.com/us/monitors/lg-27uk650-w-4k-uhd-led-monitor"
+                href='https://www.lg.com/us/monitors/lg-27uk650-w-4k-uhd-led-monitor'
               >
                 LG 27" 4K monitors
               </Link>{' '}
@@ -63,18 +58,17 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.dell.com/en-us/shop/dell-thunderbolt-dock-wd19tb/apd/210-arik"
+                href='https://www.dell.com/en-us/shop/dell-thunderbolt-dock-wd19tb/apd/210-arik'
               >
                 Dell WD19TB Thunderbolt dock
               </Link>
-              , providing 180W power delivery and dual 4K@60Hz output with Gigabit
-              ethernet.
+              , providing 180W power delivery and dual 4K@60Hz output with Gigabit ethernet.
             </p>
           </ES>
         </li>
         <li>
           <ES
-            title="DeskPi Super6C (2022)"
+            title='DeskPi Super6C (2022)'
             labels={[
               { name: '2022', color: 'green' },
               { name: 'homelab', color: 'purple' },
@@ -89,7 +83,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://deskpi.com/collections/deskpi-super6c"
+                href='https://deskpi.com/collections/deskpi-super6c'
               >
                 DeskPi Super6C
               </Link>{' '}
@@ -98,18 +92,18 @@ import { cn } from '@/lib/utils';
                   className={cn(
                     'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                   )}
-                  href="https://www.raspberrypi.com/products/compute-module-4/"
+                  href='https://www.raspberrypi.com/products/compute-module-4/'
                 >
                   Raspberry Pi Compute Module 4
                 </Link>{' '}
               </strong>
-              Cluster Mini-ITX board that supports up to 6 CM4s. I have populated
-              it with 4 x 8GB Lite editions, 2 x 2GB Lite editions and 128{' '}
+              Cluster Mini-ITX board that supports up to 6 CM4s. I have populated it with 4 x 8GB Lite editions, 2 x 2GB
+              Lite editions and 128{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.sandisk.com/"
+                href='https://www.sandisk.com/'
               >
                 SanDisk
               </Link>{' '}
@@ -121,7 +115,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.hashicorp.com/"
+                href='https://www.hashicorp.com/'
               >
                 Hashicorp
               </Link>{' '}
@@ -130,7 +124,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.nomadproject.io/"
+                href='https://www.nomadproject.io/'
               >
                 Nomad
               </Link>
@@ -139,7 +133,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.consul.io/"
+                href='https://www.consul.io/'
               >
                 Consul
               </Link>
@@ -148,7 +142,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.vaultproject.io/"
+                href='https://www.vaultproject.io/'
               >
                 Vault
               </Link>
@@ -157,7 +151,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://kubernetes.io/"
+                href='https://kubernetes.io/'
               >
                 Kubernetes
               </Link>
@@ -166,17 +160,16 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.docker.com/"
+                href='https://www.docker.com/'
               >
                 Docker
               </Link>
-              , and other technologies. The CM4s are running Raspberry Pi OS (debian)
-              and I manage them with{' '}
+              , and other technologies. The CM4s are running Raspberry Pi OS (debian) and I manage them with{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.ansible.com/"
+                href='https://www.ansible.com/'
               >
                 Ansible
               </Link>{' '}
@@ -186,7 +179,7 @@ import { cn } from '@/lib/utils';
         </li>
         <li>
           <ES
-            title="Dell XPS 15 9500 (2020)"
+            title='Dell XPS 15 9500 (2020)'
             labels={[{ name: 'homelab', color: 'purple' }]}
             defaultOpen={false}
             client:load
@@ -197,7 +190,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.dell.com/en-us/shop/dell-laptops/xps-15-laptop/spd/xps-15-9500-laptop"
+                href='https://www.dell.com/en-us/shop/dell-laptops/xps-15-laptop/spd/xps-15-9500-laptop'
               >
                 Dell XPS 15 9500
               </Link>{' '}
@@ -206,18 +199,18 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.proxmox.com/en/proxmox-ve"
+                href='https://www.proxmox.com/en/proxmox-ve'
               >
                 Proxmox VE
               </Link>{' '}
-              as a virtualization platform. This 15-inch laptop serves as additional
-              compute for my homelab experiments and testing environments.
+              as a virtualization platform. This 15-inch laptop serves as additional compute for my homelab experiments and
+              testing environments.
             </p>
           </ES>
         </li>
         <li>
           <ES
-            title="Keychron Q1 V2 - ANSI with Knob"
+            title='Keychron Q1 V2 - ANSI with Knob'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -231,7 +224,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.keychron.com/products/keychron-q1"
+                href='https://www.keychron.com/products/keychron-q1'
               >
                 Keychron Q1 V2 mechanical keyboard
               </Link>{' '}
@@ -240,7 +233,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.caniusevia.com/"
+                href='https://www.caniusevia.com/'
               >
                 QMK/VIA support
               </Link>
@@ -249,25 +242,23 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.gateron.com/products/gateron-ks-3-milky-yellow-switch-set"
+                href='https://www.gateron.com/products/gateron-ks-3-milky-yellow-switch-set'
               >
                 Gateron Silent Yellow switches
               </Link>{' '}
-              so I can type without disturbing colleagues during video calls - the
-              tactile feel is great but they're much quieter than clicky switches.
+              so I can type without disturbing colleagues during video calls - the tactile feel is great but they're much
+              quieter than clicky switches.
             </p>
             <p class={cn('text-lg')}>
-              The rotary knob is surprisingly useful for volume control and
-              scrolling, and the 75% layout gives me all the function keys I
-              need without taking up too much desk space. Having unlimited
-              customization possibilities means I can tweak the layout for both
-              coding and creative work.
+              The rotary knob is surprisingly useful for volume control and scrolling, and the 75% layout gives me all
+              the function keys I need without taking up too much desk space. Having unlimited customization
+              possibilities means I can tweak the layout for both coding and creative work.
             </p>
           </ES>
         </li>
         <li>
           <ES
-            title="Display & Peripherals"
+            title='Display & Peripherals'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -281,7 +272,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.lg.com/us/monitors/lg-27uk650-w-4k-uhd-led-monitor"
+                href='https://www.lg.com/us/monitors/lg-27uk650-w-4k-uhd-led-monitor'
               >
                 LG 27UK650-W 4K monitors
               </Link>{' '}
@@ -290,12 +281,11 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.amazon.com/"
+                href='https://www.amazon.com/'
               >
                 Amazon
               </Link>
-              . The 4K resolution gives me plenty of screen real estate for coding
-              with multiple windows open.
+              . The 4K resolution gives me plenty of screen real estate for coding with multiple windows open.
             </p>
             <p class={cn('mb-4 text-lg')}>
               For my mouse, I use the{' '}
@@ -303,12 +293,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.logitech.com/en-us/products/mice/mx-master-2s-flow.910-005131.html"
+                href='https://www.logitech.com/en-us/products/mice/mx-master-2s-flow.910-005131.html'
               >
                 Logitech MX Master 2S
               </Link>{' '}
-              which is fantastic for productivity - the gesture controls and ability
-              to switch between devices seamlessly makes it worth every penny.
+              which is fantastic for productivity - the gesture controls and ability to switch between devices seamlessly
+              makes it worth every penny.
             </p>
             <p class={cn('text-lg')}>
               I also keep a{' '}
@@ -316,7 +306,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.canon.com/canon-pixma"
+                href='https://www.canon.com/canon-pixma'
               >
                 Canon Pixma wireless printer
               </Link>{' '}
@@ -326,7 +316,7 @@ import { cn } from '@/lib/utils';
         </li>
         <li>
           <ES
-            title="Audio & Video Setup"
+            title='Audio & Video Setup'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -340,7 +330,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.apple.com/airpods-pro/"
+                href='https://www.apple.com/airpods-pro/'
               >
                 Apple AirPods Pro
               </Link>{' '}
@@ -349,13 +339,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.sony.com/electronics/headband-headphones/wh-1000xm4"
+                href='https://www.sony.com/electronics/headband-headphones/wh-1000xm4'
               >
                 Sony WH-1000XM4s
               </Link>{' '}
-              when I need to really focus. The noise cancellation on the Sonys is
-              incredible - I can completely block out distractions when I'm deep
-              in code.
+              when I need to really focus. The noise cancellation on the Sonys is incredible - I can completely block out
+              distractions when I'm deep in code.
             </p>
             <p class={cn('mb-4 text-lg')}>
               I have a{' '}
@@ -363,17 +352,18 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.maono.com/products/maono-au-pm420-usb-condenser-microphone"
+                href='https://www.maono.com/products/maono-au-pm420-usb-condenser-microphone'
               >
                 MAONO AU-PM420 USB condenser microphone
               </Link>{' '}
-              for when I need clearer audio on calls or if I'm recording anything.
-              For casual listening, I just use my{' '}
+              for when I need clearer audio on calls or if I'm recording anything. For casual listening, I just use my{
+                ' '
+              }
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.ultimateears.com/"
+                href='https://www.ultimateears.com/'
               >
                 Ultimate Ears speaker
               </Link>
@@ -385,7 +375,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.nikon.com/products/discontinued/dslr/d5200/"
+                href='https://www.nikon.com/products/discontinued/dslr/d5200/'
               >
                 Nikon D5200 DSLR
               </Link>{' '}
@@ -394,18 +384,17 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.elgato.com/us/en/p/cam-link-4k"
+                href='https://www.elgato.com/us/en/p/cam-link-4k'
               >
                 Elgato CamLink adapter
               </Link>
-              . The video quality is so much better than any built-in laptop camera,
-              especially for important video calls.
+              . The video quality is so much better than any built-in laptop camera, especially for important video calls.
             </p>
           </ES>
         </li>
         <li>
           <ES
-            title="Workspace & Lighting"
+            title='Workspace & Lighting'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -414,10 +403,9 @@ import { cn } from '@/lib/utils';
             client:load
           >
             <p class={cn('mb-4 text-lg')}>
-              My desk setup is pretty simple - I use a generic 160cm office desk
-              that gives me plenty of space for the dual monitors and all my
-              peripherals. The chair is nothing fancy, just a standard office
-              chair that's comfortable enough for long coding sessions.
+              My desk setup is pretty simple - I use a generic 160cm office desk that gives me plenty of space for the
+              dual monitors and all my peripherals. The chair is nothing fancy, just a standard office chair that's
+              comfortable enough for long coding sessions.
             </p>
             <p class={cn('mb-4 text-lg')}>
               I invested in some{' '}
@@ -425,17 +413,17 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.elgato.com/us/en/p/key-light-air"
+                href='https://www.elgato.com/us/en/p/key-light-air'
               >
                 Elgato Key Lights
               </Link>{' '}
-              for better video call lighting - it makes a huge difference when you're
-              on camera all day. For organization, I use some{' '}
+              for better video call lighting - it makes a huge difference when you're on camera all day. For organization,
+              I use some{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.ikea.com/us/en/cat/monitor-stands-46194/"
+                href='https://www.ikea.com/us/en/cat/monitor-stands-46194/'
               >
                 IKEA monitor stands
               </Link>{' '}
@@ -447,28 +435,28 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.elgato.com/us/en/p/stream-deck-mk2"
+                href='https://www.elgato.com/us/en/p/stream-deck-mk2'
               >
                 Elgato Stream Deck
               </Link>{' '}
-              is one of my favorite productivity tools. I have it set up with shortcuts
-              for frequently used applications,{' '}
+              is one of my favorite productivity tools. I have it set up with shortcuts for frequently used applications,{
+                ' '
+              }
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://zoom.us/"
+                href='https://zoom.us/'
               >
                 Zoom
               </Link>{' '}
-              controls, and even some smart home controls. It's surprisingly useful
-              for workflow automation.
+              controls, and even some smart home controls. It's surprisingly useful for workflow automation.
             </p>
           </ES>
         </li>
         <li>
           <ES
-            title="Mobile & Wearable Devices"
+            title='Mobile & Wearable Devices'
             labels={[{ name: 'personal', color: 'yellow' }]}
             defaultOpen={false}
             client:load
@@ -479,7 +467,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.apple.com/iphone-16-pro/"
+                href='https://www.apple.com/iphone-16-pro/'
               >
                 iPhone Pro 16
               </Link>
@@ -488,13 +476,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://nothing.tech/products/phone-1"
+                href='https://nothing.tech/products/phone-1'
               >
                 Nothing Phone (1)
               </Link>{' '}
-              around for testing and development purposes. It's always good to have
-              different devices to test on, especially when working on mobile-responsive
-              designs.
+              around for testing and development purposes. It's always good to have different devices to test on, especially
+              when working on mobile-responsive designs.
             </p>
             <p class={cn('mb-4 text-lg')}>
               I have an{' '}
@@ -502,13 +489,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://support.apple.com/en-in/111887"
+                href='https://support.apple.com/en-in/111887'
               >
                 iPad Air (5th Gen)
               </Link>{' '}
-              with 256GB and cellular connectivity. It's great for mobile productivity
-              when I'm away from my desk, and perfect for consuming content during
-              downtime.
+              with 256GB and cellular connectivity. It's great for mobile productivity when I'm away from my desk, and perfect
+              for consuming content during downtime.
             </p>
             <p class={cn('text-lg')}>
               The{' '}
@@ -516,36 +502,29 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.apple.com/apple-watch-series-9/"
+                href='https://www.apple.com/apple-watch-series-9/'
               >
                 Apple Watch Series 9 (45mm)
               </Link>{' '}
-              keeps me connected without being too distracting. I mainly use it for
-              health tracking and getting notifications without having to check my
-              phone constantly.
+              keeps me connected without being too distracting. I mainly use it for health tracking and getting notifications
+              without having to check my phone constantly.
             </p>
           </ES>
         </li>
         <li>
-          <ES
-            title="Security & Power"
-            labels={[{ name: 'travel', color: 'blue' }]}
-            defaultOpen={false}
-            client:load
-          >
+          <ES title='Security & Power' labels={[{ name: 'travel', color: 'blue' }]} defaultOpen={false} client:load>
             <p class={cn('mb-4 text-lg')}>
               Security is important to me, so I use{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.yubico.com/"
+                href='https://www.yubico.com/'
               >
                 YubiKeys
               </Link>{' '}
-              for hardware-based two-factor authentication across all my important
-              accounts. Having that physical key requirement adds a solid layer of
-              protection.
+              for hardware-based two-factor authentication across all my important accounts. Having that physical key requirement
+              adds a solid layer of protection.
             </p>
             <p class={cn('mb-4 text-lg')}>
               I'm a big fan of{' '}
@@ -553,12 +532,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.anker.com/collections/chargers"
+                href='https://www.anker.com/collections/chargers'
               >
                 Anker's GaN chargers
               </Link>{' '}
-              - I have several scattered around for both home and travel. They're
-              compact but powerful, and the fast charging is a game changer.
+              - I have several scattered around for both home and travel. They're compact but powerful, and the fast charging
+              is a game changer.
             </p>
             <p class={cn('text-lg')}>
               For travel, I always pack{' '}
@@ -566,7 +545,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.apple.com/shop/product/MHXH3AM/A/magsafe-3-in-1-charger"
+                href='https://www.apple.com/shop/product/MHXH3AM/A/magsafe-3-in-1-charger'
               >
                 3-in-1 MagSafe chargers
               </Link>{' '}
@@ -575,26 +554,21 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.gl-inet.com/products/gl-mt1300/"
+                href='https://www.gl-inet.com/products/gl-mt1300/'
               >
                 GL.iNet travel router
               </Link>
-              . The router is especially handy for creating a secure connection when
-              I'm working from hotels or coffee shops.
+              . The router is especially handy for creating a secure connection when I'm working from hotels or coffee shops.
             </p>
           </ES>
         </li>
       </ul>
 
-      <h2
-        class={cn('mb-6 mt-12 text-center text-2xl font-bold text-slate-700')}
-      >
-        Software
-      </h2>
+      <h2 class={cn('mb-6 mt-12 text-center text-2xl font-bold text-slate-700')}>Software</h2>
       <ul class={cn('list-none space-y-6')}>
         <li>
           <ES
-            title="Development Environment"
+            title='Development Environment'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -608,13 +582,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://cursor.sh"
+                href='https://cursor.sh'
               >
                 Cursor
               </Link>{' '}
-              - it's basically VS Code but with incredible AI features built in.
-              The autocomplete and chat functionality have seriously improved my
-              coding workflow.
+              - it's basically VS Code but with incredible AI features built in. The autocomplete and chat functionality
+              have seriously improved my coding workflow.
             </p>
             <p class={cn('mb-4 text-lg')}>
               I still use{' '}
@@ -622,7 +595,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://code.visualstudio.com/"
+                href='https://code.visualstudio.com/'
               >
                 VS Code
               </Link>{' '}
@@ -631,7 +604,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://neovim.io/"
+                href='https://neovim.io/'
               >
                 Neovim
               </Link>{' '}
@@ -640,12 +613,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.lazyvim.org/"
+                href='https://www.lazyvim.org/'
               >
                 LazyVim
               </Link>{' '}
-              around for quick terminal-based editing. There's something satisfying
-              about the speed and efficiency of vim motions.
+              around for quick terminal-based editing. There's something satisfying about the speed and efficiency of vim
+              motions.
             </p>
             <p class={cn('text-lg')}>
               I'm obsessed with visual consistency, so I use the{' '}
@@ -653,7 +626,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://github.com/catppuccin/catppuccin"
+                href='https://github.com/catppuccin/catppuccin'
               >
                 Catppuccin theme
               </Link>{' '}
@@ -662,7 +635,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.nerdfonts.com/"
+                href='https://www.nerdfonts.com/'
               >
                 Menlo Mono with Nerd Fonts
               </Link>
@@ -672,7 +645,7 @@ import { cn } from '@/lib/utils';
         </li>
         <li>
           <ES
-            title="Terminal & Shell"
+            title='Terminal & Shell'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -686,13 +659,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://wezfurlong.org/wezterm/"
+                href='https://wezfurlong.org/wezterm/'
               >
                 WezTerm
               </Link>{' '}
-              as my terminal - it's GPU-accelerated and handles the Catppuccin theme
-              beautifully. The performance and customization options are fantastic
-              compared to the default macOS terminal.
+              as my terminal - it's GPU-accelerated and handles the Catppuccin theme beautifully. The performance and customization
+              options are fantastic compared to the default macOS terminal.
             </p>
             <p class={cn('mb-4 text-lg')}>
               For my shell, I run{' '}
@@ -700,7 +672,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.zsh.org/"
+                href='https://www.zsh.org/'
               >
                 Zsh
               </Link>{' '}
@@ -709,17 +681,17 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://github.com/zdharma-continuum/zinit"
+                href='https://github.com/zdharma-continuum/zinit'
               >
                 Zinit
               </Link>{' '}
-              as the plugin manager. It's fast and lets me customize everything exactly
-              how I want it. My prompt is powered by{' '}
+              as the plugin manager. It's fast and lets me customize everything exactly how I want it. My prompt is powered
+              by{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://starship.rs"
+                href='https://starship.rs'
               >
                 Starship
               </Link>
@@ -731,7 +703,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://brew.sh/"
+                href='https://brew.sh/'
               >
                 Homebrew
               </Link>{' '}
@@ -740,7 +712,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://atuin.sh/"
+                href='https://atuin.sh/'
               >
                 Atuin
               </Link>{' '}
@@ -749,7 +721,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://developer.1password.com/docs/cli/"
+                href='https://developer.1password.com/docs/cli/'
               >
                 1Password CLI
               </Link>{' '}
@@ -759,7 +731,7 @@ import { cn } from '@/lib/utils';
         </li>
         <li>
           <ES
-            title="Development Tools"
+            title='Development Tools'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -773,7 +745,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://pnpm.io/"
+                href='https://pnpm.io/'
               >
                 pnpm
               </Link>{' '}
@@ -782,17 +754,18 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.npmjs.com/"
+                href='https://www.npmjs.com/'
               >
                 npm
               </Link>{' '}
-              and handles dependencies more efficiently. When I need to switch between
-              Node.js versions for different projects,{' '}
+              and handles dependencies more efficiently. When I need to switch between Node.js versions for different projects,{
+                ' '
+              }
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://github.com/nvm-sh/nvm"
+                href='https://github.com/nvm-sh/nvm'
               >
                 nvm
               </Link>{' '}
@@ -804,7 +777,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.docker.com/products/docker-desktop/"
+                href='https://www.docker.com/products/docker-desktop/'
               >
                 Docker Desktop
               </Link>{' '}
@@ -813,17 +786,16 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://orbstack.dev"
+                href='https://orbstack.dev'
               >
                 OrbStack
               </Link>{' '}
-              for container management - it's much lighter weight and faster on macOS.
-              I also use{' '}
+              for container management - it's much lighter weight and faster on macOS. I also use{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://podman.io/"
+                href='https://podman.io/'
               >
                 Podman
               </Link>{' '}
@@ -835,12 +807,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://dbeaver.io/"
+                href='https://dbeaver.io/'
               >
                 DBeaver
               </Link>{' '}
-              is my preferred tool. It supports pretty much every database I've ever
-              needed to connect to, and the interface is clean and intuitive.
+              is my preferred tool. It supports pretty much every database I've ever needed to connect to, and the interface
+              is clean and intuitive.
             </p>
             <p class={cn('text-lg')}>
               For API testing, I love{' '}
@@ -848,7 +820,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://httpie.io/"
+                href='https://httpie.io/'
               >
                 HTTPie
               </Link>{' '}
@@ -857,17 +829,16 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://curl.se/"
+                href='https://curl.se/'
               >
                 curl
               </Link>{' '}
-              for quick API calls. When I'm designing system architectures or sketching
-              out ideas, I bounce between{' '}
+              for quick API calls. When I'm designing system architectures or sketching out ideas, I bounce between{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.diagrams.net/"
+                href='https://www.diagrams.net/'
               >
                 Diagrams.net
               </Link>{' '}
@@ -876,7 +847,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://excalidraw.com/"
+                href='https://excalidraw.com/'
               >
                 Excalidraw
               </Link>{' '}
@@ -886,7 +857,7 @@ import { cn } from '@/lib/utils';
         </li>
         <li>
           <ES
-            title="Productivity & Communication"
+            title='Productivity & Communication'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -901,7 +872,7 @@ import { cn } from '@/lib/utils';
                   className={cn(
                     'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                   )}
-                  href="https://www.notion.so/product/calendar"
+                  href='https://www.notion.so/product/calendar'
                 >
                   Notion Calendar
                 </Link>{' '}
@@ -913,7 +884,7 @@ import { cn } from '@/lib/utils';
                   className={cn(
                     'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                   )}
-                  href="https://www.notion.so/"
+                  href='https://www.notion.so/'
                 >
                   Notion
                 </Link>{' '}
@@ -922,7 +893,7 @@ import { cn } from '@/lib/utils';
                   className={cn(
                     'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                   )}
-                  href="https://www.apple.com/macos/monterey/features/"
+                  href='https://www.apple.com/macos/monterey/features/'
                 >
                   Apple Notes
                 </Link>{' '}
@@ -934,7 +905,7 @@ import { cn } from '@/lib/utils';
                   className={cn(
                     'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                   )}
-                  href="https://sparkmailapp.com/"
+                  href='https://sparkmailapp.com/'
                 >
                   Spark
                 </Link>{' '}
@@ -946,7 +917,7 @@ import { cn } from '@/lib/utils';
                   className={cn(
                     'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                   )}
-                  href="https://chat.google.com/"
+                  href='https://chat.google.com/'
                 >
                   Google Chat
                 </Link>{' '}
@@ -955,7 +926,7 @@ import { cn } from '@/lib/utils';
                   className={cn(
                     'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                   )}
-                  href="https://meet.google.com/"
+                  href='https://meet.google.com/'
                 >
                   Google Meet
                 </Link>{' '}
@@ -966,7 +937,7 @@ import { cn } from '@/lib/utils';
         </li>
         <li>
           <ES
-            title="Browser & Extensions"
+            title='Browser & Extensions'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -980,14 +951,13 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://arc.net"
+                href='https://arc.net'
               >
                 Arc Browser
               </Link>{' '}
-              as my main browser because I love the workspace management and vertical
-              tabs. It completely changed how I organize my browsing - being able
-              to group tabs by project and have them automatically archive is a game
-              changer for staying organized.
+              as my main browser because I love the workspace management and vertical tabs. It completely changed how I organize
+              my browsing - being able to group tabs by project and have them automatically archive is a game changer for
+              staying organized.
             </p>
             <p class={cn('mb-4 text-lg')}>
               My essential extensions include{' '}
@@ -995,7 +965,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://ublockorigin.com/"
+                href='https://ublockorigin.com/'
               >
                 uBlock Origin
               </Link>{' '}
@@ -1004,7 +974,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://chrome.google.com/webstore/detail/dont-f-with-paste/nkgllhigpcljnhoakjkgaieabnkmgdkb"
+                href='https://chrome.google.com/webstore/detail/dont-f-with-paste/nkgllhigpcljnhoakjkgaieabnkmgdkb'
               >
                 "Don't F*** With Paste"
               </Link>{' '}
@@ -1013,7 +983,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://chrome.google.com/webstore/detail/disable-cookies/lkmjmficaoifggpfapbffkggecbleang"
+                href='https://chrome.google.com/webstore/detail/disable-cookies/lkmjmficaoifggpfapbffkggecbleang'
               >
                 Disable Cookies
               </Link>{' '}
@@ -1025,19 +995,18 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://1password.com/"
+                href='https://1password.com/'
               >
                 1Password
               </Link>{' '}
-              is absolutely essential. Having secure, unique passwords for everything
-              and being able to access them seamlessly across all my devices makes
-              browsing so much more secure and convenient.
+              is absolutely essential. Having secure, unique passwords for everything and being able to access them seamlessly
+              across all my devices makes browsing so much more secure and convenient.
             </p>
           </ES>
         </li>
         <li>
           <ES
-            title="macOS System Tools"
+            title='macOS System Tools'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -1050,14 +1019,13 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://rectangleapp.com/"
+                href='https://rectangleapp.com/'
               >
                 Rectangle Pro
               </Link>{' '}
-              is essential for my window management - I can't imagine working without
-              keyboard shortcuts to snap windows to precise positions. Having dual
-              monitors means I need reliable, quick window positioning, and Rectangle
-              Pro delivers exactly that.
+              is essential for my window management - I can't imagine working without keyboard shortcuts to snap windows
+              to precise positions. Having dual monitors means I need reliable, quick window positioning, and Rectangle Pro
+              delivers exactly that.
             </p>
             <p class={cn('mb-4 text-lg')}>
               My menu bar was getting cluttered with all the apps I use, so{' '}
@@ -1065,12 +1033,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.macbartender.com/"
+                href='https://www.macbartender.com/'
               >
                 Bartender 5
               </Link>{' '}
-              keeps everything clean and organized. I can hide the less important
-              items and only show what I actually need to see.
+              keeps everything clean and organized. I can hide the less important items and only show what I actually need
+              to see.
             </p>
             <p class={cn('mb-4 text-lg')}>
               {' '}
@@ -1078,7 +1046,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://raycast.com"
+                href='https://raycast.com'
               >
                 Raycast
               </Link>{' '}
@@ -1087,13 +1055,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://support.apple.com/guide/mac-help/search-with-spotlight-mchlp1008/mac"
+                href='https://support.apple.com/guide/mac-help/search-with-spotlight-mchlp1008/mac'
               >
                 Spotlight
               </Link>{' '}
-              for me. The app launching is lightning fast, the clipboard history
-              is incredibly useful, and the workflow automation capabilities keep
-              expanding my productivity options.
+              for me. The app launching is lightning fast, the clipboard history is incredibly useful, and the workflow automation
+              capabilities keep expanding my productivity options.
             </p>
             <p class={cn('text-lg')}>
               For screenshots,{' '}
@@ -1101,19 +1068,18 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://shottr.cc/"
+                href='https://shottr.cc/'
               >
                 Shottr
               </Link>{' '}
-              is fantastic - I can quickly annotate, add arrows and text, and share
-              them without having to open a separate editing app. It's perfect for
-              documentation and quick visual communication.
+              is fantastic - I can quickly annotate, add arrows and text, and share them without having to open a separate
+              editing app. It's perfect for documentation and quick visual communication.
             </p>
           </ES>
         </li>
         <li>
           <ES
-            title="File Management & Backup"
+            title='File Management & Backup'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -1127,17 +1093,17 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.backblaze.com/"
+                href='https://www.backblaze.com/'
               >
                 Backblaze
               </Link>{' '}
-              for my primary backup strategy because it's incredibly cost-effective
-              for long-term storage. For collaborative work,{' '}
+              for my primary backup strategy because it's incredibly cost-effective for long-term storage. For collaborative
+              work,{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://drive.google.com/"
+                href='https://drive.google.com/'
               >
                 Google Drive
               </Link>{' '}
@@ -1149,19 +1115,18 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://rclone.org"
+                href='https://rclone.org'
               >
                 rclone
               </Link>{' '}
-              is my secret weapon for file synchronization. I can automate encrypted
-              file transfers between different cloud providers, which gives me flexibility
-              and redundancy that I can't get with just one service.
+              is my secret weapon for file synchronization. I can automate encrypted file transfers between different cloud
+              providers, which gives me flexibility and redundancy that I can't get with just one service.
             </p>
           </ES>
         </li>
         <li>
           <ES
-            title="Security & Privacy"
+            title='Security & Privacy'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' }
@@ -1175,40 +1140,34 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://mullvad.net"
+                href='https://mullvad.net'
               >
                 Mullvad
               </Link>{' '}
-              when I need privacy-focused browsing - their no-logging policy and
-              privacy focus is exactly what I want. For secure remote access to my
-              homelab,{' '}
+              when I need privacy-focused browsing - their no-logging policy and privacy focus is exactly what I want. For
+              secure remote access to my homelab,{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://tailscale.com"
+                href='https://tailscale.com'
               >
                 Tailscale
               </Link>{' '}
-              is incredible - it creates a secure mesh network that lets me access
-              my home services from anywhere without exposing them to the internet.
+              is incredible - it creates a secure mesh network that lets me access my home services from anywhere without
+              exposing them to the internet.
             </p>
           </ES>
         </li>
         <li>
-          <ES
-            title="Entertainment & Media"
-            labels={[{ name: 'gaming', color: 'red' }]}
-            defaultOpen={false}
-            client:load
-          >
+          <ES title='Entertainment & Media' labels={[{ name: 'gaming', color: 'red' }]} defaultOpen={false} client:load>
             <p class={cn('mb-4 text-lg')}>
               I bounce between{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.spotify.com/"
+                href='https://www.spotify.com/'
               >
                 Spotify
               </Link>{' '}
@@ -1217,13 +1176,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://music.apple.com/"
+                href='https://music.apple.com/'
               >
                 Apple Music
               </Link>{' '}
-              for music streaming - Spotify has better discovery algorithms, but
-              Apple Music integrates better with my Apple ecosystem. I usually keep
-              both subscriptions active because they each have their strengths.
+              for music streaming - Spotify has better discovery algorithms, but Apple Music integrates better with my Apple
+              ecosystem. I usually keep both subscriptions active because they each have their strengths.
             </p>
             <p class={cn('mb-4 text-lg')}>
               For entertainment, I watch a lot of{' '}
@@ -1231,12 +1189,12 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.twitch.tv/"
+                href='https://www.twitch.tv/'
               >
                 Twitch
               </Link>{' '}
-              streams, especially gaming content and coding streams. It's a great
-              way to discover new games and learn from other developers.
+              streams, especially gaming content and coding streams. It's a great way to discover new games and learn from
+              other developers.
             </p>
             <p class={cn('text-lg')}>
               When it comes to gaming, I use{' '}
@@ -1244,7 +1202,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://store.steampowered.com/"
+                href='https://store.steampowered.com/'
               >
                 Steam
               </Link>{' '}
@@ -1253,7 +1211,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.playstation.com/"
+                href='https://www.playstation.com/'
               >
                 PlayStation
               </Link>{' '}
@@ -1262,18 +1220,16 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.playstation.com/en-us/accessories/gaming-controllers/dualshock-4/"
+                href='https://www.playstation.com/en-us/accessories/gaming-controllers/dualshock-4/'
               >
                 PlayStation 4 controllers
               </Link>{' '}
-              work great for both platforms. Some of my favorite games include the{
-                ' '
-              }
+              work great for both platforms. Some of my favorite games include the{' '}
               <Link
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.callofduty.com/"
+                href='https://www.callofduty.com/'
               >
                 Call of Duty
               </Link>{' '}
@@ -1282,7 +1238,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.thelastofus.playstation.com/"
+                href='https://www.thelastofus.playstation.com/'
               >
                 The Last of Us
               </Link>
@@ -1291,7 +1247,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.unchartedthegame.com/"
+                href='https://www.unchartedthegame.com/'
               >
                 Uncharted
               </Link>{' '}
@@ -1300,7 +1256,7 @@ import { cn } from '@/lib/utils';
                 className={cn(
                   'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                 )}
-                href="https://www.rockstargames.com/reddeadredemption2/"
+                href='https://www.rockstargames.com/reddeadredemption2/'
               >
                 Red Dead Redemption
               </Link>{' '}
@@ -1310,7 +1266,7 @@ import { cn } from '@/lib/utils';
         </li>
         <li>
           <ES
-            title="Operating Systems"
+            title='Operating Systems'
             labels={[
               { name: 'work', color: 'orange' },
               { name: 'personal', color: 'yellow' },
@@ -1326,7 +1282,7 @@ import { cn } from '@/lib/utils';
                     className={cn(
                       'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                     )}
-                    href="https://www.apple.com/macos/"
+                    href='https://www.apple.com/macos/'
                   >
                     macOS
                   </Link>
@@ -1340,7 +1296,7 @@ import { cn } from '@/lib/utils';
                     className={cn(
                       'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                     )}
-                    href="https://www.linux.org/"
+                    href='https://www.linux.org/'
                   >
                     Linux
                   </Link>{' '}
@@ -1349,7 +1305,7 @@ import { cn } from '@/lib/utils';
                     className={cn(
                       'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                     )}
-                    href="https://www.debian.org/"
+                    href='https://www.debian.org/'
                   >
                     Debian
                   </Link>
@@ -1358,7 +1314,7 @@ import { cn } from '@/lib/utils';
                     className={cn(
                       'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                     )}
-                    href="https://ubuntu.com/"
+                    href='https://ubuntu.com/'
                   >
                     Ubuntu
                   </Link>
@@ -1372,7 +1328,7 @@ import { cn } from '@/lib/utils';
                     className={cn(
                       'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
                     )}
-                    href="https://www.raspberrypi.org/software/"
+                    href='https://www.raspberrypi.org/software/'
                   >
                     Raspberry Pi OS
                   </Link>
@@ -1381,72 +1337,55 @@ import { cn } from '@/lib/utils';
                 On the DeskPi Super6C cluster for homelab experiments
               </li>
               <li>
-                <strong>Proxmox VE:</strong> On Dell XPS 15 for virtualization and
-                testing
+                <strong>Proxmox VE:</strong> On Dell XPS 15 for virtualization and testing
               </li>
             </ul>
           </ES>
         </li>
       </ul>
 
-      <h2
-        class={cn('mb-6 mt-12 text-center text-2xl font-bold text-slate-700')}
-      >
-        Philosophy & Principles
-      </h2>
+      <h2 class={cn('mb-6 mt-12 text-center text-2xl font-bold text-slate-700')}>Philosophy & Principles</h2>
       <ul class={cn('list-none space-y-6')}>
         <li>
-          <ES title="Setup Philosophy" defaultOpen={true} client:load>
+          <ES title='Setup Philosophy' defaultOpen={true} client:load>
             <p class={cn('mb-4 text-lg')}>
-              I'm obsessed with customization - I want my tools to work exactly
-              how I think they should. That's why I gravitate toward things like
-              the Keychron Q1 with QMK/VIA support and Neovim. If I can't
-              customize it to fit my workflow, I'll usually look for
-              alternatives that offer more flexibility.
+              I'm obsessed with customization - I want my tools to work exactly how I think they should. That's why I
+              gravitate toward things like the Keychron Q1 with QMK/VIA support and Neovim. If I can't customize it to
+              fit my workflow, I'll usually look for alternatives that offer more flexibility.
             </p>
             <p class={cn('mb-4 text-lg')}>
-              Visual consistency is really important to me, which is why I use
-              the Catppuccin theme across all my applications. Having a cohesive
-              color scheme makes everything feel more polished and reduces
-              visual fatigue during long coding sessions.
+              Visual consistency is really important to me, which is why I use the Catppuccin theme across all my
+              applications. Having a cohesive color scheme makes everything feel more polished and reduces visual
+              fatigue during long coding sessions.
             </p>
             <p class={cn('mb-4 text-lg')}>
-              I'm always looking for ways to be more efficient. Tools like
-              Raycast, Rectangle Pro, and Starship are specifically chosen
-              because they remove friction from my daily workflows. If I can
-              automate something or make it faster with a keyboard shortcut, I
-              will.
+              I'm always looking for ways to be more efficient. Tools like Raycast, Rectangle Pro, and Starship are
+              specifically chosen because they remove friction from my daily workflows. If I can automate something or
+              make it faster with a keyboard shortcut, I will.
             </p>
             <p class={cn('mb-4 text-lg')}>
-              I believe in investing in quality for things I use every day.
-              Spending money on premium peripherals that I'll use for 8+ hours
-              daily pays dividends in both productivity and health. A good
-              keyboard, mouse, and monitor setup is worth every penny.
+              I believe in investing in quality for things I use every day. Spending money on premium peripherals that
+              I'll use for 8+ hours daily pays dividends in both productivity and health. A good keyboard, mouse, and
+              monitor setup is worth every penny.
             </p>
             <p class={cn('mb-4 text-lg')}>
-              Security and privacy are non-negotiable for me. I use
-              privacy-focused tools like Mullvad VPN, uBlock Origin, and
-              hardware 2FA with YubiKeys because protecting personal and
-              professional data is essential in today's digital landscape.
+              Security and privacy are non-negotiable for me. I use privacy-focused tools like Mullvad VPN, uBlock
+              Origin, and hardware 2FA with YubiKeys because protecting personal and professional data is essential in
+              today's digital landscape.
             </p>
             <p class={cn('text-lg')}>
-              My homelab setup exists primarily for hands-on learning. I learn
-              best by doing, so having a place to experiment with technologies
-              like Kubernetes, the Hashicorp stack, and container orchestration
-              helps me understand these tools much better than just reading
-              documentation.
+              My homelab setup exists primarily for hands-on learning. I learn best by doing, so having a place to
+              experiment with technologies like Kubernetes, the Hashicorp stack, and container orchestration helps me
+              understand these tools much better than just reading documentation.
             </p>
           </ES>
         </li>
       </ul>
 
       <div class={cn('prose prose-lg prose-slate mx-auto mt-12 max-w-3xl')}>
-        <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>
-          Get in touch
-        </h3>
+        <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>Get in touch</h3>
         <p class={cn('text-center text-lg text-slate-600')}>
-          Have questions about any of the gear or software I use? Feel free to
-          reach out!
+          Have questions about any of the gear or software I use? Feel free to reach out!
         </p>
         <Social />
       </div>
