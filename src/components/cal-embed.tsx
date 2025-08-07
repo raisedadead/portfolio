@@ -24,11 +24,7 @@ interface CalButtonProps {
   children: React.ReactNode;
 }
 
-export default function CalButton({
-  className = '',
-  'aria-label': ariaLabel,
-  children
-}: CalButtonProps) {
+export default function CalButton({ className = '', 'aria-label': ariaLabel, children }: CalButtonProps) {
   useEffect(() => {
     const initializeCalendar = async () => {
       try {

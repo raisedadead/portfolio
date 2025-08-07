@@ -11,8 +11,8 @@ interface ImageProps {
 
 // Mock Astro components for testing
 vi.mock('astro:assets', () => ({
-  Image: ({ src, alt, ...props }: ImageProps) => {
-    return `<img src="${src}" alt="${alt}" {...props} />`;
+  Image: ({ src, alt }: ImageProps) => {
+    return `<img src="${src}" alt="${alt}" />`;
   }
 }));
 

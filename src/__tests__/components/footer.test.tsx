@@ -3,11 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '../test-utils';
 
 vi.mock('@/components/custom-link', () => ({
-  CustomLink: ({
-    children,
-    href,
-    ariaLabel
-  }: { children: React.ReactNode; href: string; ariaLabel?: string }) => (
+  CustomLink: ({ children, href, ariaLabel }: { children: React.ReactNode; href: string; ariaLabel?: string }) => (
     <a href={href} aria-label={ariaLabel}>
       {children}
     </a>
@@ -19,31 +15,17 @@ describe('Footer', () => {
     render(<Footer />);
 
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /terms/i })).toHaveAttribute(
-      'href',
-      '/terms'
-    );
-    expect(screen.getByRole('link', { name: /privacy/i })).toHaveAttribute(
-      'href',
-      '/privacy'
-    );
-    expect(screen.getByRole('link', { name: /refunds/i })).toHaveAttribute(
-      'href',
-      '/refunds'
-    );
-    expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute(
-      'href',
-      '/about'
-    );
+    expect(screen.getByRole('link', { name: /terms/i })).toHaveAttribute('href', '/terms');
+    expect(screen.getByRole('link', { name: /privacy/i })).toHaveAttribute('href', '/privacy');
+    expect(screen.getByRole('link', { name: /refunds/i })).toHaveAttribute('href', '/refunds');
+    expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute('href', '/about');
   });
 
   it('renders copyright with current year', () => {
     render(<Footer />);
 
     const currentYear = new Date().getFullYear();
-    expect(
-      screen.getByText(new RegExp(`© 2012-${currentYear} Mrugesh Mohapatra Co`))
-    ).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`© 2012-${currentYear} Mrugesh Mohapatra Co`))).toBeInTheDocument();
   });
 
   it('shows home link when not default', () => {
@@ -55,9 +37,7 @@ describe('Footer', () => {
   it('hides home link when isDefault is true', () => {
     render(<Footer isDefault={true} />);
 
-    expect(
-      screen.queryByRole('link', { name: /home/i })
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /home/i })).not.toBeInTheDocument();
   });
 
   it('applies custom className', () => {
@@ -69,9 +49,7 @@ describe('Footer', () => {
 
   it('uses different styling for default footer', () => {
     const { container: defaultContainer } = render(<Footer isDefault={true} />);
-    const { container: regularContainer } = render(
-      <Footer isDefault={false} />
-    );
+    const { container: regularContainer } = render(<Footer isDefault={false} />);
 
     const defaultDiv = defaultContainer.querySelector('div');
     const regularDiv = regularContainer.querySelector('div');

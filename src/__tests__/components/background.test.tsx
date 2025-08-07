@@ -18,12 +18,7 @@ describe('WaveBackground', () => {
     const waveContainer = container.firstChild as HTMLElement;
 
     expect(waveContainer).toBeInTheDocument();
-    expect(waveContainer).toHaveClass(
-      'relative',
-      'h-screen',
-      'w-screen',
-      'overflow-hidden'
-    );
+    expect(waveContainer).toHaveClass('relative', 'h-screen', 'w-screen', 'overflow-hidden');
   });
 
   it('renders SVG with correct configuration', () => {
@@ -32,10 +27,7 @@ describe('WaveBackground', () => {
 
     expect(svg).toBeInTheDocument();
     expect(svg).toHaveAttribute('viewBox', '0 0 1000 800');
-    expect(svg).toHaveAttribute(
-      'aria-label',
-      'Animated wave background decoration'
-    );
+    expect(svg).toHaveAttribute('aria-label', 'Animated wave background decoration');
   });
 
   it('generates correct number of wave paths', () => {
@@ -58,11 +50,6 @@ describe('WaveBackground', () => {
     const { container } = render(<WaveBackground />);
     const waveContainer = container.firstChild as HTMLElement;
 
-    expect(waveContainer).toHaveClass(
-      'bg-linear-to-b',
-      'from-emerald-300',
-      'via-orange-200',
-      'to-teal-200'
-    );
+    expect(waveContainer).toHaveClass('bg-linear-to-b', 'from-emerald-300', 'via-orange-200', 'to-teal-200');
   });
 });

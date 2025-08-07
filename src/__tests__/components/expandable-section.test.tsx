@@ -12,20 +12,15 @@ vi.mock('@headlessui/react', () => ({
     children: (props: { open: boolean }) => React.ReactNode;
     defaultOpen?: boolean;
   }) => {
-    const [isOpen, setIsOpen] = React.useState(defaultOpen || false);
+    const [isOpen] = React.useState(defaultOpen || false);
     return <div data-testid='disclosure'>{children({ open: isOpen })}</div>;
   },
-  DisclosureButton: ({
-    children,
-    onClick
-  }: { children: React.ReactNode; onClick?: () => void }) => (
+  DisclosureButton: ({ children, onClick }: { children: React.ReactNode; onClick?: () => void }) => (
     <button type='button' onClick={onClick} data-testid='disclosure-button'>
       {children}
     </button>
   ),
-  DisclosurePanel: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid='disclosure-panel'>{children}</div>
-  )
+  DisclosurePanel: ({ children }: { children: React.ReactNode }) => <div data-testid='disclosure-panel'>{children}</div>
 }));
 
 // Mock icons

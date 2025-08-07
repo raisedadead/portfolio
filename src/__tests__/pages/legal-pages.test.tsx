@@ -15,35 +15,21 @@ describe('Legal Pages', () => {
       render(
         <div data-testid='legal-content'>
           <section className='mb-8'>
-            <h1 className='py-4 text-center text-3xl font-extrabold'>
-              Terms & Conditions
-            </h1>
+            <h1 className='py-4 text-center text-3xl font-extrabold'>Terms & Conditions</h1>
           </section>
           <section className='mb-12'>
-            <p className='pb-6 text-center text-lg'>
-              Please read these terms and conditions carefully.
-            </p>
+            <p className='pb-6 text-center text-lg'>Please read these terms and conditions carefully.</p>
             <div>
-              <h2 className='mb-4 text-2xl font-bold'>
-                1. Acceptance of Terms
-              </h2>
-              <p className='text-lg'>
-                By accessing this website, you accept these terms.
-              </p>
+              <h2 className='mb-4 text-2xl font-bold'>1. Acceptance of Terms</h2>
+              <p className='text-lg'>By accessing this website, you accept these terms.</p>
             </div>
           </section>
         </div>
       );
 
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-        'Terms & Conditions'
-      );
-      expect(
-        screen.getByText('Please read these terms and conditions carefully.')
-      ).toBeInTheDocument();
-      expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
-        '1. Acceptance of Terms'
-      );
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Terms & Conditions');
+      expect(screen.getByText('Please read these terms and conditions carefully.')).toBeInTheDocument();
+      expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('1. Acceptance of Terms');
     });
   });
 
@@ -52,35 +38,21 @@ describe('Legal Pages', () => {
       render(
         <div data-testid='legal-content'>
           <section className='mb-8'>
-            <h1 className='py-4 text-center text-3xl font-extrabold'>
-              Privacy Policy
-            </h1>
+            <h1 className='py-4 text-center text-3xl font-extrabold'>Privacy Policy</h1>
           </section>
           <section className='mb-12'>
-            <p className='pb-6 text-center text-lg'>
-              Your privacy is important to us.
-            </p>
+            <p className='pb-6 text-center text-lg'>Your privacy is important to us.</p>
             <div>
-              <h2 className='mb-4 text-2xl font-bold'>
-                Information We Collect
-              </h2>
-              <p className='text-lg'>
-                We may collect information you provide directly to us.
-              </p>
+              <h2 className='mb-4 text-2xl font-bold'>Information We Collect</h2>
+              <p className='text-lg'>We may collect information you provide directly to us.</p>
             </div>
           </section>
         </div>
       );
 
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-        'Privacy Policy'
-      );
-      expect(
-        screen.getByText('Your privacy is important to us.')
-      ).toBeInTheDocument();
-      expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
-        'Information We Collect'
-      );
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Privacy Policy');
+      expect(screen.getByText('Your privacy is important to us.')).toBeInTheDocument();
+      expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Information We Collect');
     });
   });
 
@@ -89,33 +61,21 @@ describe('Legal Pages', () => {
       render(
         <div data-testid='legal-content'>
           <section className='mb-8'>
-            <h1 className='py-4 text-center text-3xl font-extrabold'>
-              Refunds & Cancellation Policy
-            </h1>
+            <h1 className='py-4 text-center text-3xl font-extrabold'>Refunds & Cancellation Policy</h1>
           </section>
           <section className='mb-12'>
-            <p className='pb-6 text-center text-lg'>
-              Please review our refund and cancellation policy.
-            </p>
+            <p className='pb-6 text-center text-lg'>Please review our refund and cancellation policy.</p>
             <div>
               <h2 className='mb-4 text-2xl font-bold'>Refund Eligibility</h2>
-              <p className='text-lg'>
-                Refunds may be available under certain circumstances.
-              </p>
+              <p className='text-lg'>Refunds may be available under certain circumstances.</p>
             </div>
           </section>
         </div>
       );
 
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-        'Refunds & Cancellation Policy'
-      );
-      expect(
-        screen.getByText('Please review our refund and cancellation policy.')
-      ).toBeInTheDocument();
-      expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
-        'Refund Eligibility'
-      );
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Refunds & Cancellation Policy');
+      expect(screen.getByText('Please review our refund and cancellation policy.')).toBeInTheDocument();
+      expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Refund Eligibility');
     });
   });
 

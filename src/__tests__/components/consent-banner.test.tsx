@@ -161,9 +161,7 @@ describe('ConsentBanner Component', () => {
 
     it('preserves consent choice across component remounts', () => {
       localStorage.setItem('ga-consent', 'true');
-      const { unmount } = render(
-        <ConsentBanner setHasConsent={mockSetHasConsent} />
-      );
+      const { unmount } = render(<ConsentBanner setHasConsent={mockSetHasConsent} />);
 
       expect(screen.queryByText(/We use third-party services/)).toBeNull();
 

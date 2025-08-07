@@ -35,10 +35,7 @@ describe('CalButton Component', () => {
     const button = screen.getByRole('button');
     expect(button).toHaveAttribute('data-cal-namespace', 'meet');
     expect(button).toHaveAttribute('data-cal-link', 'mrugesh/meet');
-    expect(button).toHaveAttribute(
-      'data-cal-config',
-      '{"layout":"month_view"}'
-    );
+    expect(button).toHaveAttribute('data-cal-config', '{"layout":"month_view"}');
   });
 
   it('has correct button type', () => {

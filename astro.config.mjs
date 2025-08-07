@@ -25,11 +25,7 @@ export default defineConfig({
       changefreq: 'monthly',
       priority: 1,
       filter: (page) => {
-        return (
-          !page.includes('/terms') &&
-          !page.includes('/refunds') &&
-          !page.includes('/privacy')
-        );
+        return !page.includes('/terms') && !page.includes('/refunds') && !page.includes('/privacy');
       }
     })
   ],

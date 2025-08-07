@@ -3,9 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/components/profile', () => ({
-  Profile: vi.fn(() => (
-    <div data-testid='profile-component'>Profile Component</div>
-  ))
+  Profile: vi.fn(() => <div data-testid='profile-component'>Profile Component</div>)
 }));
 
 vi.mock('@/lib/utils', () => ({
@@ -37,9 +35,7 @@ describe('Index Page', () => {
     );
 
     const profileContainer = container.querySelector('.max-w-4xl');
-    expect(profileContainer).toContainElement(
-      screen.getByTestId('profile-component')
-    );
+    expect(profileContainer).toContainElement(screen.getByTestId('profile-component'));
     expect(vi.mocked(Profile)).toHaveBeenCalled();
   });
 });
