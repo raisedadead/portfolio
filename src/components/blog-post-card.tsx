@@ -1,14 +1,20 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import type { Post } from '@/lib/posts-fetcher';
+import type { TransformedBlogPost } from '@/types/blog';
 
 interface BlogPostCardProps {
-  post: Post;
+  post: TransformedBlogPost;
   index: number;
 }
 
 const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, index }) => {
-  const lgColSpan = [2, 3, 5][index % 3];
+  // Use explicit class mapping to ensure Tailwind can detect all classes
+  const lgColSpanClass =
+    {
+      0: 'lg:col-span-2',
+      1: 'lg:col-span-3',
+      2: 'lg:col-span-5'
+    }[index % 3] || 'lg:col-span-2';
 
   return (
     <a
@@ -24,7 +30,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, index }) => {
         'dark:shadow-[4px_4px_0px_rgba(255,255,255,1)]',
         'dark:hover:shadow-[6px_6px_0px_rgba(255,255,255,1)]',
         'sm:col-span-2',
-        `lg:col-span-${lgColSpan}`
+        lgColSpanClass
       )}
     >
       {post.coverImage?.url && (
