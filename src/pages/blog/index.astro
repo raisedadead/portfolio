@@ -2,13 +2,23 @@
 import MainLayout from '@/layouts/main-layout.astro';
 import { Social } from '@/components/social';
 import BlogPostCard from '@/components/blog-post-card';
-import { fetchPostsList, POSTS_PER_PAGE } from '@/lib/posts-fetcher';
+import { getCollection } from 'astro:content';
 import { cn } from '@/lib/utils';
+import type { TransformedBlogPost } from '@/types/blog';
+import { transformBlogPost } from '@/types/blog';
 
-const initialData = await fetchPostsList('', '');
-const posts = 'posts' in initialData ? initialData.posts : [];
-const hasError = 'error' in initialData;
-const errorMessage = hasError ? initialData.error.message : '';
+let posts: TransformedBlogPost[] = [];
+let hasError = false;
+let errorMessage = '';
+
+try {
+  const allPosts = await getCollection('blog');
+  posts = allPosts.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()).map(transformBlogPost);
+} catch (error) {
+  hasError = true;
+  errorMessage = error instanceof Error ? error.message : 'Failed to load blog posts';
+  console.error('Error loading blog posts:', error);
+}
 ---
 
 <MainLayout pageTitle='Recent posts' setCanonicalBlogBaseURL={true}>
@@ -43,30 +53,13 @@ const errorMessage = hasError ? initialData.error.message : '';
             <p class={cn('text-slate-500 dark:text-slate-400')}>Sorry about this and thanks for your patience!</p>
           </div>
         ) : (
-          <div
-            id='blog-posts-grid'
-            class={cn('grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5')}
-            data-posts={JSON.stringify(posts)}
-          >
+          <div id='blog-posts-grid' class={cn('grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5')}>
             {posts.map((post, index) =>
               post.title && post.slug ? <BlogPostCard post={post} index={index} client:idle /> : null
             )}
           </div>
         )
       }
-
-      <div id='load-more-container' class='flex justify-center py-8'>
-        {
-          !hasError && posts.length >= POSTS_PER_PAGE && (
-            <button
-              id='load-more-btn'
-              class='w-1/2 border-2 border-black bg-orange-200 p-2 text-lg font-medium text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none disabled:border-transparent disabled:bg-orange-100 disabled:text-gray-400 disabled:shadow-none dark:border-white dark:bg-orange-800 dark:text-white dark:shadow-[4px_4px_0px_rgba(255,255,255,1)]'
-            >
-              Load more articles
-            </button>
-          )
-        }
-      </div>
     </div>
   </section>
 
@@ -77,102 +70,3 @@ const errorMessage = hasError ? initialData.error.message : '';
     </div>
   </section>
 </MainLayout>
-
-<script>
-  import { POSTS_PER_PAGE } from '@/lib/posts-fetcher';
-  import type { Post, ResponseData, APIErrorResponse } from '@/lib/posts-fetcher';
-
-  let cursor = '';
-  let isLoading = false;
-  let hasNextPage = true;
-  const allPosts: Post[] = [];
-
-  const postsGrid = document.getElementById('blog-posts-grid');
-  const loadMoreBtn = document.getElementById('load-more-btn') as HTMLButtonElement;
-  const loadMoreContainer = document.getElementById('load-more-container');
-
-  if (postsGrid) {
-    const initialPosts = JSON.parse(postsGrid.dataset.posts || '[]');
-    allPosts.push(...initialPosts);
-    hasNextPage = initialPosts.length >= POSTS_PER_PAGE;
-  }
-
-  async function loadMorePosts() {
-    if (isLoading || !hasNextPage) return;
-
-    isLoading = true;
-    if (loadMoreBtn) {
-      loadMoreBtn.disabled = true;
-      loadMoreBtn.textContent = 'Loading...';
-    }
-
-    try {
-      const response = await fetch(`/api/posts?cursor=${encodeURIComponent(cursor)}`);
-      const data = (await response.json()) as ResponseData | APIErrorResponse;
-
-      if ('posts' in data) {
-        const newPosts = data.posts.filter((post) => !allPosts.some((p) => p.id === post.id));
-
-        allPosts.push(...newPosts);
-        cursor = data.pageInfo.endCursor;
-        hasNextPage = data.pageInfo.hasNextPage;
-
-        // Render new posts
-        newPosts.forEach((post, i) => {
-          const index = allPosts.length - newPosts.length + i;
-          const lgColSpan = [2, 3, 5][index % 3];
-
-          const postElement = document.createElement('a');
-          postElement.href = `/blog/${post.slug}`;
-          postElement.className = `group block border-2 border-black dark:border-white bg-white dark:bg-gray-800 p-4 shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgba(255,255,255,1)] transition-all duration-100 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_rgba(255,255,255,1)] hover:-translate-x-[2px] hover:-translate-y-[2px] sm:col-span-2 lg:col-span-${lgColSpan}`;
-
-          let html = '';
-          if (post.coverImage?.url) {
-            html += `
-              <div class="mb-4 aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-700">
-                <img src="${post.coverImage.url}" alt="${post.title}" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
-              </div>
-            `;
-          }
-
-          html += `
-            <h2 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-              ${post.title}
-            </h2>
-            <p class="mb-4 line-clamp-3 text-sm text-gray-700 dark:text-gray-300">
-              ${post.brief}
-            </p>
-            <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-              <span>${new Date(post.publishedAt).toLocaleDateString()}</span>
-              <span>${post.readTimeInMinutes} min read</span>
-            </div>
-          `;
-
-          postElement.innerHTML = html;
-          postsGrid?.appendChild(postElement);
-        });
-
-        if (!hasNextPage && loadMoreContainer) {
-          loadMoreContainer.innerHTML = `
-            <p class="text-center text-gray-600 dark:text-gray-400">
-              That's the end. No more articles.
-            </p>
-          `;
-        }
-      }
-    } catch (error) {
-      console.error('Failed to load more posts:', error);
-      if (loadMoreBtn) {
-        loadMoreBtn.textContent = 'Failed to load. Try again';
-      }
-    } finally {
-      isLoading = false;
-      if (loadMoreBtn && hasNextPage) {
-        loadMoreBtn.disabled = false;
-        loadMoreBtn.textContent = 'Load more articles';
-      }
-    }
-  }
-
-  loadMoreBtn?.addEventListener('click', loadMorePosts);
-</script>
