@@ -1,32 +1,55 @@
 ---
 import MainLayout from '@/layouts/main-layout.astro';
 import SkeletonBlock from '@/components/skeleton-block';
-import { fetchPostDetails, fetchPostsList } from '@/lib/posts-fetcher';
+import { getCollection, getEntry } from 'astro:content';
 import { cn } from '@/lib/utils';
-import type { DetailedPost } from '@/lib/posts-fetcher';
+import type { BlogPost, BlogSlugPageProps } from '@/types/blog';
 
 export async function getStaticPaths() {
-  const data = await fetchPostsList('', '');
+  try {
+    const blogPosts = await getCollection('blog');
 
-  if ('error' in data) {
+    return blogPosts.map((post): { params: { slug: string }; props: BlogSlugPageProps } => ({
+      params: { slug: post.data.slug },
+      props: { post }
+    }));
+  } catch (error) {
+    console.error('Failed to generate static paths for blog posts:', error);
     return [];
   }
-
-  return data.posts.map((post) => ({
-    params: { slug: post.slug }
-  }));
 }
 
 const { slug } = Astro.params;
+const { post: collectionPost } = Astro.props as BlogSlugPageProps;
 
-if (!slug) {
+// Since we're using getStaticPaths, collectionPost should always be available
+// Fallback is only for dev mode or edge cases
+let post: BlogPost | null = null;
+let hasError = false;
+let errorMessage = '';
+
+if (!slug || typeof slug !== 'string') {
   return Astro.redirect('/blog');
 }
 
-const postData = await fetchPostDetails(slug);
-const hasError = 'error' in postData;
-const post = hasError ? null : (postData as DetailedPost);
-const errorMessage = hasError ? postData.error.message : '';
+try {
+  if (collectionPost?.data) {
+    post = collectionPost.data;
+  } else {
+    // Fallback for dev mode or dynamic routes
+    const entry = await getEntry('blog', slug);
+    if (entry?.data) {
+      post = entry.data;
+    } else {
+      hasError = true;
+      errorMessage = 'Post not found';
+    }
+  }
+} catch (error) {
+  hasError = true;
+  errorMessage = error instanceof Error ? error.message : 'Failed to load blog post';
+  console.error('Error loading blog post:', error);
+}
 ---
 
 <MainLayout pageTitle={post?.title} setCanonicalBlogBaseURL={true} blogSlug={slug} variant='prose'>
@@ -92,10 +115,10 @@ const errorMessage = hasError ? postData.error.message : '';
     const content = document.getElementById('post-content');
     if (!content) return;
 
-    const preElements = content.querySelectorAll('pre');
+    const preElements = content.querySelectorAll<HTMLPreElement>('pre');
 
     preElements.forEach((pre) => {
-      const code = pre.querySelector('code');
+      const code = pre.querySelector<HTMLElement>('code');
       if (!code) return;
 
       // Extract language from class

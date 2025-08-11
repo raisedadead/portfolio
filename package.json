@@ -40,6 +40,7 @@
     "@tailwindcss/vite": "4.1.13",
     "@types/react-syntax-highlighter": "15.5.13",
     "astro": "5.13.7",
+    "astro-loader-hashnode": "1.2.0",
     "clsx": "2.1.1",
     "framer-motion": "12.23.12",
     "react": "19.1.1",
