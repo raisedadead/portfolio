@@ -31,7 +31,7 @@
     ]
   },
   "dependencies": {
-    "@astrojs/cloudflare": "12.6.3",
+    "@astrojs/cloudflare": "12.6.4",
     "@astrojs/react": "4.3.0",
     "@astrojs/sitemap": "3.5.0",
     "@calcom/embed-react": "1.5.3",
@@ -39,7 +39,7 @@
     "@heroicons/react": "2.2.0",
     "@tailwindcss/vite": "4.1.12",
     "@types/react-syntax-highlighter": "15.5.13",
-    "astro": "5.13.0",
+    "astro": "5.13.2",
     "clsx": "2.1.1",
     "framer-motion": "12.23.12",
     "react": "19.1.1",
