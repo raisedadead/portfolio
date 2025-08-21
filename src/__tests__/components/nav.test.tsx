@@ -63,7 +63,7 @@ describe('Nav', () => {
   it('renders navigation links', () => {
     render(<Nav />);
 
-    expect(screen.getByRole('link', { name: /recent posts/i })).toHaveAttribute('href', 'https://hn.mrugesh.dev');
+    expect(screen.getByRole('link', { name: /recent posts/i })).toHaveAttribute('href', '/blog');
     expect(screen.getByRole('link', { name: /uses/i })).toHaveAttribute('href', '/uses');
     expect(screen.getByTestId('book-open-icon')).toBeInTheDocument();
     expect(screen.getByTestId('cpu-chip-icon')).toBeInTheDocument();

@@ -4,7 +4,7 @@ import { WaveBackground } from '../../components/background';
 
 vi.mock('framer-motion', () => ({
   motion: {
-    path: ({ children, ...props }: Record<string, unknown>) => (
+    path: ({ children, ...props }: { children?: React.ReactNode } & Record<string, unknown>) => (
       <path data-testid='wave-path' {...props}>
         {children}
       </path>

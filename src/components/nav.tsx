@@ -6,7 +6,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { CustomLink as Link } from './custom-link';
 
 const links = [
-  { href: 'https://hn.mrugesh.dev', label: 'Recent Posts', icon: BookOpenIcon },
+  { href: '/blog', label: 'Recent Posts', icon: BookOpenIcon },
   { href: '/uses', label: 'Uses', icon: CpuChipIcon }
 ];
 

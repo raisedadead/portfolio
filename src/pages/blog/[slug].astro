@@ -1,0 +1,156 @@
+---
+import MainLayout from '@/layouts/main-layout.astro';
+import SkeletonBlock from '@/components/skeleton-block';
+import { getCollection, getEntry } from 'astro:content';
+import { cn } from '@/lib/utils';
+import type { BlogPost, BlogSlugPageProps } from '@/types/blog';
+
+export async function getStaticPaths() {
+  try {
+    const blogPosts = await getCollection('blog');
+
+    return blogPosts.map((post): { params: { slug: string }; props: BlogSlugPageProps } => ({
+      params: { slug: post.data.slug },
+      props: { post }
+    }));
+  } catch (error) {
+    console.error('Failed to generate static paths for blog posts:', error);
+    return [];
+  }
+}
+
+const { slug } = Astro.params;
+const { post: collectionPost } = Astro.props as BlogSlugPageProps;
+
+// Since we're using getStaticPaths, collectionPost should always be available
+// Fallback is only for dev mode or edge cases
+let post: BlogPost | null = null;
+let hasError = false;
+let errorMessage = '';
+
+if (!slug || typeof slug !== 'string') {
+  return Astro.redirect('/blog');
+}
+
+try {
+  if (collectionPost?.data) {
+    post = collectionPost.data;
+  } else {
+    // Fallback for dev mode or dynamic routes
+    const entry = await getEntry('blog', slug);
+    if (entry?.data) {
+      post = entry.data;
+    } else {
+      hasError = true;
+      errorMessage = 'Post not found';
+    }
+  }
+} catch (error) {
+  hasError = true;
+  errorMessage = error instanceof Error ? error.message : 'Failed to load blog post';
+  console.error('Error loading blog post:', error);
+}
+---
+
+<MainLayout pageTitle={post?.title} setCanonicalBlogBaseURL={true} blogSlug={slug} variant='prose'>
+  <article
+    class={cn(
+      'mx-auto max-w-4xl overflow-hidden',
+      'bg-white dark:bg-gray-800',
+      'no-underline',
+      hasError
+        ? 'shadow-[6px_8px_0px_var(--color-gray-300)] dark:shadow-[6px_8px_0px_var(--color-gray-700)]'
+        : 'shadow-[6px_8px_0px_var(--color-black)] dark:shadow-[6px_8px_0px_var(--color-white)]',
+      'transition-colors duration-100'
+    )}
+  >
+    {
+      hasError ? (
+        <div class='p-6'>
+          <h2 class='mb-4 text-2xl font-bold text-red-800 dark:text-red-400'>Error loading post</h2>
+          <p class='text-lg text-slate-700 dark:text-slate-300'>{errorMessage}</p>
+        </div>
+      ) : !post ? (
+        <SkeletonBlock client:idle />
+      ) : (
+        <>
+          {post.coverImage?.url && (
+            <div class='relative aspect-video w-full'>
+              <img src={post.coverImage.url} alt={post.title} class='h-full w-full object-cover' />
+            </div>
+          )}
+          <div class='p-6 sm:p-10'>
+            <h1 class='mb-10 text-3xl font-bold text-gray-900 sm:text-4xl dark:text-gray-100'>{post.title}</h1>
+            <div
+              id='post-content'
+              class={cn(
+                'prose prose-lg dark:prose-invert max-w-none',
+                'prose-p:text-gray-700 dark:prose-p:text-gray-300',
+                'prose-p:my-2 prose-p:leading-relaxed',
+                'prose-strong:text-gray-800 dark:prose-strong:text-gray-200',
+                'prose-headings:font-semibold prose-headings:text-gray-800 dark:prose-headings:text-gray-100',
+                'prose-h2:mb-2 prose-h2:mt-8',
+                'prose-h3:mb-2 prose-h3:mt-6',
+                'prose-h4:mb-2 prose-h4:mt-4',
+                'prose-a:text-blue-600 prose-a:no-underline prose-a:hover:underline dark:prose-a:text-blue-400',
+                'prose-ol:list-outside prose-ul:list-disc marker:bg-gray-300 marker:text-gray-700 dark:marker:text-gray-300',
+                'prose-li:text-gray-700 dark:prose-li:text-gray-300',
+                'prose-img:my-4 prose-img:rounded-md prose-img:shadow-md',
+                'prose-hr:border-gray-200 dark:prose-hr:border-gray-700',
+                'prose-blockquote:border-l-4 prose-blockquote:border-gray-400 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300',
+                'prose-pre:bg-transparent prose-pre:p-0'
+              )}
+              set:html={post.content.html}
+            />
+          </div>
+        </>
+      )
+    }
+  </article>
+</MainLayout>
+
+<script>
+  // Process code blocks after page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const content = document.getElementById('post-content');
+    if (!content) return;
+
+    const preElements = content.querySelectorAll<HTMLPreElement>('pre');
+
+    preElements.forEach((pre) => {
+      const code = pre.querySelector<HTMLElement>('code');
+      if (!code) return;
+
+      // Extract language from class
+      const language =
+        code.className
+          .split(' ')
+          .find((cls) => cls.startsWith('lang-'))
+          ?.replace('lang-', '') || '';
+
+      // Get code text
+      const codeText = code.textContent || '';
+
+      // Create wrapper div
+      const wrapper = document.createElement('div');
+      wrapper.className = 'my-4';
+
+      // Replace pre with custom code block component
+      // Since we can't dynamically render React components client-side in Astro,
+      // we'll create a simpler HTML version
+      wrapper.innerHTML = `
+        <div class="relative rounded-lg bg-gray-900 dark:bg-gray-950 p-4 overflow-x-auto">
+          <pre class="text-sm"><code class="language-${language}">${escapeHtml(codeText)}</code></pre>
+        </div>
+      `;
+
+      pre.parentNode?.replaceChild(wrapper, pre);
+    });
+  });
+
+  function escapeHtml(text: string): string {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+</script>
