@@ -35,7 +35,7 @@
     "@astrojs/react": "4.3.1",
     "@astrojs/sitemap": "3.5.1",
     "@calcom/embed-react": "1.5.3",
-    "@headlessui/react": "2.2.7",
+    "@headlessui/react": "2.2.8",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/vite": "4.1.13",
     "@types/react-syntax-highlighter": "15.5.13",
