@@ -41,7 +41,7 @@
     "@types/react-syntax-highlighter": "15.5.13",
     "astro": "5.13.8",
     "clsx": "2.1.1",
-    "framer-motion": "12.23.14",
+    "framer-motion": "12.23.15",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-syntax-highlighter": "15.6.6",
