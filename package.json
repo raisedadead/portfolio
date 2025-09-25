@@ -39,7 +39,7 @@
     "@heroicons/react": "2.2.0",
     "@tailwindcss/vite": "4.1.13",
     "@types/react-syntax-highlighter": "15.5.13",
-    "astro": "5.13.10",
+    "astro": "5.13.11",
     "clsx": "2.1.1",
     "framer-motion": "12.23.21",
     "react": "19.1.1",
