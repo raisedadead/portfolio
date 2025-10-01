@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { Email } from '../../components/email';
+import { Email } from '@/components/email';
 
 describe('Email', () => {
   it('renders obfuscated email with proper styling', () => {

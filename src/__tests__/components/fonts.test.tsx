@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { fontMono, fontSans } from '../../components/fonts';
+import { fontMono, fontSans } from '@/components/fonts';
 
 describe('Fonts Configuration', () => {
   describe('fontMono Export', () => {

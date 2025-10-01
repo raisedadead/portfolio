@@ -5,3 +5,7 @@ dist/
 pnpm-lock.yaml
 *.min.js
 *.min.css
+.specify/
+specs/
+CLAUDE.md
+

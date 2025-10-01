@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '@/layouts/main-layout.astro';
+import BlogSearch from '@/components/blog/BlogSearch';
+import BentoGrid from '@/components/blog/BentoGrid';
+
+// Fetch all blog posts and sort by date (newest first)
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+);
+---
+
+<MainLayout pageTitle='Blog' pageDescription='Read articles about web development, programming, and technology'>
+  <div class='mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8'>
+    <div class='mb-12 text-center'>
+      <h1 class='mb-4 text-4xl font-bold text-gray-900 dark:text-white'>Blog</h1>
+      <p class='text-lg text-gray-600 dark:text-gray-400'>Thoughts on web development, technology, and more</p>
+    </div>
+
+    {
+      sortedPosts.length === 0 ? (
+        <div class='mx-auto max-w-md rounded-lg border-2 border-dashed border-gray-300 p-12 text-center dark:border-gray-700'>
+          <p class='text-lg text-gray-600 dark:text-gray-400'>No blog posts yet. Check back soon!</p>
+        </div>
+      ) : (
+        <>
+          <BlogSearch posts={sortedPosts} client:load />
+
+          <BentoGrid posts={sortedPosts} initialCount={6} postsPerLoad={3} client:load />
+        </>
+      )
+    }
+  </div>
+</MainLayout>
