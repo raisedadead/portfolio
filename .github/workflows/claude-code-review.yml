@@ -12,12 +12,12 @@ on:
 
 jobs:
   claude-review:
-    # Optional: Filter by PR author
-    # if: |
-    #   github.event.pull_request.user.login == 'external-contributor' ||
-    #   github.event.pull_request.user.login == 'new-developer' ||
-    #   github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
-    
+    # Skip bot PRs (renovate, dependabot, etc.)
+    if: |
+      !contains(github.event.pull_request.user.login, '[bot]') &&
+      github.event.pull_request.user.login != 'renovate' &&
+      github.event.pull_request.user.login != 'dependabot'
+
     runs-on: ubuntu-latest
     permissions:
       contents: read
