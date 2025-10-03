@@ -79,32 +79,3 @@ jobs:
           name: build-output
           path: dist/
           retention-days: 1
-
-  lighthouse-pr:
-    name: Lighthouse (PR Build)
-    if: github.event_name == 'pull_request'
-    uses: ./.github/workflows/lighthouse.yml
-    needs: build
-    permissions:
-      contents: read
-      pull-requests: write
-    with:
-      mode: 'pr-build'
-      config-path: '.github/lighthouse/lhci.json'
-      compare-baseline: true
-    secrets: inherit
-
-  lighthouse-production:
-    name: Lighthouse (Production)
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
-    uses: ./.github/workflows/lighthouse.yml
-    with:
-      mode: 'production'
-      config-path: '.github/lighthouse/lhci.json'
-      urls: |
-        https://mrugesh.dev
-        https://mrugesh.dev/blog
-        https://mrugesh.dev/about
-        https://mrugesh.dev/blog/how-to-delete-github-actions-caches-with-github-cli
-        https://mrugesh.dev/blog/how-do-i-make-zsh-look-good
-    secrets: inherit

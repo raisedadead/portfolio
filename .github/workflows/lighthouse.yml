@@ -1,280 +1,143 @@
-name: Lighthouse Audit (Reusable)
+name: Lighthouse CI/CD
 
 on:
-  workflow_call:
-    inputs:
-      mode:
-        required: true
-        type: string
-        description: 'Workflow execution mode: pr-build or production'
-      config-path:
-        required: true
-        type: string
-        description: 'Path to lhrc config file'
-      urls:
-        required: false
-        type: string
-        description: 'Newline-separated production URLs (production mode only)'
-      compare-baseline:
-        required: false
-        type: boolean
-        default: false
-        description: 'Build and compare against main branch baseline (pr-build mode only)'
-      upload-artifacts:
-        required: false
-        type: boolean
-        default: true
-        description: 'Upload Lighthouse reports as workflow artifacts'
-    outputs:
-      manifest:
-        description: 'Lighthouse CI manifest with audit results'
-        value: ${{ jobs.lighthouse.outputs.manifest }}
-      links:
-        description: 'Map of URLs to public report links'
-        value: ${{ jobs.lighthouse.outputs.links }}
-      status:
-        description: 'Workflow execution status'
-        value: ${{ jobs.lighthouse.outputs.status }}
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  lighthouse:
-    name: ${{ inputs.mode == 'pr-build' && 'PR Build Audit' || 'Production Audit' }}
+  pr-audit:
+    name: PR Build Audit
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
-    env:
-      CI: true
-    outputs:
-      manifest: ${{ steps.output-results.outputs.manifest }}
-      links: ${{ steps.output-results.outputs.links }}
-      status: ${{ steps.output-results.outputs.status }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # PR Build Mode: Download artifacts
-      - name: Download PR build artifacts
-        if: ${{ inputs.mode == 'pr-build' }}
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          name: build-output
-          path: dist
-
-      # PR Build Mode: Run Lighthouse on PR
-      - name: Run Lighthouse on PR
-        if: ${{ inputs.mode == 'pr-build' }}
-        id: lighthouse-pr
-        continue-on-error: true
-        uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
-        with:
-          configPath: ${{ inputs.config-path }}
-          temporaryPublicStorage: true
-          uploadArtifacts: ${{ inputs.upload-artifacts }}
-          artifactName: lighthouse-pr
-        env:
-          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.event.pull_request.head.sha }}
-
-      # PR Build Mode: Save PR results
-      - name: Save PR results
-        if: ${{ inputs.mode == 'pr-build' }}
-        run: |
-          mkdir -p /tmp/lighthouse-results
-          echo '${{ steps.lighthouse-pr.outputs.manifest }}' > /tmp/lighthouse-results/pr-manifest.json
-          echo '${{ steps.lighthouse-pr.outputs.links }}' > /tmp/lighthouse-results/pr-links.json
-
-      # PR Build Mode with Baseline: Checkout main
-      - name: Checkout main branch
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline }}
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
-        with:
-          ref: main
-
-      # PR Build Mode with Baseline: Check config exists
-      - name: Check if Lighthouse config exists on main
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline }}
-        id: check-config
-        run: |
-          if [ -f "${{ inputs.config-path }}" ]; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
-
-      # PR Build Mode with Baseline: Setup Node.js
       - name: Setup Node.js
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
+          node-version: '20'
 
-      # PR Build Mode with Baseline: Setup pnpm
-      - name: Setup pnpm
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
-        uses: pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d # v3.0.0
-
-      # PR Build Mode with Baseline: Get pnpm store
-      - name: Get pnpm store directory
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      # PR Build Mode with Baseline: Setup cache
-      - name: Setup pnpm cache
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          version: 10.18.0
 
-      # PR Build Mode with Baseline: Install dependencies
       - name: Install dependencies
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
         run: pnpm install --frozen-lockfile
 
-      # PR Build Mode with Baseline: Build main
-      - name: Build main branch
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
+      - name: Build site
         run: pnpm build
 
-      # PR Build Mode with Baseline: Run Lighthouse on main
-      - name: Run Lighthouse on main
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
-        id: lighthouse-main
+      - name: Run Lighthouse (3 runs per URL)
+        run: pnpm exec lhci collect --config=.github/lighthouse/lhci.json
+
+      - name: Generate manifest with median scores
+        run: node .github/scripts/lighthouse/generate-manifest.js
+
+      - name: Validate thresholds
+        run: pnpm exec lhci assert --config=.github/lighthouse/lhci.json
+
+      - name: Download baseline artifact
+        id: download-baseline
         continue-on-error: true
-        uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
+        uses: actions/download-artifact@v4
         with:
-          configPath: ${{ inputs.config-path }}
-          temporaryPublicStorage: true
-          uploadArtifacts: ${{ inputs.upload-artifacts }}
-          artifactName: lighthouse-main
-        env:
-          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.event.pull_request.base.sha }}
+          name: lighthouse-baseline
+          path: ./
 
-      # PR Build Mode with Baseline: Save main results
-      - name: Save main results
-        if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
+      - name: Compare scores
         run: |
-          echo '${{ steps.lighthouse-main.outputs.manifest }}' > /tmp/lighthouse-results/main-manifest.json
-          echo '${{ steps.lighthouse-main.outputs.links }}' > /tmp/lighthouse-results/main-links.json
+          node .github/scripts/lighthouse/compare-scores.js \
+            .lighthouseci/manifest.json \
+            baseline-manifest.json \
+            comparison.json
 
-      # PR Build Mode: Checkout PR branch for script
-      - name: Checkout PR branch for script
-        if: ${{ inputs.mode == 'pr-build' && always() }}
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
-
-      # PR Build Mode: Generate comparison report
-      - name: Generate comparison report
-        if: ${{ inputs.mode == 'pr-build' && always() }}
+      - name: Format PR comment
         run: |
-          PR_MANIFEST=$(cat /tmp/lighthouse-results/pr-manifest.json)
-          PR_LINKS=$(cat /tmp/lighthouse-results/pr-links.json)
+          node .github/scripts/lighthouse/format-report.js comparison.json comment.md
 
-          # Check if Lighthouse actually ran and produced results
-          if [ "$PR_MANIFEST" = "" ] || [ "$PR_MANIFEST" = "{}" ] || [ "$PR_MANIFEST" = "[]" ]; then
-            echo "## ⚠️ Lighthouse Audit Did Not Complete" > lighthouse-comment.md
-            echo "" >> lighthouse-comment.md
-            echo "The Lighthouse audit failed to produce results. Check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details." >> lighthouse-comment.md
-            echo "" >> lighthouse-comment.md
-            echo "<!-- lighthouse-ci-report -->" >> lighthouse-comment.md
-            exit 0
-          fi
-
-          if [ -f "/tmp/lighthouse-results/main-manifest.json" ]; then
-            MAIN_MANIFEST=$(cat /tmp/lighthouse-results/main-manifest.json)
-            MAIN_LINKS=$(cat /tmp/lighthouse-results/main-links.json)
-          else
-            MAIN_MANIFEST=""
-            MAIN_LINKS=""
-          fi
-
-          {
-            node .github/scripts/lighthouse-report.js \
-              "$PR_MANIFEST" \
-              "$PR_LINKS" \
-              "$MAIN_MANIFEST" \
-              "$MAIN_LINKS"
-            echo ""
-            echo "<!-- lighthouse-ci-report -->"
-          } > lighthouse-comment.md
-
-      # PR Build Mode: Find existing comment
       - name: Find existing comment
-        if: ${{ inputs.mode == 'pr-build' && always() }}
         id: find-comment
-        run: |
-          COMMENT_ID=$(gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
-            --jq '.[] | select(.body | contains("<!-- lighthouse-ci-report -->")) | .id' | head -1)
-          echo "comment_id=$COMMENT_ID" >> $GITHUB_OUTPUT
-        env:
-          GH_TOKEN: ${{ github.token }}
-
-      # PR Build Mode: Post or update PR comment
-      - name: Post or update PR comment
-        if: ${{ inputs.mode == 'pr-build' && always() }}
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
+        uses: peter-evans/find-comment@v3
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ steps.find-comment.outputs.comment_id }}
-          body-path: lighthouse-comment.md
+          comment-author: 'github-actions[bot]'
+          body-includes: '<!-- lighthouse-audit-comment -->'
+
+      - name: Post or update PR comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          body-path: comment.md
           edit-mode: replace
 
-      # Production Mode: Run Lighthouse on production URLs
-      - name: Audit Production URLs
-        if: ${{ inputs.mode == 'production' }}
-        id: lighthouse-prod
-        continue-on-error: true
-        uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
+  production-audit:
+    name: Production Audit
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          urls: ${{ inputs.urls }}
-          temporaryPublicStorage: true
-          runs: 3
-          configPath: ${{ inputs.config-path }}
+          node-version: '20'
 
-      # Production Mode: Generate formatted report
-      - name: Generate formatted report
-        if: ${{ inputs.mode == 'production' && always() }}
-        run: |
-          if [ -n "${{ steps.lighthouse-prod.outputs.manifest }}" ]; then
-            REPORT=$(node .github/scripts/lighthouse-report.js \
-              '${{ steps.lighthouse-prod.outputs.manifest }}' \
-              '${{ steps.lighthouse-prod.outputs.links || '{}' }}' \
-              '' \
-              '')
-            echo "$REPORT" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "## ⚠️ Lighthouse Audit Failed" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "The Lighthouse audit did not produce results. Check the logs above for errors." >> $GITHUB_STEP_SUMMARY
-          fi
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.0
 
-      # Set outputs for both modes
-      - name: Set output results
-        id: output-results
-        if: always()
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Wait for Cloudflare deployment
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          if [ "${{ inputs.mode }}" = "pr-build" ]; then
-            echo "manifest=${{ steps.lighthouse-pr.outputs.manifest }}" >> $GITHUB_OUTPUT
-            echo "links=${{ steps.lighthouse-pr.outputs.links }}" >> $GITHUB_OUTPUT
-            if [ "${{ steps.lighthouse-pr.outcome }}" = "success" ]; then
-              echo "status=success" >> $GITHUB_OUTPUT
-            elif [ "${{ steps.lighthouse-pr.outcome }}" = "failure" ]; then
-              echo "status=failure" >> $GITHUB_OUTPUT
-            else
-              echo "status=warning" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "manifest=${{ steps.lighthouse-prod.outputs.manifest }}" >> $GITHUB_OUTPUT
-            echo "links=${{ steps.lighthouse-prod.outputs.links }}" >> $GITHUB_OUTPUT
-            if [ "${{ steps.lighthouse-prod.outcome }}" = "success" ]; then
-              echo "status=success" >> $GITHUB_OUTPUT
-            elif [ "${{ steps.lighthouse-prod.outcome }}" = "failure" ]; then
-              echo "status=failure" >> $GITHUB_OUTPUT
-            else
-              echo "status=warning" >> $GITHUB_OUTPUT
-            fi
-          fi
+          .github/scripts/lighthouse/wait-deployment.sh ${{ github.sha }} 600
+
+      - name: Run production Lighthouse audits (3 runs per URL)
+        run: |
+          pnpm exec lhci collect \
+            --url="https://mrugesh.dev/" \
+            --url="https://mrugesh.dev/blog" \
+            --url="https://mrugesh.dev/about" \
+            --url="https://mrugesh.dev/blog/how-to-delete-github-actions-caches-with-github-cli" \
+            --url="https://mrugesh.dev/blog/how-do-i-make-zsh-look-good" \
+            --numberOfRuns=3
+
+      - name: Generate manifest with median scores
+        run: node .github/scripts/lighthouse/generate-manifest.js
+
+      - name: Validate thresholds
+        run: pnpm exec lhci assert --config=.github/lighthouse/lhci.json
+
+      - name: Store baseline for next run
+        run: |
+          cp .lighthouseci/manifest.json baseline-manifest.json
+
+      - name: Upload baseline artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-baseline
+          path: baseline-manifest.json
+          retention-days: 1
