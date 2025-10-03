@@ -67,7 +67,7 @@ importers:
         specifier: 9.36.0
         version: 9.36.0
       '@lhci/cli':
-        specifier: ^0.15.1
+        specifier: 0.15.1
         version: 0.15.1
       '@tailwindcss/forms':
         specifier: 0.5.10
