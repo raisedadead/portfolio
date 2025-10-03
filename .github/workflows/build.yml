@@ -51,7 +51,7 @@ jobs:
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - name: Cache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
             ${{ steps.pnpm-cache.outputs.STORE_PATH }}
@@ -67,3 +67,237 @@ jobs:
       - name: Build
         run: |
           pnpm build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: dist/
+          retention-days: 1
+
+  lighthouse:
+    name: Lighthouse Audit
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: build
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      CI: true
+
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+
+      - name: Download PR build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: dist
+
+      - name: Run Lighthouse on PR
+        id: lighthouse-pr
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: .github/lighthouse/lhrc.build.json
+          temporaryPublicStorage: true
+          uploadArtifacts: true
+          artifactName: lighthouse-pr
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.event.pull_request.head.sha }}
+
+      - name: Save PR results
+        run: |
+          mkdir -p /tmp/lighthouse-results
+          echo '${{ steps.lighthouse-pr.outputs.manifest }}' > /tmp/lighthouse-results/pr-manifest.json
+          echo '${{ steps.lighthouse-pr.outputs.links }}' > /tmp/lighthouse-results/pr-links.json
+
+      - name: Checkout main branch
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        with:
+          ref: main
+
+      - name: Check if Lighthouse config exists on main
+        id: check-config
+        run: |
+          if [ -f ".github/lighthouse/lhrc.build.json" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js
+        if: steps.check-config.outputs.exists == 'true'
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Setup pnpm
+        if: steps.check-config.outputs.exists == 'true'
+        uses: pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d # v3.0.0
+
+      - name: Get pnpm store directory
+        if: steps.check-config.outputs.exists == 'true'
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        if: steps.check-config.outputs.exists == 'true'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        if: steps.check-config.outputs.exists == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build main branch
+        if: steps.check-config.outputs.exists == 'true'
+        run: pnpm build
+
+      - name: Run Lighthouse on main
+        if: steps.check-config.outputs.exists == 'true'
+        id: lighthouse-main
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: .github/lighthouse/lhrc.build.json
+          temporaryPublicStorage: true
+          uploadArtifacts: true
+          artifactName: lighthouse-main
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.event.pull_request.base.sha }}
+
+      - name: Save main results
+        if: steps.check-config.outputs.exists == 'true'
+        run: |
+          echo '${{ steps.lighthouse-main.outputs.manifest }}' > /tmp/lighthouse-results/main-manifest.json
+          echo '${{ steps.lighthouse-main.outputs.links }}' > /tmp/lighthouse-results/main-links.json
+
+      - name: Generate comparison report
+        run: |
+          node << 'SCRIPT'
+          const fs = require('fs');
+
+          const prManifest = JSON.parse(fs.readFileSync('/tmp/lighthouse-results/pr-manifest.json', 'utf8'));
+          const prLinks = JSON.parse(fs.readFileSync('/tmp/lighthouse-results/pr-links.json', 'utf8'));
+
+          const hasMainResults = fs.existsSync('/tmp/lighthouse-results/main-manifest.json');
+          const mainManifest = hasMainResults ? JSON.parse(fs.readFileSync('/tmp/lighthouse-results/main-manifest.json', 'utf8')) : [];
+          const mainLinks = hasMainResults ? JSON.parse(fs.readFileSync('/tmp/lighthouse-results/main-links.json', 'utf8')) : {};
+
+          function getMetrics(manifest) {
+            const metrics = {};
+            for (const result of manifest) {
+              const url = result.url;
+              const summary = result.summary;
+              metrics[url] = {
+                performance: summary.performance,
+                accessibility: summary.accessibility,
+                'best-practices': summary['best-practices'],
+                seo: summary.seo,
+                fcp: summary['first-contentful-paint'],
+                lcp: summary['largest-contentful-paint'],
+                tbt: summary['total-blocking-time'],
+                cls: summary['cumulative-layout-shift'],
+                si: summary['speed-index']
+              };
+            }
+            return metrics;
+          }
+
+          function formatScore(score) {
+            const percentage = Math.round(score * 100);
+            if (score >= 0.9) return `🟢 ${percentage}`;
+            if (score >= 0.5) return `🟠 ${percentage}`;
+            return `🔴 ${percentage}`;
+          }
+
+          function formatDiff(pr, main) {
+            if (!main) return formatScore(pr);
+            const diff = pr - main;
+            const diffStr = diff >= 0 ? `+${Math.round(diff * 100)}` : Math.round(diff * 100);
+            const arrow = diff > 0 ? '📈' : diff < 0 ? '📉' : '➡️';
+            return `${formatScore(pr)} (${arrow} ${diffStr})`;
+          }
+
+          function formatMetric(pr, main, format = 'ms') {
+            if (format === 'score') return formatDiff(pr, main);
+            const prVal = Math.round(pr);
+            const mainVal = main ? Math.round(main) : null;
+            if (!mainVal) return `${prVal}${format}`;
+            const diff = prVal - mainVal;
+            const diffStr = diff > 0 ? `+${diff}` : diff;
+            const arrow = diff < 0 ? '📈' : diff > 0 ? '📉' : '➡️';
+            return `${prVal}${format} (${arrow} ${diffStr}${format})`;
+          }
+
+          const prMetrics = getMetrics(prManifest);
+          const mainMetrics = getMetrics(mainManifest);
+
+          let comment = '## 🔦 Lighthouse Performance Report\n\n';
+          comment += '### Performance Scores\n\n';
+          comment += '| URL | Performance | Accessibility | Best Practices | SEO |\n';
+          comment += '| --- | ----------- | ------------- | -------------- | --- |\n';
+
+          for (const url of Object.keys(prMetrics)) {
+            const urlPath = new URL(url).pathname || '/';
+            const pr = prMetrics[url];
+            const main = mainMetrics[url];
+
+            comment += `| ${urlPath} `;
+            comment += `| ${formatDiff(pr.performance, main?.performance)} `;
+            comment += `| ${formatDiff(pr.accessibility, main?.accessibility)} `;
+            comment += `| ${formatDiff(pr['best-practices'], main?.['best-practices'])} `;
+            comment += `| ${formatDiff(pr.seo, main?.seo)} |\n`;
+          }
+
+          comment += '\n### Core Web Vitals\n\n';
+          comment += '| URL | FCP | LCP | TBT | CLS | SI |\n';
+          comment += '| --- | --- | --- | --- | --- | --- |\n';
+
+          for (const url of Object.keys(prMetrics)) {
+            const urlPath = new URL(url).pathname || '/';
+            const pr = prMetrics[url];
+            const main = mainMetrics[url];
+
+            comment += `| ${urlPath} `;
+            comment += `| ${formatMetric(pr.fcp, main?.fcp, 'ms')} `;
+            comment += `| ${formatMetric(pr.lcp, main?.lcp, 'ms')} `;
+            comment += `| ${formatMetric(pr.tbt, main?.tbt, 'ms')} `;
+            comment += `| ${formatMetric(pr.cls, main?.cls, '')} `;
+            comment += `| ${formatMetric(pr.si, main?.si, 'ms')} |\n`;
+          }
+
+          comment += '\n### Full Reports\n\n';
+          comment += '| URL | PR Build | Main Branch |\n';
+          comment += '| --- | -------- | ----------- |\n';
+
+          for (const url of Object.keys(prLinks)) {
+            const urlPath = new URL(url).pathname || '/';
+            comment += `| ${urlPath} `;
+            comment += `| [View Report](${prLinks[url]}) `;
+            comment += `| [View Report](${mainLinks[url] || 'N/A'}) |\n`;
+          }
+
+          comment += '\n---\n';
+          if (hasMainResults) {
+            comment += '*📊 Metrics compared against `main` branch • 🟢 Good (≥90) • 🟠 Needs Improvement (50-89) • 🔴 Poor (<50)*\n';
+            comment += '*📈 Better than main • 📉 Worse than main • ➡️ No change*\n';
+          } else {
+            comment += '*📊 No baseline available for comparison • 🟢 Good (≥90) • 🟠 Needs Improvement (50-89) • 🔴 Poor (<50)*\n';
+          }
+
+          fs.writeFileSync('lighthouse-comment.md', comment);
+          SCRIPT
+
+      - name: Post or update PR comment
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: lighthouse-comment.md
+          edit-mode: replace

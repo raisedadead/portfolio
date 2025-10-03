@@ -1,0 +1,29 @@
+name: Lighthouse - Live Site Monitoring
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # every 24 hours
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  lighthouse:
+    name: Audit Production Site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+
+      - name: Audit Production URLs
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://mrugesh.dev
+            https://mrugesh.dev/blog
+            https://mrugesh.dev/blog/how-to-get-ssh-public-keys-for-any-user-from-github
+          temporaryPublicStorage: true
+          runs: 3
+          configPath: .github/lighthouse/lhrc.prod.json
