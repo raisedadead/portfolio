@@ -16,7 +16,16 @@ export default [
 
   // Global ignores
   {
-    ignores: ['node_modules/**', 'dist/**', '.astro/**', '.wrangler/**', 'pnpm-lock.yaml', '**/*.d.ts']
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      '.astro/**',
+      '.wrangler/**',
+      'pnpm-lock.yaml',
+      '**/*.d.ts',
+      'specs/**',
+      '.specify/**'
+    ]
   },
 
   // TypeScript files
