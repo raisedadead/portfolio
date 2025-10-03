@@ -69,7 +69,7 @@ jobs:
           pnpm build
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: build-output
           path: dist/
@@ -91,14 +91,14 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
       - name: Download PR build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: build-output
           path: dist
 
       - name: Run Lighthouse on PR
         id: lighthouse-pr
-        uses: treosh/lighthouse-ci-action@v12
+        uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
         with:
           configPath: .github/lighthouse/lhrc.build.json
           temporaryPublicStorage: true
@@ -129,7 +129,7 @@ jobs:
 
       - name: Setup Node.js
         if: steps.check-config.outputs.exists == 'true'
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: '.nvmrc'
 
@@ -163,7 +163,7 @@ jobs:
       - name: Run Lighthouse on main
         if: steps.check-config.outputs.exists == 'true'
         id: lighthouse-main
-        uses: treosh/lighthouse-ci-action@v12
+        uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
         with:
           configPath: .github/lighthouse/lhrc.build.json
           temporaryPublicStorage: true
