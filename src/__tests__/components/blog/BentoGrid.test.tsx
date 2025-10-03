@@ -209,11 +209,16 @@ describe('BlogGridWithLoadMore Component', () => {
       expect(img).toHaveAttribute('src', 'https://example.com/cover-post-1.jpg');
     });
 
-    it('sets loading="lazy" on cover images', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
+    it('sets loading="eager" on first image and "lazy" on subsequent images', () => {
+      render(<BlogGridWithLoadMore posts={mockPosts.slice(0, 3)} initialCount={3} />);
 
-      const img = screen.getByAltText('Cover for First Post');
-      expect(img).toHaveAttribute('loading', 'lazy');
+      const firstImg = screen.getByAltText('Cover for First Post');
+      expect(firstImg).toHaveAttribute('loading', 'eager');
+      expect(firstImg).toHaveAttribute('fetchpriority', 'high');
+
+      const secondImg = screen.getByAltText('Cover for Second Post');
+      expect(secondImg).toHaveAttribute('loading', 'lazy');
+      expect(secondImg).not.toHaveAttribute('fetchpriority');
     });
 
     it('applies animation styles to cover images', () => {

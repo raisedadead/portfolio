@@ -6,19 +6,24 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '0 0 * * *' # Daily production monitoring
   workflow_dispatch:
 
 jobs:
   lint:
     name: Lint
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     uses: raisedadead/portfolio/.github/workflows/lint.yml@main
 
   test:
     name: Test
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     uses: raisedadead/portfolio/.github/workflows/test.yml@main
 
   build:
     name: Build
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: [lint, test]
     env:
@@ -75,164 +80,29 @@ jobs:
           path: dist/
           retention-days: 1
 
-  lighthouse:
-    name: Lighthouse Audit
-    runs-on: ubuntu-latest
+  lighthouse-pr:
+    name: Lighthouse (PR Build)
     if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/lighthouse.yml
     needs: build
     permissions:
       contents: read
       pull-requests: write
-    env:
-      CI: true
+    with:
+      mode: 'pr-build'
+      config-path: '.github/lighthouse/lhci.json'
+      compare-baseline: true
+    secrets: inherit
 
-    steps:
-      - name: Checkout PR
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
-
-      - name: Download PR build artifacts
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          name: build-output
-          path: dist
-
-      - name: Run Lighthouse on PR
-        id: lighthouse-pr
-        continue-on-error: true
-        uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
-        with:
-          configPath: .github/lighthouse/lhrc.build.json
-          temporaryPublicStorage: true
-          uploadArtifacts: true
-          artifactName: lighthouse-pr
-        env:
-          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.event.pull_request.head.sha }}
-
-      - name: Save PR results
-        run: |
-          mkdir -p /tmp/lighthouse-results
-          echo '${{ steps.lighthouse-pr.outputs.manifest }}' > /tmp/lighthouse-results/pr-manifest.json
-          echo '${{ steps.lighthouse-pr.outputs.links }}' > /tmp/lighthouse-results/pr-links.json
-
-      - name: Checkout main branch
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
-        with:
-          ref: main
-
-      - name: Check if Lighthouse config exists on main
-        id: check-config
-        run: |
-          if [ -f ".github/lighthouse/lhrc.build.json" ]; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Setup Node.js
-        if: steps.check-config.outputs.exists == 'true'
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Setup pnpm
-        if: steps.check-config.outputs.exists == 'true'
-        uses: pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d # v3.0.0
-
-      - name: Get pnpm store directory
-        if: steps.check-config.outputs.exists == 'true'
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        if: steps.check-config.outputs.exists == 'true'
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        if: steps.check-config.outputs.exists == 'true'
-        run: pnpm install --frozen-lockfile
-
-      - name: Build main branch
-        if: steps.check-config.outputs.exists == 'true'
-        run: pnpm build
-
-      - name: Run Lighthouse on main
-        if: steps.check-config.outputs.exists == 'true'
-        id: lighthouse-main
-        continue-on-error: true
-        uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
-        with:
-          configPath: .github/lighthouse/lhrc.build.json
-          temporaryPublicStorage: true
-          uploadArtifacts: true
-          artifactName: lighthouse-main
-        env:
-          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.event.pull_request.base.sha }}
-
-      - name: Save main results
-        if: steps.check-config.outputs.exists == 'true'
-        run: |
-          echo '${{ steps.lighthouse-main.outputs.manifest }}' > /tmp/lighthouse-results/main-manifest.json
-          echo '${{ steps.lighthouse-main.outputs.links }}' > /tmp/lighthouse-results/main-links.json
-
-      - name: Checkout PR branch for script
-        if: always()
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
-
-      - name: Generate comparison report
-        if: always()
-        run: |
-          PR_MANIFEST=$(cat /tmp/lighthouse-results/pr-manifest.json)
-          PR_LINKS=$(cat /tmp/lighthouse-results/pr-links.json)
-
-          # Check if Lighthouse actually ran and produced results
-          if [ "$PR_MANIFEST" = "" ] || [ "$PR_MANIFEST" = "{}" ] || [ "$PR_MANIFEST" = "[]" ]; then
-            echo "## ⚠️ Lighthouse Audit Did Not Complete" > lighthouse-comment.md
-            echo "" >> lighthouse-comment.md
-            echo "The Lighthouse audit failed to produce results. Check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details." >> lighthouse-comment.md
-            echo "" >> lighthouse-comment.md
-            echo "<!-- lighthouse-ci-report -->" >> lighthouse-comment.md
-            exit 0
-          fi
-
-          if [ -f "/tmp/lighthouse-results/main-manifest.json" ]; then
-            MAIN_MANIFEST=$(cat /tmp/lighthouse-results/main-manifest.json)
-            MAIN_LINKS=$(cat /tmp/lighthouse-results/main-links.json)
-          else
-            MAIN_MANIFEST=""
-            MAIN_LINKS=""
-          fi
-
-          {
-            node .github/scripts/lighthouse-report.js \
-              "$PR_MANIFEST" \
-              "$PR_LINKS" \
-              "$MAIN_MANIFEST" \
-              "$MAIN_LINKS"
-            echo ""
-            echo "<!-- lighthouse-ci-report -->"
-          } > lighthouse-comment.md
-
-      - name: Find existing comment
-        if: always()
-        id: find-comment
-        run: |
-          COMMENT_ID=$(gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
-            --jq '.[] | select(.body | contains("<!-- lighthouse-ci-report -->")) | .id' | head -1)
-          echo "comment_id=$COMMENT_ID" >> $GITHUB_OUTPUT
-        env:
-          GH_TOKEN: ${{ github.token }}
-
-      - name: Post or update PR comment
-        if: always()
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ steps.find-comment.outputs.comment_id }}
-          body-path: lighthouse-comment.md
-          edit-mode: replace
+  lighthouse-production:
+    name: Lighthouse (Production)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    uses: ./.github/workflows/lighthouse.yml
+    with:
+      mode: 'production'
+      config-path: '.github/lighthouse/lhci.json'
+      urls: |
+        https://mrugesh.dev
+        https://mrugesh.dev/blog
+        https://mrugesh.dev/blog/how-to-get-ssh-public-keys-for-any-user-from-github
+    secrets: inherit

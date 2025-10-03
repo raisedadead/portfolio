@@ -48,7 +48,8 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
                       alt={post.data.coverImage.alt || post.data.title}
                       className='h-full w-full object-cover transition-all duration-500 group-hover:scale-105'
                       style={{ opacity: 0, animation: 'fadeIn 0.5s ease-in forwards' }}
-                      loading='lazy'
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={index === 0 ? 'high' : undefined}
                     />
                   </div>
                 ) : (

@@ -19,7 +19,10 @@
     "test:update": "vitest --update",
     "test:watch:ui": "vitest --ui",
     "test:watch": "vitest",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "lighthouse": "pnpm build && lhci autorun --config=.github/lighthouse/lhci.json",
+    "lighthouse:collect": "lhci collect --config=.github/lighthouse/lhci.json",
+    "lighthouse:assert": "lhci assert --config=.github/lighthouse/lhci.json"
   },
   "lint-staged": {
     "**/*.{mjs,cjs,js,jsx,ts,tsx,astro}": [
@@ -52,6 +55,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "4.20251003.0",
     "@eslint/js": "9.36.0",
+    "@lhci/cli": "^0.15.1",
     "@tailwindcss/forms": "0.5.10",
     "@tailwindcss/typography": "0.5.19",
     "@testing-library/dom": "10.4.1",

@@ -25,9 +25,9 @@ const sortedPosts = allPosts.sort(
         </div>
       ) : (
         <>
-          <BlogSearch posts={sortedPosts} client:load />
+          <BlogSearch posts={sortedPosts} client:idle />
 
-          <BentoGrid posts={sortedPosts} initialCount={6} postsPerLoad={3} client:load />
+          <BentoGrid posts={sortedPosts} initialCount={6} postsPerLoad={3} client:visible />
         </>
       )
     }
