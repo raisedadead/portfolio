@@ -103,5 +103,7 @@ jobs:
       urls: |
         https://mrugesh.dev
         https://mrugesh.dev/blog
-        https://mrugesh.dev/blog/how-to-get-ssh-public-keys-for-any-user-from-github
+        https://mrugesh.dev/about
+        https://mrugesh.dev/blog/how-to-delete-github-actions-caches-with-github-cli
+        https://mrugesh.dev/blog/how-do-i-make-zsh-look-good
     secrets: inherit

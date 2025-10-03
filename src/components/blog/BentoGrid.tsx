@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import type { BlogPost } from '@/types/blog';
 import { getBentoGridSpan } from '@/lib/blog-utils';
+import { transformImageUrl } from '@/lib/image-optimizer';
+import { calculateImageDimensions } from '@/lib/image-dimensions';
 import LoadMoreButton from './LoadMoreButton';
 
 interface Props {
@@ -31,6 +33,10 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5'>
         {visiblePosts.map((post, index) => {
           const spanConfig = getBentoGridSpan(index);
+          const dimensions = calculateImageDimensions(spanConfig.aspectRatio, index);
+          const optimizedUrl = post.data.coverImage?.url
+            ? transformImageUrl(post.data.coverImage.url, dimensions)
+            : null;
 
           return (
             <article
@@ -40,12 +46,14 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
             >
               <a href={`/blog/${post.data.slug}`} className='block no-underline'>
                 {/* Cover Image */}
-                {post.data.coverImage?.url ? (
-                  <div className={`relative w-full overflow-hidden ${spanConfig.aspect} ${spanConfig.height}`}>
+                {optimizedUrl ? (
+                  <div className={`relative w-full overflow-hidden ${spanConfig.aspectClass} ${spanConfig.height}`}>
                     <div className='absolute inset-0 animate-pulse bg-gray-200 dark:bg-gray-700' />
                     <img
-                      src={post.data.coverImage.url}
-                      alt={post.data.coverImage.alt || post.data.title}
+                      src={optimizedUrl}
+                      alt={post.data.coverImage?.alt || post.data.title}
+                      width={dimensions.mobile.width}
+                      height={dimensions.mobile.height}
                       className='h-full w-full object-cover transition-all duration-500 group-hover:scale-105'
                       style={{ opacity: 0, animation: 'fadeIn 0.5s ease-in forwards' }}
                       loading={index === 0 ? 'eager' : 'lazy'}
@@ -54,7 +62,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
                   </div>
                 ) : (
                   <div
-                    className={`flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 ${spanConfig.aspect} ${spanConfig.height}`}
+                    className={`flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 ${spanConfig.aspectClass} ${spanConfig.height}`}
                   >
                     <span className='text-6xl'>📝</span>
                   </div>

@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { formatDate } from '@/lib/formatDate';
 import { getBentoGridSpan } from '@/lib/blog-utils';
+import { calculateImageDimensions } from '@/lib/image-dimensions';
 
 interface Props {
   post: any; // BlogPost type from content collection
@@ -16,6 +17,9 @@ const hasCoverImage = data.coverImage?.url;
 
 // Get bento grid span classes
 const { desktop, aspect, height } = getBentoGridSpan(index);
+
+// Calculate responsive dimensions
+const dimensions = calculateImageDimensions(aspect, index);
 ---
 
 <article
@@ -30,8 +34,8 @@ const { desktop, aspect, height } = getBentoGridSpan(index);
           <Image
             src={data.coverImage.url}
             alt={data.coverImage.alt || data.title}
-            width={800}
-            height={400}
+            width={dimensions.mobile.width}
+            height={dimensions.mobile.height}
             class='h-full w-full object-cover transition-all duration-500 group-hover:scale-105'
             style='opacity: 0; animation: fadeIn 0.5s ease-in forwards;'
             loading='lazy'
