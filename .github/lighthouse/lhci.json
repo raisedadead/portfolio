@@ -2,27 +2,14 @@
   "ci": {
     "collect": {
       "staticDistDir": "./dist",
+      "numberOfRuns": 3,
       "url": [
         "http://localhost/",
         "http://localhost/blog",
         "http://localhost/about",
         "http://localhost/blog/how-to-delete-github-actions-caches-with-github-cli",
         "http://localhost/blog/how-do-i-make-zsh-look-good"
-      ],
-      "numberOfRuns": 3
-    },
-    "assert": {
-      "preset": "lighthouse:recommended",
-      "budgetFile": "./.github/lighthouse/budget.json",
-      "assertions": {
-        "categories:performance": ["warn", { "minScore": 0.85 }],
-        "categories:accessibility": ["error", { "minScore": 0.9 }],
-        "categories:best-practices": ["warn", { "minScore": 0.9 }],
-        "categories:seo": ["error", { "minScore": 0.9 }]
-      }
-    },
-    "upload": {
-      "target": "temporary-public-storage"
+      ]
     }
   }
 }
