@@ -1,4 +1,4 @@
-name: Lighthouse Audit (Reusable)
+name: Lighthouse Audit
 
 on:
   workflow_call:
