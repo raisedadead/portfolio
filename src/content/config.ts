@@ -3,7 +3,7 @@ import { hashnodeLoader } from 'astro-loader-hashnode';
 
 const blog = defineCollection({
   loader: hashnodeLoader({
-    publicationHost: 'hn.mrugesh.dev',
+    publicationHost: 'mrugesh.hashnode.dev',
     maxPosts: 1000
   })
 });
