@@ -12,7 +12,7 @@
   "containerEnv": {
     "ASTRO_TELEMETRY_DISABLED": "1"
   },
-  "updateContentCommand": "pnpm install",
+  "updateContentCommand": "git pull --rebase origin main && pnpm install",
   "postAttachCommand": {
     "Develop": "bash -c 'pnpm develop'"
   }
