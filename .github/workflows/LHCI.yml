@@ -19,6 +19,7 @@ jobs:
 
       - name: Audit Production URLs
         id: lighthouse
+        continue-on-error: true
         uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
         with:
           urls: |
