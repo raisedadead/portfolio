@@ -7,6 +7,8 @@ import { formatDate } from '@/lib/formatDate';
 import { highlightCode } from '@/lib/syntax-highlighter';
 import CodeBlock from '@/components/code-block';
 import { cn } from '@/lib/utils';
+import { transformImageUrl } from '@/lib/image-optimizer';
+import { calculateImageDimensions } from '@/lib/image-dimensions';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog');
@@ -23,6 +25,10 @@ const { data } = post;
 const pageTitle = data.seo?.title || data.title;
 const pageDescription = data.seo?.description || data.brief;
 const pageImage = data.coverImage?.url;
+
+// Image optimization
+const dimensions = calculateImageDimensions('16/9', 0);
+const optimizedCoverUrl = data.coverImage?.url ? transformImageUrl(data.coverImage.url, dimensions) : null;
 
 // Parse content for code blocks and create sections
 const contentHtml = data.content.html;
@@ -126,7 +132,19 @@ if (lastIndex < contentHtml.length) {
   >
     <!-- Cover Image or Fallback -->
     {
-      data.coverImage?.url ? (
+      optimizedCoverUrl ? (
+        <div class='relative aspect-video w-full'>
+          <img
+            src={optimizedCoverUrl}
+            alt={data.coverImage?.alt || data.title}
+            width={dimensions.desktop.width}
+            height={dimensions.desktop.height}
+            class='h-full w-full object-cover'
+            loading='eager'
+            fetchpriority='high'
+          />
+        </div>
+      ) : data.coverImage?.url ? (
         <div class='relative aspect-video w-full'>
           <Image
             src={data.coverImage.url}

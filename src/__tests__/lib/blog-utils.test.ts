@@ -24,12 +24,12 @@ function createMockPosts(count: number): MockPost[] {
 describe('getBentoGridSpan', () => {
   it('returns correct pattern for indices 0-5', () => {
     const expected = [
-      { desktop: 'lg:col-span-3', aspect: 'aspect-16/9', height: 'h-64' },
-      { desktop: 'lg:col-span-2', aspect: 'aspect-4/3', height: 'h-48' },
-      { desktop: 'lg:col-span-5', aspect: 'aspect-21/9', height: 'h-56' },
-      { desktop: 'lg:col-span-2', aspect: 'aspect-3/2', height: 'h-48' },
-      { desktop: 'lg:col-span-3', aspect: 'aspect-3/4', height: 'h-64' },
-      { desktop: 'lg:col-span-5', aspect: 'aspect-2/1', height: 'h-40' }
+      { desktop: 'lg:col-span-3', aspectClass: 'aspect-16/9', aspectRatio: '16/9', height: 'h-64' },
+      { desktop: 'lg:col-span-2', aspectClass: 'aspect-4/3', aspectRatio: '4/3', height: 'h-48' },
+      { desktop: 'lg:col-span-5', aspectClass: 'aspect-21/9', aspectRatio: '21/9', height: 'h-56' },
+      { desktop: 'lg:col-span-2', aspectClass: 'aspect-3/2', aspectRatio: '3/2', height: 'h-48' },
+      { desktop: 'lg:col-span-3', aspectClass: 'aspect-3/4', aspectRatio: '3/4', height: 'h-64' },
+      { desktop: 'lg:col-span-5', aspectClass: 'aspect-2/1', aspectRatio: '2/1', height: 'h-40' }
     ];
 
     expected.forEach((exp, index) => {
@@ -61,7 +61,8 @@ describe('getBentoGridSpan', () => {
     for (let i = 0; i < 6; i++) {
       const result = getBentoGridSpan(i);
       expect(result.desktop).toMatch(/^lg:col-span-\d+$/);
-      expect(result.aspect).toMatch(/^aspect-[\d/]+$/);
+      expect(result.aspectClass).toMatch(/^aspect-[\d/]+$/);
+      expect(result.aspectRatio).toMatch(/^\d+\/\d+$/);
       expect(result.height).toMatch(/^h-\d+$/);
     }
   });
@@ -70,7 +71,8 @@ describe('getBentoGridSpan', () => {
     const result = getBentoGridSpan(0);
     expect(result).toEqual({
       desktop: 'lg:col-span-3',
-      aspect: 'aspect-16/9',
+      aspectClass: 'aspect-16/9',
+      aspectRatio: '16/9',
       height: 'h-64'
     });
   });
@@ -116,8 +118,8 @@ describe('Blog Bento Pattern', () => {
 
   it('all aspects are valid CSS values', () => {
     for (let i = 0; i < 12; i++) {
-      const { aspect } = getBentoGridSpan(i);
-      expect(aspect).toMatch(/^aspect-[\d/]+$/);
+      const { aspectClass } = getBentoGridSpan(i);
+      expect(aspectClass).toMatch(/^aspect-[\d/]+$/);
     }
   });
 });
