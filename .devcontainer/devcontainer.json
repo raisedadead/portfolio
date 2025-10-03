@@ -1,6 +1,6 @@
 {
   "name": "mrugesh-portfolio",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "forwardPorts": [4321],
   "portsAttributes": {
