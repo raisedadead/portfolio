@@ -109,28 +109,42 @@ jobs:
 
       - name: Save PR results
         run: |
-          echo '${{ steps.lighthouse-pr.outputs.manifest }}' > pr-manifest.json
-          echo '${{ steps.lighthouse-pr.outputs.links }}' > pr-links.json
+          mkdir -p /tmp/lighthouse-results
+          echo '${{ steps.lighthouse-pr.outputs.manifest }}' > /tmp/lighthouse-results/pr-manifest.json
+          echo '${{ steps.lighthouse-pr.outputs.links }}' > /tmp/lighthouse-results/pr-links.json
 
       - name: Checkout main branch
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           ref: main
 
+      - name: Check if Lighthouse config exists on main
+        id: check-config
+        run: |
+          if [ -f ".github/lighthouse/lhrc.build.json" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Setup Node.js
+        if: steps.check-config.outputs.exists == 'true'
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
         with:
           node-version-file: '.nvmrc'
 
       - name: Setup pnpm
+        if: steps.check-config.outputs.exists == 'true'
         uses: pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d # v3.0.0
 
       - name: Get pnpm store directory
+        if: steps.check-config.outputs.exists == 'true'
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - name: Setup pnpm cache
+        if: steps.check-config.outputs.exists == 'true'
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ${{ env.STORE_PATH }}
@@ -139,12 +153,15 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
+        if: steps.check-config.outputs.exists == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Build main branch
+        if: steps.check-config.outputs.exists == 'true'
         run: pnpm build
 
       - name: Run Lighthouse on main
+        if: steps.check-config.outputs.exists == 'true'
         id: lighthouse-main
         uses: treosh/lighthouse-ci-action@v12
         with:
@@ -156,19 +173,22 @@ jobs:
           LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.event.pull_request.base.sha }}
 
       - name: Save main results
+        if: steps.check-config.outputs.exists == 'true'
         run: |
-          echo '${{ steps.lighthouse-main.outputs.manifest }}' > main-manifest.json
-          echo '${{ steps.lighthouse-main.outputs.links }}' > main-links.json
+          echo '${{ steps.lighthouse-main.outputs.manifest }}' > /tmp/lighthouse-results/main-manifest.json
+          echo '${{ steps.lighthouse-main.outputs.links }}' > /tmp/lighthouse-results/main-links.json
 
       - name: Generate comparison report
         run: |
           node << 'SCRIPT'
           const fs = require('fs');
 
-          const prManifest = JSON.parse(fs.readFileSync('pr-manifest.json', 'utf8'));
-          const mainManifest = JSON.parse(fs.readFileSync('main-manifest.json', 'utf8'));
-          const prLinks = JSON.parse(fs.readFileSync('pr-links.json', 'utf8'));
-          const mainLinks = JSON.parse(fs.readFileSync('main-links.json', 'utf8'));
+          const prManifest = JSON.parse(fs.readFileSync('/tmp/lighthouse-results/pr-manifest.json', 'utf8'));
+          const prLinks = JSON.parse(fs.readFileSync('/tmp/lighthouse-results/pr-links.json', 'utf8'));
+
+          const hasMainResults = fs.existsSync('/tmp/lighthouse-results/main-manifest.json');
+          const mainManifest = hasMainResults ? JSON.parse(fs.readFileSync('/tmp/lighthouse-results/main-manifest.json', 'utf8')) : [];
+          const mainLinks = hasMainResults ? JSON.parse(fs.readFileSync('/tmp/lighthouse-results/main-links.json', 'utf8')) : {};
 
           function getMetrics(manifest) {
             const metrics = {};
@@ -265,8 +285,12 @@ jobs:
           }
 
           comment += '\n---\n';
-          comment += '*📊 Metrics compared against `main` branch • 🟢 Good (≥90) • 🟠 Needs Improvement (50-89) • 🔴 Poor (<50)*\n';
-          comment += '*📈 Better than main • 📉 Worse than main • ➡️ No change*\n';
+          if (hasMainResults) {
+            comment += '*📊 Metrics compared against `main` branch • 🟢 Good (≥90) • 🟠 Needs Improvement (50-89) • 🔴 Poor (<50)*\n';
+            comment += '*📈 Better than main • 📉 Worse than main • ➡️ No change*\n';
+          } else {
+            comment += '*📊 No baseline available for comparison • 🟢 Good (≥90) • 🟠 Needs Improvement (50-89) • 🔴 Poor (<50)*\n';
+          }
 
           fs.writeFileSync('lighthouse-comment.md', comment);
           SCRIPT
