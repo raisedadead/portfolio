@@ -1,0 +1,16 @@
+{
+  "name": "mrugesh-portfolio",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "forwardPorts": [4321],
+  "portsAttributes": {
+    "4321": {
+      "label": "Website",
+      "onAutoForward": "notify"
+    }
+  },
+  "updateContentCommand": "pnpm install",
+  "postAttachCommand": {
+    "instructions": "bash -c 'pnpm develop'"
+  }
+}
