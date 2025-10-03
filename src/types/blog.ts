@@ -1,6 +1,9 @@
 export interface CoverImage {
   url: string;
   alt?: string;
+  optimizedUrl?: string;
+  width?: number;
+  height?: number;
 }
 
 export interface Author {
@@ -11,6 +14,22 @@ export interface Author {
 export interface Tag {
   name: string;
   slug: string;
+}
+
+export interface ImageDimensions {
+  mobile: { width: number; height: number };
+  tablet: { width: number; height: number };
+  desktop: { width: number; height: number };
+  aspectRatio: string;
+}
+
+export interface OptimizationMetadata {
+  format: 'webp' | 'avif' | 'jpeg' | 'png';
+  originalSize?: number;
+  optimizedSize?: number;
+  compressionRatio?: number;
+  transformedAt?: Date;
+  fallbackUsed: boolean;
 }
 
 export interface BlogPost {

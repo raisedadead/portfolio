@@ -11,6 +11,25 @@ interface MockLoadMoreProps {
   isLoading?: boolean;
 }
 
+// Mock image optimization utilities
+vi.mock('@/lib/image-optimizer', () => ({
+  transformImageUrl: vi.fn((url: string) => {
+    if (url.startsWith('https://example.com/')) {
+      return `https://mrugesh.dev/cdn-cgi/image/width=1920,quality=85,format=auto/${url}`;
+    }
+    return null;
+  })
+}));
+
+vi.mock('@/lib/image-dimensions', () => ({
+  calculateImageDimensions: vi.fn(() => ({
+    mobile: { width: 640, height: 360 },
+    tablet: { width: 1024, height: 576 },
+    desktop: { width: 1920, height: 1080 },
+    aspectRatio: '16/9'
+  }))
+}));
+
 // Mock LoadMoreButton component
 vi.mock('@/components/blog/LoadMoreButton', () => ({
   default: ({ totalPosts, visiblePosts, onLoadMore, isLoading }: MockLoadMoreProps) => (
@@ -186,11 +205,11 @@ describe('BlogGridWithLoadMore Component', () => {
     it('applies getBentoGridSpan classes correctly for index 0', () => {
       render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
-      const { desktop, aspect } = getBentoGridSpan(0);
+      const { desktop, aspectClass } = getBentoGridSpan(0);
       const article = screen.getByRole('article');
 
       expect(article.className).toContain(desktop);
-      expect(article.querySelector(`.${aspect.replace('/', '\\/')}`)).toBeTruthy();
+      expect(article.querySelector(`.${aspectClass.replace('/', '\\/')}`)).toBeTruthy();
     });
 
     it('renders link to blog post with correct href', () => {
@@ -206,7 +225,12 @@ describe('BlogGridWithLoadMore Component', () => {
       render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
       const img = screen.getByAltText('Cover for First Post');
-      expect(img).toHaveAttribute('src', 'https://example.com/cover-post-1.jpg');
+      expect(img).toHaveAttribute(
+        'src',
+        'https://mrugesh.dev/cdn-cgi/image/width=1920,quality=85,format=auto/https://example.com/cover-post-1.jpg'
+      );
+      expect(img).toHaveAttribute('width', '640');
+      expect(img).toHaveAttribute('height', '360');
     });
 
     it('sets loading="eager" on first image and "lazy" on subsequent images', () => {
