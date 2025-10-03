@@ -11,9 +11,6 @@ export default defineConfig({
   prefetch: true,
   adapter: cloudflare({
     imageService: 'compile',
-    runtime: {
-      mode: 'remote'
-    },
     platformProxy: {
       enabled: true
     }

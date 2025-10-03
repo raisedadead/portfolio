@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { WaveBackground } from '../../components/background';
+import { WaveBackground } from '@/components/background';
 
 vi.mock('framer-motion', () => ({
   motion: {

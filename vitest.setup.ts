@@ -19,6 +19,16 @@ vi.mock('astro:assets', () => ({
 // Mock client directives (they don't run in test environment)
 vi.mock('astro:client', () => ({}));
 
+// Mock GA script loading to prevent network errors in tests
+vi.mock('@/lib/utils', async () => {
+  const actual = await vi.importActual<typeof import('@/lib/utils')>('@/lib/utils');
+  return {
+    ...actual,
+    loadGAScript: vi.fn(), // Prevent GA script fetch during tests
+    updateGAConsent: vi.fn() // Mock consent updates
+  };
+});
+
 // Mock global fetch for API testing
 global.fetch = vi.fn();
 

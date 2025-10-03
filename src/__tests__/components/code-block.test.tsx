@@ -1,29 +1,6 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import CodeBlock from '../../components/code-block';
-
-// Mock react-syntax-highlighter
-vi.mock('react-syntax-highlighter', () => ({
-  Prism: vi.fn(({ children, language, showLineNumbers, wrapLongLines, customStyle, ...props }) => (
-    <pre
-      data-testid='syntax-highlighter'
-      data-language={language}
-      data-show-line-numbers={showLineNumbers}
-      data-wrap-long-lines={wrapLongLines}
-      style={customStyle}
-      {...props}
-    >
-      <code>{children}</code>
-    </pre>
-  ))
-}));
-
-// Mock styles import
-vi.mock('react-syntax-highlighter/dist/cjs/styles/prism', () => ({
-  coldarkCold: {},
-  coldarkDark: {}
-}));
+import CodeBlock from '@/components/code-block';
 
 // Mock clipboard API
 Object.assign(navigator, {
@@ -34,104 +11,53 @@ Object.assign(navigator, {
 
 describe('CodeBlock Component', () => {
   const mockCode = 'console.log("Hello, World!");';
-  const mockLanguage = 'javascript';
+  const mockHtml = '<pre class="shiki"><code><span class="line">console.log("Hello, World!");</span></code></pre>';
 
   beforeEach(() => {
     vi.clearAllMocks();
     (navigator.clipboard.writeText as ReturnType<typeof vi.fn>).mockResolvedValue(undefined);
   });
 
-  // Get the mocked SyntaxHighlighter
-  const mockSyntaxHighlighter = vi.mocked(SyntaxHighlighter);
-
   afterEach(() => {
     vi.clearAllTimers();
   });
 
   describe('Basic Rendering', () => {
-    it('renders code block with syntax highlighter', () => {
-      render(<CodeBlock code={mockCode} language={mockLanguage} />);
+    it('renders code block with HTML', () => {
+      const { container } = render(<CodeBlock code={mockCode} html={mockHtml} />);
 
-      expect(screen.getByTestId('syntax-highlighter')).toBeInTheDocument();
-      expect(screen.getByText(mockCode)).toBeInTheDocument();
+      expect(container.querySelector('pre.shiki')).toBeInTheDocument();
     });
 
     it('renders copy button', () => {
-      render(<CodeBlock code={mockCode} language={mockLanguage} />);
+      render(<CodeBlock code={mockCode} html={mockHtml} />);
 
       expect(screen.getByRole('button', { name: /copy/i })).toBeInTheDocument();
     });
 
-    it('passes correct props to syntax highlighter', () => {
-      render(<CodeBlock code={mockCode} language={mockLanguage} />);
+    it('renders provided HTML content', () => {
+      const customHtml = '<pre class="custom"><code>test code</code></pre>';
+      const { container } = render(<CodeBlock code='test code' html={customHtml} />);
 
-      expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
-        {
-          language: mockLanguage,
-          children: mockCode,
-          showLineNumbers: true,
-          wrapLongLines: true,
-          style: {},
-          customStyle: {
-            padding: '1rem 0rem',
-            fontSize: '1rem',
-            lineHeight: '1.5'
-          }
-        },
-        undefined
-      );
-    });
-  });
-
-  describe('Language Detection', () => {
-    it('handles different programming languages', () => {
-      const languages = ['typescript', 'python', 'css', 'html'];
-
-      for (const lang of languages) {
-        vi.clearAllMocks();
-        render(<CodeBlock code={mockCode} language={lang} />);
-        expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
-          {
-            language: lang,
-            children: mockCode,
-            showLineNumbers: true,
-            wrapLongLines: true,
-            style: {},
-            customStyle: {
-              padding: '1rem 0rem',
-              fontSize: '1rem',
-              lineHeight: '1.5'
-            }
-          },
-          undefined
-        );
-      }
-    });
-
-    it('handles empty language gracefully', () => {
-      render(<CodeBlock code={mockCode} language='' />);
-
-      expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
-        {
-          language: '',
-          children: mockCode,
-          showLineNumbers: false,
-          wrapLongLines: true,
-          style: {},
-          customStyle: {
-            padding: '1rem 1rem',
-            fontSize: '1rem',
-            lineHeight: '1.5'
-          }
-        },
-        undefined
-      );
+      expect(container.querySelector('pre.custom')).toBeInTheDocument();
     });
   });
 
   describe('Copy Functionality', () => {
+    it('copies code to clipboard when button is clicked', async () => {
+      render(<CodeBlock code={mockCode} html={mockHtml} />);
+
+      const copyButton = screen.getByRole('button', { name: /copy/i });
+
+      await act(async () => {
+        fireEvent.click(copyButton);
+      });
+
+      expect(navigator.clipboard.writeText).toHaveBeenCalledWith(mockCode);
+    });
+
     it('shows and hides copy success state', async () => {
-      render(<CodeBlock code={mockCode} language={mockLanguage} />);
+      render(<CodeBlock code={mockCode} html={mockHtml} />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
 
@@ -151,91 +77,79 @@ describe('CodeBlock Component', () => {
       // Verify clipboard was called
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(mockCode);
     });
-  });
 
-  describe('Line Numbers', () => {
-    it('shows line numbers for supported languages', () => {
-      render(<CodeBlock code={mockCode} language='javascript' />);
-
-      expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
-        {
-          showLineNumbers: true,
-          language: 'javascript',
-          children: mockCode,
-          wrapLongLines: true,
-          style: {},
-          customStyle: {
-            padding: '1rem 0rem',
-            fontSize: '1rem',
-            lineHeight: '1.5'
-          }
-        },
-        undefined
+    it('handles clipboard API failure gracefully', async () => {
+      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      (navigator.clipboard.writeText as ReturnType<typeof vi.fn>).mockRejectedValue(
+        new Error('Clipboard API not available')
       );
-    });
 
-    it('hides line numbers for bash and console languages', () => {
-      render(<CodeBlock code={mockCode} language='bash' />);
+      render(<CodeBlock code={mockCode} html={mockHtml} />);
 
-      expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
-        {
-          showLineNumbers: false,
-          language: 'bash',
-          children: mockCode,
-          wrapLongLines: true,
-          style: {},
-          customStyle: {
-            padding: '1rem 1rem',
-            fontSize: '1rem',
-            lineHeight: '1.5'
-          }
-        },
-        undefined
-      );
+      const copyButton = screen.getByRole('button', { name: /copy/i });
+
+      await act(async () => {
+        fireEvent.click(copyButton);
+      });
+
+      // Wait a bit for error handling
+      await waitFor(() => {
+        expect(consoleErrorSpy).toHaveBeenCalled();
+      });
+
+      // "Copied!" should not appear on failure
+      expect(screen.queryByText(/copied/i)).not.toBeInTheDocument();
+
+      consoleErrorSpy.mockRestore();
     });
   });
 
   describe('Styling and Layout', () => {
     it('has proper container styling', () => {
-      render(<CodeBlock code={mockCode} language={mockLanguage} />);
+      const { container } = render(<CodeBlock code={mockCode} html={mockHtml} />);
 
-      const container = screen.getByTestId('syntax-highlighter').parentElement;
-      expect(container).toHaveClass('relative');
+      const wrapper = container.firstChild;
+      expect(wrapper).toHaveClass('group', 'relative');
     });
 
     it('positions copy button correctly', () => {
-      render(<CodeBlock code={mockCode} language='javascript' />);
+      render(<CodeBlock code={mockCode} html={mockHtml} />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
       expect(copyButton).toHaveClass('rounded-md', 'p-2', 'transition-opacity', 'duration-200');
     });
 
     it('applies proper button styling', () => {
-      render(<CodeBlock code={mockCode} language='javascript' />);
+      render(<CodeBlock code={mockCode} html={mockHtml} />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
       expect(copyButton).toHaveClass(
         'bg-gray-800',
         'hover:bg-gray-700',
-        'dark:bg-gray-100',
-        'dark:hover:bg-gray-200',
         'opacity-20',
         'group-hover:opacity-100',
         'focus:opacity-100'
       );
     });
+
+    it('has wrapper div structure', () => {
+      const { container } = render(<CodeBlock code={mockCode} html={mockHtml} />);
+
+      const wrapperDiv = container.querySelector('.group.relative');
+      expect(wrapperDiv).toBeInTheDocument();
+    });
   });
 
   describe('Accessibility', () => {
     it('has proper ARIA labels for copy button', () => {
-      render(<CodeBlock code={mockCode} language={mockLanguage} />);
+      render(<CodeBlock code={mockCode} html={mockHtml} />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
       expect(copyButton).toHaveAttribute('aria-label', expect.stringContaining('Copy'));
     });
 
     it('provides keyboard accessibility', () => {
-      render(<CodeBlock code={mockCode} language={mockLanguage} />);
+      render(<CodeBlock code={mockCode} html={mockHtml} />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
       copyButton.focus();
@@ -246,41 +160,47 @@ describe('CodeBlock Component', () => {
 
   describe('Edge Cases', () => {
     it('handles empty code gracefully', () => {
-      render(<CodeBlock code='' language='javascript' />);
+      const emptyHtml = '<pre class="shiki"><code></code></pre>';
+      const { container } = render(<CodeBlock code='' html={emptyHtml} />);
 
-      expect(screen.getByTestId('syntax-highlighter')).toBeInTheDocument();
-      expect(mockSyntaxHighlighter).toHaveBeenCalledWith(
-        {
-          children: '',
-          language: 'javascript',
-          showLineNumbers: true,
-          wrapLongLines: true,
-          style: {},
-          customStyle: {
-            padding: '1rem 0rem',
-            fontSize: '1rem',
-            lineHeight: '1.5'
-          }
-        },
-        undefined
-      );
+      expect(container.querySelector('pre.shiki')).toBeInTheDocument();
     });
 
     it('handles very long code strings', () => {
       const longCode = 'console.log("test");'.repeat(100);
+      const longHtml = `<pre class="shiki"><code>${longCode}</code></pre>`;
 
-      render(<CodeBlock code={longCode} language={mockLanguage} />);
+      render(<CodeBlock code={longCode} html={longHtml} />);
 
-      expect(screen.getByTestId('syntax-highlighter')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /copy/i })).toBeInTheDocument();
       expect(navigator.clipboard.writeText).not.toHaveBeenCalled();
     });
 
     it('handles special characters in code', () => {
       const specialCode = 'const str = "Hello \\"World\\"!";';
+      const specialHtml = `<pre class="shiki"><code>${specialCode}</code></pre>`;
 
-      render(<CodeBlock code={specialCode} language={mockLanguage} />);
+      const { container } = render(<CodeBlock code={specialCode} html={specialHtml} />);
 
-      expect(screen.getByText(specialCode)).toBeInTheDocument();
+      expect(container.querySelector('pre.shiki')).toBeInTheDocument();
+    });
+
+    it('handles HTML with line numbers', () => {
+      const htmlWithLineNumbers =
+        '<pre class="shiki shiki-line-numbers"><code><span class="line" data-line="1">console.log("test");</span></code></pre>';
+
+      const { container } = render(<CodeBlock code={mockCode} html={htmlWithLineNumbers} />);
+
+      expect(container.querySelector('pre.shiki-line-numbers')).toBeInTheDocument();
+    });
+  });
+
+  describe('Mounting Behavior', () => {
+    it('renders HTML before mounting', () => {
+      const { container } = render(<CodeBlock code={mockCode} html={mockHtml} />);
+
+      // Should render HTML even before React hydration
+      expect(container.querySelector('pre.shiki')).toBeInTheDocument();
     });
   });
 });

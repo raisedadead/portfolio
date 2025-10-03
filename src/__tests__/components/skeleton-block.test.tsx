@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import SkeletonBlock from '../../components/skeleton-block';
+import SkeletonBlock from '@/components/skeleton-block';
 
 describe('SkeletonBlock Component', () => {
   describe('Basic Rendering', () => {

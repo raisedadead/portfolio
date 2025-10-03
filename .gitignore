@@ -21,3 +21,5 @@ dist/
 # Wrangler
 .wrangler/
 worker-configuration.d.ts
+tsconfig.tsbuildinfo
+.playwright-mcp/

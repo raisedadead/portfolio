@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { ArrowDown, ArrowUp } from '../../components/scroll-arrows';
+import { ArrowDown, ArrowUp } from '@/components/scroll-arrows';
 
 describe('Scroll Arrows Components', () => {
   describe('ArrowDown Component', () => {
