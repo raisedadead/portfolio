@@ -98,6 +98,7 @@ jobs:
 
       - name: Run Lighthouse on PR
         id: lighthouse-pr
+        continue-on-error: true
         uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
         with:
           configPath: .github/lighthouse/lhrc.build.json
@@ -163,6 +164,7 @@ jobs:
       - name: Run Lighthouse on main
         if: steps.check-config.outputs.exists == 'true'
         id: lighthouse-main
+        continue-on-error: true
         uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
         with:
           configPath: .github/lighthouse/lhrc.build.json
@@ -178,126 +180,59 @@ jobs:
           echo '${{ steps.lighthouse-main.outputs.manifest }}' > /tmp/lighthouse-results/main-manifest.json
           echo '${{ steps.lighthouse-main.outputs.links }}' > /tmp/lighthouse-results/main-links.json
 
+      - name: Checkout PR branch for script
+        if: always()
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+
       - name: Generate comparison report
+        if: always()
         run: |
-          node << 'SCRIPT'
-          const fs = require('fs');
+          PR_MANIFEST=$(cat /tmp/lighthouse-results/pr-manifest.json)
+          PR_LINKS=$(cat /tmp/lighthouse-results/pr-links.json)
 
-          const prManifest = JSON.parse(fs.readFileSync('/tmp/lighthouse-results/pr-manifest.json', 'utf8'));
-          const prLinks = JSON.parse(fs.readFileSync('/tmp/lighthouse-results/pr-links.json', 'utf8'));
+          # Check if Lighthouse actually ran and produced results
+          if [ "$PR_MANIFEST" = "" ] || [ "$PR_MANIFEST" = "{}" ] || [ "$PR_MANIFEST" = "[]" ]; then
+            echo "## ⚠️ Lighthouse Audit Did Not Complete" > lighthouse-comment.md
+            echo "" >> lighthouse-comment.md
+            echo "The Lighthouse audit failed to produce results. Check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details." >> lighthouse-comment.md
+            echo "" >> lighthouse-comment.md
+            echo "<!-- lighthouse-ci-report -->" >> lighthouse-comment.md
+            exit 0
+          fi
 
-          const hasMainResults = fs.existsSync('/tmp/lighthouse-results/main-manifest.json');
-          const mainManifest = hasMainResults ? JSON.parse(fs.readFileSync('/tmp/lighthouse-results/main-manifest.json', 'utf8')) : [];
-          const mainLinks = hasMainResults ? JSON.parse(fs.readFileSync('/tmp/lighthouse-results/main-links.json', 'utf8')) : {};
+          if [ -f "/tmp/lighthouse-results/main-manifest.json" ]; then
+            MAIN_MANIFEST=$(cat /tmp/lighthouse-results/main-manifest.json)
+            MAIN_LINKS=$(cat /tmp/lighthouse-results/main-links.json)
+          else
+            MAIN_MANIFEST=""
+            MAIN_LINKS=""
+          fi
 
-          function getMetrics(manifest) {
-            const metrics = {};
-            for (const result of manifest) {
-              const url = result.url;
-              const summary = result.summary;
-              metrics[url] = {
-                performance: summary.performance,
-                accessibility: summary.accessibility,
-                'best-practices': summary['best-practices'],
-                seo: summary.seo,
-                fcp: summary['first-contentful-paint'],
-                lcp: summary['largest-contentful-paint'],
-                tbt: summary['total-blocking-time'],
-                cls: summary['cumulative-layout-shift'],
-                si: summary['speed-index']
-              };
-            }
-            return metrics;
-          }
+          {
+            node .github/scripts/lighthouse-report.js \
+              "$PR_MANIFEST" \
+              "$PR_LINKS" \
+              "$MAIN_MANIFEST" \
+              "$MAIN_LINKS"
+            echo ""
+            echo "<!-- lighthouse-ci-report -->"
+          } > lighthouse-comment.md
 
-          function formatScore(score) {
-            const percentage = Math.round(score * 100);
-            if (score >= 0.9) return `🟢 ${percentage}`;
-            if (score >= 0.5) return `🟠 ${percentage}`;
-            return `🔴 ${percentage}`;
-          }
-
-          function formatDiff(pr, main) {
-            if (!main) return formatScore(pr);
-            const diff = pr - main;
-            const diffStr = diff >= 0 ? `+${Math.round(diff * 100)}` : Math.round(diff * 100);
-            const arrow = diff > 0 ? '📈' : diff < 0 ? '📉' : '➡️';
-            return `${formatScore(pr)} (${arrow} ${diffStr})`;
-          }
-
-          function formatMetric(pr, main, format = 'ms') {
-            if (format === 'score') return formatDiff(pr, main);
-            const prVal = Math.round(pr);
-            const mainVal = main ? Math.round(main) : null;
-            if (!mainVal) return `${prVal}${format}`;
-            const diff = prVal - mainVal;
-            const diffStr = diff > 0 ? `+${diff}` : diff;
-            const arrow = diff < 0 ? '📈' : diff > 0 ? '📉' : '➡️';
-            return `${prVal}${format} (${arrow} ${diffStr}${format})`;
-          }
-
-          const prMetrics = getMetrics(prManifest);
-          const mainMetrics = getMetrics(mainManifest);
-
-          let comment = '## 🔦 Lighthouse Performance Report\n\n';
-          comment += '### Performance Scores\n\n';
-          comment += '| URL | Performance | Accessibility | Best Practices | SEO |\n';
-          comment += '| --- | ----------- | ------------- | -------------- | --- |\n';
-
-          for (const url of Object.keys(prMetrics)) {
-            const urlPath = new URL(url).pathname || '/';
-            const pr = prMetrics[url];
-            const main = mainMetrics[url];
-
-            comment += `| ${urlPath} `;
-            comment += `| ${formatDiff(pr.performance, main?.performance)} `;
-            comment += `| ${formatDiff(pr.accessibility, main?.accessibility)} `;
-            comment += `| ${formatDiff(pr['best-practices'], main?.['best-practices'])} `;
-            comment += `| ${formatDiff(pr.seo, main?.seo)} |\n`;
-          }
-
-          comment += '\n### Core Web Vitals\n\n';
-          comment += '| URL | FCP | LCP | TBT | CLS | SI |\n';
-          comment += '| --- | --- | --- | --- | --- | --- |\n';
-
-          for (const url of Object.keys(prMetrics)) {
-            const urlPath = new URL(url).pathname || '/';
-            const pr = prMetrics[url];
-            const main = mainMetrics[url];
-
-            comment += `| ${urlPath} `;
-            comment += `| ${formatMetric(pr.fcp, main?.fcp, 'ms')} `;
-            comment += `| ${formatMetric(pr.lcp, main?.lcp, 'ms')} `;
-            comment += `| ${formatMetric(pr.tbt, main?.tbt, 'ms')} `;
-            comment += `| ${formatMetric(pr.cls, main?.cls, '')} `;
-            comment += `| ${formatMetric(pr.si, main?.si, 'ms')} |\n`;
-          }
-
-          comment += '\n### Full Reports\n\n';
-          comment += '| URL | PR Build | Main Branch |\n';
-          comment += '| --- | -------- | ----------- |\n';
-
-          for (const url of Object.keys(prLinks)) {
-            const urlPath = new URL(url).pathname || '/';
-            comment += `| ${urlPath} `;
-            comment += `| [View Report](${prLinks[url]}) `;
-            comment += `| [View Report](${mainLinks[url] || 'N/A'}) |\n`;
-          }
-
-          comment += '\n---\n';
-          if (hasMainResults) {
-            comment += '*📊 Metrics compared against `main` branch • 🟢 Good (≥90) • 🟠 Needs Improvement (50-89) • 🔴 Poor (<50)*\n';
-            comment += '*📈 Better than main • 📉 Worse than main • ➡️ No change*\n';
-          } else {
-            comment += '*📊 No baseline available for comparison • 🟢 Good (≥90) • 🟠 Needs Improvement (50-89) • 🔴 Poor (<50)*\n';
-          }
-
-          fs.writeFileSync('lighthouse-comment.md', comment);
-          SCRIPT
+      - name: Find existing comment
+        if: always()
+        id: find-comment
+        run: |
+          COMMENT_ID=$(gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+            --jq '.[] | select(.body | contains("<!-- lighthouse-ci-report -->")) | .id' | head -1)
+          echo "comment_id=$COMMENT_ID" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Post or update PR comment
+        if: always()
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
         with:
           issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment_id }}
           body-path: lighthouse-comment.md
           edit-mode: replace

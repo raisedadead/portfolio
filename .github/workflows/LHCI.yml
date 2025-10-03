@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
       - name: Audit Production URLs
+        id: lighthouse
         uses: treosh/lighthouse-ci-action@fcd65974f7c4c2bf0ee9d09b84d2489183c29726 # v12
         with:
           urls: |
@@ -27,3 +28,19 @@ jobs:
           temporaryPublicStorage: true
           runs: 3
           configPath: .github/lighthouse/lhrc.prod.json
+
+      - name: Generate formatted report
+        if: always()
+        run: |
+          if [ -n "${{ steps.lighthouse.outputs.manifest }}" ]; then
+            REPORT=$(node .github/scripts/lighthouse-report.js \
+              '${{ steps.lighthouse.outputs.manifest }}' \
+              '${{ steps.lighthouse.outputs.links || '{}' }}' \
+              '' \
+              '')
+            echo "$REPORT" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ⚠️ Lighthouse Audit Failed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "The Lighthouse audit did not produce results. Check the logs above for errors." >> $GITHUB_STEP_SUMMARY
+          fi
