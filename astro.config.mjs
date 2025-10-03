@@ -19,7 +19,7 @@ export default defineConfig({
     react(),
     sitemap({
       lastmod: new Date(),
-      changefreq: 'monthly',
+      changefreq: 'weekly',
       priority: 1,
       filter: (page) => {
         return !page.includes('/terms') && !page.includes('/refunds') && !page.includes('/privacy');
