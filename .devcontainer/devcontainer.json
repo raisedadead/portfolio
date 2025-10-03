@@ -9,8 +9,11 @@
       "onAutoForward": "notify"
     }
   },
+  "containerEnv": {
+    "ASTRO_TELEMETRY_DISABLED": "1"
+  },
   "updateContentCommand": "pnpm install",
   "postAttachCommand": {
-    "instructions": "bash -c 'pnpm develop'"
+    "Develop": "bash -c 'pnpm develop'"
   }
 }
