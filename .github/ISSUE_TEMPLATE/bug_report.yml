@@ -1,0 +1,105 @@
+name: Bug report
+description: Create a report to help me improve
+title: '[Bug]: '
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: Provide as much detail as possible to help me fix the issue.
+
+  - type: input
+    id: short_description
+    attributes:
+      label: Short summary
+      description: A one-line summary of the issue.
+      placeholder: e.g. "Navigation menu not visible on mobile"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Please list the steps required to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: "I expected..."
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: What happened
+      description: Describe what actually happened (errors, incorrect UI, etc.).
+      placeholder: "The page crashes when..."
+
+  - type: textarea
+    id: screenshots_or_logs
+    attributes:
+      label: Screenshots / logs
+      description: Paste relevant logs or screenshots here. You can also attach images/files to the issue after submitting.
+      placeholder: "If applicable, add screenshots or error logs to help explain the problem."
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform did you see the issue on?
+      options:
+        - Desktop
+        - Smartphone
+        - Other
+
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      description: e.g. macOS 14.0, Windows 11, iOS 16
+      placeholder: "e.g. macOS 14.0"
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: e.g. Safari, Chrome, Firefox
+      placeholder: "e.g. Safari"
+
+  - type: input
+    id: browser_version
+    attributes:
+      label: Browser / App version
+      placeholder: "e.g. 120.0.1"
+
+  - type: input
+    id: device
+    attributes:
+      label: Device (if smartphone)
+      description: e.g. iPhone 12, Pixel 6
+      placeholder: "e.g. iPhone 12"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+      placeholder: "Any other notes, workarounds, or related issues."
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      description: Please confirm you've done the following before submitting.
+      options:
+        - label: I've searched existing issues for duplicates
+          required: true

@@ -1,17 +1,32 @@
-### Hello There!
+### Contributing
 
-Thanks for checking out my web portfolio code-base. I am grateful for your
-feedback, suggestions and contributions.
+Thanks for checking out this codebase. I am grateful for your feedback, suggestions and contributions.
+
+#### Getting started
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Run tests
+pnpm test
+
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
+```
 
 #### Found something broken?
 
-Please create an issue on the tracker
-[here](https://github.com/raisedadead/raisedadead/issues/new). A screenshot
-would be great, if you can. You are super awesome!
+Create an issue on the tracker [here](https://github.com/raisedadead/raisedadead/issues/new).
 
 #### Have a something to contribute in code?
 
-Send that pull request, I will owe you a :coffee: or :beer:, whichever you
-prefer!
+Send a pull request, and I will buy you a :coffee: or :beer:, if we meet IRL!
 
 _Cheers, and happy contributing!_

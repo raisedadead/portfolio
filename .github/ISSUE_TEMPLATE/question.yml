@@ -1,0 +1,43 @@
+name: Question or support
+description: Ask a question about the project
+title: '[Question]: '
+labels: ["question"]
+
+body:
+  - type: markdown
+    attributes:
+      value: For questions not related to this project, check my [AMA](https://github.com/raisedadead/ama/discussions/14) instead.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: Please describe your question in detail.
+      placeholder: "I'm trying to understand..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Any additional context that might help answer your question.
+      placeholder: "I was looking at... when I noticed..."
+
+  - type: textarea
+    id: attempted_solutions
+    attributes:
+      label: What have you tried
+      description: Have you attempted any solutions or searched for similar questions?
+      placeholder: "I tried searching for... and found..."
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      description: Please confirm you've done the following before submitting.
+      options:
+        - label: I've searched existing issues and discussions
+          required: true
+        - label: This is not a bug report (use the Bug report template instead)
+          required: true

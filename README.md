@@ -4,51 +4,26 @@
 
 ## What is this about?
 
-- This is my tiny property on the internet.
-- Built with [Astro](https://astro.build) and React for optimal performance with partial hydration.
-- Features static site generation with dynamic React components for interactivity.
-- Deployed on [Cloudflare Pages](https://pages.cloudflare.com) for global edge delivery.
-
-## Development
-
-To run locally:
-
-```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Preview production build
-pnpm preview
-```
+My personal website built with [Astro](https://astro.build) and React, deployed on [Cloudflare](https://cloudflare.com). It features my blog posts, projects, and a bit about me. The blog posts are sourced from my [Hashnode](https://hashnode.com) blog using [`astro-loader-hashnode`](https://www.npmjs.com/package/astro-loader-hashnode) which I maintain.
 
 ## Tech Stack
 
-- **Framework**: [Astro](https://astro.build) with React integration
-- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Framework**: [Astro 5](https://astro.build) with [React 19](https://react.dev)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com)
 - **Animation**: [Framer Motion](https://framer.com/motion)
 - **Icons**: [Heroicons](https://heroicons.com)
-- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com)
+- **Content**: [Hashnode](https://hashnode.com) via `astro-loader-hashnode`
+- **Testing**: [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/react)
+- **Deployment**: [Cloudflare](https://cloudflare.com)
 - **Package Manager**: [pnpm](https://pnpm.io)
-
-Nonetheless, please feel free to browse, and leave feedbacks on the issue
-tracker. If you catch a typo, or something broken, please let me know.
 
 ## Link
 
 > ### <https://mrugesh.dev>
 
-<details>
-<summary>Screenshot</summary>
+## Contributing
 
-![Screenshot][screenshot]
-
-</details>
+See [this guide](.github/CONTRIBUTING.md) for details.
 
 ## Stats
 
@@ -56,16 +31,9 @@ tracker. If you catch a typo, or something broken, please let me know.
 
 ## License
 
-Software: The software as it is licensed under the [ISC](LICENSE) License,
-please feel free to extend, re-use, share the code.
+Software: The software as it is licensed under the [ISC](LICENSE) License.
+Content: The content pertaining to Mrugesh Mohapatra (like his resume, personal information, imagery, etc.) is licensed under the [CC BY-NC-ND 4.0][by-nc-nd-4] License.
 
-Content: The content pertaining to Mrugesh Mohapatra such as his resume,
-personal information, imagery, etc. is licensed under the [CC BY-NC-ND
-4.0][by-nc-nd-4] License.
-
----
-
-[screenshot]: https://github.com/user-attachments/assets/70b057ec-a3d3-49c7-8cfa-5e65a7486148 'Website screenshot'
 [personal-website]: https://mrugesh.dev
 [by-nc-nd-4]: https://creativecommons.org/licenses/by-nc-nd/4.0/
 [repobeats-img]: https://repobeats.axiom.co/api/embed/7554011ecd870f9d366a22f913161e180165ec85.svg 'Repobeats analytics image'
