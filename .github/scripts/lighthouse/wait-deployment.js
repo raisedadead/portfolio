@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-import { execSync } from 'node:child_process';
-
 const COMMIT_SHA = process.argv[2];
 const TIMEOUT = parseInt(process.argv[3] || '600', 10);
 const POLL_INTERVAL = parseInt(process.argv[4] || '30', 10);
@@ -16,8 +14,11 @@ if (TIMEOUT <= 0 || POLL_INTERVAL <= 0) {
   process.exit(1);
 }
 
-if (!process.env.CLOUDFLARE_API_TOKEN || !process.env.CLOUDFLARE_ACCOUNT_ID) {
-  console.error('Error: CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID environment variables are required');
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || 'raisedadead/portfolio';
+
+if (!GITHUB_TOKEN) {
+  console.error('Error: GITHUB_TOKEN environment variable is required');
   process.exit(1);
 }
 
@@ -25,28 +26,44 @@ async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function getDeploymentStatus(commitSha) {
+async function getCloudflareCheckStatus(commitSha) {
   try {
-    const output = execSync('pnpm exec wrangler pages deployment list --format=json', {
-      encoding: 'utf8',
-      stdio: ['pipe', 'pipe', 'pipe'],
-      env: { ...process.env }
+    const [owner, repo] = GITHUB_REPOSITORY.split('/');
+    const url = `https://api.github.com/repos/${owner}/${repo}/commits/${commitSha}/check-runs`;
+
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        Accept: 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
     });
 
-    const deployments = JSON.parse(output);
-    const deployment = deployments.find((d) => d.deployment_trigger?.metadata?.commit_hash === commitSha);
+    if (!response.ok) {
+      console.error(`GitHub API error: ${response.status} ${response.statusText}`);
+      return { status: null, conclusion: null };
+    }
 
-    if (!deployment) {
-      return { status: null, url: null };
+    const data = await response.json();
+
+    if (!data.check_runs) {
+      console.error('No check runs found in response');
+      return { status: null, conclusion: null };
+    }
+
+    const cloudflareCheck = data.check_runs.find((check) => check.name && check.name.startsWith('Workers Builds:'));
+
+    if (!cloudflareCheck) {
+      return { status: null, conclusion: null };
     }
 
     return {
-      status: deployment.latest_stage?.status || null,
-      url: deployment.url || null
+      status: cloudflareCheck.status,
+      conclusion: cloudflareCheck.conclusion
     };
   } catch (error) {
-    console.error(`Error fetching deployment status: ${error.message}`);
-    return { status: null, url: null };
+    console.error(`Error fetching check status: ${error.message}`);
+    return { status: null, conclusion: null };
   }
 }
 
@@ -56,24 +73,24 @@ async function main() {
   let elapsed = 0;
 
   while (elapsed < TIMEOUT) {
-    const { status, url } = getDeploymentStatus(COMMIT_SHA);
+    const { status, conclusion } = await getCloudflareCheckStatus(COMMIT_SHA);
 
-    if (status === 'success') {
-      console.log(`Deployment successful: ${url}`);
-      process.exit(0);
+    if (status === 'completed') {
+      if (conclusion === 'success') {
+        console.log('Cloudflare deployment successful');
+        process.exit(0);
+      } else {
+        console.error(`Cloudflare deployment failed with conclusion: ${conclusion}`);
+        process.exit(1);
+      }
     }
 
-    if (status === 'failure') {
-      console.error(`Error: Deployment failed for commit ${COMMIT_SHA}`);
-      process.exit(1);
-    }
-
-    console.log(`Deployment status: ${status || 'pending'} (${elapsed}s elapsed)`);
+    console.log(`Cloudflare deployment status: ${status || 'pending'} (${elapsed}s elapsed)`);
     await sleep(POLL_INTERVAL * 1000);
     elapsed += POLL_INTERVAL;
   }
 
-  console.error(`Error: Deployment timed out after ${TIMEOUT} seconds`);
+  console.error(`Error: Cloudflare deployment timed out after ${TIMEOUT} seconds`);
   process.exit(1);
 }
 
