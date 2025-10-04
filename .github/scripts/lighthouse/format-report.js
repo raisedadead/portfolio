@@ -51,7 +51,7 @@ function calculateSummary(comparisons) {
   return { passingUrls, totalUrls, avgScore };
 }
 
-function formatReport(comparisons) {
+function formatReport(comparisons, mode = 'pr') {
   const grouped = groupByUrl(comparisons);
   const { passingUrls, totalUrls, avgScore } = calculateSummary(comparisons);
   const hasBaseline = comparisons.some((c) => c.baseline !== null);
@@ -70,61 +70,50 @@ function formatReport(comparisons) {
     rows.push(`| ${url} | ${perf} | ${a11y} | ${bp} | ${seo} |`);
   });
 
+  if (mode === 'production') {
+    return formatProductionReport(rows, passingUrls, totalUrls, avgScore, failures, regressions, hasBaseline);
+  }
+
   let report = '**Lighthouse Audit Results**\n\n';
   report += `**Summary**: ${passingUrls}/${totalUrls} pages passing (avg: ${avgScore})\n\n`;
   report += '| URL | Perf | A11y | Best Practices | SEO |\n';
   report += '|-----|------|------|----------------|-----|\n';
   report += `${rows.join('\n')}\n\n`;
 
-  // Show warnings for threshold failures
-  if (failures.length > 0) {
-    const failuresByUrl = new Map();
-    failures.forEach((f) => {
-      if (!failuresByUrl.has(f.url)) {
-        failuresByUrl.set(f.url, []);
-      }
-      failuresByUrl.get(f.url).push(f);
-    });
+  // Show warnings in expandable details
+  if (failures.length > 0 || (hasBaseline && regressions.length > 0)) {
+    const parts = [];
+    if (failures.length > 0) {
+      parts.push(`${failures.length} below threshold`);
+    }
+    if (hasBaseline && regressions.length > 0) {
+      parts.push(`${regressions.length} regression${regressions.length > 1 ? 's' : ''}`);
+    }
 
-    const thresholds = {
-      performance: 85,
-      accessibility: 90,
-      'best-practices': 85,
-      seo: 90
-    };
+    report += '<details>\n';
+    report += `<summary>WARNING: ${parts.join(' • ')}</summary>\n\n`;
 
-    report += '> [!WARNING]\n';
-    report += `> **${failures.length} metric${failures.length > 1 ? 's' : ''} below threshold:**\n`;
-    failuresByUrl.forEach((metrics, url) => {
-      metrics.forEach((m) => {
+    if (failures.length > 0) {
+      report += '**Below threshold:**\n';
+      failures.forEach((f) => {
         const categoryName =
-          m.category === 'best-practices' ? 'Best Practices' : m.category.charAt(0).toUpperCase() + m.category.slice(1);
-        report += `> - \`${url}\` ${categoryName}: ${m.current}% (threshold: ${thresholds[m.category]}%)\n`;
+          f.category === 'best-practices' ? 'Best Practices' : f.category.charAt(0).toUpperCase() + f.category.slice(1);
+        report += `- \`${f.url}\` ${categoryName}: ${f.current}%\n`;
       });
-    });
-    report += '\n';
-  }
+      report += '\n';
+    }
 
-  // Show caution for regressions (only if baseline exists)
-  if (hasBaseline && regressions.length > 0) {
-    const regressionsByUrl = new Map();
-    regressions.forEach((r) => {
-      if (!regressionsByUrl.has(r.url)) {
-        regressionsByUrl.set(r.url, []);
-      }
-      regressionsByUrl.get(r.url).push(r);
-    });
-
-    report += '> [!CAUTION]\n';
-    report += `> **${regressions.length} metric${regressions.length > 1 ? 's' : ''} regressed from baseline:**\n`;
-    regressionsByUrl.forEach((metrics, url) => {
-      metrics.forEach((m) => {
+    if (hasBaseline && regressions.length > 0) {
+      report += '**Regressions:**\n';
+      regressions.forEach((r) => {
         const categoryName =
-          m.category === 'best-practices' ? 'Best Practices' : m.category.charAt(0).toUpperCase() + m.category.slice(1);
-        report += `> - \`${url}\` ${categoryName}: ${m.current}% (${m.delta} from baseline)\n`;
+          r.category === 'best-practices' ? 'Best Practices' : r.category.charAt(0).toUpperCase() + r.category.slice(1);
+        report += `- \`${r.url}\` ${categoryName}: ${r.delta}\n`;
       });
-    });
-    report += '\n';
+      report += '\n';
+    }
+
+    report += '</details>\n\n';
   }
 
   // Add note about baseline establishment only if no baseline AND no warnings shown
@@ -142,18 +131,62 @@ function formatReport(comparisons) {
   return report;
 }
 
+function formatProductionReport(rows, passingUrls, totalUrls, avgScore, failures, regressions, hasBaseline) {
+  let report = '## Lighthouse Production Audit\n\n';
+  report += `**Summary:** ${passingUrls}/${totalUrls} pages passing (avg: ${avgScore})\n\n`;
+  report += '| URL | Perf | A11y | Best Practices | SEO |\n';
+  report += '|-----|------|------|----------------|-----|\n';
+  report += `${rows.join('\n')}\n\n`;
+
+  if (failures.length > 0 || (hasBaseline && regressions.length > 0)) {
+    report += '---\n\n';
+
+    if (failures.length > 0) {
+      report += `### WARNING: ${failures.length} metric${failures.length > 1 ? 's' : ''} below threshold\n\n`;
+      failures.forEach((f) => {
+        const categoryName =
+          f.category === 'best-practices' ? 'Best Practices' : f.category.charAt(0).toUpperCase() + f.category.slice(1);
+        const thresholds = { performance: 85, accessibility: 90, 'best-practices': 85, seo: 90 };
+        report += `- \`${f.url}\` ${categoryName}: ${f.current}% (threshold: ${thresholds[f.category]}%)\n`;
+      });
+      report += '\n';
+    }
+
+    if (hasBaseline && regressions.length > 0) {
+      report += `### CAUTION: ${regressions.length} metric${regressions.length > 1 ? 's' : ''} regressed from baseline\n\n`;
+      regressions.forEach((r) => {
+        const categoryName =
+          r.category === 'best-practices' ? 'Best Practices' : r.category.charAt(0).toUpperCase() + r.category.slice(1);
+        report += `- \`${r.url}\` ${categoryName}: ${r.current}% (${r.delta} from baseline)\n`;
+      });
+      report += '\n';
+    }
+
+    report += '---\n\n';
+  }
+
+  report += '<details>\n';
+  report += '<summary>Legend</summary>\n\n';
+  report += '**Thresholds:** Perf ≥85%, A11y ≥90%, Best Practices ≥85%, SEO ≥90%  \n';
+  report += '**Indicators:** 🟢 Good (≥90%) • 🟡 Needs Improvement • 🔴 Below Threshold\n\n';
+  report += '</details>\n';
+
+  return report;
+}
+
 function main() {
   const args = process.argv.slice(2);
   const inputPath = args[0] || './reports/comparison.json';
   const outputPath = args[1] || './reports/comment.md';
+  const mode = args[2] || 'pr';
 
   const comparisons = JSON.parse(readFileSync(inputPath, 'utf8'));
 
-  const report = formatReport(comparisons);
+  const report = formatReport(comparisons, mode);
 
   writeFileSync(outputPath, report);
 
-  console.log(`PR comment formatted: ${outputPath}`);
+  console.log(`Report formatted (${mode}): ${outputPath}`);
 }
 
 main();
