@@ -91,7 +91,7 @@ jobs:
       - name: Download baseline artifact
         id: download-baseline
         continue-on-error: true
-        uses: dawidd6/action-download-artifact@bf251b5aa9c2f7eeb574a96ee720e24f801b7c11 # v6
+        uses: dawidd6/action-download-artifact@ac66b43f0e6a346234dd65d4d0c8fbb31cb316e5 # v11
         with:
           workflow: lighthouse.yml
           name: lighthouse-baseline
@@ -191,6 +191,31 @@ jobs:
 
       - name: Generate manifest with median scores
         run: node .github/scripts/lighthouse/generate-manifest.js
+
+      - name: Download previous baseline
+        id: download-previous-baseline
+        continue-on-error: true
+        uses: dawidd6/action-download-artifact@ac66b43f0e6a346234dd65d4d0c8fbb31cb316e5 # v11
+        with:
+          workflow: lighthouse.yml
+          name: lighthouse-baseline
+          path: ./
+          branch: main
+          workflow_conclusion: success
+
+      - name: Compare scores
+        run: |
+          node .github/scripts/lighthouse/compare-scores.js \
+            .lighthouseci/manifest.json \
+            baseline-manifest.json \
+            comparison.json
+
+      - name: Format production summary
+        run: |
+          node .github/scripts/lighthouse/format-report.js comparison.json production-summary.md
+
+      - name: Add to workflow summary
+        run: cat production-summary.md >> $GITHUB_STEP_SUMMARY
 
       - name: Store baseline for next run
         run: |

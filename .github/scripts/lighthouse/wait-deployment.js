@@ -78,6 +78,9 @@ async function main() {
     if (status === 'completed') {
       if (conclusion === 'success') {
         console.log('Cloudflare deployment successful');
+        console.log('Waiting 30s for CDN caches to warm up...');
+        await sleep(30000);
+        console.log('Ready for Lighthouse audits');
         process.exit(0);
       } else {
         console.error(`Cloudflare deployment failed with conclusion: ${conclusion}`);
