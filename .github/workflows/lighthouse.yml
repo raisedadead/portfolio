@@ -57,7 +57,7 @@ jobs:
       # PR Build Mode: Download artifacts
       - name: Download PR build artifacts
         if: ${{ inputs.mode == 'pr-build' }}
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
           name: build-output
           path: dist
@@ -105,14 +105,14 @@ jobs:
       # PR Build Mode with Baseline: Setup Node.js
       - name: Setup Node.js
         if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version-file: '.nvmrc'
 
       # PR Build Mode with Baseline: Setup pnpm
       - name: Setup pnpm
         if: ${{ inputs.mode == 'pr-build' && inputs.compare-baseline && steps.check-config.outputs.exists == 'true' }}
-        uses: pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d # v3.0.0
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
 
       # PR Build Mode with Baseline: Get pnpm store
       - name: Get pnpm store directory
