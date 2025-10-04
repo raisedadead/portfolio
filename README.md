@@ -31,8 +31,8 @@ See [this guide](.github/CONTRIBUTING.md) for details.
 
 ## License
 
-Software: The software as it is licensed under the [ISC](LICENSE) License.
-Content: The content pertaining to Mrugesh Mohapatra (like his resume, personal information, imagery, etc.) is licensed under the [CC BY-NC-ND 4.0][by-nc-nd-4] License.
+- Software: The software as it is licensed under the [ISC](LICENSE) License.
+- Content: The content pertaining to Mrugesh Mohapatra (like his resume, personal information, imagery, etc.) is licensed under the [CC BY-NC-ND 4.0][by-nc-nd-4] License.
 
 [personal-website]: https://mrugesh.dev
 [by-nc-nd-4]: https://creativecommons.org/licenses/by-nc-nd/4.0/
