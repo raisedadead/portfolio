@@ -24,21 +24,50 @@ function loadLighthouseReports() {
   const files = readdirSync(LIGHTHOUSE_DIR);
   const jsonFiles = files.filter((f) => f.startsWith('lhr-') && f.endsWith('.json'));
 
-  return jsonFiles.map((file) => {
-    const content = readFileSync(join(LIGHTHOUSE_DIR, file), 'utf8');
-    const report = JSON.parse(content);
+  if (jsonFiles.length === 0) {
+    console.error(`Error: No Lighthouse reports found in ${LIGHTHOUSE_DIR}`);
+    process.exit(1);
+  }
 
-    return {
-      url: report.finalUrl || report.requestedUrl || report.mainDocumentUrl,
-      fetchTime: report.fetchTime,
-      categories: {
-        performance: report.categories.performance.score,
-        accessibility: report.categories.accessibility.score,
-        'best-practices': report.categories['best-practices'].score,
-        seo: report.categories.seo.score
+  const reports = [];
+
+  jsonFiles.forEach((file) => {
+    try {
+      const content = readFileSync(join(LIGHTHOUSE_DIR, file), 'utf8');
+      const report = JSON.parse(content);
+
+      if (!report.categories || !report.categories.performance) {
+        console.warn(`Warning: Skipping malformed report ${file} - missing categories`);
+        return;
       }
-    };
+
+      const url = report.finalUrl || report.requestedUrl || report.mainDocumentUrl;
+      if (!url) {
+        console.warn(`Warning: Skipping report ${file} - missing URL`);
+        return;
+      }
+
+      reports.push({
+        url,
+        fetchTime: report.fetchTime,
+        categories: {
+          performance: report.categories.performance.score,
+          accessibility: report.categories.accessibility.score,
+          'best-practices': report.categories['best-practices'].score,
+          seo: report.categories.seo.score
+        }
+      });
+    } catch (error) {
+      console.warn(`Warning: Failed to parse ${file}: ${error.message}`);
+    }
   });
+
+  if (reports.length === 0) {
+    console.error('Error: No valid Lighthouse reports could be loaded');
+    process.exit(1);
+  }
+
+  return reports;
 }
 
 function groupByUrl(reports) {

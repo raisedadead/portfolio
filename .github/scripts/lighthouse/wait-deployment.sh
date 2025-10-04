@@ -11,12 +11,12 @@ ELAPSED=0
 echo "Waiting for Cloudflare deployment of commit $COMMIT_SHA (timeout: ${TIMEOUT}s)..."
 
 while [[ $ELAPSED -lt $TIMEOUT ]]; do
-	STATUS=$(wrangler pages deployment list --format=json 2>/dev/null | \
+	STATUS=$(pnpm exec wrangler pages deployment list --format=json 2>/dev/null | \
 		jq -r --arg sha "$COMMIT_SHA" '.[] | select(.deployment_trigger.metadata.commit_hash == $sha) | .latest_stage.status' | \
 		head -n 1)
 
 	if [[ "$STATUS" == "success" ]]; then
-		DEPLOYMENT_URL=$(wrangler pages deployment list --format=json 2>/dev/null | \
+		DEPLOYMENT_URL=$(pnpm exec wrangler pages deployment list --format=json 2>/dev/null | \
 			jq -r --arg sha "$COMMIT_SHA" '.[] | select(.deployment_trigger.metadata.commit_hash == $sha) | .url' | \
 			head -n 1)
 		echo "Deployment successful: $DEPLOYMENT_URL"
