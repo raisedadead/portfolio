@@ -134,7 +134,10 @@ jobs:
 
   production-audit:
     name: Production Audit
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: |
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      github.event.head_commit.author.name != 'renovate[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -212,7 +215,7 @@ jobs:
 
       - name: Format production summary
         run: |
-          node .github/scripts/lighthouse/format-report.js comparison.json production-summary.md
+          node .github/scripts/lighthouse/format-report.js comparison.json production-summary.md production
 
       - name: Add to workflow summary
         run: cat production-summary.md >> $GITHUB_STEP_SUMMARY
