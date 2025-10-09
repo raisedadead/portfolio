@@ -2,6 +2,13 @@ import CalButton from './cal-embed';
 import { CustomLink as Link } from './custom-link';
 import { Social } from './social';
 
+// Shared button styling - matches Button component variants
+const primaryButtonClasses =
+  'h-14 border-2 border-black bg-orange-200 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none';
+
+const secondaryButtonClasses =
+  'h-14 border-2 border-black bg-orange-50 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none';
+
 export const Profile: React.FC = () => {
   return (
     <div className='flex flex-col items-center justify-center py-12 text-center'>
@@ -61,15 +68,12 @@ export const Profile: React.FC = () => {
       </h3>
 
       <div className='mb-10 flex flex-row items-center justify-center space-x-4'>
-        <CalButton
-          aria-label='Schedule a meeting with me'
-          className='h-14 w-80 border-2 border-black bg-orange-50 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
-        >
+        <CalButton aria-label='Schedule a meeting with me' className={`${secondaryButtonClasses} w-80`}>
           <span className='inline-flex items-center'>Schedule a Meeting</span>
         </CalButton>
         <Link
           aria-label='Browse my blog'
-          className='h-14 w-36 border-2 border-black bg-orange-200 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+          className={`${primaryButtonClasses} w-36`}
           href='/blog'
           type='button'
         >

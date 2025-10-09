@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import type { ReactNode } from 'react';
 import { WaveBackground } from '@/components/background';
 
 vi.mock('framer-motion', () => ({
   motion: {
-    path: ({ children, ...props }: Record<string, unknown>) => (
+    path: ({ children, ...props }: { children?: ReactNode } & Record<string, unknown>) => (
       <path data-testid='wave-path' {...props}>
         {children}
       </path>

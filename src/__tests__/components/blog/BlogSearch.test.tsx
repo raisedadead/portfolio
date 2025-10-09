@@ -61,11 +61,19 @@ describe('BlogSearch Component', () => {
     vi.clearAllMocks();
     document.body.innerHTML = '';
     delete (window as { location?: Location }).location;
-    window.location = { ...originalLocation, href: '' } as Location;
+    Object.defineProperty(window, 'location', {
+      value: { ...originalLocation, href: '' },
+      writable: true,
+      configurable: true
+    });
   });
 
   afterEach(() => {
-    window.location = originalLocation;
+    Object.defineProperty(window, 'location', {
+      value: originalLocation,
+      writable: true,
+      configurable: true
+    });
   });
 
   describe('Rendering', () => {

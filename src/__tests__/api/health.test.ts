@@ -1,6 +1,25 @@
 import type { APIContext } from 'astro';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { GET } from '../../pages/api/health';
+
+// Type guard for health response
+interface HealthResponse {
+  status: string;
+  timestamp: string;
+  environment: string;
+  headers: Record<string, string>;
+}
+
+function isHealthResponse(data: unknown): data is HealthResponse {
+  return (
+    typeof data === 'object' &&
+    data !== null &&
+    'status' in data &&
+    'timestamp' in data &&
+    'environment' in data &&
+    'headers' in data
+  );
+}
 
 describe('/api/health - GET Handler', () => {
   let mockRequest: Request;
@@ -32,6 +51,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.status).toBe('healthy');
     });
@@ -45,6 +65,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.timestamp).toBe('2025-01-15T12:00:00.000Z');
       expect(data.timestamp).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/);
@@ -57,6 +78,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.environment).toBe('cloudflare-workers');
     });
@@ -68,6 +90,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.headers).toHaveProperty('user-agent');
       expect(data.headers).toHaveProperty('cf-ray');
@@ -86,6 +109,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.headers['user-agent']).toBe('Mozilla/5.0 (Test Browser)');
     });
@@ -100,6 +124,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.headers['cf-ray']).toBe('123456789abcdef-SJC');
     });
@@ -114,6 +139,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.headers['cf-connecting-ip']).toBe('192.168.1.1');
     });
@@ -125,6 +151,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.headers['user-agent']).toBe('unknown');
     });
@@ -136,6 +163,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.headers['cf-ray']).toBe('unknown');
     });
@@ -147,6 +175,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.headers['cf-connecting-ip']).toBe('unknown');
     });
@@ -197,6 +226,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.headers).toEqual({
         'user-agent': 'UptimeMonitor/1.0',
@@ -215,6 +245,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data.headers).toEqual({
         'user-agent': 'unknown',
@@ -237,6 +268,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       expect(data).toEqual({
         status: 'healthy',
@@ -262,6 +294,7 @@ describe('/api/health - GET Handler', () => {
 
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isHealthResponse(data)) throw new Error('Invalid response type');
 
       // Empty string is falsy, should default to 'unknown'
       expect(data.headers['user-agent']).toBe('unknown');
@@ -276,6 +309,8 @@ describe('/api/health - GET Handler', () => {
 
       const data1 = await response1.json();
       const data2 = await response2.json();
+      if (!isHealthResponse(data1)) throw new Error('Invalid response1 type');
+      if (!isHealthResponse(data2)) throw new Error('Invalid response2 type');
 
       expect(response1.status).toBe(200);
       expect(response2.status).toBe(200);

@@ -19,6 +19,7 @@
     "test:update": "vitest --update",
     "test:watch:ui": "vitest --ui",
     "test:watch": "vitest",
+    "check": "pnpm astro check",
     "cf-typegen": "wrangler types",
     "lighthouse": "pnpm build && lhci collect --config=.github/lighthouse/lhci.json",
     "lighthouse:assert": "lhci assert --config=.github/lighthouse/lhci.json"
@@ -33,6 +34,7 @@
     ]
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/cloudflare": "12.6.9",
     "@astrojs/react": "4.4.0",
     "@astrojs/sitemap": "3.6.0",

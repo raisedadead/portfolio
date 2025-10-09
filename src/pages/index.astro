@@ -6,8 +6,6 @@ import { cn } from '@/lib/utils';
 
 <MainLayout variant='main' showHomeButton={false}>
   <section class={cn('mb-12')}>
-    <div class={cn('mx-auto max-w-4xl')}>
-      <Profile client:load />
-    </div>
+    <Profile client:load />
   </section>
 </MainLayout>

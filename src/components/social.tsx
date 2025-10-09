@@ -1,10 +1,15 @@
 import { CustomLink as Link } from './custom-link';
+
+// Shared button styling - matches Button component ghost variant with fixed size
+const iconButtonClasses =
+  'h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none';
+
 export const Social = () => (
   <div className='mx-auto mt-2 mb-1 flex flex-row items-center justify-center space-y-0 space-x-3'>
     <Link
       href='https://twitter.com/raisedadead'
       aria-label='Twitter'
-      className='h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+      className={iconButtonClasses}
       rel='me'
       type='button'
     >
@@ -16,7 +21,7 @@ export const Social = () => (
     <Link
       href='https://github.com/raisedadead'
       aria-label='Github'
-      className='h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+      className={iconButtonClasses}
       rel='me'
       type='button'
     >
@@ -32,7 +37,7 @@ export const Social = () => (
     <Link
       href='https://instagram.com/raisedadead'
       aria-label='Instagram'
-      className='h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+      className={iconButtonClasses}
       rel='me'
       type='button'
     >
@@ -48,7 +53,7 @@ export const Social = () => (
     <Link
       href='https://linkedin.com/in/mrugeshm'
       aria-label='LinkedIn'
-      className='h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+      className={iconButtonClasses}
       rel='me'
       type='button'
     >
@@ -64,7 +69,7 @@ export const Social = () => (
     <Link
       href='https://peerlist.io/mrugesh/signup'
       aria-label='Peerlist'
-      className='h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none'
+      className={iconButtonClasses}
       rel='me'
       type='button'
     >

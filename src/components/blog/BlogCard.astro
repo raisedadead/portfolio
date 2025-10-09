@@ -16,10 +16,10 @@ const { data } = post;
 const hasCoverImage = data.coverImage?.url;
 
 // Get bento grid span classes
-const { desktop, aspect, height } = getBentoGridSpan(index);
+const { desktop, aspectClass, aspectRatio, height } = getBentoGridSpan(index);
 
 // Calculate responsive dimensions
-const dimensions = calculateImageDimensions(aspect, index);
+const dimensions = calculateImageDimensions(aspectRatio, index);
 ---
 
 <article
@@ -28,7 +28,7 @@ const dimensions = calculateImageDimensions(aspect, index);
   <a href={`/blog/${post.id}`} class='block'>
     {
       hasCoverImage ? (
-        <div class={`relative w-full overflow-hidden ${aspect} ${height}`}>
+        <div class={`relative w-full overflow-hidden ${aspectClass} ${height}`}>
           <div class='absolute inset-0 animate-pulse bg-gray-200 dark:bg-gray-700' />
 
           <Image
@@ -43,7 +43,7 @@ const dimensions = calculateImageDimensions(aspect, index);
         </div>
       ) : (
         <div
-          class={`flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 ${aspect} ${height}`}
+          class={`flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 ${aspectClass} ${height}`}
         >
           <span class='text-6xl'>📝</span>
         </div>

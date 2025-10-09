@@ -1,6 +1,27 @@
 import type { APIContext } from 'astro';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { GET, POST } from '../../pages/api/ping';
+
+// Type guard for ping response
+interface PingResponse {
+  message: string;
+  timestamp: string;
+  url: string;
+  status: string;
+  method?: string;
+  body?: unknown;
+}
+
+function isPingResponse(data: unknown): data is PingResponse {
+  return (
+    typeof data === 'object' &&
+    data !== null &&
+    'message' in data &&
+    'timestamp' in data &&
+    'url' in data &&
+    'status' in data
+  );
+}
 
 describe('/api/ping - GET Handler', () => {
   let mockRequest: Request;
@@ -30,6 +51,7 @@ describe('/api/ping - GET Handler', () => {
     it('returns correct JSON structure', async () => {
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data).toEqual({
         message: 'pong',
@@ -42,6 +64,7 @@ describe('/api/ping - GET Handler', () => {
     it('includes message field with "pong" value', async () => {
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data.message).toBe('pong');
     });
@@ -49,6 +72,7 @@ describe('/api/ping - GET Handler', () => {
     it('includes status field with "ok" value', async () => {
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data.status).toBe('ok');
     });
@@ -56,6 +80,7 @@ describe('/api/ping - GET Handler', () => {
     it('includes timestamp in ISO 8601 format', async () => {
       const response = await GET({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data.timestamp).toBe('2025-01-15T12:00:00.000Z');
       expect(data.timestamp).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/);
@@ -68,6 +93,7 @@ describe('/api/ping - GET Handler', () => {
 
       const response = await GET({ request: customRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data.url).toBe('https://portfolio.example.com/api/ping?test=1');
     });
@@ -126,6 +152,7 @@ describe('/api/ping - POST Handler', () => {
 
       const response = await POST({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data.body).toEqual(requestBody);
     });
@@ -139,6 +166,7 @@ describe('/api/ping - POST Handler', () => {
 
       const response = await POST({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data.method).toBe('POST');
     });
@@ -152,6 +180,7 @@ describe('/api/ping - POST Handler', () => {
 
       const response = await POST({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(response.status).toBe(200);
       expect(data.body).toEqual({});
@@ -165,6 +194,7 @@ describe('/api/ping - POST Handler', () => {
 
       const response = await POST({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(response.status).toBe(200);
       expect(data.body).toEqual({});
@@ -183,6 +213,7 @@ describe('/api/ping - POST Handler', () => {
 
       const response = await POST({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data).toEqual({
         message: 'pong',
@@ -203,6 +234,7 @@ describe('/api/ping - POST Handler', () => {
 
       const response = await POST({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data.timestamp).toBe('2025-01-15T12:00:00.000Z');
       expect(data.timestamp).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/);
@@ -253,6 +285,7 @@ describe('/api/ping - POST Handler', () => {
 
       const response = await POST({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data.body).toEqual(complexBody);
     });
@@ -268,6 +301,7 @@ describe('/api/ping - POST Handler', () => {
 
       const response = await POST({ request: mockRequest } as APIContext);
       const data = await response.json();
+      if (!isPingResponse(data)) throw new Error('Invalid response type');
 
       expect(data.body).toEqual(largeBody);
     });

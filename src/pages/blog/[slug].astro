@@ -36,7 +36,7 @@ const codeBlocks: Array<{ language: string; code: string; fullMatch: string; ind
 
 // Pattern 1: Code blocks with language class (e.g., class="lang-bash")
 const codeBlockWithLangPattern = /<pre><code class="lang-(\w+)">([\s\S]*?)<\/code><\/pre>/g;
-let match;
+let match: RegExpExecArray | null = null;
 
 while ((match = codeBlockWithLangPattern.exec(contentHtml)) !== null) {
   const decodedCode = match[2]
@@ -58,7 +58,7 @@ while ((match = codeBlockWithLangPattern.exec(contentHtml)) !== null) {
 const codeBlockPlainPattern = /<pre><code>([\s\S]*?)<\/code><\/pre>/g;
 while ((match = codeBlockPlainPattern.exec(contentHtml)) !== null) {
   // Skip if this block was already captured by the language pattern
-  if (codeBlocks.some((block) => match[0] === block.fullMatch)) {
+  if (codeBlocks.some((block) => match && match[0] === block.fullMatch)) {
     continue;
   }
 
@@ -122,7 +122,7 @@ if (lastIndex < contentHtml.length) {
 <MainLayout pageTitle={pageTitle} pageDescription={pageDescription} pageImage={pageImage} variant='prose'>
   <article
     class={cn(
-      'mx-auto max-w-4xl overflow-hidden',
+      'overflow-hidden',
       'bg-white dark:bg-gray-800',
       'no-underline',
       'shadow-[6px_8px_0px_var(--color-black)]',

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { MockExpandableSectionLabel, MockExpandableSectionProps } from '../__tests__/test-utils';
+import type { MockExpandableSectionLabel, MockExpandableSectionProps } from '../test-utils';
 
 // Mock components
 vi.mock('@/components/email', () => ({

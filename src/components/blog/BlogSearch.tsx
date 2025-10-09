@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
+import { Input } from '@/components/ui/input';
 import type { BlogPost } from '@/types/blog';
 
 interface Props {
@@ -93,7 +94,7 @@ export default function BlogSearch({ posts }: Props) {
         <label htmlFor='blog-search-input' className='sr-only'>
           Search blog posts
         </label>
-        <input
+        <Input
           ref={inputRef}
           id='blog-search-input'
           type='search'
@@ -105,7 +106,7 @@ export default function BlogSearch({ posts }: Props) {
           aria-label='Search blog posts by title, content, or tags'
           aria-autocomplete='list'
           aria-controls='search-results'
-          className='w-full border-4 border-black bg-white px-4 py-3 pl-12 text-gray-900 placeholder-gray-500 shadow-[6px_6px_0px_var(--color-black)] transition-all duration-100 hover:shadow-[8px_8px_0px_var(--color-black)] focus:shadow-[8px_8px_0px_var(--color-black)] focus:outline-none dark:border-orange-200 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400'
+          className='w-full border-4 px-4 py-3 pl-12 text-gray-900 placeholder-gray-500 shadow-[6px_6px_0px_var(--color-black)] transition-all duration-100 hover:shadow-[8px_8px_0px_var(--color-black)] focus:shadow-[8px_8px_0px_var(--color-black)] dark:border-orange-200 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400'
         />
         <svg
           className='absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-600 dark:text-gray-300'

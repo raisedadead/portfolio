@@ -49,6 +49,23 @@
   --animate-fade-in-out: fade-in-out 2s ease-in-out;
   --animate-slide-in-fade: slide-in-fade 2.5s ease-in-out;
 
+  /* Container width tokens for semantic sizing */
+  --width-container-sm: 48rem; /* 768px - narrow content (uses page) */
+  --width-container-md: 56rem; /* 896px - standard content (index, about, blog posts) */
+  --width-container-lg: 80rem; /* 1280px - wide layouts (blog index) */
+
+  /* Brutalist shadow tokens - hard edges, black shadows */
+  --shadow-brutal-sm: 2px 2px 0px rgba(0, 0, 0, 1);
+  --shadow-brutal-md: 4px 4px 0px rgba(0, 0, 0, 1);
+  --shadow-brutal-lg: 6px 6px 0px rgba(0, 0, 0, 1);
+  --shadow-brutal-xl: 8px 8px 0px rgba(0, 0, 0, 1);
+
+  /* Brand color semantic aliases */
+  --color-brand-primary: var(--color-orange-200);
+  --color-brand-hover: var(--color-orange-100);
+  --color-brand-light: var(--color-orange-50);
+  --color-brand-dark: var(--color-orange-900);
+
   @keyframes accordion-down {
     from {
       height: 0;

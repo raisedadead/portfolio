@@ -4,7 +4,7 @@ import type { BlogPost } from '@/types/blog';
  * Creates a mock blog post for testing
  */
 export function createMockPost(overrides: Partial<BlogPost> = {}): BlogPost {
-  const id = overrides.id || `post-${Math.random().toString(36).substr(2, 9)}`;
+  const id = overrides.id || `post-${Math.random().toString(36).substring(2, 11)}`;
 
   return {
     id,

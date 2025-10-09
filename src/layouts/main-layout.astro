@@ -3,6 +3,7 @@ import { WaveBackground } from '@/components/background';
 import { Footer } from '@/components/footer';
 import { Nav } from '@/components/nav';
 import { ScrollButton } from '@/components/scroll-button';
+import Container from '@/components/ui/container';
 import { cn } from '@/lib/utils';
 import BaseLayout from './base-layout.astro';
 
@@ -18,6 +19,9 @@ export interface Props {
 }
 
 const { showHomeButton = true, variant = 'main', ...baseProps } = Astro.props;
+
+// Map variant to container size for consistent widths
+const containerSize = variant === 'legal' ? 'full' : 'full';
 ---
 
 <BaseLayout {...baseProps} showHomeButton={showHomeButton}>
@@ -25,9 +29,10 @@ const { showHomeButton = true, variant = 'main', ...baseProps } = Astro.props;
     <div class='fixed inset-0 -z-10'>
       <WaveBackground client:idle />
     </div>
-    <main class='mx-auto my-2 w-[90%] py-8 lg:w-[75%] xl:w-[80%]'>
-      <Nav className='z-20 m-2 max-h-none pt-2' showHomeButton={showHomeButton} client:load />
-      <div class='p-5'>
+    <Container size={containerSize} className='my-2 py-8' client:load>
+      <main>
+        <Nav className='z-20 m-2 max-h-none pt-2' showHomeButton={showHomeButton} client:load />
+        <div class='p-5'>
         {
           variant === 'legal' ? (
             <div
@@ -60,8 +65,9 @@ const { showHomeButton = true, variant = 'main', ...baseProps } = Astro.props;
           )
         }
       </div>
-      <Footer isDefault={true} className='p-2' />
-      <ScrollButton className='fixed right-4 bottom-4 z-20' client:visible />
-    </main>
+        <Footer isDefault={true} className='p-2' />
+        <ScrollButton className='fixed right-4 bottom-4 z-20' client:visible />
+      </main>
+    </Container>
   </div>
 </BaseLayout>
