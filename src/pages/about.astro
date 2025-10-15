@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils';
     <p class={cn('pb-6 text-center text-lg font-medium text-slate-700')}>Legal information you should be aware of.</p>
     <ul class={cn('list-none space-y-6')}>
       <li>
-        <ES title='About' labels={[{ name: 'legal', color: 'blue' }]} defaultOpen={true} client:load>
+        <ES title='About' labels={[{ name: 'legal', color: 'blue' }]} defaultOpen={true} client:visible>
           <p class={cn('mb-4 text-lg')}>
             Mrugesh Mohapatra is a software & cloud infrastructure consultant, operating as a sole proprietor of{' '}
             <strong class='font-semibold'> Mrugesh Mohapatra Co. </strong>{' '}
@@ -35,7 +35,7 @@ import { cn } from '@/lib/utils';
             { name: 'business', color: 'green' }
           ]}
           defaultOpen={true}
-          client:load
+          client:visible
         >
           <h4 class={cn('mb-4 text-center text-lg font-bold')}>Udyam Registration Number: UDYAM-OD-19-0026052</h4>
           <p class={cn('mb-4 text-lg')}>
@@ -52,7 +52,7 @@ import { cn } from '@/lib/utils';
         </ES>
       </li>
       <li>
-        <ES title='Contact' labels={[{ name: 'contact', color: 'orange' }]} defaultOpen={true} client:load>
+        <ES title='Contact' labels={[{ name: 'contact', color: 'orange' }]} defaultOpen={true} client:visible>
           <p class={cn('mb-4 text-center text-lg font-bold')}>
             Email: <Email />
           </p>

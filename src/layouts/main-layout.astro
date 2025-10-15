@@ -29,42 +29,42 @@ const containerSize = variant === 'legal' ? 'full' : 'full';
     <div class='fixed inset-0 -z-10'>
       <WaveBackground client:idle />
     </div>
-    <Container size={containerSize} className='my-2 py-8' client:load>
+    <Container size={containerSize} className='my-2 py-8'>
       <main>
-        <Nav className='z-20 m-2 max-h-none pt-2' showHomeButton={showHomeButton} client:load />
+        <Nav className='z-20 m-2 max-h-none pt-2' showHomeButton={showHomeButton} client:idle />
         <div class='p-5'>
-        {
-          variant === 'legal' ? (
-            <div
-              class={cn(
-                'prose prose-sm max-w-none p-8',
-                'bg-white dark:bg-gray-900',
+          {
+            variant === 'legal' ? (
+              <div
+                class={cn(
+                  'prose prose-sm max-w-none p-8',
+                  'bg-white dark:bg-gray-900',
 
-                'prose-p:text-gray-700 dark:prose-p:text-gray-300',
-                'prose-p:my-2 prose-p:leading-relaxed',
-                'prose-strong:text-gray-900 dark:prose-strong:text-gray-100',
+                  'prose-p:text-gray-700 dark:prose-p:text-gray-300',
+                  'prose-p:my-2 prose-p:leading-relaxed',
+                  'prose-strong:text-gray-900 dark:prose-strong:text-gray-100',
 
-                'prose-headings:font-semibold',
-                'prose-headings:text-gray-900 dark:prose-headings:text-gray-100',
+                  'prose-headings:font-semibold',
+                  'prose-headings:text-gray-900 dark:prose-headings:text-gray-100',
 
-                'prose-ul:list-none',
-                'prose-li:text-gray-800 dark:prose-li:text-gray-200',
+                  'prose-ul:list-none',
+                  'prose-li:text-gray-800 dark:prose-li:text-gray-200',
 
-                'prose-a:text-blue-600 dark:prose-a:text-blue-400',
-                'prose-a:no-underline prose-a:hover:underline'
-              )}
-            >
+                  'prose-a:text-blue-600 dark:prose-a:text-blue-400',
+                  'prose-a:no-underline prose-a:hover:underline'
+                )}
+              >
+                <slot />
+              </div>
+            ) : variant === 'main' ? (
+              <div class='mx-auto'>
+                <slot />
+              </div>
+            ) : (
               <slot />
-            </div>
-          ) : variant === 'main' ? (
-            <div class='mx-auto'>
-              <slot />
-            </div>
-          ) : (
-            <slot />
-          )
-        }
-      </div>
+            )
+          }
+        </div>
         <Footer isDefault={true} className='p-2' />
         <ScrollButton className='fixed right-4 bottom-4 z-20' client:visible />
       </main>

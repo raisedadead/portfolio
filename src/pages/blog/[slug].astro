@@ -202,7 +202,7 @@ if (lastIndex < contentHtml.length) {
               <Fragment set:html={section.content} />
             ) : (
               <div class='my-4'>
-                <CodeBlock code={section.rawCode!} html={section.content} client:load />
+                <CodeBlock code={section.rawCode!} html={section.content} client:visible />
               </div>
             )
           )

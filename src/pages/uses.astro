@@ -26,7 +26,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={true}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             I daily drive the{' '}
@@ -74,7 +74,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={true}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             The{' '}
@@ -181,7 +181,7 @@ import { cn } from '@/lib/utils';
           title='Dell XPS 15 9500 (2020)'
           labels={[{ name: 'homelab', color: 'purple' }]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('text-lg')}>
             My secondary{' '}
@@ -215,7 +215,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             I switched to this fully customizable 75% layout{' '}
@@ -263,7 +263,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             I run dual 27"{' '}
@@ -321,7 +321,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             For audio, I switch between{' '}
@@ -399,7 +399,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             My desk setup is pretty simple - I use a generic 160cm office desk that gives me plenty of space for the
@@ -458,7 +458,7 @@ import { cn } from '@/lib/utils';
           title='Mobile & Wearable Devices'
           labels={[{ name: 'personal', color: 'yellow' }]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             My daily driver is the{' '}
@@ -511,7 +511,7 @@ import { cn } from '@/lib/utils';
         </ES>
       </li>
       <li>
-        <ES title='Security & Power' labels={[{ name: 'travel', color: 'blue' }]} defaultOpen={false} client:load>
+        <ES title='Security & Power' labels={[{ name: 'travel', color: 'blue' }]} defaultOpen={false} client:visible>
           <p class={cn('mb-4 text-lg')}>
             Security is important to me, so I use{' '}
             <Link
@@ -573,7 +573,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={true}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             My primary editor these days is{' '}
@@ -649,7 +649,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             I use{' '}
@@ -735,7 +735,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             For package management, I'm all about speed, so{' '}
@@ -861,7 +861,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <ul class={cn('list-disc space-y-3 pl-5 text-lg')}>
             <li>
@@ -941,7 +941,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             I use{' '}
@@ -1010,7 +1010,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             <Link
@@ -1083,7 +1083,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('mb-4 text-lg')}>
             I use{' '}
@@ -1130,7 +1130,7 @@ import { cn } from '@/lib/utils';
             { name: 'personal', color: 'yellow' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <p class={cn('text-lg')}>
             For VPN services, I use{' '}
@@ -1158,7 +1158,12 @@ import { cn } from '@/lib/utils';
         </ES>
       </li>
       <li>
-        <ES title='Entertainment & Media' labels={[{ name: 'gaming', color: 'red' }]} defaultOpen={false} client:load>
+        <ES
+          title='Entertainment & Media'
+          labels={[{ name: 'gaming', color: 'red' }]}
+          defaultOpen={false}
+          client:visible
+        >
           <p class={cn('mb-4 text-lg')}>
             I bounce between{' '}
             <Link
@@ -1271,7 +1276,7 @@ import { cn } from '@/lib/utils';
             { name: 'homelab', color: 'purple' }
           ]}
           defaultOpen={false}
-          client:load
+          client:visible
         >
           <ul class={cn('list-disc space-y-2 pl-5 text-lg')}>
             <li>
@@ -1345,7 +1350,7 @@ import { cn } from '@/lib/utils';
     <h2 class={cn('mb-6 mt-12 text-center text-2xl font-bold text-slate-700')}>Philosophy & Principles</h2>
     <ul class={cn('list-none space-y-6')}>
       <li>
-        <ES title='Setup Philosophy' defaultOpen={true} client:load>
+        <ES title='Setup Philosophy' defaultOpen={true} client:visible>
           <p class={cn('mb-4 text-lg')}>
             I'm obsessed with customization - I want my tools to work exactly how I think they should. That's why I
             gravitate toward things like the Keychron Q1 with QMK/VIA support and Neovim. If I can't customize it to fit
