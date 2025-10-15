@@ -8,13 +8,16 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://mrugesh.dev',
+
   prefetch: true,
+
   adapter: cloudflare({
     imageService: 'compile',
     platformProxy: {
       enabled: true
     }
   }),
+
   integrations: [
     react(),
     sitemap({
