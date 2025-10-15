@@ -112,7 +112,7 @@ importers:
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4)
       dotenv-cli:
-        specifier: ^10.0.0
+        specifier: 10.0.0
         version: 10.0.0
       eslint:
         specifier: 9.37.0
@@ -166,7 +166,7 @@ importers:
         specifier: 4.1.14
         version: 4.1.14
       turbo:
-        specifier: ^2.5.8
+        specifier: 2.5.8
         version: 2.5.8
       typescript:
         specifier: 5.9.3
