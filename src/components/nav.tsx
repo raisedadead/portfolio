@@ -27,7 +27,7 @@ export const Nav: React.FC<NavProps> = ({ className, showHomeButton = true }) =>
   }, [isMenuOpen]);
 
   return (
-    <nav className={`${className}`}>
+    <nav className={`relative ${className}`}>
       <Menu as='div' className='absolute top-4 right-4 text-left'>
         {({ open }) => (
           <>

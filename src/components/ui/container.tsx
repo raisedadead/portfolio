@@ -54,7 +54,7 @@ const sizeClasses: Record<ContainerSize, string> = {
   sm: 'max-w-3xl', // 768px - narrow content (uses page)
   md: 'max-w-4xl', // 896px - standard content (index, about, blog posts)
   lg: 'max-w-7xl', // 1280px - wide layouts (blog index)
-  full: 'w-[90%] lg:w-[75%] xl:w-[80%]' // Responsive percentage-based
+  full: 'w-full lg:w-[75%] xl:w-[80%]' // Responsive percentage-based
 };
 
 export default function Container({ size = 'md', children, className = '' }: ContainerProps) {
