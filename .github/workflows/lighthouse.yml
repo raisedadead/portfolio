@@ -1,34 +1,47 @@
 name: Lighthouse CI/CD
 
 on:
+  issue_comment:
+    types: [created]
   pull_request:
     branches: [main]
   push:
     branches: [main]
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   pr-audit:
-    name: PR Build Audit
-    if: github.event_name == 'pull_request'
+    name: PR Lighthouse Audit
+    if: |
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       contains(github.event.comment.body, '/run-lighthouse'))
     runs-on: ubuntu-latest
+    concurrency:
+      group: lighthouse-pr-${{ github.event.issue.number }}
+      cancel-in-progress: true
     permissions:
       contents: read
       pull-requests: write
 
     steps:
-      - name: Checkout code
+      - name: Checkout PR code
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        with:
+          repository: ${{ github.repository }}
+          ref: refs/pull/${{ github.event.issue.number }}/head
 
       - name: Find existing comment
-        id: find-comment-early
+        id: find-comment
         uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4
         with:
-          issue-number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ github.event.issue.number }}
           comment-author: 'github-actions[bot]'
           body-includes: '<!-- lighthouse-audit-comment -->'
 
@@ -37,8 +50,8 @@ jobs:
         continue-on-error: true
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
         with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ steps.find-comment-early.outputs.comment-id }}
+          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
           body: |
             **Lighthouse Audit Results**
@@ -113,7 +126,7 @@ jobs:
       - name: Update PR comment with results
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
         with:
-          issue-number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ github.event.issue.number }}
           comment-id: ${{ steps.post-comment.outputs.comment-id }}
           body-path: comment.md
           edit-mode: replace
@@ -122,8 +135,8 @@ jobs:
         if: failure()
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
         with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ steps.post-comment.outputs.comment-id || steps.find-comment-early.outputs.comment-id }}
+          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ steps.post-comment.outputs.comment-id || steps.find-comment.outputs.comment-id }}
           edit-mode: replace
           body: |
             **Lighthouse Audit Results**
@@ -132,13 +145,16 @@ jobs:
 
             <!-- lighthouse-audit-comment -->
 
-  production-audit:
-    name: Production Audit
+  main-audit:
+    name: Main Branch Production Audit
     if: |
-      github.event_name == 'push' &&
-      github.ref == 'refs/heads/main' &&
-      github.event.head_commit.author.name != 'renovate[bot]'
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      github.event_name == 'schedule' ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
+    concurrency:
+      group: lighthouse-main-${{ github.run_id }}
+      cancel-in-progress: false
     permissions:
       contents: read
 
@@ -229,4 +245,4 @@ jobs:
         with:
           name: lighthouse-baseline
           path: baseline-manifest.json
-          retention-days: 1
+          retention-days: 7
