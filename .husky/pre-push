@@ -1,2 +1,2 @@
-pnpm lint
-pnpm test
+pnpm turbo lint
+pnpm turbo test
