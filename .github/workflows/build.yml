@@ -15,11 +15,13 @@ jobs:
     name: Lint
     if: github.event_name == 'pull_request' || github.event_name == 'push'
     uses: raisedadead/portfolio/.github/workflows/lint.yml@main
+    secrets: inherit
 
   test:
     name: Test
     if: github.event_name == 'pull_request' || github.event_name == 'push'
     uses: raisedadead/portfolio/.github/workflows/test.yml@main
+    secrets: inherit
 
   build:
     name: Build
