@@ -1,0 +1,37 @@
+name: Build Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '0 0 * * *' # Daily production monitoring
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    uses: ./.github/workflows/re-lint.yml
+    secrets: inherit
+
+  test:
+    name: Test
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    uses: ./.github/workflows/re-test.yml
+    secrets: inherit
+
+  build:
+    name: Build
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    needs: [lint, test]
+    uses: ./.github/workflows/re-build.yml
+    with:
+      node-version: '22.x'
+      upload-artifacts: true
+      artifact-name: build-output
+      artifact-retention-days: 1
+      turbo-cache-prefix: build
+    secrets: inherit
