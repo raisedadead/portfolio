@@ -7,7 +7,7 @@ describe('Container', () => {
     render(
       <Container>
         <p>Test content</p>
-      </Container>,
+      </Container>
     );
 
     expect(screen.getByText('Test content')).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe('Container', () => {
     const { container } = render(
       <Container>
         <p>Content</p>
-      </Container>,
+      </Container>
     );
 
     const div = container.firstChild as HTMLElement;
@@ -27,9 +27,9 @@ describe('Container', () => {
 
   it('applies "sm" size classes correctly', () => {
     const { container } = render(
-      <Container size="sm">
+      <Container size='sm'>
         <p>Content</p>
-      </Container>,
+      </Container>
     );
 
     const div = container.firstChild as HTMLElement;
@@ -39,9 +39,9 @@ describe('Container', () => {
 
   it('applies "md" size classes correctly', () => {
     const { container } = render(
-      <Container size="md">
+      <Container size='md'>
         <p>Content</p>
-      </Container>,
+      </Container>
     );
 
     const div = container.firstChild as HTMLElement;
@@ -51,9 +51,9 @@ describe('Container', () => {
 
   it('applies "lg" size classes correctly', () => {
     const { container } = render(
-      <Container size="lg">
+      <Container size='lg'>
         <p>Content</p>
-      </Container>,
+      </Container>
     );
 
     const div = container.firstChild as HTMLElement;
@@ -63,13 +63,13 @@ describe('Container', () => {
 
   it('applies "full" size classes correctly', () => {
     const { container } = render(
-      <Container size="full">
+      <Container size='full'>
         <p>Content</p>
-      </Container>,
+      </Container>
     );
 
     const div = container.firstChild as HTMLElement;
-    expect(div.className).toContain('w-[90%]');
+    expect(div.className).toContain('w-full');
     expect(div.className).toContain('lg:w-[75%]');
     expect(div.className).toContain('xl:w-[80%]');
     expect(div.className).toContain('mx-auto');
@@ -77,9 +77,9 @@ describe('Container', () => {
 
   it('merges custom className with base styles', () => {
     const { container } = render(
-      <Container size="md" className="custom-class p-4">
+      <Container size='md' className='custom-class p-4'>
         <p>Content</p>
-      </Container>,
+      </Container>
     );
 
     const div = container.firstChild as HTMLElement;
@@ -91,9 +91,9 @@ describe('Container', () => {
 
   it('handles empty className prop', () => {
     const { container } = render(
-      <Container size="md" className="">
+      <Container size='md' className=''>
         <p>Content</p>
-      </Container>,
+      </Container>
     );
 
     const div = container.firstChild as HTMLElement;
