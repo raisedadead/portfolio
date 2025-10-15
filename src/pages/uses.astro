@@ -567,29 +567,129 @@ import { cn } from '@/lib/utils';
     <ul class={cn('list-none space-y-6')}>
       <li>
         <ES
+          title='Operating Systems'
+          labels={[
+            { name: 'work', color: 'orange' },
+            { name: 'personal', color: 'yellow' },
+            { name: 'homelab', color: 'purple' }
+          ]}
+          defaultOpen={false}
+          client:visible
+        >
+          <ul class={cn('list-disc space-y-2 pl-5 text-lg')}>
+            <li>
+              <strong>
+                <Link
+                  className={cn(
+                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+                  )}
+                  href='https://www.apple.com/macos/'
+                >
+                  macOS
+                </Link>
+                :
+              </strong>{' '}
+              Primary OS on MacBook Pro for development and daily use
+            </li>
+            <li>
+              <strong>
+                <Link
+                  className={cn(
+                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+                  )}
+                  href='https://www.linux.org/'
+                >
+                  Linux
+                </Link>{' '}
+                (
+                <Link
+                  className={cn(
+                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+                  )}
+                  href='https://www.debian.org/'
+                >
+                  Debian
+                </Link>
+                /
+                <Link
+                  className={cn(
+                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+                  )}
+                  href='https://ubuntu.com/'
+                >
+                  Ubuntu
+                </Link>
+                ):
+              </strong>{' '}
+              For servers, containers, and development environments
+            </li>
+            <li>
+              <strong>
+                <Link
+                  className={cn(
+                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+                  )}
+                  href='https://www.raspberrypi.org/software/'
+                >
+                  Raspberry Pi OS
+                </Link>
+                :
+              </strong>{' '}
+              On the DeskPi Super6C cluster for homelab experiments
+            </li>
+            <li>
+              <strong>Proxmox VE:</strong> On Dell XPS 15 for virtualization and testing
+            </li>
+          </ul>
+        </ES>
+      </li>
+      <li>
+        <ES
+          title='Security & Privacy'
+          labels={[
+            { name: 'work', color: 'orange' },
+            { name: 'personal', color: 'yellow' }
+          ]}
+          defaultOpen={false}
+          client:visible
+        >
+          <p class={cn('text-lg')}>
+            For VPN services, I use{' '}
+            <Link
+              className={cn(
+                'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+              )}
+              href='https://mullvad.net'
+            >
+              Mullvad
+            </Link>{' '}
+            when I need privacy-focused browsing - their no-logging policy and privacy focus is exactly what I want. For
+            secure remote access to my homelab,{' '}
+            <Link
+              className={cn(
+                'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+              )}
+              href='https://tailscale.com'
+            >
+              Tailscale
+            </Link>{' '}
+            is incredible - it creates a secure mesh network that lets me access my home services from anywhere without exposing
+            them to the internet.
+          </p>
+        </ES>
+      </li>
+      <li>
+        <ES
           title='Development Environment'
           labels={[
             { name: 'work', color: 'orange' },
             { name: 'personal', color: 'yellow' }
           ]}
-          defaultOpen={true}
+          defaultOpen={false}
           client:visible
         >
           <p class={cn('mb-4 text-lg')}>
-            My primary editor these days is{' '}
-            <Link
-              className={cn(
-                'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
-              )}
-              href='https://cursor.sh'
-            >
-              Cursor
-            </Link>{' '}
-            - it's basically VS Code but with incredible AI features built in. The autocomplete and chat functionality have
-            seriously improved my coding workflow.
-          </p>
-          <p class={cn('mb-4 text-lg')}>
-            I still use{' '}
+            My primary editor is{' '}
             <Link
               className={cn(
                 'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
@@ -598,7 +698,19 @@ import { cn } from '@/lib/utils';
             >
               VS Code
             </Link>{' '}
-            for team projects where consistency matters, and I keep{' '}
+            for its extensibility and robust features. I also use{' '}
+            <Link
+              className={cn(
+                'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+              )}
+              href='https://claude.com/claude-code'
+            >
+              Claude Code CLI
+            </Link>{' '}
+            which has significantly enhanced my productivity with AI-powered coding assistance directly in the terminal.
+          </p>
+          <p class={cn('mb-4 text-lg')}>
+            I keep{' '}
             <Link
               className={cn(
                 'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
@@ -633,9 +745,18 @@ import { cn } from '@/lib/utils';
               className={cn(
                 'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
               )}
+              href='https://www.monolisa.dev'
+            >
+              MonoLisa
+            </Link>{' '}
+            and{' '}
+            <Link
+              className={cn(
+                'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
+              )}
               href='https://www.nerdfonts.com/'
             >
-              Menlo Mono with Nerd Fonts
+              Nerd Fonts
             </Link>
             , everything looks clean and cohesive.
           </p>
@@ -657,9 +778,9 @@ import { cn } from '@/lib/utils';
               className={cn(
                 'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
               )}
-              href='https://wezfurlong.org/wezterm/'
+              href='https://ghostty.org/'
             >
-              WezTerm
+              Ghostty
             </Link>{' '}
             as my terminal - it's GPU-accelerated and handles the Catppuccin theme beautifully. The performance and customization
             options are fantastic compared to the default macOS terminal.
@@ -949,13 +1070,13 @@ import { cn } from '@/lib/utils';
               className={cn(
                 'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
               )}
-              href='https://arc.net'
+              href='https://helium.computer'
             >
-              Arc Browser
+              Helium
             </Link>{' '}
-            as my main browser because I love the workspace management and vertical tabs. It completely changed how I organize
-            my browsing - being able to group tabs by project and have them automatically archive is a game changer for staying
-            organized.
+            as my main browser. It's a privacy-focused Chromium-based browser that blocks ads, trackers, and phishing by
+            default. The split view feature and native support for all Chromium extensions make it perfect for my workflow,
+            and I appreciate that it doesn't track or analyze my browsing.
           </p>
           <p class={cn('mb-4 text-lg')}>
             My essential extensions include{' '}
@@ -1031,9 +1152,9 @@ import { cn } from '@/lib/utils';
               className={cn(
                 'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
               )}
-              href='https://www.macbartender.com/'
+              href='https://apps.apple.com/in/app/hidden-bar/id1452453066'
             >
-              Bartender 5
+              Hidden Bar
             </Link>{' '}
             keeps everything clean and organized. I can hide the less important items and only show what I actually need
             to see.
@@ -1119,41 +1240,6 @@ import { cn } from '@/lib/utils';
             </Link>{' '}
             is my secret weapon for file synchronization. I can automate encrypted file transfers between different cloud
             providers, which gives me flexibility and redundancy that I can't get with just one service.
-          </p>
-        </ES>
-      </li>
-      <li>
-        <ES
-          title='Security & Privacy'
-          labels={[
-            { name: 'work', color: 'orange' },
-            { name: 'personal', color: 'yellow' }
-          ]}
-          defaultOpen={false}
-          client:visible
-        >
-          <p class={cn('text-lg')}>
-            For VPN services, I use{' '}
-            <Link
-              className={cn(
-                'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
-              )}
-              href='https://mullvad.net'
-            >
-              Mullvad
-            </Link>{' '}
-            when I need privacy-focused browsing - their no-logging policy and privacy focus is exactly what I want. For
-            secure remote access to my homelab,{' '}
-            <Link
-              className={cn(
-                'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
-              )}
-              href='https://tailscale.com'
-            >
-              Tailscale
-            </Link>{' '}
-            is incredible - it creates a secure mesh network that lets me access my home services from anywhere without exposing
-            them to the internet.
           </p>
         </ES>
       </li>
@@ -1265,84 +1351,6 @@ import { cn } from '@/lib/utils';
             </Link>{' '}
             - I'm drawn to games with strong storytelling and immersive worlds.
           </p>
-        </ES>
-      </li>
-      <li>
-        <ES
-          title='Operating Systems'
-          labels={[
-            { name: 'work', color: 'orange' },
-            { name: 'personal', color: 'yellow' },
-            { name: 'homelab', color: 'purple' }
-          ]}
-          defaultOpen={false}
-          client:visible
-        >
-          <ul class={cn('list-disc space-y-2 pl-5 text-lg')}>
-            <li>
-              <strong>
-                <Link
-                  className={cn(
-                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
-                  )}
-                  href='https://www.apple.com/macos/'
-                >
-                  macOS
-                </Link>
-                :
-              </strong>{' '}
-              Primary OS on MacBook Pro for development and daily use
-            </li>
-            <li>
-              <strong>
-                <Link
-                  className={cn(
-                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
-                  )}
-                  href='https://www.linux.org/'
-                >
-                  Linux
-                </Link>{' '}
-                (
-                <Link
-                  className={cn(
-                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
-                  )}
-                  href='https://www.debian.org/'
-                >
-                  Debian
-                </Link>
-                /
-                <Link
-                  className={cn(
-                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
-                  )}
-                  href='https://ubuntu.com/'
-                >
-                  Ubuntu
-                </Link>
-                ):
-              </strong>{' '}
-              For servers, containers, and development environments
-            </li>
-            <li>
-              <strong>
-                <Link
-                  className={cn(
-                    'text-blue-600 underline decoration-blue-600 decoration-wavy underline-offset-4 transition-colors hover:text-black hover:decoration-black'
-                  )}
-                  href='https://www.raspberrypi.org/software/'
-                >
-                  Raspberry Pi OS
-                </Link>
-                :
-              </strong>{' '}
-              On the DeskPi Super6C cluster for homelab experiments
-            </li>
-            <li>
-              <strong>Proxmox VE:</strong> On Dell XPS 15 for virtualization and testing
-            </li>
-          </ul>
         </ES>
       </li>
     </ul>
