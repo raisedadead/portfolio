@@ -1,0 +1,65 @@
+name: Build
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        description: 'Node.js version to use'
+        required: false
+        type: string
+        default: '22.x'
+      upload-artifacts:
+        description: 'Whether to upload build artifacts'
+        required: false
+        type: boolean
+        default: false
+      artifact-name:
+        description: 'Name for the build artifact'
+        required: false
+        type: string
+        default: 'build-output'
+      artifact-retention-days:
+        description: 'Days to retain the artifact'
+        required: false
+        type: number
+        default: 1
+      turbo-cache-prefix:
+        description: 'Prefix for Turbo cache key'
+        required: false
+        type: string
+        default: 'build'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+        with:
+          node-version: ${{ inputs.node-version }}
+          turbo-cache-prefix: ${{ inputs.turbo-cache-prefix }}
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build with Turbo
+        run: pnpm exec turbo build
+        env:
+          CI: true
+          TURBO_API: ${{ secrets.TURBO_API }}
+          TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+          TURBO_REMOTE_CACHE_SIGNATURE_KEY: ${{ secrets.TURBO_REMOTE_CACHE_SIGNATURE_KEY }}
+
+      - name: Upload build artifacts
+        if: ${{ inputs.upload-artifacts }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: dist/
+          retention-days: ${{ inputs.artifact-retention-days }}
