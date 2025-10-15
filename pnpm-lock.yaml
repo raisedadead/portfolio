@@ -145,8 +145,8 @@ importers:
         specifier: 27.0.0
         version: 27.0.0(postcss@8.5.6)
       lighthouse:
-        specifier: 12.8.2
-        version: 12.8.2
+        specifier: 13.0.0
+        version: 13.0.0
       lint-staged:
         specifier: 16.2.4
         version: 16.2.4
@@ -1392,8 +1392,8 @@ packages:
   '@paulirish/trace_engine@0.0.53':
     resolution: {integrity: sha512-PUl/vlfo08Oj804VI5nDPeSk9vyslnBlVzDDwFt8SUVxY8+KdGMkra/vrXjEEHe8gb7+RqVTfOIlGw0nyrEelA==}
 
-  '@paulirish/trace_engine@0.0.59':
-    resolution: {integrity: sha512-439NUzQGmH+9Y017/xCchBP9571J4bzhpcNhrxorf7r37wcyJZkgUfrUsRL3xl+JDcZ6ORhoFCzCw98c6S3YHw==}
+  '@paulirish/trace_engine@0.0.61':
+    resolution: {integrity: sha512-/O08DwmUqIlJjUSPSZbNF8lWnlxaMsIOV6sS+uDKCxBd5i1psAmjEoG3JAqR6+nHD8X+YY474NW7SxUH/K+/kQ==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -2250,6 +2250,10 @@ packages:
     resolution: {integrity: sha512-Xm7bpRXnDSX2YE2YFfBk2FnF0ep6tmG7xPh8iHee8MIcrgq762Nkce856dYtJYLkuIoYZvGfTs/PbZhideTcEg==}
     engines: {node: '>=4'}
 
+  axe-core@4.11.0:
+    resolution: {integrity: sha512-ilYanEU8vxxBexpJd8cWM4ElSQq4QctCLKih0TSfjIfCQTeyH/6zVrmIJfLPrKTKJRbiG+cfnZbQIjAlJmF1jQ==}
+    engines: {node: '>=4'}
+
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
     engines: {node: '>= 0.4'}
@@ -2700,11 +2704,11 @@ packages:
   devtools-protocol@0.0.1467305:
     resolution: {integrity: sha512-LxwMLqBoPPGpMdRL4NkLFRNy3QLp6Uqa7GNp1v6JaBheop2QrB9Q7q0A/q/CYYP9sBfZdHOyszVx4gc9zyk7ow==}
 
-  devtools-protocol@0.0.1507524:
-    resolution: {integrity: sha512-OjaNE7qpk6GRTXtqQjAE5bGx6+c4F1zZH0YXtpZQLM92HNXx4zMAaqlKhP4T52DosG6hDW8gPMNhGOF8xbwk/w==}
-
   devtools-protocol@0.0.1508733:
     resolution: {integrity: sha512-QJ1R5gtck6nDcdM+nlsaJXcelPEI7ZxSMw1ujHpO1c4+9l+Nue5qlebi9xO1Z2MGr92bFOQTW7/rrheh5hHxDg==}
+
+  devtools-protocol@0.0.1527314:
+    resolution: {integrity: sha512-UohCFOlzpPPD/IcsxM0k4lVZp/GfhPVJ6l2No5XX+LknpGisPWJe17oOHQhZTHf6ThUFIMwHO6bSEZUq/6oP7w==}
 
   dfa@1.2.0:
     resolution: {integrity: sha512-ED3jP8saaweFTjeGX8HQPjeC1YYyZs98jGNZx6IiBvxW7JG5v492kamAQB3m2wop07CvU/RQmzcKr6bgcC5D/Q==}
@@ -3680,14 +3684,17 @@ packages:
   lighthouse-stack-packs@1.12.2:
     resolution: {integrity: sha512-Ug8feS/A+92TMTCK6yHYLwaFMuelK/hAKRMdldYkMNwv+d9PtWxjXEg6rwKtsUXTADajhdrhXyuNCJ5/sfmPFw==}
 
+  lighthouse-stack-packs@1.12.3:
+    resolution: {integrity: sha512-d8IsOpE83kbANgnM+Tp8+x6HcMpX9o2ITBiUERssgzAIFdZCQzs/f4k6D0DLQTE59enml9mbAOU52Wu35exWtg==}
+
   lighthouse@12.6.1:
     resolution: {integrity: sha512-85WDkjcXAVdlFem9Y6SSxqoKiz/89UsDZhLpeLJIsJ4LlHxw047XTZhlFJmjYCB7K5S1erSBAf5cYLcfyNbH3A==}
     engines: {node: '>=18.20'}
     hasBin: true
 
-  lighthouse@12.8.2:
-    resolution: {integrity: sha512-+5SKYzVaTFj22MgoYDPNrP9tlD2/Ay7j3SxPSFD9FpPyVxGr4UtOQGKyrdZ7wCmcnBaFk0mCkPfARU3CsE0nvA==}
-    engines: {node: '>=18.16'}
+  lighthouse@13.0.0:
+    resolution: {integrity: sha512-s9koINEnVGm4n4oej4G3NET4e8i1XjPYCxEqp+TDlwUUkS5jpeOiFbIRLvPol/kgaeYce7BBqg8m52V7MEW7Lw==}
+    engines: {node: '>=22.19'}
     hasBin: true
 
   lightningcss-darwin-arm64@1.30.1:
@@ -5085,11 +5092,14 @@ packages:
   tldts-core@7.0.16:
     resolution: {integrity: sha512-XHhPmHxphLi+LGbH0G/O7dmUH9V65OY20R7vH8gETHsp5AZCjBk9l8sqmRKLaGOxnETU7XNSDUPtewAy/K6jbA==}
 
+  tldts-core@7.0.17:
+    resolution: {integrity: sha512-DieYoGrP78PWKsrXr8MZwtQ7GLCUeLxihtjC1jZsW1DnvSMdKPitJSe8OSYDM2u5H6g3kWJZpePqkp43TfLh0g==}
+
   tldts-icann@6.1.86:
     resolution: {integrity: sha512-NFxmRT2lAEMcCOBgeZ0NuM0zsK/xgmNajnY6n4S1mwAKocft2s2ise1O3nQxrH3c+uY6hgHUV9GGNVp7tUE4Sg==}
 
-  tldts-icann@7.0.16:
-    resolution: {integrity: sha512-WS/pPasPs2cx6orcxCcIz01SlG3dwYlgjLAnQt7vLAusTuTLqdI8zmkqbM8TWYEf3Z0o1S4BzM3oSRFPk/6WnA==}
+  tldts-icann@7.0.17:
+    resolution: {integrity: sha512-up4oFDoumyz2RscRxoYRxf+2OvIKUHjh7rUvuGWI0PZ/47k35sadoi2JyKR0AIfTw09qcfix8bUxXFQhY1QZIQ==}
 
   tldts@7.0.16:
     resolution: {integrity: sha512-5bdPHSwbKTeHmXrgecID4Ljff8rQjv7g8zKQPkCozRo2HWWni+p310FSn5ImI+9kWw9kK4lzOB5q/a6iv0IJsw==}
@@ -7081,7 +7091,7 @@ snapshots:
       legacy-javascript: 0.0.1
       third-party-web: 0.27.0
 
-  '@paulirish/trace_engine@0.0.59':
+  '@paulirish/trace_engine@0.0.61':
     dependencies:
       legacy-javascript: 0.0.1
       third-party-web: 0.27.0
@@ -8180,6 +8190,8 @@ snapshots:
 
   axe-core@4.10.3: {}
 
+  axe-core@4.11.0: {}
+
   axobject-query@4.1.0: {}
 
   b4a@1.7.3: {}
@@ -8627,9 +8639,9 @@ snapshots:
 
   devtools-protocol@0.0.1467305: {}
 
-  devtools-protocol@0.0.1507524: {}
-
   devtools-protocol@0.0.1508733: {}
+
+  devtools-protocol@0.0.1527314: {}
 
   dfa@1.2.0: {}
 
@@ -9892,6 +9904,8 @@ snapshots:
 
   lighthouse-stack-packs@1.12.2: {}
 
+  lighthouse-stack-packs@1.12.3: {}
+
   lighthouse@12.6.1:
     dependencies:
       '@paulirish/trace_engine': 0.0.53
@@ -9929,32 +9943,30 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  lighthouse@12.8.2:
+  lighthouse@13.0.0:
     dependencies:
-      '@paulirish/trace_engine': 0.0.59
+      '@paulirish/trace_engine': 0.0.61
       '@sentry/node': 9.46.0
-      axe-core: 4.10.3
+      axe-core: 4.11.0
       chrome-launcher: 1.2.1
       configstore: 7.1.0
       csp_evaluator: 1.1.5
-      devtools-protocol: 0.0.1507524
+      devtools-protocol: 0.0.1527314
       enquirer: 2.4.1
       http-link-header: 1.1.3
       intl-messageformat: 10.7.16
       jpeg-js: 0.4.4
       js-library-detector: 6.7.0
       lighthouse-logger: 2.0.2
-      lighthouse-stack-packs: 1.12.2
+      lighthouse-stack-packs: 1.12.3
       lodash-es: 4.17.21
       lookup-closest-locale: 6.2.0
-      metaviewport-parser: 0.3.0
       open: 8.4.2
-      parse-cache-control: 1.0.1
       puppeteer-core: 24.23.0
       robots-parser: 3.0.1
       speedline-core: 1.4.3
       third-party-web: 0.27.0
-      tldts-icann: 7.0.16
+      tldts-icann: 7.0.17
       ws: 7.5.10
       yargs: 17.7.2
       yargs-parser: 21.1.1
@@ -11649,13 +11661,15 @@ snapshots:
 
   tldts-core@7.0.16: {}
 
+  tldts-core@7.0.17: {}
+
   tldts-icann@6.1.86:
     dependencies:
       tldts-core: 6.1.86
 
-  tldts-icann@7.0.16:
+  tldts-icann@7.0.17:
     dependencies:
-      tldts-core: 7.0.16
+      tldts-core: 7.0.17
 
   tldts@7.0.16:
     dependencies:
