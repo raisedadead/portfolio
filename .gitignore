@@ -26,3 +26,10 @@ dist/
 worker-configuration.d.ts
 tsconfig.tsbuildinfo
 .playwright-mcp/
+
+# Turborepo
+.turbo/
+
+# Linter/Formatter caches
+.eslintcache
+.prettiercache
