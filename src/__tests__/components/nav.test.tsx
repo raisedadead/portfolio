@@ -15,7 +15,8 @@ vi.mock('@heroicons/react/24/outline', () => ({
   Bars4Icon: () => <div data-testid='bars4-icon' />,
   HomeIcon: () => <div data-testid='home-icon' />,
   BookOpenIcon: () => <div data-testid='book-open-icon' />,
-  CpuChipIcon: () => <div data-testid='cpu-chip-icon' />
+  CpuChipIcon: () => <div data-testid='cpu-chip-icon' />,
+  PhoneIcon: () => <div data-testid='phone-icon' />
 }));
 
 vi.mock('@headlessui/react', () => ({
@@ -171,11 +172,13 @@ describe('Nav', () => {
       const homeIcon = screen.getByTestId('home-icon');
       const bookIcon = screen.getByTestId('book-open-icon');
       const chipIcon = screen.getByTestId('cpu-chip-icon');
+      const phoneIcon = screen.getByTestId('phone-icon');
 
       expect(barsIcon).toBeInTheDocument();
       expect(homeIcon).toBeInTheDocument();
       expect(bookIcon).toBeInTheDocument();
       expect(chipIcon).toBeInTheDocument();
+      expect(phoneIcon).toBeInTheDocument();
     });
   });
 });

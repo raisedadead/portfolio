@@ -1,5 +1,5 @@
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
-import { Bars4Icon, BookOpenIcon, CpuChipIcon, HomeIcon } from '@heroicons/react/24/outline';
+import { Bars4Icon, BookOpenIcon, CpuChipIcon, HomeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import type React from 'react';
 import { Fragment, useEffect, useState } from 'react';
 // Dark mode removed for Astro migration
@@ -7,7 +7,8 @@ import { CustomLink as Link } from './custom-link';
 
 const links = [
   { href: '/blog', label: 'Recent Posts', icon: BookOpenIcon },
-  { href: '/uses', label: 'Uses', icon: CpuChipIcon }
+  { href: '/uses', label: 'Uses', icon: CpuChipIcon },
+  { href: '/about', label: 'About & Contact', icon: PhoneIcon }
 ];
 
 type NavProps = {

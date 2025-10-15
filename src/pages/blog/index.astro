@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import MainLayout from '@/layouts/main-layout.astro';
 import BlogSearch from '@/components/blog/BlogSearch';
 import BentoGrid from '@/components/blog/BentoGrid';
+import { cn } from '@/lib/utils';
 
 // Fetch all blog posts and sort by date (newest first)
 const allPosts = await getCollection('blog');
@@ -12,22 +13,26 @@ const sortedPosts = allPosts.sort(
 ---
 
 <MainLayout pageTitle='Blog' pageDescription='Read articles about web development, programming, and technology'>
-  <div class='mb-12 text-center'>
-    <h1 class='mb-4 text-4xl font-bold text-gray-900 dark:text-white'>Blog</h1>
-    <p class='text-lg text-gray-600 dark:text-gray-400'>Thoughts on web development, technology, and more</p>
-  </div>
+  <section class={cn('mb-2')}>
+    <div class={cn('prose prose-lg prose-slate max-w-none')}>
+      <h1 class={cn('py-4 text-center text-3xl font-bold text-slate-800')}>Blog</h1>
+    </div>
+  </section>
+  <section class={cn('mb-12')}>
+    <p class={cn('pb-6 text-center text-lg text-slate-600')}>Thoughts on web development, technology, and more</p>
 
-  {
-    sortedPosts.length === 0 ? (
-      <div class='mx-auto max-w-md rounded-lg border-2 border-dashed border-gray-300 p-12 text-center dark:border-gray-700'>
-        <p class='text-lg text-gray-600 dark:text-gray-400'>No blog posts yet. Check back soon!</p>
-      </div>
-    ) : (
-      <>
-        <BlogSearch posts={sortedPosts} client:idle />
+    {
+      sortedPosts.length === 0 ? (
+        <div class={cn('mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center')}>
+          <p class={cn('text-lg text-slate-600')}>No blog posts yet. Check back soon!</p>
+        </div>
+      ) : (
+        <>
+          <BlogSearch posts={sortedPosts} client:idle />
 
-        <BentoGrid posts={sortedPosts} initialCount={6} postsPerLoad={3} client:visible />
-      </>
-    )
-  }
+          <BentoGrid posts={sortedPosts} initialCount={6} postsPerLoad={3} client:visible />
+        </>
+      )
+    }
+  </section>
 </MainLayout>
