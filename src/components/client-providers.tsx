@@ -8,12 +8,11 @@ interface ClientProvidersProps {
 }
 
 const ClientProviders: React.FC<ClientProvidersProps> = ({ children }) => {
-  const [hasConsent, setHasConsent] = useState<boolean | null>(null);
-
-  useEffect(() => {
+  const [hasConsent, setHasConsent] = useState<boolean | null>(() => {
+    if (typeof window === 'undefined') return null;
     const consent = localStorage.getItem('ga-consent');
-    setHasConsent(consent === 'true');
-  }, []);
+    return consent === 'true';
+  });
 
   useEffect(() => {
     if (hasConsent) {
