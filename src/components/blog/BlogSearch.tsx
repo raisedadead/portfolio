@@ -8,15 +8,10 @@ interface Props {
 
 export default function BlogSearch({ posts }: Props) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Filter posts based on search query
   const filteredPosts = useMemo(() => {
@@ -64,7 +59,7 @@ export default function BlogSearch({ posts }: Props) {
       case 'Enter':
         e.preventDefault();
         if (selectedIndex >= 0) {
-          window.location.href = `/blog/${filteredPosts[selectedIndex].data.slug}`;
+          window.location.assign(`/blog/${filteredPosts[selectedIndex].data.slug}`);
         }
         break;
       case 'Escape':
@@ -82,10 +77,8 @@ export default function BlogSearch({ posts }: Props) {
   };
 
   const handleResultClick = (postSlug: string) => {
-    window.location.href = `/blog/${postSlug}`;
+    window.location.assign(`/blog/${postSlug}`);
   };
-
-  if (!mounted) return null;
 
   return (
     <div ref={searchRef} className='relative mb-12'>

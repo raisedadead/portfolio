@@ -62,7 +62,13 @@ describe('BlogSearch Component', () => {
     document.body.innerHTML = '';
     delete (window as { location?: Location }).location;
     Object.defineProperty(window, 'location', {
-      value: { ...originalLocation, href: '' },
+      value: {
+        ...originalLocation,
+        href: '',
+        assign: vi.fn((url: string) => {
+          window.location.href = url;
+        })
+      },
       writable: true,
       configurable: true
     });

@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { DocumentDuplicateIcon } from '@heroicons/react/24/outline';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface CodeBlockProps {
   code: string;
@@ -8,16 +8,7 @@ interface CodeBlockProps {
 }
 
 export default function CodeBlock({ code, html }: CodeBlockProps) {
-  const [mounted, setMounted] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <div dangerouslySetInnerHTML={{ __html: html }} />;
-  }
 
   const handleCopy = async () => {
     try {

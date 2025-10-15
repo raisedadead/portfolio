@@ -1,18 +1,17 @@
 import { CustomLink as Link } from '@/components/custom-link';
 import { loadGAScript, updateGAConsent } from '@/lib/utils';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface ConsentBannerProps {
   setHasConsent: (value: boolean) => void;
 }
 
 function ConsentBanner({ setHasConsent }: ConsentBannerProps) {
-  const [showBanner, setShowBanner] = useState(false);
-
-  useEffect(() => {
+  const [showBanner, setShowBanner] = useState(() => {
+    if (typeof window === 'undefined') return false;
     const hasConsent = localStorage.getItem('ga-consent');
-    setShowBanner(!hasConsent);
-  }, []);
+    return !hasConsent;
+  });
 
   const handleConsent = (granted: boolean) => {
     localStorage.setItem('ga-consent', granted.toString());
