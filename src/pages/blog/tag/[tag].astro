@@ -1,0 +1,17 @@
+---
+// Redirect /blog/tag/<tag-name> to /blog/tags/<tag-name>
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import { getAllTags } from '@/lib/blog-utils';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog');
+  const allTags = getAllTags(posts);
+
+  return allTags.map((tag) => ({
+    params: { tag: tag.slug }
+  }));
+}) satisfies GetStaticPaths;
+
+return Astro.redirect(`/blog/tags/${Astro.params.tag}`, 301);
+---

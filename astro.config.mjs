@@ -25,7 +25,12 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 1,
       filter: (page) => {
-        return !page.includes('/terms') && !page.includes('/refunds') && !page.includes('/privacy');
+        return (
+          !page.includes('/terms') &&
+          !page.includes('/refunds') &&
+          !page.includes('/privacy') &&
+          !page.includes('/blog/tag/')
+        );
       }
     })
   ],
