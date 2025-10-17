@@ -1,3 +1,5 @@
+import type { BlogPost, Tag } from '@/types/blog';
+
 /**
  * Calculates grid span properties for bento-grid blog layout
  * Pattern repeats every 6 cards with alternating large/small spans
@@ -28,8 +30,6 @@ export function getBentoGridSpan(index: number): GridSpanResult {
   return patterns[index % 6];
 }
 
-import type { BlogPost, Tag } from '@/types/blog';
-
 /**
  * Extracts all unique tags from a collection of blog posts
  * @param posts - Array of blog posts
@@ -47,6 +47,37 @@ export function getAllTags(posts: BlogPost[]): Tag[] {
   });
 
   return Array.from(tagMap.values()).sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
+ * Tag with post count for performance optimization
+ */
+export interface TagWithCount extends Tag {
+  count: number;
+}
+
+/**
+ * Gets all unique tags with their post counts in a single pass
+ * @param posts - Array of blog posts
+ * @returns Array of tags with counts, sorted by name
+ */
+export function getTagsWithCount(posts: BlogPost[]): TagWithCount[] {
+  const tagCountMap = new Map<string, { tag: Tag; count: number }>();
+
+  posts.forEach((post) => {
+    post.data.tags.forEach((tag) => {
+      const existing = tagCountMap.get(tag.slug);
+      if (existing) {
+        existing.count++;
+      } else {
+        tagCountMap.set(tag.slug, { tag, count: 1 });
+      }
+    });
+  });
+
+  return Array.from(tagCountMap.values())
+    .map(({ tag, count }) => ({ ...tag, count }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**

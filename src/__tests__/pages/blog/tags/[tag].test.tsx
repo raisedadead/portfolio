@@ -108,7 +108,7 @@ describe('Tag Dynamic Page', () => {
                 <div className='flex justify-center py-8'>
                   <a
                     href='/blog/tags'
-                    className='border-2 border-black bg-orange-200 px-6 py-3 text-lg font-medium text-black no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-100 hover:bg-gray-700 hover:text-white hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:bg-black active:shadow-none dark:border-black dark:bg-orange-200 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white'
+                    className='border-2 border-black bg-orange-200 px-6 py-3 text-lg font-medium text-black no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-100 hover:bg-gray-700 hover:text-white hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:bg-black active:shadow-none'
                   >
                     ← View all tags
                   </a>
@@ -306,22 +306,6 @@ describe('Tag Dynamic Page', () => {
 
       const mainContainer = container.querySelector('.mx-auto.max-w-7xl');
       expect(mainContainer).toHaveClass('px-4', 'py-12', 'sm:px-6', 'lg:px-8');
-    });
-
-    it('applies dark mode classes', () => {
-      const tag = { name: 'TypeScript', slug: 'typescript' };
-      const filteredPosts = mockAllPosts.filter((post) => post.data.tags.some((t) => t.slug === tag.slug));
-
-      renderTagPage(tag, filteredPosts);
-
-      const backLink = screen.getByText('← View all tags');
-      expect(backLink).toHaveClass(
-        'dark:border-black',
-        'dark:bg-orange-200',
-        'dark:text-black',
-        'dark:hover:bg-gray-700',
-        'dark:hover:text-white'
-      );
     });
 
     it('styles back link appropriately', () => {

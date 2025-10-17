@@ -1,7 +1,7 @@
 name: Question or support
 description: Ask a question about the project
 title: '[Question]: '
-labels: ["question"]
+labels: ['question']
 
 body:
   - type: markdown
@@ -22,14 +22,14 @@ body:
     attributes:
       label: Context
       description: Any additional context that might help answer your question.
-      placeholder: "I was looking at... when I noticed..."
+      placeholder: 'I was looking at... when I noticed...'
 
   - type: textarea
     id: attempted_solutions
     attributes:
       label: What have you tried
       description: Have you attempted any solutions or searched for similar questions?
-      placeholder: "I tried searching for... and found..."
+      placeholder: 'I tried searching for... and found...'
 
   - type: checkboxes
     id: checklist

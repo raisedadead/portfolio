@@ -294,18 +294,22 @@ describe('BlogSearch Component', () => {
       expect(wrapper).toHaveClass('relative', 'mb-12');
     });
 
-    it('applies dark mode classes to input', () => {
+    it('applies base styling to input', () => {
       render(<BlogSearch posts={mockPosts} />);
 
       const input = screen.getByRole('searchbox');
-      expect(input).toHaveClass('dark:bg-gray-800', 'dark:text-white', 'dark:border-orange-200');
+      expect(input).toHaveClass('border-2', 'border-black', 'bg-white');
     });
 
     it('applies focus styles to input', () => {
       render(<BlogSearch posts={mockPosts} />);
 
       const input = screen.getByRole('searchbox');
-      expect(input).toHaveClass('focus:outline-none', 'focus:shadow-[8px_8px_0px_var(--color-black)]');
+      expect(input).toHaveClass(
+        'focus-visible:ring-2',
+        'focus-visible:ring-orange-500/50',
+        'focus-visible:outline-none'
+      );
     });
 
     it('applies neobrutalism styles to dropdown', async () => {
@@ -316,7 +320,7 @@ describe('BlogSearch Component', () => {
 
       await waitFor(() => {
         const dropdown = screen.getByRole('listbox');
-        expect(dropdown).toHaveClass('border-4', 'border-black', 'shadow-[6px_6px_0px_var(--color-black)]');
+        expect(dropdown).toHaveClass('border-2', 'border-black', 'shadow-[4px_4px_0px_var(--color-black)]');
       });
     });
   });

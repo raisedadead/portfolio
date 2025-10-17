@@ -113,18 +113,16 @@ describe('Tags Index Page', () => {
                     <a
                       key={tag.slug}
                       href={`/blog/tags/${tag.slug}`}
-                      className='group block border-4 border-black bg-white p-6 no-underline shadow-[6px_6px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[8px_8px_0px_var(--color-black)] dark:border-orange-200 dark:bg-gray-800 dark:hover:bg-orange-900'
+                      className='group block border-2 border-black bg-white p-6 no-underline shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[8px_8px_0px_var(--color-black)]'
                       data-testid={`tag-link-${tag.slug}`}
                     >
                       <div className='flex items-center justify-between'>
-                        <h2 className='text-xl font-bold text-slate-800 group-hover:text-orange-800 dark:text-orange-100 dark:group-hover:text-orange-200'>
-                          {tag.name}
-                        </h2>
-                        <span className='rounded-full bg-slate-200 px-3 py-1 text-sm font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300'>
+                        <h2 className='text-xl font-bold text-slate-800 group-hover:text-orange-800'>{tag.name}</h2>
+                        <span className='rounded-full bg-slate-200 px-3 py-1 text-sm font-medium text-slate-700'>
                           {postCount}
                         </span>
                       </div>
-                      <p className='mt-2 text-sm text-slate-600 dark:text-slate-400'>
+                      <p className='mt-2 text-sm text-slate-600'>
                         {postCount} {postCount === 1 ? 'post' : 'posts'}
                       </p>
                     </a>
@@ -267,15 +265,6 @@ describe('Tags Index Page', () => {
       expect(mainContainer).toHaveClass('px-4', 'py-12', 'sm:px-6', 'lg:px-8');
     });
 
-    it('applies dark mode classes', () => {
-      renderTagsIndex(mockPosts);
-
-      const tagLinks = screen.getAllByTestId(/^tag-link-/);
-      tagLinks.forEach((link) => {
-        expect(link).toHaveClass('dark:border-orange-200', 'dark:bg-gray-800', 'dark:hover:bg-orange-900');
-      });
-    });
-
     it('applies grid layout for tags', () => {
       const { container } = renderTagsIndex(mockPosts);
 
@@ -289,9 +278,9 @@ describe('Tags Index Page', () => {
       const tagLinks = screen.getAllByTestId(/^tag-link-/);
       tagLinks.forEach((link) => {
         expect(link).toHaveClass(
-          'border-4',
+          'border-2',
           'border-black',
-          'shadow-[6px_6px_0px_var(--color-black)]',
+          'shadow-[4px_4px_0px_var(--color-black)]',
           'hover:shadow-[8px_8px_0px_var(--color-black)]'
         );
       });

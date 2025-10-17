@@ -40,7 +40,7 @@ describe('ConsentBanner Component', () => {
 
     // Check for styling classes that actually exist
     expect(acceptButton).toHaveClass('bg-blue-700');
-    expect(declineButton).toHaveClass('border');
+    expect(declineButton).toHaveClass('border-2');
   });
 
   it('handles button clicks', () => {

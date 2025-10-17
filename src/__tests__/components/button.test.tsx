@@ -15,7 +15,7 @@ describe('Button', () => {
   });
 
   it('applies "primary" variant classes correctly', () => {
-    const { container } = render(<Button variant="primary">Primary</Button>);
+    const { container } = render(<Button variant='primary'>Primary</Button>);
     const button = container.querySelector('button');
     expect(button?.className).toContain('bg-orange-200');
     expect(button?.className).toContain('border-2');
@@ -23,7 +23,7 @@ describe('Button', () => {
   });
 
   it('applies "secondary" variant classes correctly', () => {
-    const { container } = render(<Button variant="secondary">Secondary</Button>);
+    const { container } = render(<Button variant='secondary'>Secondary</Button>);
     const button = container.querySelector('button');
     expect(button?.className).toContain('bg-orange-50');
     expect(button?.className).toContain('border-2');
@@ -31,7 +31,7 @@ describe('Button', () => {
   });
 
   it('applies "ghost" variant classes correctly', () => {
-    const { container } = render(<Button variant="ghost">Ghost</Button>);
+    const { container } = render(<Button variant='ghost'>Ghost</Button>);
     const button = container.querySelector('button');
     expect(button?.className).toContain('bg-transparent');
     expect(button?.className).toContain('border-2');
@@ -54,7 +54,7 @@ describe('Button', () => {
     render(
       <Button onClick={handleClick} disabled>
         Disabled
-      </Button>,
+      </Button>
     );
     const button = screen.getByRole('button', { name: /disabled/i });
 
@@ -73,9 +73,9 @@ describe('Button', () => {
 
   it('supports ARIA attributes', () => {
     render(
-      <Button aria-label="Custom label" aria-describedby="description">
+      <Button aria-label='Custom label' aria-describedby='description'>
         Button
-      </Button>,
+      </Button>
     );
 
     const button = screen.getByRole('button', { name: /custom label/i });
@@ -84,16 +84,16 @@ describe('Button', () => {
   });
 
   it('supports type attribute', () => {
-    render(<Button type="submit">Submit</Button>);
+    render(<Button type='submit'>Submit</Button>);
     const button = screen.getByRole('button', { name: /submit/i });
     expect(button).toHaveAttribute('type', 'submit');
   });
 
   it('passes through additional HTML button attributes', () => {
     render(
-      <Button name="action" value="save" form="myForm">
+      <Button name='action' value='save' form='myForm'>
         Save
-      </Button>,
+      </Button>
     );
 
     const button = screen.getByRole('button', { name: /save/i });

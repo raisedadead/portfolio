@@ -46,9 +46,9 @@ export interface CardProps {
 }
 
 const variantClasses: Record<CardVariant, string> = {
-  default: 'border-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] p-6',
-  featured: 'border-4 shadow-[6px_6px_0px_rgba(0,0,0,1)] p-8',
-  minimal: 'border-2 shadow-[2px_2px_0px_rgba(0,0,0,1)] p-4'
+  default: 'border-2 shadow-[4px_4px_0px_var(--color-black)] p-6',
+  featured: 'border-2 shadow-[6px_6px_0px_var(--color-black)] p-8',
+  minimal: 'border-2 shadow-[4px_4px_0px_var(--color-black)] p-4'
 };
 
 export function Card({ variant = 'default', children, className = '' }: CardProps) {

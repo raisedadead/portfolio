@@ -243,3 +243,6 @@
 .shiki-line-numbers:hover code .line::before {
   color: rgba(255, 255, 255, 0.7);
 }
+
+/* Design System Consistency - Note: In Tailwind v4, @apply with custom classes in @layer components doesn't work.
+   We apply utilities directly in components instead, as recommended by Tailwind team. */

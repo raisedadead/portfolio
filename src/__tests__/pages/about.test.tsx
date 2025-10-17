@@ -81,11 +81,11 @@ describe('About Page Content', () => {
                     <p className='mb-4 text-lg'>
                       GSTIN, HSN Codes for services, PAN, and other business-related information is available in the
                       documents, such as the pro-forma invoice, billing invoice, etc., sent automatically on completion
-                      of a transaction. Please get in touch if you are still waiting to receive them.
+                      of a transaction. Please Elsewhere on the internet if you are still waiting to receive them.
                     </p>
                     <p className='text-lg'>
                       <strong className='font-semibold'>Tax details for Transactions made outside India: </strong>
-                      Please get in touch, we will accommodate documents where feasible as per your needs.
+                      Please Elsewhere on the internet, we will accommodate documents where feasible as per your needs.
                     </p>
                   </div>
                 </div>

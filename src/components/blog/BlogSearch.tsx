@@ -99,10 +99,10 @@ export default function BlogSearch({ posts }: Props) {
           aria-label='Search blog posts by title, content, or tags'
           aria-autocomplete='list'
           aria-controls='search-results'
-          className='w-full border-4 px-4 py-3 pl-12 text-gray-900 placeholder-gray-500 shadow-[6px_6px_0px_var(--color-black)] transition-all duration-100 hover:shadow-[8px_8px_0px_var(--color-black)] focus:shadow-[8px_8px_0px_var(--color-black)] dark:border-orange-200 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400'
+          className='w-full px-4 py-3 pl-12 text-gray-900 placeholder-gray-500'
         />
         <svg
-          className='absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-600 dark:text-gray-300'
+          className='absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-600'
           fill='none'
           stroke='currentColor'
           viewBox='0 0 24 24'
@@ -121,7 +121,7 @@ export default function BlogSearch({ posts }: Props) {
         <div
           id='search-results'
           role='listbox'
-          className='absolute z-50 mt-2 w-full border-4 border-black bg-white shadow-[6px_6px_0px_var(--color-black)] dark:border-orange-200 dark:bg-gray-800'
+          className='absolute z-50 mt-2 w-full border-2 border-black bg-white shadow-[4px_4px_0px_var(--color-black)]'
         >
           {filteredPosts.length > 0 ? (
             <ul className='max-h-96 overflow-y-auto'>
@@ -130,10 +130,8 @@ export default function BlogSearch({ posts }: Props) {
                   key={post.id}
                   role='option'
                   aria-selected={index === selectedIndex}
-                  className={`cursor-pointer border-b-2 border-gray-200 p-4 transition-colors last:border-b-0 dark:border-gray-700 ${
-                    index === selectedIndex
-                      ? 'bg-orange-100 dark:bg-orange-900'
-                      : 'hover:bg-orange-50 dark:hover:bg-orange-950'
+                  className={`cursor-pointer border-b-2 border-gray-200 p-4 transition-all duration-100 last:border-b-0 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
+                    index === selectedIndex ? 'bg-orange-100' : 'hover:bg-orange-50'
                   }`}
                   onClick={() => handleResultClick(post.data.slug)}
                   onMouseEnter={() => setSelectedIndex(index)}
@@ -144,14 +142,11 @@ export default function BlogSearch({ posts }: Props) {
                     }
                   }}
                 >
-                  <h3 className='mb-1 font-bold text-gray-900 dark:text-orange-100'>{post.data.title}</h3>
-                  <p className='mb-2 line-clamp-2 text-sm text-gray-600 dark:text-gray-400'>{post.data.brief}</p>
+                  <h3 className='mb-1 font-bold text-gray-900'>{post.data.title}</h3>
+                  <p className='mb-2 line-clamp-2 text-sm text-gray-600'>{post.data.brief}</p>
                   <div className='flex flex-wrap gap-2'>
                     {post.data.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag.slug}
-                        className='rounded bg-gray-200 px-2 py-1 text-xs text-gray-700 dark:bg-gray-700 dark:text-gray-300'
-                      >
+                      <span key={tag.slug} className='rounded bg-gray-200 px-2 py-1 text-xs text-gray-700'>
                         {tag.name}
                       </span>
                     ))}
@@ -160,7 +155,7 @@ export default function BlogSearch({ posts }: Props) {
               ))}
             </ul>
           ) : (
-            <div className='p-6 text-center text-gray-600 dark:text-gray-400'>No posts match your search</div>
+            <div className='p-6 text-center text-gray-600'>No posts match your search</div>
           )}
         </div>
       )}

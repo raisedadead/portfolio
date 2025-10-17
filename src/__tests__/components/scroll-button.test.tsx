@@ -320,7 +320,15 @@ describe('ScrollButton Component', () => {
 
       const button = screen.queryByTestId('motion-button');
       if (button) {
-        expect(button).toHaveClass('cursor-pointer', 'rounded-full', 'bg-white', 'text-black', 'focus:outline-hidden');
+        expect(button).toHaveClass(
+          'cursor-pointer',
+          'rounded-full',
+          'border-2',
+          'border-black',
+          'bg-white',
+          'text-black',
+          'focus-visible:outline-none'
+        );
       }
     });
 
@@ -346,7 +354,7 @@ describe('ScrollButton Component', () => {
 
       const button = screen.queryByTestId('motion-button');
       if (button) {
-        expect(button.className).toContain('shadow-[4px_4px_0_0_rgba(60,64,43,.2)]');
+        expect(button.className).toContain('shadow-[4px_4px_0px_var(--color-black)]');
       }
     });
   });

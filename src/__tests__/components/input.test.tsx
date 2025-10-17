@@ -10,7 +10,7 @@ describe('Input', () => {
   });
 
   it('renders with placeholder', () => {
-    render(<Input placeholder="Enter text..." />);
+    render(<Input placeholder='Enter text...' />);
     const input = screen.getByPlaceholderText('Enter text...');
     expect(input).toBeInTheDocument();
   });
@@ -18,7 +18,7 @@ describe('Input', () => {
   it('handles controlled input changes', () => {
     const handleChange = vi.fn();
 
-    render(<Input value="" onChange={handleChange} />);
+    render(<Input value='' onChange={handleChange} />);
     const input = screen.getByRole('textbox');
 
     fireEvent.change(input, { target: { value: 'Hello' } });
@@ -48,21 +48,21 @@ describe('Input', () => {
   });
 
   it('supports different input types', () => {
-    const { rerender } = render(<Input type="email" />);
+    const { rerender } = render(<Input type='email' />);
     let input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('type', 'email');
 
-    rerender(<Input type="password" />);
+    rerender(<Input type='password' />);
     input = document.querySelector('input[type="password"]') as HTMLInputElement;
     expect(input).toHaveAttribute('type', 'password');
 
-    rerender(<Input type="number" />);
+    rerender(<Input type='number' />);
     input = screen.getByRole('spinbutton');
     expect(input).toHaveAttribute('type', 'number');
   });
 
   it('supports ARIA attributes', () => {
-    render(<Input aria-label="Search field" aria-describedby="search-help" />);
+    render(<Input aria-label='Search field' aria-describedby='search-help' />);
     const input = screen.getByRole('textbox', { name: /search field/i });
 
     expect(input).toHaveAttribute('aria-label', 'Search field');
@@ -76,7 +76,7 @@ describe('Input', () => {
   });
 
   it('supports name attribute', () => {
-    render(<Input name="username" />);
+    render(<Input name='username' />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('name', 'username');
   });
@@ -91,7 +91,7 @@ describe('Input', () => {
   });
 
   it('accepts className prop for additional styling', () => {
-    const { container } = render(<Input className="w-full custom-class" />);
+    const { container } = render(<Input className='custom-class w-full' />);
     const input = container.querySelector('input');
 
     expect(input?.className).toContain('w-full');

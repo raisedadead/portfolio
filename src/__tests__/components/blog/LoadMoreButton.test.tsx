@@ -48,14 +48,15 @@ describe('BlogLoadMore Component', () => {
       render(<BlogLoadMore totalPosts={10} visiblePosts={5} onLoadMore={mockOnLoadMore} isLoading={true} />);
 
       const button = screen.getByRole('button', { name: /load more blog posts/i });
-      expect(button).toHaveClass('cursor-not-allowed', 'bg-orange-100', 'text-gray-400');
+      expect(button).toHaveClass('cursor-wait');
+      expect(button).toBeDisabled();
     });
 
     it('applies default styles when isLoading is false', () => {
       render(<BlogLoadMore totalPosts={10} visiblePosts={5} onLoadMore={mockOnLoadMore} isLoading={false} />);
 
       const button = screen.getByRole('button', { name: /load more blog posts/i });
-      expect(button).toHaveClass('bg-orange-200', 'text-black', 'hover:bg-gray-700');
+      expect(button).toHaveClass('border-2', 'border-black', 'bg-white');
     });
   });
 
@@ -145,18 +146,18 @@ describe('BlogLoadMore Component', () => {
   });
 
   describe('Styling', () => {
-    it('applies responsive width classes', () => {
+    it('applies neobrutalist design classes', () => {
       render(<BlogLoadMore totalPosts={10} visiblePosts={5} onLoadMore={mockOnLoadMore} />);
 
       const button = screen.getByRole('button', { name: /load more blog posts/i });
-      expect(button).toHaveClass('w-full', 'sm:w-1/2');
+      expect(button).toHaveClass('border-2', 'border-black', 'bg-white');
     });
 
     it('applies border and shadow styles', () => {
       render(<BlogLoadMore totalPosts={10} visiblePosts={5} onLoadMore={mockOnLoadMore} />);
 
       const button = screen.getByRole('button', { name: /load more blog posts/i });
-      expect(button).toHaveClass('border-2', 'shadow-[4px_4px_0px_rgba(0,0,0,1)]');
+      expect(button).toHaveClass('border-2', 'shadow-[4px_4px_0px_var(--color-black)]');
     });
 
     it('applies transition classes', () => {
@@ -186,7 +187,7 @@ describe('BlogLoadMore Component', () => {
       render(<BlogLoadMore totalPosts={10} visiblePosts={10} onLoadMore={mockOnLoadMore} />);
 
       const message = screen.getByText(/that's the end/i);
-      expect(message).toHaveClass('text-gray-600', 'dark:text-gray-400');
+      expect(message).toHaveClass('text-gray-600');
     });
   });
 });

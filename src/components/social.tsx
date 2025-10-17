@@ -1,8 +1,7 @@
 import { CustomLink as Link } from './custom-link';
 
-// Shared button styling - matches Button component ghost variant with fixed size
 const iconButtonClasses =
-  'h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none';
+  'inline-flex items-center justify-center h-10 w-10 border-2 border-black bg-orange-200 p-2 text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-50 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none';
 
 export const Social = () => (
   <div className='mx-auto mt-2 mb-1 flex flex-row items-center justify-center space-y-0 space-x-3'>

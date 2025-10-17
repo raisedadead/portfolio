@@ -2,15 +2,38 @@
 // Tags index page - lists all unique tags from blog posts
 import { getCollection } from 'astro:content';
 import MainLayout from '@/layouts/main-layout.astro';
-import { getAllTags } from '@/lib/blog-utils';
+import TagCard from '@/components/blog/TagCard';
+import { Social } from '@/components/social';
+import { getTagsWithCount } from '@/lib/blog-utils';
 import { cn } from '@/lib/utils';
 
-// Fetch all blog posts and extract unique tags
+// Fetch all blog posts and extract unique tags with counts (single pass for performance)
 const allPosts = await getCollection('blog');
-const allTags = getAllTags(allPosts);
+const tagsWithCount = getTagsWithCount(allPosts);
+
+// SEO metadata
+const canonicalURL = new URL('/blog/tags', Astro.site).toString();
+
+// Structured data for tags index
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Blog Tags',
+  description: 'Browse all blog posts organized by tags',
+  url: canonicalURL,
+  numberOfItems: tagsWithCount.length,
+  itemListElement: tagsWithCount.map((tag, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    url: new URL(`/blog/tags/${tag.slug}`, Astro.site).toString(),
+    name: tag.name,
+    description: `${tag.count} ${tag.count === 1 ? 'post' : 'posts'} about ${tag.name}`
+  }))
+};
 ---
 
-<MainLayout pageTitle='Blog Tags' pageDescription='Browse all blog posts organized by tags'>
+<MainLayout pageTitle='Blog Tags' pageDescription='Browse all blog posts organized by tags' pageUrl={canonicalURL}>
+  <script type='application/ld+json' is:inline set:html={JSON.stringify(structuredData)} />
   <section class={cn('mb-2')}>
     <div class={cn('prose prose-lg prose-slate max-w-none')}>
       <h1 class={cn('py-4 text-center text-3xl font-bold text-slate-800')}>Blog Tags</h1>
@@ -21,52 +44,34 @@ const allTags = getAllTags(allPosts);
     <p class={cn('pb-6 text-center text-lg text-slate-600')}>Browse posts by topic</p>
 
     {
-      allTags.length === 0 ? (
+      tagsWithCount.length === 0 ? (
         <div class={cn('mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center')}>
           <p class={cn('text-lg text-slate-600')}>No tags found yet. Check back soon!</p>
         </div>
       ) : (
         <div class={cn('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3')}>
-          {allTags.map((tag) => {
-            // Count posts with this tag
-            const postCount = allPosts.filter((post) =>
-              post.data.tags.some((postTag) => postTag.slug === tag.slug)
-            ).length;
-
-            return (
-              <a
-                href={`/blog/tags/${tag.slug}`}
-                class={cn(
-                  'group block border-4 border-black bg-white p-6 no-underline shadow-[6px_6px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[8px_8px_0px_var(--color-black)] dark:border-orange-200 dark:bg-gray-800 dark:hover:bg-orange-900'
-                )}
-              >
-                <div class={cn('flex items-center justify-between')}>
-                  <h2
-                    class={cn(
-                      'text-xl font-bold text-slate-800 group-hover:text-orange-800 dark:text-orange-100 dark:group-hover:text-orange-200'
-                    )}
-                  >
-                    {tag.name}
-                  </h2>
-                  <span
-                    class={cn(
-                      'rounded-full bg-slate-200 px-3 py-1 text-sm font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300'
-                    )}
-                  >
-                    {postCount}
-                  </span>
-                </div>
-                <p class={cn('mt-2 text-sm text-slate-600 dark:text-slate-400')}>
-                  {postCount} {postCount === 1 ? 'post' : 'posts'}
-                </p>
-              </a>
-            );
-          })}
+          {tagsWithCount.map((tag) => (
+            <TagCard name={tag.name} slug={tag.slug} count={tag.count} />
+          ))}
         </div>
       )
     }
     <div class='flex justify-center py-8'>
-      <a href='/blog'> ← Back to blog </a>
+      <a
+        href='/blog'
+        class={cn(
+          'inline-flex items-center gap-2 border-2 border-black bg-white px-6 py-3 font-bold text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none'
+        )}
+      >
+        <span aria-hidden='true'>←</span>
+        <span>Back to blog</span>
+      </a>
+    </div>
+  </section>
+  <section class='pt-4 pb-8'>
+    <div class={cn('prose prose-lg prose-slate mx-auto mt-12 max-w-3xl')}>
+      <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>Elsewhere on the internet</h3>
+      <Social />
     </div>
   </section>
 </MainLayout>

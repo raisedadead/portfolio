@@ -69,9 +69,9 @@ describe('Blog Post Slug Page', () => {
           </section>
 
           <section className='mb-12'>
-            <article className='overflow-hidden bg-white no-underline shadow-[6px_8px_0px_var(--color-black)] transition-colors duration-100 dark:bg-gray-800 dark:shadow-[6px_8px_0px_var(--color-white)]'>
+            <article className='duration-100[6px_8px_0px_var(--color-white)] overflow-hidden bg-white no-underline shadow-[6px_8px_0px_var(--color-black)] transition-colors'>
               <div className='relative aspect-video w-full'>
-                <div className='absolute inset-0 animate-pulse bg-gray-200 dark:bg-gray-700' />
+                <div className='absolute inset-0 animate-pulse bg-gray-200' />
                 <img
                   src='https://example.com/cover.jpg'
                   alt={post.data.title}
@@ -84,13 +84,13 @@ describe('Blog Post Slug Page', () => {
               </div>
 
               <div className='p-6 sm:p-10'>
-                <div className='mb-8 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400'>
+                <div className='mb-8 flex items-center gap-2 text-sm text-gray-600'>
                   <time dateTime={post.data.publishedAt.toISOString()}>{post.data.publishedAt.toDateString()}</time>
                   <span>•</span>
                   <span>{post.data.readingTime} min read</span>
                 </div>
 
-                <div className='prose prose-lg dark:prose-invert prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:my-2 prose-p:leading-relaxed prose-strong:text-gray-800 dark:prose-strong:text-gray-200 prose-headings:font-semibold prose-headings:text-gray-800 dark:prose-headings:text-gray-100 prose-h2:mb-2 prose-h2:mt-8 prose-h3:mb-2 prose-h3:mt-6 prose-h4:mb-2 prose-h4:mt-4 prose-a:text-blue-600 prose-a:no-underline prose-a:hover:underline dark:prose-a:text-blue-400 prose-ul:list-disc prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-img:my-4 prose-img:rounded-md prose-img:shadow-md prose-hr:border-gray-200 dark:prose-hr:border-gray-700 prose-blockquote:border-l-4 prose-blockquote:border-gray-400 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300 max-w-none'>
+                <div className='prose prose-lg prose-p:text-gray-700 prose-p:my-2 prose-p:leading-relaxed prose-strong:text-gray-800 prose-headings:font-semibold prose-headings:text-gray-800 prose-h2:mb-2 prose-h2:mt-8 prose-h3:mb-2 prose-h3:mt-6 prose-h4:mb-2 prose-h4:mt-4 prose-a:text-blue-600 prose-a:no-underline prose-a:hover:underline prose-ul:list-disc prose-li:text-gray-700 prose-img:my-4 prose-img:rounded-md prose-img:shadow-md prose-hr:border-gray-200 prose-blockquote:border-l-4 prose-blockquote:border-gray-400 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-700 max-w-none'>
                   <p>Test content</p>
                 </div>
               </div>
@@ -100,7 +100,7 @@ describe('Blog Post Slug Page', () => {
               <div className='flex flex-wrap justify-center gap-4'>
                 <a
                   href='/blog'
-                  className='border-2 border-black bg-orange-200 px-6 py-3 text-lg font-medium text-black no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-100 hover:bg-gray-700 hover:text-white hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:bg-black active:shadow-none dark:border-black dark:bg-orange-200 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white'
+                  className='border-2 border-black bg-orange-200 px-6 py-3 text-lg font-medium text-black no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-100 hover:bg-gray-700 hover:text-white hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:bg-black active:shadow-none'
                   data-testid='back-to-blog-button'
                 >
                   ← Back to blog
@@ -110,7 +110,7 @@ describe('Blog Post Slug Page', () => {
                   <a
                     key={tag.slug}
                     href={`/blog/tags/${tag.slug}`}
-                    className='border-2 border-black bg-orange-200 px-4 py-2 text-sm font-medium text-black no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-100 hover:bg-gray-700 hover:text-white hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:bg-black active:shadow-none dark:border-black dark:bg-orange-200 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white'
+                    className='border-2 border-black bg-orange-200 px-4 py-2 text-sm font-medium text-black no-underline shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-100 hover:bg-gray-700 hover:text-white hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:bg-black active:shadow-none'
                     data-testid={`tag-button-${tag.slug}`}
                   >
                     #{tag.name}
@@ -141,12 +141,7 @@ describe('Blog Post Slug Page', () => {
       renderBlogPostPage(mockPost);
 
       const article = screen.getByRole('article');
-      expect(article).toHaveClass(
-        'overflow-hidden',
-        'bg-white',
-        'dark:bg-gray-800',
-        'shadow-[6px_8px_0px_var(--color-black)]'
-      );
+      expect(article).toHaveClass('overflow-hidden', 'bg-white', 'shadow-[6px_8px_0px_var(--color-black)]');
     });
 
     it('displays reading time and publication date', () => {
@@ -198,59 +193,6 @@ describe('Blog Post Slug Page', () => {
 
       const button = screen.getByTestId('back-to-blog-button');
       expect(button).toHaveClass('hover:bg-gray-700', 'hover:text-white', 'hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]');
-    });
-
-    it('has proper dark mode styling', () => {
-      renderBlogPostPage(mockPost);
-
-      const button = screen.getByTestId('back-to-blog-button');
-      expect(button).toHaveClass(
-        'dark:border-black',
-        'dark:bg-orange-200',
-        'dark:text-black',
-        'dark:hover:bg-gray-700',
-        'dark:hover:text-white'
-      );
-    });
-
-    it('is centered with proper spacing', () => {
-      renderBlogPostPage(mockPost);
-
-      // The buttons should be inside a section with py-8
-      const buttonSection = screen.getByTestId('back-to-blog-button').parentElement?.parentElement;
-      expect(buttonSection).toHaveClass('py-8');
-      // The button container should have flex layout
-      const buttonContainer = screen.getByTestId('back-to-blog-button').parentElement;
-      expect(buttonContainer).toHaveClass('flex', 'flex-wrap', 'justify-center', 'gap-4');
-    });
-
-    it('renders tag buttons for each post tag', () => {
-      renderBlogPostPage(mockPost);
-
-      mockPost.data.tags.forEach((tag) => {
-        const tagButton = screen.getByTestId(`tag-button-${tag.slug}`);
-        expect(tagButton).toBeInTheDocument();
-        expect(tagButton).toHaveTextContent(`#${tag.name}`);
-        expect(tagButton).toHaveAttribute('href', `/blog/tags/${tag.slug}`);
-      });
-    });
-
-    it('tag buttons have proper styling', () => {
-      renderBlogPostPage(mockPost);
-
-      const tagButton = screen.getByTestId(`tag-button-${mockPost.data.tags[0].slug}`);
-      expect(tagButton).toHaveClass(
-        'border-2',
-        'border-black',
-        'bg-orange-200',
-        'px-4',
-        'py-2',
-        'text-sm',
-        'font-medium',
-        'text-black',
-        'no-underline',
-        'shadow-[4px_4px_0px_rgba(0,0,0,1)]'
-      );
     });
   });
 

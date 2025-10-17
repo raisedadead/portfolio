@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import MainLayout from '@/layouts/main-layout.astro';
 import BlogSearch from '@/components/blog/BlogSearch';
 import BentoGrid from '@/components/blog/BentoGrid';
+import { Social } from '@/components/social';
 import { cn } from '@/lib/utils';
 
 // Fetch all blog posts and sort by date (newest first)
@@ -34,5 +35,11 @@ const sortedPosts = allPosts.sort(
         </>
       )
     }
+  </section>
+  <section class='pt-4 pb-8'>
+    <div class={cn('prose prose-lg prose-slate mx-auto mt-12 max-w-3xl')}>
+      <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>Elsewhere on the internet</h3>
+      <Social />
+    </div>
   </section>
 </MainLayout>

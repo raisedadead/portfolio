@@ -242,7 +242,7 @@ describe('Uses Page Content', () => {
             </ul>
 
             <div className='prose prose-lg prose-slate mx-auto mt-12 max-w-3xl'>
-              <h3 className='mb-4 text-center font-bold text-slate-700'>Get in touch</h3>
+              <h3 className='mb-4 text-center font-bold text-slate-700'>Elsewhere on the internet</h3>
               <p className='text-center text-lg text-slate-600'>
                 Have questions about any of the gear or software I use? Feel free to reach out!
               </p>
@@ -333,12 +333,12 @@ describe('Uses Page Content', () => {
   });
 
   describe('Contact Section', () => {
-    it('renders get in touch section', () => {
+    it('renders Elsewhere on the internet section', () => {
       renderUsesContent();
 
       const contactHeading = screen.getByRole('heading', {
         level: 3,
-        name: 'Get in touch'
+        name: 'Elsewhere on the internet'
       });
       expect(contactHeading).toBeInTheDocument();
     });
@@ -506,7 +506,7 @@ describe('Uses Page Content', () => {
       expect(container.querySelectorAll('section')).toHaveLength(2);
       expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
       expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(3); // Hardware, Software, Philosophy
-      expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(10); // 9 Expandable sections + Get in touch
+      expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(10); // 9 Expandable sections + Elsewhere on the internet
     });
 
     it('has proper heading hierarchy', () => {

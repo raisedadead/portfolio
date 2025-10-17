@@ -39,15 +39,15 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-orange-200 hover:bg-gray-700 hover:text-white hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:bg-black',
-  secondary: 'bg-orange-50 hover:bg-gray-700 hover:text-white hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:bg-black',
-  ghost: 'bg-transparent hover:bg-orange-100 hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:bg-black active:text-white'
+  primary: 'bg-orange-200',
+  secondary: 'bg-orange-50',
+  ghost: 'bg-transparent'
 };
 
 export function Button({ variant = 'primary', children, className = '', ...props }: ButtonProps) {
   const variantClass = variantClasses[variant];
   const baseClasses =
-    'border-2 border-black text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed';
+    'rounded-lg border-2 border-black text-black shadow-[4px_4px_0px_var(--color-black)] hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] active:bg-black active:text-white active:shadow-none focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none transition-all duration-100 disabled:opacity-50 disabled:cursor-not-allowed';
   const classes = `${baseClasses} ${variantClass} ${className}`.trim();
 
   return (
