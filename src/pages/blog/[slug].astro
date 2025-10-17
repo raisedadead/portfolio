@@ -210,4 +210,12 @@ if (lastIndex < contentHtml.length) {
       </div>
     </div>
   </article>
+
+  <!-- Back to Blog and Tags Buttons -->
+  <section class='py-8'>
+    <div class='flex flex-wrap justify-center gap-4'>
+      <a href='/blog'> ← Back to blog </a>
+      {data.tags && data.tags.map((tag: any) => <a href={`/blog/tags/${tag.slug}`}>#{tag.name}</a>)}
+    </div>
+  </section>
 </MainLayout>

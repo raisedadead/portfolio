@@ -27,3 +27,45 @@ export function getBentoGridSpan(index: number): GridSpanResult {
 
   return patterns[index % 6];
 }
+
+import type { BlogPost, Tag } from '@/types/blog';
+
+/**
+ * Extracts all unique tags from a collection of blog posts
+ * @param posts - Array of blog posts
+ * @returns Array of unique tags sorted by name
+ */
+export function getAllTags(posts: BlogPost[]): Tag[] {
+  const tagMap = new Map<string, Tag>();
+
+  posts.forEach((post) => {
+    post.data.tags.forEach((tag) => {
+      if (!tagMap.has(tag.slug)) {
+        tagMap.set(tag.slug, tag);
+      }
+    });
+  });
+
+  return Array.from(tagMap.values()).sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
+ * Filters blog posts by a specific tag slug
+ * @param posts - Array of blog posts
+ * @param tagSlug - The tag slug to filter by
+ * @returns Array of posts that contain the specified tag
+ */
+export function filterPostsByTag(posts: BlogPost[], tagSlug: string): BlogPost[] {
+  return posts.filter((post) => post.data.tags.some((tag) => tag.slug === tagSlug));
+}
+
+/**
+ * Gets the tag object by slug from a collection of posts
+ * @param posts - Array of blog posts
+ * @param tagSlug - The tag slug to find
+ * @returns The tag object if found, undefined otherwise
+ */
+export function getTagBySlug(posts: BlogPost[], tagSlug: string): Tag | undefined {
+  const allTags = getAllTags(posts);
+  return allTags.find((tag) => tag.slug === tagSlug);
+}
