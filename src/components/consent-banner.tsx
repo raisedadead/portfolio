@@ -31,7 +31,7 @@ function ConsentBanner({ setHasConsent }: ConsentBannerProps) {
       <div className='container mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between'>
         <p className='mb-2 text-sm text-white sm:mb-0 sm:text-base'>
           We use third-party services to improve how users interact with our website. Refer to our{' '}
-          <Link href='/privacy' className='text-blue-300 underline transition-colors duration-200 hover:text-blue-400'>
+          <Link href='/privacy' className='text-blue-300 underline transition-all duration-100 hover:text-blue-400'>
             privacy policy
           </Link>
           . Do you accept this?
@@ -40,14 +40,14 @@ function ConsentBanner({ setHasConsent }: ConsentBannerProps) {
           <button
             type='button'
             onClick={() => handleConsent(true)}
-            className='transform rounded bg-blue-700 px-4 py-1 text-sm font-medium text-white transition-colors duration-200 hover:scale-105 hover:bg-blue-800'
+            className='transform rounded bg-blue-700 px-4 py-1 text-sm font-medium text-white transition-all duration-100 hover:scale-105 hover:bg-blue-800 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none'
           >
             Accept
           </button>
           <button
             type='button'
             onClick={() => handleConsent(false)}
-            className='transform rounded border border-white px-4 py-1 text-sm font-medium text-white transition-colors duration-200 hover:scale-105 hover:bg-white hover:text-gray-800'
+            className='transform rounded border-2 border-white px-4 py-1 text-sm font-medium text-white transition-all duration-100 hover:scale-105 hover:bg-white hover:text-gray-800 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none'
           >
             Decline
           </button>

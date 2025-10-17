@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowUp } from './scroll-arrows';
 
 const ScrollButton = ({ className }: { className: string }) => {
@@ -37,7 +37,7 @@ const ScrollButton = ({ className }: { className: string }) => {
     window.scrollTo({ top: scrollTo, behavior: 'smooth' });
   };
 
-  const arrowClassName = `cursor-pointer rounded-full bg-white text-black shadow-[4px_4px_0_0_rgba(60,64,43,.2)] focus:outline-hidden ${
+  const arrowClassName = `cursor-pointer rounded-full border-2 border-black bg-white text-black shadow-[4px_4px_0px_var(--color-black)] hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
     bounceButton ? 'animate-bounce' : ''
   }`;
 

@@ -105,15 +105,13 @@ describe('Blog Index Page', () => {
       <div data-testid='blog-index-page'>
         <div className='mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8'>
           <div className='mb-12 text-center'>
-            <h1 className='mb-4 text-4xl font-bold text-gray-900 dark:text-white'>Blog</h1>
-            <p className='text-lg text-gray-600 dark:text-gray-400'>
-              Thoughts on web development, technology, and more
-            </p>
+            <h1 className='mb-4 text-4xl font-bold text-gray-900'>Blog</h1>
+            <p className='text-lg text-gray-600'>Thoughts on web development, technology, and more</p>
           </div>
 
           {posts.length === 0 ? (
-            <div className='mx-auto max-w-md rounded-lg border-2 border-dashed border-gray-300 p-12 text-center dark:border-gray-700'>
-              <p className='text-lg text-gray-600 dark:text-gray-400'>No blog posts yet. Check back soon!</p>
+            <div className='mx-auto max-w-md rounded-lg border-2 border-dashed border-gray-300 p-12 text-center'>
+              <p className='text-lg text-gray-600'>No blog posts yet. Check back soon!</p>
             </div>
           ) : (
             <>
@@ -133,11 +131,9 @@ describe('Blog Index Page', () => {
 
               <div
                 id='blog-empty-state'
-                className='mx-auto mt-8 hidden max-w-md rounded-lg border-2 border-dashed border-gray-300 p-12 text-center dark:border-gray-700'
+                className='mx-auto mt-8 hidden max-w-md rounded-lg border-2 border-dashed border-gray-300 p-12 text-center'
               >
-                <p className='text-lg text-gray-600 dark:text-gray-400'>
-                  No posts match your search. Try a different query.
-                </p>
+                <p className='text-lg text-gray-600'>No posts match your search. Try a different query.</p>
               </div>
 
               {totalPages > 1 && (
@@ -277,16 +273,6 @@ describe('Blog Index Page', () => {
 
       const mainContainer = container.querySelector('.mx-auto.max-w-7xl');
       expect(mainContainer).toHaveClass('px-4', 'py-12', 'sm:px-6', 'lg:px-8');
-    });
-
-    it('applies dark mode classes', () => {
-      renderBlogIndex(mockPosts, 2);
-
-      const heading = screen.getByRole('heading', { level: 1 });
-      expect(heading).toHaveClass('dark:text-white');
-
-      const description = screen.getByText('Thoughts on web development, technology, and more');
-      expect(description).toHaveClass('dark:text-gray-400');
     });
   });
 

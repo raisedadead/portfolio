@@ -2,12 +2,11 @@ import CalButton from './cal-embed';
 import { CustomLink as Link } from './custom-link';
 import { Social } from './social';
 
-// Shared button styling - matches Button component variants
-const primaryButtonClasses =
-  'h-14 border-2 border-black bg-orange-200 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none';
-
 const secondaryButtonClasses =
-  'h-14 border-2 border-black bg-orange-50 p-3 text-lg font-semibold text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-gray-700 hover:text-white hover:shadow-none active:bg-black active:shadow-none';
+  'inline-flex items-center justify-center h-14 border-2 border-black bg-orange-200 px-6 py-3 text-lg font-bold text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-50 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none';
+
+const primaryButtonClasses =
+  'inline-flex items-center justify-center h-14 border-2 border-black bg-orange-50 px-6 py-3 text-lg font-bold text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-200 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none';
 
 export const Profile: React.FC = () => {
   return (
@@ -17,7 +16,7 @@ export const Profile: React.FC = () => {
           id='profile-image'
           alt="Mrugesh Mohapatra's profile picture."
           src='/images/profile.small.webp'
-          className='h-28 w-28 border-4 border-orange-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:h-36 md:w-36'
+          className='h-28 w-28 border-2 border-orange-50 shadow-[4px_4px_0px_var(--color-black)] md:h-36 md:w-36'
           width={144}
           height={144}
         />
@@ -51,7 +50,7 @@ export const Profile: React.FC = () => {
             </svg>
           </span>
         </h1>
-        <div className='m-1 mx-auto -mt-8 w-2/5 border-8 border-orange-50 bg-orange-50' />
+        <div className='m-1 mx-auto -mt-8 w-2/5 border-12 border-orange-50 bg-orange-50' />
       </div>
       <h2 className='mb-4 max-w-md p-1 text-xl leading-relaxed font-bold text-slate-700 md:text-2xl'>
         nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
@@ -68,15 +67,10 @@ export const Profile: React.FC = () => {
       </h3>
 
       <div className='mb-10 flex flex-row items-center justify-center space-x-4'>
-        <CalButton aria-label='Schedule a meeting with me' className={`${secondaryButtonClasses} w-80`}>
+        <CalButton aria-label='Schedule a meeting with me' className={`${primaryButtonClasses} w-80`}>
           <span className='inline-flex items-center'>Schedule a Meeting</span>
         </CalButton>
-        <Link
-          aria-label='Browse my blog'
-          className={`${primaryButtonClasses} w-36`}
-          href='/blog'
-          type='button'
-        >
+        <Link aria-label='Browse my blog' className={`${secondaryButtonClasses} w-36`} href='/blog' type='button'>
           <span className='inline-flex items-center'>Blog</span>
         </Link>
       </div>

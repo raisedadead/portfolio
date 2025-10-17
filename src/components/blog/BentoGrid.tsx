@@ -30,7 +30,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
   return (
     <>
       {/* Bento Grid */}
-      <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5'>
+      <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5'>
         {visiblePosts.map((post, index) => {
           const spanConfig = getBentoGridSpan(index);
           const dimensions = calculateImageDimensions(spanConfig.aspectRatio, index);
@@ -42,13 +42,13 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
             <article
               key={post.id}
               data-blog-post-id={post.id}
-              className={`${spanConfig.desktop} group flex flex-col overflow-hidden bg-white p-4 no-underline shadow-[6px_6px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[8px_8px_0px_var(--color-black)] sm:col-span-2 dark:bg-gray-800 dark:hover:bg-orange-900`}
+              className={`${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none sm:col-span-2`}
             >
               <a href={`/blog/${post.data.slug}`} className='block no-underline'>
                 {/* Cover Image */}
                 {optimizedUrl ? (
                   <div className={`relative w-full overflow-hidden ${spanConfig.aspectClass} ${spanConfig.height}`}>
-                    <div className='absolute inset-0 animate-pulse bg-gray-200 dark:bg-gray-700' />
+                    <div className='absolute inset-0 animate-pulse bg-gray-200' />
                     <img
                       src={optimizedUrl}
                       alt={post.data.coverImage?.alt || post.data.title}
@@ -70,15 +70,15 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
 
                 {/* Card Content */}
                 <div className='flex grow flex-col'>
-                  <h2 className='my-4 font-sans text-2xl font-bold text-slate-900 transition-colors group-hover:text-orange-800 dark:text-orange-100 dark:group-hover:text-orange-200'>
+                  <h2 className='my-4 font-sans text-2xl font-bold text-slate-900 transition-colors group-hover:text-orange-800'>
                     {post.data.title}
                   </h2>
 
-                  <p className='mb-4 grow text-slate-600 transition-colors group-hover:text-slate-700 dark:text-slate-300 dark:group-hover:text-orange-100'>
+                  <p className='mb-4 grow text-slate-600 transition-colors group-hover:text-slate-700'>
                     {post.data.brief}
                   </p>
 
-                  <div className='flex flex-wrap items-center text-sm text-slate-500 transition-colors group-hover:text-slate-600 dark:text-slate-400 dark:group-hover:text-orange-200'>
+                  <div className='flex flex-wrap items-center text-sm text-slate-500 transition-colors group-hover:text-slate-600'>
                     <span>{new Date(post.data.publishedAt).toDateString()}</span>
                     {post.data.readingTime && (
                       <>

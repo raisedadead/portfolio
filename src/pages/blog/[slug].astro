@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import MainLayout from '@/layouts/main-layout.astro';
+import { Social } from '@/components/social';
 import { formatDate } from '@/lib/formatDate';
 import { highlightCode } from '@/lib/syntax-highlighter';
 import CodeBlock from '@/components/code-block';
@@ -123,11 +124,11 @@ if (lastIndex < contentHtml.length) {
   <article
     class={cn(
       'overflow-hidden',
-      'bg-white dark:bg-gray-800',
+      'bg-white',
       'no-underline',
-      'shadow-[6px_8px_0px_var(--color-black)]',
-      'dark:shadow-[6px_8px_0px_var(--color-white)]',
-      'transition-colors duration-100'
+      'border-2 border-black',
+      'shadow-[6px_6px_0px_var(--color-black)]',
+      'transition-all duration-100'
     )}
   >
     <!-- Cover Image or Fallback -->
@@ -165,12 +166,12 @@ if (lastIndex < contentHtml.length) {
     <!-- Content Container -->
     <div class='p-6 sm:p-10'>
       <!-- Title -->
-      <h1 class='mb-10 line-clamp-2 text-3xl font-bold text-gray-900 sm:text-4xl dark:text-gray-100'>
+      <h1 class='mb-10 line-clamp-2 text-3xl font-bold text-gray-900 sm:text-4xl'>
         {data.title}
       </h1>
 
       <!-- Metadata -->
-      <div class='mb-8 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400'>
+      <div class='mb-8 flex items-center gap-2 text-sm text-gray-600'>
         <time datetime={data.publishedAt.toISOString()}>
           {formatDate(data.publishedAt)}
         </time>
@@ -181,19 +182,19 @@ if (lastIndex < contentHtml.length) {
       <!-- Post Content with Prose Styling -->
       <div
         class={cn(
-          'prose prose-lg dark:prose-invert max-w-none',
-          'prose-p:text-gray-700 dark:prose-p:text-gray-300',
+          'prose prose-lg max-w-none',
+          'prose-p:text-gray-700',
           'prose-p:my-2 prose-p:leading-relaxed',
-          'prose-strong:text-gray-800 dark:prose-strong:text-gray-200',
-          'prose-headings:font-semibold prose-headings:text-gray-800 dark:prose-headings:text-gray-100',
+          'prose-strong:text-gray-800',
+          'prose-headings:font-semibold prose-headings:text-gray-800',
           'prose-h2:mb-2 prose-h2:mt-8',
           'prose-h3:mb-2 prose-h3:mt-6',
           'prose-h4:mb-2 prose-h4:mt-4',
-          'prose-a:text-blue-600 prose-a:no-underline prose-a:hover:underline dark:prose-a:text-blue-400',
-          'prose-ul:list-disc prose-li:text-gray-700 dark:prose-li:text-gray-300',
+          'prose-a:text-blue-600 prose-a:no-underline prose-a:hover:underline',
+          'prose-ul:list-disc prose-li:text-gray-700',
           'prose-img:my-4 prose-img:rounded-md prose-img:shadow-md',
-          'prose-hr:border-gray-200 dark:prose-hr:border-gray-700',
-          'prose-blockquote:border-l-4 prose-blockquote:border-gray-400 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300'
+          'prose-hr:border-gray-200',
+          'prose-blockquote:border-l-4 prose-blockquote:border-gray-400 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-700'
         )}
       >
         {
@@ -210,4 +211,46 @@ if (lastIndex < contentHtml.length) {
       </div>
     </div>
   </article>
+
+  <!-- Tags and Navigation -->
+  <section class='py-8'>
+    {
+      data.tags && data.tags.length > 0 && (
+        <div class='mb-6'>
+          <h3 class={cn('mb-3 text-center text-lg font-semibold text-slate-800')}>Tags</h3>
+          <div class='flex flex-wrap justify-center gap-2'>
+            {data.tags.map((tag: any) => (
+              <a
+                href={`/blog/tags/${tag.slug}`}
+                class={cn(
+                  'inline-flex items-center rounded-full border-2 border-black bg-white px-4 py-2 text-sm font-medium text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none'
+                )}
+                aria-label={`View more posts tagged with ${tag.name}`}
+              >
+                #{tag.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+    <div class='flex justify-center'>
+      <a
+        href='/blog'
+        class={cn(
+          'inline-flex items-center gap-2 border-2 border-black bg-white px-6 py-3 font-bold text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none'
+        )}
+      >
+        <span aria-hidden='true'>←</span>
+        <span>Back to blog</span>
+      </a>
+    </div>
+  </section>
+
+  <section class='pt-4 pb-8'>
+    <div class={cn('prose prose-lg prose-slate mx-auto mt-12 max-w-3xl')}>
+      <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>Elsewhere on the internet</h3>
+      <Social />
+    </div>
+  </section>
 </MainLayout>

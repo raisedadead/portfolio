@@ -1,0 +1,114 @@
+---
+// Dynamic tag page - shows posts filtered by a specific tag
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import MainLayout from '@/layouts/main-layout.astro';
+import BlogSearch from '@/components/blog/BlogSearch';
+import BentoGrid from '@/components/blog/BentoGrid';
+import { Social } from '@/components/social';
+import { getAllTags, filterPostsByTag } from '@/lib/blog-utils';
+import { cn } from '@/lib/utils';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog');
+  const allTags = getAllTags(posts);
+
+  return allTags.map((tag) => {
+    const filteredPosts = filterPostsByTag(posts, tag.slug);
+    return {
+      params: { tag: tag.slug },
+      props: {
+        tag,
+        posts: filteredPosts,
+        allPosts: posts
+      }
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { tag, posts, allPosts } = Astro.props;
+
+// Sort posts by date (newest first)
+const sortedPosts = posts.sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+);
+
+// SEO metadata
+const pageTitle = `${tag.name} Posts`;
+const pageDescription = `Browse all blog posts tagged with ${tag.name}`;
+const canonicalURL = new URL(`/blog/tags/${tag.slug}`, Astro.site).toString();
+
+// Structured data for tag page
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: canonicalURL,
+  numberOfItems: posts.length,
+  hasPart: posts.map((post) => ({
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    datePublished: post.data.publishedAt,
+    url: new URL(`/blog/${post.data.slug}`, Astro.site).toString()
+  }))
+};
+---
+
+<MainLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  pageUrl={canonicalURL}
+  pageImage={posts[0]?.data.coverImage?.url}
+>
+  <script type='application/ld+json' is:inline set:html={JSON.stringify(structuredData)} />
+  <section class={cn('mb-2')}>
+    <div class={cn('prose prose-lg prose-slate max-w-none')}>
+      <h1 class={cn('py-4 text-center text-3xl font-bold text-slate-800')}>
+        Posts tagged with "{tag.name}"
+      </h1>
+    </div>
+  </section>
+
+  <section class={cn('mb-12')}>
+    <div class={cn('mb-6 text-center')}>
+      <p class={cn('text-lg text-slate-600')}>
+        {sortedPosts.length}
+        {sortedPosts.length === 1 ? 'post' : 'posts'} found
+      </p>
+    </div>
+
+    {
+      sortedPosts.length === 0 ? (
+        <div class={cn('mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center')}>
+          <p class={cn('text-lg text-slate-600')}>No posts found with this tag.</p>
+        </div>
+      ) : (
+        <>
+          <BlogSearch posts={allPosts} client:idle />
+
+          <BentoGrid posts={sortedPosts} initialCount={6} postsPerLoad={3} client:visible />
+
+          {/* View All Tags Button */}
+          <div class='flex justify-center py-8'>
+            <a
+              href='/blog/tags'
+              class={cn(
+                'inline-flex items-center gap-2 border-2 border-black bg-white px-6 py-3 font-bold text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none'
+              )}
+            >
+              <span aria-hidden='true'>←</span>
+              <span>View all tags</span>
+            </a>
+          </div>
+        </>
+      )
+    }
+  </section>
+  <section class='pt-4 pb-8'>
+    <div class={cn('prose prose-lg prose-slate mx-auto mt-12 max-w-3xl')}>
+      <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>Elsewhere on the internet</h3>
+      <Social />
+    </div>
+  </section>
+</MainLayout>

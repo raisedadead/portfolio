@@ -116,7 +116,7 @@ describe('CodeBlock Component', () => {
       render(<CodeBlock code={mockCode} html={mockHtml} />);
 
       const copyButton = screen.getByRole('button', { name: /copy/i });
-      expect(copyButton).toHaveClass('rounded-md', 'p-2', 'transition-opacity', 'duration-200');
+      expect(copyButton).toHaveClass('rounded-md', 'p-2', 'transition-all', 'duration-100');
     });
 
     it('applies proper button styling', () => {
@@ -125,10 +125,10 @@ describe('CodeBlock Component', () => {
       const copyButton = screen.getByRole('button', { name: /copy/i });
       expect(copyButton).toHaveClass(
         'bg-gray-800',
-        'hover:bg-gray-700',
+        'hover:bg-orange-100',
         'opacity-20',
         'group-hover:opacity-100',
-        'focus:opacity-100'
+        'focus-visible:opacity-100'
       );
     });
 

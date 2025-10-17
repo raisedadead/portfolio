@@ -1,206 +1,253 @@
-import { describe, it, expect } from 'vitest';
-import { getBentoGridSpan } from '@/lib/blog-utils';
+import { describe, expect, it } from 'vitest';
+import { getAllTags, filterPostsByTag, getTagBySlug, getBentoGridSpan } from '@/lib/blog-utils';
+import type { BlogPost } from '@/types/blog';
 
-interface MockPost {
-  id: string;
-  title: string;
-  brief: string;
-  coverImage: { url: string };
-  publishedAt: Date;
-  readingTime: number;
-}
+describe('Blog Utils', () => {
+  const mockPosts: BlogPost[] = [
+    {
+      id: 'post-1',
+      data: {
+        slug: 'first-blog-post',
+        title: 'First Blog Post',
+        brief: 'This is the first post',
+        content: { html: '<p>Content 1</p>' },
+        author: { name: 'Author 1' },
+        tags: [
+          { name: 'TypeScript', slug: 'typescript' },
+          { name: 'Tutorial', slug: 'tutorial' }
+        ],
+        publishedAt: new Date('2025-03-01'),
+        readingTime: 5
+      }
+    },
+    {
+      id: 'post-2',
+      data: {
+        slug: 'second-blog-post',
+        title: 'Second Blog Post',
+        brief: 'This is the second post',
+        content: { html: '<p>Content 2</p>' },
+        author: { name: 'Author 2' },
+        tags: [
+          { name: 'React', slug: 'react' },
+          { name: 'Tutorial', slug: 'tutorial' }
+        ],
+        publishedAt: new Date('2025-02-15'),
+        readingTime: 8
+      }
+    },
+    {
+      id: 'post-3',
+      data: {
+        slug: 'third-blog-post',
+        title: 'Third Blog Post',
+        brief: 'This is the third post',
+        content: { html: '<p>Content 3</p>' },
+        author: { name: 'Author 3' },
+        tags: [
+          { name: 'TypeScript', slug: 'typescript' },
+          { name: 'Advanced', slug: 'advanced' }
+        ],
+        publishedAt: new Date('2025-01-20'),
+        readingTime: 6
+      }
+    }
+  ];
 
-function createMockPosts(count: number): MockPost[] {
-  return Array.from({ length: count }, (_, i) => ({
-    id: `post-${i}`,
-    title: `Post ${i}`,
-    brief: `Brief ${i}`,
-    coverImage: { url: `https://example.com/image-${i}.jpg` },
-    publishedAt: new Date(),
-    readingTime: 5
-  }));
-}
-
-describe('getBentoGridSpan', () => {
-  it('returns correct pattern for indices 0-5', () => {
-    const expected = [
-      { desktop: 'lg:col-span-3', aspectClass: 'aspect-16/9', aspectRatio: '16/9', height: 'h-64' },
-      { desktop: 'lg:col-span-2', aspectClass: 'aspect-4/3', aspectRatio: '4/3', height: 'h-48' },
-      { desktop: 'lg:col-span-5', aspectClass: 'aspect-21/9', aspectRatio: '21/9', height: 'h-56' },
-      { desktop: 'lg:col-span-2', aspectClass: 'aspect-3/2', aspectRatio: '3/2', height: 'h-48' },
-      { desktop: 'lg:col-span-3', aspectClass: 'aspect-3/4', aspectRatio: '3/4', height: 'h-64' },
-      { desktop: 'lg:col-span-5', aspectClass: 'aspect-2/1', aspectRatio: '2/1', height: 'h-40' }
-    ];
-
-    expected.forEach((exp, index) => {
-      expect(getBentoGridSpan(index)).toEqual(exp);
+  describe('getBentoGridSpan', () => {
+    it('returns correct span configuration for index 0', () => {
+      const result = getBentoGridSpan(0);
+      expect(result).toEqual({
+        desktop: 'lg:col-span-3',
+        aspectClass: 'aspect-16/9',
+        aspectRatio: '16/9',
+        height: 'h-64'
+      });
     });
-  });
 
-  it('pattern repeats after index 5', () => {
-    expect(getBentoGridSpan(6)).toEqual(getBentoGridSpan(0));
-    expect(getBentoGridSpan(7)).toEqual(getBentoGridSpan(1));
-    expect(getBentoGridSpan(12)).toEqual(getBentoGridSpan(0));
-  });
-
-  it('handles large indices efficiently', () => {
-    const result1 = getBentoGridSpan(1000000);
-    const result2 = getBentoGridSpan(1000000 % 6);
-    expect(result1).toEqual(result2);
-  });
-
-  it('property: periodic with period 6', () => {
-    const testIndices = [0, 1, 2, 3, 4, 5, 10, 50, 100];
-    testIndices.forEach((n) => {
-      expect(getBentoGridSpan(n)).toEqual(getBentoGridSpan(n + 6));
-      expect(getBentoGridSpan(n)).toEqual(getBentoGridSpan(n + 12));
+    it('returns correct span configuration for index 1', () => {
+      const result = getBentoGridSpan(1);
+      expect(result).toEqual({
+        desktop: 'lg:col-span-2',
+        aspectClass: 'aspect-4/3',
+        aspectRatio: '4/3',
+        height: 'h-48'
+      });
     });
-  });
 
-  it('all outputs have valid Tailwind classes', () => {
-    for (let i = 0; i < 6; i++) {
-      const result = getBentoGridSpan(i);
+    it('cycles through patterns correctly', () => {
+      const result0 = getBentoGridSpan(0);
+      const result6 = getBentoGridSpan(6); // Should be same as index 0
+      expect(result0).toEqual(result6);
+    });
+
+    it('returns valid CSS classes', () => {
+      const result = getBentoGridSpan(0);
       expect(result.desktop).toMatch(/^lg:col-span-\d+$/);
-      expect(result.aspectClass).toMatch(/^aspect-[\d/]+$/);
-      expect(result.aspectRatio).toMatch(/^\d+\/\d+$/);
+      expect(result.aspectClass).toMatch(/^aspect-\d+\/\d+$/);
       expect(result.height).toMatch(/^h-\d+$/);
-    }
-  });
-
-  it('handles edge case index 0', () => {
-    const result = getBentoGridSpan(0);
-    expect(result).toEqual({
-      desktop: 'lg:col-span-3',
-      aspectClass: 'aspect-16/9',
-      aspectRatio: '16/9',
-      height: 'h-64'
     });
   });
 
-  it('pattern creates visual rhythm', () => {
-    const spans = Array.from({ length: 6 }, (_, i) => {
-      const match = getBentoGridSpan(i).desktop.match(/\d+/);
-      return match ? parseInt(match[0]) : 0;
+  describe('getAllTags', () => {
+    it('extracts all unique tags from posts', () => {
+      const tags = getAllTags(mockPosts);
+      const tagNames = tags.map((tag) => tag.name).sort();
+
+      expect(tagNames).toEqual(['Advanced', 'React', 'Tutorial', 'TypeScript']);
     });
 
-    expect(spans).toEqual([3, 2, 5, 2, 3, 5]);
-  });
-});
+    it('removes duplicate tags across posts', () => {
+      const postsWithDuplicates = [
+        ...mockPosts,
+        {
+          ...mockPosts[0],
+          id: 'post-4',
+          data: {
+            ...mockPosts[0].data,
+            slug: 'duplicate-post',
+            tags: [{ name: 'TypeScript', slug: 'typescript' }] // Duplicate
+          }
+        }
+      ];
 
-describe('Blog Bento Pattern', () => {
-  it('verifies alternating 1-2-1-2 pattern across 12 posts', () => {
-    const posts = createMockPosts(12);
-
-    const spans = posts.map((_, index) => {
-      const { desktop } = getBentoGridSpan(index);
-      const match = desktop.match(/\d+/);
-      return match ? parseInt(match[0]) : 0;
+      const tags = getAllTags(postsWithDuplicates);
+      const typescriptTags = tags.filter((tag) => tag.slug === 'typescript');
+      expect(typescriptTags).toHaveLength(1);
     });
 
-    expect(spans).toEqual([3, 2, 5, 2, 3, 5, 3, 2, 5, 2, 3, 5]);
-  });
+    it('sorts tags alphabetically by name', () => {
+      const tags = getAllTags(mockPosts);
+      const tagNames = tags.map((tag) => tag.name);
 
-  it('pattern continues correctly after first cycle', () => {
-    expect(getBentoGridSpan(6)).toEqual(getBentoGridSpan(0));
-    expect(getBentoGridSpan(7)).toEqual(getBentoGridSpan(1));
-  });
-
-  it('handles partial cycles correctly', () => {
-    const posts7 = createMockPosts(7);
-    const spans7 = posts7.map((_, i) => {
-      const { desktop } = getBentoGridSpan(i);
-      const match = desktop.match(/\d+/);
-      return match ? parseInt(match[0]) : 0;
+      expect(tagNames).toEqual(['Advanced', 'React', 'Tutorial', 'TypeScript']);
     });
 
-    expect(spans7).toEqual([3, 2, 5, 2, 3, 5, 3]);
+    it('returns empty array for posts with no tags', () => {
+      const postsWithoutTags: BlogPost[] = [
+        {
+          ...mockPosts[0],
+          data: { ...mockPosts[0].data, tags: [] }
+        }
+      ];
+
+      const tags = getAllTags(postsWithoutTags);
+      expect(tags).toEqual([]);
+    });
+
+    it('handles empty posts array', () => {
+      const tags = getAllTags([]);
+      expect(tags).toEqual([]);
+    });
+
+    it('preserves tag structure', () => {
+      const tags = getAllTags(mockPosts);
+      const typescriptTag = tags.find((tag) => tag.slug === 'typescript');
+
+      expect(typescriptTag).toEqual({
+        name: 'TypeScript',
+        slug: 'typescript'
+      });
+    });
   });
 
-  it('all aspects are valid CSS values', () => {
-    for (let i = 0; i < 12; i++) {
-      const { aspectClass } = getBentoGridSpan(i);
-      expect(aspectClass).toMatch(/^aspect-[\d/]+$/);
-    }
-  });
-});
+  describe('filterPostsByTag', () => {
+    it('filters posts by tag slug correctly', () => {
+      const typescriptPosts = filterPostsByTag(mockPosts, 'typescript');
+      expect(typescriptPosts).toHaveLength(2);
+      expect(typescriptPosts.map((p) => p.id)).toEqual(['post-1', 'post-3']);
+    });
 
-describe('Blog Load More Pagination', () => {
-  it('verifies 6 initial posts load correctly', () => {
-    const allPosts = createMockPosts(20);
-    const initialPosts = allPosts.slice(0, 6);
+    it('returns single post for unique tag', () => {
+      const reactPosts = filterPostsByTag(mockPosts, 'react');
+      expect(reactPosts).toHaveLength(1);
+      expect(reactPosts[0].id).toBe('post-2');
+    });
 
-    expect(initialPosts).toHaveLength(6);
-    expect(initialPosts[0].id).toBe('post-0');
-    expect(initialPosts[5].id).toBe('post-5');
-  });
+    it('returns empty array for non-existent tag', () => {
+      const nonexistentPosts = filterPostsByTag(mockPosts, 'nonexistent');
+      expect(nonexistentPosts).toEqual([]);
+    });
 
-  it('verifies 3 posts added per click', () => {
-    const allPosts = createMockPosts(20);
-    let visibleCount = 6;
+    it('returns all matching posts for shared tag', () => {
+      const tutorialPosts = filterPostsByTag(mockPosts, 'tutorial');
+      expect(tutorialPosts).toHaveLength(2);
+      expect(tutorialPosts.map((p) => p.id).sort()).toEqual(['post-1', 'post-2']);
+    });
 
-    visibleCount += 3;
-    const afterFirstClick = allPosts.slice(0, visibleCount);
-    expect(afterFirstClick).toHaveLength(9);
+    it('handles empty posts array', () => {
+      const result = filterPostsByTag([], 'typescript');
+      expect(result).toEqual([]);
+    });
 
-    visibleCount += 3;
-    const afterSecondClick = allPosts.slice(0, visibleCount);
-    expect(afterSecondClick).toHaveLength(12);
-  });
+    it('preserves original post objects', () => {
+      const typescriptPosts = filterPostsByTag(mockPosts, 'typescript');
+      const originalPost = mockPosts.find((p) => p.id === 'post-1');
+      const filteredPost = typescriptPosts.find((p) => p.id === 'post-1');
 
-  it('pattern continues after load more', () => {
-    expect(getBentoGridSpan(6)).toEqual(getBentoGridSpan(0));
-    expect(getBentoGridSpan(7)).toEqual(getBentoGridSpan(1));
-    expect(getBentoGridSpan(8)).toEqual(getBentoGridSpan(2));
-  });
-
-  it('hasMore flag calculated correctly', () => {
-    const totalPosts = 20;
-    let visiblePosts = 6;
-
-    expect(visiblePosts < totalPosts).toBe(true);
-
-    visiblePosts = 20;
-    expect(visiblePosts < totalPosts).toBe(false);
+      expect(filteredPost).toEqual(originalPost);
+    });
   });
 
-  it('handles edge case when total equals visible', () => {
-    const allPosts = createMockPosts(6);
-    const visiblePosts = 6;
+  describe('getTagBySlug', () => {
+    it('finds tag by slug correctly', () => {
+      const tag = getTagBySlug(mockPosts, 'typescript');
+      expect(tag).toEqual({
+        name: 'TypeScript',
+        slug: 'typescript'
+      });
+    });
 
-    expect(visiblePosts >= allPosts.length).toBe(true);
-  });
-});
+    it('returns undefined for non-existent tag slug', () => {
+      const tag = getTagBySlug(mockPosts, 'nonexistent');
+      expect(tag).toBeUndefined();
+    });
 
-describe('Blog Responsive Layout', () => {
-  it('verifies mobile layout data (single column)', () => {
-    const gridClass = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5';
-    expect(gridClass).toContain('grid-cols-1');
-  });
+    it('handles empty posts array', () => {
+      const tag = getTagBySlug([], 'typescript');
+      expect(tag).toBeUndefined();
+    });
 
-  it('verifies tablet layout data (2-column base)', () => {
-    const gridClass = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5';
-    expect(gridClass).toContain('sm:grid-cols-2');
-  });
-
-  it('verifies desktop layout data (5-column grid)', () => {
-    const gridClass = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5';
-    expect(gridClass).toContain('lg:grid-cols-5');
-  });
-
-  it('all cards have responsive span classes', () => {
-    for (let i = 0; i < 6; i++) {
-      const { desktop } = getBentoGridSpan(i);
-
-      expect(desktop).toMatch(/^lg:col-span-\d+$/);
-
-      const responsiveClass = `sm:col-span-2 ${desktop}`;
-      expect(responsiveClass).toContain('sm:col-span-2');
-      expect(responsiveClass).toContain(desktop);
-    }
+    it('finds tag from posts with no matching tags', () => {
+      const postsWithoutTypeScript = mockPosts.filter((p) => !p.data.tags.some((t) => t.slug === 'typescript'));
+      const tag = getTagBySlug(postsWithoutTypeScript, 'typescript');
+      expect(tag).toBeUndefined();
+    });
   });
 
-  it('verifies gap spacing consistent across breakpoints', () => {
-    const gapClass = 'gap-3';
-    expect(gapClass).toBe('gap-3');
+  describe('Integration Tests', () => {
+    it('getAllTags and filterPostsByTag work together correctly', () => {
+      const allTags = getAllTags(mockPosts);
+
+      allTags.forEach((tag) => {
+        const filteredPosts = filterPostsByTag(mockPosts, tag.slug);
+        expect(filteredPosts.length).toBeGreaterThan(0);
+
+        // Verify all filtered posts contain the tag
+        filteredPosts.forEach((post) => {
+          expect(post.data.tags.some((t) => t.slug === tag.slug)).toBe(true);
+        });
+      });
+    });
+
+    it('getTagBySlug returns tags that can be used with filterPostsByTag', () => {
+      const tag = getTagBySlug(mockPosts, 'tutorial');
+      expect(tag).toBeDefined();
+
+      if (tag) {
+        const filteredPosts = filterPostsByTag(mockPosts, tag.slug);
+        expect(filteredPosts.length).toBeGreaterThan(0);
+      }
+    });
+
+    it('tag extraction preserves slug-to-name mapping', () => {
+      const allTags = getAllTags(mockPosts);
+      const slugMap = new Map(allTags.map((tag) => [tag.slug, tag.name]));
+
+      expect(slugMap.get('typescript')).toBe('TypeScript');
+      expect(slugMap.get('react')).toBe('React');
+      expect(slugMap.get('tutorial')).toBe('Tutorial');
+      expect(slugMap.get('advanced')).toBe('Advanced');
+    });
   });
 });

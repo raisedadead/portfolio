@@ -8,7 +8,7 @@ describe('Card', () => {
       <Card>
         <h2>Card Title</h2>
         <p>Card content</p>
-      </Card>,
+      </Card>
     );
 
     expect(screen.getByText('Card Title')).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe('Card', () => {
     const { container } = render(
       <Card>
         <p>Content</p>
-      </Card>,
+      </Card>
     );
 
     const card = container.firstChild as HTMLElement;
@@ -27,7 +27,7 @@ describe('Card', () => {
   });
 
   it('applies "default" variant classes correctly', () => {
-    const { container } = render(<Card variant="default">Content</Card>);
+    const { container } = render(<Card variant='default'>Content</Card>);
     const card = container.firstChild as HTMLElement;
 
     expect(card.className).toContain('border-2');
@@ -37,17 +37,17 @@ describe('Card', () => {
   });
 
   it('applies "featured" variant classes correctly', () => {
-    const { container } = render(<Card variant="featured">Featured Content</Card>);
+    const { container } = render(<Card variant='featured'>Featured Content</Card>);
     const card = container.firstChild as HTMLElement;
 
-    expect(card.className).toContain('border-4');
+    expect(card.className).toContain('border-2');
     expect(card.className).toContain('border-black');
     expect(card.className).toContain('bg-white');
     expect(card.className).toContain('p-8');
   });
 
   it('applies "minimal" variant classes correctly', () => {
-    const { container } = render(<Card variant="minimal">Minimal Content</Card>);
+    const { container } = render(<Card variant='minimal'>Minimal Content</Card>);
     const card = container.firstChild as HTMLElement;
 
     expect(card.className).toContain('border-2');
@@ -58,9 +58,9 @@ describe('Card', () => {
 
   it('merges custom className with base styles', () => {
     const { container } = render(
-      <Card variant="default" className="custom-class mt-4">
+      <Card variant='default' className='custom-class mt-4'>
         Content
-      </Card>,
+      </Card>
     );
 
     const card = container.firstChild as HTMLElement;
@@ -72,9 +72,9 @@ describe('Card', () => {
 
   it('handles empty className prop', () => {
     const { container } = render(
-      <Card variant="default" className="">
+      <Card variant='default' className=''>
         Content
-      </Card>,
+      </Card>
     );
 
     const card = container.firstChild as HTMLElement;
@@ -83,7 +83,7 @@ describe('Card', () => {
   });
 
   it('applies correct shadow for default variant', () => {
-    const { container } = render(<Card variant="default">Content</Card>);
+    const { container } = render(<Card variant='default'>Content</Card>);
     const card = container.firstChild as HTMLElement;
 
     // Check for shadow class
@@ -91,7 +91,7 @@ describe('Card', () => {
   });
 
   it('applies correct shadow for featured variant', () => {
-    const { container } = render(<Card variant="featured">Content</Card>);
+    const { container } = render(<Card variant='featured'>Content</Card>);
     const card = container.firstChild as HTMLElement;
 
     // Check for shadow class
@@ -99,7 +99,7 @@ describe('Card', () => {
   });
 
   it('applies correct shadow for minimal variant', () => {
-    const { container } = render(<Card variant="minimal">Content</Card>);
+    const { container } = render(<Card variant='minimal'>Content</Card>);
     const card = container.firstChild as HTMLElement;
 
     // Check for shadow class

@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface BlogLoadMoreProps {
@@ -15,30 +14,44 @@ export default function BlogLoadMore({ totalPosts, visiblePosts, onLoadMore, isL
   if (!hasMore && !isLoading) {
     return (
       <div className='flex justify-center py-8'>
-        <p className='text-center text-gray-600 dark:text-gray-400'>That&apos;s the end. No more articles.</p>
+        <p className='text-center text-gray-600'>That&apos;s the end. No more articles.</p>
       </div>
     );
   }
 
   return (
     <div className='flex justify-center py-8'>
-      <Button
+      <button
         type='button'
-        variant='primary'
         onClick={onLoadMore}
         disabled={isLoading}
         aria-label='Load more blog posts'
         aria-busy={isLoading}
         className={cn(
-          'w-full sm:w-1/2',
-          'p-2 text-lg font-medium',
-          'shadow-[4px_4px_0px_rgba(0,0,0,1)]',
+          'inline-flex items-center justify-center gap-2',
+          'border-2 border-black bg-white',
+          'px-8 py-3 font-bold text-black',
+          'shadow-[4px_4px_0px_var(--color-black)]',
           'transition-all duration-100',
-          isLoading && 'cursor-not-allowed border-transparent bg-orange-100 text-gray-400 shadow-none'
+          'hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)]',
+          'focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none',
+          'active:bg-black active:text-white active:shadow-none',
+          'disabled:cursor-not-allowed disabled:opacity-50',
+          'disabled:hover:bg-white disabled:hover:shadow-[4px_4px_0px_var(--color-black)]',
+          isLoading && 'cursor-wait'
         )}
       >
-        {isLoading ? 'Loading...' : 'Load more articles'}
-      </Button>
+        {isLoading ? (
+          <>
+            <span>Loading...</span>
+          </>
+        ) : (
+          <>
+            <span>Load more articles</span>
+            <span aria-hidden='true'>↓</span>
+          </>
+        )}
+      </button>
     </div>
   );
 }

@@ -23,13 +23,13 @@ const dimensions = calculateImageDimensions(aspectRatio, index);
 ---
 
 <article
-  class={`group relative overflow-hidden rounded-lg border border-gray-200 bg-white transition-all hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 sm:col-span-2 lg:${desktop}`}
+  class={`group relative overflow-hidden rounded-lg border-2 border-black bg-white shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] sm:col-span-2 lg:${desktop}`}
 >
   <a href={`/blog/${post.id}`} class='block'>
     {
       hasCoverImage ? (
         <div class={`relative w-full overflow-hidden ${aspectClass} ${height}`}>
-          <div class='absolute inset-0 animate-pulse bg-gray-200 dark:bg-gray-700' />
+          <div class='absolute inset-0 animate-pulse bg-gray-200' />
 
           <Image
             src={data.coverImage.url}
@@ -51,18 +51,18 @@ const dimensions = calculateImageDimensions(aspectRatio, index);
     }
 
     <div class='p-6'>
-      <h2 class='mb-3 line-clamp-2 text-xl font-bold text-gray-900 dark:text-white'>
+      <h2 class='mb-3 line-clamp-2 text-xl font-bold text-gray-900'>
         {data.title}
       </h2>
 
-      <div class='mb-3 flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400'>
+      <div class='mb-3 flex items-center gap-4 text-sm text-gray-600'>
         <time datetime={data.publishedAt.toISOString()}>
           {formatDate(data.publishedAt)}
         </time>
         <span>{data.readingTime} min read</span>
       </div>
 
-      <p class='mb-4 line-clamp-3 text-gray-700 dark:text-gray-300'>
+      <p class='mb-4 line-clamp-3 text-gray-700'>
         {data.brief}
       </p>
 
@@ -70,7 +70,7 @@ const dimensions = calculateImageDimensions(aspectRatio, index);
         data.tags && data.tags.length > 0 && (
           <div class='flex flex-wrap gap-2'>
             {data.tags.slice(0, 3).map((tag: any) => (
-              <span class='inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300'>
+              <span class='inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700'>
                 {tag.name}
               </span>
             ))}

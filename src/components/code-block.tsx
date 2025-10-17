@@ -27,9 +27,11 @@ export default function CodeBlock({ code, html }: CodeBlockProps) {
           type='button'
           onClick={handleCopy}
           className={cn(
-            'rounded-md p-2 transition-opacity duration-200',
-            'bg-gray-800 hover:bg-gray-700',
-            'opacity-20 group-hover:opacity-100 focus:opacity-100'
+            'rounded-md border-2 border-black p-2 transition-all duration-100',
+            'bg-gray-800 hover:bg-orange-100',
+            'shadow-[4px_4px_0px_var(--color-black)] hover:shadow-[6px_6px_0px_var(--color-black)]',
+            'opacity-20 group-hover:opacity-100 focus-visible:opacity-100',
+            'focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none'
           )}
           aria-label='Copy code'
         >

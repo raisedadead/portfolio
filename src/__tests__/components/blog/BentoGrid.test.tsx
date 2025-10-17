@@ -263,7 +263,7 @@ describe('BlogGridWithLoadMore Component', () => {
     it('renders loading skeleton behind image', () => {
       const { container } = render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
-      const skeleton = container.querySelector('.animate-pulse.bg-gray-200.dark\\:bg-gray-700');
+      const skeleton = container.querySelector('.animate-pulse.bg-gray-200');
       expect(skeleton).toBeInTheDocument();
     });
   });
@@ -383,18 +383,18 @@ describe('BlogGridWithLoadMore Component', () => {
 
       const article = screen.getByRole('article');
       expect(article).toHaveClass(
-        'shadow-[6px_6px_0px_var(--color-black)]',
+        'shadow-[4px_4px_0px_var(--color-black)]',
         'transition-all',
         'duration-100',
-        'hover:shadow-[8px_8px_0px_var(--color-black)]'
+        'hover:shadow-[6px_6px_0px_var(--color-black)]'
       );
     });
 
-    it('applies dark mode classes', () => {
+    it('applies hover background class', () => {
       render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
       const article = screen.getByRole('article');
-      expect(article).toHaveClass('dark:bg-gray-800', 'dark:hover:bg-orange-900');
+      expect(article).toHaveClass('hover:bg-orange-100');
     });
   });
 

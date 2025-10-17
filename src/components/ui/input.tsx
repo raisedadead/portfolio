@@ -36,7 +36,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(({ className = '', ...props }, ref) => {
   const baseClasses =
-    'border-2 border-black bg-white shadow-[2px_2px_0px_rgba(0,0,0,1)] focus:shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+    'border-2 border-black bg-white shadow-[4px_4px_0px_var(--color-black)] hover:bg-orange-100 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none transition-all duration-100 disabled:opacity-50 disabled:cursor-not-allowed';
   const classes = `${baseClasses} ${className}`.trim();
 
   return <input ref={ref} className={classes} {...props} />;
