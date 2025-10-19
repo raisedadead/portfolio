@@ -225,9 +225,9 @@ if (lastIndex < contentHtml.length) {
                 class={cn(
                   'inline-flex items-center rounded-full border-2 border-black bg-white px-4 py-2 text-sm font-medium text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none'
                 )}
-                aria-label={`View more posts tagged with ${tag.name}`}
+                aria-label={`View more posts tagged with ${tag.slug}`}
               >
-                #{tag.name}
+                #{tag.slug}
               </a>
             ))}
           </div>
