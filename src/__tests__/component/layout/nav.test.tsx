@@ -1,6 +1,6 @@
-import { Nav } from '@/components/nav';
+import { Nav } from '@/components/layout/nav';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '../test-utils';
+import { fireEvent, render, screen } from '../../test-utils';
 
 // Mock dependencies
 vi.mock('@/components/custom-link', () => ({

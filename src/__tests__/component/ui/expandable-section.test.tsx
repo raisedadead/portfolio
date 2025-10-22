@@ -1,7 +1,7 @@
 import { ExpandableSection } from '@/components/expandable-section';
 import React from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '../test-utils';
+import { fireEvent, render, screen } from '../../test-utils';
 
 // Mock headlessui
 vi.mock('@headlessui/react', () => ({

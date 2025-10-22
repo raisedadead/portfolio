@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/forms/input';
 
 describe('Input', () => {
   it('renders without errors', () => {
@@ -29,15 +29,14 @@ describe('Input', () => {
     const { container } = render(<Input />);
     const input = container.querySelector('input');
 
-    expect(input?.className).toContain('border-2');
-    expect(input?.className).toContain('border-black');
+    expect(input?.className).toContain('brutalist-input');
   });
 
   it('applies brutalist shadow class', () => {
     const { container } = render(<Input />);
     const input = container.querySelector('input');
 
-    expect(input?.className).toMatch(/shadow/);
+    expect(input?.className).toContain('brutalist-input');
   });
 
   it('handles disabled state', () => {
@@ -96,6 +95,6 @@ describe('Input', () => {
 
     expect(input?.className).toContain('w-full');
     expect(input?.className).toContain('custom-class');
-    expect(input?.className).toContain('border-2'); // Base classes still applied
+    expect(input?.className).toContain('brutalist-input'); // Base classes still applied
   });
 });

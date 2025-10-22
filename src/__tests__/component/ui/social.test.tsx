@@ -1,6 +1,6 @@
 import { Social } from '@/components/social';
 import { describe, expect, it, vi } from 'vitest';
-import { render, screen } from '../test-utils';
+import { render, screen } from '../../test-utils';
 
 vi.mock('@/components/custom-link', () => ({
   CustomLink: ({ children, href, ariaLabel }: { children: React.ReactNode; href: string; ariaLabel?: string }) => (
