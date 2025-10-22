@@ -94,7 +94,7 @@
     "is-ci": "4.1.0",
     "jest-axe": "10.0.0",
     "jsdom": "27.0.1",
-    "lighthouse": "13.0.0",
+    "lighthouse": "13.0.1",
     "lint-staged": "16.2.5",
     "prettier": "3.6.2",
     "prettier-plugin-astro": "0.14.1",
