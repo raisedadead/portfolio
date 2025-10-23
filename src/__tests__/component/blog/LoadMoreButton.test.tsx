@@ -56,7 +56,8 @@ describe('BlogLoadMore Component', () => {
       render(<BlogLoadMore totalPosts={10} visiblePosts={5} onLoadMore={mockOnLoadMore} isLoading={false} />);
 
       const button = screen.getByRole('button', { name: /load more blog posts/i });
-      expect(button).toHaveClass('border-2', 'border-black', 'bg-white');
+      expect(button).toHaveClass('brutalist-button-secondary');
+      expect(button).toHaveTextContent('Load more articles');
     });
   });
 
@@ -146,25 +147,28 @@ describe('BlogLoadMore Component', () => {
   });
 
   describe('Styling', () => {
-    it('applies neobrutalist design classes', () => {
+    it('applies brutalist button styling', () => {
       render(<BlogLoadMore totalPosts={10} visiblePosts={5} onLoadMore={mockOnLoadMore} />);
 
       const button = screen.getByRole('button', { name: /load more blog posts/i });
-      expect(button).toHaveClass('border-2', 'border-black', 'bg-white');
+      expect(button).toHaveClass('brutalist-button-secondary');
+      expect(button).toHaveAttribute('aria-label', 'Load more blog posts');
     });
 
-    it('applies border and shadow styles', () => {
+    it('renders with proper button structure', () => {
       render(<BlogLoadMore totalPosts={10} visiblePosts={5} onLoadMore={mockOnLoadMore} />);
 
       const button = screen.getByRole('button', { name: /load more blog posts/i });
-      expect(button).toHaveClass('border-2', 'shadow-[4px_4px_0px_var(--color-black)]');
+      expect(button).toBeInTheDocument();
+      expect(button).toHaveTextContent('Load more articles');
     });
 
-    it('applies transition classes', () => {
+    it('handles disabled state correctly', () => {
       render(<BlogLoadMore totalPosts={10} visiblePosts={5} onLoadMore={mockOnLoadMore} />);
 
       const button = screen.getByRole('button', { name: /load more blog posts/i });
-      expect(button).toHaveClass('transition-all', 'duration-100');
+      expect(button).not.toBeDisabled();
+      expect(button).toHaveAttribute('aria-busy', 'false');
     });
   });
 

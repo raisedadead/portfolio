@@ -12,7 +12,7 @@ const TagCard: React.FC<TagCardProps> = ({ name, slug, count }) => {
     <a
       href={`/blog/tags/${slug}`}
       className={cn(
-        'group block border-2 border-black bg-white p-6 no-underline shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none'
+        'group brutalist-card-hover brutalist-focus block p-6 no-underline active:bg-black active:text-white active:shadow-none'
       )}
       aria-label={`View ${count} ${count === 1 ? 'post' : 'posts'} tagged with ${name}`}
     >

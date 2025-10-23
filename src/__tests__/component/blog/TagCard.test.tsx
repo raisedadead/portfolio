@@ -76,10 +76,8 @@ describe('TagCard Component', () => {
     const { container } = render(<TagCard name='Python' slug='python' count={15} />);
 
     const link = container.querySelector('a');
-    expect(link?.className).toContain('border-2');
-    expect(link?.className).toContain('border-black');
-    expect(link?.className).toContain('shadow-[4px_4px_0px_var(--color-black)]');
-    expect(link?.className).toContain('hover:bg-orange-100');
+    expect(link?.className).toContain('brutalist-card-hover');
+    expect(link?.className).toContain('brutalist-focus');
 
     const heading = container.querySelector('h2');
     expect(heading?.className).toContain('text-xl');

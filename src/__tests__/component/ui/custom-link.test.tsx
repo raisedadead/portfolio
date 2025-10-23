@@ -1,6 +1,6 @@
 import { CustomLink } from '@/components/custom-link';
 import { describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '../test-utils';
+import { fireEvent, render, screen } from '../../test-utils';
 
 describe('CustomLink Component', () => {
   describe('Basic Rendering', () => {

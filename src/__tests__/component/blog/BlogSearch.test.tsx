@@ -298,18 +298,14 @@ describe('BlogSearch Component', () => {
       render(<BlogSearch posts={mockPosts} />);
 
       const input = screen.getByRole('searchbox');
-      expect(input).toHaveClass('border-2', 'border-black', 'bg-white');
+      expect(input).toHaveClass('brutalist-input');
     });
 
     it('applies focus styles to input', () => {
       render(<BlogSearch posts={mockPosts} />);
 
       const input = screen.getByRole('searchbox');
-      expect(input).toHaveClass(
-        'focus-visible:ring-2',
-        'focus-visible:ring-orange-500/50',
-        'focus-visible:outline-none'
-      );
+      expect(input).toHaveClass('brutalist-input');
     });
 
     it('applies neobrutalism styles to dropdown', async () => {

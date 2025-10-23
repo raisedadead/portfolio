@@ -1,8 +1,8 @@
-import { Profile } from '@/components/profile';
+import { Profile } from '@/components/layout/profile';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('@/components/profile', () => ({
+vi.mock('@/components/layout/profile', () => ({
   Profile: vi.fn(() => <div data-testid='profile-component'>Profile Component</div>)
 }));
 

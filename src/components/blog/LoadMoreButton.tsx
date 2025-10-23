@@ -28,16 +28,7 @@ export default function BlogLoadMore({ totalPosts, visiblePosts, onLoadMore, isL
         aria-label='Load more blog posts'
         aria-busy={isLoading}
         className={cn(
-          'inline-flex items-center justify-center gap-2',
-          'border-2 border-black bg-white',
-          'px-8 py-3 font-bold text-black',
-          'shadow-[4px_4px_0px_var(--color-black)]',
-          'transition-all duration-100',
-          'hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)]',
-          'focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none',
-          'active:bg-black active:text-white active:shadow-none',
-          'disabled:cursor-not-allowed disabled:opacity-50',
-          'disabled:hover:bg-white disabled:hover:shadow-[4px_4px_0px_var(--color-black)]',
+          'inline-flex items-center justify-center h-14 px-6 py-3 text-lg font-bold brutalist-button-secondary gap-2 min-w-[280px]',
           isLoading && 'cursor-wait'
         )}
       >

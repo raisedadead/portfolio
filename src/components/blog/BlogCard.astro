@@ -22,9 +22,7 @@ const { desktop, aspectClass, aspectRatio, height } = getBentoGridSpan(index);
 const dimensions = calculateImageDimensions(aspectRatio, index);
 ---
 
-<article
-  class={`group relative overflow-hidden rounded-lg border-2 border-black bg-white shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] sm:col-span-2 lg:${desktop}`}
->
+<article class={`group relative overflow-hidden rounded-lg brutalist-card-hover sm:col-span-2 lg:${desktop}`}>
   <a href={`/blog/${post.id}`} class='block'>
     {
       hasCoverImage ? (

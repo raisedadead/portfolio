@@ -11,31 +11,49 @@ describe('Button', () => {
   it('uses default variant "primary" when no variant prop is provided', () => {
     const { container } = render(<Button>Test</Button>);
     const button = container.querySelector('button');
-    expect(button?.className).toContain('bg-orange-200');
+
+    // Test semantic behavior: default variant should be primary
+    expect(button).toHaveAttribute('data-variant', 'primary');
+
+    // Test that it renders with expected styling behavior
+    expect(button).toBeInTheDocument();
+    expect(button?.tagName).toBe('BUTTON');
   });
 
-  it('applies "primary" variant classes correctly', () => {
-    const { container } = render(<Button variant='primary'>Primary</Button>);
-    const button = container.querySelector('button');
-    expect(button?.className).toContain('bg-orange-200');
-    expect(button?.className).toContain('border-2');
-    expect(button?.className).toContain('border-black');
+  it('applies "primary" variant correctly', () => {
+    render(<Button variant='primary'>Primary</Button>);
+    const button = screen.getByRole('button', { name: /primary/i });
+
+    // Test semantic behavior
+    expect(button).toHaveAttribute('data-variant', 'primary');
+
+    // Test that it renders correctly
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('Primary');
   });
 
-  it('applies "secondary" variant classes correctly', () => {
-    const { container } = render(<Button variant='secondary'>Secondary</Button>);
-    const button = container.querySelector('button');
-    expect(button?.className).toContain('bg-orange-50');
-    expect(button?.className).toContain('border-2');
-    expect(button?.className).toContain('border-black');
+  it('applies "secondary" variant correctly', () => {
+    render(<Button variant='secondary'>Secondary</Button>);
+    const button = screen.getByRole('button', { name: /secondary/i });
+
+    // Test semantic behavior
+    expect(button).toHaveAttribute('data-variant', 'secondary');
+
+    // Test that it renders correctly
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('Secondary');
   });
 
-  it('applies "ghost" variant classes correctly', () => {
-    const { container } = render(<Button variant='ghost'>Ghost</Button>);
-    const button = container.querySelector('button');
-    expect(button?.className).toContain('bg-transparent');
-    expect(button?.className).toContain('border-2');
-    expect(button?.className).toContain('border-black');
+  it('applies "ghost" variant correctly', () => {
+    render(<Button variant='ghost'>Ghost</Button>);
+    const button = screen.getByRole('button', { name: /ghost/i });
+
+    // Test semantic behavior
+    expect(button).toHaveAttribute('data-variant', 'ghost');
+
+    // Test that it renders correctly
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('Ghost');
   });
 
   it('calls onClick handler when clicked', () => {

@@ -1,4 +1,4 @@
-import { CustomLink as Link } from './custom-link';
+import { CustomLink as Link } from '@/components/custom-link';
 
 type FooterProps = {
   isDefault?: boolean;

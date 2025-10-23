@@ -1,4 +1,4 @@
-import { Profile } from '@/components/profile';
+import { Profile } from '@/components/layout/profile';
 import { render, screen } from '@testing-library/react';
 import type React from 'react';
 import { describe, expect, it, vi } from 'vitest';
@@ -62,7 +62,7 @@ describe('Profile Component', () => {
     render(<Profile />);
 
     const calButton = screen.getByTestId('cal-button');
-    expect(calButton).toHaveClass('h-14', 'w-80', 'border-2', 'border-black');
+    expect(calButton).toHaveClass('h-14', 'w-80', 'brutalist-button');
   });
 
   it('renders social links section', () => {

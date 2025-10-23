@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/forms/input';
 import type { BlogPost } from '@/types/blog';
 
 interface Props {
