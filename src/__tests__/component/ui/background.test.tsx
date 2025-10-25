@@ -4,7 +4,6 @@ import { WaveBackground } from '@/components/background';
 
 describe('WaveBackground', () => {
   let mockGetContext: ReturnType<typeof vi.fn>;
-  let mockCanvas: Partial<HTMLCanvasElement>;
   let mockContext: Partial<CanvasRenderingContext2D>;
 
   beforeEach(() => {
@@ -21,7 +20,7 @@ describe('WaveBackground', () => {
       fill: vi.fn(),
       createLinearGradient: vi.fn(() => ({
         addColorStop: vi.fn()
-      })) as unknown as CanvasGradient
+      })) as unknown as typeof CanvasRenderingContext2D.prototype.createLinearGradient
     };
 
     mockGetContext = vi.fn(() => mockContext);

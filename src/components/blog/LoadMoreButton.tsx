@@ -28,7 +28,7 @@ export default function BlogLoadMore({ totalPosts, visiblePosts, onLoadMore, isL
         aria-label='Load more blog posts'
         aria-busy={isLoading}
         className={cn(
-          'inline-flex items-center justify-center h-14 px-6 py-3 text-lg font-bold brutalist-button-secondary gap-2 min-w-[280px]',
+          'brutalist-button-secondary inline-flex h-14 min-w-[280px] items-center justify-center gap-2 px-6 py-3 text-lg font-bold',
           isLoading && 'cursor-wait'
         )}
       >
