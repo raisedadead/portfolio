@@ -1,0 +1,63 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "jsx-a11y", "import", "unicorn"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "React": "readonly"
+  },
+  "rules": {
+    "prefer-const": "error",
+    "prefer-template": "error",
+    "eqeqeq": "warn",
+    "no-alert": "error",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/jsx-key": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-no-undef": "error",
+    "react/no-children-prop": "error",
+    "react/no-danger-with-children": "error",
+    "react/no-unescaped-entities": "warn",
+    "react/void-dom-elements-no-children": "error",
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "warn",
+    "jsx-a11y/alt-text": "error",
+    "jsx-a11y/anchor-has-content": "error",
+    "jsx-a11y/aria-props": "error",
+    "jsx-a11y/aria-unsupported-elements": "error",
+    "jsx-a11y/role-has-required-aria-props": "error",
+    "jsx-a11y/role-supports-aria-props": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.{ts,tsx,js,jsx}", "**/__tests__/**/*.{ts,tsx,js,jsx}"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "typescript/no-explicit-any": "off",
+        "react/no-unescaped-entities": "off"
+      }
+    },
+    {
+      "files": [".github/**/*.js", "src/lib/**/*.ts"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "node_modules/**",
+    "dist/**",
+    ".astro/**",
+    ".wrangler/**",
+    "pnpm-lock.yaml",
+    "**/*.d.ts",
+    "specs/**",
+    ".specify/**"
+  ]
+}
