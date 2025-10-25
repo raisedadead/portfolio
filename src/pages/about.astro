@@ -16,14 +16,11 @@ import { cn } from '@/lib/utils';
     <ul class={cn('list-none space-y-6')}>
       <li>
         <ES title='About' labels={[{ name: 'legal', color: 'blue' }]} defaultOpen={true} client:visible>
-          <p class={cn('mb-4 text-lg')}>
+          <p class={cn('mb-4 text-lg px-16')}>
             Mrugesh Mohapatra is a software & cloud infrastructure consultant, operating as a sole proprietor of{' '}
             <strong class='font-semibold'> Mrugesh Mohapatra Co. </strong>{' '}
-            ("the business") based in Bhubaneswar & Bengaluru, India.
-          </p>
-          <p class={cn('text-lg')}>
-            The business is registered with Ministry of Micro Small and Medium Enterprises, Government of India under
-            the "Udyam" scheme.
+            ("the business") based in Bhubaneswar & Bengaluru, India, registered with Ministry of Micro Small and Medium
+            Enterprises, Government of India under the "Udyam" scheme.
           </p>
         </ES>
       </li>
@@ -38,34 +35,32 @@ import { cn } from '@/lib/utils';
           client:visible
         >
           <h4 class={cn('mb-4 text-center text-lg font-bold')}>Udyam Registration Number: UDYAM-OD-19-0026052</h4>
-          <p class={cn('mb-4 text-lg')}>
+          <p class={cn('mb-4 text-lg px-16')}>
             GSTIN, HSN Codes for services, PAN, and other business-related information is available in the documents,
             such as the pro-forma invoice, billing invoice, etc., sent automatically on completion of a transaction.
-            Please Elsewhere on the internet if you are still waiting to receive them.
+            Please get in touch if you are still waiting to receive them.
           </p>
-          <p class={cn('text-lg')}>
+          <p class={cn('mb-4 text-lg px-16')}>
             <strong class='font-semibold'>
               Tax details for Transactions made outside India:{' '}
             </strong>
-            Please Elsewhere on the internet, we will accommodate documents where feasible as per your needs.
+            Please get in touch, we will accommodate documents where feasible as per your needs.
           </p>
         </ES>
       </li>
       <li>
-        <ES title='Contact' labels={[{ name: 'contact', color: 'orange' }]} defaultOpen={true} client:visible>
-          <p class={cn('mb-4 text-center text-lg font-bold')}>
-            Email: <Email />
+        <ES title='Contact' labels={[{ name: 'contact', color: 'orange' }]} defaultOpen={false} client:visible>
+          <p class={cn('mb-2 text-lg font-semibold px-16')}>Registered Office</p>
+          <p class={cn('mb-4 text-lg px-16')}>
+            Mrugesh Mohapatra Co. - 2nd Floor (Proworks),
+            <br />
+            235, 13th Cross Rd, Indira Nagar II Stage,
+            <br />
+            Bengaluru, Karnataka, India - 560038
           </p>
-          <div class={cn('text-center text-lg')}>
-            <p class={cn('mb-2 font-semibold')}>Registered Office Address</p>
-            <p>
-              Mrugesh Mohapatra Co. - 2nd Floor (Proworks),
-              <br />
-              235, 13th Cross Rd, Indira Nagar II Stage,
-              <br />
-              Bengaluru, Karnataka, India - 560038
-            </p>
-          </div>
+          <p class={cn('mb-4 text-lg font-bold px-16')}>
+            <Email />
+          </p>
         </ES>
       </li>
     </ul>
