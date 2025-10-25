@@ -264,6 +264,7 @@
 @utility brutalist-button {
   border: 2px solid var(--color-black);
   color: var(--color-text-primary);
+  background-color: var(--color-brand-primary);
   box-shadow: var(--shadow-brutal-md);
   transition: all 100ms;
   text-decoration: none;

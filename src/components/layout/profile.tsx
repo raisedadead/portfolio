@@ -6,7 +6,7 @@ const secondaryButtonClasses =
   'inline-flex items-center justify-center h-14 px-6 py-3 text-lg font-bold brutalist-button-secondary';
 
 const primaryButtonClasses =
-  'inline-flex items-center justify-center h-14 px-6 py-3 text-lg font-bold brutalist-button hover:bg-orange-200';
+  'inline-flex items-center justify-center h-14 px-6 py-3 text-lg font-bold brutalist-button-primary';
 
 export const Profile: React.FC = () => {
   return (
@@ -15,10 +15,10 @@ export const Profile: React.FC = () => {
         <img
           id='profile-image'
           alt="Mrugesh Mohapatra's profile picture."
-          src='/images/profile.small.webp'
-          className='shadow-brutal-md h-28 w-28 border-2 border-orange-50 md:h-36 md:w-36'
-          width={144}
-          height={144}
+          src='/images/logo.png'
+          className='shadow-brutal-md h-28 w-28 rounded-full border-2 border-orange-50 md:h-48 md:w-48'
+          width={256}
+          height={256}
         />
       </div>
       <div className='relative mb-8 flex -rotate-12 transform flex-col items-center md:mb-10'>
@@ -66,12 +66,20 @@ export const Profile: React.FC = () => {
         </Link>
       </h3>
 
-      <div className='mb-10 flex flex-row items-center justify-center space-x-4'>
-        <CalButton aria-label='Schedule a meeting with me' className={`${primaryButtonClasses} w-80`}>
-          <span className='inline-flex items-center'>Schedule a Meeting</span>
+      <div className='mb-10 flex w-full max-w-md flex-col items-center justify-center gap-4 px-4 sm:flex-row'>
+        <CalButton
+          aria-label='Schedule a meeting with me'
+          className={`${primaryButtonClasses} w-full sm:w-auto sm:flex-1`}
+        >
+          Schedule a Meeting
         </CalButton>
-        <Link aria-label='Browse my blog' className={`${secondaryButtonClasses} w-36`} href='/blog' type='button'>
-          <span className='inline-flex items-center'>Blog</span>
+        <Link
+          aria-label='Browse my blog'
+          className={`${secondaryButtonClasses} w-full sm:w-auto sm:min-w-36`}
+          href='/blog'
+          type='button'
+        >
+          Blog
         </Link>
       </div>
       <div className='prose prose-lg prose-slate mx-auto mt-8 max-w-3xl'>

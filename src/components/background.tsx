@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
 
 interface Bird {
@@ -29,17 +30,10 @@ const WaveBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-
     // Birds setup
     const birds: Bird[] = Array.from({ length: 12 }, () => ({
       x: Math.random() * canvas.width,
-      y: Math.random() * (canvas.height * 0.25),
+      y: Math.random() * (canvas.height * 0.25) + canvas.height * 0.15,
       speedX: Math.random() * 1.5 + 0.8,
       speedY: 0,
       wingPhase: Math.random() * Math.PI * 2,
@@ -73,12 +67,12 @@ const WaveBackground = () => {
 
       if (bird.x > canvas.width + 50) {
         bird.x = -50;
-        bird.y = Math.random() * (canvas.height * 0.3);
+        bird.y = Math.random() * (canvas.height * 0.25) + canvas.height * 0.15;
       }
     };
 
     const drawBird = (bird: Bird) => {
-      ctx.strokeStyle = `rgba(45, 95, 79, ${bird.opacity})`;
+      ctx.strokeStyle = `rgba(0, 0, 0, ${bird.opacity})`;
       ctx.lineWidth = 1.5;
       ctx.lineCap = 'round';
 
@@ -126,8 +120,20 @@ const WaveBackground = () => {
         });
       }
 
+      // Find the highest point (minimum Y) of the wave
+      const minY = Math.min(...points.map((p) => p.y));
+
+      // Create gradient from white at wave top to wave color
+      const gradient = ctx.createLinearGradient(0, minY, 0, canvas.height);
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${wave.opacity})`);
+      gradient.addColorStop(
+        0.15,
+        `rgba(${wave.color.r + 100}, ${wave.color.g + 20}, ${wave.color.b + 20}, ${wave.opacity})`
+      );
+      gradient.addColorStop(0.5, `rgba(${wave.color.r}, ${wave.color.g}, ${wave.color.b}, ${wave.opacity})`);
+
       // Draw the wave shape
-      ctx.fillStyle = `rgba(${wave.color.r}, ${wave.color.g}, ${wave.color.b}, ${wave.opacity})`;
+      ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
 
@@ -148,6 +154,60 @@ const WaveBackground = () => {
 
     let lastTime = performance.now();
     let animationId: number;
+
+    // Generate fine grain texture
+    const grainCanvas = document.createElement('canvas');
+    const grainCtx = grainCanvas.getContext('2d');
+
+    const generateGrainTexture = () => {
+      if (!grainCtx) return;
+
+      grainCanvas.width = canvas.width;
+      grainCanvas.height = canvas.height;
+
+      // Create transparent base
+      grainCtx.clearRect(0, 0, grainCanvas.width, grainCanvas.height);
+
+      // Generate uniform fine grain texture across entire canvas
+      const imageData = grainCtx.getImageData(0, 0, grainCanvas.width, grainCanvas.height);
+      const pixels = imageData.data;
+
+      for (let i = 0; i < pixels.length; i += 4) {
+        // Simple uniform noise - matches reference image style
+        const noise = (Math.random() - 0.5) * 80;
+        pixels[i] = 128 + noise; // R
+        pixels[i + 1] = 128 + noise; // G
+        pixels[i + 2] = 128 + noise; // B
+        pixels[i + 3] = 255; // A
+      }
+
+      grainCtx.putImageData(imageData, 0, 0);
+
+      // Add subtle radial vignette
+      const vignetteGradient = grainCtx.createRadialGradient(
+        grainCanvas.width / 2,
+        grainCanvas.height / 2,
+        0,
+        grainCanvas.width / 2,
+        grainCanvas.height / 2,
+        Math.max(grainCanvas.width, grainCanvas.height) * 0.7
+      );
+      vignetteGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+      vignetteGradient.addColorStop(0.6, 'rgba(0, 0, 0, 0)');
+      vignetteGradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
+      grainCtx.globalCompositeOperation = 'source-atop';
+      grainCtx.fillStyle = vignetteGradient;
+      grainCtx.fillRect(0, 0, grainCanvas.width, grainCanvas.height);
+      grainCtx.globalCompositeOperation = 'source-over';
+    };
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      generateGrainTexture();
+    };
+
+    resizeCanvas();
 
     const animate = (currentTime: number) => {
       const deltaTime = currentTime - lastTime;
@@ -174,6 +234,15 @@ const WaveBackground = () => {
         drawBird(bird);
       });
 
+      // Draw fine grain texture overlay (subtle, like reference image)
+      if (grainCanvas) {
+        ctx.globalCompositeOperation = 'overlay';
+        ctx.globalAlpha = 0.35;
+        ctx.drawImage(grainCanvas, 0, 0);
+        ctx.globalAlpha = 1.0;
+        ctx.globalCompositeOperation = 'source-over';
+      }
+
       animationId = requestAnimationFrame(animate);
     };
 
@@ -194,11 +263,17 @@ const WaveBackground = () => {
         'bg-linear-to-b from-emerald-300 via-orange-200 to-teal-200'
       )}
     >
-      <canvas
-        ref={canvasRef}
-        className='pointer-events-none absolute inset-0 h-full w-full'
-        aria-label='Animated wave and birds background decoration'
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <canvas
+          ref={canvasRef}
+          className='pointer-events-none absolute inset-0 h-full w-full'
+          aria-label='Animated wave and birds background decoration'
+        />
+      </motion.div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { motion, AnimatePresence } from 'framer-motion';
 import type React from 'react';
 
 type ExpandableSectionProps = {
@@ -73,7 +74,21 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
               )}
             </div>
           </DisclosureButton>
-          <DisclosurePanel className='bg-blue-100 p-4 text-slate-700'>{children}</DisclosurePanel>
+          <AnimatePresence initial={false}>
+            {open && (
+              <DisclosurePanel static>
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{ height: 'auto' }}
+                  exit={{ height: 0 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  className='overflow-hidden'
+                >
+                  <div className='bg-blue-100 p-4 text-slate-700'>{children}</div>
+                </motion.div>
+              </DisclosurePanel>
+            )}
+          </AnimatePresence>
         </div>
       )}
     </Disclosure>

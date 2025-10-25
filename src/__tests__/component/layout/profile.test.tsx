@@ -2,7 +2,7 @@ import { Profile } from '@/components/layout/profile';
 import { render, screen } from '@testing-library/react';
 import type React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import type { MockLinkProps } from '../test-utils';
+import type { MockLinkProps } from '../../test-utils';
 
 // Mock the Social component
 vi.mock('@/components/social', () => ({
@@ -47,8 +47,8 @@ describe('Profile Component', () => {
 
     const profileImage = screen.getByAltText("Mrugesh Mohapatra's profile picture.");
     expect(profileImage).toBeTruthy();
-    expect(profileImage).toHaveAttribute('width', '144');
-    expect(profileImage).toHaveAttribute('height', '144');
+    expect(profileImage).toHaveAttribute('width', '256');
+    expect(profileImage).toHaveAttribute('height', '256');
   });
 
   it('renders call-to-action buttons', () => {
@@ -62,7 +62,7 @@ describe('Profile Component', () => {
     render(<Profile />);
 
     const calButton = screen.getByTestId('cal-button');
-    expect(calButton).toHaveClass('h-14', 'w-80', 'brutalist-button');
+    expect(calButton).toHaveClass('h-14', 'brutalist-button-primary');
   });
 
   it('renders social links section', () => {

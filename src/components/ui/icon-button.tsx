@@ -39,7 +39,7 @@ export function IconButton({ size = 'md', variant = 'default', children, classNa
   let baseClasses: string;
 
   if (variant === 'brutalist') {
-    baseClasses = `brutalist-button inline-flex items-center justify-center ${sizeClass}`;
+    baseClasses = `brutalist-button-primary inline-flex items-center justify-center ${sizeClass}`;
   } else {
     baseClasses = `inline-flex items-center justify-center ${sizeClass} text-gray-600 hover:text-gray-800 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none transition-all duration-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-gray-600 disabled:hover:bg-transparent rounded`;
   }
