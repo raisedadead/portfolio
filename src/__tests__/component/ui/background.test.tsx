@@ -1,19 +1,47 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import type { ReactNode } from 'react';
+import { render } from '@testing-library/react';
+import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { WaveBackground } from '@/components/background';
 
-vi.mock('framer-motion', () => ({
-  motion: {
-    path: ({ children, ...props }: { children?: ReactNode } & Record<string, unknown>) => (
-      <path data-testid='wave-path' {...props}>
-        {children}
-      </path>
-    )
-  }
-}));
-
 describe('WaveBackground', () => {
+  let mockGetContext: ReturnType<typeof vi.fn>;
+  let mockCanvas: Partial<HTMLCanvasElement>;
+  let mockContext: Partial<CanvasRenderingContext2D>;
+
+  beforeEach(() => {
+    // Mock canvas context
+    mockContext = {
+      clearRect: vi.fn(),
+      fillRect: vi.fn(),
+      beginPath: vi.fn(),
+      closePath: vi.fn(),
+      moveTo: vi.fn(),
+      lineTo: vi.fn(),
+      quadraticCurveTo: vi.fn(),
+      stroke: vi.fn(),
+      fill: vi.fn(),
+      createLinearGradient: vi.fn(() => ({
+        addColorStop: vi.fn()
+      })) as unknown as CanvasGradient
+    };
+
+    mockGetContext = vi.fn(() => mockContext);
+
+    // Mock HTMLCanvasElement.prototype.getContext
+    HTMLCanvasElement.prototype.getContext = mockGetContext as typeof HTMLCanvasElement.prototype.getContext;
+
+    // Mock requestAnimationFrame
+    vi.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
+      setTimeout(() => cb(performance.now()), 0);
+      return 1;
+    });
+
+    vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('renders background container with proper structure', () => {
     const { container } = render(<WaveBackground />);
     const waveContainer = container.firstChild as HTMLElement;
@@ -22,29 +50,19 @@ describe('WaveBackground', () => {
     expect(waveContainer).toHaveClass('relative', 'h-screen', 'w-screen', 'overflow-hidden');
   });
 
-  it('renders SVG with correct configuration', () => {
+  it('renders canvas with correct attributes', () => {
     const { container } = render(<WaveBackground />);
-    const svg = container.querySelector('svg');
+    const canvas = container.querySelector('canvas');
 
-    expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute('viewBox', '0 0 1000 800');
-    expect(svg).toHaveAttribute('aria-label', 'Animated wave background decoration');
+    expect(canvas).toBeInTheDocument();
+    expect(canvas).toHaveAttribute('aria-label', 'Animated wave and birds background decoration');
+    expect(canvas).toHaveClass('pointer-events-none', 'absolute', 'inset-0', 'h-full', 'w-full');
   });
 
-  it('generates correct number of wave paths', () => {
+  it('initializes canvas context on mount', () => {
     render(<WaveBackground />);
-    const wavePaths = screen.getAllByTestId('wave-path');
 
-    expect(wavePaths).toHaveLength(8);
-  });
-
-  it('applies wave animations', () => {
-    render(<WaveBackground />);
-    const wavePaths = screen.getAllByTestId('wave-path');
-
-    for (const path of wavePaths) {
-      expect(path).toHaveAttribute('animate');
-    }
+    expect(mockGetContext).toHaveBeenCalledWith('2d');
   });
 
   it('has proper background styling', () => {
@@ -52,5 +70,11 @@ describe('WaveBackground', () => {
     const waveContainer = container.firstChild as HTMLElement;
 
     expect(waveContainer).toHaveClass('bg-linear-to-b', 'from-emerald-300', 'via-orange-200', 'to-teal-200');
+  });
+
+  it('starts animation frame on mount', () => {
+    render(<WaveBackground />);
+
+    expect(window.requestAnimationFrame).toHaveBeenCalled();
   });
 });
