@@ -1,10 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import type { ImageDimensions } from '@/types/blog';
 
-// Import will fail until implementation exists - this is expected for TDD
 import { transformImageUrl } from '@/lib/image-optimizer';
 
-describe('transformImageUrl Contract Tests', () => {
+describe('transformImageUrl Tests', () => {
   const mockDimensions: ImageDimensions = {
     mobile: { width: 640, height: 360 },
     tablet: { width: 1024, height: 576 },
@@ -12,106 +11,99 @@ describe('transformImageUrl Contract Tests', () => {
     aspectRatio: '16/9'
   };
 
-  describe('Valid Hashnode URLs', () => {
-    it('returns Cloudflare Images URL for valid Hashnode CDN URL', () => {
-      const sourceUrl = 'https://cdn.hashnode.com/res/hashnode/image/upload/v1234567890/abc123.png';
-      const result = transformImageUrl(sourceUrl, mockDimensions);
+  beforeEach(() => {
+    // Suppress console output during tests
+    vi.spyOn(console, 'log').mockImplementation(() => {});
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+  });
 
-      expect(result).not.toBeNull();
-      expect(result).toMatch(/^https:\/\/mrugesh\.dev\/cdn-cgi\/image\//);
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  describe('R2 URLs (already optimized)', () => {
+    it('passes through R2 dev URLs unchanged', () => {
+      const r2Url = 'https://pub-abc123.r2.dev/blog/post-id/image.jpg';
+      const result = transformImageUrl(r2Url, mockDimensions);
+
+      expect(result).toBe(r2Url);
     });
 
-    it('handles different Hashnode URL patterns', () => {
-      const urls = [
-        'https://cdn.hashnode.com/res/hashnode/image/upload/v1/test.jpg',
-        'https://cdn.hashnode.com/res/hashnode/image/upload/test123.webp'
-      ];
+    it('passes through custom R2 domain URLs unchanged', () => {
+      const customUrl = 'https://i.mrugesh.dev/blog/post-id/image.jpg';
+      const result = transformImageUrl(customUrl, mockDimensions);
 
-      urls.forEach((url) => {
-        const result = transformImageUrl(url, mockDimensions);
-        expect(result).not.toBeNull();
-      });
+      expect(result).toBe(customUrl);
+    });
+  });
+
+  describe('Image Resizing URLs (already optimized)', () => {
+    it('passes through Image Resizing URLs unchanged', () => {
+      const resizingUrl = '/cdn-cgi/image/width=1200,quality=85,format=auto/https://pub-abc.r2.dev/blog/post/image.jpg';
+      const result = transformImageUrl(resizingUrl, mockDimensions);
+
+      expect(result).toBe(resizingUrl);
+    });
+  });
+
+  describe('Hashnode CDN URLs (legacy)', () => {
+    it('passes through Hashnode CDN URLs with warning', () => {
+      const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      const hashnodeUrl = 'https://cdn.hashnode.com/res/hashnode/image/upload/v1/test.jpg';
+      const result = transformImageUrl(hashnodeUrl, mockDimensions);
+
+      expect(result).toBe(hashnodeUrl);
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Unexpected Hashnode CDN URL'));
+
+      consoleSpy.mockRestore();
+    });
+  });
+
+  describe('Other URLs', () => {
+    it('passes through other valid URLs unchanged', () => {
+      const externalUrl = 'https://example.com/image.png';
+      const result = transformImageUrl(externalUrl, mockDimensions);
+
+      expect(result).toBe(externalUrl);
     });
   });
 
   describe('Invalid URLs', () => {
-    it('returns null for invalid URL format', () => {
-      const invalidUrls = [
-        'not-a-url',
-        'ftp://cdn.hashnode.com/image.png',
-        'http://cdn.hashnode.com/image.png', // HTTP not HTTPS
-        ''
-      ];
-
-      invalidUrls.forEach((url) => {
-        const result = transformImageUrl(url, mockDimensions);
-        expect(result).toBeNull();
-      });
+    it('returns null for empty string', () => {
+      const result = transformImageUrl('', mockDimensions);
+      expect(result).toBeNull();
     });
 
-    it('returns null for non-Hashnode domain', () => {
-      const nonHashnodeUrls = [
-        'https://example.com/image.png',
-        'https://cdn.example.com/image.png',
-        'https://hashnode.com/image.png' // Missing cdn. subdomain
-      ];
+    it('returns null for null/undefined', () => {
+      const result = transformImageUrl(null as any, mockDimensions);
+      expect(result).toBeNull();
+    });
 
-      nonHashnodeUrls.forEach((url) => {
-        const result = transformImageUrl(url, mockDimensions);
-        expect(result).toBeNull();
-      });
+    it('logs error for invalid input', () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      transformImageUrl(null as any, mockDimensions);
+
+      expect(consoleSpy).toHaveBeenCalled();
+      consoleSpy.mockRestore();
     });
   });
 
-  describe('Optional format parameter', () => {
-    const validUrl = 'https://cdn.hashnode.com/res/hashnode/image/upload/v1/test.png';
-
-    it('handles webp format', () => {
-      const result = transformImageUrl(validUrl, mockDimensions, 'webp');
-      expect(result).not.toBeNull();
-    });
-
-    it('handles avif format', () => {
-      const result = transformImageUrl(validUrl, mockDimensions, 'avif');
-      expect(result).not.toBeNull();
-    });
-
-    it('handles auto format (default)', () => {
-      const result = transformImageUrl(validUrl, mockDimensions, 'auto');
-      expect(result).not.toBeNull();
-    });
-
-    it('defaults to auto when format not specified', () => {
-      const result = transformImageUrl(validUrl, mockDimensions);
-      expect(result).not.toBeNull();
-    });
-  });
-
-  describe('Performance requirements', () => {
-    it('URL generation completes in under 50ms', () => {
-      const sourceUrl = 'https://cdn.hashnode.com/res/hashnode/image/upload/v1/test.png';
+  describe('Performance', () => {
+    it('URL passthrough completes quickly', () => {
+      const r2Url = 'https://pub-abc123.r2.dev/blog/post-id/image.jpg';
       const iterations = 100;
 
       const startTime = performance.now();
       for (let i = 0; i < iterations; i++) {
-        transformImageUrl(sourceUrl, mockDimensions);
+        transformImageUrl(r2Url, mockDimensions);
       }
       const endTime = performance.now();
 
       const averageTime = (endTime - startTime) / iterations;
-      expect(averageTime).toBeLessThan(50);
-    });
-  });
-
-  describe('Error handling and observability', () => {
-    it('logs error when transformation fails', () => {
-      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-      const invalidUrl = 'https://example.com/image.png';
-      transformImageUrl(invalidUrl, mockDimensions);
-
-      expect(consoleSpy).toHaveBeenCalled();
-      consoleSpy.mockRestore();
+      expect(averageTime).toBeLessThan(10); // Should be very fast (just passthrough)
     });
   });
 });

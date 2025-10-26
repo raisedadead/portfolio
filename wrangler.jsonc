@@ -2,17 +2,13 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "portfolio",
   "main": "./dist/_worker.js/index.js",
-  "compatibility_date": "2025-06-16",
+  "compatibility_date": "2025-09-16",
   "compatibility_flags": ["nodejs_compat"],
   "preview_urls": true,
   "workers_dev": false,
   "routes": [
     {
       "pattern": "mrugesh.dev",
-      "custom_domain": true
-    },
-    {
-      "pattern": "www.mrugesh.dev",
       "custom_domain": true
     }
   ],

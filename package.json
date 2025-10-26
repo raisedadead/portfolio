@@ -34,7 +34,8 @@
     "turbo:develop": "dotenv -e .env -- turbo develop",
     "turbo:preview": "dotenv -e .env -- turbo preview",
     "turbo:deploy": "dotenv -e .env -- turbo deploy",
-    "turbo:lighthouse": "dotenv -e .env -- turbo lighthouse"
+    "turbo:lighthouse": "dotenv -e .env -- turbo lighthouse",
+    "clean": "rm -rf .astro dist .turbo coverage .wrangler node_modules/.cache"
   },
   "lint-staged": {
     "**/*.{mjs,cjs,js,jsx,ts,tsx,astro}": [
@@ -50,12 +51,13 @@
     "@astrojs/cloudflare": "12.6.10",
     "@astrojs/react": "4.4.0",
     "@astrojs/sitemap": "3.6.0",
+    "@aws-sdk/client-s3": "^3.917.0",
     "@calcom/embed-react": "1.5.3",
     "@headlessui/react": "2.2.9",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/vite": "4.1.16",
     "astro": "5.15.1",
-    "astro-loader-hashnode": "1.2.0",
+    "astro-loader-hashnode": "file:../astro-loader-hashnode/packages/astro-loader-hashnode",
     "clsx": "2.1.1",
     "framer-motion": "12.23.24",
     "react": "19.2.0",
@@ -79,6 +81,7 @@
     "@vitejs/plugin-react": "5.1.0",
     "@vitest/coverage-v8": "3.2.4",
     "@vitest/ui": "3.2.4",
+    "dotenv": "^17.2.3",
     "dotenv-cli": "10.0.0",
     "happy-dom": "20.0.8",
     "husky": "9.1.7",
@@ -92,6 +95,7 @@
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.7.0",
     "tailwindcss": "4.1.16",
+    "tsx": "^4.20.6",
     "turbo": "2.5.8",
     "typescript": "5.9.3",
     "vite": "7.1.12",

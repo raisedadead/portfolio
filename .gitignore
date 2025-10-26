@@ -33,3 +33,7 @@ tsconfig.tsbuildinfo
 # Linter/Formatter caches
 .eslintcache
 .prettiercache
+
+# Migration scripts
+scripts/extracted-images.json
+scripts/image-mapping.json

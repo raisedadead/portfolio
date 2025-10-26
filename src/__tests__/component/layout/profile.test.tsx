@@ -2,7 +2,7 @@ import { Profile } from '@/components/layout/profile';
 import { render, screen } from '@testing-library/react';
 import type React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import type { MockLinkProps } from '../test-utils';
+import type { MockLinkProps } from '../../test-utils';
 
 // Mock the Social component
 vi.mock('@/components/social', () => ({

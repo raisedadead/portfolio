@@ -14,13 +14,27 @@
       "dependsOn": ["^build", "cf-typegen"],
       "inputs": ["src/**", "public/**", "astro.config.mjs", "tsconfig.json", "wrangler.jsonc", "package.json"],
       "outputs": ["dist/**", ".astro/**"],
-      "env": ["NODE_ENV"],
+      "env": [
+        "NODE_ENV",
+        "CLOUDFLARE_ACCOUNT_ID",
+        "R2_ACCESS_KEY_ID",
+        "R2_SECRET_ACCESS_KEY",
+        "R2_IMAGES",
+        "R2_IMAGES_PUBLIC_DOMAIN"
+      ],
       "cache": true
     },
     "test": {
       "dependsOn": ["^build"],
       "inputs": ["src/**", "vitest.config.ts", "vitest.setup.ts", "tsconfig.json", "package.json"],
       "outputs": [],
+      "env": [
+        "CLOUDFLARE_ACCOUNT_ID",
+        "R2_ACCESS_KEY_ID",
+        "R2_SECRET_ACCESS_KEY",
+        "R2_IMAGES",
+        "R2_IMAGES_PUBLIC_DOMAIN"
+      ],
       "cache": true
     },
     "test:watch": {
@@ -39,6 +53,13 @@
       "dependsOn": ["^build"],
       "inputs": ["src/**", "vitest.config.ts", "vitest.setup.ts", "tsconfig.json", "package.json"],
       "outputs": ["coverage/**"],
+      "env": [
+        "CLOUDFLARE_ACCOUNT_ID",
+        "R2_ACCESS_KEY_ID",
+        "R2_SECRET_ACCESS_KEY",
+        "R2_IMAGES",
+        "R2_IMAGES_PUBLIC_DOMAIN"
+      ],
       "cache": true
     },
     "lint": {
@@ -64,6 +85,13 @@
       "dependsOn": ["cf-typegen"],
       "inputs": ["src/**", "astro.config.mjs", "tsconfig.json", "package.json"],
       "outputs": [],
+      "env": [
+        "CLOUDFLARE_ACCOUNT_ID",
+        "R2_ACCESS_KEY_ID",
+        "R2_SECRET_ACCESS_KEY",
+        "R2_IMAGES",
+        "R2_IMAGES_PUBLIC_DOMAIN"
+      ],
       "cache": true
     },
     "develop": {

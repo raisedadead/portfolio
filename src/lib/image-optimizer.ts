@@ -1,46 +1,49 @@
 import type { ImageDimensions } from '@/types/blog';
 
 /**
- * Transforms a Hashnode CDN URL to a Cloudflare Images URL for optimization
+ * Transforms image URLs for optimization
  *
- * @param sourceUrl - Original Hashnode CDN URL
- * @param dimensions - Responsive image dimensions
- * @param format - Desired image format (webp, avif, or auto)
- * @returns Cloudflare Images URL or null on error
+ * Note: Images are now transformed by astro-loader-hashnode during content loading.
+ * This function primarily passes through already-optimized URLs (R2, Image Resizing).
  *
- * Contract: specs/001-current-state-blog/contracts/image-transformation.contract.md
+ * @param sourceUrl - Image URL (R2, Hashnode CDN, or other)
+ * @param dimensions - Responsive image dimensions (unused, kept for compatibility)
+ * @param format - Desired image format (unused, kept for compatibility)
+ * @returns Image URL (passed through as-is)
  */
 export function transformImageUrl(
   sourceUrl: string,
-  dimensions: ImageDimensions,
-  format: 'webp' | 'avif' | 'auto' = 'auto'
+  _dimensions: ImageDimensions,
+  _format: 'webp' | 'avif' | 'auto' = 'auto'
 ): string | null {
   try {
-    // Validate sourceUrl is HTTPS
-    if (!sourceUrl || !sourceUrl.startsWith('https://')) {
-      console.error(`Invalid URL format: ${sourceUrl}`);
+    // Validate sourceUrl exists and is a string
+    if (!sourceUrl || typeof sourceUrl !== 'string') {
+      console.error(`Invalid URL: ${sourceUrl}`);
       return null;
     }
 
-    // Validate sourceUrl is from Hashnode CDN
-    const hashnodePattern = /^https:\/\/cdn\.hashnode\.com\//;
-    if (!hashnodePattern.test(sourceUrl)) {
-      console.error(`URL is not from Hashnode CDN: ${sourceUrl}`);
-      return null;
+    // R2 URLs (already optimized by loader): pass through
+    if (sourceUrl.includes('.r2.dev') || sourceUrl.includes('i.mrugesh.dev')) {
+      return sourceUrl;
     }
 
-    // Use Cloudflare Images transformation via /cdn-cgi/image/
-    // Format: https://mrugesh.dev/cdn-cgi/image/<OPTIONS>/<SOURCE-URL>
-    const options = [
-      `width=${dimensions.desktop.width}`,
-      'quality=85',
-      format !== 'auto' ? `format=${format}` : 'format=auto'
-    ].join(',');
+    // Image Resizing URLs (already optimized by loader): pass through
+    if (sourceUrl.startsWith('/cdn-cgi/image/')) {
+      return sourceUrl;
+    }
 
-    const transformedUrl = `https://mrugesh.dev/cdn-cgi/image/${options}/${sourceUrl}`;
-    return transformedUrl;
+    // Legacy Hashnode CDN URLs (shouldn't occur with loader, but handle gracefully)
+    // Just return as-is since loader should have handled transformation
+    if (sourceUrl.includes('cdn.hashnode.com')) {
+      console.warn(`Unexpected Hashnode CDN URL (should be transformed by loader): ${sourceUrl}`);
+      return sourceUrl;
+    }
+
+    // Other URLs: pass through as-is
+    return sourceUrl;
   } catch (error) {
-    console.error(`Error transforming image URL: ${error}`);
+    console.error(`Error processing image URL: ${error}`);
     return null;
   }
 }
