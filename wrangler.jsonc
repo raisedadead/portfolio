@@ -10,10 +10,6 @@
     {
       "pattern": "mrugesh.dev",
       "custom_domain": true
-    },
-    {
-      "pattern": "www.mrugesh.dev",
-      "custom_domain": true
     }
   ],
   "assets": {
