@@ -119,4 +119,18 @@ describe('Button', () => {
     expect(button).toHaveAttribute('value', 'save');
     expect(button).toHaveAttribute('form', 'myForm');
   });
+
+  it('renders as anchor tag when as="a" and href is provided', () => {
+    render(
+      <Button as='a' href='/test-link' variant='primary'>
+        Link Button
+      </Button>
+    );
+
+    const link = screen.getByRole('link', { name: /link button/i });
+    expect(link).toBeInTheDocument();
+    expect(link.tagName).toBe('A');
+    expect(link).toHaveAttribute('href', '/test-link');
+    expect(link).toHaveAttribute('data-variant', 'primary');
+  });
 });

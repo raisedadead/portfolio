@@ -24,11 +24,43 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run tests with Turbo
-        run: pnpm exec turbo test
+      - name: Run tests with coverage
+        run: pnpm exec turbo test:coverage
         env:
           CI: true
           TURBO_API: ${{ secrets.TURBO_API }}
           TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
           TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
           TURBO_REMOTE_CACHE_SIGNATURE_KEY: ${{ secrets.TURBO_REMOTE_CACHE_SIGNATURE_KEY }}
+
+      - name: Generate coverage summary
+        if: always()
+        run: |
+          echo "## Test Coverage Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+          # Extract coverage summary from output
+          if [ -f coverage/coverage-summary.json ]; then
+            node -e "
+              const fs = require('fs');
+              const coverage = JSON.parse(fs.readFileSync('coverage/coverage-summary.json', 'utf8'));
+              const total = coverage.total;
+
+              const formatPercent = (pct) => {
+                const color = pct >= 90 ? '🟢' : pct >= 80 ? '🟡' : '🔴';
+                return \`\${color} \${pct.toFixed(2)}%\`;
+              };
+
+              console.log('Coverage Summary:');
+              console.log('');
+              console.log('Statements  :', formatPercent(total.statements.pct));
+              console.log('Branches    :', formatPercent(total.branches.pct));
+              console.log('Functions   :', formatPercent(total.functions.pct));
+              console.log('Lines       :', formatPercent(total.lines.pct));
+            " >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Coverage report not found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
