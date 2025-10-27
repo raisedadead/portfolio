@@ -113,5 +113,17 @@ describe('transformImageUrl Contract Tests', () => {
       expect(consoleSpy).toHaveBeenCalled();
       consoleSpy.mockRestore();
     });
+
+    it('handles exceptions gracefully and returns null', () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      // Pass null as dimensions to trigger an exception during property access
+      const validUrl = 'https://cdn.hashnode.com/res/hashnode/image/upload/v1/test.png';
+      const result = transformImageUrl(validUrl, null as unknown as ImageDimensions);
+
+      expect(result).toBeNull();
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Error transforming image URL:'));
+      consoleSpy.mockRestore();
+    });
   });
 });

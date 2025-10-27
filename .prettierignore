@@ -2,6 +2,7 @@ node_modules/
 dist/
 .astro/
 .wrangler/
+coverage/
 pnpm-lock.yaml
 *.min.js
 *.min.css

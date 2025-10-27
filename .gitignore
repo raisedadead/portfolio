@@ -30,6 +30,9 @@ tsconfig.tsbuildinfo
 # Turborepo
 .turbo/
 
+# Test coverage
+coverage/
+
 # Linter/Formatter caches
 .eslintcache
 .prettiercache

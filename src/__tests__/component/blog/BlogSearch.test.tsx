@@ -436,4 +436,85 @@ describe('BlogSearch Component', () => {
       });
     });
   });
+
+  describe('Focus Behavior', () => {
+    it('reopens dropdown on focus when search query exists', async () => {
+      render(<BlogSearch posts={mockPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      fireEvent.change(input, { target: { value: 'TypeScript' } });
+
+      await waitFor(() => {
+        expect(screen.getByRole('listbox')).toBeInTheDocument();
+      });
+
+      // Close dropdown by clicking outside
+      fireEvent.mouseDown(document.body);
+
+      await waitFor(() => {
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+      });
+
+      // Focus input again with existing query
+      fireEvent.focus(input);
+
+      await waitFor(() => {
+        expect(screen.getByRole('listbox')).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe('Mouse Interactions on Results', () => {
+    it('updates selected index on mouse enter', async () => {
+      render(<BlogSearch posts={mockPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      fireEvent.change(input, { target: { value: 'Tutorial' } });
+
+      await waitFor(() => {
+        expect(screen.getByRole('listbox')).toBeInTheDocument();
+      });
+
+      const options = screen.getAllByRole('option');
+
+      // Hover over second option
+      fireEvent.mouseEnter(options[1]);
+
+      await waitFor(() => {
+        expect(options[1]).toHaveAttribute('aria-selected', 'true');
+      });
+    });
+
+    it('navigates to post on Enter key press on result item', async () => {
+      render(<BlogSearch posts={mockPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      fireEvent.change(input, { target: { value: 'TypeScript' } });
+
+      await waitFor(() => {
+        expect(screen.getByRole('listbox')).toBeInTheDocument();
+      });
+
+      const resultItem = screen.getByText('Getting Started with TypeScript').closest('li');
+      fireEvent.keyDown(resultItem!, { key: 'Enter' });
+
+      expect(window.location.href).toBe('/blog/post-1');
+    });
+
+    it('navigates to post on Space key press on result item', async () => {
+      render(<BlogSearch posts={mockPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      fireEvent.change(input, { target: { value: 'TypeScript' } });
+
+      await waitFor(() => {
+        expect(screen.getByRole('listbox')).toBeInTheDocument();
+      });
+
+      const resultItem = screen.getByText('Getting Started with TypeScript').closest('li');
+      fireEvent.keyDown(resultItem!, { key: ' ' });
+
+      expect(window.location.href).toBe('/blog/post-1');
+    });
+  });
 });
