@@ -64,7 +64,7 @@ const structuredData = {
   <script type='application/ld+json' is:inline set:html={JSON.stringify(structuredData)} />
   <section class={cn('mb-2')}>
     <div class={cn('prose prose-lg prose-slate max-w-none')}>
-      <h1 class={cn('py-4 text-center text-3xl font-bold text-slate-800')}>
+      <h1 class={cn('py-4 text-center text-display-md text-slate-800')}>
         Posts tagged with "{tag.name}"
       </h1>
     </div>
@@ -72,7 +72,7 @@ const structuredData = {
 
   <section class={cn('mb-12')}>
     <div class={cn('mb-6 text-center')}>
-      <p class={cn('text-lg text-slate-600')}>
+      <p class={cn('text-base sm:text-lg text-slate-600')}>
         {sortedPosts.length}
         {sortedPosts.length === 1 ? 'post' : 'posts'} found
       </p>
@@ -81,7 +81,7 @@ const structuredData = {
     {
       sortedPosts.length === 0 ? (
         <div class={cn('mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center')}>
-          <p class={cn('text-lg text-slate-600')}>No posts found with this tag.</p>
+          <p class={cn('text-base text-slate-600 sm:text-lg')}>No posts found with this tag.</p>
         </div>
       ) : (
         <>
@@ -93,7 +93,7 @@ const structuredData = {
           <div class='flex justify-center py-8'>
             <a
               href='/blog/tags'
-              class='brutalist-button-secondary inline-flex h-14 items-center justify-center gap-2 px-6 py-3 text-lg font-bold'
+              class='brutalist-button-secondary inline-flex h-14 items-center justify-center gap-2 px-6 py-3 text-sm font-bold sm:text-base md:text-lg'
               aria-label='View all tags'
             >
               <span aria-hidden='true'>←</span>

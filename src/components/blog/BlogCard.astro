@@ -49,18 +49,18 @@ const dimensions = calculateImageDimensions(aspectRatio, index);
     }
 
     <div class='p-6'>
-      <h2 class='mb-3 line-clamp-2 text-xl font-bold text-gray-900'>
+      <h2 class='font-display mb-3 line-clamp-2 text-lg font-bold text-gray-900 sm:text-xl'>
         {data.title}
       </h2>
 
-      <div class='mb-3 flex items-center gap-4 text-sm text-gray-600'>
+      <div class='mb-3 flex items-center gap-4 font-sans text-xs text-gray-600 sm:text-sm'>
         <time datetime={data.publishedAt.toISOString()}>
           {formatDate(data.publishedAt)}
         </time>
         <span>{data.readingTime} min read</span>
       </div>
 
-      <p class='mb-4 line-clamp-3 text-gray-700'>
+      <p class='mb-4 line-clamp-3 font-sans text-sm text-gray-700 sm:text-base'>
         {data.brief}
       </p>
 

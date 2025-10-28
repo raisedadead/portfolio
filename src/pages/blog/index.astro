@@ -16,16 +16,18 @@ const sortedPosts = allPosts.sort(
 <MainLayout pageTitle='Blog' pageDescription='Read articles about web development, programming, and technology'>
   <section class={cn('mb-2')}>
     <div class={cn('prose prose-lg prose-slate max-w-none')}>
-      <h1 class={cn('py-4 text-center text-3xl font-bold text-slate-800')}>Blog</h1>
+      <h1 class={cn('py-4 text-center text-display-md text-slate-800')}>Blog</h1>
     </div>
   </section>
   <section class={cn('mb-12')}>
-    <p class={cn('pb-6 text-center text-lg text-slate-600')}>Thoughts on web development, technology, and more</p>
+    <p class={cn('pb-6 text-center text-base sm:text-lg text-slate-600')}>
+      Thoughts on web development, technology, and more
+    </p>
 
     {
       sortedPosts.length === 0 ? (
         <div class={cn('mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center')}>
-          <p class={cn('text-lg text-slate-600')}>No blog posts yet. Check back soon!</p>
+          <p class={cn('text-base text-slate-600 sm:text-lg')}>No blog posts yet. Check back soon!</p>
         </div>
       ) : (
         <>

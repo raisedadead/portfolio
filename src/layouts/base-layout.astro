@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css';
 import ClientProviders from '@/components/client-providers';
+import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
   pageTitle?: string;
@@ -88,14 +89,49 @@ const image = pageImage || defaultImage;
     <link rel='preconnect' href='https://cdn.hashnode.com' />
     <link rel='dns-prefetch' href='https://cdn.hashnode.com' />
 
+    <!-- Preload Critical Fonts (Swapped) -->
+    <link rel='preload' href='/fonts/inter/inter-700.woff2' as='font' type='font/woff2' crossorigin='anonymous' />
+    <link
+      rel='preload'
+      href='/fonts/space-grotesk/space-grotesk-400.woff2'
+      as='font'
+      type='font/woff2'
+      crossorigin='anonymous'
+    />
+
     <!-- Theme Color -->
     <meta name='theme-color' content='#32ded4' />
 
     <meta name='generator' content={Astro.generator} />
+    <ClientRouter />
   </head>
   <body>
     <ClientProviders client:load>
       <slot />
     </ClientProviders>
+
+    <!-- Lazy Load Non-Critical Fonts (Swapped) -->
+    <script is:inline>
+      // Load non-critical fonts after page is interactive
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          const fonts = [
+            new FontFace('Inter', 'url(/fonts/inter/inter-400.woff2)', { weight: '400' }),
+            new FontFace('Inter', 'url(/fonts/inter/inter-600.woff2)', { weight: '600' }),
+            new FontFace('Space Grotesk', 'url(/fonts/space-grotesk/space-grotesk-600.woff2)', { weight: '600' }),
+            new FontFace('Space Grotesk', 'url(/fonts/space-grotesk/space-grotesk-700.woff2)', { weight: '700' }),
+            new FontFace('JetBrains Mono', 'url(/fonts/jetbrains-mono/jetbrains-mono-400.woff2)', { weight: '400' })
+          ];
+
+          Promise.all(fonts.map((font) => font.load()))
+            .then((loadedFonts) => {
+              loadedFonts.forEach((font) => document.fonts.add(font));
+            })
+            .catch(() => {
+              // Silently fail - system fonts will be used
+            });
+        });
+      }
+    </script>
   </body>
 </html>

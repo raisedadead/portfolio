@@ -70,7 +70,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
 
                 {/* Card Content */}
                 <div className='flex grow flex-col'>
-                  <h2 className='my-4 font-sans text-2xl font-bold text-slate-900 transition-colors group-hover:text-orange-800'>
+                  <h2 className='my-4 text-2xl font-bold text-slate-900 transition-colors group-hover:text-orange-800'>
                     {post.data.title}
                   </h2>
 

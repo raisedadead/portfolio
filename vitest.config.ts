@@ -1,8 +1,6 @@
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
-/// <reference types="vitest" />
-import { defineConfig } from 'vite';
-import type { UserConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 // For Astro component testing
 export default defineConfig({
@@ -32,4 +30,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   }
-} satisfies UserConfig);
+});

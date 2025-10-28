@@ -4,14 +4,74 @@
 @plugin '@tailwindcss/forms';
 @plugin 'tailwindcss-animate';
 
+/* Font Face Definitions - Performance Optimized */
+/* Critical Fonts (preloaded) - Swapped Configuration */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/inter-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/space-grotesk/space-grotesk-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: optional;
+}
+
+/* Non-Critical Fonts (lazy loaded) */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/inter-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/inter-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/space-grotesk/space-grotesk-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/space-grotesk/space-grotesk-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono/jetbrains-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* Typography - Custom Fonts with System Fallbacks (Swapped) */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
   --font-sans:
-    var(--font-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
-  --font-mono:
-    var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', Consolas, monospace;
 
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
@@ -80,6 +140,28 @@
   --spacing-brutal-md: 1rem;
   --spacing-brutal-lg: 1.5rem;
   --spacing-brutal-xl: 2rem;
+
+  /* Typography Scale - Mobile First with Fluid Sizing */
+  --font-size-display-xl: clamp(2rem, 5vw, 4rem);
+  --font-size-display-lg: clamp(1.75rem, 4vw, 3rem);
+  --font-size-display-md: clamp(1.5rem, 3vw, 2.25rem);
+  --font-size-display-sm: clamp(1.25rem, 2.5vw, 1.875rem);
+
+  --font-size-body-lg: clamp(1.125rem, 1.5vw, 1.25rem);
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-body-xs: 0.75rem;
+
+  /* Font Weights - Semantic */
+  --font-weight-display: 700;
+  --font-weight-emphasis: 600;
+  --font-weight-medium: 500;
+  --font-weight-body: 400;
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
 
   @keyframes accordion-down {
     from {
@@ -216,6 +298,28 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  /* Apply display font to all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.02em;
+  }
+
+  /* Apply monospace to code elements */
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
   }
 }
 
@@ -370,6 +474,46 @@
 
 .brutalist-input:hover:not(:disabled) {
   background-color: var(--color-orange-100);
+}
+
+/* Typography Utility Classes */
+@utility text-display {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+@utility text-display-xl {
+  font-family: var(--font-display);
+  font-size: var(--font-size-display-xl);
+  font-weight: var(--font-weight-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+@utility text-display-lg {
+  font-family: var(--font-display);
+  font-size: var(--font-size-display-lg);
+  font-weight: var(--font-weight-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+@utility text-display-md {
+  font-family: var(--font-display);
+  font-size: var(--font-size-display-md);
+  font-weight: var(--font-weight-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+@utility text-display-sm {
+  font-family: var(--font-display);
+  font-size: var(--font-size-display-sm);
+  font-weight: var(--font-weight-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
 }
 
 /* Design System Consistency - Note: In Tailwind v4, @apply with custom classes in @layer components doesn't work.

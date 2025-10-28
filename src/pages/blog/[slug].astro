@@ -166,12 +166,12 @@ if (lastIndex < contentHtml.length) {
     <!-- Content Container -->
     <div class='p-6 sm:p-10'>
       <!-- Title -->
-      <h1 class='mb-10 line-clamp-2 text-3xl font-bold text-gray-900 sm:text-4xl'>
+      <h1 class='text-display-md mb-10 line-clamp-2 text-gray-900'>
         {data.title}
       </h1>
 
       <!-- Metadata -->
-      <div class='mb-8 flex items-center gap-2 text-sm text-gray-600'>
+      <div class='mb-8 flex items-center gap-2 text-xs text-gray-600 sm:text-sm'>
         <time datetime={data.publishedAt.toISOString()}>
           {formatDate(data.publishedAt)}
         </time>
@@ -186,7 +186,7 @@ if (lastIndex < contentHtml.length) {
           'prose-p:text-gray-700',
           'prose-p:my-2 prose-p:leading-relaxed',
           'prose-strong:text-gray-800',
-          'prose-headings:font-semibold prose-headings:text-gray-800',
+          'prose-headings:font-display prose-headings:font-bold prose-headings:text-gray-800',
           'prose-h2:mb-2 prose-h2:mt-8',
           'prose-h3:mb-2 prose-h3:mt-6',
           'prose-h4:mb-2 prose-h4:mt-4',
@@ -217,13 +217,13 @@ if (lastIndex < contentHtml.length) {
     {
       data.tags && data.tags.length > 0 && (
         <div class='mb-6'>
-          <h3 class={cn('mb-3 text-center text-lg font-semibold text-slate-800')}>Tags</h3>
+          <h3 class={cn('mb-3 text-center text-base font-semibold text-slate-800 sm:text-lg')}>Tags</h3>
           <div class='flex flex-wrap justify-center gap-2'>
             {data.tags.map((tag: any) => (
               <a
                 href={`/blog/tags/${tag.slug}`}
                 class={cn(
-                  'inline-flex items-center rounded-full border-2 border-black bg-white px-4 py-2 text-sm font-medium text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none'
+                  'inline-flex items-center rounded-full border-2 border-black bg-white px-4 py-2 text-xs font-medium text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none sm:text-sm'
                 )}
                 aria-label={`View more posts tagged with ${tag.slug}`}
               >
@@ -237,7 +237,7 @@ if (lastIndex < contentHtml.length) {
     <div class='flex justify-center'>
       <a
         href='/blog'
-        class='brutalist-button-secondary inline-flex h-14 items-center justify-center gap-2 px-6 py-3 text-lg font-bold'
+        class='brutalist-button-secondary inline-flex h-14 items-center justify-center gap-2 px-6 py-3 text-sm font-bold sm:text-base md:text-lg'
         aria-label='Back to blog'
         data-testid='back-to-blog-button'
       >

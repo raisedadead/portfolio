@@ -90,12 +90,13 @@ describe('utils', () => {
 
       // Spy on appendChild to capture script elements without actually appending them
       // This prevents happy-dom from fetching the scripts and causing NetworkError
-      appendChildSpy = vi.spyOn(document.head, 'appendChild').mockImplementation(<T extends Node>(node: T): T => {
+      // @ts-expect-error - Mock implementation signature doesn't match spyOn generic constraints
+      appendChildSpy = vi.spyOn(document.head, 'appendChild').mockImplementation((node: Node): Node => {
         if (node instanceof HTMLScriptElement) {
           scriptElements.push(node);
         }
         return node;
-      }) as ReturnType<typeof vi.spyOn>;
+      });
     });
 
     afterEach(() => {

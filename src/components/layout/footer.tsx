@@ -6,7 +6,7 @@ type FooterProps = {
 };
 export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
   const { isDefault = false, className } = props;
-  const footerType = isDefault ? 'font-mono text-gray-700 text-sm text-center mx-8 md:mx-auto' : 'text-center';
+  const footerType = isDefault ? 'text-gray-700 text-sm text-center mx-8 md:mx-auto' : 'text-center';
   const anchorClass = isDefault
     ? 'text-gray-700 hover:text-black rounded-full hover:bg-orange-100 py-1 px-2 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none transition-all duration-100'
     : 'text-gray-500 hover:text-black rounded-full hover:bg-orange-100 py-1 px-2 no-underline focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none transition-all duration-100';

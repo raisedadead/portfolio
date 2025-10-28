@@ -3,10 +3,10 @@ import { CustomLink as Link } from '@/components/custom-link';
 import { Social } from '@/components/social';
 
 const secondaryButtonClasses =
-  'inline-flex items-center justify-center h-14 px-6 py-3 text-lg font-bold brutalist-button-secondary';
+  'inline-flex items-center justify-center h-14 px-6 py-3 text-sm font-bold sm:text-base md:text-lg brutalist-button-secondary';
 
 const primaryButtonClasses =
-  'inline-flex items-center justify-center h-14 px-6 py-3 text-lg font-bold brutalist-button-primary';
+  'inline-flex items-center justify-center h-14 px-6 py-3 text-sm font-bold sm:text-base md:text-lg brutalist-button-primary';
 
 export const Profile: React.FC = () => {
   return (
@@ -22,7 +22,7 @@ export const Profile: React.FC = () => {
         />
       </div>
       <div className='relative mb-8 flex -rotate-12 transform flex-col items-center md:mb-10'>
-        <h1 className='group rotate-12 transform cursor-pointer text-3xl font-extrabold text-slate-800 md:text-5xl'>
+        <h1 className='group text-display-lg rotate-12 transform cursor-pointer text-slate-800'>
           {'Mrugesh Mohapatra'.toLowerCase()}
           <span
             className='absolute left-1/4 hidden w-auto rounded-md bg-black p-3 text-sm font-normal text-white group-hover:block'
@@ -52,10 +52,10 @@ export const Profile: React.FC = () => {
         </h1>
         <div className='m-1 mx-auto -mt-8 w-2/5 border-12 border-orange-50 bg-orange-50' />
       </div>
-      <h2 className='mb-4 max-w-md p-1 text-xl leading-relaxed font-bold text-slate-700 md:text-2xl'>
+      <h2 className='text-display-sm mb-4 max-w-md p-1 leading-relaxed text-slate-700'>
         nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
       </h2>
-      <h3 className='mb-8 p-1 text-lg leading-relaxed font-medium text-slate-700 md:text-xl'>
+      <h3 className='mb-8 p-1 text-base leading-relaxed font-medium text-slate-700 sm:text-lg md:text-xl'>
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link
           href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'

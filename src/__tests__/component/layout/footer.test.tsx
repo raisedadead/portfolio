@@ -54,7 +54,7 @@ describe('Footer', () => {
     const defaultDiv = defaultContainer.querySelector('div');
     const regularDiv = regularContainer.querySelector('div');
 
-    expect(defaultDiv).toHaveClass('font-mono');
-    expect(regularDiv).not.toHaveClass('font-mono');
+    expect(defaultDiv).toHaveClass('text-gray-700');
+    expect(regularDiv).not.toHaveClass('text-gray-700');
   });
 });

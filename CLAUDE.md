@@ -8,6 +8,8 @@ Personal portfolio website built with Astro 5, React 19, and Tailwind CSS 4, dep
 
 ## Development Commands
 
+**IMPORTANT**: User keeps development server running at all times. Do NOT run `pnpm build` or `pnpm preview` unless explicitly requested. Ask for dev server URL if needed for debugging.
+
 ```bash
 # Install dependencies (uses pnpm)
 pnpm install
@@ -18,7 +20,7 @@ pnpm develop
 # Build for production (auto-generates Cloudflare types)
 pnpm build
 
-# Preview production build locally
+# Preview production build locally (uses wrangler dev)
 pnpm preview
 
 # Deploy to Cloudflare
@@ -94,7 +96,7 @@ src/
 
 **Path Aliases**: Use `@/*` for `./src/*` imports (configured in tsconfig.json and vitest.config.ts)
 
-**React 19 Setup**: Production builds use `react-dom/server.edge` alias to avoid MessageChannel polyfill requirements (see astro.config.mjs:42)
+**React 19 Setup**: Production builds use `react-dom/server.edge` alias (instead of `react-dom/server.browser`) to avoid MessageChannel polyfill requirements (see astro.config.mjs:42)
 
 **Blog System**:
 - Content loaded via `astro-loader-hashnode` from mrugesh.hashnode.dev (max 1000 posts)
@@ -116,7 +118,12 @@ src/
 - nodejs_compat enabled
 - Smart Placement mode
 - Observability enabled
-- Custom domains: mrugesh.dev, www.mrugesh.dev
+- Custom domain: mrugesh.dev
+
+**Sitemap Configuration**:
+- Excludes legal pages (`/terms`, `/refunds`, `/privacy`)
+- Excludes tag pages (`/blog/tag/*`)
+- Weekly changefreq, priority 1, auto-updates lastmod
 
 **TypeScript**: Strict mode with Astro strict config, no `any` types allowed
 
