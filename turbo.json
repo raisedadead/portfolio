@@ -42,13 +42,13 @@
       "cache": true
     },
     "lint": {
-      "inputs": ["src/**", ".github/**/*.{js,ts,mjs}", "eslint.config.mjs", "package.json"],
+      "inputs": ["src/**", ".github/**/*.{js,ts,mjs}", ".oxlintrc.json", "package.json"],
       "outputs": [],
       "cache": true
     },
     "lint:fix": {
       "cache": false,
-      "inputs": ["src/**", ".github/**/*.{js,ts,mjs}", "eslint.config.mjs", "package.json"]
+      "inputs": ["src/**", ".github/**/*.{js,ts,mjs}", ".oxlintrc.json", "package.json"]
     },
     "format": {
       "cache": false,
