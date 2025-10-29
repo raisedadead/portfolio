@@ -99,6 +99,9 @@
     "wrangler": "4.45.1"
   },
   "packageManager": "pnpm@10.20.0",
+  "engines": {
+    "node": ">=22.21.1"
+  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
