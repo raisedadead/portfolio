@@ -6,7 +6,7 @@ if (dsn) {
   Sentry.init({
     dsn,
     environment: process.env.PUBLIC_SENTRY_ENVIRONMENT || 'production',
-    release: 'portfolio@0.1.0',
+    release: process.env.PUBLIC_SENTRY_RELEASE || 'dev',
     tracesSampleRate: 0.1 // 10% of server transactions
 
     // Note: Cloudflare Workers has limited Node.js API support

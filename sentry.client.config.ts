@@ -6,7 +6,7 @@ if (dsn) {
   Sentry.init({
     dsn,
     environment: import.meta.env.PUBLIC_SENTRY_ENVIRONMENT || (import.meta.env.PROD ? 'production' : 'development'),
-    release: 'portfolio@0.1.0', // Synced with package.json
+    release: import.meta.env.PUBLIC_SENTRY_RELEASE || 'dev',
 
     // Performance monitoring
     tracesSampleRate: import.meta.env.PROD ? 0.1 : 1.0, // 10% in production, 100% in dev

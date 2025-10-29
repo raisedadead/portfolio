@@ -28,6 +28,9 @@ export default defineConfig({
         project: process.env.SENTRY_PROJECT,
         authToken: process.env.SENTRY_AUTH_TOKEN,
         enabled: !!process.env.SENTRY_AUTH_TOKEN,
+        release: {
+          name: process.env.PUBLIC_SENTRY_RELEASE || 'dev'
+        },
         cleanArtifacts: true,
         rewriteSources: (source) => {
           // Normalize paths for Sentry UI
