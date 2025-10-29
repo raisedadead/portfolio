@@ -30,7 +30,7 @@ importers:
         specifier: 2.2.0
         version: 2.2.0(react@19.2.0)
       '@sentry/astro':
-        specifier: ^10.22.0
+        specifier: 10.22.0
         version: 10.22.0(astro@5.15.2(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1))
       '@tailwindcss/vite':
         specifier: 4.1.16
