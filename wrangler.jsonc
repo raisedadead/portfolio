@@ -17,6 +17,18 @@
     "directory": "./dist",
     "html_handling": "drop-trailing-slash"
   },
+  "vars": {
+    "PUBLIC_SENTRY_DSN": "https://e8c88c11abffd1e5b5c581de57321642@o4507798912958464.ingest.us.sentry.io/4510267624128512",
+    "PUBLIC_SENTRY_ENVIRONMENT": "production"
+  },
+  "env": {
+    "preview": {
+      "vars": {
+        "PUBLIC_SENTRY_DSN": "https://e8c88c11abffd1e5b5c581de57321642@o4507798912958464.ingest.us.sentry.io/4510267624128512",
+        "PUBLIC_SENTRY_ENVIRONMENT": "development"
+      }
+    }
+  },
   "observability": {
     "enabled": true
   },

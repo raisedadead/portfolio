@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css';
 import ClientProviders from '@/components/client-providers';
+import { ErrorBoundary } from '@/components/sentry/error-boundary';
 import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
@@ -107,7 +108,9 @@ const image = pageImage || defaultImage;
   </head>
   <body>
     <ClientProviders client:load>
-      <slot />
+      <ErrorBoundary client:only='react'>
+        <slot />
+      </ErrorBoundary>
     </ClientProviders>
 
     <!-- Lazy Load Non-Critical Fonts (Swapped) -->

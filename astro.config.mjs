@@ -5,6 +5,7 @@ import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 
 import tailwindcss from '@tailwindcss/vite';
+import sentry from '@sentry/astro';
 
 export default defineConfig({
   site: 'https://mrugesh.dev',
@@ -19,6 +20,23 @@ export default defineConfig({
   }),
 
   integrations: [
+    // Sentry MUST be first to wrap other integrations
+    sentry({
+      sourceMapsUploadOptions: {
+        org: process.env.SENTRY_ORG,
+        project: process.env.SENTRY_PROJECT,
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+        enabled: !!process.env.SENTRY_AUTH_TOKEN,
+        cleanArtifacts: true,
+        rewriteSources: (source) => {
+          // Normalize paths for Sentry UI
+          return source.replace(/^.*\/dist\//, '~/dist/');
+        }
+      },
+      autoInstrumentation: {
+        requestHandler: false // Disabled for Cloudflare Workers
+      }
+    }),
     react(),
     sitemap({
       lastmod: new Date(),
