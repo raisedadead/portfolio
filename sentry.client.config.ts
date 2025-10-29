@@ -11,9 +11,9 @@ if (dsn) {
     // Performance monitoring
     tracesSampleRate: import.meta.env.PROD ? 0.1 : 1.0, // 10% in production, 100% in dev
 
-    // Session replay
-    replaysSessionSampleRate: 0.1, // 10% of sessions
-    replaysOnErrorSampleRate: 1.0, // 100% of errors
+    // Session replay (free tier: 50 replays/month)
+    replaysSessionSampleRate: 0.0, // Disabled for normal sessions
+    replaysOnErrorSampleRate: 0.5, // 50% of errors (conserve quota)
 
     // Trace propagation for distributed tracing
     tracePropagationTargets: [
