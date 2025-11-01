@@ -30,35 +30,6 @@ const WaveBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Birds setup
-    const birds: Bird[] = Array.from({ length: 12 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * (canvas.height * 0.25) + canvas.height * 0.15,
-      speedX: Math.random() * 1.5 + 0.8,
-      speedY: 0,
-      wingPhase: Math.random() * Math.PI * 2,
-      opacity: 0.5 + Math.random() * 0.25
-    }));
-
-    // Waves setup using Gerstner/Trochoidal wave physics with natural variance
-    const waves: Wave[] = Array.from({ length: 6 }, (_, index) => {
-      const baseWavelength = 250 + index * 60;
-      const wavelength = baseWavelength + (Math.random() - 0.5) * 50;
-      const baseAmplitude = 12 + index * 3;
-      return {
-        amplitude: baseAmplitude + (Math.random() - 0.5) * 6,
-        wavelength: wavelength,
-        opacity: 0.08 + index * 0.04 + Math.random() * 0.02,
-        speed: Math.sqrt(wavelength) * (0.3 + Math.random() * 0.2),
-        time: Math.random() * 100,
-        color: {
-          r: 50 + Math.random() * 30,
-          g: 222 + Math.random() * 20 - 10,
-          b: 212 + Math.random() * 20 - 10
-        }
-      };
-    });
-
     const updateBird = (bird: Bird) => {
       bird.x += bird.speedX;
       bird.wingPhase += 0.15;
@@ -208,6 +179,35 @@ const WaveBackground = () => {
     };
 
     resizeCanvas();
+
+    // Birds setup
+    const birds: Bird[] = Array.from({ length: 12 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * (canvas.height * 0.25) + canvas.height * 0.15,
+      speedX: Math.random() * 1.5 + 0.8,
+      speedY: 0,
+      wingPhase: Math.random() * Math.PI * 2,
+      opacity: 0.5 + Math.random() * 0.25
+    }));
+
+    // Waves setup using Gerstner/Trochoidal wave physics with natural variance
+    const waves: Wave[] = Array.from({ length: 6 }, (_, index) => {
+      const baseWavelength = 250 + index * 60;
+      const wavelength = baseWavelength + (Math.random() - 0.5) * 50;
+      const baseAmplitude = 12 + index * 3;
+      return {
+        amplitude: baseAmplitude + (Math.random() - 0.5) * 6,
+        wavelength: wavelength,
+        opacity: 0.08 + index * 0.04 + Math.random() * 0.02,
+        speed: Math.sqrt(wavelength) * (0.3 + Math.random() * 0.2),
+        time: Math.random() * 100,
+        color: {
+          r: 50 + Math.random() * 30,
+          g: 222 + Math.random() * 20 - 10,
+          b: 212 + Math.random() * 20 - 10
+        }
+      };
+    });
 
     const animate = (currentTime: number) => {
       const deltaTime = currentTime - lastTime;
