@@ -188,6 +188,14 @@ const WaveBackground = () => {
       grainNeedsUpdate = false;
     };
 
+    // Pre-compute bottom gradient overlay (only needs updating on resize)
+    let cachedBottomGradient: CanvasGradient | null = null;
+    const updateBottomGradient = () => {
+      cachedBottomGradient = ctx.createLinearGradient(0, canvas.height - canvas.height * 0.16, 0, canvas.height);
+      cachedBottomGradient.addColorStop(0, 'rgba(20, 184, 166, 0)');
+      cachedBottomGradient.addColorStop(1, 'rgba(20, 184, 166, 0.3)');
+    };
+
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -205,7 +213,6 @@ const WaveBackground = () => {
 
     // Initial setup
     resizeCanvas();
-    updateBottomGradient();
 
     // Birds setup
     const birds: Bird[] = Array.from({ length: 12 }, () => ({
@@ -235,14 +242,6 @@ const WaveBackground = () => {
         }
       };
     });
-
-    // Pre-compute bottom gradient overlay (only needs updating on resize)
-    let cachedBottomGradient: CanvasGradient | null = null;
-    const updateBottomGradient = () => {
-      cachedBottomGradient = ctx.createLinearGradient(0, canvas.height - canvas.height * 0.16, 0, canvas.height);
-      cachedBottomGradient.addColorStop(0, 'rgba(20, 184, 166, 0)');
-      cachedBottomGradient.addColorStop(1, 'rgba(20, 184, 166, 0.3)');
-    };
 
     const animate = (currentTime: number) => {
       const deltaTime = currentTime - lastTime;
