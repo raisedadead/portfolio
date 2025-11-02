@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "portfolio",
   "main": "./dist/_worker.js/index.js",
-  "compatibility_date": "2025-06-16",
+  "compatibility_date": "2025-09-15",
   "compatibility_flags": ["nodejs_compat"],
   "preview_urls": true,
   "workers_dev": false,
