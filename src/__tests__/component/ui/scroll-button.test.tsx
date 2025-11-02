@@ -3,8 +3,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '../../test-utils';
 import type { MockAnimatePresenceProps, MockMotionButtonProps } from '../../test-utils';
 
-// Mock framer-motion
-vi.mock('framer-motion', () => ({
+// Mock motion/react
+vi.mock('motion/react', () => ({
   motion: {
     button: ({
       children,
