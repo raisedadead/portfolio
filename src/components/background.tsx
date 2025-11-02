@@ -30,6 +30,17 @@ const WaveBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Debounce utility for resize events
+    let resizeTimeout: number | null = null;
+    const debounce = (fn: () => void, delay: number) => {
+      return () => {
+        if (resizeTimeout) {
+          clearTimeout(resizeTimeout);
+        }
+        resizeTimeout = window.setTimeout(fn, delay);
+      };
+    };
+
     const updateBird = (bird: Bird) => {
       bird.x += bird.speedX;
       bird.wingPhase += 0.15;
@@ -66,14 +77,16 @@ const WaveBackground = () => {
       wave.time += (deltaTime / 1000) * wave.speed;
     };
 
+    // Cache wave segments calculation
+    let cachedSegments = Math.max(80, Math.ceil(canvas.width / 12));
+
     const drawWave = (wave: Wave) => {
       const baseY = canvas.height * 0.88;
       const points: Array<{ x: number; y: number }> = [];
-      const segments = Math.max(80, Math.ceil(canvas.width / 12));
 
       // Generate wave points using Gerstner wave physics with subtle noise
-      for (let i = 0; i <= segments; i++) {
-        const x = (i / segments) * canvas.width;
+      for (let i = 0; i <= cachedSegments; i++) {
+        const x = (i / cachedSegments) * canvas.width;
         const k = (Math.PI * 2) / wave.wavelength;
         const phase = k * x - wave.time / Math.sqrt(wave.wavelength);
 
@@ -129,9 +142,10 @@ const WaveBackground = () => {
     // Generate fine grain texture
     const grainCanvas = document.createElement('canvas');
     const grainCtx = grainCanvas.getContext('2d');
+    let grainNeedsUpdate = true;
 
     const generateGrainTexture = () => {
-      if (!grainCtx) return;
+      if (!grainCtx || !grainNeedsUpdate) return;
 
       grainCanvas.width = canvas.width;
       grainCanvas.height = canvas.height;
@@ -170,15 +184,28 @@ const WaveBackground = () => {
       grainCtx.fillStyle = vignetteGradient;
       grainCtx.fillRect(0, 0, grainCanvas.width, grainCanvas.height);
       grainCtx.globalCompositeOperation = 'source-over';
+
+      grainNeedsUpdate = false;
     };
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      generateGrainTexture();
+      cachedSegments = Math.max(80, Math.ceil(canvas.width / 12));
+      grainNeedsUpdate = true;
+      updateBottomGradient();
+
+      // Use requestIdleCallback to defer grain texture generation
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => generateGrainTexture(), { timeout: 500 });
+      } else {
+        setTimeout(generateGrainTexture, 100);
+      }
     };
 
+    // Initial setup
     resizeCanvas();
+    updateBottomGradient();
 
     // Birds setup
     const birds: Bird[] = Array.from({ length: 12 }, () => ({
@@ -209,6 +236,14 @@ const WaveBackground = () => {
       };
     });
 
+    // Pre-compute bottom gradient overlay (only needs updating on resize)
+    let cachedBottomGradient: CanvasGradient | null = null;
+    const updateBottomGradient = () => {
+      cachedBottomGradient = ctx.createLinearGradient(0, canvas.height - canvas.height * 0.16, 0, canvas.height);
+      cachedBottomGradient.addColorStop(0, 'rgba(20, 184, 166, 0)');
+      cachedBottomGradient.addColorStop(1, 'rgba(20, 184, 166, 0.3)');
+    };
+
     const animate = (currentTime: number) => {
       const deltaTime = currentTime - lastTime;
       lastTime = currentTime;
@@ -221,12 +256,11 @@ const WaveBackground = () => {
         drawWave(wave);
       });
 
-      // Draw gradient overlay
-      const gradient = ctx.createLinearGradient(0, canvas.height - canvas.height * 0.16, 0, canvas.height);
-      gradient.addColorStop(0, 'rgba(20, 184, 166, 0)');
-      gradient.addColorStop(1, 'rgba(20, 184, 166, 0.3)');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, canvas.height - canvas.height * 0.16, canvas.width, canvas.height * 0.16);
+      // Draw cached gradient overlay
+      if (cachedBottomGradient) {
+        ctx.fillStyle = cachedBottomGradient;
+        ctx.fillRect(0, canvas.height - canvas.height * 0.16, canvas.width, canvas.height * 0.16);
+      }
 
       // Draw birds
       birds.forEach((bird) => {
@@ -235,7 +269,7 @@ const WaveBackground = () => {
       });
 
       // Draw fine grain texture overlay (subtle, like reference image)
-      if (grainCanvas) {
+      if (grainCanvas && !grainNeedsUpdate) {
         ctx.globalCompositeOperation = 'overlay';
         ctx.globalAlpha = 0.35;
         ctx.drawImage(grainCanvas, 0, 0);
@@ -248,11 +282,16 @@ const WaveBackground = () => {
 
     animate(performance.now());
 
-    window.addEventListener('resize', resizeCanvas);
+    // Use debounced resize handler
+    const debouncedResize = debounce(resizeCanvas, 250);
+    window.addEventListener('resize', debouncedResize, { passive: true });
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', debouncedResize);
+      if (resizeTimeout) {
+        clearTimeout(resizeTimeout);
+      }
     };
   }, []);
 

@@ -7,25 +7,36 @@ const ScrollButton = ({ className }: { className: string }) => {
   const [bounceButton, setBounceButton] = useState(false);
 
   useEffect(() => {
+    let scrollTimeout: number | null = null;
+
     const handleScroll = () => {
-      const isScrollable = document.documentElement.scrollHeight > window.innerHeight;
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
 
-      const isAtBottom = window.pageYOffset + window.innerHeight >= document.documentElement.scrollHeight;
+      scrollTimeout = window.setTimeout(() => {
+        const isScrollable = document.documentElement.scrollHeight > window.innerHeight;
 
-      const isAtTop = window.pageYOffset === 0;
+        const isAtBottom = window.pageYOffset + window.innerHeight >= document.documentElement.scrollHeight;
 
-      setShowButton(isScrollable && !isAtTop);
-      setBounceButton(isAtBottom);
+        const isAtTop = window.pageYOffset === 0;
+
+        setShowButton(isScrollable && !isAtTop);
+        setBounceButton(isAtBottom);
+      }, 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
 
     handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
     };
   }, []);
 
