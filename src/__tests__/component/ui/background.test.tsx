@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
-import { WaveBackground } from '@/components/background';
+import Background from '@/components/background/index';
 
-describe('WaveBackground', () => {
+describe('Background', () => {
   let mockGetContext: ReturnType<typeof vi.fn>;
   let mockContext: Partial<CanvasRenderingContext2D>;
 
@@ -46,6 +46,10 @@ describe('WaveBackground', () => {
     });
 
     vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => {});
+
+    // Mock event listeners
+    vi.spyOn(window, 'addEventListener').mockImplementation(() => {});
+    vi.spyOn(window, 'removeEventListener').mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -53,37 +57,57 @@ describe('WaveBackground', () => {
   });
 
   it('renders background container with proper structure', () => {
-    const { container } = render(<WaveBackground />);
-    const waveContainer = container.firstChild as HTMLElement;
+    const { container } = render(<Background />);
+    const mainElement = container.firstChild as HTMLElement;
 
-    expect(waveContainer).toBeInTheDocument();
-    expect(waveContainer).toHaveClass('relative', 'h-screen', 'w-screen', 'overflow-hidden');
+    expect(mainElement).toBeInTheDocument();
+    expect(mainElement.tagName).toBe('DIV');
+    expect(mainElement.className).toContain('relative');
+    expect(mainElement.className).toContain('overflow-hidden');
   });
 
   it('renders canvas with correct attributes', () => {
-    const { container } = render(<WaveBackground />);
+    const { container } = render(<Background />);
     const canvas = container.querySelector('canvas');
 
     expect(canvas).toBeInTheDocument();
-    expect(canvas).toHaveAttribute('aria-label', 'Animated wave and birds background decoration');
-    expect(canvas).toHaveClass('pointer-events-none', 'absolute', 'inset-0', 'h-full', 'w-full');
+    expect(canvas?.className).toContain('absolute');
+    expect(canvas?.className).toContain('pointer-events-none');
   });
 
   it('initializes canvas context on mount', () => {
-    render(<WaveBackground />);
+    render(<Background />);
 
     expect(mockGetContext).toHaveBeenCalledWith('2d');
   });
 
-  it('has proper background styling', () => {
-    const { container } = render(<WaveBackground />);
-    const waveContainer = container.firstChild as HTMLElement;
+  it('renders gradient layer', () => {
+    const { container } = render(<Background />);
+    // Find the gradient layer div (should have Tailwind gradient classes)
+    const gradientLayer = Array.from(container.querySelectorAll('div')).find((div) =>
+      div.className?.includes('bg-linear-to-b')
+    );
 
-    expect(waveContainer).toHaveClass('bg-linear-to-b', 'from-emerald-300', 'via-orange-200', 'to-teal-200');
+    expect(gradientLayer).toBeInTheDocument();
+    expect(gradientLayer?.className).toContain('absolute');
+    expect(gradientLayer?.className).toContain('z-1');
+    expect(gradientLayer?.className).toContain('bg-linear-to-b');
+    expect(gradientLayer?.className).toContain('from-emerald-300');
+  });
+
+  it('renders canvas with motion wrapper', () => {
+    const { container } = render(<Background />);
+    const canvas = container.querySelector('canvas');
+    const motionWrapper = canvas?.parentElement;
+
+    expect(canvas).toBeInTheDocument();
+    expect(motionWrapper).toBeInTheDocument();
+    expect(motionWrapper?.className).toContain('absolute');
+    expect(motionWrapper?.className).toContain('z-2');
   });
 
   it('starts animation frame on mount', () => {
-    render(<WaveBackground />);
+    render(<Background />);
 
     expect(window.requestAnimationFrame).toHaveBeenCalled();
   });

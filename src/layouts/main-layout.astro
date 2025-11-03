@@ -1,5 +1,5 @@
 ---
-import { WaveBackground } from '@/components/background';
+import Background from '@/components/background/index';
 import { Footer } from '@/components/layout/footer';
 import { Nav } from '@/components/layout/nav';
 import { ScrollButton } from '@/components/scroll-button';
@@ -27,7 +27,7 @@ const containerSize = variant === 'legal' ? 'full' : 'full';
 <BaseLayout {...baseProps} showHomeButton={showHomeButton}>
   <div class={cn('container')}>
     <div class='fixed inset-0 -z-10' transition:persist='background'>
-      <WaveBackground client:idle />
+      <Background client:idle />
     </div>
     <Container size={containerSize} className='my-2 py-8'>
       <main>
