@@ -107,7 +107,7 @@ const image = pageImage || defaultImage;
     <ClientRouter />
   </head>
   <body>
-    <ClientProviders client:load>
+    <ClientProviders client:idle>
       <ErrorBoundary client:only='react'>
         <slot />
       </ErrorBoundary>

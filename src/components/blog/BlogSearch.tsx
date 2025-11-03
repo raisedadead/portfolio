@@ -1,9 +1,9 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { Input } from '@/components/forms/input';
-import type { BlogPost } from '@/types/blog';
+import type { LightweightPost } from '@/types/blog';
 
 interface Props {
-  posts: BlogPost[];
+  posts: LightweightPost[];
 }
 
 export default function BlogSearch({ posts }: Props) {

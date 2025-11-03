@@ -24,8 +24,9 @@ export const CanvasLayer: React.FC = () => {
     const generateGrainTexture = () => {
       if (!grainCtx) return;
 
-      grainCanvas.width = canvas.width;
-      grainCanvas.height = canvas.height;
+      // Use 50% resolution for 4x performance improvement
+      grainCanvas.width = canvas.width * 0.5;
+      grainCanvas.height = canvas.height * 0.5;
 
       // Create transparent base
       grainCtx.clearRect(0, 0, grainCanvas.width, grainCanvas.height);
@@ -69,6 +70,20 @@ export const CanvasLayer: React.FC = () => {
       generateGrainTexture();
     };
 
+    // Debounced grain regeneration for resize events
+    let resizeTimeout: number;
+    const handleResize = () => {
+      // Immediately update canvas dimensions for smooth resize
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // Debounce grain texture regeneration
+      clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(() => {
+        generateGrainTexture();
+      }, 150);
+    };
+
     resizeCanvas();
 
     // Initialize birds and waves
@@ -104,7 +119,7 @@ export const CanvasLayer: React.FC = () => {
       if (grainCanvas) {
         ctx.globalCompositeOperation = 'overlay';
         ctx.globalAlpha = 0.35;
-        ctx.drawImage(grainCanvas, 0, 0);
+        ctx.drawImage(grainCanvas, 0, 0, canvas.width, canvas.height);
         ctx.globalAlpha = 1.0;
         ctx.globalCompositeOperation = 'source-over';
       }
@@ -114,11 +129,12 @@ export const CanvasLayer: React.FC = () => {
 
     animate(performance.now());
 
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', resizeCanvas);
+      clearTimeout(resizeTimeout);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
