@@ -29,11 +29,5 @@ See [this guide](.github/CONTRIBUTING.md) for details.
 
 ![Repobeats][repobeats-img]
 
-## License
-
-- Software: The software as it is licensed under the [ISC](LICENSE) License.
-- Content: The content pertaining to Mrugesh Mohapatra (like his resume, personal information, imagery, etc.) is licensed under the [CC BY-NC-ND 4.0][by-nc-nd-4] License.
-
 [personal-website]: https://mrugesh.dev
-[by-nc-nd-4]: https://creativecommons.org/licenses/by-nc-nd/4.0/
 [repobeats-img]: https://repobeats.axiom.co/api/embed/7554011ecd870f9d366a22f913161e180165ec85.svg 'Repobeats analytics image'
