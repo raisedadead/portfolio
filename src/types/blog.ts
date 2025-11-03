@@ -53,3 +53,20 @@ export interface BlogPost {
     };
   };
 }
+
+/**
+ * Lightweight version of BlogPost for blog listing pages
+ * Omits heavy fields like content.html to reduce serialization overhead
+ */
+export interface LightweightPost {
+  id: string;
+  data: {
+    slug: string;
+    title: string;
+    brief: string;
+    coverImage?: CoverImage;
+    tags: Tag[];
+    publishedAt: Date;
+    readingTime: number;
+  };
+}

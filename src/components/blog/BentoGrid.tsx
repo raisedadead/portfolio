@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import type { BlogPost } from '@/types/blog';
+import type { LightweightPost } from '@/types/blog';
 import { getBentoGridSpan } from '@/lib/blog-utils';
 import { transformImageUrl } from '@/lib/image-optimizer';
 import { calculateImageDimensions } from '@/lib/image-dimensions';
 import LoadMoreButton from './LoadMoreButton';
 
 interface Props {
-  posts: BlogPost[];
+  posts: LightweightPost[];
   initialCount?: number;
   postsPerLoad?: number;
 }

@@ -5,12 +5,27 @@ import BlogSearch from '@/components/blog/BlogSearch';
 import BentoGrid from '@/components/blog/BentoGrid';
 import { Social } from '@/components/social';
 import { cn } from '@/lib/utils';
+import type { LightweightPost } from '@/types/blog';
 
 // Fetch all blog posts and sort by date (newest first)
 const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort(
   (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
 );
+
+// Create lightweight posts for better performance (reduces serialization overhead)
+const lightweightPosts: LightweightPost[] = sortedPosts.map((post) => ({
+  id: post.id,
+  data: {
+    slug: post.data.slug,
+    title: post.data.title,
+    brief: post.data.brief,
+    coverImage: post.data.coverImage,
+    tags: post.data.tags,
+    publishedAt: post.data.publishedAt,
+    readingTime: post.data.readingTime
+  }
+}));
 ---
 
 <MainLayout pageTitle='Blog' pageDescription='Read articles about web development, programming, and technology'>
@@ -25,15 +40,15 @@ const sortedPosts = allPosts.sort(
     </p>
 
     {
-      sortedPosts.length === 0 ? (
+      lightweightPosts.length === 0 ? (
         <div class={cn('mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center')}>
           <p class={cn('text-base text-slate-600 sm:text-lg')}>No blog posts yet. Check back soon!</p>
         </div>
       ) : (
         <>
-          <BlogSearch posts={sortedPosts} client:idle />
+          <BlogSearch posts={lightweightPosts} client:idle />
 
-          <BentoGrid posts={sortedPosts} initialCount={6} postsPerLoad={3} client:visible />
+          <BentoGrid posts={lightweightPosts} initialCount={6} postsPerLoad={3} client:visible />
         </>
       )
     }
