@@ -38,8 +38,7 @@ describe('Profile Component', () => {
     render(<Profile />);
 
     expect(screen.getByText(/nocturnal developer/)).toBeTruthy();
-    expect(screen.getByText(/open-source enthusiast/)).toBeTruthy();
-    expect(screen.getByText(/photography noob/)).toBeTruthy();
+    expect(screen.getByText(/open-sourcerer/)).toBeTruthy();
   });
 
   it('renders profile image with correct alt text', () => {

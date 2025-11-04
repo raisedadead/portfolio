@@ -21,7 +21,7 @@ export const Profile: React.FC = () => {
           height={256}
         />
       </div>
-      <div className='relative mb-8 flex -rotate-12 transform flex-col items-center md:mb-10'>
+      <div className='relative mb-6 flex -rotate-12 transform flex-col items-center'>
         <h1 className='group text-display-lg rotate-12 transform cursor-pointer text-slate-800'>
           {'Mrugesh Mohapatra'.toLowerCase()}
           <span
@@ -52,9 +52,7 @@ export const Profile: React.FC = () => {
         </h1>
         <div className='m-1 mx-auto -mt-8 w-2/5 border-12 border-orange-50 bg-orange-50' />
       </div>
-      <h2 className='text-display-sm mb-4 max-w-md p-1 leading-relaxed text-slate-700'>
-        nocturnal developer 🦉 • open-source enthusiast 🌏 • photography noob 📷
-      </h2>
+      <h2 className='text-display-sm mb-4 p-1 leading-relaxed text-slate-700'>nocturnal developer • open-sourcerer</h2>
       <h3 className='mb-8 p-1 text-base leading-relaxed font-medium text-slate-700 sm:text-lg md:text-xl'>
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link
