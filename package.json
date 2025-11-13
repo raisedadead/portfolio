@@ -53,7 +53,7 @@
     "@calcom/embed-react": "1.5.3",
     "@headlessui/react": "2.2.9",
     "@heroicons/react": "2.2.0",
-    "@sentry/astro": "10.23.0",
+    "@sentry/astro": "10.25.0",
     "@tailwindcss/vite": "4.1.17",
     "astro": "5.15.5",
     "astro-loader-hashnode": "1.2.0",
