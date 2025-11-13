@@ -32,7 +32,7 @@ const lightweightPosts: LightweightPost[] = sortedPosts.map((post) => ({
   <Fragment slot='head'>
     <!-- DNS prefetch and preconnect for Hashnode CDN to speed up image loading -->
     <link rel='dns-prefetch' href='https://cdn.hashnode.com' />
-    <link rel='preconnect' href='https://cdn.hashnode.com' crossorigin />
+    <link rel='preconnect' href='https://cdn.hashnode.com' crossorigin='anonymous' />
   </Fragment>
   <section class={cn('mb-2')}>
     <div class={cn('prose prose-lg prose-slate max-w-none')}>
