@@ -50,21 +50,21 @@
     "@calcom/embed-react": "1.5.3",
     "@headlessui/react": "2.2.9",
     "@heroicons/react": "2.2.0",
-    "@sentry/astro": "10.23.0",
+    "@sentry/astro": "10.25.0",
     "@tailwindcss/vite": "4.1.17",
-    "astro": "5.15.5",
+    "astro": "5.15.6",
     "astro-loader-hashnode": "1.2.0",
     "clsx": "2.1.1",
     "motion": "12.23.24",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "sharp": "0.34.4",
+    "sharp": "0.34.5",
     "shiki": "3.15.0",
     "tailwind-merge": "3.4.0",
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20251111.0",
+    "@cloudflare/workers-types": "4.20251113.0",
     "@tailwindcss/forms": "0.5.10",
     "@tailwindcss/typography": "0.5.19",
     "@testing-library/dom": "10.4.1",
@@ -91,7 +91,7 @@
     "typescript": "5.9.3",
     "vite": "7.2.2",
     "vitest": "4.0.8",
-    "wrangler": "4.46.0"
+    "wrangler": "4.48.0"
   },
   "packageManager": "pnpm@10.22.0",
   "pnpm": {
