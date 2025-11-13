@@ -76,13 +76,6 @@
       "persistent": true,
       "dependsOn": ["build"]
     },
-    "lighthouse": {
-      "dependsOn": ["build"],
-      "cache": false
-    },
-    "lighthouse:assert": {
-      "cache": false
-    },
     "deploy": {
       "dependsOn": ["build"],
       "cache": false

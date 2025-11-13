@@ -29,9 +29,5 @@ jobs:
     needs: [lint, test]
     uses: ./.github/workflows/re-build.yml
     with:
-      node-version: '22.x'
       upload-artifacts: true
-      artifact-name: build-output
-      artifact-retention-days: 1
-      turbo-cache-prefix: build
     secrets: inherit

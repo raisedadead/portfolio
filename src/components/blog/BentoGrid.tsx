@@ -51,7 +51,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
 
     // Cleanup function to remove created links when component unmounts
     return () => {
-      createdLinks.forEach(link => link.remove());
+      createdLinks.forEach((link) => link.remove());
     };
   }, [visibleCount, posts, postsPerLoad]);
 

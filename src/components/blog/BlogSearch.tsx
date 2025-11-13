@@ -80,6 +80,13 @@ export default function BlogSearch({ posts }: Props) {
     setSelectedIndex(-1);
   };
 
+  const handleResultClick = () => {
+    // Close dropdown when a result is clicked
+    setIsOpen(false);
+    setSelectedIndex(-1);
+    setSearchQuery('');
+  };
+
   return (
     <div ref={searchRef} className='relative mb-12'>
       {/* Search Input */}
@@ -139,7 +146,7 @@ export default function BlogSearch({ posts }: Props) {
                     className={`block cursor-pointer p-4 no-underline transition-all duration-100 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
                       index === selectedIndex ? 'bg-orange-100' : 'hover:bg-orange-50'
                     }`}
-                    onClick={(e) => handleResultClick(e, post.data.slug)}
+                    onClick={handleResultClick}
                   >
                     <h3 className='mb-1 font-bold text-gray-900'>{post.data.title}</h3>
                     <p className='mb-2 line-clamp-2 text-sm text-gray-600'>{post.data.brief}</p>

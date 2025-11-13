@@ -14,9 +14,6 @@ node_modules/
 dist/
 .astro/
 
-# Lighthouse CI
-.lighthouseci/
-
 # AI IDE
 .cursor/
 .claude/

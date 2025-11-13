@@ -3,36 +3,20 @@ name: Build
 on:
   workflow_call:
     inputs:
-      node-version:
-        description: 'Node.js version to use'
-        required: false
-        type: string
-        default: '22.x'
       upload-artifacts:
         description: 'Whether to upload build artifacts'
         required: false
         type: boolean
         default: false
-      artifact-name:
-        description: 'Name for the build artifact'
-        required: false
-        type: string
-        default: 'build-output'
-      artifact-retention-days:
-        description: 'Days to retain the artifact'
-        required: false
-        type: number
-        default: 1
-      turbo-cache-prefix:
-        description: 'Prefix for Turbo cache key'
-        required: false
-        type: string
-        default: 'build'
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [22.x, 24.x]
 
     steps:
       - name: Checkout
@@ -41,8 +25,8 @@ jobs:
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
-          node-version: ${{ inputs.node-version }}
-          turbo-cache-prefix: ${{ inputs.turbo-cache-prefix }}
+          node-version: ${{ matrix.node-version }}
+          turbo-cache-prefix: build
 
       - name: Install dependencies
         run: pnpm install
@@ -60,6 +44,6 @@ jobs:
         if: ${{ inputs.upload-artifacts }}
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
-          name: ${{ inputs.artifact-name }}
+          name: build-output-node-${{ matrix.node-version }}
           path: dist/
-          retention-days: ${{ inputs.artifact-retention-days }}
+          retention-days: 1
