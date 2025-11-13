@@ -25,6 +25,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
     const nextBatchStart = visibleCount;
     const nextBatchEnd = Math.min(visibleCount + postsPerLoad, posts.length);
     const nextPosts = posts.slice(nextBatchStart, nextBatchEnd);
+    const createdLinks: HTMLLinkElement[] = [];
 
     nextPosts.forEach((post, index) => {
       if (post.data.coverImage?.url) {
@@ -34,14 +35,24 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
 
         // Pre-load the image (only if optimizedUrl is valid)
         if (optimizedUrl) {
-          const link = document.createElement('link');
-          link.rel = 'prefetch';
-          link.as = 'image';
-          link.href = optimizedUrl;
-          document.head.appendChild(link);
+          // Check if link already exists to prevent duplicates
+          const existingLink = document.querySelector(`link[rel="prefetch"][href="${optimizedUrl}"]`);
+          if (!existingLink) {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.as = 'image';
+            link.href = optimizedUrl;
+            document.head.appendChild(link);
+            createdLinks.push(link);
+          }
         }
       }
     });
+
+    // Cleanup function to remove created links when component unmounts
+    return () => {
+      createdLinks.forEach(link => link.remove());
+    };
   }, [visibleCount, posts, postsPerLoad]);
 
   const handleLoadMore = () => {
