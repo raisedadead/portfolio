@@ -15,7 +15,7 @@ pnpm install           # Install dependencies (uses pnpm, required)
 
 ### Development
 ```bash
-pnpm develop          # Start dev server (alias: pnpm dev)
+pnpm develop          # Start dev server
 pnpm build            # Production build
 pnpm preview          # Preview production build locally (uses wrangler)
 pnpm deploy           # Deploy to Cloudflare
