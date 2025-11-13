@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { LightweightPost } from '@/types/blog';
 import { getBentoGridSpan } from '@/lib/blog-utils';
 import { transformImageUrl } from '@/lib/image-optimizer';
@@ -16,6 +16,33 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
   const [isLoading, setIsLoading] = useState(false);
 
   const visiblePosts = posts.slice(0, visibleCount);
+
+  // Pre-load images for the next batch of posts
+  useEffect(() => {
+    // Only pre-load if there are more posts to load
+    if (visibleCount >= posts.length) return;
+
+    const nextBatchStart = visibleCount;
+    const nextBatchEnd = Math.min(visibleCount + postsPerLoad, posts.length);
+    const nextPosts = posts.slice(nextBatchStart, nextBatchEnd);
+
+    nextPosts.forEach((post, index) => {
+      if (post.data.coverImage?.url) {
+        const spanConfig = getBentoGridSpan(nextBatchStart + index);
+        const dimensions = calculateImageDimensions(spanConfig.aspectRatio, nextBatchStart + index);
+        const optimizedUrl = transformImageUrl(post.data.coverImage.url, dimensions);
+
+        // Pre-load the image (only if optimizedUrl is valid)
+        if (optimizedUrl) {
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.as = 'image';
+          link.href = optimizedUrl;
+          document.head.appendChild(link);
+        }
+      }
+    });
+  }, [visibleCount, posts, postsPerLoad]);
 
   const handleLoadMore = () => {
     setIsLoading(true);
@@ -44,7 +71,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
               data-blog-post-id={post.id}
               className={`${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none sm:col-span-2`}
             >
-              <a href={`/blog/${post.data.slug}`} className='block no-underline'>
+              <a href={`/blog/${post.data.slug}`} className='block no-underline' data-astro-prefetch='hover'>
                 {/* Cover Image */}
                 {optimizedUrl ? (
                   <div className={`relative w-full overflow-hidden ${spanConfig.aspectClass} ${spanConfig.height}`}>

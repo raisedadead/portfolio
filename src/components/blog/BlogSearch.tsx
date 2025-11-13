@@ -59,7 +59,11 @@ export default function BlogSearch({ posts }: Props) {
       case 'Enter':
         e.preventDefault();
         if (selectedIndex >= 0) {
-          window.location.assign(`/blog/${filteredPosts[selectedIndex].data.slug}`);
+          // Programmatically click the selected anchor for keyboard navigation
+          const selectedLink = document.querySelector(
+            `[data-astro-prefetch][href="/blog/${filteredPosts[selectedIndex].data.slug}"]`
+          ) as HTMLAnchorElement;
+          selectedLink?.click();
         }
         break;
       case 'Escape':
@@ -76,7 +80,12 @@ export default function BlogSearch({ posts }: Props) {
     setSelectedIndex(-1);
   };
 
-  const handleResultClick = (postSlug: string) => {
+  const handleResultClick = (e: React.MouseEvent, postSlug: string) => {
+    // Let the anchor tag handle navigation for better prefetching
+    // Only use programmatic navigation if needed (e.g., keyboard events)
+    if (e.type === 'click') {
+      return; // Let the anchor handle it
+    }
     window.location.assign(`/blog/${postSlug}`);
   };
 
@@ -130,27 +139,27 @@ export default function BlogSearch({ posts }: Props) {
                   key={post.id}
                   role='option'
                   aria-selected={index === selectedIndex}
-                  className={`cursor-pointer border-b-2 border-gray-200 p-4 transition-all duration-100 last:border-b-0 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
-                    index === selectedIndex ? 'bg-orange-100' : 'hover:bg-orange-50'
-                  }`}
-                  onClick={() => handleResultClick(post.data.slug)}
+                  className='border-b-2 border-gray-200 last:border-b-0'
                   onMouseEnter={() => setSelectedIndex(index)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      handleResultClick(post.data.slug);
-                    }
-                  }}
                 >
-                  <h3 className='mb-1 font-bold text-gray-900'>{post.data.title}</h3>
-                  <p className='mb-2 line-clamp-2 text-sm text-gray-600'>{post.data.brief}</p>
-                  <div className='flex flex-wrap gap-2'>
-                    {post.data.tags.slice(0, 3).map((tag) => (
-                      <span key={tag.slug} className='rounded bg-gray-200 px-2 py-1 text-xs text-gray-700'>
-                        {tag.name}
-                      </span>
-                    ))}
-                  </div>
+                  <a
+                    href={`/blog/${post.data.slug}`}
+                    data-astro-prefetch='hover'
+                    className={`block cursor-pointer p-4 no-underline transition-all duration-100 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
+                      index === selectedIndex ? 'bg-orange-100' : 'hover:bg-orange-50'
+                    }`}
+                    onClick={(e) => handleResultClick(e, post.data.slug)}
+                  >
+                    <h3 className='mb-1 font-bold text-gray-900'>{post.data.title}</h3>
+                    <p className='mb-2 line-clamp-2 text-sm text-gray-600'>{post.data.brief}</p>
+                    <div className='flex flex-wrap gap-2'>
+                      {post.data.tags.slice(0, 3).map((tag) => (
+                        <span key={tag.slug} className='rounded bg-gray-200 px-2 py-1 text-xs text-gray-700'>
+                          {tag.name}
+                        </span>
+                      ))}
+                    </div>
+                  </a>
                 </li>
               ))}
             </ul>

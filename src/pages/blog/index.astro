@@ -29,6 +29,11 @@ const lightweightPosts: LightweightPost[] = sortedPosts.map((post) => ({
 ---
 
 <MainLayout pageTitle='Blog' pageDescription='Read articles about web development, programming, and technology'>
+  <Fragment slot='head'>
+    <!-- DNS prefetch and preconnect for Hashnode CDN to speed up image loading -->
+    <link rel='dns-prefetch' href='https://cdn.hashnode.com' />
+    <link rel='preconnect' href='https://cdn.hashnode.com' crossorigin />
+  </Fragment>
   <section class={cn('mb-2')}>
     <div class={cn('prose prose-lg prose-slate max-w-none')}>
       <h1 class={cn('py-4 text-center text-display-md text-slate-800')}>Blog</h1>
