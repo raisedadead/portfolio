@@ -36,8 +36,8 @@ export const CanvasLayer: React.FC = () => {
       const pixels = imageData.data;
 
       for (let i = 0; i < pixels.length; i += 4) {
-        // Simple uniform noise - matches reference image style
-        const noise = (Math.random() - 0.5) * 80;
+        // Simple uniform noise - subtle texture
+        const noise = (Math.random() - 0.75) * 50;
         pixels[i] = 128 + noise; // R
         pixels[i + 1] = 128 + noise; // G
         pixels[i + 2] = 128 + noise; // B
@@ -115,10 +115,10 @@ export const CanvasLayer: React.FC = () => {
         drawBird(ctx, bird);
       });
 
-      // Draw fine grain texture overlay (subtle, like reference image)
+      // Draw fine grain texture overlay (subtle)
       if (grainCanvas) {
         ctx.globalCompositeOperation = 'overlay';
-        ctx.globalAlpha = 0.35;
+        ctx.globalAlpha = 0.25;
         ctx.drawImage(grainCanvas, 0, 0, canvas.width, canvas.height);
         ctx.globalAlpha = 1.0;
         ctx.globalCompositeOperation = 'source-over';
