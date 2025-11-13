@@ -80,15 +80,6 @@ export default function BlogSearch({ posts }: Props) {
     setSelectedIndex(-1);
   };
 
-  const handleResultClick = (e: React.MouseEvent, postSlug: string) => {
-    // Let the anchor tag handle navigation for better prefetching
-    // Only use programmatic navigation if needed (e.g., keyboard events)
-    if (e.type === 'click') {
-      return; // Let the anchor handle it
-    }
-    window.location.assign(`/blog/${postSlug}`);
-  };
-
   return (
     <div ref={searchRef} className='relative mb-12'>
       {/* Search Input */}
