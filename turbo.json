@@ -50,16 +50,6 @@
       "cache": false,
       "inputs": ["src/**", ".github/**/*.{js,ts,mjs}", ".oxlintrc.json", "package.json"]
     },
-    "format": {
-      "cache": false,
-      "inputs": ["**/*.{mjs,cjs,js,jsx,ts,tsx,astro,json,md}"],
-      "outputs": []
-    },
-    "format:check": {
-      "inputs": ["**/*.{mjs,cjs,js,jsx,ts,tsx,astro,json,md}", ".prettierrc", ".prettierignore"],
-      "outputs": [],
-      "cache": true
-    },
     "check": {
       "dependsOn": ["cf-typegen"],
       "inputs": ["src/**", "astro.config.mjs", "tsconfig.json", "package.json"],

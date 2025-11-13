@@ -26,8 +26,6 @@
     "turbo:test:coverage": "turbo test:coverage",
     "turbo:lint": "turbo lint",
     "turbo:lint:fix": "turbo lint:fix",
-    "turbo:format": "turbo format",
-    "turbo:format:check": "turbo format:check",
     "turbo:check": "turbo check",
     "turbo:develop": "turbo develop",
     "turbo:preview": "turbo preview",
