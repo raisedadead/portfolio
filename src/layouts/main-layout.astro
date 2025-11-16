@@ -14,24 +14,23 @@ export interface Props {
   pageImage?: string;
   setCanonicalBlogBaseURL?: boolean;
   blogSlug?: string;
-  showHomeButton?: boolean;
   variant?: 'main' | 'prose' | 'legal';
 }
 
-const { showHomeButton = true, variant = 'main', ...baseProps } = Astro.props;
+const { variant = 'main', ...baseProps } = Astro.props;
 
 // Map variant to container size for consistent widths
 const containerSize = variant === 'legal' ? 'full' : 'full';
 ---
 
-<BaseLayout {...baseProps} showHomeButton={showHomeButton}>
+<BaseLayout {...baseProps}>
   <div class={cn('container')}>
     <div class='fixed inset-0 -z-10' transition:persist='background'>
       <Background client:idle />
     </div>
     <Container size={containerSize} className='my-2 py-8'>
       <main>
-        <Nav className='z-20 my-2 max-h-none pt-2' showHomeButton={showHomeButton} client:idle />
+        <Nav className='z-20 my-2 max-h-none pt-2' client:idle />
         <div class='px-3 pt-20 pb-5 sm:px-5'>
           {
             variant === 'legal' ? (
