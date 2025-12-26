@@ -115,8 +115,8 @@ importers:
         specifier: 10.0.0
         version: 10.0.0
       jsdom:
-        specifier: 27.3.0
-        version: 27.3.0(postcss@8.5.6)
+        specifier: 27.4.0
+        version: 27.4.0(postcss@8.5.6)
       lint-staged:
         specifier: 16.2.7
         version: 16.2.7
@@ -146,7 +146,7 @@ importers:
         version: 7.3.0(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
       vitest:
         specifier: 4.0.16
-        version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@24.10.4)(@vitest/ui@4.0.16)(happy-dom@20.0.11)(jiti@2.6.1)(jsdom@27.3.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
+        version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@24.10.4)(@vitest/ui@4.0.16)(happy-dom@20.0.11)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
       wrangler:
         specifier: 4.56.0
         version: 4.56.0(@cloudflare/workers-types@4.20251225.0)
@@ -967,6 +967,15 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@exodus/bytes@1.6.0':
+    resolution: {integrity: sha512-y32mI9627q5LR/L8fLc4YyDRJQOi+jK0D9okzLilAdiU3F9we3zC7Y7CFrR/8vAvUyv7FgBAYcNHtvbmhKCFcw==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    peerDependencies:
+      '@exodus/crypto': ^1.0.0-rc.4
+    peerDependenciesMeta:
+      '@exodus/crypto':
+        optional: true
 
   '@floating-ui/core@1.7.3':
     resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
@@ -2741,9 +2750,9 @@ packages:
   hastscript@9.0.1:
     resolution: {integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==}
 
-  html-encoding-sniffer@4.0.0:
-    resolution: {integrity: sha512-Y22oTqIU4uuPgEemfz7NDJz6OeKf12Lsu+QC+s3BVpda64lTiMYCyGwg5ki4vFxkMwQdeZDl2adZoqUgdFuTgQ==}
-    engines: {node: '>=18'}
+  html-encoding-sniffer@6.0.0:
+    resolution: {integrity: sha512-CV9TW3Y3f8/wT0BRFc1/KAVQ3TUHiXmaAb6VW9vtiMFf7SLoMd1PdAc4W3KFOFETBJUb90KatHqlsZMWV+R9Gg==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
 
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
@@ -2773,10 +2782,6 @@ packages:
     resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
     engines: {node: '>=18'}
     hasBin: true
-
-  iconv-lite@0.6.3:
-    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
-    engines: {node: '>=0.10.0'}
 
   import-in-the-middle@2.0.0:
     resolution: {integrity: sha512-yNZhyQYqXpkT0AKq3F3KLasUSK4fHvebNH5hOsKQw2dhGSALvQ4U0BqUc5suziKvydO5u5hgN2hy1RJaho8U5A==}
@@ -2892,8 +2897,8 @@ packages:
     resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
 
-  jsdom@27.3.0:
-    resolution: {integrity: sha512-GtldT42B8+jefDUC4yUKAvsaOrH7PDHmZxZXNgF2xMmymjUbRYJvpAybZAKEmXDGTM0mCsz8duOa4vTm5AY2Kg==}
+  jsdom@27.4.0:
+    resolution: {integrity: sha512-mjzqwWRD9Y1J1KUi7W97Gja1bwOOM5Ug0EZ6UDK3xS7j7mndrkwozHtSblfomlzyB4NepioNt+B2sOSzczVgtQ==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
       canvas: ^3.0.0
@@ -3026,10 +3031,6 @@ packages:
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
-
-  lru-cache@11.2.2:
-    resolution: {integrity: sha512-F9ODfyqML2coTIsQpSkRHnLSZMtkU8Q+mSfcaIyKwy58u+8k5nvAYeiNhsyMARvzNcXJ9QfWVrcPsC9e9rAxtg==}
-    engines: {node: 20 || >=22}
 
   lru-cache@11.2.4:
     resolution: {integrity: sha512-B5Y16Jr9LB9dHVkh6ZevG+vAbOsNOYCX+sXvFWFu7B3Iz5mijW3zdbMyhsh8ANd2mSWBYdJgnqi+mL7/LrOPYg==}
@@ -3682,9 +3683,6 @@ packages:
 
   s.color@0.0.15:
     resolution: {integrity: sha512-AUNrbEUHeKY8XsYr/DYpl+qk5+aM+DChopnWOPEzn8YKzOhv4l2zH6LzZms3tOZP3wwdOyc0RmTciyi46HLIuA==}
-
-  safer-buffer@2.1.2:
-    resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
   sass-formatter@0.7.9:
     resolution: {integrity: sha512-CWZ8XiSim+fJVG0cFLStwDvft1VI7uvXdCNJYXhDvowiv+DsbD1nXLiQ4zrE5UBvj5DWZJ93cwN0NX5PMsr1Pw==}
@@ -4356,10 +4354,6 @@ packages:
   webpack-virtual-modules@0.5.0:
     resolution: {integrity: sha512-kyDivFZ7ZM0BVOUteVbDFhlRt7Ah/CSPwJdi8hBpkK7QLumUqdLtVfm/PX/hkcnrvr0i77fO5+TjZ94Pe+C9iw==}
 
-  whatwg-encoding@3.1.1:
-    resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
-    engines: {node: '>=18'}
-
   whatwg-mimetype@3.0.0:
     resolution: {integrity: sha512-nt+N2dzIutVRxARx1nghPKGv1xHikU7HKdfafKkLNLindmPU/ch3U31NOCGGA/dmPcmb1VlofO0vnKAcsm0o/Q==}
     engines: {node: '>=12'}
@@ -4562,7 +4556,7 @@ snapshots:
       '@csstools/css-color-parser': 3.1.0(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
-      lru-cache: 11.2.2
+      lru-cache: 11.2.4
 
   '@asamuzakjp/dom-selector@6.7.6':
     dependencies:
@@ -5248,6 +5242,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.27.0':
     optional: true
+
+  '@exodus/bytes@1.6.0': {}
 
   '@floating-ui/core@1.7.3':
     dependencies:
@@ -6377,7 +6373,7 @@ snapshots:
       obug: 2.1.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@24.10.4)(@vitest/ui@4.0.16)(happy-dom@20.0.11)(jiti@2.6.1)(jsdom@27.3.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
+      vitest: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@24.10.4)(@vitest/ui@4.0.16)(happy-dom@20.0.11)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -6424,7 +6420,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vitest: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@24.10.4)(@vitest/ui@4.0.16)(happy-dom@20.0.11)(jiti@2.6.1)(jsdom@27.3.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
+      vitest: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@24.10.4)(@vitest/ui@4.0.16)(happy-dom@20.0.11)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
 
   '@vitest/utils@4.0.16':
     dependencies:
@@ -7244,9 +7240,11 @@ snapshots:
       property-information: 7.1.0
       space-separated-tokens: 2.0.2
 
-  html-encoding-sniffer@4.0.0:
+  html-encoding-sniffer@6.0.0:
     dependencies:
-      whatwg-encoding: 3.1.1
+      '@exodus/bytes': 1.6.0
+    transitivePeerDependencies:
+      - '@exodus/crypto'
 
   html-escaper@2.0.2: {}
 
@@ -7278,10 +7276,6 @@ snapshots:
       - supports-color
 
   husky@9.1.7: {}
-
-  iconv-lite@0.6.3:
-    dependencies:
-      safer-buffer: 2.1.2
 
   import-in-the-middle@2.0.0:
     dependencies:
@@ -7390,14 +7384,15 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jsdom@27.3.0(postcss@8.5.6):
+  jsdom@27.4.0(postcss@8.5.6):
     dependencies:
       '@acemir/cssom': 0.9.28
       '@asamuzakjp/dom-selector': 6.7.6
+      '@exodus/bytes': 1.6.0
       cssstyle: 5.3.4(postcss@8.5.6)
       data-urls: 6.0.0
       decimal.js: 10.6.0
-      html-encoding-sniffer: 4.0.0
+      html-encoding-sniffer: 6.0.0
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       is-potential-custom-element-name: 1.0.1
@@ -7407,12 +7402,12 @@ snapshots:
       tough-cookie: 6.0.0
       w3c-xmlserializer: 5.0.0
       webidl-conversions: 8.0.0
-      whatwg-encoding: 3.1.1
       whatwg-mimetype: 4.0.0
       whatwg-url: 15.1.0
       ws: 8.18.3
       xml-name-validator: 5.0.0
     transitivePeerDependencies:
+      - '@exodus/crypto'
       - bufferutil
       - postcss
       - supports-color
@@ -7519,8 +7514,6 @@ snapshots:
   longest-streak@3.1.0: {}
 
   lru-cache@10.4.3: {}
-
-  lru-cache@11.2.2: {}
 
   lru-cache@11.2.4: {}
 
@@ -8342,8 +8335,6 @@ snapshots:
 
   s.color@0.0.15: {}
 
-  safer-buffer@2.1.2: {}
-
   sass-formatter@0.7.9:
     dependencies:
       suf-log: 2.5.3
@@ -8792,7 +8783,7 @@ snapshots:
     optionalDependencies:
       vite: 6.4.1(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
 
-  vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@24.10.4)(@vitest/ui@4.0.16)(happy-dom@20.0.11)(jiti@2.6.1)(jsdom@27.3.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1):
+  vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@24.10.4)(@vitest/ui@4.0.16)(happy-dom@20.0.11)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1):
     dependencies:
       '@vitest/expect': 4.0.16
       '@vitest/mocker': 4.0.16(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))
@@ -8819,7 +8810,7 @@ snapshots:
       '@types/node': 24.10.4
       '@vitest/ui': 4.0.16(vitest@4.0.16)
       happy-dom: 20.0.11
-      jsdom: 27.3.0(postcss@8.5.6)
+      jsdom: 27.4.0(postcss@8.5.6)
     transitivePeerDependencies:
       - jiti
       - less
@@ -8956,10 +8947,6 @@ snapshots:
   webpack-sources@3.3.3: {}
 
   webpack-virtual-modules@0.5.0: {}
-
-  whatwg-encoding@3.1.1:
-    dependencies:
-      iconv-lite: 0.6.3
 
   whatwg-mimetype@3.0.0: {}
 
