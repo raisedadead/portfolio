@@ -7,14 +7,12 @@ import { Social } from '@/components/social';
 import { cn } from '@/lib/utils';
 import type { LightweightPost } from '@/types/blog';
 
-// Fetch all blog posts and sort by date (newest first)
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort(
-  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
-);
+// Fetch posts from both collections
+const hashnodePosts = await getCollection('blog');
+const freecodecampPosts = await getCollection('freecodecamp');
 
-// Create lightweight posts for better performance (reduces serialization overhead)
-const lightweightPosts: LightweightPost[] = sortedPosts.map((post) => ({
+// Normalize Hashnode posts to LightweightPost format
+const normalizedHashnodePosts: LightweightPost[] = hashnodePosts.map((post) => ({
   id: post.id,
   data: {
     slug: post.data.slug,
@@ -23,9 +21,54 @@ const lightweightPosts: LightweightPost[] = sortedPosts.map((post) => ({
     coverImage: post.data.coverImage,
     tags: post.data.tags,
     publishedAt: post.data.publishedAt,
-    readingTime: post.data.readingTime
+    readingTime: post.data.readingTime,
+    source: 'hashnode' as const
   }
 }));
+
+// Normalize freeCodeCamp posts to LightweightPost format
+const normalizedFreecodecampPosts: LightweightPost[] = freecodecampPosts.map((post) => {
+  // Extract slug from URL (last part of the path)
+  const urlPath = post.data.url || '';
+  const slug = urlPath.split('/').filter(Boolean).pop() || post.id;
+
+  // Get cover image from media array (freeCodeCamp uses media:content)
+  const mediaImage = post.data.media?.[0]?.url;
+  const imageData = post.data.image;
+  const coverImageUrl = mediaImage || imageData?.url;
+
+  // Convert categories to tags format
+  const tags =
+    post.data.categories?.map((cat: { label: string; term: string }) => ({
+      name: cat.label,
+      slug: cat.term.toLowerCase().replace(/\s+/g, '-')
+    })) || [];
+
+  // Estimate reading time (average 200 words per minute)
+  const content = post.data.content || post.data.description || '';
+  const wordCount = content.split(/\s+/).length;
+  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+  return {
+    id: `fcc-${post.id}`,
+    data: {
+      slug: slug,
+      title: post.data.title || 'Untitled',
+      brief: post.data.description || '',
+      coverImage: coverImageUrl ? { url: coverImageUrl } : undefined,
+      tags,
+      publishedAt: post.data.published || new Date(),
+      readingTime,
+      source: 'freecodecamp' as const,
+      externalUrl: post.data.url || undefined
+    }
+  };
+});
+
+// Merge and sort all posts by date (newest first)
+const lightweightPosts: LightweightPost[] = [...normalizedHashnodePosts, ...normalizedFreecodecampPosts].sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+);
 ---
 
 <MainLayout pageTitle='Blog' pageDescription='Read articles about web development, programming, and technology'>
@@ -33,6 +76,8 @@ const lightweightPosts: LightweightPost[] = sortedPosts.map((post) => ({
     <!-- DNS prefetch and preconnect for Hashnode CDN to speed up image loading -->
     <link rel='dns-prefetch' href='https://cdn.hashnode.com' />
     <link rel='preconnect' href='https://cdn.hashnode.com' crossorigin='anonymous' />
+    <!-- DNS prefetch for freeCodeCamp CDN -->
+    <link rel='dns-prefetch' href='https://www.freecodecamp.org' />
   </Fragment>
   <section class={cn('mb-2')}>
     <div class={cn('prose prose-lg prose-slate max-w-none')}>

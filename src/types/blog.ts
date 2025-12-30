@@ -32,6 +32,8 @@ export interface OptimizationMetadata {
   fallbackUsed: boolean;
 }
 
+export type PostSource = 'hashnode' | 'freecodecamp';
+
 export interface BlogPost {
   id: string;
   data: {
@@ -68,5 +70,7 @@ export interface LightweightPost {
     tags: Tag[];
     publishedAt: Date;
     readingTime: number;
+    source: PostSource;
+    externalUrl?: string;
   };
 }

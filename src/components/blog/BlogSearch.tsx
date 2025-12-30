@@ -59,11 +59,16 @@ export default function BlogSearch({ posts }: Props) {
       case 'Enter':
         e.preventDefault();
         if (selectedIndex >= 0) {
-          // Programmatically click the selected anchor for keyboard navigation
-          const selectedLink = document.querySelector(
-            `[data-astro-prefetch][href="/blog/${filteredPosts[selectedIndex].data.slug}"]`
-          ) as HTMLAnchorElement;
-          selectedLink?.click();
+          const post = filteredPosts[selectedIndex];
+          const isExternal = post.data.source === 'freecodecamp' && post.data.externalUrl;
+          const url = isExternal ? post.data.externalUrl : `/blog/${post.data.slug}`;
+          if (isExternal) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+          } else {
+            // Programmatically click the selected anchor for keyboard navigation
+            const selectedLink = document.querySelector(`[data-astro-prefetch][href="${url}"]`) as HTMLAnchorElement;
+            selectedLink?.click();
+          }
         }
         break;
       case 'Escape':
@@ -132,34 +137,49 @@ export default function BlogSearch({ posts }: Props) {
         >
           {filteredPosts.length > 0 ? (
             <ul className='max-h-96 overflow-y-auto'>
-              {filteredPosts.map((post, index) => (
-                <li
-                  key={post.id}
-                  role='option'
-                  aria-selected={index === selectedIndex}
-                  className='border-b-2 border-gray-200 last:border-b-0'
-                  onMouseEnter={() => setSelectedIndex(index)}
-                >
-                  <a
-                    href={`/blog/${post.data.slug}`}
-                    data-astro-prefetch='hover'
-                    className={`block cursor-pointer p-4 no-underline transition-all duration-100 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
-                      index === selectedIndex ? 'bg-orange-100' : 'hover:bg-orange-50'
-                    }`}
-                    onClick={handleResultClick}
+              {filteredPosts.map((post, index) => {
+                const isExternal = post.data.source === 'freecodecamp' && post.data.externalUrl;
+                const url = isExternal ? post.data.externalUrl : `/blog/${post.data.slug}`;
+                const linkProps = isExternal
+                  ? { target: '_blank' as const, rel: 'noopener noreferrer' }
+                  : { 'data-astro-prefetch': 'hover' as const };
+
+                return (
+                  <li
+                    key={post.id}
+                    role='option'
+                    aria-selected={index === selectedIndex}
+                    className='border-b-2 border-gray-200 last:border-b-0'
+                    onMouseEnter={() => setSelectedIndex(index)}
                   >
-                    <h3 className='mb-1 font-bold text-gray-900'>{post.data.title}</h3>
-                    <p className='mb-2 line-clamp-2 text-sm text-gray-600'>{post.data.brief}</p>
-                    <div className='flex flex-wrap gap-2'>
-                      {post.data.tags.slice(0, 3).map((tag) => (
-                        <span key={tag.slug} className='rounded bg-gray-200 px-2 py-1 text-xs text-gray-700'>
-                          {tag.name}
-                        </span>
-                      ))}
-                    </div>
-                  </a>
-                </li>
-              ))}
+                    <a
+                      href={url}
+                      {...linkProps}
+                      className={`block cursor-pointer p-4 no-underline transition-all duration-100 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
+                        index === selectedIndex ? 'bg-orange-100' : 'hover:bg-orange-50'
+                      }`}
+                      onClick={handleResultClick}
+                    >
+                      <div className='mb-1 flex items-center gap-2'>
+                        <h3 className='font-bold text-gray-900'>{post.data.title}</h3>
+                        {isExternal && (
+                          <span className='flex-shrink-0 rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-800'>
+                            freeCodeCamp
+                          </span>
+                        )}
+                      </div>
+                      <p className='mb-2 line-clamp-2 text-sm text-gray-600'>{post.data.brief}</p>
+                      <div className='flex flex-wrap gap-2'>
+                        {post.data.tags.slice(0, 3).map((tag) => (
+                          <span key={tag.slug} className='rounded bg-gray-200 px-2 py-1 text-xs text-gray-700'>
+                            {tag.name}
+                          </span>
+                        ))}
+                      </div>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <div className='p-6 text-center text-gray-600'>No posts match your search</div>

@@ -41,6 +41,7 @@
     ]
   },
   "dependencies": {
+    "@ascorbic/feed-loader": "^2.0.1",
     "@astrojs/check": "0.9.5",
     "@astrojs/cloudflare": "12.6.11",
     "@astrojs/react": "4.4.2",

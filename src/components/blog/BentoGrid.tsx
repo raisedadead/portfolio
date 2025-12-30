@@ -76,13 +76,19 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
             ? transformImageUrl(post.data.coverImage.url, dimensions)
             : null;
 
+          const isExternal = post.data.source === 'freecodecamp' && post.data.externalUrl;
+          const postUrl = isExternal ? post.data.externalUrl : `/blog/${post.data.slug}`;
+          const linkProps = isExternal
+            ? { target: '_blank' as const, rel: 'noopener noreferrer' }
+            : { 'data-astro-prefetch': 'hover' as const };
+
           return (
             <article
               key={post.id}
               data-blog-post-id={post.id}
               className={`${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none sm:col-span-2`}
             >
-              <a href={`/blog/${post.data.slug}`} className='block no-underline' data-astro-prefetch='hover'>
+              <a href={postUrl} className='block no-underline' {...linkProps}>
                 {/* Cover Image */}
                 {optimizedUrl ? (
                   <div className={`relative w-full overflow-hidden ${spanConfig.aspectClass} ${spanConfig.height}`}>
@@ -108,9 +114,16 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
 
                 {/* Card Content */}
                 <div className='flex grow flex-col'>
-                  <h2 className='my-4 text-2xl font-bold text-slate-900 transition-colors group-hover:text-orange-800'>
-                    {post.data.title}
-                  </h2>
+                  <div className='my-4 flex items-start justify-between gap-2'>
+                    <h2 className='text-2xl font-bold text-slate-900 transition-colors group-hover:text-orange-800'>
+                      {post.data.title}
+                    </h2>
+                    {isExternal && (
+                      <span className='flex-shrink-0 rounded bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800'>
+                        freeCodeCamp
+                      </span>
+                    )}
+                  </div>
 
                   <p className='mb-4 grow text-slate-600 transition-colors group-hover:text-slate-700'>
                     {post.data.brief}
@@ -122,6 +135,25 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
                       <>
                         <span className='mx-2'>•</span>
                         <span>{post.data.readingTime} min read</span>
+                      </>
+                    )}
+                    {isExternal && (
+                      <>
+                        <span className='mx-2'>•</span>
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          className='inline h-3.5 w-3.5'
+                          fill='none'
+                          viewBox='0 0 24 24'
+                          stroke='currentColor'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+                          />
+                        </svg>
                       </>
                     )}
                   </div>
