@@ -51,7 +51,7 @@
     "@sentry/astro": "10.33.0",
     "@tailwindcss/vite": "4.1.18",
     "astro": "5.16.0",
-    "astro-loader-hashnode": "1.2.0",
+    "astro-loader-hashnode": "1.2.1",
     "clsx": "2.1.1",
     "motion": "12.26.2",
     "react": "19.2.3",
