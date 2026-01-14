@@ -39,8 +39,8 @@ importers:
         specifier: 5.16.0
         version: 5.16.0(@types/node@24.10.7)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1)
       astro-loader-hashnode:
-        specifier: 1.2.0
-        version: 1.2.0(astro@5.16.0(@types/node@24.10.7)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1))
+        specifier: 1.2.1
+        version: 1.2.1(astro@5.16.0(@types/node@24.10.7)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1))
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -2240,8 +2240,8 @@ packages:
   ast-v8-to-istanbul@0.3.10:
     resolution: {integrity: sha512-p4K7vMz2ZSk3wN8l5o3y2bJAoZXT3VuJI5OLTATY/01CYWumWvwkUw0SqDBnNq6IiTO3qDa1eSQDibAV8g7XOQ==}
 
-  astro-loader-hashnode@1.2.0:
-    resolution: {integrity: sha512-j8eOdQhs6Nl0TqGeGZdL2a2pnasnlycSdVikZnS+ER+6iFLXwUoLsMGfH7feUsTJpamem0MZLaGYcy+UHMB6SA==}
+  astro-loader-hashnode@1.2.1:
+    resolution: {integrity: sha512-AcJgTPD0JmsvffkypXBVAia+uzaGnj7PAAQfqY9E8eafLrSyXzbQ6KX1l1sBCkMKJI4QIyhyr8vFtIUBtyPfUw==}
     engines: {node: 20.x || 22.x || 24.x, pnpm: '>=9'}
     peerDependencies:
       astro: ^5.0.0
@@ -6593,7 +6593,7 @@ snapshots:
       estree-walker: 3.0.3
       js-tokens: 9.0.1
 
-  astro-loader-hashnode@1.2.0(astro@5.16.0(@types/node@24.10.7)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1)):
+  astro-loader-hashnode@1.2.1(astro@5.16.0(@types/node@24.10.7)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1)):
     dependencies:
       astro: 5.16.0(@types/node@24.10.7)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1)
       zod: 3.25.76
