@@ -30,6 +30,12 @@ pnpm test:coverage         # Run tests with coverage report
 pnpm test:update           # Update test snapshots
 ```
 
+### Running Single Tests
+```bash
+pnpm test src/__tests__/specific.test.tsx    # Run single test file
+pnpm test -- -t "test name pattern"          # Run tests matching pattern
+```
+
 ### Code Quality
 ```bash
 pnpm lint              # Lint with oxlint
@@ -69,30 +75,13 @@ This runs automatically after `pnpm install` and is a dependency for build/devel
 - `src/components/background/` - Animated canvas background (waves + birds + grain) with layered architecture
 - `turbo.json` - Turborepo task pipeline and caching config
 
-### Directory Structure
-```
-src/
-├── components/       # React components
-│   ├── background/  # Animated background (gradient, canvas, waves, birds)
-│   ├── blog/        # Blog-specific components
-│   ├── forms/       # Form components
-│   ├── layout/      # Nav, Footer, Profile
-│   ├── sentry/      # Error boundary
-│   └── ui/          # Reusable UI components
-├── content/         # Content collections config
-├── layouts/         # Astro layouts (base, main)
-├── lib/             # Utilities (cn, utils, etc.)
-├── pages/           # Astro routes
-├── styles/          # Global CSS (Tailwind config)
-├── types/           # TypeScript type definitions
-└── __tests__/       # Test files
-```
-
 ### Path Aliases
 - `@/*` → `./src/*` (configured in tsconfig.json and vitest.config.ts)
 
 ### Content Management
 Blog posts are loaded from Hashnode (mrugesh.hashnode.dev) using `astro-loader-hashnode`. The loader fetches posts at build time and stores them in the content layer. Access via `getCollection('blog')`.
+
+Remote images are restricted to `cdn.hashnode.com` only (configured in astro.config.mjs).
 
 ### View Transitions
 Uses Astro's native view transitions (`<ClientRouter />`) with `transition:persist` for background animation. The Background component persists across page navigations.
@@ -129,6 +118,15 @@ Uses `react-dom/server.edge` in production (not `react-dom/server.browser`) to a
 - Setup file: vitest.setup.ts
 - Coverage: v8 provider with html/json reports
 - Globals enabled for describe/it/expect
+
+### Accessibility Testing
+Tests use `jest-axe` for automated accessibility checks:
+```typescript
+import { axe, toHaveNoViolations } from 'jest-axe';
+expect.extend(toHaveNoViolations);
+const results = await axe(container);
+expect(results).toHaveNoViolations();
+```
 
 ### Deployment
 Deployed to Cloudflare Workers using wrangler:
