@@ -91,7 +91,7 @@
     "vitest": "4.0.17",
     "wrangler": "4.59.2"
   },
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.28.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
