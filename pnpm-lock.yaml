@@ -103,8 +103,8 @@ importers:
         specifier: 4.0.17
         version: 4.0.17(vitest@4.0.17)
       happy-dom:
-        specifier: 20.3.1
-        version: 20.3.1
+        specifier: 20.3.3
+        version: 20.3.3
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -146,7 +146,7 @@ importers:
         version: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
       vitest:
         specifier: 4.0.17
-        version: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.10.9)(@vitest/ui@4.0.17)(happy-dom@20.3.1)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
+        version: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.10.9)(@vitest/ui@4.0.17)(happy-dom@20.3.3)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
       wrangler:
         specifier: 4.59.2
         version: 4.59.2(@cloudflare/workers-types@4.20260118.0)
@@ -2026,9 +2026,6 @@ packages:
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
 
-  '@types/node@20.19.19':
-    resolution: {integrity: sha512-pb1Uqj5WJP7wrcbLU7Ru4QtA0+3kAXrkutGiD26wUKzSMgNNaPARTUDQmElUXp64kh3cWdou3Q0C7qwwxqSFmg==}
-
   '@types/node@24.10.9':
     resolution: {integrity: sha512-ne4A0IpG3+2ETuREInjPNhUGis1SFjv1d5asp8MzEAGtOZeTeHVDOYqOgqfhvseqg/iXty2hjBf1zAOb7RNiNw==}
 
@@ -2716,8 +2713,8 @@ packages:
   h3@1.15.5:
     resolution: {integrity: sha512-xEyq3rSl+dhGX2Lm0+eFQIAzlDN6Fs0EcC4f7BNUmzaRX/PTzeuM+Tr2lHB8FoXggsQIeXLj8EDVgs5ywxyxmg==}
 
-  happy-dom@20.3.1:
-    resolution: {integrity: sha512-tLvsizNno05Hij0PoB0QN/S8xf0YU2AGvO11/JlJDw5McA/gzyn0Ni1RwbTI1/zteUbOekJH0t6q8HFvjbxsGg==}
+  happy-dom@20.3.3:
+    resolution: {integrity: sha512-hM9gltmtQLfmWPqoPreUtRdP3nZCSzQEw7l/JC+up5CxquDykhYFKzIzoFFeVev3AGFEULNvsbE8fpZPgxUYEQ==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -3951,9 +3948,6 @@ packages:
 
   uncrypto@0.1.3:
     resolution: {integrity: sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==}
-
-  undici-types@6.21.0:
-    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
   undici-types@7.16.0:
     resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
@@ -6261,10 +6255,6 @@ snapshots:
 
   '@types/node@17.0.45': {}
 
-  '@types/node@20.19.19':
-    dependencies:
-      undici-types: 6.21.0
-
   '@types/node@24.10.9':
     dependencies:
       undici-types: 7.16.0
@@ -6341,7 +6331,7 @@ snapshots:
       obug: 2.1.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.10.9)(@vitest/ui@4.0.17)(happy-dom@20.3.1)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.10.9)(@vitest/ui@4.0.17)(happy-dom@20.3.3)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
 
   '@vitest/expect@4.0.17':
     dependencies:
@@ -6386,7 +6376,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.10.9)(@vitest/ui@4.0.17)(happy-dom@20.3.1)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.10.9)(@vitest/ui@4.0.17)(happy-dom@20.3.3)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1)
 
   '@vitest/utils@4.0.17':
     dependencies:
@@ -7105,11 +7095,12 @@ snapshots:
       ufo: 1.6.3
       uncrypto: 0.1.3
 
-  happy-dom@20.3.1:
+  happy-dom@20.3.3:
     dependencies:
-      '@types/node': 20.19.19
+      '@types/node': 24.10.9
       '@types/whatwg-mimetype': 3.0.2
       '@types/ws': 8.18.1
+      entities: 4.5.0
       whatwg-mimetype: 3.0.0
       ws: 8.18.3
     transitivePeerDependencies:
@@ -8574,8 +8565,6 @@ snapshots:
 
   uncrypto@0.1.3: {}
 
-  undici-types@6.21.0: {}
-
   undici-types@7.16.0: {}
 
   undici@7.14.0: {}
@@ -8721,7 +8710,7 @@ snapshots:
     optionalDependencies:
       vite: 6.4.1(@types/node@24.10.9)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
 
-  vitest@4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.10.9)(@vitest/ui@4.0.17)(happy-dom@20.3.1)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1):
+  vitest@4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.10.9)(@vitest/ui@4.0.17)(happy-dom@20.3.3)(jiti@2.6.1)(jsdom@27.4.0(postcss@8.5.6))(lightningcss@1.30.2)(yaml@2.8.1):
     dependencies:
       '@vitest/expect': 4.0.17
       '@vitest/mocker': 4.0.17(vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))
@@ -8747,7 +8736,7 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       '@types/node': 24.10.9
       '@vitest/ui': 4.0.17(vitest@4.0.17)
-      happy-dom: 20.3.1
+      happy-dom: 20.3.3
       jsdom: 27.4.0(postcss@8.5.6)
     transitivePeerDependencies:
       - jiti
