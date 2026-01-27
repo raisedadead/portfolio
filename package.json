@@ -48,7 +48,7 @@
     "@calcom/embed-react": "1.5.3",
     "@headlessui/react": "2.2.9",
     "@heroicons/react": "2.2.0",
-    "@sentry/astro": "10.34.0",
+    "@sentry/astro": "10.36.0",
     "@tailwindcss/vite": "4.1.18",
     "astro": "5.16.11",
     "astro-loader-hashnode": "1.2.1",
