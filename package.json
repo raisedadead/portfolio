@@ -53,7 +53,7 @@
     "astro": "5.16.15",
     "astro-loader-hashnode": "1.2.1",
     "clsx": "2.1.1",
-    "motion": "12.29.0",
+    "motion": "12.29.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "sharp": "0.34.5",
