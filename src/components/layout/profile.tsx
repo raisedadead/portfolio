@@ -24,43 +24,51 @@ export const Profile: React.FC = () => {
       <div className='relative mb-6 flex -rotate-12 transform flex-col items-center'>
         <h1 className='group text-display-lg rotate-12 transform cursor-pointer text-slate-800'>
           {'Mrugesh Mohapatra'.toLowerCase()}
-          <span
-            className='absolute left-1/4 hidden w-auto rounded-md bg-black p-3 text-sm font-normal text-white group-hover:block'
-            style={{
-              top: '100%',
-              marginTop: '0.75rem',
-              transform: 'translateX(-50%)'
-            }}
-          >
+          <span className='absolute bottom-full left-1/4 mb-3 hidden w-auto -translate-x-1/2 rounded-md bg-black p-3 text-sm font-normal text-white group-hover:block'>
             <Link
               href='https://itinerarium.github.io/phoneme-synthesis/?w= /ˈm.ruː.geɪ.ʃ/'
               className='no-underline'
-              aria-label='Pronunciation of my name'
+              aria-label="Pronunciation of Mrugesh's name"
             >
               🗣 /ˈm.ruː.geɪ.ʃ/
             </Link>
             <svg
-              className='absolute left-1/4 h-4 w-full text-black'
-              style={{ top: '-0.5rem', transform: 'translateX(-50%)' }}
-              viewBox='0 0 255 255'
-              xmlSpace='preserve'
+              className='absolute top-full left-1/2 h-2 w-4 -translate-x-1/2 text-black'
+              viewBox='0 0 16 8'
               aria-hidden='true'
             >
-              <polygon className='fill-current' points='128,0 128,128 0,128' />
+              <polygon className='fill-current' points='0,0 8,8 16,0' />
             </svg>
           </span>
         </h1>
         <div className='m-1 mx-auto -mt-8 w-2/5 border-12 border-orange-50 bg-orange-50' />
       </div>
-      <h2 className='text-display-sm mb-4 p-1 leading-relaxed text-slate-700'>nocturnal developer • open-sourcerer</h2>
+      <h2 className='text-display-sm mb-4 p-1 leading-relaxed text-slate-700'>
+        dad{' '}
+        <span className='relative inline-block'>
+          nocturnal
+          <span
+            className='pointer-events-none absolute inset-x-0 overflow-hidden text-transparent underline decoration-white decoration-wavy decoration-2'
+            style={{ top: '-25%' }}
+            aria-hidden='true'
+          >
+            nocturnal
+          </span>
+        </span>{' '}
+        developer • open-sourcerer
+      </h2>
       <h3 className='mb-8 p-1 text-base leading-relaxed font-medium text-slate-700 sm:text-lg md:text-xl'>
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link
           href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'
-          className='-ml-1 p-1 text-slate-700 underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-2 hover:text-white hover:decoration-white'
+          className='group relative inline-block px-1 text-white no-underline transition-colors hover:text-slate-700'
           aria-label='freecodecamp.org'
         >
-          freeCodeCamp.org
+          <span
+            className='absolute inset-0 -skew-x-12 bg-slate-700 transition-colors group-hover:bg-white'
+            aria-hidden='true'
+          />
+          <span className='relative'>freeCodeCamp.org</span>
         </Link>
       </h3>
 
