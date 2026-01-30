@@ -7,20 +7,29 @@ import BlogSearch from '@/components/blog/BlogSearch';
 import BentoGrid from '@/components/blog/BentoGrid';
 import { Social } from '@/components/social';
 import { getAllTags, filterPostsByTag } from '@/lib/blog-utils';
+import { normalizeHashnodePosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
 import { cn } from '@/lib/utils';
+import type { LightweightPost } from '@/types/blog';
 
 export const getStaticPaths = (async () => {
-  const posts = await getCollection('blog');
-  const allTags = getAllTags(posts);
+  const hashnodePosts = await getCollection('blog');
+  const freecodecampPosts = await getCollection('freecodecamp');
+
+  // Normalize and merge all posts
+  const allPosts = mergeAndSortPosts(
+    normalizeHashnodePosts(hashnodePosts),
+    normalizeFreeCodeCampPosts(freecodecampPosts)
+  );
+  const allTags = getAllTags(allPosts);
 
   return allTags.map((tag) => {
-    const filteredPosts = filterPostsByTag(posts, tag.slug);
+    const filteredPosts = filterPostsByTag(allPosts, tag.slug);
     return {
       params: { tag: tag.slug },
       props: {
         tag,
         posts: filteredPosts,
-        allPosts: posts
+        allPosts
       }
     };
   });
@@ -30,7 +39,8 @@ const { tag, posts, allPosts } = Astro.props;
 
 // Sort posts by date (newest first)
 const sortedPosts = posts.sort(
-  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+  (a: LightweightPost, b: LightweightPost) =>
+    new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
 );
 
 // SEO metadata

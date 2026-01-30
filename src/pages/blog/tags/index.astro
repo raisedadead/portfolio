@@ -5,10 +5,18 @@ import MainLayout from '@/layouts/main-layout.astro';
 import TagCard from '@/components/blog/TagCard';
 import { Social } from '@/components/social';
 import { getTagsWithCount } from '@/lib/blog-utils';
+import { normalizeHashnodePosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
 import { cn } from '@/lib/utils';
 
-// Fetch all blog posts and extract unique tags with counts (single pass for performance)
-const allPosts = await getCollection('blog');
+// Fetch posts from both collections
+const hashnodePosts = await getCollection('blog');
+const freecodecampPosts = await getCollection('freecodecamp');
+
+// Normalize and merge all posts, extract tags with counts
+const allPosts = mergeAndSortPosts(
+  normalizeHashnodePosts(hashnodePosts),
+  normalizeFreeCodeCampPosts(freecodecampPosts)
+);
 const tagsWithCount = getTagsWithCount(allPosts);
 
 // SEO metadata

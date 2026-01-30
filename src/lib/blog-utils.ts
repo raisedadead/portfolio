@@ -1,4 +1,4 @@
-import type { BlogPost, Tag } from '@/types/blog';
+import type { PostWithTags, Tag } from '@/types/blog';
 
 /**
  * Calculates grid span properties for bento-grid blog layout
@@ -32,10 +32,10 @@ export function getBentoGridSpan(index: number): GridSpanResult {
 
 /**
  * Extracts all unique tags from a collection of blog posts
- * @param posts - Array of blog posts
+ * @param posts - Array of blog posts (works with BlogPost or LightweightPost)
  * @returns Array of unique tags sorted by name
  */
-export function getAllTags(posts: BlogPost[]): Tag[] {
+export function getAllTags(posts: PostWithTags[]): Tag[] {
   const tagMap = new Map<string, Tag>();
 
   posts.forEach((post) => {
@@ -58,10 +58,10 @@ export interface TagWithCount extends Tag {
 
 /**
  * Gets all unique tags with their post counts in a single pass
- * @param posts - Array of blog posts
+ * @param posts - Array of blog posts (works with BlogPost or LightweightPost)
  * @returns Array of tags with counts, sorted by name
  */
-export function getTagsWithCount(posts: BlogPost[]): TagWithCount[] {
+export function getTagsWithCount(posts: PostWithTags[]): TagWithCount[] {
   const tagCountMap = new Map<string, { tag: Tag; count: number }>();
 
   posts.forEach((post) => {
@@ -82,21 +82,21 @@ export function getTagsWithCount(posts: BlogPost[]): TagWithCount[] {
 
 /**
  * Filters blog posts by a specific tag slug
- * @param posts - Array of blog posts
+ * @param posts - Array of blog posts (works with BlogPost or LightweightPost)
  * @param tagSlug - The tag slug to filter by
  * @returns Array of posts that contain the specified tag
  */
-export function filterPostsByTag(posts: BlogPost[], tagSlug: string): BlogPost[] {
+export function filterPostsByTag<T extends PostWithTags>(posts: T[], tagSlug: string): T[] {
   return posts.filter((post) => post.data.tags.some((tag) => tag.slug === tagSlug));
 }
 
 /**
  * Gets the tag object by slug from a collection of posts
- * @param posts - Array of blog posts
+ * @param posts - Array of blog posts (works with BlogPost or LightweightPost)
  * @param tagSlug - The tag slug to find
  * @returns The tag object if found, undefined otherwise
  */
-export function getTagBySlug(posts: BlogPost[], tagSlug: string): Tag | undefined {
+export function getTagBySlug(posts: PostWithTags[], tagSlug: string): Tag | undefined {
   const allTags = getAllTags(posts);
   return allTags.find((tag) => tag.slug === tagSlug);
 }
