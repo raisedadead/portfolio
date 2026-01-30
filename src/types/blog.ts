@@ -34,6 +34,17 @@ export interface OptimizationMetadata {
 
 export type PostSource = 'hashnode' | 'freecodecamp';
 
+/**
+ * Common interface for posts with tags - used by utility functions
+ * Both BlogPost and LightweightPost satisfy this interface
+ */
+export interface PostWithTags {
+  id: string;
+  data: {
+    tags: Tag[];
+  };
+}
+
 export interface BlogPost {
   id: string;
   data: {

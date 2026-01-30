@@ -1,23 +1,22 @@
 import BlogSearch from '@/components/blog/BlogSearch';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi, afterEach } from 'vitest';
-import type { BlogPost } from '@/types/blog';
+import type { LightweightPost } from '@/types/blog';
 
-const mockPosts: BlogPost[] = [
+const mockPosts: LightweightPost[] = [
   {
     id: 'post-1',
     data: {
       slug: 'post-1',
       title: 'Getting Started with TypeScript',
       brief: 'Learn the basics of TypeScript and how to use it in your projects',
-      content: { html: '<p>Content</p>' },
-      author: { name: 'John Doe' },
       tags: [
         { name: 'TypeScript', slug: 'typescript' },
         { name: 'Tutorial', slug: 'tutorial' }
       ],
       publishedAt: new Date('2025-01-15'),
-      readingTime: 5
+      readingTime: 5,
+      source: 'hashnode'
     }
   },
   {
@@ -26,14 +25,13 @@ const mockPosts: BlogPost[] = [
       slug: 'post-2',
       title: 'Advanced React Patterns',
       brief: 'Explore advanced patterns in React development',
-      content: { html: '<p>Content</p>' },
-      author: { name: 'Jane Smith' },
       tags: [
         { name: 'React', slug: 'react' },
         { name: 'Advanced', slug: 'advanced' }
       ],
       publishedAt: new Date('2025-02-20'),
-      readingTime: 8
+      readingTime: 8,
+      source: 'hashnode'
     }
   },
   {
@@ -42,14 +40,13 @@ const mockPosts: BlogPost[] = [
       slug: 'post-3',
       title: 'CSS Grid Layout Guide',
       brief: 'Master CSS Grid for modern web layouts',
-      content: { html: '<p>Content</p>' },
-      author: { name: 'Bob Wilson' },
       tags: [
         { name: 'CSS', slug: 'css' },
         { name: 'Tutorial', slug: 'tutorial' }
       ],
       publishedAt: new Date('2025-03-10'),
-      readingTime: 6
+      readingTime: 6,
+      source: 'hashnode'
     }
   }
 ];
@@ -523,6 +520,63 @@ describe('BlogSearch Component', () => {
 
       // The anchor tag should handle navigation, so we check that the link has the correct href
       expect(resultLink).toHaveAttribute('href', '/blog/post-1');
+    });
+  });
+
+  describe('freeCodeCamp Posts', () => {
+    const fccPost: LightweightPost = {
+      id: 'fcc-post-1',
+      data: {
+        slug: 'fcc-article',
+        title: 'freeCodeCamp JavaScript Tutorial',
+        brief: 'Learn JavaScript with freeCodeCamp',
+        tags: [
+          { name: 'JavaScript', slug: 'javascript' },
+          { name: 'Tutorial', slug: 'tutorial' }
+        ],
+        publishedAt: new Date('2025-04-01'),
+        readingTime: 10,
+        source: 'freecodecamp',
+        externalUrl: 'https://www.freecodecamp.org/news/fcc-article/'
+      }
+    };
+
+    const mixedPosts: LightweightPost[] = [...mockPosts, fccPost];
+
+    it('includes freeCodeCamp posts in search results', async () => {
+      render(<BlogSearch posts={mixedPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      fireEvent.change(input, { target: { value: 'freeCodeCamp' } });
+
+      await waitFor(() => {
+        expect(screen.getByText('freeCodeCamp JavaScript Tutorial')).toBeInTheDocument();
+      });
+    });
+
+    it('filters freeCodeCamp posts by tag', async () => {
+      render(<BlogSearch posts={mixedPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      fireEvent.change(input, { target: { value: 'Tutorial' } });
+
+      await waitFor(() => {
+        // Should show both posts tagged with Tutorial
+        expect(screen.getByText('Getting Started with TypeScript')).toBeInTheDocument();
+        expect(screen.getByText('CSS Grid Layout Guide')).toBeInTheDocument();
+        expect(screen.getByText('freeCodeCamp JavaScript Tutorial')).toBeInTheDocument();
+      });
+    });
+
+    it('searches freeCodeCamp posts by brief content', async () => {
+      render(<BlogSearch posts={mixedPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      fireEvent.change(input, { target: { value: 'freeCodeCamp' } });
+
+      await waitFor(() => {
+        expect(screen.getByText('freeCodeCamp JavaScript Tutorial')).toBeInTheDocument();
+      });
     });
   });
 });
