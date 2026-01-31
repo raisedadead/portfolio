@@ -5,27 +5,17 @@ import BlogSearch from '@/components/blog/BlogSearch';
 import BentoGrid from '@/components/blog/BentoGrid';
 import { Social } from '@/components/social';
 import { cn } from '@/lib/utils';
-import type { LightweightPost } from '@/types/blog';
+import { normalizeHashnodePosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
 
-// Fetch all blog posts and sort by date (newest first)
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort(
-  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+// Fetch posts from both collections
+const hashnodePosts = await getCollection('blog');
+const freecodecampPosts = await getCollection('freecodecamp');
+
+// Normalize and merge all posts
+const lightweightPosts = mergeAndSortPosts(
+  normalizeHashnodePosts(hashnodePosts),
+  normalizeFreeCodeCampPosts(freecodecampPosts)
 );
-
-// Create lightweight posts for better performance (reduces serialization overhead)
-const lightweightPosts: LightweightPost[] = sortedPosts.map((post) => ({
-  id: post.id,
-  data: {
-    slug: post.data.slug,
-    title: post.data.title,
-    brief: post.data.brief,
-    coverImage: post.data.coverImage,
-    tags: post.data.tags,
-    publishedAt: post.data.publishedAt,
-    readingTime: post.data.readingTime
-  }
-}));
 ---
 
 <MainLayout pageTitle='Blog' pageDescription='Read articles about web development, programming, and technology'>
@@ -33,6 +23,8 @@ const lightweightPosts: LightweightPost[] = sortedPosts.map((post) => ({
     <!-- DNS prefetch and preconnect for Hashnode CDN to speed up image loading -->
     <link rel='dns-prefetch' href='https://cdn.hashnode.com' />
     <link rel='preconnect' href='https://cdn.hashnode.com' crossorigin='anonymous' />
+    <!-- DNS prefetch for freeCodeCamp CDN -->
+    <link rel='dns-prefetch' href='https://www.freecodecamp.org' />
   </Fragment>
   <section class={cn('mb-2')}>
     <div class={cn('prose prose-lg prose-slate max-w-none')}>

@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { formatDate } from '@/lib/formatDate';
 import { getBentoGridSpan } from '@/lib/blog-utils';
 import { calculateImageDimensions } from '@/lib/image-dimensions';
+import type { PostSource } from '@/types/blog';
 
 interface Props {
   post: any; // BlogPost type from content collection
@@ -20,10 +21,16 @@ const { desktop, aspectClass, aspectRatio, height } = getBentoGridSpan(index);
 
 // Calculate responsive dimensions
 const dimensions = calculateImageDimensions(aspectRatio, index);
+
+// Determine if this is an external post (freeCodeCamp)
+const source: PostSource = data.source || 'hashnode';
+const isExternal = source === 'freecodecamp' && data.externalUrl;
+const postUrl = isExternal ? data.externalUrl : `/blog/${data.slug}`;
+const linkProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 ---
 
 <article class={`group relative overflow-hidden rounded-lg brutalist-card-hover sm:col-span-2 lg:${desktop}`}>
-  <a href={`/blog/${post.id}`} class='block'>
+  <a href={postUrl} class='block' {...linkProps}>
     {
       hasCoverImage ? (
         <div class={`relative w-full overflow-hidden ${aspectClass} ${height}`}>
@@ -49,15 +56,44 @@ const dimensions = calculateImageDimensions(aspectRatio, index);
     }
 
     <div class='p-6'>
-      <h2 class='font-display mb-3 line-clamp-2 text-lg font-bold text-gray-900 sm:text-xl'>
-        {data.title}
-      </h2>
+      <div class='mb-2 flex items-center justify-between'>
+        <h2 class='font-display line-clamp-2 text-lg font-bold text-gray-900 sm:text-xl'>
+          {data.title}
+        </h2>
+        {
+          isExternal && (
+            <span class='ml-2 flex-shrink-0 rounded bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800'>
+              freeCodeCamp
+            </span>
+          )
+        }
+      </div>
 
       <div class='mb-3 flex items-center gap-4 font-sans text-xs text-gray-600 sm:text-sm'>
         <time datetime={data.publishedAt.toISOString()}>
           {formatDate(data.publishedAt)}
         </time>
         <span>{data.readingTime} min read</span>
+        {
+          isExternal && (
+            <span class='flex items-center gap-1'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                class='h-3 w-3'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                  stroke-width='2'
+                  d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+                />
+              </svg>
+            </span>
+          )
+        }
       </div>
 
       <p class='mb-4 line-clamp-3 font-sans text-sm text-gray-700 sm:text-base'>

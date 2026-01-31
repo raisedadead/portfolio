@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { BlogPost } from '@/types/blog';
+import type { LightweightPost } from '@/types/blog';
 import { getBentoGridSpan } from '@/lib/blog-utils';
 import BlogGridWithLoadMore from '@/components/blog/BentoGrid';
 
@@ -51,28 +51,31 @@ describe('BlogGridWithLoadMore Component', () => {
     vi.useRealTimers();
   });
 
-  const createMockPost = (id: string, title: string, hasCoverImage = true): BlogPost => ({
+  const createMockPost = (
+    id: string,
+    title: string,
+    hasCoverImage = true,
+    source: 'hashnode' | 'freecodecamp' = 'hashnode'
+  ): LightweightPost => ({
     id,
     data: {
       slug: id,
       title,
       brief: `Brief for ${title}`,
-      content: { html: '<p>Content</p>' },
       coverImage: hasCoverImage
         ? {
             url: `https://example.com/cover-${id}.jpg`,
             alt: `Cover for ${title}`
           }
         : undefined,
-      author: { name: 'Test Author', profilePicture: 'https://example.com/author.jpg' },
       tags: [{ name: 'Test', slug: 'test' }],
       publishedAt: new Date('2025-01-01'),
       readingTime: 5,
-      hashnodeUrl: `https://blog.example.com/${id}`
+      source
     }
   });
 
-  const mockPosts: BlogPost[] = [
+  const mockPosts: LightweightPost[] = [
     createMockPost('post-1', 'First Post'),
     createMockPost('post-2', 'Second Post'),
     createMockPost('post-3', 'Third Post'),
@@ -358,7 +361,7 @@ describe('BlogGridWithLoadMore Component', () => {
     });
 
     it('handles post without readingTime', () => {
-      const postWithoutReadingTime: BlogPost = {
+      const postWithoutReadingTime: LightweightPost = {
         ...mockPosts[0],
         data: { ...mockPosts[0].data, readingTime: 0 }
       };
@@ -407,6 +410,87 @@ describe('BlogGridWithLoadMore Component', () => {
       expect(styleTag?.textContent).toContain('@keyframes fadeIn');
       expect(styleTag?.textContent).toContain('opacity: 0');
       expect(styleTag?.textContent).toContain('opacity: 1');
+    });
+  });
+
+  describe('freeCodeCamp External Posts', () => {
+    const createFccPost = (id: string, title: string): LightweightPost => ({
+      id: `fcc-${id}`,
+      data: {
+        slug: id,
+        title,
+        brief: `Brief for ${title}`,
+        coverImage: {
+          url: `https://cdn.freecodecamp.org/cover-${id}.jpg`,
+          alt: `Cover for ${title}`
+        },
+        tags: [{ name: 'JavaScript', slug: 'javascript' }],
+        publishedAt: new Date('2025-01-01'),
+        readingTime: 5,
+        source: 'freecodecamp',
+        externalUrl: `https://www.freecodecamp.org/news/${id}/`
+      }
+    });
+
+    it('renders freeCodeCamp badge for external posts', () => {
+      const fccPost = createFccPost('fcc-article', 'FCC Article');
+      render(<BlogGridWithLoadMore posts={[fccPost]} initialCount={1} />);
+
+      expect(screen.getByText('freeCodeCamp')).toBeInTheDocument();
+    });
+
+    it('renders external link icon for freeCodeCamp posts', () => {
+      const fccPost = createFccPost('fcc-article', 'FCC Article');
+      const { container } = render(<BlogGridWithLoadMore posts={[fccPost]} initialCount={1} />);
+
+      const externalIcon = container.querySelector('svg');
+      expect(externalIcon).toBeInTheDocument();
+    });
+
+    it('links to external URL for freeCodeCamp posts', () => {
+      const fccPost = createFccPost('fcc-article', 'FCC Article');
+      render(<BlogGridWithLoadMore posts={[fccPost]} initialCount={1} />);
+
+      const link = screen.getByText('FCC Article').closest('a');
+      expect(link).toHaveAttribute('href', 'https://www.freecodecamp.org/news/fcc-article/');
+    });
+
+    it('opens external links in new tab with proper security attributes', () => {
+      const fccPost = createFccPost('fcc-article', 'FCC Article');
+      render(<BlogGridWithLoadMore posts={[fccPost]} initialCount={1} />);
+
+      const link = screen.getByText('FCC Article').closest('a');
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+
+    it('does not add external link attributes to Hashnode posts', () => {
+      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
+
+      const link = screen.getByText('First Post').closest('a');
+      expect(link).not.toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('href', '/blog/post-1');
+    });
+
+    it('does not render freeCodeCamp badge for Hashnode posts', () => {
+      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
+
+      expect(screen.queryByText('freeCodeCamp')).not.toBeInTheDocument();
+    });
+
+    it('renders mixed posts correctly', () => {
+      const fccPost = createFccPost('fcc-article', 'FCC Article');
+      const mixedPosts = [mockPosts[0], fccPost];
+      render(<BlogGridWithLoadMore posts={mixedPosts} initialCount={2} />);
+
+      // Hashnode post should have internal link
+      const hashnodeLink = screen.getByText('First Post').closest('a');
+      expect(hashnodeLink).toHaveAttribute('href', '/blog/post-1');
+
+      // FCC post should have external link
+      const fccLink = screen.getByText('FCC Article').closest('a');
+      expect(fccLink).toHaveAttribute('href', 'https://www.freecodecamp.org/news/fcc-article/');
+      expect(fccLink).toHaveAttribute('target', '_blank');
     });
   });
 });
