@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import CalButton from '@/components/cal-embed';
 import { CustomLink as Link } from '@/components/custom-link';
 import { Social } from '@/components/social';
@@ -9,6 +11,15 @@ const primaryButtonClasses =
   'inline-flex items-center justify-center h-14 px-6 py-3 text-sm font-bold sm:text-base md:text-lg brutalist-button-primary';
 
 export const Profile: React.FC = () => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const playPronunciation = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+  };
+
   return (
     <div className='flex flex-col items-center justify-center py-12 text-center'>
       <div className='mb-8 md:mb-10'>
@@ -22,16 +33,23 @@ export const Profile: React.FC = () => {
         />
       </div>
       <div className='relative mb-6 flex -rotate-12 transform flex-col items-center'>
-        <h1 className='group text-display-lg rotate-12 transform cursor-pointer text-slate-800'>
-          {'Mrugesh Mohapatra'.toLowerCase()}
-          <span className='absolute bottom-full left-1/4 mb-3 hidden w-auto -translate-x-1/2 rounded-md bg-black p-3 text-sm font-normal text-white group-hover:block'>
-            <Link
-              href='https://itinerarium.github.io/phoneme-synthesis/?w= /ˈm.ruː.geɪ.ʃ/'
-              className='no-underline'
-              aria-label="Pronunciation of Mrugesh's name"
-            >
-              🗣 /ˈm.ruː.geɪ.ʃ/
-            </Link>
+        <audio ref={audioRef} src='/audio/mrugesh-pronunciation.mp3' preload='auto'>
+          <track kind='captions' src='/audio/mrugesh-pronunciation.vtt' srcLang='en' label='English' default />
+        </audio>
+        <h1 className='group text-display-lg rotate-12 transform text-slate-800'>
+          <button
+            type='button'
+            onClick={playPronunciation}
+            className='font-inherit m-0 cursor-pointer border-none bg-transparent p-0 text-inherit'
+            aria-label="Listen to the pronunciation of Mrugesh's name"
+          >
+            {'Mrugesh Mohapatra'.toLowerCase()}
+          </button>
+          <span
+            className='pointer-events-none absolute bottom-full left-1/4 mb-3 hidden w-auto -translate-x-1/2 rounded-md bg-black p-3 text-sm font-normal text-white group-hover:block'
+            aria-hidden='true'
+          >
+            🗣 /ˈm.ruː.geɪ.ʃ/
             <svg
               className='absolute top-full left-1/2 h-2 w-4 -translate-x-1/2 text-black'
               viewBox='0 0 16 8'
