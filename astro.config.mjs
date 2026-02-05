@@ -79,10 +79,6 @@ export default defineConfig({
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn.hashnode.com'
-      },
-      {
-        protocol: 'https',
         hostname: 'www.freecodecamp.org'
       },
       {

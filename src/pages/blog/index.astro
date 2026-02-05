@@ -5,15 +5,15 @@ import BlogSearch from '@/components/blog/BlogSearch';
 import BentoGrid from '@/components/blog/BentoGrid';
 import { Social } from '@/components/social';
 import { cn } from '@/lib/utils';
-import { normalizeHashnodePosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
+import { normalizeLocalPosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
 
 // Fetch posts from both collections
-const hashnodePosts = await getCollection('blog');
+const localPosts = await getCollection('blog');
 const freecodecampPosts = await getCollection('freecodecamp');
 
 // Normalize and merge all posts
 const lightweightPosts = mergeAndSortPosts(
-  normalizeHashnodePosts(hashnodePosts),
+  normalizeLocalPosts(localPosts as any),
   normalizeFreeCodeCampPosts(freecodecampPosts)
 );
 ---

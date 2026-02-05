@@ -1,12 +1,10 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import MainLayout from '@/layouts/main-layout.astro';
 import { Social } from '@/components/social';
 import { formatDate } from '@/lib/formatDate';
-import { highlightCode } from '@/lib/syntax-highlighter';
-import CodeBlock from '@/components/code-block';
 import { cn } from '@/lib/utils';
 import { transformImageUrl } from '@/lib/image-optimizer';
 import { calculateImageDimensions } from '@/lib/image-dimensions';
@@ -14,7 +12,7 @@ import { calculateImageDimensions } from '@/lib/image-dimensions';
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
-    params: { slug: post.data.slug },
+    params: { slug: post.data.slug || post.id.replace(/\.md$/, '') },
     props: { post }
   }));
 }) satisfies GetStaticPaths;
@@ -22,102 +20,34 @@ export const getStaticPaths = (async () => {
 const { post } = Astro.props;
 const { data } = post;
 
+// Render markdown content
+const { Content } = await render(post);
+
+// Calculate reading time if not provided
+const body = post.body || '';
+const wordCount = body.split(/\s+/).filter(Boolean).length;
+const readingTime = data.readingTime ?? Math.max(1, Math.ceil(wordCount / 200));
+
+// Calculate brief if not provided
+const brief =
+  data.brief ||
+  body
+    .split('\n')
+    .find((line) => line.trim() && !line.startsWith('#'))
+    ?.slice(0, 160) ||
+  '';
+
 // SEO metadata with fallbacks
 const pageTitle = data.seo?.title || data.title;
-const pageDescription = data.seo?.description || data.brief;
-const pageImage = data.coverImage?.url;
+const pageDescription = data.seo?.description || brief;
+
+// Handle cover image (can be Astro image reference or string)
+const coverImageUrl = typeof data.cover === 'string' ? data.cover : data.cover?.src;
+const pageImage = coverImageUrl;
 
 // Image optimization
 const dimensions = calculateImageDimensions('16/9', 0);
-const optimizedCoverUrl = data.coverImage?.url ? transformImageUrl(data.coverImage.url, dimensions) : null;
-
-// Parse content for code blocks and create sections
-const contentHtml = data.content.html;
-const codeBlocks: Array<{ language: string; code: string; fullMatch: string; index: number }> = [];
-
-// Pattern 1: Code blocks with language class (e.g., class="lang-bash")
-const codeBlockWithLangPattern = /<pre><code class="lang-(\w+)">([\s\S]*?)<\/code><\/pre>/g;
-let match: RegExpExecArray | null = null;
-
-while ((match = codeBlockWithLangPattern.exec(contentHtml)) !== null) {
-  const decodedCode = match[2]
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
-  const plainCode = decodedCode.replace(/<[^>]+>/g, '');
-  codeBlocks.push({
-    language: match[1],
-    code: plainCode,
-    fullMatch: match[0],
-    index: match.index
-  });
-}
-
-// Pattern 2: Code blocks without language class (e.g., plain <pre><code>)
-const codeBlockPlainPattern = /<pre><code>([\s\S]*?)<\/code><\/pre>/g;
-while ((match = codeBlockPlainPattern.exec(contentHtml)) !== null) {
-  // Skip if this block was already captured by the language pattern
-  if (codeBlocks.some((block) => match && match[0] === block.fullMatch)) {
-    continue;
-  }
-
-  const decodedCode = match[1]
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
-  const plainCode = decodedCode.replace(/<[^>]+>/g, '').trim();
-  codeBlocks.push({
-    language: 'plaintext',
-    code: plainCode,
-    fullMatch: match[0],
-    index: match.index
-  });
-}
-
-// Sort code blocks by position
-codeBlocks.sort((a, b) => a.index - b.index);
-
-// Create sections alternating between HTML and code blocks
-interface ContentSection {
-  type: 'html' | 'code';
-  content: string;
-  rawCode?: string;
-}
-
-const sections: ContentSection[] = [];
-let lastIndex = 0;
-
-for (const block of codeBlocks) {
-  // Add HTML section before this code block
-  if (block.index > lastIndex) {
-    sections.push({
-      type: 'html',
-      content: contentHtml.substring(lastIndex, block.index)
-    });
-  }
-
-  // Highlight code at build time
-  const highlightedCode = await highlightCode(block.code, block.language);
-  sections.push({
-    type: 'code',
-    content: highlightedCode,
-    rawCode: block.code
-  });
-
-  lastIndex = block.index + block.fullMatch.length;
-}
-
-// Add remaining HTML after last code block
-if (lastIndex < contentHtml.length) {
-  sections.push({
-    type: 'html',
-    content: contentHtml.substring(lastIndex)
-  });
-}
+const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimensions) : null;
 ---
 
 <MainLayout pageTitle={pageTitle} pageDescription={pageDescription} pageImage={pageImage} variant='prose'>
@@ -137,7 +67,7 @@ if (lastIndex < contentHtml.length) {
         <div class='relative aspect-video w-full'>
           <img
             src={optimizedCoverUrl}
-            alt={data.coverImage?.alt || data.title}
+            alt={data.coverAlt || data.title}
             width={dimensions.desktop.width}
             height={dimensions.desktop.height}
             class='h-full w-full object-cover'
@@ -145,11 +75,11 @@ if (lastIndex < contentHtml.length) {
             fetchpriority='high'
           />
         </div>
-      ) : data.coverImage?.url ? (
+      ) : coverImageUrl ? (
         <div class='relative aspect-video w-full'>
           <Image
-            src={data.coverImage.url}
-            alt={data.coverImage.alt || data.title}
+            src={coverImageUrl}
+            alt={data.coverAlt || data.title}
             width={1200}
             height={675}
             class='h-full w-full object-cover'
@@ -172,11 +102,11 @@ if (lastIndex < contentHtml.length) {
 
       <!-- Metadata -->
       <div class='mb-8 flex items-center gap-2 text-xs text-gray-600 sm:text-sm'>
-        <time datetime={data.publishedAt.toISOString()}>
-          {formatDate(data.publishedAt)}
+        <time datetime={data.date.toISOString()}>
+          {formatDate(data.date)}
         </time>
         <span>•</span>
-        <span>{data.readingTime} min read</span>
+        <span>{readingTime} min read</span>
       </div>
 
       <!-- Post Content with Prose Styling -->
@@ -197,17 +127,7 @@ if (lastIndex < contentHtml.length) {
           'prose-blockquote:border-l-4 prose-blockquote:border-gray-400 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-700'
         )}
       >
-        {
-          sections.map((section) =>
-            section.type === 'html' ? (
-              <Fragment set:html={section.content} />
-            ) : (
-              <div class='my-4'>
-                <CodeBlock code={section.rawCode!} html={section.content} client:visible />
-              </div>
-            )
-          )
-        }
+        <Content />
       </div>
     </div>
   </article>

@@ -35,31 +35,52 @@ describe('transformImageUrl Contract Tests', () => {
   });
 
   describe('Invalid URLs', () => {
-    it('returns null for invalid URL format', () => {
-      const invalidUrls = [
-        'not-a-url',
-        'ftp://cdn.hashnode.com/image.png',
-        'http://cdn.hashnode.com/image.png', // HTTP not HTTPS
-        ''
-      ];
-
-      invalidUrls.forEach((url) => {
-        const result = transformImageUrl(url, mockDimensions);
-        expect(result).toBeNull();
-      });
+    it('returns null for empty URL', () => {
+      const result = transformImageUrl('', mockDimensions);
+      expect(result).toBeNull();
     });
+  });
 
-    it('returns null for non-Hashnode domain', () => {
+  describe('Non-Hashnode remote URLs', () => {
+    it('returns non-Hashnode HTTPS URLs as-is (external CDNs handle optimization)', () => {
       const nonHashnodeUrls = [
         'https://example.com/image.png',
         'https://cdn.example.com/image.png',
-        'https://hashnode.com/image.png' // Missing cdn. subdomain
+        'https://hashnode.com/image.png', // Missing cdn. subdomain
+        'https://www.freecodecamp.org/news/content/images/2023/test.jpg'
       ];
 
       nonHashnodeUrls.forEach((url) => {
         const result = transformImageUrl(url, mockDimensions);
-        expect(result).toBeNull();
+        expect(result).toBe(url); // Returns as-is, not null
       });
+    });
+
+    it('returns HTTP URLs as-is', () => {
+      const httpUrl = 'http://example.com/image.png';
+      const result = transformImageUrl(httpUrl, mockDimensions);
+      expect(result).toBe(httpUrl);
+    });
+  });
+
+  describe('Local/Astro-processed URLs', () => {
+    it('returns local URLs starting with / as-is', () => {
+      const localUrls = [
+        '/images/cover.png',
+        '/_astro/cover.abc123.webp',
+        '/@fs/Users/test/project/src/content/articles/assets/images/cover.png'
+      ];
+
+      localUrls.forEach((url) => {
+        const result = transformImageUrl(url, mockDimensions);
+        expect(result).toBe(url);
+      });
+    });
+
+    it('returns relative paths as-is', () => {
+      const relativePath = '../assets/images/cover.png';
+      const result = transformImageUrl(relativePath, mockDimensions);
+      expect(result).toBe(relativePath);
     });
   });
 
@@ -104,16 +125,6 @@ describe('transformImageUrl Contract Tests', () => {
   });
 
   describe('Error handling and observability', () => {
-    it('logs error when transformation fails', () => {
-      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-      const invalidUrl = 'https://example.com/image.png';
-      transformImageUrl(invalidUrl, mockDimensions);
-
-      expect(consoleSpy).toHaveBeenCalled();
-      consoleSpy.mockRestore();
-    });
-
     it('handles exceptions gracefully and returns null', () => {
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
@@ -123,6 +134,16 @@ describe('transformImageUrl Contract Tests', () => {
 
       expect(result).toBeNull();
       expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Error transforming image URL:'));
+      consoleSpy.mockRestore();
+    });
+
+    it('does not log errors for valid non-Hashnode URLs', () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      const nonHashnodeUrl = 'https://example.com/image.png';
+      transformImageUrl(nonHashnodeUrl, mockDimensions);
+
+      expect(consoleSpy).not.toHaveBeenCalled();
       consoleSpy.mockRestore();
     });
   });

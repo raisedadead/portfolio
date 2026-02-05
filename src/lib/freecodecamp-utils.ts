@@ -59,39 +59,62 @@ export function normalizeFreeCodeCampPosts(posts: FreeCodeCampPostData[]): Light
   });
 }
 
+interface LocalPostData {
+  id: string;
+  body?: string;
+  data: {
+    slug?: string;
+    title: string;
+    date: Date;
+    cover?: { src: string } | string;
+    coverAlt?: string;
+    brief?: string;
+    tags: Array<{ name: string; slug: string }>;
+    readingTime?: number;
+  };
+}
+
 /**
- * Normalizes Hashnode posts to LightweightPost format
- * @param posts - Raw Hashnode posts from the content collection
+ * Normalizes local markdown posts to LightweightPost format
+ * @param posts - Raw local posts from the content collection (glob loader)
  * @returns Array of normalized LightweightPost objects
  */
-export function normalizeHashnodePosts(
-  posts: Array<{
-    id: string;
-    data: {
-      slug: string;
-      title: string;
-      brief: string;
-      coverImage?: { url: string; alt?: string };
-      tags: Array<{ name: string; slug: string }>;
-      publishedAt: Date;
-      readingTime: number;
+export function normalizeLocalPosts(posts: LocalPostData[]): LightweightPost[] {
+  return posts.map((post) => {
+    const body = post.body || '';
+    const wordCount = body.split(/\s+/).filter(Boolean).length;
+    const calculatedReadingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+    const brief =
+      post.data.brief ||
+      body
+        .split('\n')
+        .find((line) => line.trim() && !line.startsWith('#'))
+        ?.slice(0, 160) ||
+      '';
+
+    const coverUrl = typeof post.data.cover === 'string' ? post.data.cover : post.data.cover?.src;
+
+    return {
+      id: post.id,
+      data: {
+        slug: post.data.slug || post.id.replace(/\.md$/, ''),
+        title: post.data.title,
+        brief,
+        coverImage: coverUrl ? { url: coverUrl, alt: post.data.coverAlt } : undefined,
+        tags: post.data.tags,
+        publishedAt: post.data.date,
+        readingTime: post.data.readingTime ?? calculatedReadingTime,
+        source: 'hashnode' as const
+      }
     };
-  }>
-): LightweightPost[] {
-  return posts.map((post) => ({
-    id: post.id,
-    data: {
-      slug: post.data.slug,
-      title: post.data.title,
-      brief: post.data.brief,
-      coverImage: post.data.coverImage,
-      tags: post.data.tags,
-      publishedAt: post.data.publishedAt,
-      readingTime: post.data.readingTime,
-      source: 'hashnode' as const
-    }
-  }));
+  });
 }
+
+/**
+ * @deprecated Use normalizeLocalPosts instead
+ */
+export const normalizeHashnodePosts = normalizeLocalPosts;
 
 /**
  * Merges and sorts posts from multiple sources by date (newest first)

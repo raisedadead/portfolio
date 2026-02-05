@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { normalizeFreeCodeCampPosts, normalizeHashnodePosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
+import { normalizeFreeCodeCampPosts, normalizeLocalPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
 
 describe('freeCodeCamp Utils', () => {
   describe('normalizeFreeCodeCampPosts', () => {
@@ -134,30 +134,108 @@ describe('freeCodeCamp Utils', () => {
     });
   });
 
-  describe('normalizeHashnodePosts', () => {
-    it('normalizes Hashnode posts correctly', () => {
+  describe('normalizeLocalPosts', () => {
+    it('normalizes local markdown posts correctly', () => {
       const mockPosts = [
         {
-          id: 'hashnode-1',
+          id: 'local-article',
+          body: 'This is the body content of the article with some words.',
           data: {
-            slug: 'hashnode-article',
-            title: 'Hashnode Article',
+            slug: 'local-article',
+            title: 'Local Article',
+            date: new Date('2025-01-10'),
             brief: 'A brief description',
-            coverImage: { url: 'https://cdn.hashnode.com/image.jpg', alt: 'Cover' },
+            cover: { src: 'https://example.com/image.jpg' },
+            coverAlt: 'Cover Alt',
             tags: [{ name: 'Tech', slug: 'tech' }],
-            publishedAt: new Date('2025-01-10'),
             readingTime: 5
           }
         }
       ];
 
-      const result = normalizeHashnodePosts(mockPosts);
+      const result = normalizeLocalPosts(mockPosts);
 
       expect(result).toHaveLength(1);
-      expect(result[0].id).toBe('hashnode-1');
-      expect(result[0].data.slug).toBe('hashnode-article');
+      expect(result[0].id).toBe('local-article');
+      expect(result[0].data.slug).toBe('local-article');
+      expect(result[0].data.title).toBe('Local Article');
+      expect(result[0].data.brief).toBe('A brief description');
+      expect(result[0].data.coverImage?.url).toBe('https://example.com/image.jpg');
+      expect(result[0].data.coverImage?.alt).toBe('Cover Alt');
+      expect(result[0].data.publishedAt).toEqual(new Date('2025-01-10'));
+      expect(result[0].data.readingTime).toBe(5);
       expect(result[0].data.source).toBe('hashnode');
       expect(result[0].data.externalUrl).toBeUndefined();
+    });
+
+    it('calculates brief from body when not provided', () => {
+      const mockPosts = [
+        {
+          id: 'no-brief',
+          body: 'This is the first paragraph that should be extracted as brief.',
+          data: {
+            title: 'No Brief Article',
+            date: new Date('2025-01-10'),
+            tags: []
+          }
+        }
+      ];
+
+      const result = normalizeLocalPosts(mockPosts);
+      expect(result[0].data.brief).toBe('This is the first paragraph that should be extracted as brief.');
+    });
+
+    it('calculates reading time from body when not provided', () => {
+      const longBody = Array(400).fill('word').join(' '); // 400 words = 2 min
+      const mockPosts = [
+        {
+          id: 'long-post',
+          body: longBody,
+          data: {
+            title: 'Long Article',
+            date: new Date('2025-01-10'),
+            tags: []
+          }
+        }
+      ];
+
+      const result = normalizeLocalPosts(mockPosts);
+      expect(result[0].data.readingTime).toBe(2);
+    });
+
+    it('uses id as slug when slug not provided', () => {
+      const mockPosts = [
+        {
+          id: 'my-post.md',
+          body: 'Content',
+          data: {
+            title: 'My Post',
+            date: new Date('2025-01-10'),
+            tags: []
+          }
+        }
+      ];
+
+      const result = normalizeLocalPosts(mockPosts);
+      expect(result[0].data.slug).toBe('my-post');
+    });
+
+    it('handles string cover image', () => {
+      const mockPosts = [
+        {
+          id: 'string-cover',
+          body: 'Content',
+          data: {
+            title: 'String Cover',
+            date: new Date('2025-01-10'),
+            cover: 'https://example.com/direct-url.jpg',
+            tags: []
+          }
+        }
+      ];
+
+      const result = normalizeLocalPosts(mockPosts);
+      expect(result[0].data.coverImage?.url).toBe('https://example.com/direct-url.jpg');
     });
   });
 

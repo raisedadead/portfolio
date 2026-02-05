@@ -7,17 +7,17 @@ import BlogSearch from '@/components/blog/BlogSearch';
 import BentoGrid from '@/components/blog/BentoGrid';
 import { Social } from '@/components/social';
 import { getAllTags, filterPostsByTag } from '@/lib/blog-utils';
-import { normalizeHashnodePosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
+import { normalizeLocalPosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
 import { cn } from '@/lib/utils';
 import type { LightweightPost } from '@/types/blog';
 
 export const getStaticPaths = (async () => {
-  const hashnodePosts = await getCollection('blog');
+  const localPosts = await getCollection('blog');
   const freecodecampPosts = await getCollection('freecodecamp');
 
   // Normalize and merge all posts
   const allPosts = mergeAndSortPosts(
-    normalizeHashnodePosts(hashnodePosts),
+    normalizeLocalPosts(localPosts as any),
     normalizeFreeCodeCampPosts(freecodecampPosts)
   );
   const allTags = getAllTags(allPosts);

@@ -1,14 +1,16 @@
 import type { ImageDimensions } from '@/types/blog';
 
 /**
- * Transforms a Hashnode CDN URL to a Cloudflare Images URL for optimization
+ * Transforms an image URL for optimization
  *
- * @param sourceUrl - Original Hashnode CDN URL
+ * - Hashnode CDN URLs: Uses Cloudflare Images transformation
+ * - freeCodeCamp/other remote URLs: Returns as-is (external CDNs handle optimization)
+ * - Local/Astro-processed URLs: Returns as-is (Astro optimizes at build time)
+ *
+ * @param sourceUrl - Original image URL or path
  * @param dimensions - Responsive image dimensions
  * @param format - Desired image format (webp, avif, or auto)
- * @returns Cloudflare Images URL or null on error
- *
- * Contract: specs/001-current-state-blog/contracts/image-transformation.contract.md
+ * @returns Optimized URL or original URL, null only on error
  */
 export function transformImageUrl(
   sourceUrl: string,
@@ -16,29 +18,36 @@ export function transformImageUrl(
   format: 'webp' | 'avif' | 'auto' = 'auto'
 ): string | null {
   try {
-    // Validate sourceUrl is HTTPS
-    if (!sourceUrl || !sourceUrl.startsWith('https://')) {
-      console.error(`Invalid URL format: ${sourceUrl}`);
+    if (!sourceUrl) {
       return null;
     }
 
-    // Validate sourceUrl is from Hashnode CDN
+    // Local/Astro-processed images (start with / or /_astro/ or /@fs/)
+    // These are already optimized by Astro at build time
+    if (sourceUrl.startsWith('/') || sourceUrl.startsWith('/_astro/') || sourceUrl.startsWith('/@fs/')) {
+      return sourceUrl;
+    }
+
+    // Non-HTTPS URLs - return as-is
+    if (!sourceUrl.startsWith('https://')) {
+      return sourceUrl;
+    }
+
+    // Hashnode CDN - use Cloudflare Images transformation
     const hashnodePattern = /^https:\/\/cdn\.hashnode\.com\//;
-    if (!hashnodePattern.test(sourceUrl)) {
-      console.error(`URL is not from Hashnode CDN: ${sourceUrl}`);
-      return null;
+    if (hashnodePattern.test(sourceUrl)) {
+      const options = [
+        `width=${dimensions.desktop.width}`,
+        'quality=85',
+        format !== 'auto' ? `format=${format}` : 'format=auto'
+      ].join(',');
+
+      return `https://mrugesh.dev/cdn-cgi/image/${options}/${sourceUrl}`;
     }
 
-    // Use Cloudflare Images transformation via /cdn-cgi/image/
-    // Format: https://mrugesh.dev/cdn-cgi/image/<OPTIONS>/<SOURCE-URL>
-    const options = [
-      `width=${dimensions.desktop.width}`,
-      'quality=85',
-      format !== 'auto' ? `format=${format}` : 'format=auto'
-    ].join(',');
-
-    const transformedUrl = `https://mrugesh.dev/cdn-cgi/image/${options}/${sourceUrl}`;
-    return transformedUrl;
+    // Other remote URLs (freeCodeCamp, etc.) - return as-is
+    // These CDNs typically handle their own optimization
+    return sourceUrl;
   } catch (error) {
     console.error(`Error transforming image URL: ${error}`);
     return null;
