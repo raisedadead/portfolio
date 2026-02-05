@@ -12,8 +12,8 @@
     "deploy": "wrangler deploy",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",
-    "format": "prettier --write . --cache",
-    "format:check": "prettier --check . --cache",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt .",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:update": "vitest --update",
@@ -30,15 +30,6 @@
     "turbo:develop": "turbo develop",
     "turbo:preview": "turbo preview",
     "turbo:deploy": "turbo deploy"
-  },
-  "lint-staged": {
-    "**/*.{mjs,cjs,js,jsx,ts,tsx,astro}": [
-      "oxlint --fix",
-      "prettier --write --cache"
-    ],
-    "**/*.{json,md}": [
-      "prettier --write --cache"
-    ]
   },
   "dependencies": {
     "@ascorbic/feed-loader": "^2.0.1",
@@ -81,16 +72,26 @@
     "jest-axe": "10.0.0",
     "jsdom": "27.4.0",
     "lint-staged": "16.2.7",
+    "oxfmt": "^0.28.0",
     "oxlint": "1.42.0",
-    "prettier": "3.8.1",
-    "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.7.2",
     "tailwindcss": "4.1.18",
     "turbo": "2.8.1",
     "typescript": "5.9.3",
     "vite": "7.3.1",
     "vitest": "4.0.18",
     "wrangler": "4.61.1"
+  },
+  "lint-staged": {
+    "**/*.{mjs,cjs,js,jsx,ts,tsx}": [
+      "oxlint --fix",
+      "oxfmt --write"
+    ],
+    "**/*.astro": [
+      "oxlint --fix"
+    ],
+    "**/*.{json,md}": [
+      "oxfmt --write"
+    ]
   },
   "packageManager": "pnpm@10.28.2",
   "pnpm": {

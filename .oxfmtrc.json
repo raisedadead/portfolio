@@ -1,0 +1,39 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxfmt/configuration_schema.json",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/",
+    ".astro/",
+    ".wrangler/",
+    "coverage/",
+    "pnpm-lock.yaml",
+    "*.min.js",
+    "*.min.css",
+    ".specify/",
+    "specs/",
+    "CLAUDE.md",
+    "*.astro"
+  ],
+  "experimentalTailwindcss": {
+    "attributes": ["class", "className"],
+    "functions": ["clsx", "cn", "twMerge"]
+  },
+  "overrides": [
+    {
+      "files": ["*.md"],
+      "options": {
+        "printWidth": 320
+      }
+    }
+  ]
+}
