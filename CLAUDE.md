@@ -40,7 +40,7 @@ pnpm test -- -t "test name pattern"          # Run tests matching pattern
 ```bash
 pnpm lint              # Lint with oxlint
 pnpm lint:fix          # Auto-fix lint issues
-pnpm format            # Format code with prettier
+pnpm format            # Format code with oxfmt
 pnpm format:check      # Check formatting
 pnpm check             # Type-check with Astro
 ```
@@ -163,7 +163,7 @@ Sentry MUST be the first integration in `astro.config.mjs` to wrap other integra
 - Avoid inline styles except for dynamic values (e.g., canvas styles)
 
 ### Git Workflow
-- Husky pre-commit hooks run lint-staged (oxlint + prettier)
+- Husky pre-commit hooks run lint-staged (oxlint + oxfmt)
 - Conventional commits encouraged
 - Main branch: `main`
 
