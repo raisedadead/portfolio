@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run lint with Turbo
-        run: pnpm exec turbo lint
+      - name: Run lint
+        run: pnpm lint
         env:
           CI: true
           TURBO_API: ${{ secrets.TURBO_API }}

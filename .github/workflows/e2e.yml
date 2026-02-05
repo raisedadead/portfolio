@@ -1,18 +1,18 @@
-name: Build
+name: E2E Tests
 
 on:
-  workflow_call:
-    inputs:
-      upload-artifacts:
-        description: 'Whether to upload build artifacts'
-        required: false
-        type: boolean
-        default: false
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 jobs:
-  build:
-    name: Build
+  e2e:
+    name: Playwright E2E
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     strategy:
       matrix:
@@ -29,12 +29,15 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
         with:
           node-version: ${{ matrix.node-version }}
-          turbo-cache-prefix: build
+          turbo-cache-prefix: e2e
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Build site
         run: pnpm build
         env:
           CI: true
@@ -43,10 +46,21 @@ jobs:
           TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
           TURBO_REMOTE_CACHE_SIGNATURE_KEY: ${{ secrets.TURBO_REMOTE_CACHE_SIGNATURE_KEY }}
 
-      - name: Upload build artifacts
-        if: ${{ inputs.upload-artifacts }}
+      - name: Run E2E tests
+        run: pnpm test:e2e
+
+      - name: Upload Playwright report
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: failure()
         with:
-          name: build-output-node-${{ matrix.node-version }}
-          path: dist/
-          retention-days: 1
+          name: playwright-report-node-${{ matrix.node-version }}
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Upload test results
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: failure()
+        with:
+          name: test-results-node-${{ matrix.node-version }}
+          path: test-results/
+          retention-days: 7

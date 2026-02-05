@@ -30,5 +30,10 @@ tsconfig.tsbuildinfo
 # Test coverage
 coverage/
 
+# Playwright
+playwright-report/
+test-results/
+playwright/.cache/
+
 # Linter/Formatter caches
 .prettiercache

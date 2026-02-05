@@ -25,7 +25,7 @@ jobs:
         run: pnpm install
 
       - name: Run tests with coverage
-        run: pnpm exec turbo test:coverage
+        run: pnpm test:coverage
         env:
           CI: true
           TURBO_API: ${{ secrets.TURBO_API }}

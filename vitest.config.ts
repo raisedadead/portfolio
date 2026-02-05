@@ -23,7 +23,7 @@ export default defineConfig({
         'src/__mocks__/**'
       ]
     },
-    exclude: ['**/node_modules/**', '**/dist/**', '**/.astro/**', '**/coverage/**']
+    exclude: ['**/node_modules/**', '**/dist/**', '**/.astro/**', '**/coverage/**', '**/e2e/**']
   },
   resolve: {
     alias: {

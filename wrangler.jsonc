@@ -6,6 +6,9 @@
   "compatibility_flags": ["nodejs_compat"],
   "preview_urls": true,
   "workers_dev": false,
+  "dev": {
+    "port": 8787
+  },
   "routes": [
     {
       "pattern": "mrugesh.dev",
