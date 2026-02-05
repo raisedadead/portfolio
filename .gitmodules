@@ -1,3 +1,3 @@
 [submodule "src/content/articles"]
 	path = src/content/articles
-	url = git@github.com:raisedadead/articles.git
+	url = https://github.com/raisedadead/articles.git
