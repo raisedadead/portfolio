@@ -22,7 +22,8 @@
     ".specify/",
     "specs/",
     "CLAUDE.md",
-    "*.astro"
+    "*.astro",
+    "src/content/articles/"
   ],
   "experimentalTailwindcss": {
     "attributes": ["class", "className"],
