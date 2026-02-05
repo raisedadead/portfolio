@@ -82,10 +82,12 @@ export const Profile: React.FC = () => {
           className='group relative inline-block px-1 text-white no-underline transition-colors hover:text-slate-700'
           aria-label='freecodecamp.org'
         >
-          <span
-            className='absolute inset-0 -skew-x-12 bg-slate-700 transition-colors group-hover:bg-white'
-            aria-hidden='true'
-          />
+          <svg viewBox='0 0 200 40' className='absolute inset-0 h-full w-full' aria-hidden='true'>
+            <path
+              d='M5,8 L195,3 Q200,20 193,35 L8,38 Q0,25 5,8'
+              className='fill-slate-700 transition-colors group-hover:fill-white'
+            />
+          </svg>
           <span className='relative'>freeCodeCamp.org</span>
         </Link>
       </h3>
