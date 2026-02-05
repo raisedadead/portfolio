@@ -4,7 +4,7 @@
 
 ## What is this about?
 
-My personal website built with [Astro](https://astro.build) and React, deployed on [Cloudflare](https://cloudflare.com). It features my blog posts, projects, and a bit about me. The blog posts are sourced from my [Hashnode](https://hashnode.com) blog using [`astro-loader-hashnode`](https://www.npmjs.com/package/astro-loader-hashnode) which I maintain.
+My personal website built with [Astro](https://astro.build) and React, deployed on [Cloudflare](https://cloudflare.com). It features my blog posts, projects, and a bit about me.
 
 ## Tech Stack
 
@@ -12,7 +12,6 @@ My personal website built with [Astro](https://astro.build) and React, deployed 
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com)
 - **Animation**: [Framer Motion](https://framer.com/motion)
 - **Icons**: [Heroicons](https://heroicons.com)
-- **Content**: [Hashnode](https://hashnode.com) via `astro-loader-hashnode`
 - **Testing**: [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/react)
 - **Deployment**: [Cloudflare](https://cloudflare.com)
 - **Package Manager**: [pnpm](https://pnpm.io)
