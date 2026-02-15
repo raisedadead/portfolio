@@ -48,7 +48,7 @@
     "@heroicons/react": "2.2.0",
     "@sentry/astro": "10.38.0",
     "@tailwindcss/vite": "4.1.18",
-    "astro": "5.17.1",
+    "astro": "5.17.2",
     "astro-loader-hashnode": "1.2.1",
     "clsx": "2.1.1",
     "motion": "12.34.0",
