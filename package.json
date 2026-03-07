@@ -82,11 +82,11 @@
     "oxfmt": "^0.36.0",
     "oxlint": "1.51.0",
     "tailwindcss": "4.2.1",
-    "turbo": "2.8.12",
+    "turbo": "2.8.13",
     "typescript": "5.9.3",
     "vite": "7.3.1",
     "vitest": "4.0.18",
-    "wrangler": "4.69.0"
+    "wrangler": "4.70.0"
   },
   "lint-staged": {
     "**/*.{mjs,cjs,js,jsx,ts,tsx}": [
