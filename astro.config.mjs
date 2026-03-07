@@ -23,18 +23,18 @@ export default defineConfig({
   integrations: [
     // Sentry MUST be first to wrap other integrations
     sentry({
-      sourceMapsUploadOptions: {
-        org: process.env.SENTRY_ORG,
-        project: process.env.SENTRY_PROJECT,
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-        enabled: !!process.env.SENTRY_AUTH_TOKEN,
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      sourcemaps: {
+        disable: !process.env.SENTRY_AUTH_TOKEN,
+        rewriteSources: (source) => {
+          return source.replace(/^.*\/dist\//, '~/dist/');
+        }
+      },
+      unstable_sentryVitePluginOptions: {
         release: {
           name: process.env.PUBLIC_SENTRY_RELEASE || 'dev'
-        },
-        cleanArtifacts: true,
-        rewriteSources: (source) => {
-          // Normalize paths for Sentry UI
-          return source.replace(/^.*\/dist\//, '~/dist/');
         }
       },
       autoInstrumentation: {
