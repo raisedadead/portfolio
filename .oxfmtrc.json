@@ -25,7 +25,7 @@
     "*.astro",
     "src/content/articles/"
   ],
-  "experimentalTailwindcss": {
+  "tailwindcss": {
     "attributes": ["class", "className"],
     "functions": ["clsx", "cn", "twMerge"]
   },
