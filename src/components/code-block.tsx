@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import { DocumentDuplicateIcon } from '@heroicons/react/24/outline';
+import * as Sentry from '@sentry/astro';
 import { useState } from 'react';
 
 interface CodeBlockProps {
@@ -14,6 +15,7 @@ export default function CodeBlock({ code, html }: CodeBlockProps) {
     try {
       await navigator.clipboard.writeText(code);
       setIsCopied(true);
+      Sentry.metrics.count('code.copy', 1);
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy text: ', err);

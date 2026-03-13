@@ -1,4 +1,5 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
+import * as Sentry from '@sentry/astro';
 import { Input } from '@/components/forms/input';
 import type { LightweightPost } from '@/types/blog';
 
@@ -29,6 +30,24 @@ export default function BlogSearch({ posts }: Props) {
       })
       .slice(0, 8); // Limit to 8 results
   }, [searchQuery, posts]);
+
+  // Track search queries (debounced)
+  const searchTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const trackSearch = useCallback((query: string, resultCount: number) => {
+    clearTimeout(searchTimerRef.current);
+    searchTimerRef.current = setTimeout(() => {
+      Sentry.metrics.count('blog.search', 1, {
+        attributes: { has_results: String(resultCount > 0) }
+      });
+      Sentry.metrics.distribution('blog.search.result_count', resultCount);
+    }, 500);
+  }, []);
+
+  useEffect(() => {
+    if (searchQuery.trim()) {
+      trackSearch(searchQuery, filteredPosts.length);
+    }
+  }, [searchQuery, filteredPosts.length, trackSearch]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -86,7 +105,7 @@ export default function BlogSearch({ posts }: Props) {
   };
 
   const handleResultClick = () => {
-    // Close dropdown when a result is clicked
+    Sentry.metrics.count('blog.search.click', 1);
     setIsOpen(false);
     setSelectedIndex(-1);
     setSearchQuery('');
