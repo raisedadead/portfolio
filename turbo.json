@@ -10,14 +10,14 @@
       "outputs": ["worker-configuration.d.ts"],
       "cache": true
     },
-    "_build": {
-      "dependsOn": ["^_build", "cf-typegen"],
+    "do:build": {
+      "dependsOn": ["^do:build", "cf-typegen"],
       "inputs": ["src/**", "public/**", "astro.config.mjs", "tsconfig.json", "wrangler.jsonc", "package.json"],
       "outputs": ["dist/**", ".astro/**"],
       "env": ["NODE_ENV"],
       "cache": true
     },
-    "_test": {
+    "do:test": {
       "inputs": ["src/**", "vitest.config.ts", "vitest.setup.ts", "tsconfig.json", "package.json"],
       "outputs": [],
       "cache": true
@@ -34,53 +34,53 @@
       "cache": false,
       "inputs": ["src/**", "vitest.config.ts", "vitest.setup.ts", "tsconfig.json", "package.json"]
     },
-    "_test:coverage": {
+    "do:test:coverage": {
       "inputs": ["src/**", "vitest.config.ts", "vitest.setup.ts", "tsconfig.json", "package.json"],
       "outputs": ["coverage/**"],
       "cache": true
     },
-    "_lint": {
+    "do:lint": {
       "inputs": ["src/**", "e2e/**", ".github/**/*.{js,ts,mjs}", ".oxlintrc.json", "package.json"],
       "outputs": [],
       "cache": true
     },
-    "_lint:fix": {
+    "do:lint:fix": {
       "cache": false,
       "inputs": ["src/**", "e2e/**", ".github/**/*.{js,ts,mjs}", ".oxlintrc.json", "package.json"]
     },
-    "_check": {
+    "do:check": {
       "dependsOn": ["cf-typegen"],
       "inputs": ["src/**", "astro.config.mjs", "tsconfig.json", "package.json"],
       "outputs": [],
       "cache": true
     },
-    "_develop": {
+    "do:develop": {
       "cache": false,
       "persistent": true,
       "dependsOn": ["cf-typegen"]
     },
-    "_preview": {
+    "do:preview": {
       "cache": false,
       "persistent": true,
-      "dependsOn": ["_build"]
+      "dependsOn": ["do:build"]
     },
-    "_deploy": {
-      "dependsOn": ["_build"],
+    "do:deploy": {
+      "dependsOn": ["do:build"],
       "cache": false
     },
-    "_test:e2e": {
-      "dependsOn": ["_build"],
+    "do:test:e2e": {
+      "dependsOn": ["do:build"],
       "inputs": ["e2e/**", "playwright.config.ts"],
       "outputs": ["playwright-report/**", "test-results/**"],
       "cache": false
     },
-    "_test:e2e:ui": {
-      "dependsOn": ["_build"],
+    "do:test:e2e:ui": {
+      "dependsOn": ["do:build"],
       "cache": false,
       "persistent": true
     },
-    "_test:e2e:headed": {
-      "dependsOn": ["_build"],
+    "do:test:e2e:headed": {
+      "dependsOn": ["do:build"],
       "cache": false
     }
   }
