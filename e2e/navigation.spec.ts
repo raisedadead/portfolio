@@ -43,7 +43,7 @@ test.describe('Navigation', () => {
     await backLink.click();
 
     // Should be back on blog
-    await expect(page).toHaveURL(/\/blog$/);
+    await expect(page).toHaveURL(/\/blog\/?$/);
   });
 
   test('logo returns to homepage', async ({ page }) => {

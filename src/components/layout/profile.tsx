@@ -25,7 +25,7 @@ export const Profile: React.FC = () => {
       <div className='mb-8 md:mb-10'>
         <img
           id='profile-image'
-          alt="Mrugesh Mohapatra's profile picture."
+          alt='Mrugesh Mohapatra'
           src='/images/logo.png'
           className='shadow-brutal-md h-28 w-28 rounded-full border-2 border-orange-50 md:h-48 md:w-48'
           width={256}

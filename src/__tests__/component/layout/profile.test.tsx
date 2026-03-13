@@ -46,7 +46,7 @@ describe('Profile Component', () => {
   it('renders profile image with correct alt text', () => {
     render(<Profile />);
 
-    const profileImage = screen.getByAltText("Mrugesh Mohapatra's profile picture.");
+    const profileImage = screen.getByAltText('Mrugesh Mohapatra');
     expect(profileImage).toBeTruthy();
     expect(profileImage).toHaveAttribute('width', '256');
     expect(profileImage).toHaveAttribute('height', '256');

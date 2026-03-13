@@ -15,9 +15,7 @@ export default defineConfig({
 
   adapter: cloudflare({
     imageService: 'compile',
-    platformProxy: {
-      enabled: true
-    }
+    prerenderEnvironment: 'node'
   }),
 
   integrations: [
