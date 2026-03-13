@@ -19,7 +19,7 @@ export default defineConfig({
   },
 
   webServer: {
-    command: 'wrangler dev --port 8787',
+    command: 'wrangler dev --config dist/server/wrangler.json --port 8787',
     port: 8787,
     reuseExistingServer: !process.env.CI,
     timeout: 120000
