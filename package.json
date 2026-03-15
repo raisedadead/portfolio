@@ -40,7 +40,7 @@
   "dependencies": {
     "@ascorbic/feed-loader": "^2.0.1",
     "@astrojs/check": "0.9.7",
-    "@astrojs/cloudflare": "13.1.0",
+    "@astrojs/cloudflare": "13.1.1",
     "@astrojs/react": "5.0.0",
     "@astrojs/sitemap": "3.7.1",
     "@calcom/embed-react": "1.5.3",
@@ -49,7 +49,7 @@
     "@sentry/astro": "10.43.0",
     "@sentry/cloudflare": "10.43.0",
     "@tailwindcss/vite": "4.2.1",
-    "astro": "6.0.3",
+    "astro": "6.0.4",
     "clsx": "2.1.1",
     "motion": "12.35.1",
     "react": "19.2.4",
