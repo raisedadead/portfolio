@@ -21,7 +21,7 @@ runs:
         package-manager-cache: false
 
     - name: Install pnpm
-      uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+      uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4
       id: pnpm-install
       with:
         run_install: false
@@ -33,7 +33,7 @@ runs:
         echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
     - name: Cache pnpm store
-      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+      uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
       with:
         path: |
           ${{ steps.pnpm-cache.outputs.STORE_PATH }}
@@ -42,7 +42,7 @@ runs:
           ${{ runner.os }}-pnpm-
 
     - name: Cache Turbo
-      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+      uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
       with:
         path: .turbo
         key: ${{ runner.os }}-turbo-${{ inputs.turbo-cache-prefix }}-${{ github.sha }}
