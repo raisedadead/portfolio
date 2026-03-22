@@ -40,7 +40,7 @@
   "dependencies": {
     "@ascorbic/feed-loader": "^2.0.1",
     "@astrojs/check": "0.9.7",
-    "@astrojs/cloudflare": "13.1.0",
+    "@astrojs/cloudflare": "13.1.1",
     "@astrojs/react": "5.0.0",
     "@astrojs/sitemap": "3.7.1",
     "@calcom/embed-react": "1.5.3",
@@ -49,7 +49,7 @@
     "@sentry/astro": "10.43.0",
     "@sentry/cloudflare": "10.43.0",
     "@tailwindcss/vite": "4.2.1",
-    "astro": "6.0.3",
+    "astro": "6.0.4",
     "clsx": "2.1.1",
     "motion": "12.35.1",
     "react": "19.2.4",
@@ -60,7 +60,7 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20260312.1",
+    "@cloudflare/workers-types": "4.20260313.1",
     "@playwright/test": "^1.58.1",
     "@tailwindcss/forms": "0.5.11",
     "@tailwindcss/typography": "0.5.19",
@@ -70,22 +70,22 @@
     "@types/node": "24.12.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.1.4",
-    "@vitest/coverage-v8": "4.0.18",
-    "@vitest/ui": "4.0.18",
-    "happy-dom": "20.8.3",
+    "@vitejs/plugin-react": "5.2.0",
+    "@vitest/coverage-v8": "4.1.0",
+    "@vitest/ui": "4.1.0",
+    "happy-dom": "20.8.4",
     "husky": "9.1.7",
     "is-ci": "4.1.0",
     "jest-axe": "10.0.0",
     "jsdom": "27.4.0",
-    "lint-staged": "16.3.2",
+    "lint-staged": "16.3.3",
     "oxfmt": "^0.36.0",
     "oxlint": "1.51.0",
     "tailwindcss": "4.2.1",
     "turbo": "2.8.14",
     "typescript": "5.9.3",
     "vite": "7.3.1",
-    "vitest": "4.0.18",
+    "vitest": "4.1.0",
     "wrangler": "4.72.0"
   },
   "lint-staged": {
@@ -100,7 +100,7 @@
       "oxfmt --write"
     ]
   },
-  "packageManager": "pnpm@10.31.0",
+  "packageManager": "pnpm@10.32.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",

@@ -57,6 +57,15 @@ if (dsn) {
       return event;
     },
 
+    // Track page views with route context
+    beforeSendTransaction(event) {
+      const route = event.transaction || window.location.pathname;
+      Sentry.metrics.count('page.view', 1, {
+        attributes: { route }
+      });
+      return event;
+    },
+
     ignoreErrors: [
       // Browser extension errors
       'ResizeObserver loop limit exceeded',

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import * as Sentry from '@sentry/astro';
 import type { LightweightPost } from '@/types/blog';
 import { getBentoGridSpan } from '@/lib/blog-utils';
 import { transformImageUrl } from '@/lib/image-optimizer';
@@ -57,8 +58,10 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
 
   const handleLoadMore = () => {
     setIsLoading(true);
+    Sentry.metrics.count('blog.load_more', 1, {
+      attributes: { visible: String(visibleCount), total: String(posts.length) }
+    });
 
-    // Simulate loading delay for better UX
     setTimeout(() => {
       setVisibleCount((prev) => Math.min(prev + postsPerLoad, posts.length));
       setIsLoading(false);
