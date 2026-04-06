@@ -79,7 +79,7 @@
     "jest-axe": "10.0.0",
     "jsdom": "29.0.1",
     "lint-staged": "16.4.0",
-    "oxfmt": "^0.42.0",
+    "oxfmt": "^0.43.0",
     "oxlint": "1.57.0",
     "tailwindcss": "4.2.2",
     "turbo": "2.9.0",
