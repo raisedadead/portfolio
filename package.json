@@ -82,7 +82,7 @@
     "oxfmt": "^0.43.0",
     "oxlint": "1.57.0",
     "tailwindcss": "4.2.2",
-    "turbo": "2.9.4",
+    "turbo": "2.9.5",
     "typescript": "6.0.2",
     "vite": "8.0.5",
     "vitest": "4.1.3",
