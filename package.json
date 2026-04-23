@@ -49,7 +49,7 @@
     "@sentry/astro": "10.49.0",
     "@sentry/cloudflare": "10.49.0",
     "@tailwindcss/vite": "4.2.2",
-    "astro": "6.1.7",
+    "astro": "6.1.8",
     "clsx": "2.1.1",
     "motion": "12.38.0",
     "react": "19.2.5",
