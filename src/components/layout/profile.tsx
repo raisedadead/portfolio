@@ -61,20 +61,7 @@ export const Profile: React.FC = () => {
         </h1>
         <div className='m-1 mx-auto -mt-8 w-2/5 border-12 border-orange-50 bg-orange-50' />
       </div>
-      <h2 className='text-display-sm mb-4 p-1 leading-relaxed text-slate-700'>
-        dad{' '}
-        <span className='relative inline-block'>
-          nocturnal
-          <span
-            className='pointer-events-none absolute inset-x-0 overflow-hidden text-transparent underline decoration-white decoration-wavy decoration-2'
-            style={{ top: '-25%' }}
-            aria-hidden='true'
-          >
-            nocturnal
-          </span>
-        </span>{' '}
-        developer • open-sourcerer
-      </h2>
+      <h2 className='text-display-sm mb-4 p-1 leading-relaxed text-slate-700'>dad • dev//ops • open-source</h2>
       <h3 className='mb-8 p-1 text-base leading-relaxed font-medium text-slate-700 sm:text-lg md:text-xl'>
         Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
         <Link

@@ -35,4 +35,4 @@ Content is licensed under CC BY-NC-ND 4.0 - see [LICENSE-CC](./LICENSE-CC) file 
 ![Repobeats][repobeats-img]
 
 [personal-website]: https://mrugesh.dev
-[repobeats-img]: https://repobeats.axiom.co/api/embed/7554011ecd870f9d366a22f913161e180165ec85.svg "Repobeats analytics image"
+[repobeats-img]: https://repobeats.axiom.co/api/embed/7554011ecd870f9d366a22f913161e180165ec85.svg 'Repobeats analytics image'

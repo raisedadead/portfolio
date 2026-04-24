@@ -38,9 +38,7 @@ describe('Profile Component', () => {
     render(<Profile />);
 
     expect(screen.getByText(/dad/)).toBeTruthy();
-    // "nocturnal" appears twice - once visible and once for the strikethrough effect
-    expect(screen.getAllByText(/nocturnal/).length).toBeGreaterThan(0);
-    expect(screen.getByText(/developer • open-sourcerer/)).toBeTruthy();
+    expect(screen.getByText(/dad • dev\/\/ops • open-source/)).toBeTruthy();
   });
 
   it('renders profile image with correct alt text', () => {
