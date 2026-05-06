@@ -1,7 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
-import { glob } from 'astro/loaders';
 import { feedLoader } from '@ascorbic/feed-loader';
+import { buildBlogLoader } from '@/lib/blog-loader-factory';
 
 // Helper to capitalize tag slugs into display names
 const capitalizeTag = (slug: string) =>
@@ -11,7 +11,9 @@ const capitalizeTag = (slug: string) =>
     .join(' ');
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/articles/posts' }),
+  // Branches on PUBLIC_USE_R2_LOADER (see src/lib/blog-loader-factory.ts).
+  // Default path = local glob (preserves current behavior).
+  loader: buildBlogLoader({ env: process.env }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
