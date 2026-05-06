@@ -50,6 +50,7 @@
     "@sentry/cloudflare": "10.51.0",
     "@tailwindcss/vite": "4.2.2",
     "astro": "6.1.9",
+    "aws4fetch": "^1.0.20",
     "clsx": "2.1.1",
     "motion": "12.38.0",
     "react": "19.2.5",
@@ -57,7 +58,8 @@
     "sharp": "0.34.5",
     "shiki": "4.0.2",
     "tailwind-merge": "3.5.0",
-    "tailwindcss-animate": "1.0.7"
+    "tailwindcss-animate": "1.0.7",
+    "yaml": "^2.8.4"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20260503.1",
