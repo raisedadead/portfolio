@@ -65,3 +65,24 @@ describe('wrangler.jsonc R2 bindings', () => {
     expect(session?.id).toBe('15e1b8365ada4c6bb01c761e25dcf3aa');
   });
 });
+
+describe('.env.example documents R2 build-time variables', () => {
+  const envExamplePath = path.join(repoRoot, '.env.example');
+  const envExample = readFileSync(envExamplePath, 'utf8');
+
+  it.each(['R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_ENDPOINT', 'R2_BUCKET_NAME', 'PUBLIC_USE_R2_LOADER'])(
+    'lists %s',
+    (varName) => {
+      expect(envExample).toMatch(new RegExp(`^${varName}=`, 'm'));
+    }
+  );
+
+  it('keeps build vs runtime split — R2 secrets do not appear in .dev.vars.example', () => {
+    const devVarsPath = path.join(repoRoot, '.dev.vars.example');
+    const devVars = readFileSync(devVarsPath, 'utf8');
+    // Build-time vars must not be defined as KEY=VALUE lines in .dev.vars.example;
+    // they may appear inside comments as documentation.
+    expect(devVars).not.toMatch(/^R2_ACCESS_KEY_ID=/m);
+    expect(devVars).not.toMatch(/^R2_SECRET_ACCESS_KEY=/m);
+  });
+});
