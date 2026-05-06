@@ -1,5 +1,12 @@
-import { describe, expect, it, vi } from 'vitest';
-import { parseS3Keys, r2MarkdownLoader, splitFrontmatter, type R2ListGetClient } from '@/lib/r2-loader';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { AwsClient } from 'aws4fetch';
+import {
+  createAwsR2Client,
+  parseS3Keys,
+  r2MarkdownLoader,
+  splitFrontmatter,
+  type R2ListGetClient
+} from '@/lib/r2-loader';
 
 interface StoredEntry {
   id: string;
@@ -222,5 +229,84 @@ describe('r2MarkdownLoader', () => {
 
     expect(store.cleared).toBe(2);
     expect(store.entries).toHaveLength(1);
+  });
+});
+
+describe('createAwsR2Client', () => {
+  const ENDPOINT = 'https://acct.r2.cloudflarestorage.com';
+  const BUCKET = 'articles-content-stg';
+  const CREDS = { accessKeyId: 'akid', secretAccessKey: 'sak' };
+
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  function mockAwsResponse(init: { ok: boolean; status?: number; text: string }) {
+    const status = init.status ?? (init.ok ? 200 : 500);
+    return new Response(init.text, { status });
+  }
+
+  it('list() builds the ListObjectsV2 URL and parses the XML', async () => {
+    const xml = '<?xml version="1.0"?><ListBucketResult><Contents><Key>posts/a.md</Key></Contents></ListBucketResult>';
+    const fetchSpy = vi
+      .spyOn(AwsClient.prototype, 'fetch')
+      .mockResolvedValueOnce(mockAwsResponse({ ok: true, text: xml }));
+
+    const client = createAwsR2Client({ endpoint: ENDPOINT, bucket: BUCKET, ...CREDS });
+    const keys = await client.list('posts/');
+
+    expect(keys).toEqual(['posts/a.md']);
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    const calledUrl = fetchSpy.mock.calls[0][0] as string;
+    expect(calledUrl).toBe(`${ENDPOINT}/${BUCKET}?list-type=2&prefix=posts%2F`);
+  });
+
+  it('list() throws when R2 returns a non-2xx response', async () => {
+    vi.spyOn(AwsClient.prototype, 'fetch').mockResolvedValueOnce(mockAwsResponse({ ok: false, status: 503, text: '' }));
+    const client = createAwsR2Client({ endpoint: ENDPOINT, bucket: BUCKET, ...CREDS });
+    await expect(client.list('posts/')).rejects.toThrow(/HTTP 503/);
+  });
+
+  it('get() returns the body text on 200', async () => {
+    const fetchSpy = vi
+      .spyOn(AwsClient.prototype, 'fetch')
+      .mockResolvedValueOnce(mockAwsResponse({ ok: true, text: '# hello' }));
+    const client = createAwsR2Client({ endpoint: ENDPOINT, bucket: BUCKET, ...CREDS });
+
+    const body = await client.get('posts/a.md');
+
+    expect(body).toBe('# hello');
+    expect(fetchSpy.mock.calls[0][0]).toBe(`${ENDPOINT}/${BUCKET}/posts/a.md`);
+  });
+
+  it('get() returns null on 404', async () => {
+    vi.spyOn(AwsClient.prototype, 'fetch').mockResolvedValueOnce(
+      mockAwsResponse({ ok: false, status: 404, text: 'not found' })
+    );
+    const client = createAwsR2Client({ endpoint: ENDPOINT, bucket: BUCKET, ...CREDS });
+    expect(await client.get('posts/missing.md')).toBeNull();
+  });
+
+  it('get() throws on other non-2xx', async () => {
+    vi.spyOn(AwsClient.prototype, 'fetch').mockResolvedValueOnce(mockAwsResponse({ ok: false, status: 500, text: '' }));
+    const client = createAwsR2Client({ endpoint: ENDPOINT, bucket: BUCKET, ...CREDS });
+    await expect(client.get('posts/a.md')).rejects.toThrow(/HTTP 500/);
+  });
+
+  it('strips a trailing slash from the endpoint when building URLs', async () => {
+    const fetchSpy = vi
+      .spyOn(AwsClient.prototype, 'fetch')
+      .mockResolvedValueOnce(mockAwsResponse({ ok: true, text: '<ListBucketResult/>' }));
+    const client = createAwsR2Client({
+      endpoint: `${ENDPOINT}/`,
+      bucket: BUCKET,
+      ...CREDS
+    });
+    await client.list('posts/');
+    const calledUrl = fetchSpy.mock.calls[0][0] as string;
+    expect(calledUrl.startsWith(`${ENDPOINT}/${BUCKET}?`)).toBe(true);
   });
 });
