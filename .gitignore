@@ -22,6 +22,8 @@ dist/
 .wrangler/
 worker-configuration.d.ts
 tsconfig.tsbuildinfo
+.dev.vars
+!.dev.vars.example
 .playwright-mcp/
 
 # Turborepo
@@ -37,3 +39,6 @@ playwright/.cache/
 
 # Linter/Formatter caches
 .prettiercache
+
+# dossier: internal scratchpad theater tooling
+.scratchpad/
