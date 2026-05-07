@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal portfolio website built with Astro 5, React 19, and Tailwind CSS 4, deployed on Cloudflare Workers. Blog content is sourced from Hashnode using `astro-loader-hashnode`.
+Personal portfolio website built with Astro 6, React 19, and Tailwind CSS 4, deployed on Cloudflare Workers. Blog content is sourced from a Cloudflare R2 bucket (`articles-content-prd`) at build time via a custom Astro loader. A second freeCodeCamp RSS-backed collection augments the blog index.
 
 ## Development Commands
 
@@ -61,7 +61,7 @@ This runs automatically after `pnpm install` and is a dependency for build/devel
 - **Styling**: Tailwind CSS 4 with custom brutalist design system
 - **Animation**: Motion (motion/react) for React components
 - **Deployment**: Cloudflare Workers (adapter: @astrojs/cloudflare)
-- **Content**: Hashnode CMS via astro-loader-hashnode
+- **Content**: Cloudflare R2 (markdown source-of-truth) + freeCodeCamp RSS (`@ascorbic/feed-loader`)
 - **Testing**: Vitest + React Testing Library + happy-dom
 - **Monitoring**: Sentry (client + server)
 - **Build Tool**: Turbo (monorepo caching)
@@ -69,7 +69,10 @@ This runs automatically after `pnpm install` and is a dependency for build/devel
 ### Key Files
 - `astro.config.mjs` - Astro configuration with Cloudflare adapter, Sentry integration, React
 - `wrangler.jsonc` - Cloudflare Workers deployment config
-- `src/content/config.ts` - Content collections (blog posts from Hashnode)
+- `src/content.config.ts` - Content collections (blog from R2 + freeCodeCamp RSS)
+- `src/lib/r2-loader.ts` - R2 build-time loader (S3-compat via `aws4fetch`) + production adapter
+- `src/lib/blog-loader-factory.ts` - Branches the blog loader on `PUBLIC_USE_R2_LOADER`
+- `scripts/migrate-articles-to-r2.mjs` - One-shot migration tool (idempotent, ETag-skip)
 - `src/layouts/base-layout.astro` - Root HTML layout with font loading strategy
 - `src/layouts/main-layout.astro` - Main page wrapper with Background component
 - `src/components/background/` - Animated canvas background (waves + birds + grain) with layered architecture
@@ -79,9 +82,18 @@ This runs automatically after `pnpm install` and is a dependency for build/devel
 - `@/*` → `./src/*` (configured in tsconfig.json and vitest.config.ts)
 
 ### Content Management
-Blog posts are loaded from Hashnode (mrugesh.hashnode.dev) using `astro-loader-hashnode`. The loader fetches posts at build time and stores them in the content layer. Access via `getCollection('blog')`.
+Blog posts live as markdown blobs in the Cloudflare R2 bucket `articles-content-prd` (preview/staging in `articles-content-stg`). Layout: `posts/<slug>.md`, `drafts/<slug>.md`, `assets/images/<slug>/<file>`.
 
-Remote images are restricted to `cdn.hashnode.com` only (configured in astro.config.mjs).
+`src/lib/blog-loader-factory.ts` selects the loader based on `PUBLIC_USE_R2_LOADER`:
+- unset OR `1` (default): R2 loader via `src/lib/r2-loader.ts` (signed S3-compat reads with `aws4fetch`).
+- `0`: emergency rollback to local glob (vestigial after submodule removal).
+- R2 loader without credentials gracefully degrades to glob and logs a warning — builds never crash.
+
+Build-time R2 access keys live in `.env` (see `.env.example`). Worker-runtime secrets live in `.dev.vars` (see `.dev.vars.example`); production runtime secrets land via `wrangler secret put`. Never commit either real file.
+
+Migration: `node scripts/migrate-articles-to-r2.mjs --source <path> --bucket <name> [--dry-run | --commit]`. Idempotent (md5 + ETag skip). Requires an R2 API token with object **read+write** scope on the target bucket.
+
+Remote images are served from `mrugesh.dev` only (configured in `astro.config.mjs`). The legacy third-party CDN pipeline is retired (see P3 of the migration dossier).
 
 ### View Transitions
 Uses Astro's native view transitions (`<ClientRouter />`) with `transition:persist` for background animation. The Background component persists across page navigations.
