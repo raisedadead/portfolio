@@ -56,19 +56,9 @@ function makeContext() {
 }
 
 describe('V6 — build graceful-degrade with no R2 keys', () => {
-  it('factory with empty env (default) returns glob loader without throwing or warning', () => {
+  it('factory with empty env (R2 default) warns, lists every missing key, falls back to glob', () => {
     const warn = vi.fn();
     const loader = buildBlogLoader({ env: {}, warn });
-    expect(loader.name).toBe('glob-loader');
-    expect(warn).not.toHaveBeenCalled();
-  });
-
-  it('factory with flag=1 + zero creds warns, lists every missing key, returns glob', () => {
-    const warn = vi.fn();
-    const loader = buildBlogLoader({
-      env: { PUBLIC_USE_R2_LOADER: '1' },
-      warn
-    });
     expect(loader.name).toBe('glob-loader');
     expect(warn).toHaveBeenCalledTimes(1);
     const message = warn.mock.calls[0][0] as string;
@@ -77,11 +67,10 @@ describe('V6 — build graceful-degrade with no R2 keys', () => {
     }
   });
 
-  it('factory with flag=1 + partial creds names only the missing one', () => {
+  it('factory with partial creds names only the missing one', () => {
     const warn = vi.fn();
     buildBlogLoader({
       env: {
-        PUBLIC_USE_R2_LOADER: '1',
         R2_ENDPOINT: 'https://acct.r2.cloudflarestorage.com',
         R2_BUCKET_NAME: 'articles-content-stg',
         R2_ACCESS_KEY_ID: 'akid'
@@ -92,6 +81,13 @@ describe('V6 — build graceful-degrade with no R2 keys', () => {
     const message = warn.mock.calls[0][0] as string;
     expect(message).toContain('R2_SECRET_ACCESS_KEY');
     expect(message).not.toContain('R2_ENDPOINT,');
+  });
+
+  it('explicit opt-out (PUBLIC_USE_R2_LOADER=0) returns glob without warning', () => {
+    const warn = vi.fn();
+    const loader = buildBlogLoader({ env: { PUBLIC_USE_R2_LOADER: '0' }, warn });
+    expect(loader.name).toBe('glob-loader');
+    expect(warn).not.toHaveBeenCalled();
   });
 });
 

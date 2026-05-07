@@ -3,6 +3,17 @@ import { z } from 'astro/zod';
 import { feedLoader } from '@ascorbic/feed-loader';
 import { buildBlogLoader } from '@/lib/blog-loader-factory';
 
+// Astro/Vite does not always populate `process.env` from `.env` at the moment
+// the content config is evaluated (the build context is initialised before
+// the dotenv hook runs). Use Node's built-in `loadEnvFile` so the R2 loader
+// factory can see the build-time R2 credentials. Silent no-op if `.env` is
+// absent (e.g. CI before secrets land).
+try {
+  process.loadEnvFile('.env');
+} catch {
+  // ignore — file missing or unreadable; factory will gracefully degrade
+}
+
 // Helper to capitalize tag slugs into display names
 const capitalizeTag = (slug: string) =>
   slug

@@ -1,13 +1,13 @@
 /**
- * Builds the loader Astro uses for the `blog` content collection. Branches
- * on the `PUBLIC_USE_R2_LOADER` feature flag so the legacy local-glob path
- * and the R2 path are both buildable from the same source. Kept as a small
- * factory so it can be unit-tested without booting Astro's content runtime.
+ * Builds the loader Astro uses for the `blog` content collection. R2 is
+ * the source of truth post-migration (P2). The legacy local-glob path is
+ * kept only as a graceful-degrade for offline builds and as an explicit
+ * opt-out (mostly for emergency rollback).
  *
- * Decision tree:
- *   PUBLIC_USE_R2_LOADER=1 + all R2 creds present -> R2 loader
- *   PUBLIC_USE_R2_LOADER=1 + any cred missing     -> warn + fallback glob
- *   anything else                                 -> glob loader
+ * Decision tree (post-cutover, T2.3):
+ *   PUBLIC_USE_R2_LOADER=0                        -> glob loader (explicit opt-out)
+ *   any other value (including unset) + creds OK  -> R2 loader
+ *   any other value (including unset) + missing   -> warn + fallback glob
  *
  * Graceful degrade is intentional: an offline build (no R2 keys) must still
  * exit 0. The fallback warning surfaces the misconfiguration without
@@ -50,7 +50,8 @@ function buildGlobLoader(): Loader {
  * peeking at `Loader` internals.
  */
 export function decideBlogLoader(env: BlogLoaderEnv): BlogLoaderDecision {
-  if (env.PUBLIC_USE_R2_LOADER !== '1') {
+  // Explicit opt-out — emergency rollback to legacy local-glob path.
+  if (env.PUBLIC_USE_R2_LOADER === '0') {
     return { source: 'glob' };
   }
   const missing = (['R2_ENDPOINT', 'R2_BUCKET_NAME', 'R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY'] as const).filter(
@@ -82,7 +83,7 @@ export function buildBlogLoader(options: BlogLoaderFactoryOptions): Loader {
   }
 
   if (decision.source === 'glob-fallback') {
-    warn(`[blog-loader] PUBLIC_USE_R2_LOADER=1 but ${decision.reason}; falling back to local glob.`);
+    warn(`[blog-loader] R2 is the default source but ${decision.reason}; falling back to local glob.`);
   }
 
   return buildGlobLoader();
