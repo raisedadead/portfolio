@@ -23,7 +23,7 @@ const { desktop, aspectClass, aspectRatio, height } = getBentoGridSpan(index);
 const dimensions = calculateImageDimensions(aspectRatio, index);
 
 // Determine if this is an external post (freeCodeCamp)
-const source: PostSource = data.source || 'hashnode';
+const source: PostSource = data.source || 'local';
 const isExternal = source === 'freecodecamp' && data.externalUrl;
 const postUrl = isExternal ? data.externalUrl : `/blog/${data.slug}`;
 const linkProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {};

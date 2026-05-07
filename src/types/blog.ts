@@ -32,7 +32,7 @@ export interface OptimizationMetadata {
   fallbackUsed: boolean;
 }
 
-export type PostSource = 'hashnode' | 'freecodecamp';
+export type PostSource = 'local' | 'freecodecamp';
 
 /**
  * Common interface for posts with tags - used by utility functions
@@ -59,7 +59,7 @@ export interface BlogPost {
     tags: Tag[];
     publishedAt: Date;
     readingTime: number;
-    hashnodeUrl?: string;
+    externalUrl?: string;
     seo?: {
       title?: string;
       description?: string;

@@ -1,21 +1,26 @@
 import type { ImageDimensions } from '@/types/blog';
 
 /**
- * Transforms an image URL for optimization
+ * Transforms an image URL for optimization.
  *
- * - Hashnode CDN URLs: Uses Cloudflare Images transformation
- * - freeCodeCamp/other remote URLs: Returns as-is (external CDNs handle optimization)
- * - Local/Astro-processed URLs: Returns as-is (Astro optimizes at build time)
+ * The only first-party image source is the portfolio's own
+ * `/api/img/...` route, which is already an absolute path. Astro
+ * handles its own optimization at build time. Remote URLs (freeCodeCamp
+ * RSS covers, etc.) pass through unchanged — those CDNs handle resizing
+ * on their side.
  *
- * @param sourceUrl - Original image URL or path
- * @param dimensions - Responsive image dimensions
- * @param format - Desired image format (webp, avif, or auto)
+ * @param sourceUrl  Original image URL or path
+ * @param dimensions Responsive image dimensions (currently unused; reserved
+ *                   for a future Cloudflare Image Resizing integration)
+ * @param format     Desired image format (currently unused; reserved)
  * @returns Optimized URL or original URL, null only on error
  */
 export function transformImageUrl(
   sourceUrl: string,
-  dimensions: ImageDimensions,
-  format: 'webp' | 'avif' | 'auto' = 'auto'
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- reserved for future CF resize integration
+  _dimensions: ImageDimensions,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- reserved for future CF resize integration
+  _format: 'webp' | 'avif' | 'auto' = 'auto'
 ): string | null {
   try {
     if (!sourceUrl) {
@@ -23,7 +28,8 @@ export function transformImageUrl(
     }
 
     // Local/Astro-processed images (start with / or /_astro/ or /@fs/)
-    // These are already optimized by Astro at build time
+    // These are already optimized by Astro at build time, or served by
+    // the portfolio's own R2 image streamer at /api/img/...
     if (sourceUrl.startsWith('/') || sourceUrl.startsWith('/_astro/') || sourceUrl.startsWith('/@fs/')) {
       return sourceUrl;
     }
@@ -33,20 +39,8 @@ export function transformImageUrl(
       return sourceUrl;
     }
 
-    // Hashnode CDN - use Cloudflare Images transformation
-    const hashnodePattern = /^https:\/\/cdn\.hashnode\.com\//;
-    if (hashnodePattern.test(sourceUrl)) {
-      const options = [
-        `width=${dimensions.desktop.width}`,
-        'quality=85',
-        format !== 'auto' ? `format=${format}` : 'format=auto'
-      ].join(',');
-
-      return `https://mrugesh.dev/cdn-cgi/image/${options}/${sourceUrl}`;
-    }
-
-    // Other remote URLs (freeCodeCamp, etc.) - return as-is
-    // These CDNs typically handle their own optimization
+    // Remote URLs (freeCodeCamp news, etc.) — return as-is. The third-party
+    // CDNs handle their own resizing.
     return sourceUrl;
   } catch (error) {
     console.error(`Error transforming image URL: ${error}`);

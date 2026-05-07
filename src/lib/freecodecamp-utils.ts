@@ -105,16 +105,11 @@ export function normalizeLocalPosts(posts: LocalPostData[]): LightweightPost[] {
         tags: post.data.tags,
         publishedAt: post.data.date,
         readingTime: post.data.readingTime ?? calculatedReadingTime,
-        source: 'hashnode' as const
+        source: 'local' as const
       }
     };
   });
 }
-
-/**
- * @deprecated Use normalizeLocalPosts instead
- */
-export const normalizeHashnodePosts = normalizeLocalPosts;
 
 /**
  * Merges and sorts posts from multiple sources by date (newest first)

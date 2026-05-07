@@ -164,7 +164,7 @@ describe('freeCodeCamp Utils', () => {
       expect(result[0].data.coverImage?.alt).toBe('Cover Alt');
       expect(result[0].data.publishedAt).toEqual(new Date('2025-01-10'));
       expect(result[0].data.readingTime).toBe(5);
-      expect(result[0].data.source).toBe('hashnode');
+      expect(result[0].data.source).toBe('local');
       expect(result[0].data.externalUrl).toBeUndefined();
     });
 
@@ -241,17 +241,17 @@ describe('freeCodeCamp Utils', () => {
 
   describe('mergeAndSortPosts', () => {
     it('merges and sorts posts by date (newest first)', () => {
-      const hashnodePosts = [
+      const localPosts = [
         {
-          id: 'h1',
+          id: 'l1',
           data: {
-            slug: 'h1',
-            title: 'Old Hashnode',
+            slug: 'l1',
+            title: 'Old Local',
             brief: '',
             tags: [],
             publishedAt: new Date('2025-01-01'),
             readingTime: 1,
-            source: 'hashnode' as const
+            source: 'local' as const
           }
         }
       ];
@@ -271,11 +271,11 @@ describe('freeCodeCamp Utils', () => {
         }
       ];
 
-      const result = mergeAndSortPosts(hashnodePosts, fccPosts);
+      const result = mergeAndSortPosts(localPosts, fccPosts);
 
       expect(result).toHaveLength(2);
       expect(result[0].data.title).toBe('New FCC');
-      expect(result[1].data.title).toBe('Old Hashnode');
+      expect(result[1].data.title).toBe('Old Local');
     });
 
     it('handles empty arrays', () => {
@@ -294,7 +294,7 @@ describe('freeCodeCamp Utils', () => {
             tags: [],
             publishedAt: new Date('2025-01-01'),
             readingTime: 1,
-            source: 'hashnode' as const
+            source: 'local' as const
           }
         }
       ];

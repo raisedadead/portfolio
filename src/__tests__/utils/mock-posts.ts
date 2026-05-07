@@ -29,7 +29,7 @@ export function createMockPost(overrides: Partial<BlogPost> = {}): BlogPost {
       ],
       publishedAt: new Date('2025-01-01'),
       readingTime: 5,
-      hashnodeUrl: 'https://example.com/post',
+      externalUrl: 'https://example.com/post',
       seo: {
         title: 'Test Post - SEO Title',
         description: 'Test post SEO description'
@@ -64,7 +64,7 @@ export function createMockPosts(count: number): BlogPost[] {
         tags: [{ name: 'Test', slug: 'test' }],
         publishedAt: new Date(`2025-01-${String(i + 1).padStart(2, '0')}`),
         readingTime: 5,
-        hashnodeUrl: `https://example.com/post-${i}`,
+        externalUrl: `https://example.com/post-${i}`,
         seo: {
           title: `Test Post ${i + 1} - SEO`,
           description: `SEO description for post ${i + 1}`

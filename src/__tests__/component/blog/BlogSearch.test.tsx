@@ -16,7 +16,7 @@ const mockPosts: LightweightPost[] = [
       ],
       publishedAt: new Date('2025-01-15'),
       readingTime: 5,
-      source: 'hashnode'
+      source: 'local'
     }
   },
   {
@@ -31,7 +31,7 @@ const mockPosts: LightweightPost[] = [
       ],
       publishedAt: new Date('2025-02-20'),
       readingTime: 8,
-      source: 'hashnode'
+      source: 'local'
     }
   },
   {
@@ -46,7 +46,7 @@ const mockPosts: LightweightPost[] = [
       ],
       publishedAt: new Date('2025-03-10'),
       readingTime: 6,
-      source: 'hashnode'
+      source: 'local'
     }
   }
 ];

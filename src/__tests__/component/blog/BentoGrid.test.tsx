@@ -55,7 +55,7 @@ describe('BlogGridWithLoadMore Component', () => {
     id: string,
     title: string,
     hasCoverImage = true,
-    source: 'hashnode' | 'freecodecamp' = 'hashnode'
+    source: 'local' | 'freecodecamp' = 'local'
   ): LightweightPost => ({
     id,
     data: {
@@ -464,7 +464,7 @@ describe('BlogGridWithLoadMore Component', () => {
       expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
-    it('does not add external link attributes to Hashnode posts', () => {
+    it('does not add external link attributes to local posts', () => {
       render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
       const link = screen.getByText('First Post').closest('a');
@@ -472,7 +472,7 @@ describe('BlogGridWithLoadMore Component', () => {
       expect(link).toHaveAttribute('href', '/blog/post-1');
     });
 
-    it('does not render freeCodeCamp badge for Hashnode posts', () => {
+    it('does not render freeCodeCamp badge for local posts', () => {
       render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
       expect(screen.queryByText('freeCodeCamp')).not.toBeInTheDocument();
@@ -483,9 +483,9 @@ describe('BlogGridWithLoadMore Component', () => {
       const mixedPosts = [mockPosts[0], fccPost];
       render(<BlogGridWithLoadMore posts={mixedPosts} initialCount={2} />);
 
-      // Hashnode post should have internal link
-      const hashnodeLink = screen.getByText('First Post').closest('a');
-      expect(hashnodeLink).toHaveAttribute('href', '/blog/post-1');
+      // local post should have internal link
+      const localLink = screen.getByText('First Post').closest('a');
+      expect(localLink).toHaveAttribute('href', '/blog/post-1');
 
       // FCC post should have external link
       const fccLink = screen.getByText('FCC Article').closest('a');
