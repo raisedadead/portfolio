@@ -1,3 +1,0 @@
-[submodule "src/content/articles"]
-	path = src/content/articles
-	url = https://github.com/raisedadead/articles.git
