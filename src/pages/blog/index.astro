@@ -20,10 +20,7 @@ const lightweightPosts = mergeAndSortPosts(
 
 <MainLayout pageTitle='Blog' pageDescription='Read articles about web development, programming, and technology'>
   <Fragment slot='head'>
-    <!-- DNS prefetch and preconnect for Hashnode CDN to speed up image loading -->
-    <link rel='dns-prefetch' href='https://cdn.hashnode.com' />
-    <link rel='preconnect' href='https://cdn.hashnode.com' crossorigin='anonymous' />
-    <!-- DNS prefetch for freeCodeCamp CDN -->
+    <!-- DNS prefetch for the freeCodeCamp news host that serves RSS-feed cover images. -->
     <link rel='dns-prefetch' href='https://www.freecodecamp.org' />
   </Fragment>
   <section class={cn('mb-2')}>
