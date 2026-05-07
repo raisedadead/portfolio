@@ -55,15 +55,23 @@ describe('transformImageUrl — pass-through contract', () => {
   });
 
   describe('error handling', () => {
-    it('returns null and logs when the URL argument is non-string and trips the type guard', () => {
+    it('returns null on null input via the falsy guard (no log)', () => {
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      // Force a runtime exception inside the try block — `startsWith` on a
-      // null value throws synchronously, exercising the catch path.
       const result = transformImageUrl(null as unknown as string, mockDimensions);
       expect(result).toBeNull();
-      // The early `if (!sourceUrl)` guard returns null before logging.
-      // So no console.error is expected for null. Remove the spy expectation
-      // and just assert null result.
+      // Falsy guard short-circuits before reaching the catch block, so the
+      // error logger should not have been invoked.
+      expect(consoleSpy).not.toHaveBeenCalled();
+      consoleSpy.mockRestore();
+    });
+
+    it('returns null and logs when sourceUrl is a truthy non-string that throws on .startsWith', () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      // Plain object is truthy (passes the guard) but lacks `.startsWith`,
+      // throwing TypeError inside the try and exercising the catch path.
+      const result = transformImageUrl({} as unknown as string, mockDimensions);
+      expect(result).toBeNull();
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Error transforming image URL:'));
       consoleSpy.mockRestore();
     });
   });
