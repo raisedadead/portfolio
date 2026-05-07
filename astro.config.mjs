@@ -74,14 +74,15 @@ export default defineConfig({
   },
 
   image: {
+    // R2-hosted images stream from /api/img/[...path] under the same
+    // origin (`mrugesh.dev`). The freeCodeCamp covers continue to render
+    // via raw <img> tags from the RSS feed, so they do not need an
+    // entry here — `image.remotePatterns` only governs Astro's <Image>
+    // component, not bare <img> elements.
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'www.freecodecamp.org'
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.freecodecamp.org'
+        hostname: 'mrugesh.dev'
       }
     ]
   }
