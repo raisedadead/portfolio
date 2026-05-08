@@ -80,9 +80,27 @@ describe('.env.example documents R2 build-time variables', () => {
   it('keeps build vs runtime split — R2 secrets do not appear in .dev.vars.example', () => {
     const devVarsPath = path.join(repoRoot, '.dev.vars.example');
     const devVars = readFileSync(devVarsPath, 'utf8');
-    // Build-time vars must not be defined as KEY=VALUE lines in .dev.vars.example;
-    // they may appear inside comments as documentation.
     expect(devVars).not.toMatch(/^R2_ACCESS_KEY_ID=/m);
     expect(devVars).not.toMatch(/^R2_SECRET_ACCESS_KEY=/m);
+  });
+});
+
+describe('.dev.vars.example — runtime secrets are server-only', () => {
+  const devVarsPath = path.join(repoRoot, '.dev.vars.example');
+  const devVars = readFileSync(devVarsPath, 'utf8');
+
+  it.each(['CF_ACCESS_TEAM_DOMAIN', 'CF_ACCESS_AUD', 'CF_ACCESS_AUTHOR_EMAIL', 'DEPLOY_HOOK_URL', 'DEV_BYPASS_ACCESS'])(
+    'lists %s as a non-PUBLIC_ runtime var',
+    (varName) => {
+      expect(devVars).toMatch(new RegExp(`^${varName}=`, 'm'));
+    }
+  );
+
+  it('does not declare DEV_BYPASS_ACCESS with the PUBLIC_ prefix (would leak to client bundle)', () => {
+    expect(devVars).not.toMatch(/^PUBLIC_DEV_BYPASS_ACCESS=/m);
+  });
+
+  it('does not prefix any CF_ACCESS_ runtime secret with PUBLIC_', () => {
+    expect(devVars).not.toMatch(/^PUBLIC_CF_ACCESS_/m);
   });
 });

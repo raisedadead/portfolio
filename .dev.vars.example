@@ -27,6 +27,8 @@ DEPLOY_HOOK_URL=
 
 # --- Dev-only escape hatch --------------------------------------------------
 # When set to 1 AND running in Astro DEV mode, the /admin gate skips JWT verification.
-# MUST stay unset (or 0) in any built artefact. CI must verify (V15).
+# Server-side only — NO `PUBLIC_` prefix on purpose, so the value is never bundled
+# into the client. The middleware reads it via the Worker `env` binding at request time.
+# MUST stay unset (or 0) in any built artefact. CI verifies (V15).
 # Never commit a real value here.
-PUBLIC_DEV_BYPASS_ACCESS=0
+DEV_BYPASS_ACCESS=0
