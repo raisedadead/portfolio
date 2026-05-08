@@ -34,9 +34,13 @@ test.describe('Blog', () => {
       // Wait for image to be visible
       await expect(imageInCard).toBeVisible();
 
-      // Check image loaded successfully (naturalWidth > 0)
-      const naturalWidth = await imageInCard.evaluate((img: HTMLImageElement) => img.naturalWidth);
-      expect(naturalWidth).toBeGreaterThan(0);
+      // Image must complete network decode before `naturalWidth` reports a
+      // real intrinsic size. `toBeVisible` only waits for layout; the image
+      // pixels can still be in flight (BentoGrid uses `opacity: 0 → 1`
+      // fade-in, which masked the race in earlier iterations).
+      await expect
+        .poll(async () => imageInCard.evaluate((img: HTMLImageElement) => img.naturalWidth), { timeout: 10_000 })
+        .toBeGreaterThan(0);
     });
 
     test('load more button loads additional posts', async ({ page }) => {
