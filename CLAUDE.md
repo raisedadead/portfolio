@@ -71,7 +71,6 @@ This runs automatically after `pnpm install` and is a dependency for build/devel
 - `wrangler.jsonc` - Cloudflare Workers deployment config
 - `src/content.config.ts` - Content collections (blog from R2 + freeCodeCamp RSS)
 - `src/lib/r2-loader.ts` - R2 build-time loader (S3-compat via `aws4fetch`) + production adapter
-- `src/lib/blog-loader-factory.ts` - Branches the blog loader on `PUBLIC_USE_R2_LOADER`
 - `scripts/migrate-articles-to-r2.mjs` - One-shot migration tool (idempotent, ETag-skip)
 - `src/layouts/base-layout.astro` - Root HTML layout with font loading strategy
 - `src/layouts/main-layout.astro` - Main page wrapper with Background component
@@ -84,10 +83,7 @@ This runs automatically after `pnpm install` and is a dependency for build/devel
 ### Content Management
 Blog posts live as markdown blobs in the Cloudflare R2 bucket `articles-content-prd` (preview/staging in `articles-content-stg`). Layout: `posts/<slug>.md`, `drafts/<slug>.md`, `assets/images/<slug>/<file>`.
 
-`src/lib/blog-loader-factory.ts` selects the loader based on `PUBLIC_USE_R2_LOADER`:
-- unset OR `1` (default): R2 loader via `src/lib/r2-loader.ts` (signed S3-compat reads with `aws4fetch`).
-- `0`: emergency rollback to local glob (vestigial after submodule removal).
-- R2 loader without credentials gracefully degrades to glob and logs a warning — builds never crash.
+`src/content.config.ts` wires `r2MarkdownLoader` from `src/lib/r2-loader.ts` directly (signed S3-compat reads via `aws4fetch`). The loader rewrites legacy `../assets/images/<slug>/<file>` references in frontmatter and markdown body to `/api/img/<slug>/<file>` so they resolve through the R2 image-streamer route at runtime. Build fails loudly if R2 credentials are absent — there is no glob fallback.
 
 All local secrets live in a single `.env` (gitignored). `.envrc` (committed) hooks direnv so the values are exported into your shell on `cd`. The schema is documented in `.env.example`. `pnpm develop` and `pnpm preview` run `node scripts/sync-dev-vars.mjs` first, which generates `.dev.vars` (Wrangler's expected file) from the runtime-only subset of `.env`. The generated file carries a `# GENERATED ... Do not edit.` header and is gitignored. Production runtime secrets land in the Cloudflare Worker secret store via `wrangler` (do not commit real values anywhere).
 
