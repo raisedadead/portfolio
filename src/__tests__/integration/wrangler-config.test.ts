@@ -7,6 +7,7 @@ interface R2BucketBinding {
   binding: string;
   bucket_name: string;
   preview_bucket_name?: string;
+  remote?: boolean;
 }
 
 interface KvBinding {
@@ -95,5 +96,20 @@ describe('.env.example — single-source schema', () => {
 
   it('.dev.vars.example is gone (single source = .env.example)', () => {
     expect(() => readFileSync(path.join(repoRoot, '.dev.vars.example'))).toThrow();
+  });
+});
+
+describe('wrangler.jsonc — ARTICLES R2 reaches the real bucket in dev', () => {
+  // `wrangler dev` binds R2 to an empty local simulator unless the binding
+  // opts into remote mode. The image streamer route returns 404 for every
+  // cover otherwise, even though the bucket is populated (B10 — RCA captured
+  // 2026-05-08). The `remote: true` flag on the binding is the supported
+  // replacement for the deprecated CLI `--remote` flag.
+  const configPath = path.join(repoRoot, 'wrangler.jsonc');
+  const config = parseJsonc(readFileSync(configPath, 'utf8'));
+
+  it('marks the ARTICLES R2 binding as remote in dev', () => {
+    const articles = config.r2_buckets?.find((b) => b.binding === 'ARTICLES');
+    expect(articles?.remote).toBe(true);
   });
 });

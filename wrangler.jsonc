@@ -47,7 +47,8 @@
     {
       "binding": "ARTICLES",
       "bucket_name": "articles-content-prd",
-      "preview_bucket_name": "articles-content-stg"
+      "preview_bucket_name": "articles-content-stg",
+      "remote": true
     }
   ],
   "observability": {
