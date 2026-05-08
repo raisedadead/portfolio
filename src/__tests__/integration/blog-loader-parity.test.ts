@@ -71,7 +71,8 @@ function makeContext() {
     parseData: vi.fn(async ({ data }: { id: string; data: Record<string, unknown> }) => data),
     generateDigest: vi.fn((value: Record<string, unknown> | string) =>
       typeof value === 'string' ? `digest:${value.length}` : 'digest:obj'
-    )
+    ),
+    renderMarkdown: vi.fn(async (content: string) => ({ html: `<p>rendered:${content.length}</p>`, metadata: {} }))
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any;
   return { ctx, entries, warnings };

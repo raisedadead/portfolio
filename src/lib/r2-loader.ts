@@ -115,7 +115,7 @@ export function r2MarkdownLoader(options: R2MarkdownLoaderOptions): Loader {
   const { client, prefix, name = 'r2-markdown-loader' } = options;
   return {
     name,
-    async load({ store, logger, parseData, generateDigest }) {
+    async load({ store, logger, parseData, generateDigest, renderMarkdown }) {
       let keys: string[];
       try {
         const listed = await client.list(prefix);
@@ -157,11 +157,24 @@ export function r2MarkdownLoader(options: R2MarkdownLoaderOptions): Loader {
           continue;
         }
 
+        // Render markdown to HTML so `render(entry)` / `<Content />` returns
+        // populated output. Without this `store.set` would carry the body text
+        // only and Astro would have nothing to render. Failures here are not
+        // fatal: the entry is skipped and the rest of the build proceeds.
+        let rendered;
+        try {
+          rendered = await renderMarkdown(body);
+        } catch (err) {
+          logger.warn(`R2 renderMarkdown failed for ${key}: ${(err as Error).message}`);
+          continue;
+        }
+
         store.set({
           id,
           data: parsedData,
           body,
-          digest: generateDigest(raw)
+          digest: generateDigest(raw),
+          rendered
         });
       }
     }

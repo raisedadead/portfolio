@@ -9,11 +9,17 @@ import {
   type R2ListGetClient
 } from '@/lib/r2-loader';
 
+interface RenderedContent {
+  html: string;
+  metadata?: Record<string, unknown>;
+}
+
 interface StoredEntry {
   id: string;
   data: Record<string, unknown>;
   body?: string;
   digest?: string;
+  rendered?: RenderedContent;
 }
 
 interface FakeStore {
@@ -73,14 +79,20 @@ function fakeContext(client: R2ListGetClient) {
   const generateDigest = vi.fn((value: Record<string, unknown> | string) =>
     typeof value === 'string' ? `digest:${value.length}` : `digest:obj`
   );
+  const renderMarkdown = vi.fn(
+    async (content: string): Promise<RenderedContent> => ({
+      html: `<p>rendered:${content.trim().slice(0, 20)}</p>`,
+      metadata: { headings: [] }
+    })
+  );
 
   // Astro's full LoaderContext has more fields. The loader only touches these
-  // four — cast so we can exercise the public contract without recreating a
+  // five — cast so we can exercise the public contract without recreating a
   // full Astro runtime. Tests assert on the recorded store/logger state.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ctx = { store, logger, parseData, generateDigest } as any;
+  const ctx = { store, logger, parseData, generateDigest, renderMarkdown } as any;
 
-  return { client, ctx, store, logger, parseData, generateDigest };
+  return { client, ctx, store, logger, parseData, generateDigest, renderMarkdown };
 }
 
 const POST_MD = `---
@@ -248,6 +260,68 @@ describe('r2MarkdownLoader', () => {
 
     expect(store.entries.map((e) => e.id)).toEqual(['b']);
     expect(logger.warnings[0]).toMatch(/parseData failed/);
+  });
+
+  it('renders the post body to HTML and stores it on the entry', async () => {
+    // B12 — without `rendered`, Astro's `render(entry)` / `<Content />` returns
+    // empty output. The loader must call `context.renderMarkdown` and pass the
+    // result through to `store.set`.
+    const client: R2ListGetClient = {
+      list: vi.fn(async () => ['posts/a.md']),
+      get: vi.fn(async () => POST_MD)
+    };
+    const { ctx, store, renderMarkdown } = fakeContext(client);
+
+    await r2MarkdownLoader({ client, prefix: 'posts/' }).load(ctx);
+
+    expect(renderMarkdown).toHaveBeenCalledOnce();
+    const renderedArg = renderMarkdown.mock.calls[0][0] as string;
+    expect(renderedArg.trim().startsWith('Body line 1.')).toBe(true);
+
+    expect(store.entries).toHaveLength(1);
+    expect(store.entries[0].rendered).toBeDefined();
+    expect(store.entries[0].rendered?.html).toContain('rendered:Body line 1.');
+  });
+
+  it('passes the asset-rewritten body (not the raw body) to renderMarkdown', async () => {
+    // The legacy submodule embeds `../assets/images/<slug>/<file>` references.
+    // The loader rewrites these to `/api/img/<slug>/<file>` so they reach the
+    // R2 streamer at runtime — that rewrite must happen *before* the markdown
+    // is rendered, otherwise the produced HTML carries broken paths.
+    const md = `---
+title: With image
+date: 2026-03-03
+---
+
+![](../assets/images/foo/cover.png)
+`;
+    const client: R2ListGetClient = {
+      list: vi.fn(async () => ['posts/foo.md']),
+      get: vi.fn(async () => md)
+    };
+    const { ctx, renderMarkdown } = fakeContext(client);
+
+    await r2MarkdownLoader({ client, prefix: 'posts/' }).load(ctx);
+
+    const renderedArg = renderMarkdown.mock.calls[0][0] as string;
+    expect(renderedArg).toContain('/api/img/foo/cover.png');
+    expect(renderedArg).not.toContain('../assets/images/');
+  });
+
+  it('skips rendering and warns when renderMarkdown throws', async () => {
+    const client: R2ListGetClient = {
+      list: vi.fn(async () => ['posts/a.md', 'posts/b.md']),
+      get: vi.fn(async () => POST_MD)
+    };
+    const { ctx, store, logger, renderMarkdown } = fakeContext(client);
+    renderMarkdown.mockImplementationOnce(async () => {
+      throw new Error('render exploded');
+    });
+
+    await r2MarkdownLoader({ client, prefix: 'posts/' }).load(ctx);
+
+    expect(store.entries.map((e) => e.id)).toEqual(['b']);
+    expect(logger.warnings.some((w) => /renderMarkdown failed/.test(w))).toBe(true);
   });
 
   it('clears the store before each successful load', async () => {
