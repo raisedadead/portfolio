@@ -89,7 +89,7 @@ Blog posts live as markdown blobs in the Cloudflare R2 bucket `articles-content-
 - `0`: emergency rollback to local glob (vestigial after submodule removal).
 - R2 loader without credentials gracefully degrades to glob and logs a warning — builds never crash.
 
-Build-time R2 access keys live in `.env` (see `.env.example`). Worker-runtime secrets live in `.dev.vars` (see `.dev.vars.example`); production runtime secrets land via `wrangler secret put`. Never commit either real file.
+All local secrets live in a single `.env` (gitignored). `.envrc` (committed) hooks direnv so the values are exported into your shell on `cd`. The schema is documented in `.env.example`. `pnpm develop` and `pnpm preview` run `node scripts/sync-dev-vars.mjs` first, which generates `.dev.vars` (Wrangler's expected file) from the runtime-only subset of `.env`. The generated file carries a `# GENERATED ... Do not edit.` header and is gitignored. Production runtime secrets land in the Cloudflare Worker secret store via `wrangler` (do not commit real values anywhere).
 
 Migration: `node scripts/migrate-articles-to-r2.mjs --source <path> --bucket <name> [--dry-run | --commit]`. Idempotent (md5 + ETag skip). Requires an R2 API token with object **read+write** scope on the target bucket.
 
