@@ -40,13 +40,7 @@ describe('Content Setup', () => {
 
     it('.env.example documents the build-time R2 roster', () => {
       const envExample = readFileSync(join(repoRoot, '.env.example'), 'utf8');
-      for (const key of [
-        'R2_ACCESS_KEY_ID',
-        'R2_SECRET_ACCESS_KEY',
-        'R2_ENDPOINT',
-        'R2_BUCKET_NAME',
-        'PUBLIC_USE_R2_LOADER'
-      ]) {
+      for (const key of ['R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_ENDPOINT', 'R2_BUCKET_NAME']) {
         expect(envExample).toMatch(new RegExp(`^${key}=`, 'm'));
       }
     });

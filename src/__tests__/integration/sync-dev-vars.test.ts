@@ -80,7 +80,7 @@ describe('selectRuntime', () => {
       CF_ACCESS_AUD: 'aud',
       DEPLOY_HOOK_URL: 'https://example.com/hook',
       R2_ACCESS_KEY_ID: 'leak',
-      PUBLIC_USE_R2_LOADER: '1',
+      SENTRY_AUTH_TOKEN: 'leak',
       DEV_BYPASS_ACCESS: '0'
     };
     expect(selectRuntime(env)).toEqual({
@@ -141,7 +141,7 @@ describe('syncDevVars', () => {
         'DEPLOY_HOOK_URL=https://example.com',
         'DEV_BYPASS_ACCESS=0',
         'R2_ACCESS_KEY_ID=should-not-leak',
-        'PUBLIC_USE_R2_LOADER=1'
+        'SENTRY_AUTH_TOKEN=should-not-leak'
       ].join('\n')
     );
     const result = syncDevVars({
@@ -155,7 +155,7 @@ describe('syncDevVars', () => {
     expect(written).toContain('DEPLOY_HOOK_URL=https://example.com');
     expect(written).toContain('DEV_BYPASS_ACCESS=0');
     expect(written).not.toContain('R2_ACCESS_KEY_ID');
-    expect(written).not.toContain('PUBLIC_USE_R2_LOADER');
+    expect(written).not.toContain('SENTRY_AUTH_TOKEN');
   });
 
   it('is idempotent — does not rewrite when content is unchanged', () => {

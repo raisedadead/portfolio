@@ -1,36 +1,57 @@
 import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
 import { feedLoader } from '@ascorbic/feed-loader';
-import { buildBlogLoader } from '@/lib/blog-loader-factory';
+import { createAwsR2Client, r2MarkdownLoader } from '@/lib/r2-loader';
 
-// Astro/Vite does not always populate `process.env` from `.env` at the moment
-// the content config is evaluated (the build context is initialised before
-// the dotenv hook runs). Use Node's built-in `loadEnvFile` so the R2 loader
-// factory can see the build-time R2 credentials. Silent no-op if `.env` is
-// absent (e.g. CI before secrets land).
 try {
   process.loadEnvFile('.env');
 } catch {
-  // ignore — file missing or unreadable; factory will gracefully degrade
+  // .env absent (e.g. CI before direnv/dashboard env is wired) — fall through
+  // to whatever process.env already has; the loader will throw with an
+  // explicit message if the required R2 keys are missing.
 }
 
-// Helper to capitalize tag slugs into display names
 const capitalizeTag = (slug: string) =>
   slug
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
+function buildR2BlogLoader() {
+  const required = {
+    R2_ENDPOINT: process.env.R2_ENDPOINT,
+    R2_BUCKET_NAME: process.env.R2_BUCKET_NAME,
+    R2_ACCESS_KEY_ID: process.env.R2_ACCESS_KEY_ID,
+    R2_SECRET_ACCESS_KEY: process.env.R2_SECRET_ACCESS_KEY
+  };
+  const missing = Object.entries(required)
+    .filter(([, v]) => !v)
+    .map(([k]) => k);
+  if (missing.length > 0) {
+    throw new Error(
+      `R2 content loader misconfigured: missing ${missing.join(', ')}. ` +
+        `Populate .env (local, see .env.example) or the Workers Builds env (CI).`
+    );
+  }
+  return r2MarkdownLoader({
+    client: createAwsR2Client({
+      endpoint: required.R2_ENDPOINT!,
+      bucket: required.R2_BUCKET_NAME!,
+      accessKeyId: required.R2_ACCESS_KEY_ID!,
+      secretAccessKey: required.R2_SECRET_ACCESS_KEY!
+    }),
+    prefix: 'posts/'
+  });
+}
+
 const blog = defineCollection({
-  // Branches on PUBLIC_USE_R2_LOADER (see src/lib/blog-loader-factory.ts).
-  // Default path = local glob (preserves current behavior).
-  loader: buildBlogLoader({ env: process.env }),
-  schema: ({ image }) =>
+  loader: buildR2BlogLoader(),
+  schema: () =>
     z.object({
       title: z.string(),
       slug: z.string().optional(),
       date: z.coerce.date(),
-      cover: image().optional(),
+      cover: z.string().optional(),
       coverAlt: z.string().optional(),
       brief: z.string().optional(),
       tags: z

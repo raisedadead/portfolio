@@ -71,12 +71,13 @@ describe('.env.example — single-source schema', () => {
   const envExample = readFileSync(envExamplePath, 'utf8');
 
   describe('build-time keys', () => {
-    it.each(['R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_ENDPOINT', 'R2_BUCKET_NAME', 'PUBLIC_USE_R2_LOADER'])(
-      'lists %s',
-      (varName) => {
-        expect(envExample).toMatch(new RegExp(`^${varName}=`, 'm'));
-      }
-    );
+    it.each(['R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_ENDPOINT', 'R2_BUCKET_NAME'])('lists %s', (varName) => {
+      expect(envExample).toMatch(new RegExp(`^${varName}=`, 'm'));
+    });
+
+    it('does not list the deleted PUBLIC_USE_R2_LOADER flag', () => {
+      expect(envExample).not.toMatch(/^PUBLIC_USE_R2_LOADER=/m);
+    });
   });
 
   describe('Worker-runtime keys (mirrored to .dev.vars by sync-dev-vars.mjs)', () => {

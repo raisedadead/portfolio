@@ -62,6 +62,24 @@ export function splitFrontmatter(raw: string): ParsedFrontmatter {
 }
 
 /**
+ * Rewrites legacy submodule-relative asset paths into the portfolio's
+ * runtime image-streamer route. The migration source still embeds
+ * `../assets/images/<slug>/<file>` references from the pre-R2 era; those
+ * paths no longer resolve at build time (no local files) so the build
+ * crashes in `image()`. Mapping them to `/api/img/<slug>/<file>` lets
+ * `<img>` tags fetch from the R2 streamer at request time.
+ *
+ * Returns the input unchanged when no asset prefix is found.
+ */
+export function rewriteAssetUrl(value: string | undefined): string | undefined {
+  if (!value) return value;
+  return value.replace(
+    /(?:\.\.\/)?assets\/images\/([^/]+)\/([^\s)"']+)/g,
+    (_match, slug, rest) => `/api/img/${slug}/${rest}`
+  );
+}
+
+/**
  * Parses an S3 ListObjectsV2 XML response and returns the `<Key>` values.
  * R2 mirrors the S3 XML schema exactly, so this works against either.
  */
@@ -123,8 +141,13 @@ export function r2MarkdownLoader(options: R2MarkdownLoaderOptions): Loader {
           continue;
         }
 
-        const { data, body } = splitFrontmatter(raw);
+        const { data, body: rawBody } = splitFrontmatter(raw);
         const id = key.slice(prefix.length).replace(/\.md$/, '');
+
+        if (typeof data.cover === 'string') {
+          data.cover = rewriteAssetUrl(data.cover);
+        }
+        const body = rewriteAssetUrl(rawBody) ?? rawBody;
 
         let parsedData: Record<string, unknown>;
         try {

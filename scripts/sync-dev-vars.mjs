@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-console -- CLI script: stdout is the user-facing surface. */
 /**
  * Generates `.dev.vars` from the single source `.env`.
  *

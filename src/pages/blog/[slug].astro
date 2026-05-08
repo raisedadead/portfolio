@@ -1,7 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
-import { Image } from 'astro:assets';
 import MainLayout from '@/layouts/main-layout.astro';
 import { Social } from '@/components/social';
 import { formatDate } from '@/lib/formatDate';
@@ -41,11 +40,11 @@ const brief =
 const pageTitle = data.seo?.title || data.title;
 const pageDescription = data.seo?.description || brief;
 
-// Handle cover image (can be Astro image reference or string)
-const coverImageUrl = typeof data.cover === 'string' ? data.cover : data.cover?.src;
+// Cover image — plain string URL pointing at the R2 image streamer
+// (`/api/img/<slug>/<file>`) or an external host. Schema enforces `string`.
+const coverImageUrl = data.cover;
 const pageImage = coverImageUrl;
 
-// Image optimization
 const dimensions = calculateImageDimensions('16/9', 0);
 const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimensions) : null;
 ---
@@ -77,7 +76,7 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
         </div>
       ) : coverImageUrl ? (
         <div class='relative aspect-video w-full'>
-          <Image
+          <img
             src={coverImageUrl}
             alt={data.coverAlt || data.title}
             width={1200}

@@ -4,6 +4,7 @@ import {
   createAwsR2Client,
   parseS3Keys,
   r2MarkdownLoader,
+  rewriteAssetUrl,
   splitFrontmatter,
   type R2ListGetClient
 } from '@/lib/r2-loader';
@@ -111,6 +112,38 @@ describe('splitFrontmatter', () => {
     const { data, body } = splitFrontmatter('---\ntitle: t\n---\n');
     expect(data).toEqual({ title: 't' });
     expect(body).toBe('');
+  });
+});
+
+describe('rewriteAssetUrl', () => {
+  it('maps a relative ../assets/images path to /api/img/<slug>/<file>', () => {
+    expect(rewriteAssetUrl('../assets/images/foo/cover.png')).toBe('/api/img/foo/cover.png');
+  });
+
+  it('maps an unprefixed assets/images path identically', () => {
+    expect(rewriteAssetUrl('assets/images/foo/bar.svg')).toBe('/api/img/foo/bar.svg');
+  });
+
+  it('preserves nested file paths under the slug folder', () => {
+    expect(rewriteAssetUrl('../assets/images/foo/sub/dir/cover.png')).toBe('/api/img/foo/sub/dir/cover.png');
+  });
+
+  it('rewrites every match inside a multi-line markdown body', () => {
+    const body = ['![alt](../assets/images/post-a/img1.png)', 'inline ../assets/images/post-b/img2.webp here'].join(
+      '\n'
+    );
+    const out = rewriteAssetUrl(body) ?? '';
+    expect(out).toContain('/api/img/post-a/img1.png');
+    expect(out).toContain('/api/img/post-b/img2.webp');
+  });
+
+  it('returns the input unchanged when no asset prefix is found', () => {
+    expect(rewriteAssetUrl('https://example.com/x.png')).toBe('https://example.com/x.png');
+    expect(rewriteAssetUrl('/api/img/foo/cover.png')).toBe('/api/img/foo/cover.png');
+  });
+
+  it('returns undefined for undefined input', () => {
+    expect(rewriteAssetUrl(undefined)).toBeUndefined();
   });
 });
 
