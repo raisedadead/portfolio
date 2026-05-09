@@ -1,0 +1,43 @@
+---
+// Author dashboard. Middleware (`src/middleware.ts`) gates access via the
+// Cloudflare Access JWT verifier — unauthenticated requests never reach
+// this file in production. The React island runs client-side and pulls
+// the post index from `/api/cms/posts`.
+//
+// The page is intentionally layout-less. The shared `MainLayout` /
+// `BaseLayout` chain pulls in `@sentry/astro`'s client SDK, whose
+// browser-only integrations (web-vitals via `document.addEventListener`
+// with `useCapture: true`) crash on workerd at SSR time. The CMS only
+// needs a thin shell + a React island, so we render plain HTML here.
+import { PostList } from '@/components/admin/post-list';
+import '@/styles/global.css';
+
+export const prerender = false;
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta name='robots' content='noindex,nofollow' />
+    <title>Posts · CMS · mrugesh.dev</title>
+  </head>
+  <body class='bg-slate-50 text-slate-900'>
+    <header class='border-b-2 border-black bg-white px-4 py-3'>
+      <nav aria-label='Admin navigation' class='mx-auto flex max-w-5xl items-center gap-4'>
+        <a href='/admin' class='text-xl font-semibold'>CMS</a>
+        <a href='/admin' class='underline'>Posts</a>
+        <a href='/admin/new' class='underline'>New</a>
+        <span class='ml-auto text-sm text-slate-600'>mrugesh.dev</span>
+      </nav>
+    </header>
+    <main class='mx-auto max-w-5xl px-4 py-8'>
+      <header class='mb-6 flex items-center'>
+        <h1 class='text-display-md'>Posts</h1>
+        <a href='/admin/new' class='brutalist-button-primary ml-auto px-4 py-2'>New post</a>
+      </header>
+      <PostList client:only='react' />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+---
+import '@/styles/global.css';
+
+export interface Props {
+  pageTitle?: string;
+}
+
+const { pageTitle = 'Admin' } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta name='robots' content='noindex,nofollow' />
+    <title>{pageTitle} · CMS · mrugesh.dev</title>
+  </head>
+  <body class='bg-slate-50 text-slate-900'>
+    <header class='border-b-2 border-black bg-white px-4 py-3'>
+      <nav aria-label='Admin navigation' class='mx-auto flex max-w-5xl items-center gap-4'>
+        <a href='/admin' class='text-xl font-semibold'>CMS</a>
+        <a href='/admin' class='underline'>Posts</a>
+        <a href='/admin/new' class='underline'>New</a>
+        <span class='ml-auto text-sm text-slate-600'>mrugesh.dev</span>
+      </nav>
+    </header>
+    <main class='mx-auto max-w-5xl px-4 py-8'>
+      <slot />
+    </main>
+  </body>
+</html>

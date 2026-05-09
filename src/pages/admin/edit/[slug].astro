@@ -1,0 +1,39 @@
+---
+import AdminLayout from '@/layouts/admin-layout.astro';
+import { PostForm } from '@/components/admin/post-form';
+import { env } from 'cloudflare:workers';
+import { getPost, type R2BindingLike } from '@/lib/cms-posts';
+
+export const prerender = false;
+
+const slug = typeof Astro.params.slug === 'string' ? Astro.params.slug : '';
+
+const cf = env as unknown as { ARTICLES?: R2BindingLike };
+const r2 = cf.ARTICLES;
+const detail = r2 ? await getPost(r2, slug) : null;
+
+if (!detail) {
+  return new Response('post not found', { status: 404, headers: { 'content-type': 'text/plain' } });
+}
+
+const fm = detail.frontmatter;
+const initial = {
+  slug: detail.slug,
+  etag: detail.etag,
+  title: typeof fm.title === 'string' ? fm.title : detail.slug,
+  date:
+    typeof fm.date === 'string'
+      ? fm.date
+      : fm.date instanceof Date
+        ? fm.date.toISOString()
+        : new Date(detail.updatedAt).toISOString(),
+  draft: typeof fm.draft === 'boolean' ? fm.draft : false,
+  cover: typeof fm.cover === 'string' ? fm.cover : undefined,
+  brief: typeof fm.brief === 'string' ? fm.brief : undefined,
+  body: detail.body
+};
+---
+
+<AdminLayout pageTitle={`Edit · ${detail.slug}`}>
+  <PostForm mode='edit' initial={initial} client:only='react' />
+</AdminLayout>
