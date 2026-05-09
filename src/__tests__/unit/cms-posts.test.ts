@@ -4,11 +4,16 @@ import {
   CMS_INDEX_TTL_SECONDS,
   CreatePostError,
   createPost,
+  DeletePostError,
+  deletePost,
+  getPost,
   listPosts,
   POSTS_PREFIX,
   serializePost,
   slugifyTitle,
   splitFrontmatter,
+  UpdatePostError,
+  updatePost,
   validateCreateInput,
   type KvBindingLike,
   type PostFrontmatter,
@@ -61,7 +66,12 @@ function fakeR2(initial: Array<{ slug: string; markdown: string; uploaded?: Date
       };
       return out;
     },
-    async put(key, body) {
+    async put(key, body, options) {
+      const expectedEtag = options?.onlyIf?.etagMatches;
+      if (expectedEtag !== undefined) {
+        const current = store.get(key)?.meta.etag;
+        if (current !== expectedEtag) return null;
+      }
       r2.putCalls += 1;
       const text = typeof body === 'string' ? body : '';
       const meta: R2ObjectMetaLike = {
@@ -367,5 +377,151 @@ describe('createPost', () => {
     await createPost(r2, kv, { title: 'X', body: 'body', draft: false });
     const written = r2.store.get(`${POSTS_PREFIX}x.md`);
     expect(written?.body).toMatch(/draft: false/);
+  });
+});
+
+// ─── getPost ─────────────────────────────────────────────────────────────────
+
+describe('getPost', () => {
+  it('returns the parsed frontmatter, body, and etag for an existing slug', async () => {
+    const md = `---\ntitle: Hello\ndate: 2026-05-01\ndraft: false\n---\n\n# body\n`;
+    const r2 = fakeR2([{ slug: 'hello', markdown: md, etag: 'etag-hello' }]);
+    const detail = await getPost(r2, 'hello');
+    expect(detail).toMatchObject({
+      slug: 'hello',
+      etag: 'etag-hello'
+    });
+    expect(detail?.frontmatter.title).toBe('Hello');
+    expect(detail?.body.trim()).toBe('# body');
+  });
+
+  it('returns null for an unknown slug', async () => {
+    const r2 = fakeR2();
+    expect(await getPost(r2, 'missing')).toBeNull();
+  });
+
+  it('returns null for a slug that fails the pattern (cheap rejection before R2)', async () => {
+    const r2 = fakeR2();
+    const getSpy = vi.spyOn(r2, 'get');
+    expect(await getPost(r2, 'BAD/slug')).toBeNull();
+    expect(getSpy).not.toHaveBeenCalled();
+  });
+});
+
+// ─── updatePost — concurrency (B7) ───────────────────────────────────────────
+
+describe('updatePost', () => {
+  const initial = `---\ntitle: Old\ndate: 2026-05-01\ndraft: true\n---\nold body`;
+
+  it('writes the patched content when the If-Match etag matches the current state', async () => {
+    const r2 = fakeR2([{ slug: 'one', markdown: initial, etag: 'etag-current' }]);
+    const kv = fakeKv();
+    const result = await updatePost(r2, kv, 'one', 'etag-current', { title: 'New', body: 'new body' });
+    expect(result.slug).toBe('one');
+    const stored = r2.store.get(`${POSTS_PREFIX}one.md`);
+    expect(stored?.body).toMatch(/title: New/);
+    expect(stored?.body).toMatch(/new body/);
+    expect(kv.deleteCalls).toBe(1);
+  });
+
+  it('rejects with etag_mismatch when the editor holds a stale etag (two-tab race)', async () => {
+    const r2 = fakeR2([{ slug: 'one', markdown: initial, etag: 'etag-current' }]);
+    const kv = fakeKv();
+    await expect(updatePost(r2, kv, 'one', 'etag-stale', { title: 'New', body: 'new body' })).rejects.toMatchObject({
+      name: 'UpdatePostError',
+      failure: { kind: 'etag_mismatch', current: 'etag-current' }
+    });
+    // Conflicted update must not invalidate the cache.
+    expect(kv.deleteCalls).toBe(0);
+  });
+
+  it('rejects with not_found when the slug does not exist', async () => {
+    const r2 = fakeR2();
+    const kv = fakeKv();
+    await expect(updatePost(r2, kv, 'ghost', 'any', { body: 'b' })).rejects.toMatchObject({
+      failure: { kind: 'not_found' }
+    });
+  });
+
+  it('rejects an empty body via the validation guard', async () => {
+    const r2 = fakeR2([{ slug: 'one', markdown: initial, etag: 'etag-current' }]);
+    const kv = fakeKv();
+    await expect(updatePost(r2, kv, 'one', 'etag-current', { body: '' })).rejects.toMatchObject({
+      failure: { kind: 'invalid_body' }
+    });
+  });
+
+  it('honours an explicit cover=null patch by removing the field from frontmatter', async () => {
+    const md = `---\ntitle: Hello\ndate: 2026-05-01\ndraft: false\ncover: /api/img/hello/old.png\n---\nbody`;
+    const r2 = fakeR2([{ slug: 'hello', markdown: md, etag: 'etag-current' }]);
+    const kv = fakeKv();
+    await updatePost(r2, kv, 'hello', 'etag-current', { cover: null });
+    const stored = r2.store.get(`${POSTS_PREFIX}hello.md`);
+    expect(stored?.body).not.toMatch(/cover/);
+  });
+
+  it('preserves the body when only the frontmatter is being patched', async () => {
+    const md = `---\ntitle: Old\ndate: 2026-05-01\ndraft: true\n---\nstable body content`;
+    const r2 = fakeR2([{ slug: 'one', markdown: md, etag: 'etag-current' }]);
+    const kv = fakeKv();
+    await updatePost(r2, kv, 'one', 'etag-current', { draft: false });
+    const stored = r2.store.get(`${POSTS_PREFIX}one.md`);
+    expect(stored?.body).toMatch(/stable body content/);
+    expect(stored?.body).toMatch(/draft: false/);
+  });
+});
+
+// ─── deletePost ──────────────────────────────────────────────────────────────
+
+describe('deletePost', () => {
+  it('removes the post and invalidates the cache when etag matches', async () => {
+    const r2 = fakeR2([{ slug: 'gone', markdown: '---\ntitle: x\n---\nbody', etag: 'etag-gone' }]);
+    const kv = fakeKv();
+    kv.store.set(CMS_INDEX_KEY, '{"posts":[],"generatedAt":""}');
+    const result = await deletePost(r2, kv, 'gone', 'etag-gone');
+    expect(result).toEqual({ slug: 'gone' });
+    expect(r2.store.has(`${POSTS_PREFIX}gone.md`)).toBe(false);
+    expect(kv.store.has(CMS_INDEX_KEY)).toBe(false);
+  });
+
+  it('rejects on etag_mismatch without deleting (concurrency safety)', async () => {
+    const r2 = fakeR2([{ slug: 'gone', markdown: 'whatever', etag: 'etag-gone' }]);
+    const kv = fakeKv();
+    await expect(deletePost(r2, kv, 'gone', 'etag-old')).rejects.toMatchObject({
+      failure: { kind: 'etag_mismatch', current: 'etag-gone' }
+    });
+    expect(r2.store.has(`${POSTS_PREFIX}gone.md`)).toBe(true);
+  });
+
+  it('returns not_found for an unknown slug', async () => {
+    const r2 = fakeR2();
+    const kv = fakeKv();
+    await expect(deletePost(r2, kv, 'ghost', null)).rejects.toMatchObject({
+      failure: { kind: 'not_found' }
+    });
+  });
+
+  it('skips the etag check when expectedEtag=null (force delete)', async () => {
+    const r2 = fakeR2([{ slug: 'gone', markdown: 'whatever', etag: 'etag-gone' }]);
+    const kv = fakeKv();
+    const result = await deletePost(r2, kv, 'gone', null);
+    expect(result.slug).toBe('gone');
+    expect(r2.store.has(`${POSTS_PREFIX}gone.md`)).toBe(false);
+  });
+
+  it('rejects an invalid slug pattern early (no R2 round trip)', async () => {
+    const r2 = fakeR2();
+    const headSpy = vi.spyOn(r2, 'head');
+    await expect(deletePost(r2, fakeKv(), 'BAD/slug', null)).rejects.toBeInstanceOf(DeletePostError);
+    expect(headSpy).not.toHaveBeenCalled();
+  });
+});
+
+// Type-only assertions to guard against barrel drift.
+describe('error class identity', () => {
+  it('UpdatePostError instances retain their failure shape', () => {
+    const err = new UpdatePostError({ kind: 'not_found' });
+    expect(err.failure.kind).toBe('not_found');
+    expect(err).toBeInstanceOf(Error);
   });
 });

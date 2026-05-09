@@ -266,6 +266,34 @@ export class CreatePostError extends Error {
   }
 }
 
+export interface PostDetail {
+  slug: string;
+  frontmatter: Record<string, unknown>;
+  body: string;
+  etag: string;
+  updatedAt: string;
+}
+
+export interface UpdatePostInput {
+  title?: string;
+  date?: string;
+  cover?: string | null;
+  coverAlt?: string | null;
+  brief?: string | null;
+  tags?: string[];
+  draft?: boolean;
+  body?: string;
+}
+
+export type UpdatePostFailure = { kind: 'not_found' } | { kind: 'etag_mismatch'; current: string } | ValidationFailure;
+
+export class UpdatePostError extends Error {
+  constructor(public failure: UpdatePostFailure) {
+    super(failure.kind);
+    this.name = 'UpdatePostError';
+  }
+}
+
 export interface CreatePostOptions {
   /** Override the clock for deterministic tests + default `date` field. */
   now?: () => number;
@@ -323,4 +351,159 @@ export async function createPost(
     etag: written.etag,
     updatedAt: new Date(written.uploaded).toISOString()
   };
+}
+
+// ─── getPost / updatePost / deletePost ───────────────────────────────────────
+
+/**
+ * Fetches a single post by slug. Returns `null` when the slug does not exist
+ * in R2 — the route handler maps that to a 404 response.
+ */
+export async function getPost(r2: R2BindingLike, slug: string): Promise<PostDetail | null> {
+  if (!SLUG_PATTERN.test(slug)) return null;
+  const key = `${POSTS_PREFIX}${slug}.md`;
+  const obj = await r2.get(key);
+  if (!obj) return null;
+  const text = await obj.text();
+  const { data, body } = splitFrontmatter(text);
+  return {
+    slug,
+    frontmatter: data,
+    body,
+    etag: obj.etag,
+    updatedAt: new Date(obj.uploaded).toISOString()
+  };
+}
+
+function applyUpdate(existing: Record<string, unknown>, patch: UpdatePostInput): PostFrontmatter {
+  const next: Record<string, unknown> = { ...existing };
+  if (patch.title !== undefined) next.title = patch.title.trim();
+  if (patch.date !== undefined) next.date = patch.date;
+  if (patch.draft !== undefined) next.draft = patch.draft;
+  if (patch.tags !== undefined) next.tags = patch.tags;
+  for (const [k, v] of [
+    ['cover', patch.cover],
+    ['coverAlt', patch.coverAlt],
+    ['brief', patch.brief]
+  ] as const) {
+    if (v === null) delete next[k];
+    else if (v !== undefined) next[k] = v;
+  }
+  return {
+    title: typeof next.title === 'string' ? next.title : '',
+    date:
+      typeof next.date === 'string'
+        ? next.date
+        : next.date instanceof Date
+          ? next.date.toISOString()
+          : new Date().toISOString(),
+    draft: typeof next.draft === 'boolean' ? next.draft : false,
+    cover: typeof next.cover === 'string' ? next.cover : undefined,
+    coverAlt: typeof next.coverAlt === 'string' ? next.coverAlt : undefined,
+    brief: typeof next.brief === 'string' ? next.brief : undefined,
+    tags: Array.isArray(next.tags) ? (next.tags as string[]) : undefined
+  };
+}
+
+function validateUpdateInput(patch: UpdatePostInput, finalBody: string): ValidationFailure | null {
+  if (patch.title !== undefined) {
+    const title = patch.title.trim();
+    if (title.length === 0 || title.length > MAX_TITLE_LEN) {
+      return { kind: 'invalid_title', message: `title must be 1-${MAX_TITLE_LEN} characters` };
+    }
+  }
+  if (patch.date !== undefined && Number.isNaN(Date.parse(patch.date))) {
+    return { kind: 'invalid_date', message: 'date must be ISO-8601' };
+  }
+  if (typeof finalBody !== 'string' || finalBody.length === 0) {
+    return { kind: 'invalid_body', message: 'body must be a non-empty string' };
+  }
+  if (new TextEncoder().encode(finalBody).byteLength > MAX_BODY_BYTES) {
+    return { kind: 'invalid_body', message: `body must be ≤${MAX_BODY_BYTES} bytes` };
+  }
+  return null;
+}
+
+/**
+ * Updates a post atomically against an `If-Match` etag. Returns
+ * `{ kind: 'etag_mismatch', current }` when the slug exists but the etag has
+ * moved on (someone else saved between the editor's GET and PUT). The caller
+ * surfaces that as 412 Precondition Failed and the editor refetches.
+ */
+export async function updatePost(
+  r2: R2BindingLike,
+  kv: KvBindingLike,
+  slug: string,
+  expectedEtag: string,
+  patch: UpdatePostInput
+): Promise<CreatePostResult> {
+  if (!SLUG_PATTERN.test(slug)) {
+    throw new UpdatePostError({ kind: 'not_found' });
+  }
+  const key = `${POSTS_PREFIX}${slug}.md`;
+  const existing = await r2.get(key);
+  if (!existing) throw new UpdatePostError({ kind: 'not_found' });
+  if (existing.etag !== expectedEtag) {
+    throw new UpdatePostError({ kind: 'etag_mismatch', current: existing.etag });
+  }
+
+  const text = await existing.text();
+  const { data, body: prevBody } = splitFrontmatter(text);
+  const nextFrontmatter = applyUpdate(data, patch);
+  const nextBody = patch.body ?? prevBody;
+
+  const failure = validateUpdateInput(patch, nextBody);
+  if (failure) throw new UpdatePostError(failure);
+
+  const markdown = serializePost(nextFrontmatter, nextBody);
+  const written = await r2.put(key, markdown, {
+    httpMetadata: { contentType: 'text/markdown; charset=utf-8' },
+    onlyIf: { etagMatches: expectedEtag }
+  });
+  if (!written) {
+    // R2 rejected the conditional write — surface as etag mismatch so the
+    // editor refetches. Re-read the current etag for the response body.
+    const probe = await r2.head(key);
+    throw new UpdatePostError({ kind: 'etag_mismatch', current: probe?.etag ?? expectedEtag });
+  }
+
+  await kv.delete(CMS_INDEX_KEY);
+
+  return {
+    slug,
+    etag: written.etag,
+    updatedAt: new Date(written.uploaded).toISOString()
+  };
+}
+
+export type DeletePostFailure = { kind: 'not_found' } | { kind: 'etag_mismatch'; current: string };
+
+export class DeletePostError extends Error {
+  constructor(public failure: DeletePostFailure) {
+    super(failure.kind);
+    this.name = 'DeletePostError';
+  }
+}
+
+/**
+ * Deletes a post by slug. Honours `If-Match`-style etag pinning when supplied
+ * so concurrent edits can't race with a delete; pass `null` to skip the
+ * etag check (e.g. an explicit "force delete" admin action).
+ */
+export async function deletePost(
+  r2: R2BindingLike,
+  kv: KvBindingLike,
+  slug: string,
+  expectedEtag: string | null
+): Promise<{ slug: string }> {
+  if (!SLUG_PATTERN.test(slug)) throw new DeletePostError({ kind: 'not_found' });
+  const key = `${POSTS_PREFIX}${slug}.md`;
+  const head = await r2.head(key);
+  if (!head) throw new DeletePostError({ kind: 'not_found' });
+  if (expectedEtag !== null && head.etag !== expectedEtag) {
+    throw new DeletePostError({ kind: 'etag_mismatch', current: head.etag });
+  }
+  await r2.delete(key);
+  await kv.delete(CMS_INDEX_KEY);
+  return { slug };
 }
