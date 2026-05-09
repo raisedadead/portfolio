@@ -47,9 +47,8 @@
       "id": "15e1b8365ada4c6bb01c761e25dcf3aa"
     },
     {
-      // Replace placeholder before deploy — see docs/cms-setup.md.
       "binding": "CMS_INDEX",
-      "id": "cms-index-placeholder-replace-before-deploy"
+      "id": "206fca45277f4754b554ecbab13fb91c"
     }
   ],
   "r2_buckets": [
