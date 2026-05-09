@@ -174,6 +174,11 @@ describe('parseS3Keys', () => {
     expect(parseS3Keys('<Key>a&amp;b.md</Key>')).toEqual(['a&b.md']);
   });
 
+  it('does not double-decode chained entities', () => {
+    // `&amp;lt;` represents the literal `&lt;`, not `<`.
+    expect(parseS3Keys('<Key>a&amp;lt;b.md</Key>')).toEqual(['a&lt;b.md']);
+  });
+
   it('returns an empty array for empty input', () => {
     expect(parseS3Keys('<ListBucketResult/>')).toEqual([]);
   });

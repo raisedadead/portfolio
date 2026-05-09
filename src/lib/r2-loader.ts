@@ -89,12 +89,16 @@ export function parseS3Keys(xml: string): string[] {
 }
 
 function decodeXmlEntities(value: string): string {
-  return value
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'");
+  // Single-pass replace: chained `.replace()` calls would double-decode
+  // (`&amp;lt;` would become `<` instead of `&lt;`).
+  const entities: Record<string, string> = {
+    amp: '&',
+    lt: '<',
+    gt: '>',
+    quot: '"',
+    apos: "'"
+  };
+  return value.replace(/&(amp|lt|gt|quot|apos);/g, (_match, name) => entities[name]);
 }
 
 /**
