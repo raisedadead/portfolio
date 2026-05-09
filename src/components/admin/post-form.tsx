@@ -106,6 +106,36 @@ export function PostForm({ mode, initial }: PostFormProps): React.JSX.Element {
     }
   }
 
+  async function handlePublish() {
+    if (!initial || !etag) return;
+    setState({ status: 'saving' });
+    try {
+      const response = await fetch('/api/cms/publish', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ slug: initial.slug, etag, reason: 'admin-publish' }),
+        credentials: 'include'
+      });
+      if (response.status === 412) {
+        const body = (await response.json()) as ApiError;
+        if (body.current) setEtag(body.current);
+        setState({
+          status: 'error',
+          message: 'Another tab saved first. Reload and retry the publish.'
+        });
+        return;
+      }
+      if (!response.ok) {
+        const body = (await response.json().catch(() => ({}))) as ApiError;
+        setState({ status: 'error', message: body.message ?? `Publish failed (HTTP ${response.status}).` });
+        return;
+      }
+      window.location.assign('/admin?published=1');
+    } catch (err) {
+      setState({ status: 'error', message: (err as Error).message });
+    }
+  }
+
   async function handleDelete() {
     if (!initial || !etag) return;
     // eslint-disable-next-line no-alert -- single-author admin tool; confirm() is the simplest a11y-correct guard
@@ -252,6 +282,16 @@ export function PostForm({ mode, initial }: PostFormProps): React.JSX.Element {
         <a className='brutalist-button-ghost px-4 py-2' href='/admin'>
           Cancel
         </a>
+        {mode === 'edit' && initial?.draft && (
+          <button
+            type='button'
+            onClick={handlePublish}
+            disabled={state.status === 'saving'}
+            className='brutalist-button-secondary px-4 py-2'
+          >
+            Publish & deploy
+          </button>
+        )}
         {mode === 'edit' && (
           <button
             type='button'
