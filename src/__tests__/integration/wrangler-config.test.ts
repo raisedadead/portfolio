@@ -67,6 +67,13 @@ describe('wrangler.jsonc R2 bindings', () => {
     expect(session).toBeDefined();
     expect(session?.id).toBe('15e1b8365ada4c6bb01c761e25dcf3aa');
   });
+
+  it('declares the CMS_INDEX KV binding for the dashboard list cache', () => {
+    const cms = config.kv_namespaces?.find((b) => b.binding === 'CMS_INDEX');
+    expect(cms).toBeDefined();
+    expect(cms?.id).toBeDefined();
+    expect(cms?.id.length).toBeGreaterThan(0);
+  });
 });
 
 describe('.env.example — single-source schema', () => {
