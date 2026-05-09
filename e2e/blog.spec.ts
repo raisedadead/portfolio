@@ -141,9 +141,16 @@ test.describe('Blog', () => {
       const coverImage = page.locator('main img').first();
       await expect(coverImage).toBeVisible();
 
-      // Check image loaded
-      const naturalWidth = await coverImage.evaluate((img: HTMLImageElement) => img.naturalWidth);
-      expect(naturalWidth).toBeGreaterThan(0);
+      // Check image loaded — naturalWidth races against the browser's image
+      // decode pipeline, so poll until the decode commits (or fail at 5s).
+      // B14 history: a single read can return 0 when the network response
+      // has arrived but decode is still pending.
+      await expect
+        .poll(async () => coverImage.evaluate((img: HTMLImageElement) => img.naturalWidth), {
+          timeout: 5000,
+          intervals: [100, 200, 500]
+        })
+        .toBeGreaterThan(0);
     });
 
     test('post displays tags', async ({ page }) => {

@@ -1,6 +1,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "portfolio",
+  // Account is `MMCo`. The OAuth token can also see the `freeCodeCamp` org,
+  // so wrangler / cloudflare-vite-plugin can't pick one in non-interactive
+  // mode without this hint. Account ids are not credentials.
+  "account_id": "dee584c21793767c25eee4cebc062726",
   "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2025-09-15",
   "compatibility_flags": ["nodejs_compat"],
