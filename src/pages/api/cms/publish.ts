@@ -43,9 +43,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
   }
 
-  // Optional pre-publish step: flip `draft: false` on the named post so the
-  // rebuild picks it up. Both the slug and the etag must be supplied —
-  // bare publish (no slug) just fires the hook for ad-hoc rebuilds.
+  // With `slug + etag`: flip `draft: false` then fire. Without: bare hook.
   if (payload.slug) {
     if (!cf.ARTICLES || !cf.CMS_INDEX) {
       return jsonResponse(503, { error: 'cms_not_configured' });

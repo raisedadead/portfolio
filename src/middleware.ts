@@ -12,18 +12,9 @@ interface CloudflareEnv {
   SESSION?: KvNamespaceLike;
 }
 
-/**
- * Lazy import of the workerd-only env bridge.
- *
- * The bridge (`@/lib/cloudflare-env-bridge`) statically imports
- * `cloudflare:workers`, which the Cloudflare Vite plugin virtualises into
- * the SSR bundle. Astro v6 with `prerenderEnvironment: 'node'` runs the
- * prerender pass under the Node ESM loader, which cannot resolve the
- * `cloudflare:` URL scheme. Loading the bridge dynamically with a
- * try/catch keeps Node prerender from crashing — the catch returns
- * `null` and the middleware falls through to `next()`, which is correct
- * for the prerendered 404 + static pages (none touch the CMS surface).
- */
+// Dynamic + try/catch: Node-mode prerender cannot resolve `cloudflare:`
+// URLs (the bridge has the static import). Catch → null → guard skipped
+// for prerendered routes, which never touch CMS surfaces anyway.
 async function loadCloudflareEnv(): Promise<CloudflareEnv | null> {
   try {
     const mod = (await import('@/lib/cloudflare-env-bridge')) as { env: unknown };
@@ -46,19 +37,19 @@ function buildAccessGuardConfig(cfEnv: CloudflareEnv): AccessGuardConfig {
       if (!kv || !teamDomain || !audience || !authorEmail) {
         return { valid: false, reason: 'unknown_kid' };
       }
-      const jwksProvider = createKvJwksProvider({ kv, teamDomain });
-      return verifyAccessJwt(token, { teamDomain, audience, authorEmail, jwksProvider });
+      return verifyAccessJwt(token, {
+        teamDomain,
+        audience,
+        authorEmail,
+        jwksProvider: createKvJwksProvider({ kv, teamDomain })
+      });
     }
   };
 }
 
 export const onRequest = defineMiddleware(async ({ request }, next) => {
   const cfEnv = await loadCloudflareEnv();
-  if (!cfEnv) {
-    // Node-mode prerender or any environment without the cloudflare:workers
-    // virtual module: skip the gate. Prerendered routes are public.
-    return next();
-  }
+  if (!cfEnv) return next();
   return runCmsMiddleware({
     request,
     next,

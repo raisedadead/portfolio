@@ -1,18 +1,10 @@
-/**
- * CMS post library — pure logic for the `/api/cms/posts*` routes.
- *
- * Separation of concerns:
- *   - Route handlers in `src/pages/api/cms/...` wire the workerd `env.ARTICLES`
- *     (R2 binding) + `env.CMS_INDEX` (KV cache) into the functions below.
- *   - This module never imports `cloudflare:workers`. Bindings are passed in
- *     as minimal interfaces so vitest can stub them.
- *
- * Storage layout (single-prefix model):
- *   - All posts live under `posts/<slug>.md`.
- *   - The `draft: true` frontmatter flag marks unpublished entries; the
- *     blog index filters them out. Publish (T4.6) flips `draft` to `false`
- *     and fires the Cloudflare Workers Build deploy hook.
- */
+// CMS post library — pure logic for `/api/cms/posts*`. Bindings are
+// passed in as minimal interfaces so vitest can stub them; this module
+// never imports `cloudflare:workers`.
+//
+// Storage: all posts live under `posts/<slug>.md`. The `draft` frontmatter
+// flag controls public visibility; publish flips it to `false` and fires
+// the deploy hook.
 
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 
@@ -22,8 +14,6 @@ export const CMS_INDEX_TTL_SECONDS = 3600;
 export const SLUG_PATTERN = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 export const MAX_BODY_BYTES = 100 * 1024;
 export const MAX_TITLE_LEN = 200;
-
-// ─── Bindings ────────────────────────────────────────────────────────────────
 
 export interface R2ObjectMetaLike {
   key: string;
@@ -60,8 +50,6 @@ export interface KvBindingLike {
   put(key: string, value: string, options?: { expirationTtl?: number }): Promise<void>;
   delete(key: string): Promise<void>;
 }
-
-// ─── Domain shapes ───────────────────────────────────────────────────────────
 
 export interface PostFrontmatter {
   title: string;
@@ -114,15 +102,8 @@ export type ValidationFailure =
   | { kind: 'invalid_date'; message: string }
   | { kind: 'slug_conflict'; slug: string };
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
 const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
 
-/**
- * Slug-safe representation of an arbitrary title. Lowercases, replaces
- * non-alphanumerics with `-`, collapses runs, trims edges. Returns an empty
- * string if the title yields no usable characters; callers must validate.
- */
 export function slugifyTitle(title: string): string {
   return title
     .toLowerCase()
@@ -141,7 +122,6 @@ export function splitFrontmatter(raw: string): { data: Record<string, unknown>; 
 }
 
 export function serializePost(frontmatter: PostFrontmatter, body: string): string {
-  // Drop undefineds so the YAML stays terse + diffable.
   const data: Record<string, unknown> = {};
   for (const [k, v] of Object.entries(frontmatter)) {
     if (v !== undefined) data[k] = v;
@@ -194,21 +174,14 @@ export function validateCreateInput(input: CreatePostInput): ValidationFailure |
   if (new TextEncoder().encode(body).byteLength > MAX_BODY_BYTES) {
     return { kind: 'invalid_body', message: `body must be ≤${MAX_BODY_BYTES} bytes` };
   }
-  if (input.date !== undefined) {
-    const parsed = Date.parse(input.date);
-    if (Number.isNaN(parsed)) {
-      return { kind: 'invalid_date', message: 'date must be ISO-8601' };
-    }
+  if (input.date !== undefined && Number.isNaN(Date.parse(input.date))) {
+    return { kind: 'invalid_date', message: 'date must be ISO-8601' };
   }
   return null;
 }
 
-// ─── Operations ──────────────────────────────────────────────────────────────
-
 export interface ListPostsOptions {
-  /** Force a cache miss and rebuild the index. */
   forceRefresh?: boolean;
-  /** Override Date.now for deterministic tests. */
   now?: () => number;
 }
 
@@ -218,11 +191,6 @@ export interface ListPostsResult {
   generatedAt: string;
 }
 
-/**
- * Reads the post index from KV cache, falling back to a full R2 list+head walk
- * on cache miss or `forceRefresh: true`. The cache stores frontmatter-derived
- * summaries only — full post bodies stay in R2.
- */
 export async function listPosts(
   r2: R2BindingLike,
   kv: KvBindingLike,
@@ -295,18 +263,9 @@ export class UpdatePostError extends Error {
 }
 
 export interface CreatePostOptions {
-  /** Override the clock for deterministic tests + default `date` field. */
   now?: () => number;
 }
 
-/**
- * Validates the input, ensures the slug is free, writes the markdown blob to
- * R2, and invalidates the KV index cache. Returns the new slug + R2 etag so
- * the caller can echo them back to the editor for the next If-Match round-trip.
- *
- * Throws `CreatePostError` on validation failure or slug conflict — the route
- * handler maps these to 400/409 responses without leaking internals.
- */
 export async function createPost(
   r2: R2BindingLike,
   kv: KvBindingLike,
@@ -319,53 +278,35 @@ export async function createPost(
   const title = input.title.trim();
   const slug = input.slug ?? slugifyTitle(title);
   const key = `${POSTS_PREFIX}${slug}.md`;
-  const existing = await r2.head(key);
-  if (existing) {
-    throw new CreatePostError({ kind: 'slug_conflict', slug });
-  }
+  if (await r2.head(key)) throw new CreatePostError({ kind: 'slug_conflict', slug });
 
-  const nowMs = (options.now ?? Date.now)();
-  const date = input.date ?? new Date(nowMs).toISOString();
-  const frontmatter: PostFrontmatter = {
-    title,
-    date,
-    draft: input.draft ?? true,
-    cover: input.cover,
-    coverAlt: input.coverAlt,
-    brief: input.brief,
-    tags: input.tags
-  };
-
-  const markdown = serializePost(frontmatter, input.body);
+  const date = input.date ?? new Date((options.now ?? Date.now)()).toISOString();
+  const markdown = serializePost(
+    {
+      title,
+      date,
+      draft: input.draft ?? true,
+      cover: input.cover,
+      coverAlt: input.coverAlt,
+      brief: input.brief,
+      tags: input.tags
+    },
+    input.body
+  );
   const written = await r2.put(key, markdown, {
     httpMetadata: { contentType: 'text/markdown; charset=utf-8' }
   });
-  if (!written) {
-    throw new Error('R2 put returned null — write rejected');
-  }
+  if (!written) throw new Error('R2 put returned null — write rejected');
 
   await kv.delete(CMS_INDEX_KEY);
-
-  return {
-    slug,
-    etag: written.etag,
-    updatedAt: new Date(written.uploaded).toISOString()
-  };
+  return { slug, etag: written.etag, updatedAt: new Date(written.uploaded).toISOString() };
 }
 
-// ─── getPost / updatePost / deletePost ───────────────────────────────────────
-
-/**
- * Fetches a single post by slug. Returns `null` when the slug does not exist
- * in R2 — the route handler maps that to a 404 response.
- */
 export async function getPost(r2: R2BindingLike, slug: string): Promise<PostDetail | null> {
   if (!SLUG_PATTERN.test(slug)) return null;
-  const key = `${POSTS_PREFIX}${slug}.md`;
-  const obj = await r2.get(key);
+  const obj = await r2.get(`${POSTS_PREFIX}${slug}.md`);
   if (!obj) return null;
-  const text = await obj.text();
-  const { data, body } = splitFrontmatter(text);
+  const { data, body } = splitFrontmatter(await obj.text());
   return {
     slug,
     frontmatter: data,
@@ -424,12 +365,6 @@ function validateUpdateInput(patch: UpdatePostInput, finalBody: string): Validat
   return null;
 }
 
-/**
- * Updates a post atomically against an `If-Match` etag. Returns
- * `{ kind: 'etag_mismatch', current }` when the slug exists but the etag has
- * moved on (someone else saved between the editor's GET and PUT). The caller
- * surfaces that as 412 Precondition Failed and the editor refetches.
- */
 export async function updatePost(
   r2: R2BindingLike,
   kv: KvBindingLike,
@@ -437,9 +372,7 @@ export async function updatePost(
   expectedEtag: string,
   patch: UpdatePostInput
 ): Promise<CreatePostResult> {
-  if (!SLUG_PATTERN.test(slug)) {
-    throw new UpdatePostError({ kind: 'not_found' });
-  }
+  if (!SLUG_PATTERN.test(slug)) throw new UpdatePostError({ kind: 'not_found' });
   const key = `${POSTS_PREFIX}${slug}.md`;
   const existing = await r2.get(key);
   if (!existing) throw new UpdatePostError({ kind: 'not_found' });
@@ -447,33 +380,25 @@ export async function updatePost(
     throw new UpdatePostError({ kind: 'etag_mismatch', current: existing.etag });
   }
 
-  const text = await existing.text();
-  const { data, body: prevBody } = splitFrontmatter(text);
-  const nextFrontmatter = applyUpdate(data, patch);
+  const { data, body: prevBody } = splitFrontmatter(await existing.text());
   const nextBody = patch.body ?? prevBody;
 
   const failure = validateUpdateInput(patch, nextBody);
   if (failure) throw new UpdatePostError(failure);
 
-  const markdown = serializePost(nextFrontmatter, nextBody);
+  const markdown = serializePost(applyUpdate(data, patch), nextBody);
   const written = await r2.put(key, markdown, {
     httpMetadata: { contentType: 'text/markdown; charset=utf-8' },
     onlyIf: { etagMatches: expectedEtag }
   });
   if (!written) {
-    // R2 rejected the conditional write — surface as etag mismatch so the
-    // editor refetches. Re-read the current etag for the response body.
+    // R2 rejected the conditional write — re-read for the current etag.
     const probe = await r2.head(key);
     throw new UpdatePostError({ kind: 'etag_mismatch', current: probe?.etag ?? expectedEtag });
   }
 
   await kv.delete(CMS_INDEX_KEY);
-
-  return {
-    slug,
-    etag: written.etag,
-    updatedAt: new Date(written.uploaded).toISOString()
-  };
+  return { slug, etag: written.etag, updatedAt: new Date(written.uploaded).toISOString() };
 }
 
 export type DeletePostFailure = { kind: 'not_found' } | { kind: 'etag_mismatch'; current: string };
@@ -485,11 +410,6 @@ export class DeletePostError extends Error {
   }
 }
 
-/**
- * Deletes a post by slug. Honours `If-Match`-style etag pinning when supplied
- * so concurrent edits can't race with a delete; pass `null` to skip the
- * etag check (e.g. an explicit "force delete" admin action).
- */
 export async function deletePost(
   r2: R2BindingLike,
   kv: KvBindingLike,

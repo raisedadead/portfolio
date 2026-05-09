@@ -1,7 +1,6 @@
-// Augment Vitest's matchers with `toHaveNoViolations`, registered globally
-// in `vitest.setup.ts` via `import 'jest-axe/extend-expect';`. This file
-// IS a module (top-level import) so the `declare module 'vitest'` block
-// merges with vitest's own typings rather than replacing them.
+// Module file (top-level import) — merges with `vitest`'s typings
+// rather than replacing them. `toHaveNoViolations` is registered at
+// runtime by `vitest.setup.ts`.
 
 import 'vitest';
 

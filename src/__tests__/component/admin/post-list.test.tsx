@@ -1,11 +1,3 @@
-/**
- * Component-level a11y + behavior tests for the admin post list.
- *
- * jest-axe sweeps each render state (loading / loaded / empty / error) so
- * regressions in heading order, table semantics, or focus targets fail
- * locally before they reach `/admin`. The fetch is mocked; no network.
- */
-
 import { render, screen, waitFor } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';

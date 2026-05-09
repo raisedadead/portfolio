@@ -1,9 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "portfolio",
-  // Account is `MMCo`. The OAuth token can also see the `freeCodeCamp` org,
-  // so wrangler / cloudflare-vite-plugin can't pick one in non-interactive
-  // mode without this hint. Account ids are not credentials.
+  // OAuth token sees both MMCo + freeCodeCamp; pin to disambiguate.
   "account_id": "dee584c21793767c25eee4cebc062726",
   "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2025-09-15",
@@ -22,11 +20,7 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "./dist",
-    // Static-asset binding short-circuits the Worker by default. The CMS
-    // surface lives entirely under /admin and /api, so Astro middleware
-    // (Sentry telemetry + the Cloudflare Access gate) MUST run before
-    // any asset lookup for those paths. Other paths still serve from
-    // the asset binding first for cache friendliness.
+    // Gate must fire before asset lookup for CMS paths.
     "run_worker_first": ["/admin/*", "/api/*"]
   },
   "vars": {
@@ -53,11 +47,7 @@
       "id": "15e1b8365ada4c6bb01c761e25dcf3aa"
     },
     {
-      // CMS dashboard list cache. Populated lazily by /api/cms/posts on cache
-      // miss (1-hour TTL) and invalidated on every R2 write so the editor
-      // dashboard never serves a stale post list. Local id placeholder —
-      // replace with the real namespace id from the CF dashboard before
-      // first deploy (see docs/cms-setup.md for the wrangler kv command).
+      // Replace placeholder before deploy — see docs/cms-setup.md.
       "binding": "CMS_INDEX",
       "id": "cms-index-placeholder-replace-before-deploy"
     }

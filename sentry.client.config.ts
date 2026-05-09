@@ -2,13 +2,9 @@ import * as Sentry from '@sentry/astro';
 
 const dsn = import.meta.env.PUBLIC_SENTRY_DSN;
 
-// Sentry's Vite plugin prepends this file to every Astro entry chunk —
-// including the SSR bundle that runs in workerd for /admin/* and other
-// SSR routes. `browserTracingIntegration()` calls
-// `document.addEventListener('load', cb, true)`, which workerd rejects
-// (`useCapture must be false`) and crashes the server render. Guard the
-// init so it only runs in an actual browser; client-side telemetry is
-// unchanged, SSR no longer crashes.
+// Sentry's Vite plugin prepends this file into the SSR bundle too;
+// `browserTracingIntegration()`'s `addEventListener('load', _, true)`
+// crashes workerd. Gate init on a real browser presence.
 const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
 
 if (dsn && isBrowser) {

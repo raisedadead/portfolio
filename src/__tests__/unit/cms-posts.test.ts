@@ -22,8 +22,6 @@ import {
   type R2ObjectMetaLike
 } from '@/lib/cms-posts';
 
-// ─── Fakes ───────────────────────────────────────────────────────────────────
-
 interface FakeR2 extends R2BindingLike {
   store: Map<string, { body: string; meta: R2ObjectMetaLike }>;
   putCalls: number;
@@ -132,8 +130,6 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-// ─── slugifyTitle ────────────────────────────────────────────────────────────
-
 describe('slugifyTitle', () => {
   it('lowercases and replaces whitespace + symbols with single hyphens', () => {
     expect(slugifyTitle('Hello, World!')).toBe('hello-world');
@@ -148,8 +144,6 @@ describe('slugifyTitle', () => {
     expect(slugifyTitle('!!!')).toBe('');
   });
 });
-
-// ─── splitFrontmatter / serializePost round-trip ─────────────────────────────
 
 describe('serializePost / splitFrontmatter', () => {
   it('round-trips frontmatter and body', () => {
@@ -167,8 +161,6 @@ describe('serializePost / splitFrontmatter', () => {
     expect(md).not.toMatch(/cover/);
   });
 });
-
-// ─── validateCreateInput ─────────────────────────────────────────────────────
 
 describe('validateCreateInput', () => {
   it('accepts a minimal valid payload (slug derived)', () => {
@@ -208,8 +200,6 @@ describe('validateCreateInput', () => {
     expect(validateCreateInput({ title: 'A', body: 'hi', date: 'not-a-date' })).toMatchObject({ kind: 'invalid_date' });
   });
 });
-
-// ─── listPosts — KV cache hit ────────────────────────────────────────────────
 
 describe('listPosts', () => {
   it('returns the cached index without reading R2 when KV has a fresh entry', async () => {
@@ -309,8 +299,6 @@ describe('listPosts', () => {
   });
 });
 
-// ─── createPost ──────────────────────────────────────────────────────────────
-
 describe('createPost', () => {
   it('writes a draft markdown blob to R2 with derived slug + frontmatter', async () => {
     const r2 = fakeR2();
@@ -380,8 +368,6 @@ describe('createPost', () => {
   });
 });
 
-// ─── getPost ─────────────────────────────────────────────────────────────────
-
 describe('getPost', () => {
   it('returns the parsed frontmatter, body, and etag for an existing slug', async () => {
     const md = `---\ntitle: Hello\ndate: 2026-05-01\ndraft: false\n---\n\n# body\n`;
@@ -407,8 +393,6 @@ describe('getPost', () => {
     expect(getSpy).not.toHaveBeenCalled();
   });
 });
-
-// ─── updatePost — concurrency (B7) ───────────────────────────────────────────
 
 describe('updatePost', () => {
   const initial = `---\ntitle: Old\ndate: 2026-05-01\ndraft: true\n---\nold body`;
@@ -470,8 +454,6 @@ describe('updatePost', () => {
     expect(stored?.body).toMatch(/draft: false/);
   });
 });
-
-// ─── deletePost ──────────────────────────────────────────────────────────────
 
 describe('deletePost', () => {
   it('removes the post and invalidates the cache when etag matches', async () => {

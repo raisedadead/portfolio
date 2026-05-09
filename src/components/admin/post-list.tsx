@@ -1,12 +1,3 @@
-/**
- * Author dashboard — list view.
- *
- * Hydrated as `client:idle` from `/admin/index.astro`. The page shell is
- * rendered server-side (gated by the CMS Access middleware) and the React
- * island fetches `/api/cms/posts` for the live table. Errors are surfaced
- * inline so the dashboard remains usable when the cache or R2 is degraded.
- */
-
 import { useEffect, useState } from 'react';
 
 interface PostSummary {

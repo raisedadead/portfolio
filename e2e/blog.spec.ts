@@ -137,14 +137,10 @@ test.describe('Blog', () => {
       await firstPost.click();
       await expect(page).toHaveURL(/\/blog\/.+/);
 
-      // Should have a cover image
       const coverImage = page.locator('main img').first();
       await expect(coverImage).toBeVisible();
 
-      // Check image loaded — naturalWidth races against the browser's image
-      // decode pipeline, so poll until the decode commits (or fail at 5s).
-      // B14 history: a single read can return 0 when the network response
-      // has arrived but decode is still pending.
+      // Poll naturalWidth — first read can return 0 while decode is pending.
       await expect
         .poll(async () => coverImage.evaluate((img: HTMLImageElement) => img.naturalWidth), {
           timeout: 5000,

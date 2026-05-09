@@ -1,14 +1,3 @@
-/**
- * T5.1 — page-level jest-axe sweep on /admin/*.
- *
- * Component tests in `post-list.test.tsx` and `post-form.test.tsx` already
- * sweep the islands in isolation. This file renders them inside an
- * approximation of the bare admin layout (header nav + main shell) so we
- * also assert the wrapping markup contributes zero a11y violations.
- * If the layout regresses (skipped landmarks, missing headings, broken
- * label↔input pairing) the suite fails before /admin ships.
- */
-
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -60,7 +49,7 @@ function AdminShell({ children }: { children: React.ReactNode }): React.JSX.Elem
   );
 }
 
-describe('Admin page shell — a11y (T5.1)', () => {
+describe('Admin page shell — a11y', () => {
   it('admin index (post list inside layout shell) has zero axe violations', async () => {
     const { container } = render(
       <AdminShell>

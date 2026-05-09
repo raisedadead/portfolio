@@ -1,17 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-/**
- * V8 — Cloudflare Access gate enforcement against the built Worker.
- *
- * The webServer launched by `playwright.config.ts` runs `wrangler dev`
- * against `dist/server`, which is the production-shaped artifact. Without
- * a `Cf-Access-Jwt-Assertion` header or `CF_Authorization` cookie, every
- * CMS surface MUST 401 before any handler runs. The dev-bypass is gated
- * on `import.meta.env.DEV`, which is `false` in this build, so the gate
- * is always closed here.
- */
-
-test.describe('CMS Access gate (V8)', () => {
+test.describe('CMS Access gate', () => {
   for (const path of ['/admin', '/admin/edit/some-slug', '/admin/new']) {
     test(`401s unauthenticated GET ${path}`, async ({ request }) => {
       const response = await request.get(path, { maxRedirects: 0 });

@@ -1,184 +1,106 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Project notes — non-obvious only. Commands, deps, and tsconfig are
+discoverable from `package.json` / `tsconfig.json`; not duplicated here.
 
-## Project Overview
+## Stack
 
-Personal portfolio website built with Astro 6, React 19, and Tailwind CSS 4, deployed on Cloudflare Workers. Blog content is sourced from a Cloudflare R2 bucket (`articles-content-prd`) at build time via a custom Astro loader. A second freeCodeCamp RSS-backed collection augments the blog index.
+Astro 6 (SSR, Cloudflare adapter) + React 19 islands + Tailwind 4.
+Markdown sourced from R2 at build time; freeCodeCamp RSS as a second
+collection. Sentry client + server. pnpm enforced via `packageManager`.
 
-## Development Commands
+## Content & R2
 
-### Setup
-```bash
-pnpm install           # Install dependencies (uses pnpm, required)
-```
+- Bucket layout: `posts/<slug>.md`, `drafts/<slug>.md`,
+  `assets/images/<slug>/<file>` in `articles-content-prd` (preview/dev
+  → `articles-content-stg`, picked up via `preview_bucket_name` on the
+  binding — wrangler dev never hits prod R2).
+- `src/content.config.ts` wires `r2MarkdownLoader` directly. The loader
+  rewrites legacy `../assets/images/<slug>/<file>` references to
+  `/api/img/<slug>/<file>` so they resolve through the R2 streamer at
+  runtime. Build fails loudly without R2 credentials — no glob fallback.
+- Migration: `node scripts/migrate-articles-to-r2.mjs --source <path>
+  --bucket <name> [--dry-run|--commit]`. Idempotent (md5 + ETag skip).
+  Requires an R2 token with **read+write** scope.
 
-### Development
-```bash
-pnpm develop          # Start dev server
-pnpm build            # Production build
-pnpm preview          # Preview production build locally (uses wrangler)
-pnpm deploy           # Deploy to Cloudflare
-```
+## CMS surface
 
-### Testing
-```bash
-pnpm test                  # Run all tests once
-pnpm test:watch            # Run tests in watch mode
-pnpm test:watch:ui         # Run tests with Vitest UI
-pnpm test:coverage         # Run tests with coverage report
-pnpm test:update           # Update test snapshots
-```
+`/admin/*` + `/api/cms/*` gated by Cloudflare Access JWT. Single-author
+allowlist (`hi@mrugesh.dev`). Posts are stored in `posts/<slug>.md`
+with a `draft` frontmatter flag — publish flips it to `false` and fires
+the Workers Build deploy hook.
 
-### Running Single Tests
-```bash
-pnpm test src/__tests__/specific.test.tsx    # Run single test file
-pnpm test -- -t "test name pattern"          # Run tests matching pattern
-```
+- Pure libs: `src/lib/cms-{access-guard,middleware,posts,publish}.ts`.
+  Bindings are passed in via interfaces so vitest never imports
+  `astro:middleware` / `cloudflare:workers`.
+- `src/lib/cloudflare-env-bridge.ts` is a workerd-only env shim. The
+  middleware reaches it via guarded dynamic import — Node-mode
+  prerender catches the `cloudflare:` resolve failure and falls
+  through.
+- `wrangler.jsonc → assets.run_worker_first` puts CMS paths in front of
+  the static-asset binding so the gate fires before a stray asset
+  lookup. Without it, `/admin` would serve the static 404 page.
+- Setup runbook: `docs/cms-setup.md` (KV namespace, CF Access app,
+  `wrangler secret put` for the four runtime keys).
 
-### Code Quality
-```bash
-pnpm lint              # Lint with oxlint
-pnpm lint:fix          # Auto-fix lint issues
-pnpm format            # Format code with oxfmt
-pnpm format:check      # Check formatting
-pnpm check             # Type-check with Astro
-```
+## Secrets / env
 
-### Turbo Commands
-All above commands can be prefixed with `turbo:` for optimized caching (e.g., `pnpm turbo:build`). Turbo is configured with remote caching support.
+`.env` is the single source. `.envrc` (committed) hooks direnv so vars
+load on `cd`. `pnpm develop` and `pnpm preview` regenerate `.dev.vars`
+from `.env` via `scripts/sync-dev-vars.mjs` — only the runtime-only
+subset (`CF_ACCESS_*`, `DEPLOY_HOOK_URL`, `DEV_BYPASS_ACCESS`). Schema
+lives in `.env.example`. Production secrets land in the Worker secret
+store via `wrangler secret put`.
 
-### Cloudflare Workers
-```bash
-pnpm cf-typegen        # Generate Cloudflare Workers types
-```
-This runs automatically after `pnpm install` and is a dependency for build/develop tasks.
+`DEV_BYPASS_ACCESS=1` opens the gate **only** under `astro dev` — gated
+by `import.meta.env.DEV`. Production builds drop the bypass branch.
 
-## Architecture
+## Sentry on Cloudflare
 
-### Tech Stack
-- **Framework**: Astro 5 (SSR mode) with React 19 islands
-- **Styling**: Tailwind CSS 4 with custom brutalist design system
-- **Animation**: Motion (motion/react) for React components
-- **Deployment**: Cloudflare Workers (adapter: @astrojs/cloudflare)
-- **Content**: Cloudflare R2 (markdown source-of-truth) + freeCodeCamp RSS (`@ascorbic/feed-loader`)
-- **Testing**: Vitest + React Testing Library + happy-dom
-- **Monitoring**: Sentry (client + server)
-- **Build Tool**: Turbo (monorepo caching)
+Sentry MUST be the first integration in `astro.config.mjs`. Request
+handler auto-instrumentation is off for workerd compatibility.
 
-### Key Files
-- `astro.config.mjs` - Astro configuration with Cloudflare adapter, Sentry integration, React
-- `wrangler.jsonc` - Cloudflare Workers deployment config
-- `src/content.config.ts` - Content collections (blog from R2 + freeCodeCamp RSS)
-- `src/lib/r2-loader.ts` - R2 build-time loader (S3-compat via `aws4fetch`) + production adapter
-- `scripts/migrate-articles-to-r2.mjs` - One-shot migration tool (idempotent, ETag-skip)
-- `src/layouts/base-layout.astro` - Root HTML layout with font loading strategy
-- `src/layouts/main-layout.astro` - Main page wrapper with Background component
-- `src/components/background/` - Animated canvas background (waves + birds + grain) with layered architecture
-- `turbo.json` - Turborepo task pipeline and caching config
+`sentry.{client,server}.config.ts` gate `Sentry.init()` on environment
+detection — workerd rejects `addEventListener('load', _, true)` from
+`browserTracingIntegration`, so we skip init on workerd
+(`globalThis.WebSocketPair`) and outside browsers. Sentry is still live
+in real Node SSR (e.g. prerender) and in real browsers.
 
-### Path Aliases
-- `@/*` → `./src/*` (configured in tsconfig.json and vitest.config.ts)
+The middleware emits `api.response_time` distribution + `api.requests`
+count for every `/api/*` response (including 401s).
 
-### Content Management
-Blog posts live as markdown blobs in the Cloudflare R2 bucket `articles-content-prd` (preview/staging in `articles-content-stg`). Layout: `posts/<slug>.md`, `drafts/<slug>.md`, `assets/images/<slug>/<file>`.
+## React 19 + bundler
 
-`src/content.config.ts` wires `r2MarkdownLoader` from `src/lib/r2-loader.ts` directly (signed S3-compat reads via `aws4fetch`). The loader rewrites legacy `../assets/images/<slug>/<file>` references in frontmatter and markdown body to `/api/img/<slug>/<file>` so they resolve through the R2 image-streamer route at runtime. Build fails loudly if R2 credentials are absent — there is no glob fallback.
+`astro.config.mjs` aliases `react-dom/server` → `react-dom/server.edge`
+in production to dodge the MessageChannel polyfill that
+`server.browser` pulls in.
 
-All local secrets live in a single `.env` (gitignored). `.envrc` (committed) hooks direnv so the values are exported into your shell on `cd`. The schema is documented in `.env.example`. `pnpm develop` and `pnpm preview` run `node scripts/sync-dev-vars.mjs` first, which generates `.dev.vars` (Wrangler's expected file) from the runtime-only subset of `.env`. The generated file carries a `# GENERATED ... Do not edit.` header and is gitignored. Production runtime secrets land in the Cloudflare Worker secret store via `wrangler` (do not commit real values anywhere).
+## Styling
 
-Migration: `node scripts/migrate-articles-to-r2.mjs --source <path> --bucket <name> [--dry-run | --commit]`. Idempotent (md5 + ETag skip). Requires an R2 API token with object **read+write** scope on the target bucket.
+Tailwind 4 with brutalist tokens in `src/styles/global.css`:
+`brutalist-{button,card,input}`, hard-edge shadows
+`--shadow-brutal-{sm,md,lg,xl}`. Critical fonts preload; rest lazy via
+FontFace API.
 
-Remote images are served from `mrugesh.dev` only (configured in `astro.config.mjs`). The legacy third-party CDN pipeline is retired (see P3 of the migration dossier).
+## Background canvas
 
-### View Transitions
-Uses Astro's native view transitions (`<ClientRouter />`) with `transition:persist` for background animation. The Background component persists across page navigations.
+`src/components/background/` is layered for perf — static gradient
+(z-1) + animated canvas (z-2, `client:idle` hydration). Grain texture
+renders at 50% res; resize debounces grain regen 150 ms. Canvas opacity
+fades in over 1.8 s.
 
-### Background Canvas Performance
-The Background component (`src/components/background/`) has a layered architecture with specific optimization:
-- **Gradient Layer**: Static CSS gradient background (z-1)
-- **Canvas Layer**: Animated waves, birds, and grain texture (z-2)
-- Uses `client:idle` directive for deferred hydration
-- Canvas animations start after hydration with requestAnimationFrame
-- Grain texture generated synchronously on initial load at 50% resolution
-- Resize handling: immediate canvas dimension update, debounced grain regeneration (150ms)
-- Canvas layer fades in with `motion` (opacity 0 → 1, duration 1.8s)
+The Background persists across page navigations via
+`<ClientRouter />` + `transition:persist='background'`.
 
-### Styling System
-Uses Tailwind CSS 4 with custom brutalist design tokens in `src/styles/global.css`:
-- Custom utility classes: `brutalist-button`, `brutalist-card`, `brutalist-input`
-- Hard-edge shadows: `--shadow-brutal-{sm,md,lg,xl}`
-- Font loading: Critical fonts preloaded, non-critical lazy loaded via FontFace API
-- Custom color tokens with semantic aliases
+## Testing
 
-### React 19 Compatibility
-Uses `react-dom/server.edge` in production (not `react-dom/server.browser`) to avoid MessageChannel polyfill issues. Configured in `astro.config.mjs` vite.resolve.alias.
+- Vitest + happy-dom + `pool: 'forks'` (required for stability).
+- Test files in `src/__tests__/{unit,integration,component,pages}/`.
+- jest-axe for a11y. `toHaveNoViolations` is registered globally in
+  `vitest.setup.ts`; types augmented in `src/types/vitest-jest-axe.d.ts`.
+- Playwright e2e against `wrangler dev --config dist/server/...`. R2
+  binding is `remote: true` so the suite hits the real staging bucket.
 
-### TypeScript Configuration
-- Strict mode enabled
-- JSX runtime: react-jsx
-- Module resolution: bundler (Vite)
-- Extends: astro/tsconfigs/strict
+## Path alias
 
-### Testing Setup
-- Environment: happy-dom
-- Pool: forks (required for stability)
-- Setup file: vitest.setup.ts
-- Coverage: v8 provider with html/json reports
-- Globals enabled for describe/it/expect
-
-### Accessibility Testing
-Tests use `jest-axe` for automated accessibility checks:
-```typescript
-import { axe, toHaveNoViolations } from 'jest-axe';
-expect.extend(toHaveNoViolations);
-const results = await axe(container);
-expect(results).toHaveNoViolations();
-```
-
-### Deployment
-Deployed to Cloudflare Workers using wrangler:
-- Preview via `pnpm preview` (wrangler dev)
-- Deploy via `pnpm deploy` (wrangler deploy)
-- Custom domain: mrugesh.dev
-- Assets binding for static files
-- Smart placement mode enabled
-
-### Environment Variables
-See `.env.example` for required variables:
-- Sentry: PUBLIC_SENTRY_DSN, SENTRY_AUTH_TOKEN, SENTRY_ORG, SENTRY_PROJECT
-- Turbo: TURBO_API, TURBO_TEAM, TURBO_TOKEN, TURBO_REMOTE_CACHE_SIGNATURE_KEY
-
-### Sentry Integration
-Sentry MUST be the first integration in `astro.config.mjs` to wrap other integrations. Source maps are uploaded automatically when SENTRY_AUTH_TOKEN is set. Request handler auto-instrumentation is disabled for Cloudflare Workers compatibility.
-
-## Code Standards
-
-### TypeScript
-- Use strict types, never `any`
-- Leverage path alias `@/*` for imports
-- Follow Astro's TypeScript conventions
-
-### React Components
-- Use functional components with hooks
-- Client directives: `client:idle` for most components, `client:visible` for below-fold
-- Use `motion/react` for animations (not framer-motion)
-- Prefer React 19 features (use hook, useActionState, etc.)
-
-### Styling
-- Use Tailwind utilities first
-- Use brutalist utility classes for consistent design
-- Avoid inline styles except for dynamic values (e.g., canvas styles)
-
-### Git Workflow
-- Husky pre-commit hooks run lint-staged (oxlint + oxfmt)
-- Conventional commits encouraged
-- Main branch: `main`
-
-### Linting
-- Uses oxlint (fast Rust-based linter)
-- Config: `.oxlintrc.json`
-- Auto-fix available via `pnpm lint:fix`
-
-### Package Manager
-**REQUIRED**: Use `pnpm` only (enforced by packageManager field). Do not use npm or yarn.
+`@/*` → `./src/*` (`tsconfig.json` + `vitest.config.ts`).

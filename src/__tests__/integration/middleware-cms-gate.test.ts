@@ -1,13 +1,3 @@
-/**
- * Integration tests for the CMS middleware composition.
- *
- * The Astro middleware shell (`src/middleware.ts`) imports two runtime-only
- * specifiers (`astro:middleware`, `cloudflare:workers`) that vitest cannot
- * resolve. The composition logic lives in `src/lib/cms-middleware.ts` and
- * is fully testable with stubbed deps — these tests drive the guard +
- * Sentry metrics wiring (V14) without booting Astro.
- */
-
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { VerifyResult } from '@/lib/cf-access-jwt';
 import type { AccessGuardConfig } from '@/lib/cms-access-guard';

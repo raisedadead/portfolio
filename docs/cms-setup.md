@@ -118,9 +118,3 @@ deploy` button should be available on any draft.
 | `/api/cms/posts` returns 503 `cms_not_configured`       | `CMS_INDEX` KV binding is missing — re-run step 1 and redeploy.                                                 |
 | Publish returns 502 `hook_failed` or `hook_unreachable` | `DEPLOY_HOOK_URL` is wrong, expired, or the build hook was deleted. Re-run step 4.                              |
 | Post saves succeed but blog index does not update       | Publish was not fired; or the Workers Build did not pick up the new R2 content (rare — check builds dashboard). |
-
----
-
-## Rollback
-
-If the CMS surface needs to be rolled back, see `docs/cms-rollback.md`.

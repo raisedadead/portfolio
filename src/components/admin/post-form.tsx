@@ -1,16 +1,3 @@
-/**
- * Author dashboard — post editor.
- *
- * Shared between `/admin/new.astro` (no slug) and `/admin/edit/[slug].astro`
- * (existing post pre-loaded server-side). The form posts JSON to the CMS API
- * and surfaces validation errors inline.
- *
- * Editor is a plain textarea today. The Milkdown WYSIWYG island is queued for
- * a follow-up — drag-drop image uploads (sprint S2) need to land first to
- * make Milkdown's image plugin useful, and the textarea covers the
- * keyboard-only authoring path with full a11y support.
- */
-
 import { useState } from 'react';
 
 interface InitialPost {

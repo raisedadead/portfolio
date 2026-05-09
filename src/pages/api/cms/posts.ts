@@ -9,7 +9,6 @@ import {
   type R2BindingLike
 } from '@/lib/cms-posts';
 
-// Author CMS surface — no caching, no static prerender.
 export const prerender = false;
 
 interface CmsBindings {
