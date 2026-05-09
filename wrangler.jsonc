@@ -38,6 +38,16 @@
           "binding": "ARTICLES",
           "bucket_name": "articles-content-stg"
         }
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "SESSION",
+          "id": "640104b9e5674eda81ee32f83f3df527"
+        },
+        {
+          "binding": "CMS_INDEX",
+          "id": "02915800a8504ab9ac4c70fefce458ee"
+        }
       ]
     }
   },
