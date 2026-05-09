@@ -18,9 +18,11 @@ interface KvBinding {
 interface WranglerConfig {
   r2_buckets?: R2BucketBinding[];
   kv_namespaces?: KvBinding[];
+  vars?: Record<string, string>;
   env?: {
     preview?: {
       r2_buckets?: R2BucketBinding[];
+      vars?: Record<string, string>;
     };
   };
 }
@@ -96,6 +98,28 @@ describe('.env.example — single-source schema', () => {
 
   it('.dev.vars.example is gone (single source = .env.example)', () => {
     expect(() => readFileSync(path.join(repoRoot, '.dev.vars.example'))).toThrow();
+  });
+});
+
+describe('wrangler.jsonc — V15: dev-bypass flag never reaches the build artefact', () => {
+  // The DEV_BYPASS_ACCESS flag is a local escape hatch (see `.env.example`
+  // and the CMS access guard). It must never appear in any committed
+  // wrangler config — neither as a top-level `vars` entry nor in
+  // `env.preview.vars` — because both layers ship into the deploy bundle.
+  const configPath = path.join(repoRoot, 'wrangler.jsonc');
+  const raw = readFileSync(configPath, 'utf8');
+  const config = parseJsonc(raw);
+
+  it('does not declare DEV_BYPASS_ACCESS in top-level vars', () => {
+    expect(config.vars?.DEV_BYPASS_ACCESS).toBeUndefined();
+  });
+
+  it('does not declare DEV_BYPASS_ACCESS in env.preview.vars', () => {
+    expect(config.env?.preview?.vars?.DEV_BYPASS_ACCESS).toBeUndefined();
+  });
+
+  it('contains zero references to DEV_BYPASS_ACCESS in the raw JSONC source', () => {
+    expect(raw).not.toMatch(/DEV_BYPASS_ACCESS/);
   });
 });
 

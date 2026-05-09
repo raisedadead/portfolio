@@ -17,7 +17,13 @@
   ],
   "assets": {
     "binding": "ASSETS",
-    "directory": "./dist"
+    "directory": "./dist",
+    // Static-asset binding short-circuits the Worker by default. The CMS
+    // surface lives entirely under /admin and /api, so Astro middleware
+    // (Sentry telemetry + the Cloudflare Access gate) MUST run before
+    // any asset lookup for those paths. Other paths still serve from
+    // the asset binding first for cache friendliness.
+    "run_worker_first": ["/admin/*", "/api/*"]
   },
   "vars": {
     "PUBLIC_SENTRY_DSN": "https://e8c88c11abffd1e5b5c581de57321642@o4507798912958464.ingest.us.sentry.io/4510267624128512",
