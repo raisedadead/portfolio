@@ -77,6 +77,10 @@
       "dependsOn": ["do:build"],
       "cache": false
     },
+    "do:versions:upload": {
+      "dependsOn": ["do:build"],
+      "cache": false
+    },
     "do:test:e2e": {
       "dependsOn": ["do:build"],
       "inputs": ["e2e/**", "playwright.config.ts"],
