@@ -121,7 +121,7 @@ const image = pageImage || defaultImage;
   </head>
   <body>
     <slot />
-    <ConsentBanner client:idle />
+    <ConsentBanner client:only="react" />
 
     <!--
       Non-critical fonts (inter-400/600, space-grotesk-600/700,

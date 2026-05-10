@@ -49,4 +49,14 @@ describe('BaseLayout — SSR slot integrity', () => {
   it('does not reference the dropped ErrorBoundary or ClientProviders', () => {
     expect(baseLayout).not.toMatch(/ErrorBoundary|ClientProviders/);
   });
+
+  it('renders ConsentBanner with client:only="react" so it does not SSR', () => {
+    // V11 (Phase 3 / A7): client:idle SSRs the banner, then unmounts on
+    // hydration → ~50ms flash for returning users whose preference is
+    // already set. client:only skips SSR entirely. Banner is a sibling
+    // of the body slot, not a parent, so this is safe per the SSR
+    // invariant above.
+    expect(baseLayout).toMatch(/<ConsentBanner\s+client:only=["']react["']\s*\/>/);
+    expect(baseLayout).not.toMatch(/<ConsentBanner\s+client:idle\s*\/>/);
+  });
 });
