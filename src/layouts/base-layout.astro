@@ -121,7 +121,7 @@ const image = pageImage || defaultImage;
   </head>
   <body>
     <ClientProviders client:idle>
-      <ErrorBoundary client:only="react">
+      <ErrorBoundary client:load>
         <slot />
       </ErrorBoundary>
     </ClientProviders>
