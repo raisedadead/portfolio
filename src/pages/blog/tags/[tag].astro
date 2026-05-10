@@ -17,7 +17,7 @@ export const getStaticPaths = (async () => {
 
   // Normalize and merge all posts
   const allPosts = mergeAndSortPosts(
-    normalizeLocalPosts(localPosts as any),
+    normalizeLocalPosts(localPosts),
     normalizeFreeCodeCampPosts(freecodecampPosts)
   );
   const allTags = getAllTags(allPosts);

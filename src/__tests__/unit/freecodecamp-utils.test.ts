@@ -145,7 +145,7 @@ describe('freeCodeCamp Utils', () => {
             title: 'Local Article',
             date: new Date('2025-01-10'),
             brief: 'A brief description',
-            cover: { src: 'https://example.com/image.jpg' },
+            cover: 'https://example.com/image.jpg',
             coverAlt: 'Cover Alt',
             tags: [{ name: 'Tech', slug: 'tech' }],
             readingTime: 5

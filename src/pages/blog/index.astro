@@ -13,7 +13,7 @@ const freecodecampPosts = await getCollection('freecodecamp');
 
 // Normalize and merge all posts
 const lightweightPosts = mergeAndSortPosts(
-  normalizeLocalPosts(localPosts as any),
+  normalizeLocalPosts(localPosts),
   normalizeFreeCodeCampPosts(freecodecampPosts)
 );
 ---

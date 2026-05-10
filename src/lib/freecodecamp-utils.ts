@@ -59,6 +59,11 @@ export function normalizeFreeCodeCampPosts(posts: FreeCodeCampPostData[]): Light
   });
 }
 
+// Structurally compatible with `CollectionEntry<'blog'>` from
+// `astro:content` — kept as a local interface to avoid pulling the
+// runtime `astro:content` import into a unit-test file. Cover is
+// always a plain string under the R2 loader (image() form was dropped
+// when content moved off the local glob loader).
 interface LocalPostData {
   id: string;
   body?: string;
@@ -66,7 +71,7 @@ interface LocalPostData {
     slug?: string;
     title: string;
     date: Date;
-    cover?: { src: string } | string;
+    cover?: string;
     coverAlt?: string;
     brief?: string;
     tags: Array<{ name: string; slug: string }>;
@@ -93,7 +98,7 @@ export function normalizeLocalPosts(posts: LocalPostData[]): LightweightPost[] {
         ?.slice(0, 160) ||
       '';
 
-    const coverUrl = typeof post.data.cover === 'string' ? post.data.cover : post.data.cover?.src;
+    const coverUrl = post.data.cover;
 
     return {
       id: post.id,
