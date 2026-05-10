@@ -49,7 +49,6 @@
     "@headlessui/react": "2.2.10",
     "@heroicons/react": "2.2.0",
     "@sentry/astro": "10.51.0",
-    "@sentry/cloudflare": "10.51.0",
     "@tailwindcss/vite": "4.2.2",
     "astro": "6.2.2",
     "aws4fetch": "^1.0.20",
