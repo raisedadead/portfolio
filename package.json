@@ -86,9 +86,9 @@
     "tailwindcss": "4.2.2",
     "turbo": "2.9.8",
     "typescript": "6.0.3",
-    "vite": "8.0.10",
+    "vite": "8.0.11",
     "vitest": "4.1.5",
-    "wrangler": "4.87.0"
+    "wrangler": "4.88.0"
   },
   "lint-staged": {
     "**/*.{mjs,cjs,js,jsx,ts,tsx}": [
