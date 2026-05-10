@@ -51,15 +51,6 @@ describe('wrangler.jsonc R2 bindings', () => {
     const articles = config.r2_buckets?.find((b) => b.binding === 'ARTICLES');
     expect(articles).toBeDefined();
     expect(articles?.bucket_name).toBe('articles-content-prd');
-    expect(articles?.preview_bucket_name).toBe('articles-content-stg');
-  });
-
-  it('declares the ARTICLES R2 binding for the preview environment', () => {
-    const previewBuckets = config.env?.preview?.r2_buckets;
-    expect(previewBuckets).toBeDefined();
-    const articles = previewBuckets?.find((b) => b.binding === 'ARTICLES');
-    expect(articles).toBeDefined();
-    expect(articles?.bucket_name).toBe('articles-content-stg');
   });
 
   it('keeps the existing SESSION KV binding intact', () => {

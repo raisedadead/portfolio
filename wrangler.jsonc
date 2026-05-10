@@ -27,30 +27,6 @@
     "PUBLIC_SENTRY_DSN": "https://e8c88c11abffd1e5b5c581de57321642@o4507798912958464.ingest.us.sentry.io/4510267624128512",
     "PUBLIC_SENTRY_ENVIRONMENT": "production"
   },
-  "env": {
-    "preview": {
-      "vars": {
-        "PUBLIC_SENTRY_DSN": "https://e8c88c11abffd1e5b5c581de57321642@o4507798912958464.ingest.us.sentry.io/4510267624128512",
-        "PUBLIC_SENTRY_ENVIRONMENT": "development"
-      },
-      "r2_buckets": [
-        {
-          "binding": "ARTICLES",
-          "bucket_name": "articles-content-stg"
-        }
-      ],
-      "kv_namespaces": [
-        {
-          "binding": "SESSION",
-          "id": "640104b9e5674eda81ee32f83f3df527"
-        },
-        {
-          "binding": "CMS_INDEX",
-          "id": "02915800a8504ab9ac4c70fefce458ee"
-        }
-      ]
-    }
-  },
   "kv_namespaces": [
     {
       "binding": "SESSION",
@@ -65,7 +41,6 @@
     {
       "binding": "ARTICLES",
       "bucket_name": "articles-content-prd",
-      "preview_bucket_name": "articles-content-stg",
       "remote": true
     }
   ],
