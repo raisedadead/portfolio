@@ -15,7 +15,6 @@ export default defineConfig({
 
   adapter: cloudflare({
     imageService: 'compile',
-    prerenderEnvironment: 'node',
     // CI builds run unauthenticated; skip the remote-proxy session that
     // `remote: true` on the R2 binding would otherwise trigger during
     // `astro build`. Local dev keeps the default (true) so E2E hits the
