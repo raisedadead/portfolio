@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@ascorbic/feed-loader':
         specifier: ^2.0.1
-        version: 2.0.1(astro@6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))
+        version: 2.0.1(astro@6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))
       '@astrojs/check':
         specifier: 0.9.9
         version: 0.9.9(prettier-plugin-astro@0.14.1)(prettier@3.8.1)(typescript@6.0.3)
       '@astrojs/cloudflare':
-        specifier: 13.3.1
-        version: 13.3.1(@types/node@24.12.2)(astro@6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))(jiti@2.6.1)(lightningcss@1.32.0)(workerd@1.20260504.1)(wrangler@4.88.0(@cloudflare/workers-types@4.20260507.1))(yaml@2.8.4)
+        specifier: 13.5.0
+        version: 13.5.0(@types/node@24.12.2)(astro@6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))(jiti@2.6.1)(lightningcss@1.32.0)(workerd@1.20260504.1)(wrangler@4.88.0(@cloudflare/workers-types@4.20260507.1))(yaml@2.8.4)
       '@astrojs/react':
         specifier: 5.0.4
         version: 5.0.4(@types/node@24.12.2)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(jiti@2.6.1)(lightningcss@1.32.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(yaml@2.8.4)
@@ -34,7 +34,7 @@ importers:
         version: 2.2.0(react@19.2.6)
       '@sentry/astro':
         specifier: 10.51.0
-        version: 10.51.0(astro@6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))(rollup@4.52.3)
+        version: 10.51.0(astro@6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))(rollup@4.52.3)
       '@sentry/cloudflare':
         specifier: 10.51.0
         version: 10.51.0(@cloudflare/workers-types@4.20260507.1)
@@ -42,8 +42,8 @@ importers:
         specifier: 4.2.2
         version: 4.2.2(vite@8.0.11(@types/node@24.12.2)(esbuild@0.27.3)(jiti@2.6.1)(yaml@2.8.4))
       astro:
-        specifier: 6.2.2
-        version: 6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
+        specifier: 6.3.1
+        version: 6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
       aws4fetch:
         specifier: ^1.0.20
         version: 1.0.20
@@ -193,10 +193,10 @@ packages:
     peerDependencies:
       typescript: ^5.0.0 || ^6.0.0
 
-  '@astrojs/cloudflare@13.3.1':
-    resolution: {integrity: sha512-I2HcdP1KVppLMd0lXARI+/MKXbvrZdTvkLLKSBNtj5zhRhnDhugnyewjGKN0Ap5+khktD+rime7BgjfUlJ9iZw==}
+  '@astrojs/cloudflare@13.5.0':
+    resolution: {integrity: sha512-kP3/SwPzZi7tq+fZG6H9GpaYQF3jw9L6vg92QL6q7FLI7t0rGiuG6Q0AckeJYjBUsO4Y+2w7aI7m+Q2r/WpssQ==}
     peerDependencies:
-      astro: ^6.0.0
+      astro: ^6.3.0
       wrangler: ^4.83.0
 
   '@astrojs/compiler@2.13.1':
@@ -239,8 +239,8 @@ packages:
   '@astrojs/sitemap@3.7.2':
     resolution: {integrity: sha512-PqkzkcZTb5ICiyIR8VoKbIAP/laNRXi5tw616N1Ckk+40oNB8Can1AzVV56lrbC5GKSZFCyJYUVYqVivMisvpA==}
 
-  '@astrojs/telemetry@3.3.1':
-    resolution: {integrity: sha512-7fcIxXS9J4ls5tr8b3ww9rbAIz2+HrhNJYZdkAhhB4za/I5IZ/60g+Bs8q7zwG0tOIZfNB4JWhVJ1Qkl/OrNCw==}
+  '@astrojs/telemetry@3.3.2':
+    resolution: {integrity: sha512-j8DNruA8ors99Al39RYZPJK4DC1bKkoNm93mAMuBhY9TCNC4R8n1q7ovFnJ5qhGh5Lsh7pa1gpQVpYpsJPeTHQ==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0}
 
   '@astrojs/underscore-redirects@1.0.3':
@@ -2253,8 +2253,8 @@ packages:
   ast-v8-to-istanbul@1.0.0:
     resolution: {integrity: sha512-1fSfIwuDICFA4LKkCzRPO7F0hzFf0B7+Xqrl27ynQaa+Rh0e1Es0v6kWHPott3lU10AyAr7oKHa65OppjLn3Rg==}
 
-  astro@6.2.2:
-    resolution: {integrity: sha512-zkne2lZU+iTZPBK8F4gbMfrw5f11bT4VXiBxcdFHcPvYyH+Hox7V1sZu97RDpvwmHi+wQ0efKv89KY5744a0jQ==}
+  astro@6.3.1:
+    resolution: {integrity: sha512-atz6dmkE3Gu24bDgb7g2RE/BYnKqPYIHd6hTUM1UXvu/i7qNZOKLAqEHvgYpv9PQVcgWsXpk4/OOXZ0E/FzvSQ==}
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -2470,9 +2470,6 @@ packages:
   diff@8.0.3:
     resolution: {integrity: sha512-qejHi7bcSD4hQAZE0tNAawRK1ZtafHDmMTMkrrIGgSLl7hTnQHmKCeB45xAcbfTqK2zowkM3j3bHt/4b/ARbYQ==}
     engines: {node: '>=0.3.1'}
-
-  dlv@1.1.3:
-    resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
 
   dom-accessibility-api@0.5.16:
     resolution: {integrity: sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==}
@@ -4297,15 +4294,15 @@ snapshots:
 
   '@asamuzakjp/nwsapi@2.3.9': {}
 
-  '@ascorbic/feed-loader@2.0.1(astro@6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))':
+  '@ascorbic/feed-loader@2.0.1(astro@6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))':
     dependencies:
-      '@ascorbic/loader-utils': 1.0.2(astro@6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))
+      '@ascorbic/loader-utils': 1.0.2(astro@6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))
       '@rowanmanning/feed-parser': 2.1.1
-      astro: 6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
+      astro: 6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
 
-  '@ascorbic/loader-utils@1.0.2(astro@6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))':
+  '@ascorbic/loader-utils@1.0.2(astro@6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))':
     dependencies:
-      astro: 6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
+      astro: 6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
 
   '@astrojs/check@0.9.9(prettier-plugin-astro@0.14.1)(prettier@3.8.1)(typescript@6.0.3)':
     dependencies:
@@ -4318,12 +4315,12 @@ snapshots:
       - prettier
       - prettier-plugin-astro
 
-  '@astrojs/cloudflare@13.3.1(@types/node@24.12.2)(astro@6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))(jiti@2.6.1)(lightningcss@1.32.0)(workerd@1.20260504.1)(wrangler@4.88.0(@cloudflare/workers-types@4.20260507.1))(yaml@2.8.4)':
+  '@astrojs/cloudflare@13.5.0(@types/node@24.12.2)(astro@6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))(jiti@2.6.1)(lightningcss@1.32.0)(workerd@1.20260504.1)(wrangler@4.88.0(@cloudflare/workers-types@4.20260507.1))(yaml@2.8.4)':
     dependencies:
       '@astrojs/internal-helpers': 0.9.0
       '@astrojs/underscore-redirects': 1.0.3
       '@cloudflare/vite-plugin': 1.33.2(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.4))(workerd@1.20260504.1)(wrangler@4.88.0(@cloudflare/workers-types@4.20260507.1))
-      astro: 6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
+      astro: 6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
       piccolore: 0.1.3
       tinyglobby: 0.2.16
       vite: 7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.4)
@@ -4439,10 +4436,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.3.6
 
-  '@astrojs/telemetry@3.3.1':
+  '@astrojs/telemetry@3.3.2':
     dependencies:
       ci-info: 4.4.0
-      dlv: 1.1.3
       dset: 3.1.4
       is-docker: 4.0.0
       is-wsl: 3.1.1
@@ -5578,13 +5574,13 @@ snapshots:
       '@sentry-internal/browser-utils': 10.51.0
       '@sentry/core': 10.51.0
 
-  '@sentry/astro@10.51.0(astro@6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))(rollup@4.52.3)':
+  '@sentry/astro@10.51.0(astro@6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4))(rollup@4.52.3)':
     dependencies:
       '@sentry/browser': 10.51.0
       '@sentry/core': 10.51.0
       '@sentry/node': 10.51.0
       '@sentry/vite-plugin': 5.2.0(rollup@4.52.3)
-      astro: 6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
+      astro: 6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4)
     transitivePeerDependencies:
       - '@opentelemetry/exporter-trace-otlp-http'
       - encoding
@@ -6226,12 +6222,12 @@ snapshots:
       estree-walker: 3.0.3
       js-tokens: 10.0.0
 
-  astro@6.2.2(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4):
+  astro@6.3.1(@types/node@24.12.2)(aws4fetch@1.0.20)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.52.3)(yaml@2.8.4):
     dependencies:
       '@astrojs/compiler': 4.0.0
       '@astrojs/internal-helpers': 0.9.0
       '@astrojs/markdown-remark': 7.1.1
-      '@astrojs/telemetry': 3.3.1
+      '@astrojs/telemetry': 3.3.2
       '@capsizecss/unpack': 4.0.0
       '@clack/prompts': 1.1.0
       '@oslojs/encoding': 1.1.0
@@ -6489,8 +6485,6 @@ snapshots:
   diff-sequences@29.6.3: {}
 
   diff@8.0.3: {}
-
-  dlv@1.1.3: {}
 
   dom-accessibility-api@0.5.16: {}
 
