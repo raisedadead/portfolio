@@ -20,26 +20,14 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "./dist",
-    // Gate must fire before asset lookup for CMS paths.
-    "run_worker_first": ["/admin/*", "/api/*"]
+    // SSR endpoints (/api/img R2 streamer, /api/health) must hit the
+    // worker before the static-asset binding tries to 404.
+    "run_worker_first": ["/api/*"]
   },
   "vars": {
     "PUBLIC_SENTRY_DSN": "https://e8c88c11abffd1e5b5c581de57321642@o4507798912958464.ingest.us.sentry.io/4510267624128512",
-    "PUBLIC_SENTRY_ENVIRONMENT": "production",
-    // Defense-in-depth host allowlist for /admin + /api/cms. Comma-separated.
-    // `*` is one DNS label. Production domain plus per-version preview URL.
-    "CF_ACCESS_ALLOWED_HOSTS": "mrugesh.dev,*-portfolio.dee584c21793767c25eee4cebc062726.workers.dev"
+    "PUBLIC_SENTRY_ENVIRONMENT": "production"
   },
-  "kv_namespaces": [
-    {
-      "binding": "SESSION",
-      "id": "15e1b8365ada4c6bb01c761e25dcf3aa"
-    },
-    {
-      "binding": "CMS_INDEX",
-      "id": "206fca45277f4754b554ecbab13fb91c"
-    }
-  ],
   "r2_buckets": [
     {
       "binding": "ARTICLES",
