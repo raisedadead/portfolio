@@ -50,7 +50,7 @@ describe('wrangler.jsonc R2 bindings', () => {
     expect(config.r2_buckets).toBeDefined();
     const articles = config.r2_buckets?.find((b) => b.binding === 'ARTICLES');
     expect(articles).toBeDefined();
-    expect(articles?.bucket_name).toBe('articles-content-prd');
+    expect(articles?.bucket_name).toBe('articles-content');
   });
 
   it('keeps the existing SESSION KV binding intact', () => {

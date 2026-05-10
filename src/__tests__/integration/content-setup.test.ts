@@ -2,7 +2,7 @@
  * Post-migration content setup gate.
  *
  * The legacy `src/content/articles` submodule has been removed (P2/T2.4).
- * Blog content now ships from the Cloudflare R2 bucket `articles-content-prd`
+ * Blog content now ships from the Cloudflare R2 bucket `articles-content`
  * via `src/lib/r2-loader.ts`, configured by `wrangler.jsonc` and the
  * environment roster in `.env.example`.
  *
@@ -35,7 +35,7 @@ describe('Content Setup', () => {
     it('wrangler.jsonc declares the ARTICLES R2 binding', () => {
       const wrangler = readFileSync(join(repoRoot, 'wrangler.jsonc'), 'utf8');
       expect(wrangler).toMatch(/"binding":\s*"ARTICLES"/);
-      expect(wrangler).toMatch(/"bucket_name":\s*"articles-content-prd"/);
+      expect(wrangler).toMatch(/"bucket_name":\s*"articles-content"/);
     });
 
     it('.env.example documents the build-time R2 roster', () => {

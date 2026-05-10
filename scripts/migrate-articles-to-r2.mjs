@@ -14,7 +14,7 @@
  *   R2_ACCESS_KEY_ID        R2 API token id (object read+write)
  *   R2_SECRET_ACCESS_KEY    R2 API token secret
  *
- * Defaults: --bucket articles-content-stg, dry-run on. Commits only when
+ * Defaults: --bucket articles-content, dry-run on. Commits only when
  * `--commit` is passed explicitly.
  *
  * Exits 0 on full success, 1 if any file failed, 2 on missing arg/env.
@@ -231,7 +231,7 @@ export function createAwsR2WriteAdapter({ endpoint, bucket, accessKeyId, secretA
 }
 
 function parseArgs(argv) {
-  const args = { source: '', bucket: 'articles-content-stg', commit: false };
+  const args = { source: '', bucket: 'articles-content', commit: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--source') args.source = argv[++i];
@@ -245,7 +245,7 @@ function parseArgs(argv) {
 
 const USAGE = `Usage: node scripts/migrate-articles-to-r2.mjs --source <path> [--bucket <name>] [--dry-run | --commit]
 
-Defaults: --bucket articles-content-stg, dry-run on.
+Defaults: --bucket articles-content, dry-run on.
 
 Env required:
   R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY`;

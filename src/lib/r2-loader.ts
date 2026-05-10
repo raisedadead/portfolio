@@ -14,7 +14,7 @@
  *      satisfies the `R2ListGetClient` interface.
  *
  * R2 endpoint: https://<account-id>.r2.cloudflarestorage.com
- * Buckets:    articles-content-prd | articles-content-stg
+ * Bucket:     articles-content
  * Layout:     posts/<slug>.md, drafts/<slug>.md, assets/images/<slug>/<file>
  */
 import type { Loader } from 'astro/loaders';

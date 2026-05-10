@@ -40,7 +40,7 @@
   "r2_buckets": [
     {
       "binding": "ARTICLES",
-      "bucket_name": "articles-content-prd",
+      "bucket_name": "articles-content",
       "remote": true
     }
   ],

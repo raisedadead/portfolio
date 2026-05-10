@@ -346,7 +346,7 @@ date: 2026-03-03
 
 describe('createAwsR2Client', () => {
   const ENDPOINT = 'https://acct.r2.cloudflarestorage.com';
-  const BUCKET = 'articles-content-stg';
+  const BUCKET = 'articles-content';
   const CREDS = { accessKeyId: 'akid', secretAccessKey: 'sak' };
 
   beforeEach(() => {

@@ -12,9 +12,8 @@ collection. Sentry client + server. pnpm enforced via `packageManager`.
 ## Content & R2
 
 - Bucket layout: `posts/<slug>.md`, `drafts/<slug>.md`,
-  `assets/images/<slug>/<file>` in `articles-content-prd` (preview/dev
-  → `articles-content-stg`, picked up via `preview_bucket_name` on the
-  binding — wrangler dev never hits prod R2).
+  `assets/images/<slug>/<file>` in `articles-content`. Single bucket;
+  `wrangler dev` reads it directly via `remote: true` on the R2 binding.
 - `src/content.config.ts` wires `r2MarkdownLoader` directly. The loader
   rewrites legacy `../assets/images/<slug>/<file>` references to
   `/api/img/<slug>/<file>` so they resolve through the R2 streamer at
