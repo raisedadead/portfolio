@@ -53,8 +53,8 @@
     "aws4fetch": "^1.0.20",
     "clsx": "2.1.1",
     "motion": "12.38.0",
-    "react": "19.2.5",
-    "react-dom": "19.2.5",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
     "sharp": "0.34.5",
     "shiki": "4.0.2",
     "tailwind-merge": "3.5.0",
@@ -62,7 +62,7 @@
     "yaml": "^2.8.4"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20260505.1",
+    "@cloudflare/workers-types": "4.20260506.1",
     "@playwright/test": "^1.58.1",
     "@tailwindcss/forms": "0.5.11",
     "@tailwindcss/typography": "0.5.19",
@@ -102,7 +102,7 @@
       "oxfmt --write --no-error-on-unmatched-pattern"
     ]
   },
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@10.33.4",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
