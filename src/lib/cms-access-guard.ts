@@ -35,6 +35,11 @@ export function isGuardedPath(pathname: string): boolean {
   return matchesPrefix(pathname, ADMIN_PREFIX) || matchesPrefix(pathname, CMS_API_PREFIX);
 }
 
+/** Escapes every regex metacharacter for safe inclusion in a `RegExp` source. */
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 /**
  * Builds a host-matcher from an allowlist. Entries can be exact hostnames
  * (`mrugesh.dev`) or single-`*` globs (`*-portfolio.<account>.workers.dev`).
@@ -47,7 +52,11 @@ export function buildIsAllowedHost(allowedHosts: readonly string[]): (hostname: 
     const entry = raw.trim().toLowerCase();
     if (!entry) continue;
     if (entry.includes('*')) {
-      const re = new RegExp(`^${entry.replace(/\./g, '\\.').replace(/\*/g, '[^.]+')}$`);
+      // Split on `*` so each literal segment can be fully escaped against
+      // every regex metacharacter — not just `.`. Rejoin with the
+      // single-DNS-label glob `[^.]+`.
+      const escapedSegments = entry.split('*').map(escapeRegex);
+      const re = new RegExp(`^${escapedSegments.join('[^.]+')}$`);
       patterns.push(re);
     } else {
       exact.add(entry);

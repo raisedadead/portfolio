@@ -244,6 +244,15 @@ describe('buildIsAllowedHost', () => {
     expect(isAllowed('a.workers.dev')).toBe(true);
     expect(isAllowed('a.b.workers.dev')).toBe(false);
   });
+
+  it('escapes regex metacharacters in glob entries (defensive)', () => {
+    // Hostnames don't normally contain regex metas, but the matcher must
+    // not silently treat `(group)` or `+` as regex syntax if a malformed
+    // config slips in.
+    const isAllowed = buildIsAllowedHost(['*.host(group).com']);
+    expect(isAllowed('a.host(group).com')).toBe(true);
+    expect(isAllowed('a.hostgroup.com')).toBe(false);
+  });
 });
 
 describe('authorizeCmsRequest — host allowlist (defense in depth)', () => {
