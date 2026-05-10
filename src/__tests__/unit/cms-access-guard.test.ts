@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   authorizeCmsRequest,
+  buildIsAllowedHost,
   extractAccessToken,
   isGuardedPath,
   type AccessGuardConfig,
@@ -36,6 +37,7 @@ function makeConfig(overrides: Partial<AccessGuardConfig> = {}): AccessGuardConf
     isDevMode: false,
     devBypass: undefined,
     verify: vi.fn(async () => VALID_RESULT),
+    isAllowedHost: () => true,
     ...overrides
   };
 }
@@ -201,6 +203,83 @@ describe('authorizeCmsRequest — happy path', () => {
       email: VALID_RESULT.email,
       sub: VALID_RESULT.sub
     });
+  });
+});
+
+describe('buildIsAllowedHost', () => {
+  it('matches an exact hostname (case-insensitive)', () => {
+    const isAllowed = buildIsAllowedHost(['mrugesh.dev']);
+    expect(isAllowed('mrugesh.dev')).toBe(true);
+    expect(isAllowed('MRUGESH.DEV')).toBe(true);
+    expect(isAllowed('attacker.com')).toBe(false);
+  });
+
+  it('matches a single-label glob (* substitutes for one DNS label)', () => {
+    const isAllowed = buildIsAllowedHost(['*-portfolio.acct.workers.dev']);
+    expect(isAllowed('abc123-portfolio.acct.workers.dev')).toBe(true);
+    expect(isAllowed('portfolio.acct.workers.dev')).toBe(false);
+    expect(isAllowed('a.b-portfolio.acct.workers.dev')).toBe(false);
+  });
+
+  it('combines exact and glob entries', () => {
+    const isAllowed = buildIsAllowedHost(['mrugesh.dev', '*-portfolio.acct.workers.dev']);
+    expect(isAllowed('mrugesh.dev')).toBe(true);
+    expect(isAllowed('xyz-portfolio.acct.workers.dev')).toBe(true);
+    expect(isAllowed('other.com')).toBe(false);
+  });
+
+  it('rejects everything when the list is empty', () => {
+    const isAllowed = buildIsAllowedHost([]);
+    expect(isAllowed('mrugesh.dev')).toBe(false);
+  });
+
+  it('skips empty / whitespace entries', () => {
+    const isAllowed = buildIsAllowedHost(['  ', 'mrugesh.dev', '']);
+    expect(isAllowed('mrugesh.dev')).toBe(true);
+    expect(isAllowed('')).toBe(false);
+  });
+
+  it('does not let a glob match across dots (subdomain isolation)', () => {
+    const isAllowed = buildIsAllowedHost(['*.workers.dev']);
+    expect(isAllowed('a.workers.dev')).toBe(true);
+    expect(isAllowed('a.b.workers.dev')).toBe(false);
+  });
+});
+
+describe('authorizeCmsRequest — host allowlist (defense in depth)', () => {
+  it('rejects /admin with 404 host_not_allowed when Host is outside the allowlist', async () => {
+    const verify = vi.fn();
+    const result = await authorizeCmsRequest(
+      makeRequest('/admin', { headers: { 'Cf-Access-Jwt-Assertion': VALID_TOKEN } }),
+      makeConfig({ isAllowedHost: () => false, verify })
+    );
+    expect(result).toEqual<AccessGuardResult>({ kind: 'reject', status: 404, reason: 'host_not_allowed' });
+    expect(verify).not.toHaveBeenCalled();
+  });
+
+  it('rejects /api/cms with 404 host_not_allowed when Host is outside the allowlist', async () => {
+    const result = await authorizeCmsRequest(
+      makeRequest('/api/cms/posts', { headers: { 'Cf-Access-Jwt-Assertion': VALID_TOKEN } }),
+      makeConfig({ isAllowedHost: () => false })
+    );
+    expect(result).toEqual<AccessGuardResult>({ kind: 'reject', status: 404, reason: 'host_not_allowed' });
+  });
+
+  it('forwards the Host header value to isAllowedHost for matching', async () => {
+    const isAllowedHost = vi.fn(() => true);
+    await authorizeCmsRequest(
+      makeRequest('/admin', { headers: { 'Cf-Access-Jwt-Assertion': VALID_TOKEN } }),
+      makeConfig({ isAllowedHost })
+    );
+    // makeRequest constructs from `https://mrugesh.dev<path>` so Host = mrugesh.dev
+    expect(isAllowedHost).toHaveBeenCalledWith('mrugesh.dev');
+  });
+
+  it('does not check host on non-guarded paths', async () => {
+    const isAllowedHost = vi.fn(() => false);
+    const result = await authorizeCmsRequest(makeRequest('/blog'), makeConfig({ isAllowedHost }));
+    expect(result).toEqual<AccessGuardResult>({ kind: 'pass' });
+    expect(isAllowedHost).not.toHaveBeenCalled();
   });
 });
 

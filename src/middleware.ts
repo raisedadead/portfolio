@@ -1,13 +1,14 @@
 import * as Sentry from '@sentry/astro';
 import { defineMiddleware } from 'astro:middleware';
 import { createKvJwksProvider, verifyAccessJwt, type KvNamespaceLike } from '@/lib/cf-access-jwt';
-import type { AccessGuardConfig } from '@/lib/cms-access-guard';
+import { buildIsAllowedHost, type AccessGuardConfig } from '@/lib/cms-access-guard';
 import { runCmsMiddleware } from '@/lib/cms-middleware';
 
 interface CloudflareEnv {
   CF_ACCESS_TEAM_DOMAIN?: string;
   CF_ACCESS_AUD?: string;
   CF_ACCESS_AUTHOR_EMAIL?: string;
+  CF_ACCESS_ALLOWED_HOSTS?: string;
   DEV_BYPASS_ACCESS?: string;
   SESSION?: KvNamespaceLike;
 }
@@ -26,20 +27,28 @@ async function loadCloudflareEnv(): Promise<CloudflareEnv | null> {
 
 function buildAccessGuardConfig(cfEnv: CloudflareEnv): AccessGuardConfig {
   const teamDomain = cfEnv.CF_ACCESS_TEAM_DOMAIN ?? '';
-  const audience = cfEnv.CF_ACCESS_AUD ?? '';
+  const audiences = (cfEnv.CF_ACCESS_AUD ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
   const authorEmail = cfEnv.CF_ACCESS_AUTHOR_EMAIL ?? '';
+  const allowedHosts = (cfEnv.CF_ACCESS_ALLOWED_HOSTS ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
   const kv = cfEnv.SESSION;
 
   return {
     isDevMode: import.meta.env.DEV === true,
     devBypass: cfEnv.DEV_BYPASS_ACCESS,
+    isAllowedHost: buildIsAllowedHost(allowedHosts),
     verify: async (token) => {
-      if (!kv || !teamDomain || !audience || !authorEmail) {
+      if (!kv || !teamDomain || audiences.length === 0 || !authorEmail) {
         return { valid: false, reason: 'unknown_kid' };
       }
       return verifyAccessJwt(token, {
         teamDomain,
-        audience,
+        audience: audiences,
         authorEmail,
         jwksProvider: createKvJwksProvider({ kv, teamDomain })
       });

@@ -34,6 +34,7 @@ function makeGuardConfig(overrides: Partial<AccessGuardConfig> = {}): AccessGuar
     isDevMode: false,
     devBypass: undefined,
     verify: verifyMock as (token: string) => Promise<VerifyResult>,
+    isAllowedHost: () => true,
     ...overrides
   };
 }

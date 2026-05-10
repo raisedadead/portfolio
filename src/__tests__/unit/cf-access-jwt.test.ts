@@ -113,6 +113,19 @@ describe('verifyAccessJwt — happy path', () => {
     const result = await verifyAccessJwt(token, baseConfig());
     expect(result).toEqual({ valid: true, email: AUTHOR_EMAIL, sub: 'cf-access|user-1' });
   });
+
+  it('accepts a token whose aud matches any entry of a multi-audience config (preview URL Access app)', async () => {
+    const PREVIEW_AUD = 'preview-app-aud-uuid-0123456789abcdef';
+    const token = await signToken({ payload: { aud: PREVIEW_AUD } });
+    const result = await verifyAccessJwt(token, baseConfig({ audience: [AUD, PREVIEW_AUD] }));
+    expect(result).toEqual({ valid: true, email: AUTHOR_EMAIL, sub: 'cf-access|user-1' });
+  });
+
+  it('rejects a token whose aud matches none of the configured audiences', async () => {
+    const token = await signToken({ payload: { aud: 'unrelated-app-aud' } });
+    const result = await verifyAccessJwt(token, baseConfig({ audience: [AUD, 'second-aud'] }));
+    expect(result).toEqual({ valid: false, reason: 'wrong_aud' });
+  });
 });
 
 describe('verifyAccessJwt — claim failures', () => {

@@ -25,6 +25,14 @@ export interface RunCmsMiddlewareDeps {
 }
 
 function rejectResponse(result: Extract<AccessGuardResult, { kind: 'reject' }>): Response {
+  // Generic plain-text 404 hides CMS-path existence on hosts outside the
+  // allowlist; never includes the `host_not_allowed` reason in the body.
+  if (result.status === 404) {
+    return new Response('Not Found', {
+      status: 404,
+      headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' }
+    });
+  }
   return new Response(JSON.stringify({ error: 'unauthorized', reason: result.reason }), {
     status: result.status,
     headers: {

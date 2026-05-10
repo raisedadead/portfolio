@@ -42,8 +42,12 @@ export interface JwksProvider {
 export interface VerifyConfig {
   /** Cloudflare Access team domain, e.g. `mrugesh.cloudflareaccess.com`. */
   teamDomain: string;
-  /** Self-hosted Application AUD tag (UUID). */
-  audience: string;
+  /**
+   * Self-hosted Application AUD tag (UUID), or an array of accepted AUDs
+   * when multiple Access apps front the same Worker (e.g. production
+   * domain + workers.dev preview URLs each get their own Access app).
+   */
+  audience: string | string[];
   /** Single allowed author email — must match `email` claim. */
   authorEmail: string;
   /** JWKS source. Tests inject a fake; prod uses {@link createKvJwksProvider}. */
@@ -147,7 +151,9 @@ export async function verifyAccessJwt(token: string, config: VerifyConfig): Prom
     return { valid: false, reason: 'wrong_iss' };
   }
 
-  const audMatch = Array.isArray(payload.aud) ? payload.aud.includes(config.audience) : payload.aud === config.audience;
+  const configAuds = Array.isArray(config.audience) ? config.audience : [config.audience];
+  const tokenAuds = Array.isArray(payload.aud) ? payload.aud : payload.aud ? [payload.aud] : [];
+  const audMatch = configAuds.some((c) => tokenAuds.includes(c));
   if (!audMatch) {
     return { valid: false, reason: 'wrong_aud' };
   }

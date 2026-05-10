@@ -9,23 +9,55 @@ export const ACCESS_COOKIE = 'CF_Authorization';
 const ADMIN_PREFIX = '/admin';
 const CMS_API_PREFIX = '/api/cms';
 
-export type GuardRejectReason = 'missing_token' | VerifyFailureReason;
+export type GuardRejectReason = 'missing_token' | 'host_not_allowed' | VerifyFailureReason;
 
 export type AccessGuardResult =
   | { kind: 'pass'; email: string; sub: string }
   | { kind: 'pass' }
   | { kind: 'bypass' }
-  | { kind: 'reject'; status: 401; reason: GuardRejectReason };
+  | { kind: 'reject'; status: 401 | 404; reason: GuardRejectReason };
 
 export interface AccessGuardConfig {
   isDevMode: boolean;
   /** Only the literal string `"1"` enables bypass. */
   devBypass: string | undefined;
   verify: (token: string) => Promise<VerifyResult>;
+  /**
+   * Defense-in-depth host check for guarded paths. Returns true if the
+   * request's hostname is allowed to reach `/admin/*` or `/api/cms/*`.
+   * Anything else gets a generic 404 to hide CMS-path existence — even
+   * if a future CF Access misconfiguration drops the upstream gate.
+   */
+  isAllowedHost: (hostname: string) => boolean;
 }
 
 export function isGuardedPath(pathname: string): boolean {
   return matchesPrefix(pathname, ADMIN_PREFIX) || matchesPrefix(pathname, CMS_API_PREFIX);
+}
+
+/**
+ * Builds a host-matcher from an allowlist. Entries can be exact hostnames
+ * (`mrugesh.dev`) or single-`*` globs (`*-portfolio.<account>.workers.dev`).
+ * Each `*` matches one DNS label (no dots). Comparison is case-insensitive.
+ */
+export function buildIsAllowedHost(allowedHosts: readonly string[]): (hostname: string) => boolean {
+  const exact = new Set<string>();
+  const patterns: RegExp[] = [];
+  for (const raw of allowedHosts) {
+    const entry = raw.trim().toLowerCase();
+    if (!entry) continue;
+    if (entry.includes('*')) {
+      const re = new RegExp(`^${entry.replace(/\./g, '\\.').replace(/\*/g, '[^.]+')}$`);
+      patterns.push(re);
+    } else {
+      exact.add(entry);
+    }
+  }
+  return (hostname) => {
+    const h = hostname.toLowerCase();
+    if (exact.has(h)) return true;
+    return patterns.some((re) => re.test(h));
+  };
 }
 
 function matchesPrefix(pathname: string, prefix: string): boolean {
@@ -52,6 +84,10 @@ export function extractAccessToken(request: Request): string | null {
 export async function authorizeCmsRequest(request: Request, config: AccessGuardConfig): Promise<AccessGuardResult> {
   const url = new URL(request.url);
   if (!isGuardedPath(url.pathname)) return { kind: 'pass' };
+
+  if (!config.isAllowedHost(url.hostname)) {
+    return { kind: 'reject', status: 404, reason: 'host_not_allowed' };
+  }
 
   const token = extractAccessToken(request);
 

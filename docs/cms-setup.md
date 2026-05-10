@@ -26,7 +26,29 @@ CF dashboard → Workers & Pages → portfolio → Settings → Build → Deploy
 hooks → Create. Name `cms-publish`, branch `main`. The URL is the
 credential — treat it like a password.
 
-## 3. Smoke test
+## 3. Preview URL Access (optional)
+
+To gate `<version>-portfolio.<account>.workers.dev` previews with the same
+allowlist as production:
+
+CF dashboard → Workers & Pages → portfolio → Settings → Domains & Routes
+→ **Enable Cloudflare Access for Preview URLs** → configure policy with
+the same `hi@mrugesh.dev` allowlist. Copy the new app's AUD tag.
+
+Append the preview AUD to `CF_ACCESS_AUD` (the verifier accepts a
+comma-separated list — order doesn't matter):
+
+```bash
+wrangler secret put CF_ACCESS_AUD
+# paste: <prod-aud>,<preview-aud>
+```
+
+The Worker also enforces a defense-in-depth host allowlist via the
+`CF_ACCESS_ALLOWED_HOSTS` var in `wrangler.jsonc` — `mrugesh.dev` plus
+the per-version preview pattern. Hits to guarded paths from any other
+host return a generic 404.
+
+## 4. Smoke test
 
 ```bash
 curl -i https://mrugesh.dev/admin            # 401 missing_token (no cookie)
@@ -48,3 +70,4 @@ public blog within ~30–60 s.
 | 401 `unknown_kid`                 | `CF_ACCESS_TEAM_DOMAIN` typo or wrong tenant     |
 | publish 503 `hook_not_configured` | `DEPLOY_HOOK_URL` secret missing                 |
 | publish 502 `hook_failed`         | hook URL stale — recreate, re-`secret put`       |
+| `/admin` 404 on a preview URL     | host outside `CF_ACCESS_ALLOWED_HOSTS` — adjust  |
