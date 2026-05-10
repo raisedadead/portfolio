@@ -14,7 +14,7 @@
       "dependsOn": ["^do:build", "cf-typegen"],
       "inputs": ["src/**", "public/**", "astro.config.mjs", "tsconfig.json", "wrangler.jsonc", "package.json"],
       "outputs": ["dist/**", ".astro/**"],
-      "env": ["NODE_ENV"],
+      "env": ["NODE_ENV", "CI", "R2_ENDPOINT", "R2_BUCKET_NAME", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY"],
       "cache": true
     },
     "do:test": {
