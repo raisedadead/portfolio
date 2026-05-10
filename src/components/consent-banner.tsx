@@ -1,30 +1,60 @@
+// Self-contained GA consent banner. Reads `localStorage` for prior
+// choice, loads the GA script if previously granted, otherwise shows
+// the banner. Renders nothing once a choice has been made.
+//
+// Lives as a sibling of the body slot, NOT a wrapper. Wrapping the
+// Astro `<slot />` in a React component that uses `{children}` causes
+// React 19 to bail on hydration (Astro slot HTML ≠ React vnodes), so
+// the entire body subtree gets re-rendered client-side and nested
+// islands lose their hydration → blank page.
+
+import { useEffect, useState } from 'react';
 import { CustomLink as Link } from '@/components/custom-link';
 import { loadGAScript, updateGAConsent } from '@/lib/utils';
-import { useState } from 'react';
 
-interface ConsentBannerProps {
-  setHasConsent: (value: boolean) => void;
+type ConsentState = 'unknown' | 'granted' | 'denied';
+
+function readStoredConsent(): ConsentState {
+  if (typeof window === 'undefined') return 'unknown';
+  const stored = window.localStorage.getItem('ga-consent');
+  if (stored === 'true') return 'granted';
+  if (stored === 'false') return 'denied';
+  return 'unknown';
 }
 
-function ConsentBanner({ setHasConsent }: ConsentBannerProps) {
-  const [showBanner, setShowBanner] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const hasConsent = localStorage.getItem('ga-consent');
-    return !hasConsent;
-  });
+function persistConsent(granted: boolean): void {
+  try {
+    window.localStorage.setItem('ga-consent', granted.toString());
+  } catch {
+    // localStorage may be full or blocked (private browsing). Banner
+    // re-appears next visit; not catastrophic.
+  }
+}
 
-  const handleConsent = (granted: boolean) => {
-    localStorage.setItem('ga-consent', granted.toString());
-    setShowBanner(false);
-    setHasConsent(granted);
+function ConsentBanner(): React.JSX.Element | null {
+  const [consent, setConsent] = useState<ConsentState>('unknown');
 
+  useEffect(() => {
+    const initial = readStoredConsent();
+    setConsent(initial);
+    if (initial === 'granted') {
+      // User previously granted — boot GA on every page load.
+      updateGAConsent();
+      loadGAScript();
+    }
+  }, []);
+
+  const handleConsent = (granted: boolean): void => {
+    persistConsent(granted);
+    setConsent(granted ? 'granted' : 'denied');
     if (granted) {
       updateGAConsent();
       loadGAScript();
     }
   };
 
-  if (!showBanner) return null;
+  // Hide if a choice was already made (or until SSR-side first render).
+  if (consent !== 'unknown') return null;
 
   return (
     <div className='fixed right-0 bottom-0 left-0 bg-gray-800 px-4 py-2 shadow-lg'>

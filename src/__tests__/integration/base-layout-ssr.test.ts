@@ -1,11 +1,12 @@
 // Regression guard for the 2026-05 layout SSR bug:
-// `<ErrorBoundary client:only="react">` wrapping the body `<slot />`
-// disabled SSR for the entire page subtree, producing a blank first
-// paint everywhere. Fix is `client:load`, which keeps client hydration
-// while letting Astro emit the SSR'd slot HTML.
+// `<ErrorBoundary client:only="react">` (and later `client:load`)
+// wrapping the body `<slot />` killed first-paint everywhere. Even
+// `client:load` failed because Astro slot HTML ≠ React vnodes — React
+// 19 bails on the hydration mismatch and re-renders the subtree
+// client-side, which tears down nested islands and goes blank.
 //
-// Source-level meta-gate (cheap, no AstroContainer infra). Pairs with
-// the planned crawler-visible-body e2e check in Phase 2.4.
+// Definitive fix: nothing wraps the body slot. Stand-alone islands
+// (e.g. ConsentBanner) live as siblings of the slot, not parents.
 
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -17,13 +18,35 @@ const baseLayoutPath = path.resolve(here, '../../layouts/base-layout.astro');
 const baseLayout = readFileSync(baseLayoutPath, 'utf-8');
 
 describe('BaseLayout — SSR slot integrity', () => {
-  it('does NOT wrap the body slot in a client:only React island', () => {
-    // `client:only` skips HTML server rendering. If ErrorBoundary uses
-    // it, the entire `<slot />` content disappears from SSR output.
-    expect(baseLayout).not.toMatch(/<ErrorBoundary[^>]*client:only/);
+  it('the body <slot /> is NOT wrapped in any React island', () => {
+    // Extract body block and find the slot. Walk back from the slot
+    // and assert the most-immediate enclosing element is `<body>`,
+    // not a React component.
+    const bodyMatch = baseLayout.match(/<body[^>]*>([\s\S]*?)<\/body>/);
+    expect(bodyMatch, 'base-layout has no <body>').not.toBeNull();
+    const body = bodyMatch![1];
+
+    // Anything between `<body>` and the first `<slot />` should not
+    // contain an opening React-component tag (PascalCase) with a
+    // `client:*` directive that hasn't already been closed.
+    const slotIdx = body.indexOf('<slot');
+    expect(slotIdx, 'no <slot /> inside <body>').toBeGreaterThanOrEqual(0);
+    const before = body.slice(0, slotIdx);
+
+    // Open React-component tags before the slot
+    const openTags = before.match(/<([A-Z][A-Za-z0-9]*)\b[^>]*\bclient:[a-z]+/g) ?? [];
+    // Same components closed before the slot
+    const closeTags = before.match(/<\/[A-Z][A-Za-z0-9]*>/g) ?? [];
+    expect(
+      openTags.length,
+      `Body slot is wrapped in React island(s): ${openTags.join(', ')}. ` +
+        `Wrapping the slot in a client:* component breaks hydration ` +
+        `(Astro slot HTML is not React vnodes — React 19 bails and ` +
+        `re-renders client-side, blanking nested islands).`
+    ).toBe(closeTags.length);
   });
 
-  it('hydrates ErrorBoundary with client:load so SSR keeps the slot', () => {
-    expect(baseLayout).toMatch(/<ErrorBoundary[^>]*client:load/);
+  it('does not reference the dropped ErrorBoundary or ClientProviders', () => {
+    expect(baseLayout).not.toMatch(/ErrorBoundary|ClientProviders/);
   });
 });

@@ -1,7 +1,6 @@
 ---
 import "@/styles/global.css";
-import ClientProviders from "@/components/client-providers";
-import { ErrorBoundary } from "@/components/sentry/error-boundary";
+import ConsentBanner from "@/components/consent-banner";
 import { ClientRouter } from "astro:transitions";
 
 export interface Props {
@@ -121,11 +120,8 @@ const image = pageImage || defaultImage;
     <slot name="head" />
   </head>
   <body>
-    <ClientProviders client:idle>
-      <ErrorBoundary client:load>
-        <slot />
-      </ErrorBoundary>
-    </ClientProviders>
+    <slot />
+    <ConsentBanner client:idle />
 
     <!--
       Non-critical fonts (inter-400/600, space-grotesk-600/700,
