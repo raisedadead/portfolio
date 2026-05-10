@@ -5,9 +5,23 @@ discoverable from `package.json` / `tsconfig.json`; not duplicated here.
 
 ## Stack
 
-Astro 6 (SSR, Cloudflare adapter) + React 19 islands + Tailwind 4.
-Markdown sourced from R2 at build time; freeCodeCamp RSS as a second
-collection. Sentry client + server. pnpm enforced via `packageManager`.
+Astro 6 (SSR, `@astrojs/cloudflare` 13 adapter) + React 19 islands +
+Tailwind 4. Markdown sourced from R2 at build time; freeCodeCamp RSS
+as a second collection. Sentry client + server. pnpm enforced via
+`packageManager`.
+
+## Layout SSR — non-obvious gotcha
+
+`src/layouts/base-layout.astro` wraps `<slot />` in `<ErrorBoundary
+client:load>`. **Never `client:only`** — `client:only` skips HTML
+server rendering for the subtree, which leaves the entire body empty
+on first paint until React hydrates. Regression test:
+`src/__tests__/integration/base-layout-ssr.test.ts`.
+
+`<slot name="head" />` is exposed in base-layout and forwarded through
+main-layout, so per-route `<Fragment slot="head">` (e.g. blog/index DNS
+prefetch) actually lands. Regression test:
+`src/__tests__/integration/layout-head-slot.test.ts`.
 
 ## Content & R2
 
@@ -22,37 +36,26 @@ collection. Sentry client + server. pnpm enforced via `packageManager`.
   --bucket <name> [--dry-run|--commit]`. Idempotent (md5 + ETag skip).
   Requires an R2 token with **read+write** scope.
 
-## CMS surface
+## API surface
 
-`/admin/*` + `/api/cms/*` gated by Cloudflare Access JWT. Single-author
-allowlist (`hi@mrugesh.dev`). Posts are stored in `posts/<slug>.md`
-with a `draft` frontmatter flag — publish flips it to `false` and fires
-the Workers Build deploy hook.
+Two SSR endpoints only:
 
-- Pure libs: `src/lib/cms-{access-guard,middleware,posts,publish}.ts`.
-  Bindings are passed in via interfaces so vitest never imports
-  `astro:middleware` / `cloudflare:workers`.
-- `src/lib/cloudflare-env-bridge.ts` is a workerd-only env shim. The
-  middleware reaches it via guarded dynamic import — Node-mode
-  prerender catches the `cloudflare:` resolve failure and falls
-  through.
-- `wrangler.jsonc → assets.run_worker_first` puts CMS paths in front of
-  the static-asset binding so the gate fires before a stray asset
-  lookup. Without it, `/admin` would serve the static 404 page.
-- Setup runbook: `docs/cms-setup.md` (KV namespace, CF Access app,
-  `wrangler secret put` for the four runtime keys).
+- `/api/img/[...path]` — streams images from the R2 `ARTICLES`
+  bucket. `prerender = false`. Accessed via paths the R2 loader
+  rewrites in markdown frontmatter and bodies.
+- `/api/health` — minimal liveness probe. Returns
+  `{ status: 'healthy', timestamp }` with `cache-control: no-store`.
+  No CORS allow-all, no request-header echo.
+
+`wrangler.jsonc → assets.run_worker_first: ["/api/*"]` ensures these
+hit the worker before the static-asset binding 404s them.
 
 ## Secrets / env
 
 `.env` is the single source. `.envrc` (committed) hooks direnv so vars
-load on `cd`. `pnpm develop` and `pnpm preview` regenerate `.dev.vars`
-from `.env` via `scripts/sync-dev-vars.mjs` — only the runtime-only
-subset (`CF_ACCESS_*`, `DEPLOY_HOOK_URL`, `DEV_BYPASS_ACCESS`). Schema
-lives in `.env.example`. Production secrets land in the Worker secret
-store via `wrangler secret put`.
-
-`DEV_BYPASS_ACCESS=1` opens the gate **only** under `astro dev` — gated
-by `import.meta.env.DEV`. Production builds drop the bypass branch.
+load on `cd` into the project. Build-time vars (Sentry, R2, Turbo)
+land in CI via Workers Build env. There are no runtime secrets — the
+worker reads only `vars` declared in `wrangler.jsonc`.
 
 ## Sentry on Cloudflare
 
@@ -62,11 +65,8 @@ handler auto-instrumentation is off for workerd compatibility.
 `sentry.{client,server}.config.ts` gate `Sentry.init()` on environment
 detection — workerd rejects `addEventListener('load', _, true)` from
 `browserTracingIntegration`, so we skip init on workerd
-(`globalThis.WebSocketPair`) and outside browsers. Sentry is still live
-in real Node SSR (e.g. prerender) and in real browsers.
-
-The middleware emits `api.response_time` distribution + `api.requests`
-count for every `/api/*` response (including 401s).
+(`globalThis.WebSocketPair`) and outside browsers. Sentry stays live
+in real Node SSR and real browsers.
 
 ## React 19 + bundler
 
@@ -74,19 +74,32 @@ count for every `/api/*` response (including 401s).
 in production to dodge the MessageChannel polyfill that
 `server.browser` pulls in.
 
+## Hydration directives
+
+- `<Nav client:load>` — mobile menu must be tappable on load, not
+  after `requestIdleCallback` fires (1–2s lag with `client:idle`).
+- `<Background client:idle>` — pure visual, defers JS work.
+- `<ScrollButton client:visible>` — fixed-position button.
+- `<ClientProviders client:idle>` — GA consent banner, non-critical.
+- `<ErrorBoundary client:load>` — see "Layout SSR" above.
+- All `<ExpandableSection client:visible>` on /uses + /about — fold-out
+  cards, hydrate when scrolled to.
+
 ## Styling
 
 Tailwind 4 with brutalist tokens in `src/styles/global.css`:
 `brutalist-{button,card,input}`, hard-edge shadows
-`--shadow-brutal-{sm,md,lg,xl}`. Critical fonts preload; rest lazy via
-FontFace API.
+`--shadow-brutal-{sm,md,lg,xl}`. All fonts (Inter, Space Grotesk,
+JetBrains Mono) declared via `@font-face` with `font-display: swap`
+(or `optional` for the two preloaded critical weights). No JS-side
+font loading — the FontFace API block was redundant with CSS.
 
 ## Background canvas
 
 `src/components/background/` is layered for perf — static gradient
 (z-1) + animated canvas (z-2, `client:idle` hydration). Grain texture
-renders at 50% res; resize debounces grain regen 150 ms. Canvas opacity
-fades in over 1.8 s.
+renders at 50% res; resize debounces grain regen 150 ms. Canvas
+opacity fades in over 1.8 s.
 
 The Background persists across page navigations via
 `<ClientRouter />` + `transition:persist='background'`.
@@ -99,6 +112,9 @@ The Background persists across page navigations via
   `vitest.setup.ts`; types augmented in `src/types/vitest-jest-axe.d.ts`.
 - Playwright e2e against `wrangler dev --config dist/server/...`. R2
   binding is `remote: true` so the suite hits the real staging bucket.
+- Source meta-gates guard layout SSR (`base-layout-ssr.test.ts`,
+  `layout-head-slot.test.ts`) and wrangler config drift
+  (`wrangler-config.test.ts`).
 
 ## Path alias
 
