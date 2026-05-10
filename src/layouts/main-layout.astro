@@ -25,6 +25,7 @@ const containerSize = variant === 'legal' ? 'full' : 'full';
 ---
 
 <BaseLayout {...baseProps} showHomeButton={showHomeButton}>
+  <slot name='head' slot='head' />
   <div class={cn('container')}>
     <div class='fixed inset-0 -z-10' transition:persist='background'>
       <Background client:idle />

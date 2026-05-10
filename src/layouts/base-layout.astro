@@ -118,6 +118,7 @@ const image = pageImage || defaultImage;
 
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
+    <slot name="head" />
   </head>
   <body>
     <ClientProviders client:idle>
