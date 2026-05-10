@@ -12,11 +12,13 @@ as a second collection. Sentry client + server. pnpm enforced via
 
 ## Layout SSR — non-obvious gotcha
 
-`src/layouts/base-layout.astro` wraps `<slot />` in `<ErrorBoundary
-client:load>`. **Never `client:only`** — `client:only` skips HTML
-server rendering for the subtree, which leaves the entire body empty
-on first paint until React hydrates. Regression test:
-`src/__tests__/integration/base-layout-ssr.test.ts`.
+The body `<slot />` in `src/layouts/base-layout.astro` is **NOT**
+wrapped in any `client:*` React island. Wrapping it (any directive,
+including `client:load`) breaks first paint — Astro emits the slot's
+HTML, but React 19 sees a hydration mismatch (slot HTML ≠ React
+vnodes) and tears down the subtree. Stand-alone islands (e.g.
+`ConsentBanner`) live as **siblings** of the slot, not parents.
+Regression test: `src/__tests__/integration/base-layout-ssr.test.ts`.
 
 `<slot name="head" />` is exposed in base-layout and forwarded through
 main-layout, so per-route `<Fragment slot="head">` (e.g. blog/index DNS
@@ -80,8 +82,10 @@ in production to dodge the MessageChannel polyfill that
   after `requestIdleCallback` fires (1–2s lag with `client:idle`).
 - `<Background client:idle>` — pure visual, defers JS work.
 - `<ScrollButton client:visible>` — fixed-position button.
-- `<ClientProviders client:idle>` — GA consent banner, non-critical.
-- `<ErrorBoundary client:load>` — see "Layout SSR" above.
+- `<ConsentBanner client:only="react">` — sibling of the body slot
+  (never a parent — see "Layout SSR" above). `client:only` skips SSR
+  so returning users with a stored choice don't see a 50ms flash of
+  the banner being unmounted on hydration.
 - All `<ExpandableSection client:visible>` on /uses + /about — fold-out
   cards, hydrate when scrolled to.
 
@@ -89,10 +93,23 @@ in production to dodge the MessageChannel polyfill that
 
 Tailwind 4 with brutalist tokens in `src/styles/global.css`:
 `brutalist-{button,card,input}`, hard-edge shadows
-`--shadow-brutal-{sm,md,lg,xl}`. All fonts (Inter, Space Grotesk,
-JetBrains Mono) declared via `@font-face` with `font-display: swap`
-(or `optional` for the two preloaded critical weights). No JS-side
-font loading — the FontFace API block was redundant with CSS.
+`--shadow-brutal-{sm,md,lg,xl}`. Fonts (Inter, Space Grotesk,
+JetBrains Mono) are loaded via Astro's Fonts API — `fonts: [...]` in
+`astro.config.mjs` with `fontProviders.local()`, font files in
+`src/assets/fonts/` (not `public/`, per Astro's no-duplicate-build
+guidance). `<Font cssVariable preload />` in `base-layout.astro` head
+emits the `@font-face` declarations and preload links for the
+critical weights (Inter 700, Space Grotesk 400). Tailwind's
+`--font-display`/`--font-sans`/`--font-mono` aliases in `@theme`
+reference the family names directly, decoupling the design tokens
+from Astro's per-family `cssVariable`. Regression test:
+`src/__tests__/integration/fonts-api-migration.test.ts`.
+
+Astro `optimizedFallbacks` is disabled per family (`fallbacks: []`)
+because the bundled `fontkitten` parser rejects our `.woff2` files
+("Unknown font format"). Our hand-curated system-font fallback chain
+in `@theme` already covers the gap; revisit if Astro swaps to a
+parser that handles these files.
 
 ## Background canvas
 
@@ -119,3 +136,20 @@ The Background persists across page navigations via
 ## Path alias
 
 `@/*` → `./src/*` (`tsconfig.json` + `vitest.config.ts`).
+
+## Known dev-time noise
+
+- `wrangler dev` logs `Enabling sessions with Cloudflare KV with the
+  SESSION KV binding` on every start. This is hardcoded in
+  `@astrojs/cloudflare` 13.x ([Astro #15802](https://github.com/withastro/astro/issues/15802));
+  the message fires regardless of whether `Astro.session` is used.
+  We don't use Astro Sessions, so the warning is harmless. No
+  `SESSION` KV binding exists in `wrangler.jsonc`.
+
+## Audit reference
+
+Phase 3 (Astro 6.3 + adapter 13.5 overhaul) decisions and the
+Astro CSP / ClientRouter / Shiki incompatibility (A12, deferred)
+are documented in `.scratchpad/dossier/` — `PLAN.md`, `SPEC.md`,
+`AUDIT.md`, and `AUDIT-astro6-cloudflare.md` (the deep-research note
+with sources cited).
