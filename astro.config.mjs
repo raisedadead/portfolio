@@ -13,6 +13,11 @@ export default defineConfig({
 
   prefetch: true,
 
+  // workaround: withastro/astro#15802 — null driver stops adapter injecting SESSION KV binding (deploy error 10210)
+  session: {
+    driver: { entrypoint: 'unstorage/drivers/null' }
+  },
+
   adapter: cloudflare({
     imageService: 'compile',
     // CI builds run unauthenticated; skip the remote-proxy session that

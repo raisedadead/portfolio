@@ -84,6 +84,14 @@ describe('wrangler.jsonc — CMS surface fully purged', () => {
   });
 });
 
+describe('astro.config.mjs — adapter must not re-inject SESSION KV binding', () => {
+  const astroConfig = readFileSync(path.join(repoRoot, 'astro.config.mjs'), 'utf8');
+
+  it('disables Astro sessions via the unstorage null driver so generated wrangler.json carries no id-less SESSION binding that fails deploy promotion with 10210 (workaround: withastro/astro#15802)', () => {
+    expect(astroConfig).toMatch(/session:\s*\{\s*driver:\s*\{\s*entrypoint:\s*'unstorage\/drivers\/null'/);
+  });
+});
+
 describe('.env.example — single-source schema', () => {
   const envExample = readFileSync(path.join(repoRoot, '.env.example'), 'utf8');
 
