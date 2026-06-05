@@ -1,7 +1,7 @@
-onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
-  - esbuild
-  - sharp
-  - workerd
-ignoredBuiltDependencies:
-  - '@sentry/cli'
+allowBuilds:
+  '@tailwindcss/oxide': true
+  esbuild: true
+  sharp: true
+  workerd: true
+  '@sentry/cli': false
+trustLockfile: true
