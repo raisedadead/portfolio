@@ -260,7 +260,12 @@ describe('BlogGridWithLoadMore Component', () => {
       render(<BlogGridWithLoadMore posts={[postWithoutCover]} initialCount={1} />);
 
       const fallback = screen.getByText('📝');
-      expect(fallback.parentElement).toHaveClass('bg-gradient-to-br', 'from-blue-500', 'via-purple-500', 'to-pink-500');
+      expect(fallback.parentElement).toHaveClass(
+        'bg-linear-to-br/oklch',
+        'from-blue-500',
+        'via-purple-500',
+        'to-pink-500'
+      );
     });
 
     it('renders loading skeleton behind image', () => {

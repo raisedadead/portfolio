@@ -110,7 +110,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
                   </div>
                 ) : (
                   <div
-                    className={`flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 ${spanConfig.aspectClass} ${spanConfig.height}`}
+                    className={`flex items-center justify-center bg-linear-to-br/oklch from-blue-500 via-purple-500 to-pink-500 ${spanConfig.aspectClass} ${spanConfig.height}`}
                   >
                     <span className='text-6xl'>📝</span>
                   </div>
