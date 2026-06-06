@@ -72,7 +72,7 @@ test.describe('Navigation', () => {
       await menuButton.click();
 
       // Menu should be open - look for navigation links
-      const blogLink = page.getByRole('link', { name: /blog/i });
+      const blogLink = page.getByRole('link', { name: /recent posts/i });
       await expect(blogLink).toBeVisible();
 
       // Click blog link
