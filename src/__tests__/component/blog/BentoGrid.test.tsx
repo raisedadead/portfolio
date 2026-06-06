@@ -284,11 +284,10 @@ describe('BlogGridWithLoadMore Component', () => {
       expect(screen.getByText('Brief for First Post')).toBeInTheDocument();
     });
 
-    it('renders formatted publishedAt date', () => {
+    it('renders publishedAt as timezone-stable formatted date', () => {
       render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
-      const dateText = new Date('2025-01-01').toDateString();
-      expect(screen.getByText(dateText)).toBeInTheDocument();
+      expect(screen.getByText('Jan 01, 2025')).toBeInTheDocument();
     });
 
     it('renders reading time when available', () => {
