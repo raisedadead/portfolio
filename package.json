@@ -75,8 +75,8 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
-    "@vitest/coverage-v8": "4.1.5",
-    "@vitest/ui": "4.1.5",
+    "@vitest/coverage-v8": "4.1.8",
+    "@vitest/ui": "4.1.8",
     "happy-dom": "20.9.0",
     "husky": "9.1.7",
     "is-ci": "4.1.0",
@@ -89,7 +89,7 @@
     "turbo": "2.9.16",
     "typescript": "6.0.3",
     "vite": "8.0.16",
-    "vitest": "4.1.5",
+    "vitest": "4.1.8",
     "wrangler": "4.98.0"
   },
   "lint-staged": {
