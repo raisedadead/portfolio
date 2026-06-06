@@ -33,7 +33,12 @@ export const Profile: React.FC = () => {
         />
       </div>
       <div className='relative mb-6 flex -rotate-12 transform flex-col items-center'>
-        <audio ref={audioRef} src='/audio/mrugesh-pronunciation.mp3' preload='auto'>
+        <audio
+          ref={audioRef}
+          src='/audio/mrugesh-pronunciation.mp3'
+          preload='auto'
+          aria-label="Pronunciation of Mrugesh's name"
+        >
           <track kind='captions' src='/audio/mrugesh-pronunciation.vtt' srcLang='en' label='English' default />
         </audio>
         <h1 className='group text-display-lg rotate-12 transform text-slate-800'>

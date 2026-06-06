@@ -166,14 +166,15 @@ export default function BlogSearch({ posts }: Props) {
                 return (
                   <li
                     key={post.id}
-                    role='option'
-                    aria-selected={index === selectedIndex}
+                    role='none'
                     className='border-b-2 border-gray-200 last:border-b-0'
                     onMouseEnter={() => setSelectedIndex(index)}
                   >
                     <a
                       href={url}
                       {...linkProps}
+                      role='option'
+                      aria-selected={index === selectedIndex}
                       className={`block cursor-pointer p-4 no-underline transition-all duration-100 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
                         index === selectedIndex ? 'bg-orange-100' : 'hover:bg-orange-50'
                       }`}
