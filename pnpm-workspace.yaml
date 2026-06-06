@@ -5,3 +5,6 @@ allowBuilds:
   workerd: true
   '@sentry/cli': false
 trustLockfile: true
+# pnpm 11 default re-installs on `pnpm run`; recurses infinitely via
+# postinstall -> turbo -> pnpm run cf-typegen (CI OOM/SIGTERM)
+verifyDepsBeforeRun: false
