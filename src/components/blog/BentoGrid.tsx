@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import * as Sentry from '@sentry/astro';
 import type { LightweightPost } from '@/types/blog';
 import { getBentoGridSpan } from '@/lib/blog-utils';
+import { formatDate } from '@/lib/formatDate';
 import { transformImageUrl } from '@/lib/image-optimizer';
 import { calculateImageDimensions } from '@/lib/image-dimensions';
 import LoadMoreButton from './LoadMoreButton';
@@ -133,7 +134,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
                   </p>
 
                   <div className='flex flex-wrap items-center text-sm text-slate-500 transition-colors group-hover:text-slate-600'>
-                    <span>{new Date(post.data.publishedAt).toDateString()}</span>
+                    <span>{formatDate(new Date(post.data.publishedAt))}</span>
                     {post.data.readingTime && (
                       <>
                         <span className='mx-2'>•</span>

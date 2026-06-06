@@ -23,4 +23,9 @@ describe('formatDate', () => {
     expect(formatDate(new Date('2020-01-01T00:00:00Z'))).toBe('Jan 01, 2020');
     expect(formatDate(new Date('2030-12-31T00:00:00Z'))).toBe('Dec 31, 2030');
   });
+
+  it('formats by UTC day regardless of host timezone', () => {
+    expect(formatDate(new Date('2025-09-02T20:34:51.000Z'))).toBe('Sep 02, 2025');
+    expect(formatDate(new Date('2025-09-02T23:59:59.999Z'))).toBe('Sep 02, 2025');
+  });
 });
