@@ -58,7 +58,7 @@
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "sharp": "0.34.5",
-    "shiki": "4.0.2",
+    "shiki": "4.2.0",
     "tailwind-merge": "3.6.0",
     "tailwindcss-animate": "1.0.7",
     "yaml": "^2.8.4"
