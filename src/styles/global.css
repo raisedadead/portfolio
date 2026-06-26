@@ -208,6 +208,15 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* resolves per element from its --btn-bg (relative color, ±0.03 L);
+       transparent surfaces stay transparent — alpha carries over */
+    --btn-sheen: linear-gradient(
+      to bottom,
+      oklch(from var(--btn-bg) calc(l + 0.03) c h),
+      var(--btn-bg) 50%,
+      oklch(from var(--btn-bg) calc(l - 0.03) c h)
+    );
   }
 
   .dark {
@@ -312,9 +321,11 @@
 /* Design System Consistency - Semantic utility classes for common patterns */
 
 @utility brutalist-button {
+  --btn-bg: var(--color-brand-primary);
   border: 2px solid var(--color-black);
   color: var(--color-text-primary);
-  background-color: var(--color-brand-primary);
+  background-color: var(--btn-bg);
+  background-image: var(--btn-sheen);
   box-shadow: var(--shadow-brutal-md);
   transition: all 100ms;
   text-decoration: none;
@@ -322,9 +333,11 @@
 }
 
 @utility brutalist-button-primary {
+  --btn-bg: var(--color-brand-primary);
   border: 2px solid var(--color-black);
   color: var(--color-text-primary);
-  background-color: var(--color-brand-primary);
+  background-color: var(--btn-bg);
+  background-image: var(--btn-sheen);
   box-shadow: var(--shadow-brutal-md);
   transition: all 100ms;
   text-decoration: none;
@@ -332,9 +345,11 @@
 }
 
 @utility brutalist-button-secondary {
+  --btn-bg: var(--color-brand-light);
   border: 2px solid var(--color-black);
   color: var(--color-text-primary);
-  background-color: var(--color-brand-light);
+  background-color: var(--btn-bg);
+  background-image: var(--btn-sheen);
   box-shadow: var(--shadow-brutal-md);
   transition: all 100ms;
   text-decoration: none;
@@ -342,9 +357,11 @@
 }
 
 @utility brutalist-button-ghost {
+  --btn-bg: transparent;
   border: 2px solid var(--color-black);
   color: var(--color-text-primary);
-  background-color: transparent;
+  background-color: var(--btn-bg);
+  background-image: var(--btn-sheen);
   box-shadow: var(--shadow-brutal-md);
   transition: all 100ms;
   text-decoration: none;
@@ -381,7 +398,7 @@
 .brutalist-button-primary:hover:not(:disabled),
 .brutalist-button-secondary:hover:not(:disabled),
 .brutalist-button-ghost:hover:not(:disabled) {
-  background-color: var(--color-orange-100);
+  --btn-bg: var(--color-orange-100);
   box-shadow: var(--shadow-brutal-lg);
 }
 
@@ -408,7 +425,7 @@
 .brutalist-button-primary:active,
 .brutalist-button-secondary:active,
 .brutalist-button-ghost:active {
-  background-color: var(--color-black);
+  --btn-bg: var(--color-black);
   color: white;
   box-shadow: none;
 }
