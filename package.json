@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "prepare": "is-ci || husky",
-    "postinstall": "turbo cf-typegen",
+    "postinstall": "wrangler types",
     "develop": "turbo do:develop",
     "build": "turbo do:build",
     "preview": "turbo do:preview",
