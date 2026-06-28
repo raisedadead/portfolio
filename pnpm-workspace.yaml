@@ -4,6 +4,8 @@ allowBuilds:
   sharp: true
   workerd: true
   '@sentry/cli': false
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@4.20260628.1'
 trustLockfile: true
 # pnpm 11 default re-installs on `pnpm run`; recurses infinitely via
 # postinstall -> turbo -> pnpm run cf-typegen (CI OOM/SIGTERM)
