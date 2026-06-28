@@ -51,7 +51,7 @@
     "@sentry/astro": "10.62.0",
     "@sentry/cloudflare": "10.62.0",
     "@tailwindcss/vite": "4.2.2",
-    "astro": "6.4.7",
+    "astro": "6.4.8",
     "aws4fetch": "^1.0.20",
     "clsx": "2.1.1",
     "motion": "12.42.0",
