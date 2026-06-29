@@ -1,3 +1,10 @@
 {
-  "extends": ["github>raisedadead/renovate-config"]
+  "extends": ["github>raisedadead/renovate-config"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["@tailwindcss/vite", "tailwindcss"],
+      "allowedVersions": "<4.3.0",
+      "description": "Pin <4.3.0: 4.3.x breaks the rolldown-vite build (`Missing field tsconfigPaths on BindingViteResolvePluginConfig.resolveOptions`). Tracking: withastro/astro#16542. Unpin once @tailwindcss/vite passes tsconfigPaths to vite's createIdResolver."
+    }
+  ]
 }

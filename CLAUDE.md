@@ -8,7 +8,23 @@ Astro 6 (SSR, `@astrojs/cloudflare` 13 adapter) + React 19 islands + Tailwind 4.
 
 ## pnpm 11 — non-obvious gotcha
 
-`verifyDepsBeforeRun: false` in `pnpm-workspace.yaml` is load-bearing. pnpm 11's default verifies deps on every `pnpm run` and auto-installs when node_modules looks stale — which recurses infinitely through `postinstall: turbo cf-typegen` (turbo invokes `pnpm run cf-typegen` mid-install, before install state is finalized). CI dies with exit 137 (OOM) or 143 (SIGTERM). Turbo cache hits mask the bug locally. Native build scripts are approved via `allowBuilds` (map form — the v10 `onlyBuiltDependencies`/`ignoredBuiltDependencies` keys were removed in pnpm 11 and are silently ignored).
+`postinstall` is `wrangler types` — a **direct** call, not `turbo cf-typegen`. This is load-bearing: routing `postinstall` through turbo spawns a nested `pnpm run cf-typegen` mid-install, and pnpm 11's default re-verifies deps on every `pnpm run`, auto-installs when node_modules looks stale, and recurses infinitely (CI dies with exit 137 OOM / 143 SIGTERM; turbo cache hits masked it locally). A direct binary call has no nested `pnpm run`, so the loop cannot form — critical inside Cloudflare Workers Builds, whose sandbox has no turbo remote-cache token.
+
+`verifyDepsBeforeRun: false` in `pnpm-workspace.yaml` is retained as defense-in-depth against the same auto-install behavior on any other `pnpm run` during install. Native build scripts are approved via `allowBuilds` (map form — the v10 `onlyBuiltDependencies`/`ignoredBuiltDependencies` keys were removed in pnpm 11 and are silently ignored).
+
+## Turbo vs Cloudflare Workers Builds — non-obvious gotcha
+
+CF Workers Builds runs **build and deploy as two separate commands** in the same container, so the deploy command must not re-build. Script tiers:
+
+- Top-level (`build`, `deploy`, `lint`, `test`, …) → `turbo do:*`. Local + GitHub Actions.
+- `do:*` → raw turbo-free executors (`astro build`, `wrangler deploy …`). Directly callable; no turbo, no rebuild when invoked as `pnpm run do:*`.
+
+CF Workers Builds settings:
+
+- **Build command**: `pnpm build` — turbo is fine here (no remote-cache token just means a cache miss; `astro build` runs fresh).
+- **Deploy command**: `pnpm run do:versions:upload` (or `pnpm run do:deploy` for prod-direct) — turbo-free and build-free; it uploads the `dist/` the build command already produced. Never `pnpm run deploy`/`versions:upload` here — those re-enter turbo and its `do:build` dep re-runs the build inside CF's deploy sandbox.
+
+Deploy targets `dist/server/wrangler.json` — the adapter's merged config emitted at build time; the root `wrangler.jsonc` alone would deploy the wrong (unbuilt) worker.
 
 ## Layout SSR — non-obvious gotcha
 
