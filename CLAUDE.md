@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Caveman notes. Non-obvious only — traps, invariants, and why.
+Non-obvious only — traps, invariants, and why.
 
 Versions, deps, scripts, paths, aliases: read `package.json`, `tsconfig.json`, `astro.config.mjs`, `wrangler.jsonc`. Never mirror them here. They rot.
 
