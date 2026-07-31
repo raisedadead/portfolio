@@ -27,7 +27,6 @@
       "cache": true
     },
     "do:test": {
-      "inputs": ["src/**", "vitest.config.ts", "vitest.setup.ts", "tsconfig.json", "package.json"],
       "outputs": [],
       "cache": true
     },
@@ -44,12 +43,10 @@
       "inputs": ["src/**", "vitest.config.ts", "vitest.setup.ts", "tsconfig.json", "package.json"]
     },
     "do:test:coverage": {
-      "inputs": ["src/**", "vitest.config.ts", "vitest.setup.ts", "tsconfig.json", "package.json"],
       "outputs": ["coverage/**"],
       "cache": true
     },
     "do:lint": {
-      "inputs": ["src/**", "e2e/**", ".github/**/*.{js,ts,mjs}", ".oxlintrc.json", "package.json"],
       "outputs": [],
       "cache": true
     },
@@ -59,7 +56,6 @@
     },
     "do:check": {
       "dependsOn": ["cf-typegen"],
-      "inputs": ["src/**", "astro.config.mjs", "tsconfig.json", "package.json"],
       "outputs": [],
       "cache": true
     },
