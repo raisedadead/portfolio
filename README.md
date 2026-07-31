@@ -8,12 +8,15 @@ My personal website built with [Astro](https://astro.build) and React, deployed 
 
 ## Tech Stack
 
-- **Framework**: [Astro 5](https://astro.build) with [React 19](https://react.dev)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com)
-- **Animation**: [Framer Motion](https://framer.com/motion)
+- **Framework**: [Astro](https://astro.build) (SSR) with [React](https://react.dev)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Animation**: [Motion](https://motion.dev)
 - **Icons**: [Heroicons](https://heroicons.com)
-- **Testing**: [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/react)
-- **Deployment**: [Cloudflare](https://cloudflare.com)
+- **Content**: Markdown from [Cloudflare R2](https://developers.cloudflare.com/r2/), highlighted with [Shiki](https://shiki.style)
+- **Testing**: [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/react), with [Playwright](https://playwright.dev) for end-to-end
+- **Tooling**: [Turborepo](https://turbo.build) with [oxlint and oxfmt](https://oxc.rs)
+- **Monitoring**: [Sentry](https://sentry.io)
+- **Deployment**: [Cloudflare Workers](https://workers.cloudflare.com) via [Wrangler](https://developers.cloudflare.com/workers/wrangler/)
 - **Package Manager**: [pnpm](https://pnpm.io)
 
 ## Link
