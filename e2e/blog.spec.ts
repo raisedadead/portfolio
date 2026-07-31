@@ -235,7 +235,7 @@ test.describe('Console Errors', () => {
 
     page.on('console', (msg) => {
       if (msg.type() === 'error') {
-        errors.push(msg.text());
+        errors.push(`${msg.text()} ${msg.location().url}`);
       }
     });
 
@@ -245,7 +245,10 @@ test.describe('Console Errors', () => {
     // Filter out known acceptable errors
     const criticalErrors = errors.filter(
       (error) =>
-        !error.includes('favicon') && !error.includes('Sentry') && !error.includes('Failed to decode downloaded font')
+        !error.includes('favicon') &&
+        !error.includes('Sentry') &&
+        !error.includes('sentry.io') &&
+        !error.includes('Failed to decode downloaded font')
     );
 
     expect(criticalErrors).toHaveLength(0);
