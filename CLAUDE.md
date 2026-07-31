@@ -1,102 +1,103 @@
 # CLAUDE.md
 
-Project notes — non-obvious only. Commands, deps, and tsconfig are discoverable from `package.json` / `tsconfig.json`; not duplicated here.
+Non-obvious only — traps, invariants, and why.
 
-## Stack
+Versions, deps, scripts, paths, aliases: read `package.json`, `tsconfig.json`, `astro.config.mjs`, `wrangler.jsonc`. Never mirror them here. They rot.
 
-Astro 6 (SSR, `@astrojs/cloudflare` 13 adapter) + React 19 islands + Tailwind 4. Markdown sourced from R2 at build time; freeCodeCamp RSS as a second collection. Sentry client + server. pnpm enforced via `packageManager`.
+## pnpm
 
-## pnpm 11 — non-obvious gotcha
+`postinstall` must be a **direct** `wrangler types` call. Never route through turbo.
 
-`postinstall` is `wrangler types` — a **direct** call, not `turbo cf-typegen`. This is load-bearing: routing `postinstall` through turbo spawns a nested `pnpm run cf-typegen` mid-install, and pnpm 11's default re-verifies deps on every `pnpm run`, auto-installs when node_modules looks stale, and recurses infinitely (CI dies with exit 137 OOM / 143 SIGTERM; turbo cache hits masked it locally). A direct binary call has no nested `pnpm run`, so the loop cannot form — critical inside Cloudflare Workers Builds, whose sandbox has no turbo remote-cache token.
+Turbo spawns nested `pnpm run` mid-install. pnpm re-verifies deps on every `pnpm run`, auto-installs when node_modules looks stale, recurses forever. CI dies OOM / SIGTERM. Turbo cache hits mask it locally. Direct binary call has no nested `pnpm run`, so loop cannot form.
 
-`verifyDepsBeforeRun: false` in `pnpm-workspace.yaml` is retained as defense-in-depth against the same auto-install behavior on any other `pnpm run` during install. Native build scripts are approved via `allowBuilds` (map form — the v10 `onlyBuiltDependencies`/`ignoredBuiltDependencies` keys were removed in pnpm 11 and are silently ignored).
+`verifyDepsBeforeRun: false` in `pnpm-workspace.yaml` = same defense for any other `pnpm run` during install.
 
-## Turbo vs Cloudflare Workers Builds — non-obvious gotcha
+Native build scripts approved via `allowBuilds` map. Older `onlyBuiltDependencies` / `ignoredBuiltDependencies` keys are silently ignored now — silently, so check the map.
 
-CF Workers Builds runs **build and deploy as two separate commands** in the same container, so the deploy command must not re-build. Script tiers:
+## Deploy — Cloudflare Workers Builds
 
-- Top-level (`build`, `deploy`, `lint`, `test`, …) → `turbo do:*`. Local + GitHub Actions.
-- `do:*` → raw turbo-free executors (`astro build`, `wrangler deploy …`). Directly callable; no turbo, no rebuild when invoked as `pnpm run do:*`.
+CF runs build and deploy as **two separate commands** in one container. Deploy command must not rebuild.
 
-CF Workers Builds settings:
+- Top-level scripts (`build`, `lint`, `test`) wrap turbo. Local + GitHub Actions.
+- `do:*` scripts are raw, turbo-free executors.
 
-- **Build command**: `pnpm build` — turbo is fine here (no remote-cache token just means a cache miss; `astro build` runs fresh).
-- **Deploy command**: `pnpm run do:versions:upload` (or `pnpm run do:deploy` for prod-direct) — turbo-free and build-free; it uploads the `dist/` the build command already produced. Never `pnpm run deploy`/`versions:upload` here — those re-enter turbo and its `do:build` dep re-runs the build inside CF's deploy sandbox.
+CF deploy command must be a `do:*` script. Anything turbo-wrapped re-enters turbo, and its build dep re-runs the whole build inside the deploy sandbox.
 
-Deploy targets `dist/server/wrangler.json` — the adapter's merged config emitted at build time; the root `wrangler.jsonc` alone would deploy the wrong (unbuilt) worker.
+Deploy targets the adapter-emitted `dist/server/wrangler.json`, not root `wrangler.jsonc`. Root alone deploys the wrong, unbuilt worker.
 
-## Layout SSR — non-obvious gotcha
+## Layout SSR — do not break
 
-The body `<slot />` in `src/layouts/base-layout.astro` is **NOT** wrapped in any `client:*` React island. Wrapping it (any directive, including `client:load`) breaks first paint — Astro emits the slot's HTML, but React 19 sees a hydration mismatch (slot HTML ≠ React vnodes) and tears down the subtree. Stand-alone islands (e.g. `ConsentBanner`) live as **siblings** of the slot, not parents. Regression test: `src/__tests__/integration/base-layout-ssr.test.ts`.
+Body `<slot />` in base-layout is **never** wrapped in a `client:*` island. Any directive breaks first paint: Astro emits the slot HTML, React sees a hydration mismatch, tears the subtree down.
 
-`<slot name="head" />` is exposed in base-layout and forwarded through main-layout, so per-route `<Fragment slot="head">` (e.g. blog/index DNS prefetch) actually lands. Regression test: `src/__tests__/integration/layout-head-slot.test.ts`.
+Stand-alone islands go **sibling** to the slot, never parent.
 
-## Content & R2
+`<slot name="head" />` is forwarded base → main layout so per-route `<Fragment slot="head">` actually lands.
 
-- Bucket layout: `posts/<slug>.md`, `drafts/<slug>.md`, `assets/images/<slug>/<file>` in `articles-content`. Single bucket; `wrangler dev` reads it directly via `remote: true` on the R2 binding.
-- `src/content.config.ts` wires `r2MarkdownLoader` directly. The loader rewrites legacy `../assets/images/<slug>/<file>` references to `/api/img/<slug>/<file>` so they resolve through the R2 streamer at runtime. Build fails loudly without R2 credentials — no glob fallback.
-- Migration: `node scripts/migrate-articles-to-r2.mjs --source <path> --bucket <name> [--dry-run|--commit]`. Idempotent (md5 + ETag skip). Requires an R2 token with **read+write** scope.
+Both guarded by source meta-gate tests. Keep them.
 
-## API surface
+## Content / R2
 
-Two SSR endpoints only:
+One bucket. `posts/<slug>.md`, `drafts/<slug>.md`, `assets/images/<slug>/<file>`.
 
-- `/api/img/[...path]` — streams images from the R2 `ARTICLES` bucket. `prerender = false`. Accessed via paths the R2 loader rewrites in markdown frontmatter and bodies.
-- `/api/health` — minimal liveness probe. Returns `{ status: 'healthy', timestamp }` with `cache-control: no-store`. No CORS allow-all, no request-header echo.
+Loader rewrites legacy `../assets/images/…` refs to the `/api/img/…` streamer so they resolve at runtime.
 
-`wrangler.jsonc → assets.run_worker_first: ["/api/*"]` ensures these hit the worker before the static-asset binding 404s them.
+Build **fails loud** without R2 creds. No glob fallback — that is deliberate.
 
-## Secrets / env
+`wrangler dev` reads the bucket directly via `remote: true` on the binding. Means e2e hits the **real** bucket, not a mock.
 
-`.env` is the single source. `.envrc` (committed) hooks direnv so vars load on `cd` into the project. Build-time vars (Sentry, R2, Turbo) land in CI via Workers Build env. There are no runtime secrets — the worker reads only `vars` declared in `wrangler.jsonc`.
+`run_worker_first` on `/api/*` is load-bearing. Without it the static-asset binding 404s the endpoints before the worker ever sees them.
 
-## Sentry on Cloudflare
+## Sentry
 
-Sentry MUST be the first integration in `astro.config.mjs`. Request handler auto-instrumentation is off for workerd compatibility.
+Must be the **first** integration in `astro.config.mjs` — it wraps the others.
 
-`sentry.{client,server}.config.ts` gate `Sentry.init()` on environment detection — workerd rejects `addEventListener('load', _, true)` from `browserTracingIntegration`, so we skip init on workerd (`globalThis.WebSocketPair`) and outside browsers. Sentry stays live in real Node SSR and real browsers.
+`Sentry.init()` is gated on environment detection. workerd rejects `addEventListener('load', _, true)` from `browserTracingIntegration`, so skip init on workerd (detect `globalThis.WebSocketPair`) and outside browsers. Stays live in real Node SSR and real browsers.
 
-## React 19 + bundler
+Request-handler auto-instrumentation is off for workerd compatibility.
 
-`astro.config.mjs` aliases `react-dom/server` → `react-dom/server.edge` in production to dodge the MessageChannel polyfill that `server.browser` pulls in.
+## React / bundler
 
-## Hydration directives
+Production aliases `react-dom/server` → `react-dom/server.edge`. Dodges the MessageChannel polyfill that `server.browser` drags in.
 
-- `<Nav client:load>` — mobile menu must be tappable on load, not after `requestIdleCallback` fires (1–2s lag with `client:idle`).
-- `<Background client:idle>` — pure visual, defers JS work.
-- `<ScrollButton client:visible>` — fixed-position button.
-- `<ConsentBanner client:only="react">` — sibling of the body slot (never a parent — see "Layout SSR" above). `client:only` skips SSR so returning users with a stored choice don't see a 50ms flash of the banner being unmounted on hydration.
-- All `<ExpandableSection client:visible>` on /uses + /about — fold-out cards, hydrate when scrolled to.
+## Hydration — only the non-obvious
 
-## Styling
+- Nav is `client:load`. Mobile menu must be tappable on load; `client:idle` gives 1–2s of dead taps.
+- ConsentBanner is `client:only`. Skips SSR so returning users with a stored choice never see the banner flash and unmount. Sibling of the slot — see Layout SSR.
 
-Tailwind 4 with brutalist tokens in `src/styles/global.css`: `brutalist-{button,card,input}`, hard-edge shadows `--shadow-brutal-{sm,md,lg,xl}`. Fonts (Inter, Space Grotesk, JetBrains Mono) are loaded via Astro's Fonts API — `fonts: [...]` in `astro.config.mjs` with `fontProviders.local()`, font files in `src/assets/fonts/` (not `public/`, per Astro's no-duplicate-build guidance). `<Font cssVariable preload />` in `base-layout.astro` head emits the `@font-face` declarations and preload links for the critical weights (Inter 700, Space Grotesk 400). Tailwind's `--font-display`/`--font-sans`/`--font-mono` aliases in `@theme` reference the family names directly, decoupling the design tokens from Astro's per-family `cssVariable`. Regression test: `src/__tests__/integration/fonts-api-migration.test.ts`.
+Everything else is routine visible/idle deferral for visual or below-fold work.
 
-Astro `optimizedFallbacks` is disabled per family (`fallbacks: []`) because the bundled `fontkitten` parser rejects our `.woff2` files ("Unknown font format"). Our hand-curated system-font fallback chain in `@theme` already covers the gap; revisit if Astro swaps to a parser that handles these files.
+## Fonts
 
-## Background canvas
+Astro Fonts API with the local provider. Font files live in `src/assets/fonts`, **not** `public/` — Astro's no-duplicate-build guidance.
 
-`src/components/background/` is layered for perf — static gradient (z-1) + animated canvas (z-2, `client:idle` hydration). Grain texture renders at 50% res; resize debounces grain regen 150 ms. Canvas opacity fades in over 1.8 s.
+`<Font cssVariable preload />` in the base-layout head emits the `@font-face` rules and preloads for critical weights.
 
-The Background persists across page navigations via `<ClientRouter />` + `transition:persist='background'`.
+Tailwind `--font-*` aliases reference family names directly, decoupling design tokens from Astro's per-family `cssVariable`.
+
+`optimizedFallbacks` is disabled per family. The bundled font parser rejects our woff2 files ("Unknown font format"). Hand-curated system fallback chain covers the gap. Revisit if Astro swaps parsers.
+
+## Background
+
+Static gradient layer + animated canvas layer. Canvas hydrates idle; grain renders at half res.
+
+Persists across navigation via `<ClientRouter />` plus `transition:persist` on the wrapper div in main-layout. The attribute is on the wrapper, not the component.
 
 ## Testing
 
-- Vitest + happy-dom + `pool: 'forks'` (required for stability).
-- Test files in `src/__tests__/{unit,integration,component,pages}/`.
-- jest-axe for a11y. `toHaveNoViolations` is registered globally in `vitest.setup.ts`; types augmented in `src/types/vitest-jest-axe.d.ts`.
-- Playwright e2e against `wrangler dev --config dist/server/...`. R2 binding is `remote: true` so the suite hits the real staging bucket.
-- Source meta-gates guard layout SSR (`base-layout-ssr.test.ts`, `layout-head-slot.test.ts`) and wrangler config drift (`wrangler-config.test.ts`).
+`pool: 'forks'` is **required** for stability. happy-dom environment.
 
-## Path alias
+jest-axe `toHaveNoViolations` registered globally in the vitest setup file.
 
-`@/*` → `./src/*` (`tsconfig.json` + `vitest.config.ts`).
+Playwright runs against `wrangler dev` on built output, against the real R2 bucket.
 
-## Known dev-time noise
+Source meta-gates guard layout SSR and wrangler config drift.
 
-- `wrangler dev` logs `Enabling sessions with Cloudflare KV with the SESSION KV binding` on every start. This is hardcoded in `@astrojs/cloudflare` 13.x ([Astro #15802](https://github.com/withastro/astro/issues/15802)); the message fires regardless of whether `Astro.session` is used. We don't use Astro Sessions, so the warning is harmless. No `SESSION` KV binding exists in `wrangler.jsonc`.
+**Turbo cache keys:** cached tasks declare no `inputs`, so turbo hashes all tracked files. This is deliberate. An `inputs` allowlist narrower than what a task actually reads makes breakage invisible — the task replays a stale green forever. Cost is a few extra cache misses on cheap tasks. Do not reintroduce allowlists without checking the task's real read set.
 
-## Audit reference
+## Dev noise — ignore
 
-Phase 3 (Astro 6.3 + adapter 13.5 overhaul) decisions and the Astro CSP / ClientRouter / Shiki incompatibility (A12, deferred) are documented in `.scratchpad/dossier/` — `PLAN.md`, `SPEC.md`, `AUDIT.md`, and `AUDIT-astro6-cloudflare.md` (the deep-research note with sources cited).
+`wrangler dev` logs `Enabling sessions with Cloudflare KV with the SESSION KV binding` on every start. Hardcoded in the Cloudflare adapter ([withastro/astro#15802](https://github.com/withastro/astro/issues/15802)); fires whether or not sessions are used. We don't use Astro Sessions and no SESSION binding exists. Harmless.
+
+## History
+
+Phase 3 audit decisions and the Astro CSP / ClientRouter / Shiki incompatibility (A12, deferred) live in `.scratchpad/dossier/`.
