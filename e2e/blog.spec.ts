@@ -1,5 +1,14 @@
 import { test, expect } from '@playwright/test';
 
+const isTelemetryHost = (rawUrl: string): boolean => {
+  try {
+    const { hostname } = new URL(rawUrl);
+    return hostname === 'sentry.io' || hostname.endsWith('.sentry.io');
+  } catch {
+    return false;
+  }
+};
+
 test.describe('Blog', () => {
   test.describe('Blog Index', () => {
     test('loads with blog posts', async ({ page }) => {
@@ -231,11 +240,11 @@ test.describe('Blog', () => {
 
 test.describe('Console Errors', () => {
   test('blog page has no console errors', async ({ page }) => {
-    const errors: string[] = [];
+    const errors: Array<{ text: string; url: string }> = [];
 
     page.on('console', (msg) => {
       if (msg.type() === 'error') {
-        errors.push(msg.text());
+        errors.push({ text: msg.text(), url: msg.location().url });
       }
     });
 
@@ -243,10 +252,13 @@ test.describe('Console Errors', () => {
     await page.waitForLoadState('networkidle');
 
     // Filter out known acceptable errors
-    const criticalErrors = errors.filter(
-      (error) =>
-        !error.includes('favicon') && !error.includes('Sentry') && !error.includes('Failed to decode downloaded font')
-    );
+    const criticalErrors = errors
+      .filter((error) => !isTelemetryHost(error.url))
+      .map((error) => error.text)
+      .filter(
+        (text) =>
+          !text.includes('favicon') && !text.includes('Sentry') && !text.includes('Failed to decode downloaded font')
+      );
 
     expect(criticalErrors).toHaveLength(0);
   });
