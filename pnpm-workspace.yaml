@@ -4,8 +4,27 @@ allowBuilds:
   sharp: true
   workerd: true
   '@sentry/cli': false
+minimumReleaseAgeStrict: true
 minimumReleaseAgeExclude:
-  - '@cloudflare/workers-types@4.20260628.1'
+  - '@cloudflare/workers-types@4.20260628.1 || 5.20260801.1'
+  - '@shikijs/core@4.4.1'
+  - '@shikijs/engine-javascript@4.4.1'
+  - '@shikijs/engine-oniguruma@4.4.1'
+  - '@shikijs/langs@4.4.1'
+  - '@shikijs/primitive@4.4.1'
+  - '@shikijs/themes@4.4.1'
+  - '@shikijs/types@4.4.1'
+  - shiki@4.4.1
+  - '@turbo/darwin-64@2.10.8'
+  - '@turbo/darwin-arm64@2.10.8'
+  - '@turbo/linux-64@2.10.8'
+  - '@turbo/linux-arm64@2.10.8'
+  - '@turbo/windows-64@2.10.8'
+  - '@turbo/windows-arm64@2.10.8'
+  - lint-staged@17.3.0
+  - miniflare@5.20260730.0-alpha
+  - turbo@2.10.8
+  - wrangler@4.118.0
 trustLockfile: true
 # pnpm 11 default re-installs on `pnpm run`; recurses infinitely via
 # postinstall -> turbo -> pnpm run cf-typegen (CI OOM/SIGTERM)
