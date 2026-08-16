@@ -5,6 +5,11 @@
       "matchPackageNames": ["@tailwindcss/vite", "tailwindcss"],
       "allowedVersions": "<4.3.0",
       "description": "Pin <4.3.0: 4.3.x breaks the rolldown-vite build (`Missing field tsconfigPaths on BindingViteResolvePluginConfig.resolveOptions`). Tracking: withastro/astro#16542. Unpin once @tailwindcss/vite passes tsconfigPaths to vite's createIdResolver."
+    },
+    {
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7",
+      "description": "Pin <7: typescript@7 is the native port. Its root export ships only `version`/`versionMajorMinor`; the compiler API moved to `typescript/unstable/*`. @astrojs/language-server (via @astrojs/check) calls `ts.sys.fileExists`, so `astro check` dies with `Cannot read properties of undefined (reading 'fileExists')`. Unpin once @astrojs/language-server targets the TS 7 API."
     }
   ]
 }

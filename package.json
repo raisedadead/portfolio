@@ -87,7 +87,7 @@
     "oxlint": "1.78.0",
     "tailwindcss": "4.3.3",
     "turbo": "2.10.9",
-    "typescript": "7.0.2",
+    "typescript": "6.0.3",
     "vite": "8.2.1",
     "vitest": "4.1.10",
     "wrangler": "4.120.1"
