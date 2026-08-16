@@ -68,16 +68,21 @@ export const Profile: React.FC = () => {
       </div>
       <h2 className='text-display-sm mb-4 p-1 leading-relaxed text-slate-700'>dad • dev//ops • open-source</h2>
       <h3 className='mb-8 p-1 text-base leading-relaxed font-medium text-slate-700 sm:text-lg md:text-xl'>
-        Principal Maintainer — Cloud Infrastructure & Open-source,{' '}
+        Principal Maintainer — Open Source & Infra,{' '}
         <Link
           href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'
-          className='group relative inline-block px-1 text-white no-underline transition-colors hover:text-slate-700'
+          className='group relative mx-[0.95em] inline-block text-white no-underline transition-colors hover:text-slate-800'
           aria-label='freecodecamp.org'
         >
-          <svg viewBox='0 0 200 40' className='absolute inset-0 h-full w-full' aria-hidden='true'>
+          <svg
+            viewBox='0 0 200 48'
+            preserveAspectRatio='none'
+            className='absolute -inset-x-[0.7em] -inset-y-[0.45em] h-[calc(100%+0.9em)] w-[calc(100%+1.4em)] -rotate-1'
+            aria-hidden='true'
+          >
             <path
-              d='M5,8 L195,3 Q200,20 193,35 L8,38 Q0,25 5,8'
-              className='fill-slate-700 transition-colors group-hover:fill-white'
+              d='M2.5,13 C2,5.5 7,1.5 15,2 L104,4 L186,1.5 C195,1 199.5,6 198.5,14 L197.5,34 C198,42 192.5,46.5 184,46 L96,43.5 L15,46.5 C6.5,46.8 1.5,42 2.5,34 Z'
+              className='fill-slate-700 transition-colors group-hover:fill-orange-50'
             />
           </svg>
           <span className='relative'>freeCodeCamp.org</span>
