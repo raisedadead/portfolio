@@ -16,7 +16,7 @@ type ExpandableSectionProps = {
 
 const Label: React.FC<{ children: React.ReactNode; labelColor: string }> = ({ children, labelColor }) => {
   const preClasses =
-    'mx-1 inline-flex items-center rounded-full shadow-[4px_4px_0px_var(--color-black)] border-2 px-2 py-0.5 text-xs font-medium';
+    'mx-1 inline-flex items-center rounded-full shadow-brutal-md border-2 px-2 py-0.5 text-xs font-medium';
 
   const colorVariants: {
     [key: string]: string;
@@ -58,9 +58,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
   return (
     <Disclosure as='div' className={className} defaultOpen={defaultOpen}>
       {({ open }) => (
-        <div
-          className={`${open ? 'border-2' : 'border-t-2 border-r-2 border-l-2'} my-4 border-black shadow-[6px_6px_0px_var(--color-black)]`}
-        >
+        <div className={`${open ? 'border-2' : 'border-t-2 border-r-2 border-l-2'} my-4 border-black shadow-brutal-lg`}>
           <DisclosureButton
             className={`${open ? 'bg-purple-300' : 'bg-red-200'} flex w-full flex-row justify-between border-b-2 border-black px-2 py-2 text-left font-bold text-slate-900`}
           >

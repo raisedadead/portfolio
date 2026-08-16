@@ -8,7 +8,6 @@ import BentoGrid from '@/components/blog/BentoGrid';
 import { Social } from '@/components/social';
 import { getAllTags, filterPostsByTag } from '@/lib/blog-utils';
 import { normalizeLocalPosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
-import { cn } from '@/lib/utils';
 import type { LightweightPost } from '@/types/blog';
 
 export const getStaticPaths = (async () => {
@@ -72,17 +71,17 @@ const structuredData = {
   pageImage={posts[0]?.data.coverImage?.url}
 >
   <script type='application/ld+json' is:inline set:html={JSON.stringify(structuredData)} />
-  <section class={cn('mb-2')}>
-    <div class={cn('prose prose-lg prose-slate max-w-none')}>
-      <h1 class={cn('py-4 text-center text-display-md text-slate-800')}>
+  <section class='mb-2'>
+    <div class='prose prose-lg prose-slate max-w-none'>
+      <h1 class='py-4 text-center text-display-md text-slate-800'>
         Posts tagged with "{tag.name}"
       </h1>
     </div>
   </section>
 
-  <section class={cn('mb-12')}>
-    <div class={cn('mb-6 text-center')}>
-      <p class={cn('text-base sm:text-lg text-slate-600')}>
+  <section class='mb-12'>
+    <div class='mb-6 text-center'>
+      <p class='text-base sm:text-lg text-slate-600'>
         {sortedPosts.length}
         {sortedPosts.length === 1 ? 'post' : 'posts'} found
       </p>
@@ -90,8 +89,8 @@ const structuredData = {
 
     {
       sortedPosts.length === 0 ? (
-        <div class={cn('mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center')}>
-          <p class={cn('text-base text-slate-600 sm:text-lg')}>No posts found with this tag.</p>
+        <div class='mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center'>
+          <p class='text-base text-slate-600 sm:text-lg'>No posts found with this tag.</p>
         </div>
       ) : (
         <>
@@ -115,8 +114,8 @@ const structuredData = {
     }
   </section>
   <section class='pt-4 pb-8'>
-    <div class={cn('prose prose-lg prose-slate mx-auto mt-12 max-w-3xl')}>
-      <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>Elsewhere on the internet</h3>
+    <div class='prose prose-lg prose-slate mx-auto mt-12 max-w-3xl'>
+      <h3 class='mb-4 text-center font-bold text-slate-700'>Elsewhere on the internet</h3>
       <Social />
     </div>
   </section>

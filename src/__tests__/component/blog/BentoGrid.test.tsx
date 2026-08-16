@@ -252,7 +252,7 @@ describe('BlogGridWithLoadMore Component', () => {
       render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
       const img = screen.getByAltText('Cover for First Post');
-      expect(img).toHaveStyle({ opacity: 0, animation: 'fadeIn 0.5s ease-in forwards' });
+      expect(img).toHaveClass('animate-fade-in');
     });
 
     it('renders fallback gradient when coverImage is missing', () => {
@@ -389,12 +389,7 @@ describe('BlogGridWithLoadMore Component', () => {
       render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
       const article = screen.getByRole('article');
-      expect(article).toHaveClass(
-        'shadow-[4px_4px_0px_var(--color-black)]',
-        'transition-all',
-        'duration-100',
-        'hover:shadow-[6px_6px_0px_var(--color-black)]'
-      );
+      expect(article).toHaveClass('shadow-brutal-md', 'transition-all', 'duration-100', 'hover:shadow-brutal-lg');
     });
 
     it('applies hover background class', () => {
@@ -406,14 +401,11 @@ describe('BlogGridWithLoadMore Component', () => {
   });
 
   describe('Animation Styles', () => {
-    it('injects fadeIn keyframes', () => {
+    it('does not inject inline keyframes (fade-in lives in global.css)', () => {
       const { container } = render(<BlogGridWithLoadMore posts={mockPosts} />);
 
       const styleTag = container.querySelector('style');
-      expect(styleTag).toBeInTheDocument();
-      expect(styleTag?.textContent).toContain('@keyframes fadeIn');
-      expect(styleTag?.textContent).toContain('opacity: 0');
-      expect(styleTag?.textContent).toContain('opacity: 1');
+      expect(styleTag).not.toBeInTheDocument();
     });
   });
 

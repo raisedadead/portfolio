@@ -150,6 +150,14 @@
       transform: translateY(-10px);
     }
   }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 @utility container {
@@ -278,6 +286,19 @@
   }
 }
 
+@utility animate-fade-in {
+  opacity: 0;
+  animation: fade-in 0.5s ease-in forwards;
+}
+
+/* Anti-bot email obfuscation: render reversed address RTL while keeping
+   the text visually left-aligned inside the span. See `src/components/email.tsx`. */
+.email-rtl {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: left;
+}
+
 /* Shiki code block styles */
 .shiki-code-block {
   border-radius: 0.375rem;
@@ -319,18 +340,6 @@
 }
 
 /* Design System Consistency - Semantic utility classes for common patterns */
-
-@utility brutalist-button {
-  --btn-bg: var(--color-brand-primary);
-  border: 2px solid var(--color-black);
-  color: var(--color-text-primary);
-  background-color: var(--btn-bg);
-  background-image: var(--btn-sheen);
-  box-shadow: var(--shadow-brutal-md);
-  transition: all 100ms;
-  text-decoration: none;
-  cursor: pointer;
-}
 
 @utility brutalist-button-primary {
   --btn-bg: var(--color-brand-primary);
@@ -394,7 +403,6 @@
 }
 
 /* Additional styles for pseudo-classes */
-.brutalist-button:hover:not(:disabled),
 .brutalist-button-primary:hover:not(:disabled),
 .brutalist-button-secondary:hover:not(:disabled),
 .brutalist-button-ghost:hover:not(:disabled) {
@@ -402,7 +410,6 @@
   box-shadow: var(--shadow-brutal-lg);
 }
 
-.brutalist-button:focus-visible,
 .brutalist-button-primary:focus-visible,
 .brutalist-button-secondary:focus-visible,
 .brutalist-button-ghost:focus-visible,
@@ -412,7 +419,6 @@
   outline-offset: 2px;
 }
 
-.brutalist-button:disabled,
 .brutalist-button-primary:disabled,
 .brutalist-button-secondary:disabled,
 .brutalist-button-ghost:disabled,
@@ -421,7 +427,6 @@
   cursor: not-allowed;
 }
 
-.brutalist-button:active,
 .brutalist-button-primary:active,
 .brutalist-button-secondary:active,
 .brutalist-button-ghost:active {

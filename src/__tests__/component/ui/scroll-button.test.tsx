@@ -354,7 +354,7 @@ describe('ScrollButton Component', () => {
 
       const button = screen.queryByTestId('motion-button');
       if (button) {
-        expect(button.className).toContain('shadow-[4px_4px_0px_var(--color-black)]');
+        expect(button.className).toContain('shadow-brutal-md');
       }
     });
   });

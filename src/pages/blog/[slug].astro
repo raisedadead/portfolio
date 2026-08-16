@@ -56,7 +56,7 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
       'bg-white',
       'no-underline',
       'border-2 border-black',
-      'shadow-[6px_6px_0px_var(--color-black)]',
+      'shadow-brutal-lg',
       'transition-all duration-100'
     )}
   >
@@ -136,14 +136,12 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
     {
       data.tags && data.tags.length > 0 && (
         <div class='mb-6'>
-          <h3 class={cn('mb-3 text-center text-base font-semibold text-slate-800 sm:text-lg')}>Tags</h3>
+          <h3 class='mb-3 text-center text-base font-semibold text-slate-800 sm:text-lg'>Tags</h3>
           <div class='flex flex-wrap justify-center gap-2'>
             {data.tags.map((tag: any) => (
               <a
                 href={`/blog/tags/${tag.slug}`}
-                class={cn(
-                  'inline-flex items-center rounded-full border-2 border-black bg-white px-4 py-2 text-xs font-medium text-black shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none sm:text-sm'
-                )}
+                class='inline-flex items-center rounded-full border-2 border-black bg-white px-4 py-2 text-xs font-medium text-black shadow-brutal-md transition-all duration-100 hover:bg-orange-100 hover:shadow-brutal-lg focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none sm:text-sm'
                 aria-label={`View more posts tagged with ${tag.slug}`}
               >
                 #{tag.slug}
@@ -167,8 +165,8 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
   </section>
 
   <section class='pt-4 pb-8'>
-    <div class={cn('prose prose-lg prose-slate mx-auto mt-12 max-w-3xl')}>
-      <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>Elsewhere on the internet</h3>
+    <div class='prose prose-lg prose-slate mx-auto mt-12 max-w-3xl'>
+      <h3 class='mb-4 text-center font-bold text-slate-700'>Elsewhere on the internet</h3>
       <Social />
     </div>
   </section>
