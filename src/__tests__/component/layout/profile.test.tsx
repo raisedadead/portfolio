@@ -53,7 +53,7 @@ describe('Profile Component', () => {
   it('renders call-to-action buttons', () => {
     render(<Profile />);
 
-    expect(screen.getByText('Schedule a Meeting')).toBeTruthy();
+    expect(screen.getByText('Meet me!')).toBeTruthy();
     expect(screen.getByText('Blog')).toBeTruthy();
   });
 
@@ -61,7 +61,7 @@ describe('Profile Component', () => {
     render(<Profile />);
 
     const calButton = screen.getByTestId('cal-button');
-    expect(calButton).toHaveClass('h-14', 'brutalist-button-primary');
+    expect(calButton).toHaveClass('h-14', 'brutalist-button-secondary');
   });
 
   it('renders social links section', () => {

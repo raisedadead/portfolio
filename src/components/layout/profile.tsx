@@ -54,7 +54,7 @@ export const Profile: React.FC = () => {
             className='pointer-events-none absolute bottom-full left-1/4 mb-3 hidden w-auto -translate-x-1/2 rounded-md bg-black p-3 text-sm font-normal text-white group-hover:block'
             aria-hidden='true'
           >
-            🗣 /ˈm.ruː.geɪ.ʃ/
+            /ˈm.ruː.geɪ.ʃ/
             <svg
               className='absolute top-full left-1/2 h-2 w-4 -translate-x-1/2 text-black'
               viewBox='0 0 16 8'
@@ -92,13 +92,13 @@ export const Profile: React.FC = () => {
       <div className='mb-10 flex w-full max-w-md flex-col items-center justify-center gap-4 px-4 sm:flex-row'>
         <CalButton
           aria-label='Schedule a meeting with me'
-          className={`${primaryButtonClasses} w-full sm:w-auto sm:flex-1`}
+          className={`${secondaryButtonClasses} w-full sm:w-auto sm:flex-1`}
         >
-          Schedule a Meeting
+          Meet me!
         </CalButton>
         <Link
           aria-label='Browse my blog'
-          className={`${secondaryButtonClasses} w-full sm:w-auto sm:min-w-36`}
+          className={`${primaryButtonClasses} w-full sm:w-auto sm:min-w-36`}
           href='/blog'
           type='button'
         >
