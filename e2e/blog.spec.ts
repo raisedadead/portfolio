@@ -209,7 +209,6 @@ test.describe('Blog', () => {
 
       // Click on a tag
       const firstTag = page.locator('a[href*="/blog/tags/"]').first();
-      const _tagName = await firstTag.textContent();
       await firstTag.click();
 
       // Should be on tag page

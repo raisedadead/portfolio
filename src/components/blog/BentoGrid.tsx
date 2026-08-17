@@ -90,7 +90,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
             <article
               key={post.id}
               data-blog-post-id={post.id}
-              className={`${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-[4px_4px_0px_var(--color-black)] transition-all duration-100 hover:bg-orange-100 hover:shadow-[6px_6px_0px_var(--color-black)] focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none sm:col-span-2`}
+              className={`${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-brutal-md transition-all duration-100 hover:bg-orange-100 hover:shadow-brutal-lg focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none sm:col-span-2`}
             >
               <a href={postUrl} className='block no-underline' {...linkProps}>
                 {/* Cover Image */}
@@ -102,8 +102,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
                       alt={post.data.coverImage?.alt || post.data.title}
                       width={dimensions.mobile.width}
                       height={dimensions.mobile.height}
-                      className='h-full w-full object-cover transition-all duration-500 group-hover:scale-105'
-                      style={{ opacity: 0, animation: 'fadeIn 0.5s ease-in forwards' }}
+                      className='h-full w-full animate-fade-in object-cover transition-all duration-500 group-hover:scale-105'
                       loading={index === 0 ? 'eager' : 'lazy'}
                       fetchPriority={index === 0 ? 'high' : undefined}
                     />
@@ -176,17 +175,6 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
         postsPerLoad={postsPerLoad}
         isLoading={isLoading}
       />
-
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
     </>
   );
 }

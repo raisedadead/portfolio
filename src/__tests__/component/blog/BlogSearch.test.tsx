@@ -314,7 +314,7 @@ describe('BlogSearch Component', () => {
 
       await waitFor(() => {
         const dropdown = screen.getByRole('listbox');
-        expect(dropdown).toHaveClass('border-2', 'border-black', 'shadow-[4px_4px_0px_var(--color-black)]');
+        expect(dropdown).toHaveClass('border-2', 'border-black', 'shadow-brutal-md');
       });
     });
   });

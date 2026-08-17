@@ -33,7 +33,7 @@ export default function BlogSearch({ posts }: Props) {
 
   // Track search queries (debounced)
   const searchTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const trackSearch = useCallback((query: string, resultCount: number) => {
+  const trackSearch = useCallback((resultCount: number) => {
     clearTimeout(searchTimerRef.current);
     searchTimerRef.current = setTimeout(() => {
       Sentry.metrics.count('blog.search', 1, {
@@ -45,7 +45,7 @@ export default function BlogSearch({ posts }: Props) {
 
   useEffect(() => {
     if (searchQuery.trim()) {
-      trackSearch(searchQuery, filteredPosts.length);
+      trackSearch(filteredPosts.length);
     }
   }, [searchQuery, filteredPosts.length, trackSearch]);
 
@@ -152,7 +152,7 @@ export default function BlogSearch({ posts }: Props) {
         <div
           id='search-results'
           role='listbox'
-          className='absolute z-50 mt-2 w-full border-2 border-black bg-white shadow-[4px_4px_0px_var(--color-black)]'
+          className='absolute z-50 mt-2 w-full border-2 border-black bg-white shadow-brutal-md'
         >
           {filteredPosts.length > 0 ? (
             <ul className='max-h-96 overflow-y-auto'>

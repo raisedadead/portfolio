@@ -15,9 +15,7 @@ describe('Email', () => {
     render(<Email />);
     const emailElement = screen.getByText('ved.hsegurm@troppus');
 
-    expect(emailElement.style.direction).toBe('rtl');
-    expect(emailElement.style.unicodeBidi).toBe('bidi-override');
-    expect(emailElement.style.textAlign).toBe('left');
+    expect(emailElement).toHaveClass('email-rtl');
   });
 
   it('transforms email correctly', () => {

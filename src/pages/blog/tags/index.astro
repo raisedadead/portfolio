@@ -6,7 +6,6 @@ import TagCard from '@/components/blog/TagCard';
 import { Social } from '@/components/social';
 import { getTagsWithCount } from '@/lib/blog-utils';
 import { normalizeLocalPosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
-import { cn } from '@/lib/utils';
 
 // Fetch posts from both collections
 const localPosts = await getCollection('blog');
@@ -42,22 +41,22 @@ const structuredData = {
 
 <MainLayout pageTitle='Blog Tags' pageDescription='Browse all blog posts organized by tags' pageUrl={canonicalURL}>
   <script type='application/ld+json' is:inline set:html={JSON.stringify(structuredData)} />
-  <section class={cn('mb-2')}>
-    <div class={cn('prose prose-lg prose-slate max-w-none')}>
-      <h1 class={cn('py-4 text-center text-display-md text-slate-800')}>Blog Tags</h1>
+  <section class='mb-2'>
+    <div class='prose prose-lg prose-slate max-w-none'>
+      <h1 class='py-4 text-center text-display-md text-slate-800'>Blog Tags</h1>
     </div>
   </section>
 
-  <section class={cn('mb-12')}>
-    <p class={cn('pb-6 text-center text-base sm:text-lg text-slate-600')}>Browse posts by topic</p>
+  <section class='mb-12'>
+    <p class='pb-6 text-center text-base sm:text-lg text-slate-600'>Browse posts by topic</p>
 
     {
       tagsWithCount.length === 0 ? (
-        <div class={cn('mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center')}>
-          <p class={cn('text-base text-slate-600 sm:text-lg')}>No tags found yet. Check back soon!</p>
+        <div class='mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center'>
+          <p class='text-base text-slate-600 sm:text-lg'>No tags found yet. Check back soon!</p>
         </div>
       ) : (
-        <div class={cn('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3')}>
+        <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
           {tagsWithCount.map((tag) => (
             <TagCard name={tag.name} slug={tag.slug} count={tag.count} />
           ))}
@@ -76,8 +75,8 @@ const structuredData = {
     </div>
   </section>
   <section class='pt-4 pb-8'>
-    <div class={cn('prose prose-lg prose-slate mx-auto mt-12 max-w-3xl')}>
-      <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>Elsewhere on the internet</h3>
+    <div class='prose prose-lg prose-slate mx-auto mt-12 max-w-3xl'>
+      <h3 class='mb-4 text-center font-bold text-slate-700'>Elsewhere on the internet</h3>
       <Social />
     </div>
   </section>

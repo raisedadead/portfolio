@@ -41,8 +41,7 @@ const linkProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } 
             alt={data.coverImage.alt || data.title}
             width={dimensions.mobile.width}
             height={dimensions.mobile.height}
-            class='h-full w-full object-cover transition-all duration-500 group-hover:scale-105'
-            style='opacity: 0; animation: fadeIn 0.5s ease-in forwards;'
+            class='h-full w-full animate-fade-in object-cover transition-all duration-500 group-hover:scale-105'
             loading='lazy'
           />
         </div>
@@ -114,14 +113,3 @@ const linkProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } 
     </div>
   </a>
 </article>
-
-<style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-</style>

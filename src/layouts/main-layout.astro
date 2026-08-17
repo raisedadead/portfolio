@@ -19,18 +19,15 @@ export interface Props {
 }
 
 const { showHomeButton = true, variant = 'main', ...baseProps } = Astro.props;
-
-// Map variant to container size for consistent widths
-const containerSize = variant === 'legal' ? 'full' : 'full';
 ---
 
 <BaseLayout {...baseProps} showHomeButton={showHomeButton}>
   <slot name='head' slot='head' />
-  <div class={cn('container')}>
+  <div class='container'>
     <div class='fixed inset-0 -z-10' transition:persist='background'>
       <Background client:idle />
     </div>
-    <Container size={containerSize} className='my-2 py-8'>
+    <Container size='full' className='my-2 py-8'>
       <main>
         <Nav className='z-20 my-2 max-h-none pt-2' showHomeButton={showHomeButton} client:load />
         <div class='px-3 pt-20 pb-5 sm:px-5'>
@@ -49,7 +46,7 @@ const containerSize = variant === 'legal' ? 'full' : 'full';
                   'prose-ul:list-none',
                   'prose-li:text-gray-800',
                   'prose-a:text-blue-600',
-                  'shadow-[6px_6px_0px_var(--color-black)]',
+                  'shadow-brutal-lg',
                   'border-2 border-black',
                   'prose-a:no-underline prose-a:hover:underline'
                 )}

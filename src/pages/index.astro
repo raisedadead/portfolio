@@ -1,11 +1,10 @@
 ---
 import { Profile } from '@/components/layout/profile';
 import MainLayout from '@/layouts/main-layout.astro';
-import { cn } from '@/lib/utils';
 ---
 
 <MainLayout variant='main' showHomeButton={false}>
-  <section class={cn('mb-12')}>
+  <section class='mb-12'>
     <Profile client:visible />
   </section>
 </MainLayout>

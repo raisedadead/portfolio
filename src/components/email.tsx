@@ -16,16 +16,5 @@ export const Email = () => {
     const sanitized = raw.toLowerCase().replaceAll(' ', '');
     return sanitized.split('').reverse().join('');
   })();
-  return (
-    <span
-      className='font-medium underline'
-      style={{
-        unicodeBidi: 'bidi-override',
-        direction: 'rtl',
-        textAlign: 'left'
-      }}
-    >
-      {email}
-    </span>
-  );
+  return <span className='font-medium underline email-rtl'>{email}</span>;
 };

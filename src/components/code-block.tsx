@@ -31,7 +31,7 @@ export default function CodeBlock({ code, html }: CodeBlockProps) {
           className={cn(
             'rounded-md border-2 border-black p-2 transition-all duration-100',
             'bg-gray-800 hover:bg-orange-100',
-            'shadow-[4px_4px_0px_var(--color-black)] hover:shadow-[6px_6px_0px_var(--color-black)]',
+            'shadow-brutal-md hover:shadow-brutal-lg',
             'opacity-20 group-hover:opacity-100 focus-visible:opacity-100',
             'focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none'
           )}

@@ -4,7 +4,6 @@ import MainLayout from '@/layouts/main-layout.astro';
 import BlogSearch from '@/components/blog/BlogSearch';
 import BentoGrid from '@/components/blog/BentoGrid';
 import { Social } from '@/components/social';
-import { cn } from '@/lib/utils';
 import { normalizeLocalPosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
 
 // Fetch posts from both collections
@@ -23,20 +22,20 @@ const lightweightPosts = mergeAndSortPosts(
     <!-- DNS prefetch for the freeCodeCamp news host that serves RSS-feed cover images. -->
     <link rel='dns-prefetch' href='https://www.freecodecamp.org' />
   </Fragment>
-  <section class={cn('mb-2')}>
-    <div class={cn('prose prose-lg prose-slate max-w-none')}>
-      <h1 class={cn('py-4 text-center text-display-md text-slate-800')}>Blog</h1>
+  <section class='mb-2'>
+    <div class='prose prose-lg prose-slate max-w-none'>
+      <h1 class='py-4 text-center text-display-md text-slate-800'>Blog</h1>
     </div>
   </section>
-  <section class={cn('mb-12')}>
-    <p class={cn('pb-6 text-center text-base sm:text-lg text-slate-600')}>
+  <section class='mb-12'>
+    <p class='pb-6 text-center text-base sm:text-lg text-slate-600'>
       Thoughts on web development, technology, and more
     </p>
 
     {
       lightweightPosts.length === 0 ? (
-        <div class={cn('mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center')}>
-          <p class={cn('text-base text-slate-600 sm:text-lg')}>No blog posts yet. Check back soon!</p>
+        <div class='mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center'>
+          <p class='text-base text-slate-600 sm:text-lg'>No blog posts yet. Check back soon!</p>
         </div>
       ) : (
         <>
@@ -48,8 +47,8 @@ const lightweightPosts = mergeAndSortPosts(
     }
   </section>
   <section class='pt-4 pb-8'>
-    <div class={cn('prose prose-lg prose-slate mx-auto mt-12 max-w-3xl')}>
-      <h3 class={cn('mb-4 text-center font-bold text-slate-700')}>Elsewhere on the internet</h3>
+    <div class='prose prose-lg prose-slate mx-auto mt-12 max-w-3xl'>
+      <h3 class='mb-4 text-center font-bold text-slate-700'>Elsewhere on the internet</h3>
       <Social />
     </div>
   </section>
