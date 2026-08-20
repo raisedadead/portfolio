@@ -18,12 +18,7 @@ export default defineConfig({
   prefetch: true,
 
   adapter: cloudflare({
-    imageService: 'compile',
-    // CI builds run unauthenticated; skip the remote-proxy session that
-    // `remote: true` on the R2 binding would otherwise trigger during
-    // `astro build`. Local dev keeps the default (true) so E2E hits the
-    // real staging bucket — see RCA B10.
-    remoteBindings: !process.env.CI
+    imageService: 'compile'
   }),
 
   integrations: [
@@ -73,11 +68,11 @@ export default defineConfig({
   },
 
   image: {
-    // R2-hosted images stream from /api/img/[...path] under the same
-    // origin (`mrugesh.dev`). The freeCodeCamp covers continue to render
-    // via raw <img> tags from the RSS feed, so they do not need an
-    // entry here — `image.remotePatterns` only governs Astro's <Image>
-    // component, not bare <img> elements.
+    // EmDash media streams from /_emdash/api/media/file/* under the same
+    // origin (`mrugesh.dev`). The freeCodeCamp covers render via raw
+    // <img> tags from the RSS feed, so they do not need an entry here —
+    // `image.remotePatterns` only governs Astro's <Image> component,
+    // not bare <img> elements.
     remotePatterns: [
       {
         protocol: 'https',

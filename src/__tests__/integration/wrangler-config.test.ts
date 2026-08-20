@@ -73,7 +73,7 @@ describe('wrangler.jsonc — EmDash stateful bindings', () => {
   });
 });
 
-describe('wrangler.jsonc — CMS surface fully purged', () => {
+describe('wrangler.jsonc — legacy CMS surface stays purged, EmDash session store present', () => {
   it('declares exactly the SESSION KV namespace with a real id (EmDash admin auth lives in Astro sessions)', () => {
     const kv = config.kv_namespaces ?? [];
     expect(kv.map((n) => n.binding)).toEqual(['SESSION']);
@@ -123,6 +123,10 @@ describe('.env.example — single-source schema', () => {
       expect(envExample).not.toMatch(new RegExp(`^${varName}=`, 'm'));
     }
   );
+
+  it.each(['EMDASH_ENCRYPTION_KEY', 'EMDASH_TOKEN'])('lists EmDash key %s', (varName) => {
+    expect(envExample).toMatch(new RegExp(`^${varName}=`, 'm'));
+  });
 
   it.each(['CF_ACCESS_TEAM_DOMAIN', 'CF_ACCESS_AUD', 'CF_ACCESS_AUTHOR_EMAIL', 'DEPLOY_HOOK_URL', 'DEV_BYPASS_ACCESS'])(
     'does NOT list dropped CMS-only key %s',

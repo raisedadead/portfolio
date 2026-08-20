@@ -6,6 +6,7 @@ Allow: /
 Disallow: /terms
 Disallow: /privacy
 Disallow: /refunds
+Disallow: /_emdash/
 
 Sitemap: https://mrugesh.dev/sitemap.xml`;
 

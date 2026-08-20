@@ -7,8 +7,20 @@ export const prerender = false;
 
 const STATIC_PATHS = ['/', '/about', '/uses', '/blog', '/blog/tags'];
 
+const XML_ESCAPES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&apos;'
+};
+
+function escapeXml(value: string): string {
+  return value.replace(/[&<>"']/g, (ch) => XML_ESCAPES[ch]);
+}
+
 function urlTag(loc: string, lastmod?: string): string {
-  return `<url><loc>${loc}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`;
+  return `<url><loc>${escapeXml(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`;
 }
 
 export const GET: APIRoute = async ({ site }) => {

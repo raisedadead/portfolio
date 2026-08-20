@@ -32,8 +32,9 @@ Idempotent by slug; dry-run by default.
   node scripts/import-articles-to-emdash.mjs [--source <dir>] [--base-url <url>]
        [--token ec_pat_...] [--commit | --dry-run | --status]
 
-Without --token against localhost, a token is minted via the DEV-only
-/_emdash/api/setup/dev-bypass endpoint.`;
+Auth resolution order: --token, then the EMDASH_TOKEN env var, then (localhost
+only) a token minted via the DEV-only /_emdash/api/setup/dev-bypass endpoint.
+Prefer EMDASH_TOKEN over --token: argv leaks into the process table and logs.`;
 
 const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 const LOCAL_IMAGE_RE = /\.\.\/assets\/images\/[^\s)"']+/g;
@@ -202,7 +203,7 @@ async function createEntry(baseUrl, token, input) {
 async function main() {
   const args = parseArgs(process.argv);
   const sourceDir = path.resolve(args.sourceDir);
-  const token = args.token || (await mintDevToken(args.baseUrl));
+  const token = args.token || process.env.EMDASH_TOKEN || (await mintDevToken(args.baseUrl));
   const client = new EmDashClient({ baseUrl: args.baseUrl, token });
 
   const existingSlugs = new Set();

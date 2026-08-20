@@ -20,20 +20,23 @@ async function waitForHealth(timeoutMs) {
 }
 
 execSync('pnpm exec astro dev', { stdio: 'inherit', timeout: 180_000 });
-if (!(await waitForHealth(120_000))) {
-  console.error('astro dev did not become ready for e2e seeding');
-  process.exit(1);
+try {
+  if (!(await waitForHealth(120_000))) {
+    throw new Error('astro dev did not become ready for e2e seeding');
+  }
+  const bypass = await fetch(`${DEV_URL}/_emdash/api/setup/dev-bypass`, { method: 'POST' });
+  if (!bypass.ok) {
+    throw new Error(`dev-bypass failed: ${bypass.status}`);
+  }
+  execSync('node scripts/import-articles-to-emdash.mjs --source e2e/fixtures/content --commit', {
+    stdio: 'inherit',
+    timeout: 300_000
+  });
+} catch (error) {
+  console.error(error instanceof Error ? error.message : error);
+  process.exitCode = 1;
+} finally {
+  execSync('pnpm exec astro dev stop', { stdio: 'inherit', timeout: 60_000 });
 }
-
-const bypass = await fetch(`${DEV_URL}/_emdash/api/setup/dev-bypass`, { method: 'POST' });
-if (!bypass.ok) {
-  console.error(`dev-bypass failed: ${bypass.status}`);
-  process.exit(1);
-}
-
-execSync('node scripts/import-articles-to-emdash.mjs --source e2e/fixtures/content --commit', {
-  stdio: 'inherit',
-  timeout: 300_000
-});
-execSync('pnpm exec astro dev stop', { stdio: 'inherit', timeout: 60_000 });
+if (process.exitCode === 1) process.exit(1);
 execSync('node scripts/snapshot-preview-state.mjs', { stdio: 'inherit', timeout: 120_000 });

@@ -42,3 +42,4 @@ playwright/.cache/
 
 # dossier: internal scratchpad theater tooling
 .scratchpad/
+.emdash/uploads/

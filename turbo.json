@@ -12,18 +12,17 @@
     },
     "do:build": {
       "dependsOn": ["^do:build", "cf-typegen"],
-      "inputs": ["src/**", "public/**", "astro.config.mjs", "tsconfig.json", "wrangler.jsonc", "package.json"],
-      "outputs": ["dist/**", ".astro/**"],
-      "env": [
-        "NODE_ENV",
-        "CI",
-        "CLOUDFLARE_API_TOKEN",
-        "CLOUDFLARE_ACCOUNT_ID",
-        "R2_ENDPOINT",
-        "R2_BUCKET_NAME",
-        "R2_ACCESS_KEY_ID",
-        "R2_SECRET_ACCESS_KEY"
+      "inputs": [
+        "src/**",
+        "public/**",
+        ".emdash/**",
+        "astro.config.mjs",
+        "tsconfig.json",
+        "wrangler.jsonc",
+        "package.json"
       ],
+      "outputs": ["dist/**", ".astro/**"],
+      "env": ["NODE_ENV", "CI"],
       "cache": true
     },
     "do:test": {
@@ -85,15 +84,7 @@
       "dependsOn": ["do:build"],
       "inputs": ["e2e/**", "playwright.config.ts"],
       "outputs": ["playwright-report/**", "test-results/**"],
-      "env": [
-        "CI",
-        "CLOUDFLARE_API_TOKEN",
-        "CLOUDFLARE_ACCOUNT_ID",
-        "R2_ENDPOINT",
-        "R2_BUCKET_NAME",
-        "R2_ACCESS_KEY_ID",
-        "R2_SECRET_ACCESS_KEY"
-      ],
+      "env": ["CI"],
       "cache": false
     },
     "do:test:e2e:ui": {

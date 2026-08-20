@@ -10,7 +10,7 @@ import langPython from 'shiki/langs/python.mjs';
 import langTypescript from 'shiki/langs/typescript.mjs';
 import langYaml from 'shiki/langs/yaml.mjs';
 
-const NO_LINE_NUMBER_LANGUAGES = ['', 'bash', 'console', 'plaintext', 'text', 'txt'];
+const NO_LINE_NUMBER_LANGUAGES = ['bash', 'console', 'plaintext'];
 const LANGUAGE_ALIASES: Record<string, string> = {
   '': 'plaintext',
   text: 'plaintext',
@@ -21,7 +21,7 @@ const LANGUAGE_ALIASES: Record<string, string> = {
   js: 'javascript',
   ts: 'typescript'
 };
-const PLAIN_LANGUAGES = ['plaintext', 'text', 'txt', 'ansi'];
+const PLAIN_LANGUAGES = ['plaintext', 'ansi'];
 
 let highlighterPromise: Promise<HighlighterCore> | undefined;
 

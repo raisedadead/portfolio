@@ -1,5 +1,5 @@
 ---
-import { MEDIA_FILE_ROUTE } from '@/lib/emdash-posts';
+import { MEDIA_FILE_ROUTE, SAFE_STORAGE_KEY } from '@/lib/emdash-posts';
 
 interface Props {
   node: {
@@ -14,10 +14,19 @@ interface Props {
   };
 }
 
+const MEDIA_PATH_RE = new RegExp(`^${MEDIA_FILE_ROUTE}/([A-Za-z0-9._-]+)$`);
+
+function resolveSrc(ref: string | undefined): string | undefined {
+  if (!ref) return undefined;
+  if (/^https:\/\/[^/]+\//.test(ref)) return ref;
+  if (MEDIA_PATH_RE.test(ref)) return ref;
+  if (SAFE_STORAGE_KEY.test(ref)) return `${MEDIA_FILE_ROUTE}/${ref}`;
+  return undefined;
+}
+
 const { node } = Astro.props;
 const asset = node.asset ?? {};
-const ref = asset.url || asset._ref;
-const src = ref ? (/^(https?:\/\/|\/)/.test(ref) ? ref : `${MEDIA_FILE_ROUTE}/${ref}`) : undefined;
+const src = resolveSrc(asset.url) ?? resolveSrc(asset._ref);
 ---
 
 {src && <img src={src} alt={node.alt ?? ''} width={node.width} height={node.height} loading='lazy' decoding='async' />}

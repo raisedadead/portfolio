@@ -59,63 +59,6 @@ export function normalizeFreeCodeCampPosts(posts: FreeCodeCampPostData[]): Light
   });
 }
 
-// Structurally compatible with `CollectionEntry<'blog'>` from
-// `astro:content` — kept as a local interface to avoid pulling the
-// runtime `astro:content` import into a unit-test file. Cover is
-// always a plain string under the R2 loader (image() form was dropped
-// when content moved off the local glob loader).
-interface LocalPostData {
-  id: string;
-  body?: string;
-  data: {
-    slug?: string;
-    title: string;
-    date: Date;
-    cover?: string;
-    coverAlt?: string;
-    brief?: string;
-    tags: Array<{ name: string; slug: string }>;
-    readingTime?: number;
-  };
-}
-
-/**
- * Normalizes local markdown posts to LightweightPost format
- * @param posts - Raw local posts from the content collection (glob loader)
- * @returns Array of normalized LightweightPost objects
- */
-export function normalizeLocalPosts(posts: LocalPostData[]): LightweightPost[] {
-  return posts.map((post) => {
-    const body = post.body || '';
-    const wordCount = body.split(/\s+/).filter(Boolean).length;
-    const calculatedReadingTime = Math.max(1, Math.ceil(wordCount / 200));
-
-    const brief =
-      post.data.brief ||
-      body
-        .split('\n')
-        .find((line) => line.trim() && !line.startsWith('#'))
-        ?.slice(0, 160) ||
-      '';
-
-    const coverUrl = post.data.cover;
-
-    return {
-      id: post.id,
-      data: {
-        slug: post.data.slug || post.id.replace(/\.md$/, ''),
-        title: post.data.title,
-        brief,
-        coverImage: coverUrl ? { url: coverUrl, alt: post.data.coverAlt } : undefined,
-        tags: post.data.tags,
-        publishedAt: post.data.date,
-        readingTime: post.data.readingTime ?? calculatedReadingTime,
-        source: 'local' as const
-      }
-    };
-  });
-}
-
 /**
  * Merges and sorts posts from multiple sources by date (newest first)
  * @param postArrays - Arrays of LightweightPost to merge

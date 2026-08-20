@@ -46,11 +46,13 @@ export interface EmdashPostEntry {
 
 export const MEDIA_FILE_ROUTE = '/_emdash/api/media/file';
 
+export const SAFE_STORAGE_KEY = /^[A-Za-z0-9._-]+$/;
+
 export function mediaValueToUrl(value: EmdashMediaValue | undefined): string | undefined {
   if (!value) return undefined;
   if (value.src) return value.src;
   const key = value.meta?.storageKey || value.id;
-  return key ? `${MEDIA_FILE_ROUTE}/${key}` : undefined;
+  return key && SAFE_STORAGE_KEY.test(key) ? `${MEDIA_FILE_ROUTE}/${key}` : undefined;
 }
 
 export function termsToTags(terms: Record<string, EmdashTerm[]> | undefined): Tag[] {
