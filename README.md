@@ -8,11 +8,12 @@ My personal website built with [Astro](https://astro.build) and React, deployed 
 
 ## Tech Stack
 
-- **Framework**: [Astro](https://astro.build) (SSR) with [React](https://react.dev)
+- **Framework**: [Astro](https://astro.build) (full SSR, no prerendered routes) with [React](https://react.dev)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
 - **Animation**: [Motion](https://motion.dev)
 - **Icons**: [Heroicons](https://heroicons.com)
-- **Content**: [EmDash CMS](https://emdashcms.com) on [Cloudflare D1](https://developers.cloudflare.com/d1/) + [R2](https://developers.cloudflare.com/r2/), code highlighted with [Shiki](https://shiki.style)
+- **Content**: [EmDash CMS](https://emdashcms.com) — posts in [Cloudflare D1](https://developers.cloudflare.com/d1/), media in [R2](https://developers.cloudflare.com/r2/), admin sessions in [KV](https://developers.cloudflare.com/kv/)
+- **Rendering**: Portable Text bodies, code highlighted with [Shiki](https://shiki.style), fonts self-hosted through the [Astro Fonts API](https://docs.astro.build/en/guides/fonts/)
 - **Testing**: [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/react), with [Playwright](https://playwright.dev) for end-to-end
 - **Tooling**: [Turborepo](https://turbo.build) with [oxlint and oxfmt](https://oxc.rs)
 - **Monitoring**: [Sentry](https://sentry.io)
