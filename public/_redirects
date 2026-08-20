@@ -6,3 +6,7 @@
 /meet/personal https://cal.com/mrugesh/meet?duration=15&layout=month_view 302
 /meet/freecodecamp https://calendar.app.google/fZrcb9XQAVfBWxEQ9 302
 /blog/robots.txt /robots.txt 301
+/admin /_emdash/admin 302
+/admin/ /_emdash/admin 302
+/blog/admin /_emdash/admin 302
+/blog/admin/ /_emdash/admin 302
