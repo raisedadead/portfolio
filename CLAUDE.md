@@ -47,7 +47,15 @@ EmDash admin auth lives in **Astro sessions** → the SESSION KV binding is requ
 
 `run_worker_first` on `/api/*` **and** `/_emdash/*` is load-bearing. Without it the static-asset binding 404s the endpoints before the worker ever sees them.
 
-One-shot import from the old articles repo: `scripts/import-articles-to-emdash.mjs` (dry-run default, idempotent by slug, dev-bypass auth locally / `--token` against prod). Body markdown → Portable Text via `markdownToPortableText` from `emdash/client`; images upload through the media API.
+Import from the old articles repo: `scripts/import-articles-to-emdash.mjs` (dry-run default, idempotent by slug, dev-bypass auth locally / `--token` against prod). `--reimport` also rewrites existing slugs — body, cover and tags — as a blind overwrite that discards any admin edit. Images upload through the media API, which deduplicates by content hash.
+
+Body markdown → Portable Text goes through `scripts/markdown-to-portable-text.mjs`, **not** `markdownToPortableText` from `emdash/client`. The upstream helper is a line-based parser: it only sees code fences and images at column 0, never unescapes `\*` or `\_`, never decodes HTML entities, and turns every source line into its own block. Across the 14 published articles that silently destroyed 18 images and 23 code blocks (29 over all 19 imported files), and split every interrupted `<ol>` into fragments that each restarted at 1. The replacement runs `marked`'s lexer over a real CommonMark AST.
+
+Ordered lists survive interruption through `listId` + `listStart` on each item block. Portable Text is flat, so a list item's continuation paragraph, code fence, or image has to be emitted as a **sibling** block, which ends that `<ol>`. `buildPortableTextListTree` re-joins the numbering across the gap only when every item of one source list carries the same `listId`. Drop it and the numbering restarts.
+
+Never read an entry with `client.get()` (or `em content get`) and write it back with `client.update()`. `convertDataForRead` serializes Portable Text to markdown through the same lossy upstream helper, and `portableTextToMarkdown` emits an image as bare `![alt](url)` — so every image block loses `asset._ref`, `width` and `height` on the way back. Pass `content` as a Portable Text **array**: `convertDataForWrite` only converts strings, so arrays reach D1 verbatim.
+
+Two paths are safe and were measured, not assumed. The REST content routes do no conversion at all — the generated zod schema *requires* an array for a portableText field, so a markdown string is rejected outright. The admin UI edits through the TipTap/ProseMirror converters; a PT → ProseMirror → PT round trip over all 19 posts preserves every block and all text.
 
 Shiki must use `shiki/core` + the JavaScript regex engine with statically imported langs — full `shiki` dynamic-imports grammars and fails for every language on workerd (silent fallback to unstyled `<pre>`).
 

@@ -40,6 +40,41 @@ describe('highlightCode', () => {
       expect(result).toContain('echo');
     });
 
+    it('does not resolve a fence tag through the Object prototype', async () => {
+      const result = await highlightCode('echo hi', 'constructor');
+
+      expect(result).not.toContain('native code');
+      expect(result).toContain('shiki-code-block');
+    });
+
+    it('highlights HTML code', async () => {
+      const result = await highlightCode('<div class="a">x</div>', 'html');
+
+      expect(result).toContain('catppuccin-mocha');
+    });
+
+    it('highlights PowerShell code', async () => {
+      const code = 'Enable-WindowsOptionalFeature -Online -FeatureName $env:x';
+      const result = await highlightCode(code, 'powershell');
+
+      expect(result).toContain('shiki-code-block');
+      expect(result).toContain('catppuccin-mocha');
+    });
+
+    it('highlights a language tag whose case does not match the shiki id', async () => {
+      const code = 'Enable-WindowsOptionalFeature -Online';
+      const result = await highlightCode(code, 'PowerShell');
+
+      expect(result).toContain('catppuccin-mocha');
+    });
+
+    it('resolves an uppercase alias to its canonical language', async () => {
+      const result = await highlightCode('echo hi', 'ZSH');
+
+      expect(result).toContain('catppuccin-mocha');
+      expect(result).not.toContain('shiki-line-numbers');
+    });
+
     it('highlights console code without line numbers', async () => {
       const code = '$ npm install';
       const result = await highlightCode(code, 'console');

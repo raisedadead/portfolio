@@ -4,8 +4,10 @@ import catppuccinMocha from 'shiki/themes/catppuccin-mocha.mjs';
 import langBash from 'shiki/langs/bash.mjs';
 import langConsole from 'shiki/langs/console.mjs';
 import langDiff from 'shiki/langs/diff.mjs';
+import langHtml from 'shiki/langs/html.mjs';
 import langJavascript from 'shiki/langs/javascript.mjs';
 import langJson from 'shiki/langs/json.mjs';
+import langPowershell from 'shiki/langs/powershell.mjs';
 import langPython from 'shiki/langs/python.mjs';
 import langTypescript from 'shiki/langs/typescript.mjs';
 import langYaml from 'shiki/langs/yaml.mjs';
@@ -19,7 +21,9 @@ const LANGUAGE_ALIASES: Record<string, string> = {
   shell: 'bash',
   zsh: 'bash',
   js: 'javascript',
-  ts: 'typescript'
+  ts: 'typescript',
+  ps1: 'powershell',
+  pwsh: 'powershell'
 };
 const PLAIN_LANGUAGES = ['plaintext', 'ansi'];
 
@@ -28,15 +32,29 @@ let highlighterPromise: Promise<HighlighterCore> | undefined;
 function getHighlighter(): Promise<HighlighterCore> {
   highlighterPromise ??= createHighlighterCore({
     themes: [catppuccinMocha],
-    langs: [langBash, langConsole, langDiff, langJavascript, langJson, langPython, langTypescript, langYaml],
+    langs: [
+      langBash,
+      langConsole,
+      langDiff,
+      langHtml,
+      langJavascript,
+      langJson,
+      langPowershell,
+      langPython,
+      langTypescript,
+      langYaml
+    ],
     engine: createJavaScriptRegexEngine({ forgiving: true })
   });
   return highlighterPromise;
 }
 
 export async function highlightCode(code: string, language: string): Promise<string> {
-  const stripped = language.replace(/^lang-/, '');
-  const formattedLanguage = LANGUAGE_ALIASES[stripped] ?? stripped;
+  const stripped = language
+    .trim()
+    .toLowerCase()
+    .replace(/^lang-/, '');
+  const formattedLanguage = Object.hasOwn(LANGUAGE_ALIASES, stripped) ? LANGUAGE_ALIASES[stripped] : stripped;
   const showLineNumbers = !NO_LINE_NUMBER_LANGUAGES.includes(formattedLanguage);
 
   try {

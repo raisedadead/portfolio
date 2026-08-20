@@ -3,8 +3,9 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { EmDashClient, markdownToPortableText } from 'emdash/client';
+import { EmDashClient } from 'emdash/client';
 import sharp from 'sharp';
+import { markdownToPortableText } from './markdown-to-portable-text.mjs';
 import { parse as parseYaml } from 'yaml';
 
 const MAX_IMAGE_WIDTH = 1280;
@@ -30,7 +31,12 @@ const USAGE = `One-shot import: articles repo markdown -> EmDash (D1 + media sto
 Idempotent by slug; dry-run by default.
 
   node scripts/import-articles-to-emdash.mjs [--source <dir>] [--base-url <url>]
-       [--token ec_pat_...] [--commit | --dry-run | --status]
+       [--token ec_pat_...] [--commit | --dry-run | --status] [--reimport]
+
+--reimport also rewrites entries whose slug already exists. It replaces the body,
+the cover and the tags from the markdown, and it is a blind overwrite: an edit made
+in the admin UI since the last import is lost. Media is deduplicated server-side by
+content hash, so re-uploading the same bytes creates no new R2 object.
 
 Auth resolution order: --token, then the EMDASH_TOKEN env var, then (localhost
 only) a token minted via the DEV-only /_emdash/api/setup/dev-bypass endpoint.
@@ -126,6 +132,7 @@ function parseArgs(argv) {
     baseUrl: 'http://localhost:4321',
     commit: false,
     status: false,
+    reimport: false,
     token: ''
   };
   for (let i = 2; i < argv.length; i++) {
@@ -133,6 +140,7 @@ function parseArgs(argv) {
     if (arg === '--commit') args.commit = true;
     else if (arg === '--dry-run') args.commit = false;
     else if (arg === '--status') args.status = true;
+    else if (arg === '--reimport') args.reimport = true;
     else if (arg === '--source') args.sourceDir = argv[++i];
     else if (arg === '--base-url') args.baseUrl = argv[++i];
     else if (arg === '--token') args.token = argv[++i];
@@ -200,17 +208,31 @@ async function createEntry(baseUrl, token, input) {
   return payload.data;
 }
 
+async function updateEntry(baseUrl, token, id, input) {
+  const { publish: _publish, slug: _slug, status: _status, ...body } = input;
+  const response = await fetch(`${baseUrl}/_emdash/api/content/posts/${id}`, {
+    method: 'PUT',
+    headers: { 'content-type': 'application/json', authorization: `Bearer ${token}` },
+    body: JSON.stringify(body)
+  });
+  const payload = await response.json();
+  if (!response.ok || payload.success === false) {
+    throw new Error(`update ${id} failed: ${response.status} ${JSON.stringify(payload.error ?? payload)}`);
+  }
+  return payload.data;
+}
+
 async function main() {
   const args = parseArgs(process.argv);
   const sourceDir = path.resolve(args.sourceDir);
   const token = args.token || process.env.EMDASH_TOKEN || (await mintDevToken(args.baseUrl));
   const client = new EmDashClient({ baseUrl: args.baseUrl, token });
 
-  const existingSlugs = new Set();
+  const existingBySlug = new Map();
   let publishedCount = 0;
   let draftCount = 0;
   for await (const item of client.listAll('posts', { limit: 100 })) {
-    if (item.slug) existingSlugs.add(item.slug);
+    if (item.slug) existingBySlug.set(item.slug, item);
     if (item.status === 'published') publishedCount++;
     else draftCount++;
   }
@@ -224,17 +246,20 @@ async function main() {
     ...(await readCollectionFiles(sourceDir, 'posts')),
     ...(await readCollectionFiles(sourceDir, 'drafts'))
   ];
-  console.log(`${files.length} markdown files in ${sourceDir}; ${existingSlugs.size} entries already in EmDash`);
+  console.log(`${files.length} markdown files in ${sourceDir}; ${existingBySlug.size} entries already in EmDash`);
 
   const entries = files.map((file) => {
     const { frontmatter, body } = splitFrontmatter(file.raw);
     return { ...file, frontmatter, body, refs: collectLocalImageRefs(frontmatter, body) };
   });
 
-  const pending = entries.filter((entry) => !existingSlugs.has(entry.slug));
+  const pending = entries.filter((entry) => args.reimport || !existingBySlug.has(entry.slug));
   for (const entry of entries) {
-    const state = existingSlugs.has(entry.slug)
-      ? 'skip (exists)'
+    const exists = existingBySlug.has(entry.slug);
+    const state = exists
+      ? args.reimport
+        ? 'rewrite (exists)'
+        : 'skip (exists)'
       : entry.isDraft || entry.frontmatter.draft
         ? 'draft'
         : 'publish';
@@ -274,15 +299,23 @@ async function main() {
 
   await ensureTerms(client, pending);
 
-  let created = 0;
+  let written = 0;
   for (const entry of pending) {
+    const existing = existingBySlug.get(entry.slug);
+    if (existing) {
+      await updateEntry(args.baseUrl, token, existing.id, entry.input);
+      if (existing.status === 'published') await client.publish('posts', existing.id);
+      written++;
+      console.log(`  ~ rewrote ${existing.status}: ${entry.slug}`);
+      continue;
+    }
     const item = await createEntry(args.baseUrl, token, entry.input);
     const record = item?.item ?? item;
     if (entry.input.publish) await client.publish('posts', record.id);
-    created++;
+    written++;
     console.log(`  = ${entry.input.publish ? 'published' : 'draft'}: ${entry.slug}`);
   }
-  console.log(`imported ${created} of ${pending.length} pending entries`);
+  console.log(`wrote ${written} of ${pending.length} pending entries`);
 }
 
 const isDirectRun = process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href;

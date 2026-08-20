@@ -82,6 +82,7 @@
     "jest-axe": "11.0.0",
     "jsdom": "30.0.1",
     "lint-staged": "17.3.0",
+    "marked": "18.0.10",
     "oxfmt": "^0.63.0",
     "oxlint": "1.78.0",
     "tailwindcss": "4.3.3",
