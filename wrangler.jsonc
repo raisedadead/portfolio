@@ -29,6 +29,13 @@
     "PUBLIC_SENTRY_DSN": "https://e8c88c11abffd1e5b5c581de57321642@o4507798912958464.ingest.us.sentry.io/4510267624128512",
     "PUBLIC_SENTRY_ENVIRONMENT": "production"
   },
+  "kv_namespaces": [
+    {
+      // Astro session store — EmDash admin auth lives in Astro sessions.
+      "binding": "SESSION",
+      "id": "2e04f6b05af0486f9de09797027d5fc0"
+    }
+  ],
   "r2_buckets": [
     {
       "binding": "ARTICLES",

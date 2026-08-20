@@ -1,0 +1,83 @@
+{
+  "$schema": "https://emdashcms.com/seed.schema.json",
+  "version": "1",
+  "meta": {
+    "name": "portfolio-blog",
+    "description": "mrugesh.dev blog content model"
+  },
+  "settings": {
+    "title": "Mrugesh Mohapatra",
+    "tagline": "nomad \u00b7 open-source enthusiast \u00b7 perpetually curious"
+  },
+  "collections": [
+    {
+      "slug": "posts",
+      "label": "Posts",
+      "labelSingular": "Post",
+      "supports": ["drafts", "revisions", "search", "seo"],
+      "urlPattern": "/blog/{slug}",
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "searchable": true
+        },
+        {
+          "slug": "date",
+          "label": "Publish date",
+          "type": "datetime",
+          "required": true,
+          "indexed": true
+        },
+        {
+          "slug": "modified",
+          "label": "Modified date",
+          "type": "datetime"
+        },
+        {
+          "slug": "cover",
+          "label": "Cover image",
+          "type": "image"
+        },
+        {
+          "slug": "brief",
+          "label": "Brief",
+          "type": "text",
+          "searchable": true
+        },
+        {
+          "slug": "reading_time",
+          "label": "Reading time",
+          "type": "string"
+        },
+        {
+          "slug": "content",
+          "label": "Content",
+          "type": "portableText",
+          "searchable": true
+        },
+        {
+          "slug": "seo_title",
+          "label": "SEO title",
+          "type": "string"
+        },
+        {
+          "slug": "seo_description",
+          "label": "SEO description",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "taxonomies": [
+    {
+      "name": "tag",
+      "label": "Tags",
+      "labelSingular": "Tag",
+      "hierarchical": false,
+      "collections": ["posts"]
+    }
+  ]
+}
