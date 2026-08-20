@@ -23,7 +23,8 @@
     "specs/",
     "CLAUDE.md",
     "*.astro",
-    "src/content/articles/"
+    "src/content/articles/",
+    "emdash-env.d.ts"
   ],
   "tailwindcss": {
     "attributes": ["class", "className"],

@@ -102,7 +102,7 @@
       "oxfmt --write"
     ],
     "**/*.d.ts": [
-      "oxfmt --write"
+      "oxfmt --write --no-error-on-unmatched-pattern"
     ],
     "**/*.astro": [
       "oxlint --fix"
