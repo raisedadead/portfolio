@@ -1,0 +1,16 @@
+---
+import { highlightCode } from '@/lib/syntax-highlighter';
+
+interface Props {
+  node: {
+    _type: 'code';
+    code?: string;
+    language?: string;
+  };
+}
+
+const { node } = Astro.props;
+const html = await highlightCode(node.code ?? '', node.language ?? 'plaintext');
+---
+
+<Fragment set:html={html} />

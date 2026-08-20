@@ -1,19 +1,19 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import { getCollection } from 'astro:content';
+import { getEmDashCollection } from 'emdash';
 import MainLayout from '@/layouts/main-layout.astro';
 import BlogSearch from '@/components/blog/BlogSearch';
 import BentoGrid from '@/components/blog/BentoGrid';
 import { Social } from '@/components/social';
-import { normalizeLocalPosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
+import { normalizeEmdashPosts } from '@/lib/emdash-posts';
+import { normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
 
-// Fetch posts from both collections
-const localPosts = await getCollection('blog');
+const { entries: localPosts } = await getEmDashCollection('posts', { status: 'published' });
 const freecodecampPosts = await getCollection('freecodecamp');
 
-// Normalize and merge all posts
 const lightweightPosts = mergeAndSortPosts(
-  normalizeLocalPosts(localPosts),
+  normalizeEmdashPosts(localPosts),
   normalizeFreeCodeCampPosts(freecodecampPosts)
 );
 ---

@@ -1,49 +1,33 @@
 ---
-export const prerender = true;
-import type { GetStaticPaths } from 'astro';
-import { getCollection, render } from 'astro:content';
+export const prerender = false;
+import { getEmDashEntry } from 'emdash';
+import { PortableText } from 'emdash/ui';
 import MainLayout from '@/layouts/main-layout.astro';
+import PostCode from '@/components/blog/PostCode.astro';
+import PostImage from '@/components/blog/PostImage.astro';
 import { Social } from '@/components/social';
 import { formatDate } from '@/lib/formatDate';
 import { cn } from '@/lib/utils';
 import { transformImageUrl } from '@/lib/image-optimizer';
 import { calculateImageDimensions } from '@/lib/image-dimensions';
+import { extractBrief, mediaValueToUrl, readingTimeMinutes, termsToTags } from '@/lib/emdash-posts';
 
-export const getStaticPaths = (async () => {
-  const posts = await getCollection('blog');
-  return posts.map((post) => ({
-    params: { slug: post.data.slug || post.id.replace(/\.md$/, '') },
-    props: { post }
-  }));
-}) satisfies GetStaticPaths;
+const { entry } = await getEmDashEntry('posts', Astro.params.slug as string);
+if (!entry) {
+  return Astro.rewrite('/404');
+}
 
-const { post } = Astro.props;
-const { data } = post;
+const { data } = entry;
 
-// Render markdown content
-const { Content } = await render(post);
+const readingTime = readingTimeMinutes(data);
+const brief = extractBrief(data.brief, data.content);
+const tags = termsToTags(data.terms);
+const publishedAt = new Date(data.date);
 
-// Calculate reading time if not provided
-const body = post.body || '';
-const wordCount = body.split(/\s+/).filter(Boolean).length;
-const readingTime = data.readingTime ?? Math.max(1, Math.ceil(wordCount / 200));
+const pageTitle = data.seo_title || data.title;
+const pageDescription = data.seo_description || brief;
 
-// Calculate brief if not provided
-const brief =
-  data.brief ||
-  body
-    .split('\n')
-    .find((line) => line.trim() && !line.startsWith('#'))
-    ?.slice(0, 160) ||
-  '';
-
-// SEO metadata with fallbacks
-const pageTitle = data.seo?.title || data.title;
-const pageDescription = data.seo?.description || brief;
-
-// Cover image — plain string URL pointing at the R2 image streamer
-// (`/api/img/<slug>/<file>`) or an external host. Schema enforces `string`.
-const coverImageUrl = data.cover;
+const coverImageUrl = mediaValueToUrl(data.cover);
 const pageImage = coverImageUrl;
 
 const dimensions = calculateImageDimensions('16/9', 0);
@@ -67,7 +51,7 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
         <div class='relative aspect-video w-full'>
           <img
             src={optimizedCoverUrl}
-            alt={data.coverAlt || data.title}
+            alt={data.cover?.alt || data.title}
             width={dimensions.desktop.width}
             height={dimensions.desktop.height}
             class='h-full w-full object-cover'
@@ -79,7 +63,7 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
         <div class='relative aspect-video w-full'>
           <img
             src={coverImageUrl}
-            alt={data.coverAlt || data.title}
+            alt={data.cover?.alt || data.title}
             width={1200}
             height={675}
             class='h-full w-full object-cover'
@@ -102,8 +86,8 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
 
       <!-- Metadata -->
       <div class='mb-8 flex items-center gap-2 text-xs text-gray-600 sm:text-sm'>
-        <time datetime={data.date.toISOString()}>
-          {formatDate(data.date)}
+        <time datetime={publishedAt.toISOString()}>
+          {formatDate(publishedAt)}
         </time>
         <span>•</span>
         <span>{readingTime} min read</span>
@@ -127,7 +111,7 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
           'prose-blockquote:border-l-4 prose-blockquote:border-gray-400 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-700'
         )}
       >
-        <Content />
+        <PortableText value={data.content ?? []} components={{ type: { code: PostCode, image: PostImage } }} />
       </div>
     </div>
   </article>
@@ -135,11 +119,11 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
   <!-- Tags and Navigation -->
   <section class='py-8'>
     {
-      data.tags && data.tags.length > 0 && (
+      tags.length > 0 && (
         <div class='mb-6'>
           <h3 class='mb-3 text-center text-base font-semibold text-slate-800 sm:text-lg'>Tags</h3>
           <div class='flex flex-wrap justify-center gap-2'>
-            {data.tags.map((tag: any) => (
+            {tags.map((tag) => (
               <a
                 href={`/blog/tags/${tag.slug}`}
                 class='inline-flex items-center rounded-full border-2 border-black bg-white px-4 py-2 text-xs font-medium text-black shadow-brutal-md transition-all duration-100 hover:bg-orange-100 hover:shadow-brutal-lg focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none active:bg-black active:text-white active:shadow-none sm:text-sm'

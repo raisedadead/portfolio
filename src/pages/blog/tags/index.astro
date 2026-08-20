@@ -1,20 +1,20 @@
 ---
-export const prerender = true;
+export const prerender = false;
 // Tags index page - lists all unique tags from blog posts
 import { getCollection } from 'astro:content';
+import { getEmDashCollection } from 'emdash';
 import MainLayout from '@/layouts/main-layout.astro';
 import TagCard from '@/components/blog/TagCard';
 import { Social } from '@/components/social';
 import { getTagsWithCount } from '@/lib/blog-utils';
-import { normalizeLocalPosts, normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
+import { normalizeEmdashPosts } from '@/lib/emdash-posts';
+import { normalizeFreeCodeCampPosts, mergeAndSortPosts } from '@/lib/freecodecamp-utils';
 
-// Fetch posts from both collections
-const localPosts = await getCollection('blog');
+const { entries: localPosts } = await getEmDashCollection('posts', { status: 'published' });
 const freecodecampPosts = await getCollection('freecodecamp');
 
-// Normalize and merge all posts, extract tags with counts
 const allPosts = mergeAndSortPosts(
-  normalizeLocalPosts(localPosts as any),
+  normalizeEmdashPosts(localPosts),
   normalizeFreeCodeCampPosts(freecodecampPosts)
 );
 const tagsWithCount = getTagsWithCount(allPosts);
