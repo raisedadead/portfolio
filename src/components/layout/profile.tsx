@@ -71,7 +71,7 @@ export const Profile: React.FC = () => {
         Principal Maintainer — Open Source & Infra,{' '}
         <Link
           href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'
-          className='group relative mx-[0.95em] inline-block text-white no-underline transition-colors hover:text-slate-800'
+          className='group relative mx-[0.95em] inline-block text-slate-800 no-underline transition-colors hover:text-white'
           aria-label='freecodecamp.org'
         >
           <svg
@@ -82,7 +82,7 @@ export const Profile: React.FC = () => {
           >
             <path
               d='M2.5,13 C2,5.5 7,1.5 15,2 L104,4 L186,1.5 C195,1 199.5,6 198.5,14 L197.5,34 C198,42 192.5,46.5 184,46 L96,43.5 L15,46.5 C6.5,46.8 1.5,42 2.5,34 Z'
-              className='fill-slate-700 transition-colors group-hover:fill-orange-50'
+              className='fill-orange-50 transition-colors group-hover:fill-slate-700'
             />
           </svg>
           <span className='relative'>freeCodeCamp.org</span>
