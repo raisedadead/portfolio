@@ -62,8 +62,7 @@
     "sharp": "0.35.3",
     "shiki": "4.4.3",
     "tailwind-merge": "3.6.0",
-    "tailwindcss-animate": "1.0.7",
-    "yaml": "^2.8.4"
+    "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "5.20260812.1",
@@ -92,7 +91,8 @@
     "typescript": "6.0.3",
     "vite": "8.2.1",
     "vitest": "4.1.10",
-    "wrangler": "4.121.0"
+    "wrangler": "4.121.0",
+    "yaml": "^2.9.0"
   },
   "lint-staged": {
     "**/*.{mjs,cjs,js,jsx,ts,tsx}": [

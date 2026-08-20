@@ -77,9 +77,6 @@ importers:
       tailwindcss-animate:
         specifier: 1.0.7
         version: 1.0.7(tailwindcss@4.3.3)
-      yaml:
-        specifier: ^2.8.4
-        version: 2.9.0
     devDependencies:
       '@cloudflare/workers-types':
         specifier: 5.20260812.1
@@ -162,6 +159,9 @@ importers:
       wrangler:
         specifier: 4.121.0
         version: 4.121.0(@cloudflare/workers-types@5.20260812.1)
+      yaml:
+        specifier: ^2.9.0
+        version: 2.9.0
 
 packages:
 
