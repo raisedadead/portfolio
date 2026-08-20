@@ -14,6 +14,7 @@
     "eqeqeq": "warn",
     "no-alert": "error",
     "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-unused-vars": ["warn", { "ignoreRestSiblings": true }],
     "react/react-in-jsx-scope": "off",
     "react/jsx-key": "error",
     "react/jsx-no-duplicate-props": "error",
