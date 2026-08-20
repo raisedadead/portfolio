@@ -7,9 +7,14 @@ import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
 // eslint-disable-next-line import/default -- False positive: @sentry/astro exports default via conditional exports
 import sentry from '@sentry/astro';
+import emdash from 'emdash/astro';
+import { d1, r2 } from '@emdash-cms/cloudflare';
 
 export default defineConfig({
   site: 'https://mrugesh.dev',
+
+  // EmDash requires server output: https://docs.emdashcms.com/existing-project/
+  output: 'server',
 
   prefetch: true,
 
@@ -20,7 +25,7 @@ export default defineConfig({
 
   adapter: cloudflare({
     imageService: 'compile',
-    prerenderEnvironment: 'node',
+    prerenderEnvironment: 'workerd',
     // CI builds run unauthenticated; skip the remote-proxy session that
     // `remote: true` on the R2 binding would otherwise trigger during
     // `astro build`. Local dev keeps the default (true) so E2E hits the
@@ -50,6 +55,10 @@ export default defineConfig({
       }
     }),
     react(),
+    emdash({
+      database: d1({ binding: 'DB', session: 'auto' }),
+      storage: r2({ binding: 'MEDIA' })
+    }),
     sitemap({
       lastmod: new Date(),
       changefreq: 'weekly',
