@@ -92,6 +92,8 @@ Persists across navigation via `<ClientRouter />` plus `transition:persist` on t
 
 jest-axe `toHaveNoViolations` registered globally in the vitest setup file.
 
+**wrangler is pinned to 4.98.0** (stable miniflare 4, matching the adapter's). wrangler ≥4.120 bundles a miniflare 5 **alpha**: its R2/DO local sim is unstable under load, and it silently upgrades DO sqlite schemas in `.wrangler` state that the adapter's miniflare 4 then cannot open (`SENTRY_DO SQLite failed: _cf_ALARM has 3 columns`). Do not let Renovate bump it past stable-miniflare-4 territory (≤4.115.x) until miniflare 5 is stable.
+
 Playwright runs against `wrangler dev` on built output. `e2e/global-setup.ts` seeds local EmDash state (astro dev + dev-bypass + fixture import from `e2e/fixtures/content/`), then snapshots `.wrangler/state` → `.wrangler/preview` for wrangler. The snapshot is not optional: wrangler bundles a **newer miniflare** than the adapter and upgrades DO sqlite schemas in place — run it on the shared state dir once and `astro dev`/`astro build` crash with `SENTRY_DO SQLite failed: table _cf_ALARM has 3 columns` until the state is wiped.
 
 Source meta-gates guard layout SSR and wrangler config drift.
