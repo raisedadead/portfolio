@@ -44,7 +44,7 @@
       }
     },
     {
-      "files": [".github/**/*.js", "src/lib/**/*.ts"],
+      "files": [".github/**/*.js", "src/lib/**/*.ts", "scripts/**/*.mjs"],
       "rules": {
         "no-console": "off"
       }

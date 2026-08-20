@@ -23,9 +23,8 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "./dist",
-    // SSR endpoints (/api/img R2 streamer, /api/health) and the EmDash
-    // admin/API must hit the worker before the static-asset binding
-    // tries to 404.
+    // SSR endpoints (/api/health) and the EmDash admin/API must hit the
+    // worker before the static-asset binding tries to 404.
     "run_worker_first": ["/api/*", "/_emdash/*"]
   },
   "vars": {
@@ -40,11 +39,6 @@
     }
   ],
   "r2_buckets": [
-    {
-      "binding": "ARTICLES",
-      "bucket_name": "articles-content",
-      "remote": true
-    },
     {
       // EmDash media library. Local simulation in dev/e2e; the real
       // bucket only ever sees writes from the deployed worker.

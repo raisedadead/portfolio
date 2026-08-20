@@ -131,8 +131,7 @@ describe('toEntryInput', () => {
   it('maps seo frontmatter into snake_case fields', () => {
     const withSeo = { ...frontmatter, seo: { title: 'S', description: 'D' } };
     const { data } = toEntryInput('a', withSeo, [], false, undefined);
-    expect(data.seo_title).toBe('S');
-    expect(data.seo_description).toBe('D');
+    expect(data).toMatchObject({ seo_title: 'S', seo_description: 'D' });
   });
 });
 

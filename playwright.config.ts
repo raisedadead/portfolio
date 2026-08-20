@@ -18,10 +18,10 @@ export default defineConfig({
     screenshot: 'only-on-failure'
   },
 
-  // The R2 binding inherits `remote: true` from wrangler.jsonc — without
-  // it the local simulator is empty and every cover 404s.
+  globalSetup: './e2e/global-setup.ts',
+
   webServer: {
-    command: 'wrangler dev --config dist/server/wrangler.json --port 8787',
+    command: 'wrangler dev --config dist/server/wrangler.json --port 8787 --persist-to .wrangler/preview',
     port: 8787,
     reuseExistingServer: !process.env.CI,
     timeout: 120000

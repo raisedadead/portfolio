@@ -134,7 +134,13 @@ async function mintDevToken(baseUrl) {
 
 async function readCollectionFiles(sourceDir, dir) {
   const abs = path.join(sourceDir, dir);
-  const names = (await readdir(abs)).filter((name) => name.endsWith('.md') && !name.startsWith('_'));
+  let entries;
+  try {
+    entries = await readdir(abs);
+  } catch {
+    return [];
+  }
+  const names = entries.filter((name) => name.endsWith('.md') && !name.startsWith('_'));
   return Promise.all(
     names.map(async (name) => ({
       slug: name.replace(/\.md$/, ''),

@@ -12,7 +12,7 @@ My personal website built with [Astro](https://astro.build) and React, deployed 
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
 - **Animation**: [Motion](https://motion.dev)
 - **Icons**: [Heroicons](https://heroicons.com)
-- **Content**: Markdown from [Cloudflare R2](https://developers.cloudflare.com/r2/), highlighted with [Shiki](https://shiki.style)
+- **Content**: [EmDash CMS](https://emdashcms.com) on [Cloudflare D1](https://developers.cloudflare.com/d1/) + [R2](https://developers.cloudflare.com/r2/), code highlighted with [Shiki](https://shiki.style)
 - **Testing**: [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/react), with [Playwright](https://playwright.dev) for end-to-end
 - **Tooling**: [Turborepo](https://turbo.build) with [oxlint and oxfmt](https://oxc.rs)
 - **Monitoring**: [Sentry](https://sentry.io)

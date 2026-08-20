@@ -15,9 +15,17 @@ interface KvBinding {
   id: string;
 }
 
+interface D1Binding {
+  binding: string;
+  database_name: string;
+  database_id: string;
+}
+
 interface WranglerConfig {
+  compatibility_date?: string;
   r2_buckets?: R2BucketBinding[];
   kv_namespaces?: KvBinding[];
+  d1_databases?: D1Binding[];
   vars?: Record<string, string>;
   assets?: { run_worker_first?: string[] };
   env?: {
@@ -45,21 +53,23 @@ const configPath = path.join(repoRoot, 'wrangler.jsonc');
 const rawConfig = readFileSync(configPath, 'utf8');
 const config = parseJsonc(rawConfig);
 
-describe('wrangler.jsonc — R2 binding (only stateful binding post-CMS removal)', () => {
-  it('declares the ARTICLES R2 binding at top level', () => {
-    expect(config.r2_buckets).toBeDefined();
-    const articles = config.r2_buckets?.find((b) => b.binding === 'ARTICLES');
-    expect(articles).toBeDefined();
-    expect(articles?.bucket_name).toBe('articles-content');
+describe('wrangler.jsonc — EmDash stateful bindings', () => {
+  it('declares only the MEDIA R2 binding (ARTICLES retired with the R2 markdown pipeline)', () => {
+    expect(config.r2_buckets?.map((b) => b.binding)).toEqual(['MEDIA']);
+    expect(config.r2_buckets?.[0]?.bucket_name).toBe('emdash-media');
   });
 
-  it('marks ARTICLES as remote in dev (wrangler dev hits real bucket, not local sim)', () => {
-    // Without `remote: true` the R2 binding falls back to an empty local
-    // simulator and `/api/img/*` returns 404 for every cover. RCA B10
-    // (2026-05-08). The flag is the supported replacement for the
-    // deprecated `--remote` CLI flag.
-    const articles = config.r2_buckets?.find((b) => b.binding === 'ARTICLES');
-    expect(articles?.remote).toBe(true);
+  it('keeps MEDIA on local simulation (no remote flag) so dev/e2e never write the production bucket', () => {
+    expect(config.r2_buckets?.[0]?.remote).toBeUndefined();
+  });
+
+  it('declares the DB D1 binding with a real database id', () => {
+    const db = config.d1_databases?.find((d) => d.binding === 'DB');
+    expect(db?.database_id).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
+  it('pins compatibility_date at or after 2026-02-24 (older dates make Astro treat workerd as Node and every SSR body renders as "[object Object]")', () => {
+    expect((config.compatibility_date ?? '') >= '2026-02-24').toBe(true);
   });
 });
 
@@ -108,9 +118,9 @@ describe('.env.example — single-source schema', () => {
   const envExample = readFileSync(path.join(repoRoot, '.env.example'), 'utf8');
 
   it.each(['R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_ENDPOINT', 'R2_BUCKET_NAME'])(
-    'lists build-time key %s',
+    'does NOT list retired R2 loader key %s (content now lives in EmDash D1/R2 bindings)',
     (varName) => {
-      expect(envExample).toMatch(new RegExp(`^${varName}=`, 'm'));
+      expect(envExample).not.toMatch(new RegExp(`^${varName}=`, 'm'));
     }
   );
 

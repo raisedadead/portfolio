@@ -35,17 +35,21 @@ Stand-alone islands go **sibling** to the slot, never parent.
 
 Both guarded by source meta-gate tests. Keep them.
 
-## Content / R2
+## Content — EmDash CMS
 
-One bucket. `posts/<slug>.md`, `drafts/<slug>.md`, `assets/images/<slug>/<file>`.
+Content lives in EmDash (D1 `DB`, media in R2 `MEDIA`, admin at `/_emdash/admin`). Blog pages query `getEmDashCollection('posts')` at request time — the whole site is SSR, zero prerendered pages.
 
-Loader rewrites legacy `../assets/images/…` refs to the `/api/img/…` streamer so they resolve at runtime.
+Do **not** reintroduce `prerender = true` anywhere: workerd prerendering writes `[object Object]` into every emitted HTML file (astro/adapter bug), and node prerendering dies on EmDash's `cloudflare:workers` import. Full SSR sidesteps both.
 
-Build **fails loud** without R2 creds. No glob fallback — that is deliberate.
+`compatibility_date` must stay ≥ 2026-02-24. Older dates give `process` the `[object process]` toString tag under `nodejs_compat`, Astro then takes its Node render path (async-iterable body), and workerd stringifies every SSR page to the literal `[object Object]`. Meta-gate enforces it.
 
-`wrangler dev` reads the bucket directly via `remote: true` on the binding. Means e2e hits the **real** bucket, not a mock.
+EmDash admin auth lives in **Astro sessions** → the SESSION KV binding is required and the old null-driver workaround must stay dead. Session writes silently no-op on a null driver and every admin login loops.
 
-`run_worker_first` on `/api/*` is load-bearing. Without it the static-asset binding 404s the endpoints before the worker ever sees them.
+`run_worker_first` on `/api/*` **and** `/_emdash/*` is load-bearing. Without it the static-asset binding 404s the endpoints before the worker ever sees them.
+
+One-shot import from the old articles repo: `scripts/import-articles-to-emdash.mjs` (dry-run default, idempotent by slug, dev-bypass auth locally / `--token` against prod). Body markdown → Portable Text via `markdownToPortableText` from `emdash/client`; images upload through the media API.
+
+Shiki must use `shiki/core` + the JavaScript regex engine with statically imported langs — full `shiki` dynamic-imports grammars and fails for every language on workerd (silent fallback to unstyled `<pre>`).
 
 ## Sentry
 
@@ -88,7 +92,7 @@ Persists across navigation via `<ClientRouter />` plus `transition:persist` on t
 
 jest-axe `toHaveNoViolations` registered globally in the vitest setup file.
 
-Playwright runs against `wrangler dev` on built output, against the real R2 bucket.
+Playwright runs against `wrangler dev` on built output. `e2e/global-setup.ts` seeds local EmDash state (astro dev + dev-bypass + fixture import from `e2e/fixtures/content/`), then snapshots `.wrangler/state` → `.wrangler/preview` for wrangler. The snapshot is not optional: wrangler bundles a **newer miniflare** than the adapter and upgrades DO sqlite schemas in place — run it on the shared state dir once and `astro dev`/`astro build` crash with `SENTRY_DO SQLite failed: table _cf_ALARM has 3 columns` until the state is wiped.
 
 Source meta-gates guard layout SSR and wrangler config drift.
 
@@ -96,7 +100,7 @@ Source meta-gates guard layout SSR and wrangler config drift.
 
 ## Dev noise — ignore
 
-`wrangler dev` logs `Enabling sessions with Cloudflare KV with the SESSION KV binding` on every start. Hardcoded in the Cloudflare adapter ([withastro/astro#15802](https://github.com/withastro/astro/issues/15802)); fires whether or not sessions are used. We don't use Astro Sessions and no SESSION binding exists. Harmless.
+`wrangler dev` logs `Enabling sessions with Cloudflare KV with the SESSION KV binding` on every start ([withastro/astro#15802](https://github.com/withastro/astro/issues/15802)). Since the EmDash migration this is accurate — sessions are real and the SESSION binding exists. Still noise, no action.
 
 ## History
 
