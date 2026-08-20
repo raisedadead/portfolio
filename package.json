@@ -93,8 +93,15 @@
     "yaml": "^2.9.0"
   },
   "lint-staged": {
-    "**/*.{mjs,cjs,js,jsx,ts,tsx}": [
+    "**/*.{mjs,cjs,js,jsx,tsx}": [
       "oxlint --fix",
+      "oxfmt --write"
+    ],
+    "**/!(*.d).ts": [
+      "oxlint --fix",
+      "oxfmt --write"
+    ],
+    "**/*.d.ts": [
       "oxfmt --write"
     ],
     "**/*.astro": [
