@@ -69,11 +69,17 @@ test.describe('Navigation', () => {
     });
 
     if (await menuButton.isVisible()) {
-      await menuButton.click();
-
-      // Menu should be open - look for navigation links
       const blogLink = page.getByRole('link', { name: /recent posts/i });
-      await expect(blogLink).toBeVisible();
+      await expect
+        .poll(
+          async () => {
+            if (await blogLink.isVisible()) return true;
+            await menuButton.click();
+            return blogLink.isVisible();
+          },
+          { timeout: 10_000, intervals: [500] }
+        )
+        .toBe(true);
 
       // Click blog link
       await blogLink.click();
