@@ -1,15 +1,50 @@
-import { codeToHtml } from 'shiki';
+import { createHighlighterCore, type HighlighterCore } from 'shiki/core';
+import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
+import catppuccinMocha from 'shiki/themes/catppuccin-mocha.mjs';
+import langBash from 'shiki/langs/bash.mjs';
+import langConsole from 'shiki/langs/console.mjs';
+import langDiff from 'shiki/langs/diff.mjs';
+import langJavascript from 'shiki/langs/javascript.mjs';
+import langJson from 'shiki/langs/json.mjs';
+import langPython from 'shiki/langs/python.mjs';
+import langTypescript from 'shiki/langs/typescript.mjs';
+import langYaml from 'shiki/langs/yaml.mjs';
 
-/**
- * Highlights code at build time using Shiki
- * Returns HTML string with syntax highlighting
- */
+const NO_LINE_NUMBER_LANGUAGES = ['', 'bash', 'console', 'plaintext', 'text', 'txt'];
+const LANGUAGE_ALIASES: Record<string, string> = {
+  '': 'plaintext',
+  text: 'plaintext',
+  txt: 'plaintext',
+  sh: 'bash',
+  shell: 'bash',
+  zsh: 'bash',
+  js: 'javascript',
+  ts: 'typescript'
+};
+const PLAIN_LANGUAGES = ['plaintext', 'text', 'txt', 'ansi'];
+
+let highlighterPromise: Promise<HighlighterCore> | undefined;
+
+function getHighlighter(): Promise<HighlighterCore> {
+  highlighterPromise ??= createHighlighterCore({
+    themes: [catppuccinMocha],
+    langs: [langBash, langConsole, langDiff, langJavascript, langJson, langPython, langTypescript, langYaml],
+    engine: createJavaScriptRegexEngine({ forgiving: true })
+  });
+  return highlighterPromise;
+}
+
 export async function highlightCode(code: string, language: string): Promise<string> {
-  const formattedLanguage = language.replace(/^lang-/, '');
-  const showLineNumbers = !['', 'bash', 'console', 'plaintext', 'text', 'txt'].includes(formattedLanguage);
+  const stripped = language.replace(/^lang-/, '');
+  const formattedLanguage = LANGUAGE_ALIASES[stripped] ?? stripped;
+  const showLineNumbers = !NO_LINE_NUMBER_LANGUAGES.includes(formattedLanguage);
 
   try {
-    const html = await codeToHtml(code, {
+    const highlighter = await getHighlighter();
+    if (!PLAIN_LANGUAGES.includes(formattedLanguage) && !highlighter.getLoadedLanguages().includes(formattedLanguage)) {
+      throw new Error(`language not loaded: ${formattedLanguage}`);
+    }
+    return highlighter.codeToHtml(code, {
       lang: formattedLanguage,
       theme: 'catppuccin-mocha',
       transformers: [
@@ -28,10 +63,7 @@ export async function highlightCode(code: string, language: string): Promise<str
         }
       ]
     });
-
-    return html;
   } catch {
-    // Fallback to plaintext if language not supported
     console.warn(`Shiki: Language "${formattedLanguage}" not supported, using plaintext`);
     return `<pre class="shiki shiki-code-block"><code>${escapeHtml(code)}</code></pre>`;
   }

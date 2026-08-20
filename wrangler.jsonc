@@ -4,7 +4,10 @@
   // OAuth token sees both MMCo + freeCodeCamp; pin to disambiguate.
   "account_id": "dee584c21793767c25eee4cebc062726",
   "main": "@astrojs/cloudflare/entrypoints/server",
-  "compatibility_date": "2025-09-15",
+  // 2026-02-24+: nodejs_compat stops tagging `process` as "[object process]",
+  // so Astro's isNode check picks the ReadableStream render path. Older dates
+  // make every SSR page render as the literal string "[object Object]".
+  "compatibility_date": "2026-02-24",
   "compatibility_flags": ["nodejs_compat"],
   "preview_urls": true,
   "workers_dev": false,
