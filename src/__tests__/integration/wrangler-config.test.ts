@@ -64,8 +64,10 @@ describe('wrangler.jsonc — R2 binding (only stateful binding post-CMS removal)
 });
 
 describe('wrangler.jsonc — CMS surface fully purged', () => {
-  it('declares zero KV namespaces (SESSION + CMS_INDEX gone with CMS)', () => {
-    expect(config.kv_namespaces ?? []).toEqual([]);
+  it('declares exactly the SESSION KV namespace with a real id (EmDash admin auth lives in Astro sessions)', () => {
+    const kv = config.kv_namespaces ?? [];
+    expect(kv.map((n) => n.binding)).toEqual(['SESSION']);
+    expect(kv[0]?.id).toMatch(/^[0-9a-f]{32}$/);
   });
 
   it('does not declare CF_ACCESS_ALLOWED_HOSTS in vars', () => {
@@ -84,11 +86,21 @@ describe('wrangler.jsonc — CMS surface fully purged', () => {
   });
 });
 
-describe('astro.config.mjs — adapter must not re-inject SESSION KV binding', () => {
+describe('astro.config.mjs — sessions real, EmDash wired', () => {
   const astroConfig = readFileSync(path.join(repoRoot, 'astro.config.mjs'), 'utf8');
 
-  it('disables Astro sessions via the unstorage null driver so generated wrangler.json carries no id-less SESSION binding that fails deploy promotion with 10210 (workaround: withastro/astro#15802)', () => {
-    expect(astroConfig).toMatch(/session:\s*\{\s*driver:\s*\{\s*entrypoint:\s*'unstorage\/drivers\/null'/);
+  it('does NOT null-driver Astro sessions (EmDash admin auth breaks silently without a real session store; SESSION KV in wrangler.jsonc satisfies deploy error 10210 from withastro/astro#15802)', () => {
+    expect(astroConfig).not.toMatch(/unstorage\/drivers\/null/);
+  });
+
+  it('registers emdash with D1 database and R2 MEDIA storage', () => {
+    expect(astroConfig).toMatch(/emdash\(\{/);
+    expect(astroConfig).toMatch(/d1\(\{\s*binding:\s*'DB'/);
+    expect(astroConfig).toMatch(/r2\(\{\s*binding:\s*'MEDIA'/);
+  });
+
+  it('keeps EmDash routes in run_worker_first so the asset binding cannot 404 them', () => {
+    expect(config.assets?.run_worker_first).toContain('/_emdash/*');
   });
 });
 
