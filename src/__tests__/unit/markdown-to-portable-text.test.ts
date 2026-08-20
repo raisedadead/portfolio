@@ -148,6 +148,14 @@ describe('markdownToPortableText — lists', () => {
   });
 });
 
+it('keeps the numbered slot when a list item leads with an image', () => {
+  const blocks = markdownToPortableText('1. ![shot](../assets/images/p/a.png)\n\n2. Then this.\n');
+  const items = blocks.filter((block) => block.listItem === 'number');
+  expect(items).toHaveLength(2);
+  expect(items[0].listId).toBe(items[1].listId);
+  expect(types(blocks)).toContain('image');
+});
+
 describe('markdownToPortableText — inline marks', () => {
   it('marks strong and emphasis, including single-asterisk emphasis', () => {
     const blocks = markdownToPortableText('This is **bold** and *slanted* and _also slanted_.\n');

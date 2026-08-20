@@ -47,6 +47,16 @@ describe('highlightCode', () => {
       expect(result).toContain('shiki-code-block');
     });
 
+    it('resolves the ps1 and pwsh aliases to PowerShell', async () => {
+      const [ps1, pwsh] = await Promise.all([
+        highlightCode('Get-Process', 'ps1'),
+        highlightCode('Get-Process', 'pwsh')
+      ]);
+
+      expect(ps1).toContain('catppuccin-mocha');
+      expect(pwsh).toContain('catppuccin-mocha');
+    });
+
     it('highlights HTML code', async () => {
       const result = await highlightCode('<div class="a">x</div>', 'html');
 

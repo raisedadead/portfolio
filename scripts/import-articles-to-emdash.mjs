@@ -304,9 +304,10 @@ async function main() {
     const existing = existingBySlug.get(entry.slug);
     if (existing) {
       await updateEntry(args.baseUrl, token, existing.id, entry.input);
-      if (existing.status === 'published') await client.publish('posts', existing.id);
+      if (entry.input.publish) await client.publish('posts', existing.id);
+      else if (existing.status === 'published') await client.unpublish('posts', existing.id);
       written++;
-      console.log(`  ~ rewrote ${existing.status}: ${entry.slug}`);
+      console.log(`  ~ rewrote ${entry.input.publish ? 'published' : 'draft'}: ${entry.slug}`);
       continue;
     }
     const item = await createEntry(args.baseUrl, token, entry.input);
