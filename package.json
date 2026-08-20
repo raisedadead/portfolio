@@ -27,7 +27,7 @@
     "test:e2e:headed": "turbo do:test:e2e:headed",
     "do:develop": "astro dev",
     "do:build": "astro build",
-    "do:preview": "rm -rf .wrangler/preview && mkdir -p .wrangler/preview && cp -R .wrangler/state/v3 .wrangler/preview/v3 && wrangler dev --config dist/server/wrangler.json --persist-to .wrangler/preview",
+    "do:preview": "node scripts/snapshot-preview-state.mjs && wrangler dev --config dist/server/wrangler.json --persist-to .wrangler/preview",
     "do:deploy": "wrangler deploy --config dist/server/wrangler.json",
     "do:versions:upload": "wrangler versions upload --config dist/server/wrangler.json",
     "do:lint": "oxlint .",
@@ -89,7 +89,7 @@
     "typescript": "6.0.3",
     "vite": "8.2.1",
     "vitest": "4.1.10",
-    "wrangler": "4.121.0",
+    "wrangler": "4.98.0",
     "yaml": "^2.9.0"
   },
   "lint-staged": {

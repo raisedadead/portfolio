@@ -16,8 +16,8 @@ interface Props {
 
 const { node } = Astro.props;
 const asset = node.asset ?? {};
-const key = asset.url || asset._ref;
-const src = key ? (/^https?:\/\//.test(key) ? key : `${MEDIA_FILE_ROUTE}/${key}`) : undefined;
+const ref = asset.url || asset._ref;
+const src = ref ? (/^(https?:\/\/|\/)/.test(ref) ? ref : `${MEDIA_FILE_ROUTE}/${ref}`) : undefined;
 ---
 
 {src && <img src={src} alt={node.alt ?? ''} width={node.width} height={node.height} loading='lazy' decoding='async' />}

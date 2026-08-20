@@ -4,7 +4,27 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { EmDashClient, markdownToPortableText } from 'emdash/client';
+import sharp from 'sharp';
 import { parse as parseYaml } from 'yaml';
+
+const MAX_IMAGE_WIDTH = 1280;
+
+export async function optimizeImage(bytes, filename) {
+  const image = sharp(bytes, { animated: true });
+  const meta = await image.metadata();
+  if (meta.pages && meta.pages > 1) {
+    return { bytes, filename, contentType: undefined };
+  }
+  const optimized = await image
+    .resize({ width: MAX_IMAGE_WIDTH, withoutEnlargement: true })
+    .webp({ quality: 80 })
+    .toBuffer();
+  return {
+    bytes: new Uint8Array(optimized),
+    filename: filename.replace(/\.[a-z0-9]+$/i, '.webp'),
+    contentType: 'image/webp'
+  };
+}
 
 const USAGE = `One-shot import: articles repo markdown -> EmDash (D1 + media storage).
 Idempotent by slug; dry-run by default.
@@ -52,7 +72,7 @@ export function toMediaValue(item, alt) {
     width: item.width,
     height: item.height,
     alt: alt ?? item.alt,
-    meta: { storageKey: item.key }
+    meta: { storageKey: item.storageKey }
   };
 }
 
@@ -65,7 +85,7 @@ export function rewriteImageBlocks(blocks, mediaByRef) {
       ...block,
       width: item.width,
       height: item.height,
-      asset: { _ref: item.id, url: item.key }
+      asset: { _ref: item.id, url: item.url ?? `/_emdash/api/media/file/${item.storageKey}` }
     };
   });
 }
@@ -228,13 +248,14 @@ async function main() {
   for (const entry of pending) {
     for (const ref of entry.refs) {
       if (mediaByRef.has(ref)) continue;
-      const bytes = await readFile(refToDiskPath(sourceDir, ref));
-      const filename = `${entry.slug}--${path.basename(ref)}`;
-      const item = await client.mediaUpload(new Uint8Array(bytes), filename, {
-        alt: entry.frontmatter.title
+      const raw = await readFile(refToDiskPath(sourceDir, ref));
+      const optimized = await optimizeImage(raw, `${entry.slug}--${path.basename(ref)}`);
+      const item = await client.mediaUpload(new Uint8Array(optimized.bytes), optimized.filename, {
+        alt: entry.frontmatter.title,
+        contentType: optimized.contentType
       });
       mediaByRef.set(ref, item);
-      console.log(`  ^ media ${filename} -> ${item.id}`);
+      console.log(`  ^ media ${optimized.filename} -> ${item.id}`);
     }
   }
 

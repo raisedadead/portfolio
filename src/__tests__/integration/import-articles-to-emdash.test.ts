@@ -58,7 +58,7 @@ describe('toMediaValue', () => {
     const item = {
       id: 'ULID1',
       filename: 'cover.webp',
-      key: 'media/ULID1.webp',
+      storageKey: 'ULID1.webp',
       mimeType: 'image/webp',
       size: 10,
       width: 1200,
@@ -72,14 +72,17 @@ describe('toMediaValue', () => {
       width: 1200,
       height: 630,
       alt: 'Alt text',
-      meta: { storageKey: 'media/ULID1.webp' }
+      meta: { storageKey: 'ULID1.webp' }
     });
   });
 });
 
 describe('rewriteImageBlocks', () => {
   const media = new Map([
-    ['../assets/images/test-post/shot.png', { id: 'ULID2', key: 'media/ULID2.png', width: 800, height: 400 }]
+    [
+      '../assets/images/test-post/shot.png',
+      { id: 'ULID2', storageKey: 'ULID2.png', url: '/_emdash/api/media/file/ULID2.png', width: 800, height: 400 }
+    ]
   ]);
 
   it('rewrites local image blocks to media asset refs with dimensions', () => {
@@ -91,7 +94,7 @@ describe('rewriteImageBlocks', () => {
         alt: 'shot',
         width: 800,
         height: 400,
-        asset: { _ref: 'ULID2', url: 'media/ULID2.png' }
+        asset: { _ref: 'ULID2', url: '/_emdash/api/media/file/ULID2.png' }
       }
     ]);
   });

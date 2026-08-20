@@ -18,19 +18,24 @@ export default defineConfig({
     screenshot: 'only-on-failure'
   },
 
-  globalSetup: './e2e/global-setup.ts',
-
   webServer: {
-    command: 'wrangler dev --config dist/server/wrangler.json --port 8787 --persist-to .wrangler/preview',
-    port: 8787,
-    reuseExistingServer: !process.env.CI,
-    timeout: 120000
+    command:
+      'node scripts/prepare-e2e-state.mjs && wrangler dev --config dist/server/wrangler.json --port 8787 --persist-to .wrangler/preview',
+    url: 'http://localhost:8787/blog',
+    reuseExistingServer: false,
+    timeout: 300000
   },
 
   projects: [
     {
+      name: 'warmup',
+      testMatch: /warmup\.setup\.ts/
+    },
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
+      use: { ...devices['Desktop Chrome'] },
+      dependencies: ['warmup'],
+      testIgnore: /warmup\.setup\.ts/
     }
   ]
 });

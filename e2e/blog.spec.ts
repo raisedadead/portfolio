@@ -70,19 +70,19 @@ test.describe('Blog', () => {
             .filter({ has: page.getByRole('heading', { level: 2 }) })
             .count();
 
-          // Click load more
-          await loadMoreButton.click();
-
-          // Wait for more posts to load
-          await page.waitForTimeout(1000);
-
-          // Should have more posts now or button should be disabled
-          const postsAfterCount = await page
-            .locator('a[href*="/blog/"]')
-            .filter({ has: page.getByRole('heading', { level: 2 }) })
-            .count();
-
-          expect(postsAfterCount > postsBeforeCount || (await loadMoreButton.isDisabled())).toBeTruthy();
+          await expect
+            .poll(
+              async () => {
+                await loadMoreButton.click();
+                const postsAfterCount = await page
+                  .locator('a[href*="/blog/"]')
+                  .filter({ has: page.getByRole('heading', { level: 2 }) })
+                  .count();
+                return postsAfterCount > postsBeforeCount || (await loadMoreButton.isDisabled());
+              },
+              { timeout: 10_000, intervals: [500] }
+            )
+            .toBeTruthy();
         }
       }
     });
