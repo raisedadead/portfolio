@@ -44,7 +44,6 @@
     "@astrojs/check": "0.9.10",
     "@astrojs/cloudflare": "14.2.1",
     "@astrojs/react": "6.0.2",
-    "@astrojs/sitemap": "3.7.3",
     "@calcom/embed-react": "1.5.3",
     "@emdash-cms/cloudflare": "^0.34.0",
     "@headlessui/react": "2.2.10",

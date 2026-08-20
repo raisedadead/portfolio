@@ -1,7 +1,5 @@
 import type { APIRoute } from 'astro';
 
-export const prerender = true;
-
 export const GET: APIRoute = () => {
   const robotsTxt = `User-agent: *
 Allow: /
@@ -9,7 +7,7 @@ Disallow: /terms
 Disallow: /privacy
 Disallow: /refunds
 
-Sitemap: https://mrugesh.dev/sitemap-index.xml`;
+Sitemap: https://mrugesh.dev/sitemap.xml`;
 
   return new Response(robotsTxt, {
     headers: {

@@ -1,5 +1,4 @@
 import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
@@ -20,7 +19,6 @@ export default defineConfig({
 
   adapter: cloudflare({
     imageService: 'compile',
-    prerenderEnvironment: 'workerd',
     // CI builds run unauthenticated; skip the remote-proxy session that
     // `remote: true` on the R2 binding would otherwise trigger during
     // `astro build`. Local dev keeps the default (true) so E2E hits the
@@ -53,19 +51,6 @@ export default defineConfig({
     emdash({
       database: d1({ binding: 'DB', session: 'auto' }),
       storage: r2({ binding: 'MEDIA' })
-    }),
-    sitemap({
-      lastmod: new Date(),
-      changefreq: 'weekly',
-      priority: 1,
-      filter: (page) => {
-        return (
-          !page.includes('/terms') &&
-          !page.includes('/refunds') &&
-          !page.includes('/privacy') &&
-          !page.includes('/blog/tag/')
-        );
-      }
     })
   ],
 
