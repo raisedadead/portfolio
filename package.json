@@ -83,7 +83,7 @@
     "jsdom": "30.0.1",
     "lint-staged": "17.3.0",
     "marked": "18.0.10",
-    "oxfmt": "^0.63.0",
+    "oxfmt": "^0.64.0",
     "oxlint": "1.79.0",
     "tailwindcss": "4.3.3",
     "turbo": "2.10.11",
