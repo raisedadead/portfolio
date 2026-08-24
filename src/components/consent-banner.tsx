@@ -32,13 +32,11 @@ function persistConsent(granted: boolean): void {
 }
 
 function ConsentBanner(): React.JSX.Element | null {
-  const [consent, setConsent] = useState<ConsentState>('unknown');
+  const [consent, setConsent] = useState<ConsentState>(readStoredConsent);
 
   useEffect(() => {
-    const initial = readStoredConsent();
-    setConsent(initial);
-    if (initial === 'granted') {
-      // User previously granted — boot GA on every page load.
+    // User previously granted — boot GA on every page load.
+    if (readStoredConsent() === 'granted') {
       updateGAConsent();
       loadGAScript();
     }
@@ -53,7 +51,7 @@ function ConsentBanner(): React.JSX.Element | null {
     }
   };
 
-  // Hide if a choice was already made (or until SSR-side first render).
+  // Hide if a choice was already made.
   if (consent !== 'unknown') return null;
 
   return (
