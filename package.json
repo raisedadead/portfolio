@@ -45,7 +45,7 @@
     "@astrojs/cloudflare": "14.2.4",
     "@astrojs/react": "6.0.4",
     "@calcom/embed-react": "1.5.3",
-    "@emdash-cms/cloudflare": "^0.34.0",
+    "@emdash-cms/cloudflare": "^0.35.0",
     "@headlessui/react": "2.2.10",
     "@heroicons/react": "2.2.0",
     "@sentry/astro": "10.72.0",

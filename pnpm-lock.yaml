@@ -125,8 +125,8 @@ importers:
         specifier: 1.5.3
         version: 1.5.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@emdash-cms/cloudflare':
-        specifier: ^0.34.0
-        version: 0.34.0(ffb737f25dc8adeeda5ef943194fb2ca)
+        specifier: ^0.35.0
+        version: 0.35.0(965f6f5eee4df68300db09fa4d6fb781)
       '@headlessui/react':
         specifier: 2.2.10
         version: 2.2.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -819,8 +819,23 @@ packages:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
+  '@emdash-cms/admin@0.35.0':
+    resolution: {integrity: sha512-ei3phywdyDqcdBf71g31g9rMleOEu0utGAaIMNSrhP9/vO7XbX/ZApJkyh0QKjODoeHqi/AdWa3mRBb+5QhGpg==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+
   '@emdash-cms/auth@0.34.0':
     resolution: {integrity: sha512-BKxrUcja5rbWwwkDZfhqEsuqMLATdz+XTwZap/W21kqX4YHdsX3XFpyCyAlk8sMHsCLayVSHtc3nhNWf1KGarQ==}
+    peerDependencies:
+      astro: '>=6.0.0-beta.0'
+      kysely: ^0.29.0
+    peerDependenciesMeta:
+      kysely:
+        optional: true
+
+  '@emdash-cms/auth@0.35.0':
+    resolution: {integrity: sha512-qFRO+ZsHMsSoXdQGLwIWWPGMvBxdfEH0zpcz+nAr21vX6uWjTO/YQHKjnjCvSZGJEfpqPftE7QET+4sLNw7ELw==}
     peerDependencies:
       astro: '>=6.0.0-beta.0'
       kysely: ^0.29.0
@@ -834,8 +849,14 @@ packages:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
-  '@emdash-cms/cloudflare@0.34.0':
-    resolution: {integrity: sha512-j0mf9vRzgXQp1dCifc9My94wE6oqqcgU0yFQw/4wrxHgrdYJYzVzQmup9Xp+a/4cCXXbjenRohTA5xZDoeFAHg==}
+  '@emdash-cms/blocks@0.35.0':
+    resolution: {integrity: sha512-XxZIH0FjOTeVII/JqHTo9bhVMQWczqC9fexcZiGOMwve5o5rSfMmoWzZr+cD62gk6+BtRraS+3Ct9yVnry8ZhA==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+
+  '@emdash-cms/cloudflare@0.35.0':
+    resolution: {integrity: sha512-1w87CzXmENWear4z6kojrJB6PvCy1BAafgL2+N8k16wP1Ls7O517oBjcuEmyCs+fZMAZTljYY/zc2vLShp4/1g==}
     peerDependencies:
       '@astrojs/cloudflare': '>=12.0.0'
       '@cloudflare/kumo': 2.6.0
@@ -857,6 +878,9 @@ packages:
 
   '@emdash-cms/gutenberg-to-portable-text@0.34.0':
     resolution: {integrity: sha512-G1IKYEbykURauYPmKMJjKKLVxydT0pnGVx/FlXhwexk+/3giJafEJG3PpwDu10w1sUpbwUx7dAxdpRaM0nWr/g==}
+
+  '@emdash-cms/gutenberg-to-portable-text@0.35.0':
+    resolution: {integrity: sha512-/ZzirFuXWxkBJwGaXvj+Qb+PS6uAgg1ELsU0i0ILXQNAmK7vx79u76ipCHTDrbwHojIJO+3cRX5vlicryuVC5Q==}
 
   '@emdash-cms/plugin-types@0.3.0':
     resolution: {integrity: sha512-2/siADnsr79FIOHbiGtsKpQojNid2Uqpuurhh6vIkhuzQN0jVBLiPDhX/LAK28l4l7UVyEnWpxI6HMImHZEPvg==}
@@ -3709,6 +3733,19 @@ packages:
       '@emdash-cms/auth-atproto':
         optional: true
 
+  emdash@0.35.0:
+    resolution: {integrity: sha512-q562QHZxQPaLMHz1rjicTSpC8HsNlc3a4LOSqp+tA6DOn0kk80WKGzwMMFYqmFH71VIiWVE+kVSbLj0betTscA==}
+    hasBin: true
+    peerDependencies:
+      '@astrojs/react': '>=5.0.0-beta.0'
+      '@emdash-cms/auth-atproto': '>=0.2.8'
+      astro: '>=6.0.0-beta.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    peerDependenciesMeta:
+      '@emdash-cms/auth-atproto':
+        optional: true
+
   emmet@2.4.11:
     resolution: {integrity: sha512-23QPJB3moh/U9sT4rQzGgeyyGIrcM+GH5uVYg2C6wZIxAIJq7Ng3QLT79tl8FUwDXhyq9SusfknOrofAKqvgyQ==}
 
@@ -6346,28 +6383,6 @@ snapshots:
       - '@types/react'
       - date-fns
 
-  '@cloudflare/kumo@2.6.0(@phosphor-icons/react@2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@types/react@19.2.18)(echarts@6.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)':
-    dependencies:
-      '@base-ui/react': 1.7.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@phosphor-icons/react': 2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@shikijs/langs': 4.4.3
-      '@shikijs/themes': 4.4.3
-      clsx: 2.1.1
-      motion: 12.43.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      react: 19.2.8
-      react-day-picker: 9.14.0(react@19.2.8)
-      react-dom: 19.2.8(react@19.2.8)
-      shiki: 4.4.3
-      tailwind-merge: 3.6.0
-    optionalDependencies:
-      echarts: 6.1.0
-      zod: 4.4.3
-    transitivePeerDependencies:
-      - '@date-fns/tz'
-      - '@emotion/is-prop-valid'
-      - '@types/react'
-      - date-fns
-
   '@cloudflare/kv-asset-handler@0.5.0': {}
 
   '@cloudflare/unenv-preset@2.16.1(unenv@2.0.0-rc.24)(workerd@1.20260828.1)':
@@ -6548,15 +6563,15 @@ snapshots:
       - typescript
       - zod
 
-  '@emdash-cms/admin@0.34.0(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3)(zod@4.4.3)':
+  '@emdash-cms/admin@0.35.0(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3)(zod@4.4.3)':
     dependencies:
       '@atcute/identity-resolver': 2.0.1(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@atcute/lexicons@2.0.3)(typescript@6.0.3)
       '@atcute/lexicons': 2.0.3
-      '@cloudflare/kumo': 2.6.0(@phosphor-icons/react@2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@types/react@19.2.18)(echarts@6.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
+      '@cloudflare/kumo': 2.6.0(@date-fns/tz@1.5.0)(@phosphor-icons/react@2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@types/react@19.2.18)(date-fns@4.4.0)(echarts@6.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
       '@dnd-kit/core': 6.3.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@dnd-kit/sortable': 10.0.0(@dnd-kit/core@6.3.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@dnd-kit/utilities': 3.2.2(react@19.2.8)
-      '@emdash-cms/blocks': 0.34.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
+      '@emdash-cms/blocks': 0.35.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
       '@emdash-cms/plugin-types': 0.3.0
       '@emdash-cms/registry-client': 0.3.4(typescript@6.0.3)
       '@emdash-cms/registry-lexicons': 0.3.0
@@ -6631,6 +6646,17 @@ snapshots:
     optionalDependencies:
       kysely: 0.29.5
 
+  '@emdash-cms/auth@0.35.0(astro@7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0))(kysely@0.29.5)':
+    dependencies:
+      '@oslojs/crypto': 1.0.1
+      '@oslojs/encoding': 1.1.0
+      '@oslojs/webauthn': 1.0.0
+      astro: 7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0)
+      ulidx: 2.4.1
+      zod: 4.4.3
+    optionalDependencies:
+      kysely: 0.29.5
+
   '@emdash-cms/blocks@0.34.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)':
     dependencies:
       '@cloudflare/kumo': 2.6.0(@date-fns/tz@1.5.0)(@phosphor-icons/react@2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@types/react@19.2.18)(date-fns@4.4.0)(echarts@6.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
@@ -6647,9 +6673,9 @@ snapshots:
       - date-fns
       - zod
 
-  '@emdash-cms/blocks@0.34.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)':
+  '@emdash-cms/blocks@0.35.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)':
     dependencies:
-      '@cloudflare/kumo': 2.6.0(@phosphor-icons/react@2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@types/react@19.2.18)(echarts@6.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
+      '@cloudflare/kumo': 2.6.0(@date-fns/tz@1.5.0)(@phosphor-icons/react@2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@types/react@19.2.18)(date-fns@4.4.0)(echarts@6.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
       '@phosphor-icons/react': 2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       clsx: 2.1.1
       echarts: 6.1.0
@@ -6663,13 +6689,13 @@ snapshots:
       - date-fns
       - zod
 
-  '@emdash-cms/cloudflare@0.34.0(ffb737f25dc8adeeda5ef943194fb2ca)':
+  '@emdash-cms/cloudflare@0.35.0(965f6f5eee4df68300db09fa4d6fb781)':
     dependencies:
       '@astrojs/cloudflare': 14.2.4(@types/node@26.4.0)(astro@7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0))(esbuild@0.28.1)(jiti@2.7.0)(workerd@1.20260828.1)(wrangler@4.127.1(@cloudflare/workers-types@5.20260831.1))(yaml@2.9.0)
       '@cloudflare/ai-search-snippet': 0.0.42
       '@cloudflare/workers-types': 5.20260831.1
       astro: 7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0)
-      emdash: 0.34.0(@astrojs/react@6.0.4(@types/node@26.4.0)(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@10.2.2)(yaml@2.9.0))(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0))(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3)
+      emdash: 0.35.0(@astrojs/react@6.0.4(@types/node@26.4.0)(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@10.2.2)(yaml@2.9.0))(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0))(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@10.2.2)(typescript@6.0.3)
       jose: 6.2.9
       kysely: 0.29.5
       kysely-d1: 0.4.0(kysely@0.29.5)
@@ -6705,6 +6731,11 @@ snapshots:
       - utf-8-validate
 
   '@emdash-cms/gutenberg-to-portable-text@0.34.0':
+    dependencies:
+      '@wordpress/block-serialization-default-parser': 5.53.0
+      parse5: 7.3.0
+
+  '@emdash-cms/gutenberg-to-portable-text@0.35.0':
     dependencies:
       '@wordpress/block-serialization-default-parser': 5.53.0
       parse5: 7.3.0
@@ -9256,15 +9287,15 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  emdash@0.34.0(@astrojs/react@6.0.4(@types/node@26.4.0)(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@10.2.2)(yaml@2.9.0))(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0))(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3):
+  emdash@0.35.0(@astrojs/react@6.0.4(@types/node@26.4.0)(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@10.2.2)(yaml@2.9.0))(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(astro@7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0))(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@10.2.2)(typescript@6.0.3):
     dependencies:
       '@astrojs/react': 6.0.4(@types/node@26.4.0)(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@10.2.2)(yaml@2.9.0)
       '@atcute/client': 5.1.1(@atcute/lexicons@2.0.3)(typescript@6.0.3)
       '@atcute/lexicons': 2.0.3
       '@atcute/multibase': 1.2.5
-      '@emdash-cms/admin': 0.34.0(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3)(zod@4.4.3)
-      '@emdash-cms/auth': 0.34.0(astro@7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0))(kysely@0.29.5)
-      '@emdash-cms/gutenberg-to-portable-text': 0.34.0
+      '@emdash-cms/admin': 0.35.0(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3)(zod@4.4.3)
+      '@emdash-cms/auth': 0.35.0(astro@7.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.4.0)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.0))(kysely@0.29.5)
+      '@emdash-cms/gutenberg-to-portable-text': 0.35.0
       '@emdash-cms/plugin-types': 0.3.0
       '@emdash-cms/registry-client': 0.3.4(typescript@6.0.3)
       '@floating-ui/react': 0.27.20(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
