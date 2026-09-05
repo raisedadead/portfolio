@@ -63,7 +63,7 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "5.20260830.1",
+    "@cloudflare/workers-types": "5.20260831.1",
     "@playwright/test": "^1.62.1",
     "@tailwindcss/forms": "0.5.11",
     "@tailwindcss/typography": "0.5.20",
