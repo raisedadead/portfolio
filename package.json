@@ -57,7 +57,7 @@
     "motion": "12.43.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "sharp": "0.35.3",
+    "sharp": "0.35.4",
     "shiki": "4.4.3",
     "tailwind-merge": "3.6.0",
     "tailwindcss-animate": "1.0.7"
