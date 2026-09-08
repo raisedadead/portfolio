@@ -50,6 +50,13 @@ export default defineConfig({
   ],
 
   vite: {
+    optimizeDeps: {
+      // astro/app/manifest is a virtual-module entry that the dev-time SSR dep
+      // optimizer drops mid-run ("The file does not exist at .../deps_ssr/server-*.js"),
+      // which kills astro dev and with it the e2e seeding step. Excluding it keeps
+      // it out of the optimized deps directory.
+      exclude: ['astro/app/manifest']
+    },
     resolve: {
       // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
       // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
