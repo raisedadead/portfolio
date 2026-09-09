@@ -12,17 +12,17 @@
     },
     "do:build": {
       "dependsOn": ["^do:build", "cf-typegen"],
-      "inputs": [
-        "src/**",
-        "public/**",
-        ".emdash/**",
-        "astro.config.mjs",
-        "tsconfig.json",
-        "wrangler.jsonc",
-        "package.json"
-      ],
       "outputs": ["dist/**", ".astro/**"],
-      "env": ["NODE_ENV", "CI"],
+      "env": [
+        "NODE_ENV",
+        "CI",
+        "PUBLIC_SENTRY_DSN",
+        "PUBLIC_SENTRY_ENVIRONMENT",
+        "PUBLIC_SENTRY_RELEASE",
+        "SENTRY_ORG",
+        "SENTRY_PROJECT",
+        "SENTRY_AUTH_TOKEN"
+      ],
       "cache": true
     },
     "do:test": {

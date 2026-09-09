@@ -1,5 +1,5 @@
 import react from '@astrojs/react';
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig, envField, fontProviders } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
 
@@ -16,6 +16,14 @@ export default defineConfig({
   output: 'server',
 
   prefetch: true,
+
+  env: {
+    schema: {
+      PUBLIC_SENTRY_DSN: envField.string({ context: 'client', access: 'public', optional: true, url: true }),
+      PUBLIC_SENTRY_ENVIRONMENT: envField.string({ context: 'client', access: 'public', optional: true }),
+      PUBLIC_SENTRY_RELEASE: envField.string({ context: 'client', access: 'public', optional: true })
+    }
+  },
 
   adapter: cloudflare({
     imageService: 'compile'
