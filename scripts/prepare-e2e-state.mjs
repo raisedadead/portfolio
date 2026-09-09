@@ -1,12 +1,22 @@
 #!/usr/bin/env node
 
-import { execSync, spawn } from 'node:child_process';
+import { execFileSync, execSync, spawn } from 'node:child_process';
 import { mkdirSync, openSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { createServer } from 'node:net';
 import path from 'node:path';
 import process from 'node:process';
 
-const DEV_URL = 'http://localhost:4321';
+const portServer = createServer();
+await new Promise((resolve, reject) => {
+  portServer.once('error', reject);
+  portServer.listen(0, '127.0.0.1', resolve);
+});
+const devPort = portServer.address().port;
+await new Promise((resolve, reject) => {
+  portServer.close((error) => (error ? reject(error) : resolve()));
+});
+const DEV_URL = `http://127.0.0.1:${devPort}`;
 const DEV_LOG = '.astro/e2e-dev.log';
 
 const require = createRequire(import.meta.url);
@@ -28,7 +38,9 @@ function sleep(ms) {
 function startDevServer() {
   mkdirSync('.astro', { recursive: true });
   const logFd = openSync(DEV_LOG, 'w');
-  const child = spawn(process.execPath, [astroBin, 'dev'], { stdio: ['ignore', logFd, logFd] });
+  const child = spawn(process.execPath, [astroBin, 'dev', '--host', '127.0.0.1', '--port', String(devPort)], {
+    stdio: ['ignore', logFd, logFd]
+  });
   const state = { child, exited: false, exitCode: null, spawnError: null };
   child.on('exit', (code) => {
     state.exited = true;
@@ -94,10 +106,11 @@ try {
   if (!bypass.ok) {
     throw new Error(`dev-bypass failed: ${bypass.status}`);
   }
-  execSync('node scripts/import-articles-to-emdash.mjs --source e2e/fixtures/content --commit', {
-    stdio: 'inherit',
-    timeout: 300_000
-  });
+  execFileSync(
+    process.execPath,
+    ['scripts/import-articles-to-emdash.mjs', '--source', 'e2e/fixtures/content', '--base-url', DEV_URL, '--commit'],
+    { stdio: 'inherit', timeout: 300_000 }
+  );
 } catch (error) {
   console.error(error instanceof Error ? error.message : error);
   process.exitCode = 1;
