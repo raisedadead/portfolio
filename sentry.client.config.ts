@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/astro';
+import { PUBLIC_SENTRY_DSN, PUBLIC_SENTRY_ENVIRONMENT, PUBLIC_SENTRY_RELEASE } from 'astro:env/client';
 
-const dsn = import.meta.env.PUBLIC_SENTRY_DSN;
+const dsn = PUBLIC_SENTRY_DSN;
 
 // Sentry's Vite plugin prepends this file into the SSR bundle too;
 // `browserTracingIntegration()`'s `addEventListener('load', _, true)`
@@ -10,8 +11,8 @@ const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefine
 if (dsn && isBrowser) {
   Sentry.init({
     dsn,
-    environment: import.meta.env.PUBLIC_SENTRY_ENVIRONMENT || (import.meta.env.PROD ? 'production' : 'development'),
-    release: import.meta.env.PUBLIC_SENTRY_RELEASE || 'dev',
+    environment: PUBLIC_SENTRY_ENVIRONMENT || (import.meta.env.PROD ? 'production' : 'development'),
+    release: PUBLIC_SENTRY_RELEASE || 'dev',
 
     // Performance monitoring
     tracesSampleRate: import.meta.env.PROD ? 0.1 : 1.0, // 10% in production, 100% in dev
