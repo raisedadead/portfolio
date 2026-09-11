@@ -9,6 +9,8 @@
 
 ## Article covers
 
+Store generated cover images and `manifest.json` in `~/Pictures/portfolio/article-covers/`. Keep prompts and EmDash media URLs in the manifest. Upload covers to EmDash instead of adding them to `public/`.
+
 Reuse the same **style, palette, camera, and lighting**, then change the subject for each article.
 
 For future requests, you can say:
