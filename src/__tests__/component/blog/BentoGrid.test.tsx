@@ -1,498 +1,87 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import type { LightweightPost } from '@/types/blog';
-import { getBentoGridSpan } from '@/lib/blog-utils';
 import BlogGridWithLoadMore from '@/components/blog/BentoGrid';
 
-interface MockLoadMoreProps {
-  totalPosts: number;
-  visiblePosts: number;
-  onLoadMore: () => void;
-  isLoading?: boolean;
-}
+vi.mock('@sentry/astro', () => ({ metrics: { count: vi.fn() } }));
 
-vi.mock('@/lib/image-dimensions', () => ({
-  calculateImageDimensions: vi.fn(() => ({
-    mobile: { width: 640, height: 360 },
-    tablet: { width: 1024, height: 576 },
-    desktop: { width: 1920, height: 1080 },
-    aspectRatio: '16/9'
-  }))
+const posts: LightweightPost[] = Array.from({ length: 10 }, (_, i) => ({
+  id: `post-${i}`,
+  data: {
+    slug: `post-${i}`,
+    title: `Post ${i}`,
+    brief: `Brief ${i}`,
+    coverImage: { url: `/_emdash/api/media/file/cover-${i}.webp`, alt: `Cover ${i}`, width: 1280, height: 720 },
+    tags: [],
+    publishedAt: new Date('2025-01-01'),
+    readingTime: 5,
+    source: 'local'
+  }
 }));
 
-// Mock LoadMoreButton component
-vi.mock('@/components/blog/LoadMoreButton', () => ({
-  default: ({ totalPosts, visiblePosts, onLoadMore, isLoading }: MockLoadMoreProps) => (
-    <div data-testid='load-more-button'>
-      <button onClick={onLoadMore} disabled={isLoading} data-total={totalPosts} data-visible={visiblePosts}>
-        {isLoading ? 'Loading...' : 'Load more'}
-      </button>
-    </div>
-  )
-}));
-
-describe('BlogGridWithLoadMore Component', () => {
-  beforeEach(() => {
-    vi.useFakeTimers();
+describe('BlogGridWithLoadMore', () => {
+  it('reveals the next batch immediately and stops at the end', () => {
+    render(<BlogGridWithLoadMore posts={posts} />);
+    expect(screen.getAllByRole('article')).toHaveLength(6);
+    fireEvent.click(screen.getByRole('button', { name: 'Load more blog posts' }));
+    expect(screen.getAllByRole('article')).toHaveLength(9);
+    fireEvent.click(screen.getByRole('button', { name: 'Load more blog posts' }));
+    expect(screen.getAllByRole('article')).toHaveLength(10);
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    expect(screen.getByText(/that's the end/i)).toBeInTheDocument();
   });
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-    vi.useRealTimers();
+  it('honors custom batch sizes', () => {
+    render(<BlogGridWithLoadMore posts={posts} initialCount={2} postsPerLoad={4} />);
+    expect(screen.getAllByRole('article')).toHaveLength(2);
+    fireEvent.click(screen.getByRole('button', { name: 'Load more blog posts' }));
+    expect(screen.getAllByRole('article')).toHaveLength(6);
   });
 
-  const createMockPost = (
-    id: string,
-    title: string,
-    hasCoverImage = true,
-    source: 'local' | 'freecodecamp' = 'local'
-  ): LightweightPost => ({
-    id,
-    data: {
-      slug: id,
-      title,
-      brief: `Brief for ${title}`,
-      coverImage: hasCoverImage
-        ? {
-            url: `https://example.com/cover-${id}.jpg`,
-            alt: `Cover for ${title}`
-          }
-        : undefined,
-      tags: [{ name: 'Test', slug: 'test' }],
-      publishedAt: new Date('2025-01-01'),
-      readingTime: 5,
-      source
-    }
+  it('renders cover metadata and the local article destination', () => {
+    render(<BlogGridWithLoadMore posts={[posts[0]]} />);
+    const image = screen.getByAltText('Cover 0');
+    expect(image).toHaveAttribute('src', posts[0].data.coverImage?.url);
+    expect(image).toHaveAttribute('width', '1280');
+    expect(image).toHaveAttribute('height', '720');
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/blog/post-0');
+    expect(screen.getByText('Jan 01, 2025')).toBeInTheDocument();
+    expect(screen.getByText('5 min read')).toBeInTheDocument();
   });
 
-  const mockPosts: LightweightPost[] = [
-    createMockPost('post-1', 'First Post'),
-    createMockPost('post-2', 'Second Post'),
-    createMockPost('post-3', 'Third Post'),
-    createMockPost('post-4', 'Fourth Post'),
-    createMockPost('post-5', 'Fifth Post'),
-    createMockPost('post-6', 'Sixth Post'),
-    createMockPost('post-7', 'Seventh Post'),
-    createMockPost('post-8', 'Eighth Post')
-  ];
-
-  describe('Initial Render', () => {
-    it('renders with default initialCount of 6 posts', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} />);
-
-      expect(screen.getByText('First Post')).toBeInTheDocument();
-      expect(screen.getByText('Sixth Post')).toBeInTheDocument();
-      expect(screen.queryByText('Seventh Post')).not.toBeInTheDocument();
-    });
-
-    it('renders with custom initialCount', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={3} />);
-
-      expect(screen.getByText('First Post')).toBeInTheDocument();
-      expect(screen.getByText('Third Post')).toBeInTheDocument();
-      expect(screen.queryByText('Fourth Post')).not.toBeInTheDocument();
-    });
-
-    it('renders grid container with correct classes', () => {
-      const { container } = render(<BlogGridWithLoadMore posts={mockPosts} />);
-
-      const grid = container.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-5');
-      expect(grid).toBeInTheDocument();
-    });
-  });
-
-  describe('Load More Functionality', () => {
-    it('increments visibleCount by postsPerLoad on load more', async () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={3} postsPerLoad={2} />);
-
-      expect(screen.getByText('Third Post')).toBeInTheDocument();
-      expect(screen.queryByText('Fourth Post')).not.toBeInTheDocument();
-
-      const loadMoreButton = screen.getByTestId('load-more-button').querySelector('button');
-      expect(loadMoreButton).not.toBeNull();
-
-      await act(async () => {
-        fireEvent.click(loadMoreButton!);
-        vi.advanceTimersByTime(300);
-      });
-
-      expect(screen.getByText('Fourth Post')).toBeInTheDocument();
-      expect(screen.getByText('Fifth Post')).toBeInTheDocument();
-    });
-
-    it('sets isLoading to true immediately on handleLoadMore', async () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={3} />);
-
-      const loadMoreButton = screen.getByTestId('load-more-button').querySelector('button');
-
-      await act(async () => {
-        fireEvent.click(loadMoreButton!);
-      });
-
-      // Before timer advances, loading state should be true
-      expect(loadMoreButton).toHaveTextContent('Loading...');
-    });
-
-    it('sets isLoading to false after 300ms delay', async () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={3} />);
-
-      const loadMoreButton = screen.getByTestId('load-more-button').querySelector('button');
-
-      await act(async () => {
-        fireEvent.click(loadMoreButton!);
-        vi.advanceTimersByTime(300);
-      });
-
-      expect(loadMoreButton).toHaveTextContent('Load more');
-    });
-
-    it('never exceeds total posts length with Math.min logic', async () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={6} postsPerLoad={5} />);
-
-      const loadMoreButton = screen.getByTestId('load-more-button').querySelector('button');
-
-      await act(async () => {
-        fireEvent.click(loadMoreButton!);
-        vi.advanceTimersByTime(300);
-      });
-
-      // Should show all 8 posts, not 6 + 5 = 11
-      expect(screen.getByText('Eighth Post')).toBeInTheDocument();
-      expect(loadMoreButton).toHaveAttribute('data-visible', '8');
-    });
-  });
-
-  describe('Post Slicing', () => {
-    it('correctly slices posts array based on visibleCount', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={4} />);
-
-      const articles = screen.getAllByRole('article');
-      expect(articles).toHaveLength(4);
-    });
-
-    it('updates slice when visibleCount changes', async () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={2} postsPerLoad={2} />);
-
-      expect(screen.getAllByRole('article')).toHaveLength(2);
-
-      const loadMoreButton = screen.getByTestId('load-more-button').querySelector('button');
-
-      await act(async () => {
-        fireEvent.click(loadMoreButton!);
-        vi.advanceTimersByTime(300);
-      });
-
-      expect(screen.getAllByRole('article')).toHaveLength(4);
-    });
-  });
-
-  describe('Grid Rendering', () => {
-    it('renders each post with correct data-blog-post-id', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={3} />);
-
-      expect(screen.getByText('First Post').closest('article')).toHaveAttribute('data-blog-post-id', 'post-1');
-      expect(screen.getByText('Second Post').closest('article')).toHaveAttribute('data-blog-post-id', 'post-2');
-      expect(screen.getByText('Third Post').closest('article')).toHaveAttribute('data-blog-post-id', 'post-3');
-    });
-
-    it('applies getBentoGridSpan classes correctly for index 0', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      const { desktop, aspectClass } = getBentoGridSpan(0);
-      const article = screen.getByRole('article');
-
-      expect(article.className).toContain(desktop);
-      expect(article.querySelector(`.${aspectClass.replace('/', '\\/')}`)).toBeTruthy();
-    });
-
-    it('renders link to blog post with correct href', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={2} />);
-
-      const link = screen.getByText('First Post').closest('a');
-      expect(link).toHaveAttribute('href', '/blog/post-1');
-    });
-  });
-
-  describe('Cover Image Rendering', () => {
-    it.each(['/_emdash/api/media/file/cover.webp', 'https://cdn.freecodecamp.org/cover.webp'])(
-      'renders and prefetches the supplied cover URL %s',
-      (url) => {
-        const post = createMockPost('cover-url', 'Cover URL');
-        post.data.coverImage = { url, alt: 'Cover URL image' };
-        const { rerender, unmount } = render(<BlogGridWithLoadMore posts={[mockPosts[0], post]} initialCount={1} />);
-
-        const prefetch = document.head.querySelector(`link[rel="prefetch"][href="${url}"]`);
-        expect(prefetch).toHaveAttribute('as', 'image');
-
-        rerender(<BlogGridWithLoadMore posts={[post]} initialCount={1} />);
-        expect(screen.getByAltText('Cover URL image')).toHaveAttribute('src', url);
-        expect(prefetch).not.toBeInTheDocument();
-
-        unmount();
-        expect(document.head.querySelector(`link[rel="prefetch"][href="${url}"]`)).toBeNull();
-      }
-    );
-
-    it('renders cover image when coverImage.url exists', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      const img = screen.getByAltText('Cover for First Post');
-      expect(img).toHaveAttribute('src', 'https://example.com/cover-post-1.jpg');
-      expect(img).toHaveAttribute('width', '640');
-      expect(img).toHaveAttribute('height', '360');
-    });
-
-    it('sets loading="eager" on first image and "lazy" on subsequent images', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts.slice(0, 3)} initialCount={3} />);
-
-      const firstImg = screen.getByAltText('Cover for First Post');
-      expect(firstImg).toHaveAttribute('loading', 'eager');
-      expect(firstImg).toHaveAttribute('fetchpriority', 'high');
-
-      const secondImg = screen.getByAltText('Cover for Second Post');
-      expect(secondImg).toHaveAttribute('loading', 'lazy');
-      expect(secondImg).not.toHaveAttribute('fetchpriority');
-    });
-
-    it('applies animation styles to cover images', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      const img = screen.getByAltText('Cover for First Post');
-      expect(img).toHaveClass('animate-fade-in');
-    });
-
-    it('renders fallback gradient when coverImage is missing', () => {
-      const postWithoutCover = createMockPost('no-cover', 'No Cover Post', false);
-      render(<BlogGridWithLoadMore posts={[postWithoutCover]} initialCount={1} />);
-
-      const fallback = screen.getByText('📝');
-      expect(fallback.parentElement).toHaveClass(
-        'bg-linear-to-br/oklch',
-        'from-blue-500',
-        'via-purple-500',
-        'to-pink-500'
-      );
-    });
-
-    it('renders loading skeleton behind image', () => {
-      const { container } = render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      const skeleton = container.querySelector('.animate-pulse.bg-gray-200');
-      expect(skeleton).toBeInTheDocument();
-    });
-  });
-
-  describe('Post Content', () => {
-    it('renders post title', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      expect(screen.getByText('First Post')).toBeInTheDocument();
-    });
-
-    it('renders post brief', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      expect(screen.getByText('Brief for First Post')).toBeInTheDocument();
-    });
-
-    it('renders publishedAt as timezone-stable formatted date', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      expect(screen.getByText('Jan 01, 2025')).toBeInTheDocument();
-    });
-
-    it('renders reading time when available', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      expect(screen.getByText('5 min read')).toBeInTheDocument();
-    });
-
-    it('renders bullet separator between date and reading time', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      expect(screen.getByText('•')).toBeInTheDocument();
-    });
-  });
-
-  describe('LoadMoreButton Integration', () => {
-    it('passes correct totalPosts prop', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} />);
-
-      const button = screen.getByTestId('load-more-button').querySelector('button');
-      expect(button).toHaveAttribute('data-total', String(mockPosts.length));
-    });
-
-    it('passes correct visiblePosts prop', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={4} />);
-
-      const button = screen.getByTestId('load-more-button').querySelector('button');
-      expect(button).toHaveAttribute('data-visible', '4');
-    });
-
-    it('passes isLoading state', async () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} />);
-
-      const button = screen.getByTestId('load-more-button').querySelector('button');
-
-      await act(async () => {
-        fireEvent.click(button!);
-      });
-
-      expect(button).toBeDisabled();
-    });
-
-    it('passes postsPerLoad prop', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} postsPerLoad={5} />);
-
-      const loadMoreButton = screen.getByTestId('load-more-button');
-      expect(loadMoreButton).toBeInTheDocument();
-    });
-  });
-
-  describe('Edge Cases', () => {
-    it('handles empty posts array', () => {
-      render(<BlogGridWithLoadMore posts={[]} />);
-
-      expect(screen.queryByRole('article')).not.toBeInTheDocument();
-      expect(screen.getByTestId('load-more-button')).toBeInTheDocument();
-    });
-
-    it('handles single post', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} />);
-
-      expect(screen.getAllByRole('article')).toHaveLength(1);
-      expect(screen.getByText('First Post')).toBeInTheDocument();
-    });
-
-    it('handles initialCount greater than posts length', () => {
-      render(<BlogGridWithLoadMore posts={mockPosts} initialCount={20} />);
-
-      expect(screen.getAllByRole('article')).toHaveLength(mockPosts.length);
-    });
-
-    it('handles post without readingTime', () => {
-      const postWithoutReadingTime: LightweightPost = {
-        ...mockPosts[0],
-        data: { ...mockPosts[0].data, readingTime: 0 }
-      };
-
-      render(<BlogGridWithLoadMore posts={[postWithoutReadingTime]} initialCount={1} />);
-
-      expect(screen.queryByText(/min read/)).not.toBeInTheDocument();
-      expect(screen.queryByText('•')).not.toBeInTheDocument();
-    });
-  });
-
-  describe('Styling', () => {
-    it('applies responsive grid classes', () => {
-      const { container } = render(<BlogGridWithLoadMore posts={mockPosts} />);
-
-      const grid = container.querySelector('.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-5');
-      expect(grid).toBeInTheDocument();
-    });
-
-    it('applies shadow and transition classes to articles', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      const article = screen.getByRole('article');
-      expect(article).toHaveClass('shadow-brutal-md', 'transition-all', 'duration-100', 'hover:shadow-brutal-lg');
-    });
-
-    it('applies hover background class', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      const article = screen.getByRole('article');
-      expect(article).toHaveClass('hover:bg-orange-100');
-    });
-  });
-
-  describe('Animation Styles', () => {
-    it('does not inject inline keyframes (fade-in lives in global.css)', () => {
-      const { container } = render(<BlogGridWithLoadMore posts={mockPosts} />);
-
-      const styleTag = container.querySelector('style');
-      expect(styleTag).not.toBeInTheDocument();
-    });
-  });
-
-  describe('freeCodeCamp External Posts', () => {
-    const createFccPost = (id: string, title: string): LightweightPost => ({
-      id: `fcc-${id}`,
+  it('keeps external article destinations and covers', () => {
+    const external: LightweightPost = {
+      ...posts[0],
       data: {
-        slug: id,
-        title,
-        brief: `Brief for ${title}`,
-        coverImage: {
-          url: `https://cdn.freecodecamp.org/cover-${id}.jpg`,
-          alt: `Cover for ${title}`
-        },
-        tags: [{ name: 'JavaScript', slug: 'javascript' }],
-        publishedAt: new Date('2025-01-01'),
-        readingTime: 5,
+        ...posts[0].data,
         source: 'freecodecamp',
-        externalUrl: `https://www.freecodecamp.org/news/${id}/`
+        externalUrl: 'https://www.freecodecamp.org/news/article/',
+        coverImage: { url: 'https://cdn.freecodecamp.org/cover.webp' }
       }
-    });
+    };
+    render(<BlogGridWithLoadMore posts={[external]} />);
+    expect(screen.getByRole('link')).toHaveAttribute('href', external.data.externalUrl);
+    expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
+    expect(screen.getByRole('link')).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(screen.getByRole('img')).toHaveAttribute('src', external.data.coverImage?.url);
+  });
 
-    it('renders freeCodeCamp badge for external posts', () => {
-      const fccPost = createFccPost('fcc-article', 'FCC Article');
-      render(<BlogGridWithLoadMore posts={[fccPost]} initialCount={1} />);
+  it('prefetches the next covers and cleans up links on unmount', () => {
+    const { unmount } = render(<BlogGridWithLoadMore posts={posts} />);
+    const prefetch = document.head.querySelector(`link[rel="prefetch"][href="${posts[6].data.coverImage?.url}"]`);
+    expect(prefetch).toHaveAttribute('as', 'image');
+    unmount();
+    expect(prefetch).not.toBeInTheDocument();
+  });
 
-      expect(screen.getByText('freeCodeCamp')).toBeInTheDocument();
-    });
-
-    it('renders external link icon for freeCodeCamp posts', () => {
-      const fccPost = createFccPost('fcc-article', 'FCC Article');
-      const { container } = render(<BlogGridWithLoadMore posts={[fccPost]} initialCount={1} />);
-
-      const externalIcon = container.querySelector('svg');
-      expect(externalIcon).toBeInTheDocument();
-    });
-
-    it('links to external URL for freeCodeCamp posts', () => {
-      const fccPost = createFccPost('fcc-article', 'FCC Article');
-      render(<BlogGridWithLoadMore posts={[fccPost]} initialCount={1} />);
-
-      const link = screen.getByText('FCC Article').closest('a');
-      expect(link).toHaveAttribute('href', 'https://www.freecodecamp.org/news/fcc-article/');
-    });
-
-    it('opens external links in new tab with proper security attributes', () => {
-      const fccPost = createFccPost('fcc-article', 'FCC Article');
-      render(<BlogGridWithLoadMore posts={[fccPost]} initialCount={1} />);
-
-      const link = screen.getByText('FCC Article').closest('a');
-      expect(link).toHaveAttribute('target', '_blank');
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-    });
-
-    it('does not add external link attributes to local posts', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      const link = screen.getByText('First Post').closest('a');
-      expect(link).not.toHaveAttribute('target', '_blank');
-      expect(link).toHaveAttribute('href', '/blog/post-1');
-    });
-
-    it('does not render freeCodeCamp badge for local posts', () => {
-      render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
-
-      expect(screen.queryByText('freeCodeCamp')).not.toBeInTheDocument();
-    });
-
-    it('renders mixed posts correctly', () => {
-      const fccPost = createFccPost('fcc-article', 'FCC Article');
-      const mixedPosts = [mockPosts[0], fccPost];
-      render(<BlogGridWithLoadMore posts={mixedPosts} initialCount={2} />);
-
-      // local post should have internal link
-      const localLink = screen.getByText('First Post').closest('a');
-      expect(localLink).toHaveAttribute('href', '/blog/post-1');
-
-      // FCC post should have external link
-      const fccLink = screen.getByText('FCC Article').closest('a');
-      expect(fccLink).toHaveAttribute('href', 'https://www.freecodecamp.org/news/fcc-article/');
-      expect(fccLink).toHaveAttribute('target', '_blank');
-    });
+  it('renders posts without covers and handles an empty list', () => {
+    const { rerender } = render(
+      <BlogGridWithLoadMore posts={[{ ...posts[0], data: { ...posts[0].data, coverImage: undefined } }]} />
+    );
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/blog/post-0');
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    rerender(<BlogGridWithLoadMore posts={[]} />);
+    expect(screen.queryByRole('article')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 });

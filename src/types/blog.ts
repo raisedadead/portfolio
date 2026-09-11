@@ -15,13 +15,6 @@ export interface Tag {
   slug: string;
 }
 
-export interface ImageDimensions {
-  mobile: { width: number; height: number };
-  tablet: { width: number; height: number };
-  desktop: { width: number; height: number };
-  aspectRatio: string;
-}
-
 export type PostSource = 'local' | 'freecodecamp';
 
 /**

@@ -59,8 +59,6 @@ describe('Blog Utils', () => {
       const result = getBentoGridSpan(0);
       expect(result).toEqual({
         desktop: 'lg:col-span-3',
-        aspectClass: 'aspect-16/9',
-        aspectRatio: '16/9',
         height: 'h-64'
       });
     });
@@ -69,8 +67,6 @@ describe('Blog Utils', () => {
       const result = getBentoGridSpan(1);
       expect(result).toEqual({
         desktop: 'lg:col-span-2',
-        aspectClass: 'aspect-4/3',
-        aspectRatio: '4/3',
         height: 'h-48'
       });
     });
@@ -84,7 +80,6 @@ describe('Blog Utils', () => {
     it('returns valid CSS classes', () => {
       const result = getBentoGridSpan(0);
       expect(result.desktop).toMatch(/^lg:col-span-\d+$/);
-      expect(result.aspectClass).toMatch(/^aspect-\d+\/\d+$/);
       expect(result.height).toMatch(/^h-\d+$/);
     });
   });

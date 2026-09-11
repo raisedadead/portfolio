@@ -89,7 +89,7 @@ describe('normalizeEmdashPosts', () => {
       data: {
         title: 'My Post',
         date: '2023-05-07T00:00:00.000Z',
-        cover: { id: 'C', alt: 'cover alt', meta: { storageKey: 'C.webp' } },
+        cover: { id: 'C', alt: 'cover alt', width: 1280, height: 720, meta: { storageKey: 'C.webp' } },
         content: BLOCKS,
         terms: { tag: [{ slug: 'dns', label: 'Dns' }] }
       }
@@ -101,7 +101,7 @@ describe('normalizeEmdashPosts', () => {
           slug: 'my-post',
           title: 'My Post',
           brief: 'First paragraph of the post body.',
-          coverImage: { url: `${MEDIA_FILE_ROUTE}/C.webp`, alt: 'cover alt' },
+          coverImage: { url: `${MEDIA_FILE_ROUTE}/C.webp`, alt: 'cover alt', width: 1280, height: 720 },
           tags: [{ name: 'Dns', slug: 'dns' }],
           publishedAt: new Date('2023-05-07T00:00:00.000Z'),
           readingTime: 1,

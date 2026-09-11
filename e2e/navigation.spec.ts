@@ -57,36 +57,36 @@ test.describe('Navigation', () => {
     await expect(page).toHaveURL('/');
   });
 
-  test('mobile menu opens and navigates', async ({ page }) => {
-    // Set mobile viewport
+  test('menu supports keyboard navigation and exposes the active item', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-
     await page.goto('/');
+    await page.locator('astro-island[component-url*="nav."]:not([ssr])').waitFor();
+    const trigger = page.getByRole('button', { name: 'Open navigation menu' });
+    await trigger.focus();
+    await page.keyboard.press('Enter');
+    const blog = page.getByRole('menuitem', { name: 'Recent Posts' });
+    await expect(blog).toBeVisible();
+    const menu = page.getByRole('menu');
+    const activeId = await menu.getAttribute('aria-activedescendant');
+    expect(activeId).toBeTruthy();
+    await expect(blog).toHaveAttribute('id', activeId!);
+    await page.keyboard.press('Escape');
+    await expect(menu).not.toBeVisible();
+    await expect(trigger).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(blog).toBeVisible();
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\/blog/);
+  });
 
-    // Find and click mobile menu button
-    const menuButton = page.getByRole('button', {
-      name: /open navigation menu/i
-    });
-
-    if (await menuButton.isVisible()) {
-      const blogLink = page.getByRole('link', { name: /recent posts/i });
-      await expect
-        .poll(
-          async () => {
-            if (await blogLink.isVisible()) return true;
-            await menuButton.click();
-            return blogLink.isVisible();
-          },
-          { timeout: 10_000, intervals: [500] }
-        )
-        .toBe(true);
-
-      // Click blog link
-      await blogLink.click();
-
-      // Should navigate to blog
-      await expect(page).toHaveURL(/\/blog/);
-    }
+  test('scroll-to-top supports keyboard activation', async ({ page }) => {
+    await page.goto('/blog');
+    await page.evaluate(() => window.scrollTo(0, 400));
+    const button = page.getByRole('button', { name: 'Scroll to top' });
+    await expect(button).toBeVisible();
+    await button.focus();
+    await page.keyboard.press('Enter');
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
   });
 
   test('footer links work', async ({ page }) => {
@@ -105,18 +105,17 @@ test.describe('Navigation', () => {
 });
 
 test.describe('View Transitions', () => {
-  test('page transitions work without full reload', async ({ page }) => {
+  test('navigation preserves the document and background canvas', async ({ page }) => {
     await page.goto('/');
-
-    // Navigate to blog
-    const blogLink = page.getByRole('link', { name: /blog/i }).first();
-    await blogLink.click();
-
-    // Should have transitioned (check URL changed)
-    await expect(page).toHaveURL(/\/blog/);
-
-    // Background canvas should persist (check it's still there)
     const canvas = page.locator('canvas');
     await expect(canvas).toBeVisible();
+    const originalDocument = await page.evaluateHandle(() => document);
+    await page.evaluate(() => {
+      document.querySelector('canvas')!.dataset.navigationProbe = 'present';
+    });
+    await page.getByRole('link', { name: /blog/i }).first().click();
+    await expect(page).toHaveURL(/\/blog/);
+    expect(await page.evaluate((previousDocument) => previousDocument === document, originalDocument)).toBe(true);
+    await expect(canvas).toHaveAttribute('data-navigation-probe', 'present');
   });
 });

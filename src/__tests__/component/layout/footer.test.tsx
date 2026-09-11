@@ -1,14 +1,6 @@
 import { Footer } from '@/components/layout/footer';
-import { describe, expect, it, vi } from 'vitest';
-import { render, screen } from '../../test-utils';
-
-vi.mock('@/components/custom-link', () => ({
-  CustomLink: ({ children, href, ariaLabel }: { children: React.ReactNode; href: string; ariaLabel?: string }) => (
-    <a href={href} aria-label={ariaLabel}>
-      {children}
-    </a>
-  )
-}));
+import { describe, expect, it } from 'vitest';
+import { render, screen } from '@testing-library/react';
 
 describe('Footer', () => {
   it('renders footer with navigation links', () => {
@@ -18,7 +10,7 @@ describe('Footer', () => {
     expect(screen.getByRole('link', { name: /terms/i })).toHaveAttribute('href', '/terms');
     expect(screen.getByRole('link', { name: /privacy/i })).toHaveAttribute('href', '/privacy');
     expect(screen.getByRole('link', { name: /refunds/i })).toHaveAttribute('href', '/refunds');
-    expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute('href', '/about');
+    expect(screen.getByRole('link', { name: /contact us/i })).toHaveAttribute('href', '/about');
   });
 
   it('renders copyright with current year', () => {

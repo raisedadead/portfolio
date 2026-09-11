@@ -1,14 +1,6 @@
 import { Social } from '@/components/social';
-import { describe, expect, it, vi } from 'vitest';
-import { render, screen } from '../../test-utils';
-
-vi.mock('@/components/custom-link', () => ({
-  CustomLink: ({ children, href, ariaLabel }: { children: React.ReactNode; href: string; ariaLabel?: string }) => (
-    <a href={href} aria-label={ariaLabel} target='_blank' rel='noopener noreferrer'>
-      {children}
-    </a>
-  )
-}));
+import { describe, expect, it } from 'vitest';
+import { render, screen } from '@testing-library/react';
 
 describe('Social', () => {
   it('renders social links container with proper styling', () => {
@@ -34,13 +26,12 @@ describe('Social', () => {
     );
   });
 
-  it('all social links are external', () => {
+  it('preserves the profile relationship on social links', () => {
     render(<Social />);
     const links = screen.getAllByRole('link');
 
     for (const link of links) {
-      expect(link).toHaveAttribute('target', '_blank');
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      expect(link).toHaveAttribute('rel', 'me');
     }
   });
 

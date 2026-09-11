@@ -20,7 +20,7 @@ export default defineConfig({
 
   webServer: {
     command:
-      'node scripts/prepare-e2e-state.mjs && wrangler dev --config dist/server/wrangler.json --port 8787 --persist-to .wrangler/preview',
+      'node scripts/prepare-e2e-state.mjs && wrangler dev --config dist/server/wrangler.json --port 8787 --persist-to .wrangler/e2e',
     url: 'http://localhost:8787/blog',
     reuseExistingServer: false,
     timeout: 300000

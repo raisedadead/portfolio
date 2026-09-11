@@ -52,62 +52,30 @@ test.describe('Blog', () => {
         .toBeGreaterThan(0);
     });
 
-    test('load more button loads additional posts', async ({ page }) => {
+    test('load more reveals additional posts', async ({ page }) => {
       await page.goto('/blog');
-
-      const loadMoreButton = page.getByRole('button', {
-        name: /load more/i
-      });
-
-      // If load more button exists and is not disabled
-      if ((await loadMoreButton.count()) > 0) {
-        const isDisabled = await loadMoreButton.isDisabled();
-
-        if (!isDisabled) {
-          // Count posts before clicking
-          const postsBeforeCount = await page
-            .locator('a[href*="/blog/"]')
-            .filter({ has: page.getByRole('heading', { level: 2 }) })
-            .count();
-
-          await expect
-            .poll(
-              async () => {
-                await loadMoreButton.click();
-                const postsAfterCount = await page
-                  .locator('a[href*="/blog/"]')
-                  .filter({ has: page.getByRole('heading', { level: 2 }) })
-                  .count();
-                return postsAfterCount > postsBeforeCount || (await loadMoreButton.isDisabled());
-              },
-              { timeout: 10_000, intervals: [500] }
-            )
-            .toBeTruthy();
-        }
-      }
+      await page.locator('astro-island[component-url*="BentoGrid"]:not([ssr])').waitFor();
+      const cards = page.locator('[data-blog-post-id]');
+      await expect(cards).toHaveCount(6);
+      await page.getByRole('button', { name: 'Load more blog posts' }).click();
+      await expect.poll(() => cards.count()).toBeGreaterThan(6);
+      await expect(cards.nth(6)).toBeVisible();
     });
 
-    test('search filters posts', async ({ page }) => {
+    test('search returns a matching article and an empty state', async ({ page }) => {
       await page.goto('/blog');
-
-      const searchInput = page.getByRole('searchbox');
-      await expect(searchInput).toBeVisible();
-
-      // Type a search term
-      await searchInput.fill('docker');
-
-      // Wait for filtering
-      await page.waitForTimeout(500);
-
-      // Should show filtered results or no results message
-      const visiblePosts = page.locator('a[href*="/blog/"]').filter({
-        has: page.getByRole('heading', { level: 2 })
-      });
-
-      // Either posts match the search or list is filtered down
-      const count = await visiblePosts.count();
-      // The count should be less than or equal to total (filtered)
-      expect(count).toBeGreaterThanOrEqual(0);
+      await page.locator('astro-island[component-url*="BlogSearch"]:not([ssr])').waitFor();
+      const search = page.getByRole('searchbox');
+      await search.fill('dockerignore');
+      const result = page.getByRole('option', { name: /How to use a .dockerignore file/i });
+      await expect(result).toBeVisible();
+      await expect(result).toHaveAttribute(
+        'href',
+        '/blog/how-to-use-a-dockerignore-file-a-comprehensive-guide-with-examples'
+      );
+      await search.fill('no-matching-article-12345');
+      await expect(page.getByText('No posts match your search')).toBeVisible();
+      await expect(page.getByRole('option')).toHaveCount(0);
     });
   });
 
@@ -186,17 +154,8 @@ test.describe('Blog', () => {
       // Wait for page to load
       await page.waitForLoadState('domcontentloaded');
 
-      // Should have code blocks (using code element as fallback)
-      const codeBlocks = page.locator('pre, code');
-      const count = await codeBlocks.count();
-
-      // If there are code blocks, verify they're visible
-      if (count > 0) {
-        await expect(codeBlocks.first()).toBeVisible();
-      }
-
-      // At minimum, the page should have rendered
-      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      const code = page.locator('pre code').filter({ hasText: 'ssh-keygen' });
+      await expect(code.first()).toBeVisible();
     });
   });
 

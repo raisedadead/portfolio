@@ -2,20 +2,10 @@ import { Profile } from '@/components/layout/profile';
 import { render, screen } from '@testing-library/react';
 import type React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import type { MockLinkProps } from '../../test-utils';
 
 // Mock the Social component
 vi.mock('@/components/social', () => ({
   Social: () => <div data-testid='mocked-social'>Social Links</div>
-}));
-
-// Mock the CustomLink component
-vi.mock('@/components/custom-link', () => ({
-  CustomLink: ({ children, href, ...props }: MockLinkProps) => (
-    <a href={href} {...props}>
-      {children}
-    </a>
-  )
 }));
 
 // Mock the CalButton component
