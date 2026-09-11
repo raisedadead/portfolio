@@ -1,60 +1,29 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Static Pages', () => {
-  test('about page renders', async ({ page }) => {
-    await page.goto('/about');
+test.describe('Server-rendered pages', () => {
+  test.use({ javaScriptEnabled: false, viewport: { width: 320, height: 720 } });
 
-    // Should have about heading
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-
-    // Should have main content
-    await expect(page.locator('main')).toBeVisible();
-
-    // Should have profile/bio content
-    const mainContent = page.locator('main');
-    const textContent = await mainContent.textContent();
-    expect(textContent?.length).toBeGreaterThan(100);
-  });
-
-  test('uses page renders', async ({ page }) => {
-    await page.goto('/uses');
-
-    // Should have uses heading
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-
-    // Should have content about tools/setup
-    await expect(page.locator('main')).toBeVisible();
-  });
-
-  test('terms page renders', async ({ page }) => {
-    await page.goto('/terms');
-
-    // Should have terms heading
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-
-    // Should have legal content
-    await expect(page.locator('main')).toBeVisible();
-  });
-
-  test('privacy page renders', async ({ page }) => {
-    await page.goto('/privacy');
-
-    // Should have privacy heading
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-
-    // Should have privacy content
-    await expect(page.locator('main')).toBeVisible();
-  });
-
-  test('refunds page renders', async ({ page }) => {
-    await page.goto('/refunds');
-
-    // Should have refunds heading
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-
-    // Should have refunds content
-    await expect(page.locator('main')).toBeVisible();
-  });
+  for (const route of [
+    '/',
+    '/about',
+    '/uses',
+    '/terms',
+    '/privacy',
+    '/refunds',
+    '/blog',
+    '/blog/tags',
+    '/blog/tags/testing',
+    '/blog/how-to-quickly-remove-multiple-entries-from-the-ssh-knownhosts-file'
+  ]) {
+    test(`${route} renders without JavaScript at 320px`, async ({ page }) => {
+      const response = await page.goto(route);
+      expect(response?.status()).toBe(200);
+      await expect(page.locator('main')).toBeVisible();
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(page).toHaveTitle(/\S/);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+    });
+  }
 });
 
 test.describe('404 Page', () => {

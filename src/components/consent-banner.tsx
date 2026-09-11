@@ -10,7 +10,7 @@
 
 import { useEffect, useState } from 'react';
 import { CustomLink as Link } from '@/components/custom-link';
-import { loadGAScript, updateGAConsent } from '@/lib/utils';
+import { loadGAScript } from '@/lib/utils';
 
 type ConsentState = 'unknown' | 'granted' | 'denied';
 
@@ -37,7 +37,6 @@ function ConsentBanner(): React.JSX.Element | null {
   useEffect(() => {
     // User previously granted — boot GA on every page load.
     if (readStoredConsent() === 'granted') {
-      updateGAConsent();
       loadGAScript();
     }
   }, []);
@@ -46,7 +45,6 @@ function ConsentBanner(): React.JSX.Element | null {
     persistConsent(granted);
     setConsent(granted ? 'granted' : 'denied');
     if (granted) {
-      updateGAConsent();
       loadGAScript();
     }
   };

@@ -95,7 +95,9 @@ export function normalizeEmdashPosts(entries: EmdashPostEntry[]): LightweightPos
         slug: entry.id,
         title: data.title,
         brief: extractBrief(data.brief, data.content),
-        coverImage: coverUrl ? { url: coverUrl, alt: data.cover?.alt } : undefined,
+        coverImage: coverUrl
+          ? { url: coverUrl, alt: data.cover?.alt, width: data.cover?.width, height: data.cover?.height }
+          : undefined,
         tags: termsToTags(data.terms),
         publishedAt: new Date(data.date),
         readingTime: readingTimeMinutes(data),

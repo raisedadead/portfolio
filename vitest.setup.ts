@@ -2,33 +2,6 @@ import { vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 import 'jest-axe/extend-expect';
 
-// Type definitions for mocks
-interface ImageProps {
-  src: string;
-  alt: string;
-  [key: string]: unknown;
-}
-
-// Mock Astro components for testing
-vi.mock('astro:assets', () => ({
-  Image: ({ src, alt }: ImageProps) => {
-    return `<img src="${src}" alt="${alt}" />`;
-  }
-}));
-
-// Mock client directives (they don't run in test environment)
-vi.mock('astro:client', () => ({}));
-
-// Mock GA script loading to prevent network errors in tests
-vi.mock('@/lib/utils', async () => {
-  const actual = await vi.importActual<typeof import('@/lib/utils')>('@/lib/utils');
-  return {
-    ...actual,
-    loadGAScript: vi.fn(), // Prevent GA script fetch during tests
-    updateGAConsent: vi.fn() // Mock consent updates
-  };
-});
-
 // Mock global fetch for API testing
 global.fetch = vi.fn();
 
@@ -37,20 +10,6 @@ Object.defineProperty(window, 'scrollTo', {
   value: vi.fn(),
   writable: true
 });
-
-// Mock IntersectionObserver
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn()
-}));
-
-// Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn()
-}));
 
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
@@ -71,14 +30,6 @@ Object.defineProperty(window, 'matchMedia', {
 Object.defineProperty(navigator, 'clipboard', {
   value: {
     writeText: vi.fn().mockResolvedValue(undefined)
-  },
-  writable: true
-});
-
-// Mock document.body.style
-Object.defineProperty(document.body, 'style', {
-  value: {
-    paddingRight: ''
   },
   writable: true
 });

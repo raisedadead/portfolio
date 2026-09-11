@@ -8,7 +8,6 @@ import PostImage from '@/components/blog/PostImage.astro';
 import { Social } from '@/components/social';
 import { formatDate } from '@/lib/formatDate';
 import { cn } from '@/lib/utils';
-import { calculateImageDimensions } from '@/lib/image-dimensions';
 import { extractBrief, mediaValueToUrl, readingTimeMinutes, termsToTags } from '@/lib/emdash-posts';
 
 const { entry } = await getEmDashEntry('posts', Astro.params.slug as string);
@@ -28,8 +27,6 @@ const pageDescription = data.seo_description || brief;
 
 const coverImageUrl = mediaValueToUrl(data.cover);
 const pageImage = coverImageUrl;
-
-const dimensions = calculateImageDimensions('16/9', 0);
 ---
 
 <MainLayout pageTitle={pageTitle} pageDescription={pageDescription} pageImage={pageImage} variant='prose'>
@@ -50,8 +47,8 @@ const dimensions = calculateImageDimensions('16/9', 0);
           <img
             src={coverImageUrl}
             alt={data.cover?.alt || data.title}
-            width={dimensions.desktop.width}
-            height={dimensions.desktop.height}
+            width={data.cover?.width}
+            height={data.cover?.height}
             class='h-full w-full object-cover'
             loading='eager'
             fetchpriority='high'

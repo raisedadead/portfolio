@@ -3,7 +3,6 @@ import * as Sentry from '@sentry/astro';
 import type { LightweightPost } from '@/types/blog';
 import { getBentoGridSpan } from '@/lib/blog-utils';
 import { formatDate } from '@/lib/formatDate';
-import { calculateImageDimensions } from '@/lib/image-dimensions';
 import LoadMoreButton from './LoadMoreButton';
 
 interface Props {
@@ -14,7 +13,6 @@ interface Props {
 
 export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPerLoad = 3 }: Props) {
   const [visibleCount, setVisibleCount] = useState(initialCount);
-  const [isLoading, setIsLoading] = useState(false);
 
   const visiblePosts = posts.slice(0, visibleCount);
 
@@ -49,15 +47,11 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
   }, [visibleCount, posts, postsPerLoad]);
 
   const handleLoadMore = () => {
-    setIsLoading(true);
     Sentry.metrics.count('blog.load_more', 1, {
       attributes: { visible: String(visibleCount), total: String(posts.length) }
     });
 
-    setTimeout(() => {
-      setVisibleCount((prev) => Math.min(prev + postsPerLoad, posts.length));
-      setIsLoading(false);
-    }, 300);
+    setVisibleCount((prev) => Math.min(prev + postsPerLoad, posts.length));
   };
 
   return (
@@ -66,7 +60,6 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5'>
         {visiblePosts.map((post, index) => {
           const spanConfig = getBentoGridSpan(index);
-          const dimensions = calculateImageDimensions(spanConfig.aspectRatio, index);
           const coverUrl = post.data.coverImage?.url;
 
           const isExternal = post.data.source === 'freecodecamp' && post.data.externalUrl;
@@ -84,13 +77,13 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
               <a href={postUrl} className='block no-underline' {...linkProps}>
                 {/* Cover Image */}
                 {coverUrl ? (
-                  <div className={`relative w-full overflow-hidden ${spanConfig.aspectClass} ${spanConfig.height}`}>
+                  <div className={`relative w-full overflow-hidden ${spanConfig.height}`}>
                     <div className='absolute inset-0 animate-pulse bg-gray-200' />
                     <img
                       src={coverUrl}
                       alt={post.data.coverImage?.alt || post.data.title}
-                      width={dimensions.mobile.width}
-                      height={dimensions.mobile.height}
+                      width={post.data.coverImage?.width}
+                      height={post.data.coverImage?.height}
                       className='h-full w-full animate-fade-in object-cover transition-all duration-500 group-hover:scale-105'
                       loading={index === 0 ? 'eager' : 'lazy'}
                       fetchPriority={index === 0 ? 'high' : undefined}
@@ -98,7 +91,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
                   </div>
                 ) : (
                   <div
-                    className={`flex items-center justify-center bg-linear-to-br/oklch from-blue-500 via-purple-500 to-pink-500 ${spanConfig.aspectClass} ${spanConfig.height}`}
+                    className={`flex items-center justify-center bg-linear-to-br/oklch from-blue-500 via-purple-500 to-pink-500 ${spanConfig.height}`}
                   >
                     <span className='text-6xl'>📝</span>
                   </div>
@@ -157,13 +150,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
       </div>
 
       {/* Load More Button */}
-      <LoadMoreButton
-        totalPosts={posts.length}
-        visiblePosts={visibleCount}
-        onLoadMore={handleLoadMore}
-        postsPerLoad={postsPerLoad}
-        isLoading={isLoading}
-      />
+      <LoadMoreButton totalPosts={posts.length} visiblePosts={visibleCount} onLoadMore={handleLoadMore} />
     </>
   );
 }

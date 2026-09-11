@@ -18,6 +18,7 @@ interface Gtag {
 declare global {
   interface Window {
     gtag?: Gtag;
+    dataLayer?: IArguments[];
   }
 }
 

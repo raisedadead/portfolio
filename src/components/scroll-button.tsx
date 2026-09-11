@@ -29,12 +29,8 @@ const ScrollButton = ({ className }: { className: string }) => {
     };
   }, []);
 
-  const scrollDown = () => {
-    // Scroll to the bottom of the page
-    // const scrollTo = document.documentElement.scrollHeight - window.innerHeight;
-    // Scroll to the top of the page
-    const scrollTo = 0;
-    window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const arrowClassName = `cursor-pointer rounded-full border-2 border-black bg-white text-black shadow-brutal-md hover:bg-orange-100 hover:shadow-brutal-lg focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
@@ -46,7 +42,9 @@ const ScrollButton = ({ className }: { className: string }) => {
       <AnimatePresence>
         {showButton && (
           <motion.button
-            onMouseDown={scrollDown}
+            type='button'
+            aria-label='Scroll to top'
+            onClick={scrollToTop}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

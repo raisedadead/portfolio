@@ -55,7 +55,7 @@ export const Nav: React.FC<NavProps> = ({ className, showHomeButton = true }) =>
                     <Link
                       href={link.href}
                       className='brutalist-transition brutalist-focus inline-flex h-full w-full justify-start border-b-2 border-black py-2 pl-4 text-black last:border-b-0 hover:bg-orange-50 active:bg-black active:text-white active:shadow-none'
-                      ariaLabel={link.label}
+                      aria-label={link.label}
                     >
                       <link.icon className='mr-2 flex h-6 w-6' aria-hidden='true' />
                       {link.label}
@@ -69,7 +69,7 @@ export const Nav: React.FC<NavProps> = ({ className, showHomeButton = true }) =>
       </Menu>
       {showHomeButton && (
         <div className='absolute top-4 left-4 text-left'>
-          <Link href='/' className='brutalist-button-primary flex h-10 items-center p-1.5' ariaLabel='Go Home'>
+          <Link href='/' className='brutalist-button-primary flex h-10 items-center p-1.5' aria-label='Go Home'>
             <span className='sr-only'>Go Home</span>
             <HomeIcon className='h-6 w-6' aria-hidden='true' />
           </Link>

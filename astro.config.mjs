@@ -26,7 +26,8 @@ export default defineConfig({
   },
 
   adapter: cloudflare({
-    imageService: 'compile'
+    imageService: 'compile',
+    persistState: process.env.PORTFOLIO_E2E_STATE_DIR ? { path: process.env.PORTFOLIO_E2E_STATE_DIR } : undefined
   }),
 
   integrations: [

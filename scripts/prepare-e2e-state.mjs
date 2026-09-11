@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execFileSync, execSync, spawn } from 'node:child_process';
-import { mkdirSync, openSync, readFileSync } from 'node:fs';
+import { mkdirSync, openSync, readFileSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { createServer } from 'node:net';
 import path from 'node:path';
@@ -18,6 +18,7 @@ await new Promise((resolve, reject) => {
 });
 const DEV_URL = `http://127.0.0.1:${devPort}`;
 const DEV_LOG = '.astro/e2e-dev.log';
+const E2E_STATE = path.resolve('.wrangler/e2e');
 
 const require = createRequire(import.meta.url);
 const astroBin = path.join(path.dirname(require.resolve('astro/package.json')), 'bin/astro.mjs');
@@ -39,6 +40,7 @@ function startDevServer() {
   mkdirSync('.astro', { recursive: true });
   const logFd = openSync(DEV_LOG, 'w');
   const child = spawn(process.execPath, [astroBin, 'dev', '--host', '127.0.0.1', '--port', String(devPort)], {
+    env: { ...process.env, PORTFOLIO_E2E_STATE_DIR: E2E_STATE },
     stdio: ['ignore', logFd, logFd]
   });
   const state = { child, exited: false, exitCode: null, spawnError: null };
@@ -90,6 +92,7 @@ if (await isServing()) {
   process.exit(1);
 }
 
+rmSync(E2E_STATE, { recursive: true, force: true });
 const state = startDevServer();
 try {
   const failure = await waitUntilReady(state, 120_000);
@@ -117,5 +120,3 @@ try {
 } finally {
   await stopDevServer(state);
 }
-if (process.exitCode === 1) process.exit(1);
-execSync('node scripts/snapshot-preview-state.mjs', { stdio: 'inherit', timeout: 120_000 });
