@@ -37,9 +37,7 @@ playwright-report/
 test-results/
 playwright/.cache/
 
-# Linter/Formatter caches
-.prettiercache
-
 # dossier: internal scratchpad theater tooling
 .scratchpad/
 .emdash/uploads/
+.emdash/migrations.json

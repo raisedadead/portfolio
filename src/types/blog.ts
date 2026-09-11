@@ -1,7 +1,6 @@
 export interface CoverImage {
   url: string;
   alt?: string;
-  optimizedUrl?: string;
   width?: number;
   height?: number;
 }
@@ -21,15 +20,6 @@ export interface ImageDimensions {
   tablet: { width: number; height: number };
   desktop: { width: number; height: number };
   aspectRatio: string;
-}
-
-export interface OptimizationMetadata {
-  format: 'webp' | 'avif' | 'jpeg' | 'png';
-  originalSize?: number;
-  optimizedSize?: number;
-  compressionRatio?: number;
-  transformedAt?: Date;
-  fallbackUsed: boolean;
 }
 
 export type PostSource = 'local' | 'freecodecamp';

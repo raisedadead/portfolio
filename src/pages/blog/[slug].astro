@@ -8,7 +8,6 @@ import PostImage from '@/components/blog/PostImage.astro';
 import { Social } from '@/components/social';
 import { formatDate } from '@/lib/formatDate';
 import { cn } from '@/lib/utils';
-import { transformImageUrl } from '@/lib/image-optimizer';
 import { calculateImageDimensions } from '@/lib/image-dimensions';
 import { extractBrief, mediaValueToUrl, readingTimeMinutes, termsToTags } from '@/lib/emdash-posts';
 
@@ -31,7 +30,6 @@ const coverImageUrl = mediaValueToUrl(data.cover);
 const pageImage = coverImageUrl;
 
 const dimensions = calculateImageDimensions('16/9', 0);
-const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimensions) : null;
 ---
 
 <MainLayout pageTitle={pageTitle} pageDescription={pageDescription} pageImage={pageImage} variant='prose'>
@@ -47,27 +45,16 @@ const optimizedCoverUrl = coverImageUrl ? transformImageUrl(coverImageUrl, dimen
   >
     <!-- Cover Image or Fallback -->
     {
-      optimizedCoverUrl ? (
+      coverImageUrl ? (
         <div class='relative aspect-video w-full'>
           <img
-            src={optimizedCoverUrl}
+            src={coverImageUrl}
             alt={data.cover?.alt || data.title}
             width={dimensions.desktop.width}
             height={dimensions.desktop.height}
             class='h-full w-full object-cover'
             loading='eager'
             fetchpriority='high'
-          />
-        </div>
-      ) : coverImageUrl ? (
-        <div class='relative aspect-video w-full'>
-          <img
-            src={coverImageUrl}
-            alt={data.cover?.alt || data.title}
-            width={1200}
-            height={675}
-            class='h-full w-full object-cover'
-            loading='eager'
           />
         </div>
       ) : (

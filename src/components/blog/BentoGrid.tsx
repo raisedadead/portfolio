@@ -3,7 +3,6 @@ import * as Sentry from '@sentry/astro';
 import type { LightweightPost } from '@/types/blog';
 import { getBentoGridSpan } from '@/lib/blog-utils';
 import { formatDate } from '@/lib/formatDate';
-import { transformImageUrl } from '@/lib/image-optimizer';
 import { calculateImageDimensions } from '@/lib/image-dimensions';
 import LoadMoreButton from './LoadMoreButton';
 
@@ -29,27 +28,19 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
     const nextPosts = posts.slice(nextBatchStart, nextBatchEnd);
     const createdLinks: HTMLLinkElement[] = [];
 
-    nextPosts.forEach((post, index) => {
-      if (post.data.coverImage?.url) {
-        const spanConfig = getBentoGridSpan(nextBatchStart + index);
-        const dimensions = calculateImageDimensions(spanConfig.aspectRatio, nextBatchStart + index);
-        const optimizedUrl = transformImageUrl(post.data.coverImage.url, dimensions);
+    for (const post of nextPosts) {
+      const coverUrl = post.data.coverImage?.url;
+      if (!coverUrl) continue;
+      const existingLink = document.querySelector(`link[rel="prefetch"][href="${coverUrl}"]`);
+      if (existingLink) continue;
 
-        // Pre-load the image (only if optimizedUrl is valid)
-        if (optimizedUrl) {
-          // Check if link already exists to prevent duplicates
-          const existingLink = document.querySelector(`link[rel="prefetch"][href="${optimizedUrl}"]`);
-          if (!existingLink) {
-            const link = document.createElement('link');
-            link.rel = 'prefetch';
-            link.as = 'image';
-            link.href = optimizedUrl;
-            document.head.appendChild(link);
-            createdLinks.push(link);
-          }
-        }
-      }
-    });
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'image';
+      link.href = coverUrl;
+      document.head.appendChild(link);
+      createdLinks.push(link);
+    }
 
     // Cleanup function to remove created links when component unmounts
     return () => {
@@ -76,9 +67,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
         {visiblePosts.map((post, index) => {
           const spanConfig = getBentoGridSpan(index);
           const dimensions = calculateImageDimensions(spanConfig.aspectRatio, index);
-          const optimizedUrl = post.data.coverImage?.url
-            ? transformImageUrl(post.data.coverImage.url, dimensions)
-            : null;
+          const coverUrl = post.data.coverImage?.url;
 
           const isExternal = post.data.source === 'freecodecamp' && post.data.externalUrl;
           const postUrl = isExternal ? post.data.externalUrl : `/blog/${post.data.slug}`;
@@ -94,11 +83,11 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
             >
               <a href={postUrl} className='block no-underline' {...linkProps}>
                 {/* Cover Image */}
-                {optimizedUrl ? (
+                {coverUrl ? (
                   <div className={`relative w-full overflow-hidden ${spanConfig.aspectClass} ${spanConfig.height}`}>
                     <div className='absolute inset-0 animate-pulse bg-gray-200' />
                     <img
-                      src={optimizedUrl}
+                      src={coverUrl}
                       alt={post.data.coverImage?.alt || post.data.title}
                       width={dimensions.mobile.width}
                       height={dimensions.mobile.height}

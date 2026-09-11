@@ -10,14 +10,6 @@ vi.mock('@/components/blog/BlogSearch', () => ({
   )
 }));
 
-vi.mock('@/components/blog/BlogCard.astro', () => ({
-  default: ({ post }: { post: BlogPost }) => (
-    <article data-testid='blog-card' data-post-id={post.id}>
-      <h2>{post.data.title}</h2>
-    </article>
-  )
-}));
-
 vi.mock('@/components/blog/Pagination.astro', () => ({
   default: ({ currentPage, totalPages }: { currentPage: number; totalPages: number }) => (
     <nav data-testid='pagination' data-current={currentPage} data-total={totalPages}>

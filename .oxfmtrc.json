@@ -23,7 +23,6 @@
     "specs/",
     "CLAUDE.md",
     "*.astro",
-    "src/content/articles/",
     "emdash-env.d.ts"
   ],
   "tailwindcss": {

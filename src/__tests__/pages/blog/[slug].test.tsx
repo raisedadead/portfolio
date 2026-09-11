@@ -39,11 +39,6 @@ vi.mock('@/lib/syntax-highlighter', () => ({
   highlightCode: vi.fn((code: string) => `<code>${code}</code>`)
 }));
 
-// Mock image optimization
-vi.mock('@/lib/image-optimizer', () => ({
-  transformImageUrl: vi.fn((url: string) => url)
-}));
-
 vi.mock('@/lib/image-dimensions', () => ({
   calculateImageDimensions: vi.fn(() => ({
     mobile: { width: 640, height: 360 },

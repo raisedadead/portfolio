@@ -11,16 +11,6 @@ interface MockLoadMoreProps {
   isLoading?: boolean;
 }
 
-// Mock image optimization utilities
-vi.mock('@/lib/image-optimizer', () => ({
-  transformImageUrl: vi.fn((url: string) => {
-    if (url.startsWith('https://example.com/')) {
-      return `https://mrugesh.dev/cdn-cgi/image/width=1920,quality=85,format=auto/${url}`;
-    }
-    return null;
-  })
-}));
-
 vi.mock('@/lib/image-dimensions', () => ({
   calculateImageDimensions: vi.fn(() => ({
     mobile: { width: 640, height: 360 },
@@ -224,14 +214,30 @@ describe('BlogGridWithLoadMore Component', () => {
   });
 
   describe('Cover Image Rendering', () => {
+    it.each(['/_emdash/api/media/file/cover.webp', 'https://cdn.freecodecamp.org/cover.webp'])(
+      'renders and prefetches the supplied cover URL %s',
+      (url) => {
+        const post = createMockPost('cover-url', 'Cover URL');
+        post.data.coverImage = { url, alt: 'Cover URL image' };
+        const { rerender, unmount } = render(<BlogGridWithLoadMore posts={[mockPosts[0], post]} initialCount={1} />);
+
+        const prefetch = document.head.querySelector(`link[rel="prefetch"][href="${url}"]`);
+        expect(prefetch).toHaveAttribute('as', 'image');
+
+        rerender(<BlogGridWithLoadMore posts={[post]} initialCount={1} />);
+        expect(screen.getByAltText('Cover URL image')).toHaveAttribute('src', url);
+        expect(prefetch).not.toBeInTheDocument();
+
+        unmount();
+        expect(document.head.querySelector(`link[rel="prefetch"][href="${url}"]`)).toBeNull();
+      }
+    );
+
     it('renders cover image when coverImage.url exists', () => {
       render(<BlogGridWithLoadMore posts={[mockPosts[0]]} initialCount={1} />);
 
       const img = screen.getByAltText('Cover for First Post');
-      expect(img).toHaveAttribute(
-        'src',
-        'https://mrugesh.dev/cdn-cgi/image/width=1920,quality=85,format=auto/https://example.com/cover-post-1.jpg'
-      );
+      expect(img).toHaveAttribute('src', 'https://example.com/cover-post-1.jpg');
       expect(img).toHaveAttribute('width', '640');
       expect(img).toHaveAttribute('height', '360');
     });
