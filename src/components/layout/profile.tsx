@@ -21,18 +21,24 @@ export const Profile: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center py-12 text-center'>
-      <div className='mb-8 md:mb-10'>
+    <div className='flex flex-col items-center justify-center py-8 text-center sm:py-12'>
+      <div className='profile-plate mb-10 md:mb-12'>
+        <div className='profile-studs' aria-hidden='true'>
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
         <img
           id='profile-image'
           alt='Mrugesh Mohapatra'
           src='/images/logo.png'
-          className='shadow-brutal-md h-28 w-28 rounded-full border-2 border-orange-50 md:h-48 md:w-48'
+          className='relative h-28 w-28 rounded-full border-2 border-orange-50 sm:h-36 sm:w-36 md:h-40 md:w-40'
           width={256}
           height={256}
         />
       </div>
-      <div className='relative mb-6 flex -rotate-12 transform flex-col items-center'>
+      <div className='relative mb-6 flex flex-col items-center'>
         <audio
           ref={audioRef}
           src='/audio/mrugesh-pronunciation.mp3'
@@ -41,7 +47,7 @@ export const Profile: React.FC = () => {
         >
           <track kind='captions' src='/audio/mrugesh-pronunciation.vtt' srcLang='en' label='English' default />
         </audio>
-        <h1 className='group text-display-lg rotate-12 transform text-slate-800'>
+        <h1 className='profile-name group text-display-lg text-slate-800'>
           <button
             type='button'
             onClick={playPronunciation}
@@ -64,27 +70,15 @@ export const Profile: React.FC = () => {
             </svg>
           </span>
         </h1>
-        <div className='m-1 mx-auto -mt-8 w-2/5 border-12 border-orange-50 bg-orange-50' />
       </div>
       <h2 className='text-display-sm mb-4 p-1 leading-relaxed text-slate-700'>dad • dev//ops • open-source</h2>
       <h3 className='mb-8 p-1 text-base leading-relaxed font-medium text-slate-700 sm:text-lg md:text-xl'>
         Principal Maintainer — Open Source & Infra,{' '}
         <Link
           href='https://www.freecodecamp.org/news/team#:~:text=around%20the%20world.-,Mrugesh%20Mohapatra,-from%20Bengaluru%2C%20India'
-          className='group relative mx-[0.95em] inline-block text-slate-800 no-underline transition-colors hover:text-white'
+          className='group relative mx-1 inline-block border-b-2 border-slate-800 bg-orange-50 px-2 text-slate-800 no-underline transition-colors hover:bg-slate-700 hover:text-white'
           aria-label='freecodecamp.org'
         >
-          <svg
-            viewBox='0 0 200 48'
-            preserveAspectRatio='none'
-            className='absolute -inset-x-[0.7em] -inset-y-[0.45em] h-[calc(100%+0.9em)] w-[calc(100%+1.4em)] -rotate-1'
-            aria-hidden='true'
-          >
-            <path
-              d='M2.5,13 C2,5.5 7,1.5 15,2 L104,4 L186,1.5 C195,1 199.5,6 198.5,14 L197.5,34 C198,42 192.5,46.5 184,46 L96,43.5 L15,46.5 C6.5,46.8 1.5,42 2.5,34 Z'
-              className='fill-orange-50 transition-colors group-hover:fill-slate-700'
-            />
-          </svg>
           <span className='relative'>freeCodeCamp.org</span>
         </Link>
       </h3>
