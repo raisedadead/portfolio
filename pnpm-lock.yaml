@@ -224,8 +224,8 @@ importers:
         specifier: 4.4.3
         version: 4.4.3
       tailwind-merge:
-        specifier: 3.6.0
-        version: 3.6.0
+        specifier: 3.7.0
+        version: 3.7.0
       tailwindcss-animate:
         specifier: 1.0.7
         version: 1.0.7(tailwindcss@4.3.3)
@@ -5098,8 +5098,8 @@ packages:
   tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
 
-  tailwind-merge@3.6.0:
-    resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
+  tailwind-merge@3.7.0:
+    resolution: {integrity: sha512-XPPUyAc+cvspz3lHTcR/QgPfW2A0lv/xQNIjX3HGhLR+Nq2lHaLq5MtTesHn8GUr3W3DguT2KT5x3NVgRtYwmA==}
 
   tailwindcss-animate@1.0.7:
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
@@ -6244,7 +6244,7 @@ snapshots:
       react-day-picker: 9.14.0(react@19.3.0)
       react-dom: 19.3.0(react@19.3.0)
       shiki: 4.4.3
-      tailwind-merge: 3.6.0
+      tailwind-merge: 3.7.0
     optionalDependencies:
       echarts: 6.1.0
       zod: 4.5.4
@@ -6424,7 +6424,7 @@ snapshots:
       react-dom: 19.3.0(react@19.3.0)
       react-hotkeys-hook: 5.3.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react-image-crop: 11.1.2(react@19.3.0)
-      tailwind-merge: 3.6.0
+      tailwind-merge: 3.7.0
       y-protocols: 1.0.7(yjs@13.6.32)
       yjs: 13.6.32
     transitivePeerDependencies:
@@ -6466,7 +6466,7 @@ snapshots:
       echarts: 6.1.0
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
-      tailwind-merge: 3.6.0
+      tailwind-merge: 3.7.0
     transitivePeerDependencies:
       - '@date-fns/tz'
       - '@emotion/is-prop-valid'
@@ -10572,7 +10572,7 @@ snapshots:
 
   tabbable@6.2.0: {}
 
-  tailwind-merge@3.6.0: {}
+  tailwind-merge@3.7.0: {}
 
   tailwindcss-animate@1.0.7(tailwindcss@4.3.3):
     dependencies:
