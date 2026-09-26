@@ -53,7 +53,7 @@
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.3",
     "clsx": "2.1.1",
-    "emdash": "^0.37.0",
+    "emdash": "^0.38.0",
     "motion": "13.2.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
