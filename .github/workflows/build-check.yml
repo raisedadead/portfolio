@@ -29,6 +29,4 @@ jobs:
   build:
     name: Build
     uses: ./.github/workflows/re-build.yml
-    with:
-      upload-artifacts: true
     secrets: inherit
