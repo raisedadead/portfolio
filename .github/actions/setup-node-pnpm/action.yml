@@ -1,15 +1,11 @@
-name: 'Setup Node.js and pnpm with caching'
-description: 'Sets up Node.js, pnpm, and configures caching for pnpm store and Turbo'
+name: 'Setup Node.js and pnpm'
+description: 'Sets up Node.js and pnpm, then installs dependencies'
 
 inputs:
   node-version:
     description: 'Node.js version to use'
     required: false
     default: '24.x'
-  turbo-cache-prefix:
-    description: 'Prefix for Turbo cache key'
-    required: false
-    default: 'default'
 
 runs:
   using: 'composite'
@@ -20,29 +16,5 @@ runs:
         node-version: ${{ inputs.node-version }}
         package-manager-cache: false
 
-    - name: Install pnpm
+    - name: Install pnpm and dependencies
       uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2
-      id: pnpm-install
-
-    - name: Get pnpm store directory
-      id: pnpm-cache
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-    - name: Cache pnpm store
-      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-      with:
-        path: |
-          ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-
-
-    - name: Cache Turbo
-      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-      with:
-        path: .turbo
-        key: ${{ runner.os }}-turbo-${{ inputs.turbo-cache-prefix }}-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-turbo-${{ inputs.turbo-cache-prefix }}-
