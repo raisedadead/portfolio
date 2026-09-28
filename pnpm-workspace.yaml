@@ -8,6 +8,15 @@ allowBuilds:
 minimumReleaseAgeStrict: true
 minimumReleaseAgeExclude:
   - '@cloudflare/workers-types@4.20260628.1 || 5.20260801.1'
+  - '@emdash-cms/admin@1.0.1'
+  - '@emdash-cms/auth@1.0.1'
+  - '@emdash-cms/blocks@1.0.1'
+  - '@emdash-cms/cloudflare@1.0.1'
+  - '@emdash-cms/gutenberg-to-portable-text@1.0.1'
+  - '@emdash-cms/plugin-types@0.5.0'
+  - '@emdash-cms/registry-client@0.7.0'
+  - '@emdash-cms/registry-lexicons@0.7.0'
+  - '@emdash-cms/registry-verification@0.3.3'
   - '@shikijs/core@4.4.1'
   - '@shikijs/engine-javascript@4.4.1'
   - '@shikijs/engine-oniguruma@4.4.1'
@@ -22,6 +31,7 @@ minimumReleaseAgeExclude:
   - '@turbo/linux-arm64@2.10.8'
   - '@turbo/windows-64@2.10.8'
   - '@turbo/windows-arm64@2.10.8'
+  - emdash@1.0.1
   - lint-staged@17.3.0
   - miniflare@5.20260730.0-alpha
   - turbo@2.10.8
