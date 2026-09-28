@@ -22,10 +22,6 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
         with:
           node-version: ${{ matrix.node-version }}
-          turbo-cache-prefix: test
-
-      - name: Install dependencies
-        run: pnpm install
 
       - name: Run tests with coverage
         run: pnpm test:coverage
