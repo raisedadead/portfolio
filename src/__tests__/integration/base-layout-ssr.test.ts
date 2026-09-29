@@ -50,13 +50,10 @@ describe('BaseLayout — SSR slot integrity', () => {
     expect(baseLayout).not.toMatch(/ErrorBoundary|ClientProviders/);
   });
 
-  it('renders ConsentBanner with client:only="react" so it does not SSR', () => {
-    // V11 (Phase 3 / A7): client:idle SSRs the banner, then unmounts on
-    // hydration → ~50ms flash for returning users whose preference is
-    // already set. client:only skips SSR entirely. Banner is a sibling
-    // of the body slot, not a parent, so this is safe per the SSR
-    // invariant above.
-    expect(baseLayout).toMatch(/<ConsentBanner\s+client:only=["']react["']\s*\/>/);
-    expect(baseLayout).not.toMatch(/<ConsentBanner\s+client:idle\s*\/>/);
+  it('hydrates ConsentBanner without client:only', () => {
+    // Astro dev loads the next page in a hidden iframe on every ClientRouter
+    // navigation when a client:only island exists, adding ~1.5s per click.
+    expect(baseLayout).toMatch(/<ConsentBanner\s+client:idle\s*\/>/);
+    expect(baseLayout).not.toMatch(/client:only/);
   });
 });

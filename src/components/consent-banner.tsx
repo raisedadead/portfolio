@@ -8,14 +8,13 @@
 // the entire body subtree gets re-rendered client-side and nested
 // islands lose their hydration → blank page.
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { CustomLink as Link } from '@/components/custom-link';
 import { loadGAScript } from '@/lib/utils';
 
-type ConsentState = 'unknown' | 'granted' | 'denied';
+type ConsentState = 'pending' | 'unknown' | 'granted' | 'denied';
 
 function readStoredConsent(): ConsentState {
-  if (typeof window === 'undefined') return 'unknown';
   const stored = window.localStorage.getItem('ga-consent');
   if (stored === 'true') return 'granted';
   if (stored === 'false') return 'denied';
@@ -31,8 +30,12 @@ function persistConsent(granted: boolean): void {
   }
 }
 
+const subscribeToNothing = () => () => {};
+
 function ConsentBanner(): React.JSX.Element | null {
-  const [consent, setConsent] = useState<ConsentState>(readStoredConsent);
+  const stored = useSyncExternalStore(subscribeToNothing, readStoredConsent, (): ConsentState => 'pending');
+  const [choice, setConsent] = useState<ConsentState | null>(null);
+  const consent = choice ?? stored;
 
   useEffect(() => {
     // User previously granted — boot GA on every page load.

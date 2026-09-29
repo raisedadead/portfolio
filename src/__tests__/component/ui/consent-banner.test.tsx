@@ -1,6 +1,7 @@
 import ConsentBanner from '@/components/consent-banner';
 import { GA_TRACKING_ID } from '@/lib/utils';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { renderToString } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 describe('ConsentBanner', () => {
@@ -17,6 +18,10 @@ describe('ConsentBanner', () => {
   });
 
   afterEach(() => vi.restoreAllMocks());
+
+  it('renders nothing on the server so hydration never flashes the banner', () => {
+    expect(renderToString(<ConsentBanner />)).toBe('');
+  });
 
   it('does not initialize analytics before a choice or after declining', () => {
     const { unmount } = render(<ConsentBanner />);
