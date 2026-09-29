@@ -28,14 +28,7 @@ if (dsn && isBrowser) {
       /^\/api\//
     ],
 
-    integrations: [
-      Sentry.browserTracingIntegration(),
-      Sentry.replayIntegration({
-        maskAllText: true,
-        blockAllMedia: true,
-        maskAllInputs: true
-      })
-    ],
+    integrations: [Sentry.browserTracingIntegration()],
 
     beforeSend(event) {
       const url = event.request?.url || '';
@@ -91,6 +84,17 @@ if (dsn && isBrowser) {
       'AbortError'
     ]
   });
+
+  const loadReplay = () =>
+    import('@sentry/replay')
+      .then(({ replayIntegration }) =>
+        Sentry.addIntegration(replayIntegration({ maskAllText: true, blockAllMedia: true, maskAllInputs: true }))
+      )
+      .catch((error) => import.meta.env.DEV && console.warn('[Sentry] Replay failed to load', error));
+  const whenIdle = () =>
+    'requestIdleCallback' in window ? requestIdleCallback(loadReplay) : setTimeout(loadReplay, 1);
+  if (document.readyState === 'complete') whenIdle();
+  else window.addEventListener('load', whenIdle, { once: true });
 } else if (!dsn && isBrowser) {
   console.warn('[Sentry] DSN not configured - monitoring disabled');
 }

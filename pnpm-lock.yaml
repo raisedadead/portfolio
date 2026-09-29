@@ -196,6 +196,9 @@ importers:
       '@sentry/cloudflare':
         specifier: 10.75.3
         version: 10.75.3(@cloudflare/workers-types@5.20260923.1)(wrangler@4.137.0(@cloudflare/workers-types@5.20260923.1)(@types/node@26.6.2))
+      '@sentry/replay':
+        specifier: 10.75.3
+        version: 10.75.3
       '@tailwindcss/vite':
         specifier: 4.3.3
         version: 4.3.3(vite@8.3.0(@types/node@26.6.2)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))

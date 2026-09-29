@@ -76,6 +76,10 @@ export default defineConfig({
         : undefined
     },
 
+    define: {
+      __SENTRY_DEBUG__: false
+    },
+
     plugins: [tailwindcss()]
   },
 
