@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "is-ci || husky",
     "postinstall": "wrangler types",
+    "dev": "turbo do:develop",
     "develop": "turbo do:develop",
     "build": "turbo do:build",
     "preview": "turbo do:preview",
