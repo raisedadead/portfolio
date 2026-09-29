@@ -1,5 +1,12 @@
-import { describe, expect, it } from 'vitest';
-import { installPageTransitions, mayMorph, originRow, pairMorph, rowDelays } from '@/lib/page-transition';
+import { beforeAll, describe, expect, it } from 'vitest';
+import {
+  createCurtain,
+  installPageTransitions,
+  mayMorph,
+  originRow,
+  pairMorph,
+  rowDelays
+} from '@/lib/page-transition';
 
 const page = (html: string) => {
   const doc = document.implementation.createHTMLDocument();
@@ -10,6 +17,26 @@ const list = () => page('<article data-post-slug="a"></article><article data-pos
 const post = (slug: string) => page(`<article data-post data-post-slug="${slug}"></article>`);
 const morphed = (doc: Document) =>
   [...doc.querySelectorAll<HTMLElement>('[data-morph]')].map((card) => card.dataset.postSlug);
+
+const curtainWithAnimations = () => {
+  const curtain = document.createElement('div');
+  curtain.innerHTML = '<span></span><span></span>';
+  const running: Array<() => void> = [];
+  curtain.getAnimations = () => {
+    const { promise, resolve } = Promise.withResolvers<Animation>();
+    running.push(() => resolve({} as Animation));
+    return [{ finished: promise } as Animation];
+  };
+  const finish = async () => {
+    running.splice(0).forEach((resolve) => resolve());
+    await new Promise((resolve) => setTimeout(resolve));
+  };
+  return { curtain, finish };
+};
+
+beforeAll(() => {
+  installPageTransitions();
+});
 
 describe('page transitions', () => {
   it('morphs only the card of the post on the other page', () => {
@@ -73,8 +100,41 @@ describe('page transitions', () => {
     expect(originRow(6, 900, undefined)).toBe(2.5);
   });
 
+  it('reveals after a swap that lands while the curtain still covers', async () => {
+    const { curtain, finish } = curtainWithAnimations();
+    const controls = createCurtain(curtain);
+
+    void controls.cover('forward', undefined);
+    const revealed = controls.reveal();
+    expect(curtain.dataset.state).toBe('covering');
+
+    await finish();
+    expect(curtain.dataset.state).toBe('revealing');
+    await finish();
+    await revealed;
+    expect(curtain.dataset.state).toBeUndefined();
+  });
+
+  it('reveals the current page after a load that nothing supersedes is aborted', async () => {
+    document.body.innerHTML = '<div id="page-curtain"><span></span></div>';
+    const curtain = document.getElementById('page-curtain')!;
+    curtain.getAnimations = () => [];
+    const controller = new AbortController();
+    const event = Object.assign(new Event('astro:before-preparation'), {
+      direction: 'forward',
+      newDocument: document,
+      signal: controller.signal,
+      loader: async () => controller.abort()
+    });
+
+    document.dispatchEvent(event);
+    await event.loader();
+    await new Promise((resolve) => setTimeout(resolve));
+
+    expect(curtain.dataset.state).toBeUndefined();
+  });
+
   it('morphs nothing after an aborted load', async () => {
-    installPageTransitions();
     document.body.innerHTML = '<article data-post data-post-slug="a"></article>';
     const controller = new AbortController();
     const event = Object.assign(new Event('astro:before-preparation'), {

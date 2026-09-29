@@ -687,8 +687,12 @@ html[data-soft-nav] .animate-fade-in {
 }
 
 #page-curtain[data-state] {
-  pointer-events: auto;
   visibility: visible;
+}
+
+#page-curtain[data-state='covering'],
+#page-curtain[data-state='covered'] {
+  pointer-events: auto;
 }
 
 #page-curtain[data-direction='back'] {

@@ -31,53 +31,90 @@ export function originRow(rows: number, viewportHeight: number, source: Element 
 const settled = (curtain: HTMLElement) =>
   Promise.allSettled(curtain.getAnimations({ subtree: true }).map((animation) => animation.finished));
 
-async function cover(curtain: HTMLElement, direction: string, source: Element | undefined): Promise<void> {
-  if (curtain.dataset.state === 'covered') return;
-  if (curtain.dataset.state !== 'covering') {
-    const rows = [...curtain.children] as HTMLElement[];
+export type Curtain = {
+  cover: (direction: string, source: Element | undefined) => Promise<void>;
+  reveal: () => Promise<void>;
+  reset: () => void;
+};
+
+export function createCurtain(element: HTMLElement): Curtain {
+  let generation = 0;
+  let cycle: Promise<void> | undefined;
+  let direction = 'forward';
+  const coverRows = async (current: number, source: Element | undefined) => {
+    const rows = [...element.children] as HTMLElement[];
     const delays = rowDelays(rows.length, originRow(rows.length, innerHeight, source), ROW_SPREAD_MS);
     rows.forEach((row, index) => row.style.setProperty('animation-delay', `${delays[index]}ms`));
-    curtain.dataset.direction = direction;
-    curtain.dataset.state = 'covering';
-  }
-  await settled(curtain);
-  if (curtain.dataset.state === 'covering') curtain.dataset.state = 'covered';
-}
-
-async function reveal(curtain: HTMLElement): Promise<void> {
-  if (curtain.dataset.state !== 'covered') return;
-  curtain.dataset.state = 'revealing';
-  await settled(curtain);
-  if (curtain.dataset.state === 'revealing') delete curtain.dataset.state;
+    element.dataset.direction = direction;
+    element.dataset.state = 'covering';
+    await settled(element);
+    if (generation === current) element.dataset.state = 'covered';
+  };
+  const cover = (nextDirection: string, source: Element | undefined) => {
+    direction = nextDirection;
+    cycle ??= coverRows(++generation, source);
+    return cycle;
+  };
+  const reveal = async () => {
+    const current = cycle;
+    if (!current) return;
+    await current;
+    if (cycle !== current) return;
+    cycle = undefined;
+    element.dataset.direction = direction;
+    element.dataset.state = 'revealing';
+    await settled(element);
+    if (!cycle) delete element.dataset.state;
+  };
+  const reset = () => {
+    generation += 1;
+    cycle = undefined;
+    delete element.dataset.state;
+  };
+  return { cover, reveal, reset };
 }
 
 export function installPageTransitions(): void {
+  const curtains = new WeakMap<HTMLElement, Curtain>();
+  const curtain = () => {
+    const element = document.getElementById('page-curtain');
+    if (!element) return undefined;
+    const controls = curtains.get(element) ?? createCurtain(element);
+    curtains.set(element, controls);
+    return controls;
+  };
   let userAgentTransition = false;
+  let latest = 0;
   addEventListener(
     'popstate',
     (event) => {
       userAgentTransition = event.hasUAVisualTransition ?? false;
+      setTimeout(() => {
+        userAgentTransition = false;
+      });
     },
     { capture: true }
   );
+  addEventListener('pageshow', (event) => {
+    if (event.persisted) curtain()?.reset();
+  });
   document.addEventListener('astro:before-preparation', (event) => {
-    const curtain = document.getElementById('page-curtain');
+    const navigation = ++latest;
     const animated = !userAgentTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-    userAgentTransition = false;
-    const curtainFor = () => (curtain && animated ? cover(curtain, event.direction, event.sourceElement) : undefined);
-    const covering = mayMorph(event.sourceElement, document) ? undefined : curtainFor();
+    const cover = () => (animated ? curtain()?.cover(event.direction, event.sourceElement) : undefined);
+    const covering = mayMorph(event.sourceElement, document) ? undefined : cover();
     const load = event.loader;
     event.loader = async () => {
       await Promise.all([load(), covering]);
+      if (event.signal.aborted && navigation === latest) void curtain()?.reveal();
       if (event.signal.aborted || event.defaultPrevented) return;
-      if (!pairMorph(document, event.newDocument, !covering)) await curtainFor();
+      if (!pairMorph(document, event.newDocument, !covering)) await cover();
     };
   });
   document.addEventListener('astro:before-swap', (event) => {
     event.newDocument.documentElement.dataset.softNav = '';
   });
   document.addEventListener('astro:after-swap', () => {
-    const curtain = document.getElementById('page-curtain');
-    if (curtain) void reveal(curtain);
+    void curtain()?.reveal();
   });
 }
