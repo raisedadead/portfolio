@@ -1,4 +1,14 @@
+import { execSync } from 'node:child_process';
 import { defineConfig, devices } from '@playwright/test';
+
+const e2eServer =
+  'node scripts/prepare-e2e-state.mjs && exec wrangler dev --config dist/server/wrangler.json --persist-to .wrangler/e2e --port';
+
+const isCI = !!process.env.CI;
+
+const baseURL = isCI
+  ? 'http://localhost:8787'
+  : execSync('portless get portfolio-e2e --no-worktree', { encoding: 'utf8' }).trim();
 
 /**
  * Playwright E2E test configuration
@@ -7,21 +17,23 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 3 : undefined,
+  forbidOnly: isCI,
+  retries: isCI ? 2 : 0,
+  workers: isCI ? 3 : undefined,
   reporter: [['html', { open: 'never' }], ['list']],
 
   use: {
-    baseURL: 'http://localhost:8787',
+    baseURL,
+    ignoreHTTPSErrors: !isCI,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure'
   },
 
   webServer: {
-    command:
-      'node scripts/prepare-e2e-state.mjs && wrangler dev --config dist/server/wrangler.json --port 8787 --persist-to .wrangler/e2e',
-    url: 'http://localhost:8787/blog',
+    command: isCI ? `${e2eServer} 8787` : `portless portfolio-e2e --force sh -c '${e2eServer} "$PORT"'`,
+    url: `${baseURL}/blog`,
+    ignoreHTTPSErrors: !isCI,
+    gracefulShutdown: isCI ? undefined : { signal: 'SIGTERM', timeout: 10000 },
     reuseExistingServer: false,
     timeout: 300000
   },
