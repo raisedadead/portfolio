@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { execFileSync, execSync, spawn } from 'node:child_process';
+import { execFileSync, execSync, spawn, spawnSync } from 'node:child_process';
 import { mkdirSync, openSync, readFileSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { createServer } from 'node:net';
@@ -67,11 +67,21 @@ async function waitUntilReady(state, timeoutMs) {
   return 'timed out waiting for astro dev health';
 }
 
-async function stopDevServer(state) {
+function ownsDevLock() {
   try {
-    execSync('pnpm exec astro dev stop', { stdio: 'ignore', timeout: 30_000 });
-  } catch (error) {
-    console.error('astro dev stop:', error instanceof Error ? error.message : error);
+    return JSON.parse(readFileSync('.astro/dev.json', 'utf8')).port === devPort;
+  } catch {
+    return false;
+  }
+}
+
+async function stopDevServer(state) {
+  if (ownsDevLock()) {
+    try {
+      execSync('pnpm exec astro dev stop', { stdio: 'ignore', timeout: 30_000 });
+    } catch (error) {
+      console.error('astro dev stop:', error instanceof Error ? error.message : error);
+    }
   }
   if (!state.exited && !state.spawnError) {
     state.child.kill('SIGTERM');
@@ -85,6 +95,18 @@ async function stopDevServer(state) {
   while ((await isServing()) && Date.now() < deadline) {
     await sleep(500);
   }
+}
+
+function runningDevServer() {
+  const { stdout, stderr } = spawnSync(process.execPath, [astroBin, 'dev', 'status'], { encoding: 'utf8' });
+  const output = `${stdout}${stderr}`.trim();
+  return output.includes('No dev server is running') ? null : output;
+}
+
+const running = runningDevServer();
+if (running) {
+  console.error(`another astro dev server is running — stop it before e2e seeding\n${running}`);
+  process.exit(1);
 }
 
 if (await isServing()) {
