@@ -112,13 +112,16 @@ const image = pageImage || defaultImage;
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
     <script>
-      import { installPostMorph } from '@/lib/post-morph';
-      installPostMorph();
+      import { installPageTransitions } from '@/lib/page-transition';
+      installPageTransitions();
     </script>
     <slot name="head" />
   </head>
   <body>
     <slot />
     <ConsentBanner client:idle />
+    <div id="page-curtain" aria-hidden="true" transition:persist="page-curtain">
+      {Array.from({ length: 6 }, () => <span />)}
+    </div>
   </body>
 </html>

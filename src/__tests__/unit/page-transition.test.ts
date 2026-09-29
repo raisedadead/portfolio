@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { installPostMorph, pairMorph } from '@/lib/post-morph';
+import { installPageTransitions, mayMorph, originRow, pairMorph, rowDelays } from '@/lib/page-transition';
 
 const page = (html: string) => {
   const doc = document.implementation.createHTMLDocument();
@@ -11,7 +11,7 @@ const post = (slug: string) => page(`<article data-post data-post-slug="${slug}"
 const morphed = (doc: Document) =>
   [...doc.querySelectorAll<HTMLElement>('[data-morph]')].map((card) => card.dataset.postSlug);
 
-describe('post morph', () => {
+describe('page transitions', () => {
   it('morphs only the card of the post on the other page', () => {
     const [from, to] = [list(), post('b')];
     pairMorph(from, to);
@@ -38,13 +38,43 @@ describe('post morph', () => {
   it('morphs nothing when one page lacks the post', () => {
     const [from, to] = [post('a'), page('<main></main>')];
     from.querySelector('article')?.setAttribute('data-morph', '');
-    pairMorph(from, to);
 
+    expect(pairMorph(from, to)).toBe(false);
     expect(morphed(from)).toEqual([]);
   });
 
+  it('reports a pair only when both pages hold the post and a pair is allowed', () => {
+    const [from, to] = [list(), post('a')];
+    expect(pairMorph(from, to)).toBe(true);
+    expect(pairMorph(from, to, false)).toBe(false);
+    expect([...morphed(from), ...morphed(to)]).toEqual([]);
+  });
+
+  it('waits for the pair only from a card or a post page', () => {
+    const cards = page('<article data-post-slug="a"><a></a></article>');
+
+    expect(mayMorph(cards.querySelector('a') ?? undefined, cards)).toBe(true);
+    expect(mayMorph(undefined, post('a'))).toBe(true);
+    expect(mayMorph(undefined, cards)).toBe(false);
+    expect(mayMorph(cards.createElement('a'), page('<main></main>'))).toBe(false);
+  });
+
+  it('spreads the curtain rows by their distance from the origin row', () => {
+    expect(rowDelays(4, 1, 20)).toEqual([10, 0, 10, 20]);
+    expect(rowDelays(4, 1.5, 15)).toEqual([15, 5, 5, 15]);
+    expect(rowDelays(1, 0, 90)).toEqual([0]);
+  });
+
+  it('starts the curtain from the row of the clicked link', () => {
+    const link = document.createElement('a');
+    link.getBoundingClientRect = () => DOMRect.fromRect({ y: 700, height: 100 });
+
+    expect(originRow(6, 900, link)).toBe(5);
+    expect(originRow(6, 900, undefined)).toBe(2.5);
+  });
+
   it('morphs nothing after an aborted load', async () => {
-    installPostMorph();
+    installPageTransitions();
     document.body.innerHTML = '<article data-post data-post-slug="a"></article>';
     const controller = new AbortController();
     const event = Object.assign(new Event('astro:before-preparation'), {

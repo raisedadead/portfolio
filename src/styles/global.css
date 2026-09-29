@@ -666,3 +666,136 @@ html[data-soft-nav] .animate-fade-in {
   opacity: 1;
   animation: none;
 }
+
+:root {
+  --curtain-color: var(--color-brand-primary);
+  --curtain-cover: 240ms;
+  --curtain-reveal: 320ms;
+}
+
+#page-curtain {
+  --curtain-enter: -100%;
+  --curtain-exit: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+#page-curtain[data-state] {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+#page-curtain[data-direction='back'] {
+  --curtain-enter: 100%;
+  --curtain-exit: -100%;
+}
+
+#page-curtain > span {
+  flex: 1;
+  margin-inline: -3px;
+  border-inline: 3px solid var(--color-black);
+  background: var(--curtain-color);
+}
+
+#page-curtain[data-state='covering'] > span {
+  animation: curtain-cover var(--curtain-cover) var(--ease-press) both;
+}
+
+#page-curtain[data-state='revealing'] > span {
+  animation: curtain-reveal var(--curtain-reveal) cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+#page-curtain::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -26px;
+  opacity: 0;
+}
+
+#page-curtain[data-state='covered']::after {
+  animation: curtain-wait 720ms step-end 240ms infinite;
+}
+
+@keyframes curtain-cover {
+  from {
+    translate: var(--curtain-enter) 0;
+  }
+}
+
+@keyframes curtain-reveal {
+  to {
+    translate: var(--curtain-exit) 0;
+  }
+}
+
+@keyframes curtain-wait {
+  0% {
+    opacity: 1;
+    background: var(--color-black);
+    box-shadow:
+      20px 0 rgb(0 0 0 / 0.2),
+      40px 0 rgb(0 0 0 / 0.2);
+  }
+  33% {
+    opacity: 1;
+    background: rgb(0 0 0 / 0.2);
+    box-shadow:
+      20px 0 var(--color-black),
+      40px 0 rgb(0 0 0 / 0.2);
+  }
+  67% {
+    opacity: 1;
+    background: rgb(0 0 0 / 0.2);
+    box-shadow:
+      20px 0 rgb(0 0 0 / 0.2),
+      40px 0 var(--color-black);
+  }
+}
+
+[data-page-content] {
+  --page-shift: 24px;
+}
+
+html:has(#page-curtain[data-direction='back']) [data-page-content] {
+  --page-shift: -24px;
+}
+
+html:has(#page-curtain[data-state='covering']) [data-page-content] {
+  animation: page-push var(--curtain-cover) var(--ease-press) both;
+}
+
+html:has(#page-curtain[data-state='covered']) [data-page-content] {
+  translate: var(--page-shift) 0;
+}
+
+html:has(#page-curtain[data-state='revealing']) [data-page-content] {
+  animation: page-settle var(--curtain-reveal) var(--ease-press) both;
+}
+
+@keyframes page-push {
+  to {
+    translate: var(--page-shift) 0;
+  }
+}
+
+@keyframes page-settle {
+  from {
+    translate: calc(var(--page-shift) * -1) 0;
+  }
+}
+
+html:has(#page-curtain[data-state])::view-transition-group(root),
+html:has(#page-curtain[data-state])::view-transition-old(root),
+html:has(#page-curtain[data-state])::view-transition-new(root) {
+  animation: none;
+}
