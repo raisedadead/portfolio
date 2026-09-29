@@ -118,4 +118,22 @@ test.describe('View Transitions', () => {
     expect(await page.evaluate((previousDocument) => previousDocument === document, originalDocument)).toBe(true);
     await expect(canvas).toHaveAttribute('data-navigation-probe', 'present');
   });
+
+  test('blog cover images stay above their placeholder after navigation', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('ga-consent', 'false'));
+    await page.goto('/');
+    await page.getByRole('link', { name: /blog/i }).first().click();
+    await expect(page).toHaveURL(/\/blog/);
+    const cover = page.locator('[data-post-cover] img').first();
+    await expect(cover).toBeVisible();
+    await expect
+      .poll(() =>
+        cover.evaluate((img) => {
+          const box = img.getBoundingClientRect();
+          const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+          return hit === img ? 'cover' : `${hit?.tagName} ${hit?.className}`;
+        })
+      )
+      .toBe('cover');
+  });
 });
