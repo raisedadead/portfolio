@@ -1,5 +1,5 @@
 import { getCalApi } from '@calcom/embed-react';
-import { useEffect } from 'react';
+import { useRef } from 'react';
 
 // Configuration constants
 const CAL_CONFIG = {
@@ -25,27 +25,32 @@ interface CalButtonProps {
 }
 
 export default function CalButton({ className = '', 'aria-label': ariaLabel, children }: CalButtonProps) {
-  useEffect(() => {
-    const initializeCalendar = async () => {
-      try {
-        const cal = await getCalApi({ namespace: CAL_CONFIG.namespace });
-        cal('ui', UI_CONFIG);
-      } catch (error) {
-        console.error('Failed to initialize calendar:', error);
-      }
-    };
+  const calApi = useRef<ReturnType<typeof getCalApi> | null>(null);
 
-    initializeCalendar();
-  }, []);
+  const loadCal = () => {
+    calApi.current ??= getCalApi({ namespace: CAL_CONFIG.namespace }).then((cal) => {
+      cal('ui', UI_CONFIG);
+      return cal;
+    });
+    return calApi.current;
+  };
+
+  const preload = () => {
+    void loadCal();
+  };
+
+  const openBooking = () => {
+    void loadCal().then((cal) => cal('modal', { calLink: CAL_CONFIG.link, config: { layout: CAL_CONFIG.layout } }));
+  };
 
   return (
     <button
-      data-cal-namespace={CAL_CONFIG.namespace}
-      data-cal-link={CAL_CONFIG.link}
-      data-cal-config={JSON.stringify({ layout: CAL_CONFIG.layout })}
       className={`cal-embed-button ${className}`.trim()}
       aria-label={ariaLabel}
       type='button'
+      onPointerEnter={preload}
+      onFocus={preload}
+      onClick={openBooking}
     >
       {children}
     </button>

@@ -1,14 +1,48 @@
 import CalButton from '@/components/cal-embed';
-import { render, screen } from '@testing-library/react';
+import { getCalApi } from '@calcom/embed-react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-// Mock the Cal API
+const cal = vi.fn();
+
 vi.mock('@calcom/embed-react', () => ({
-  getCalApi: vi.fn(() => Promise.resolve(vi.fn()))
+  getCalApi: vi.fn(() => Promise.resolve(cal))
 }));
 
 describe('CalButton Component', () => {
+  beforeEach(() => {
+    vi.mocked(getCalApi).mockClear();
+    cal.mockClear();
+  });
+
+  it('does not load the Cal.com embed before the visitor shows intent', () => {
+    render(<CalButton>Test</CalButton>);
+
+    expect(getCalApi).not.toHaveBeenCalled();
+  });
+
+  it('loads the Cal.com embed once on hover or focus', async () => {
+    render(<CalButton>Test</CalButton>);
+    const button = screen.getByRole('button');
+
+    fireEvent.pointerEnter(button);
+    fireEvent.focus(button);
+
+    await waitFor(() => expect(cal).toHaveBeenCalledWith('ui', expect.any(Object)));
+    expect(getCalApi).toHaveBeenCalledTimes(1);
+  });
+
+  it('opens the booking modal on click', async () => {
+    render(<CalButton>Test</CalButton>);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    await waitFor(() =>
+      expect(cal).toHaveBeenCalledWith('modal', { calLink: 'mrugesh/meet', config: { layout: 'month_view' } })
+    );
+  });
+
   it('renders button with children text', () => {
     render(<CalButton>Schedule a Meeting</CalButton>);
 
@@ -27,15 +61,6 @@ describe('CalButton Component', () => {
 
     const button = screen.getByRole('button');
     expect(button).toHaveClass('cal-embed-button', 'custom-class');
-  });
-
-  it('has correct data attributes for Cal.com integration', () => {
-    render(<CalButton>Test</CalButton>);
-
-    const button = screen.getByRole('button');
-    expect(button).toHaveAttribute('data-cal-namespace', 'meet');
-    expect(button).toHaveAttribute('data-cal-link', 'mrugesh/meet');
-    expect(button).toHaveAttribute('data-cal-config', '{"layout":"month_view"}');
   });
 
   it('has correct button type', () => {
