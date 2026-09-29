@@ -65,6 +65,7 @@
   --shadow-brutal-md: 4px 4px 0px rgba(0, 0, 0, 1);
   --shadow-brutal-lg: 6px 6px 0px rgba(0, 0, 0, 1);
   --shadow-brutal-xl: 8px 8px 0px rgba(0, 0, 0, 1);
+  --ease-press: cubic-bezier(0.2, 0, 0, 1);
   --shadow-brick: inset 0 3px 0 rgb(255 255 255 / 0.55), inset 0 -3px 0 rgb(0 0 0 / 0.1);
 
   /* Brand color semantic aliases */
@@ -416,7 +417,11 @@
   background-color: var(--btn-bg);
   background-image: var(--btn-sheen);
   box-shadow: var(--shadow-brick), var(--shadow-brutal-md);
-  transition: all 100ms;
+  transition:
+    translate 140ms var(--ease-press),
+    box-shadow 140ms var(--ease-press),
+    background-color 100ms,
+    color 100ms;
   text-decoration: none;
   cursor: pointer;
 }
@@ -428,7 +433,11 @@
   background-color: var(--btn-bg);
   background-image: var(--btn-sheen);
   box-shadow: var(--shadow-brick), var(--shadow-brutal-md);
-  transition: all 100ms;
+  transition:
+    translate 140ms var(--ease-press),
+    box-shadow 140ms var(--ease-press),
+    background-color 100ms,
+    color 100ms;
   text-decoration: none;
   cursor: pointer;
 }
@@ -440,7 +449,11 @@
   background-color: var(--btn-bg);
   background-image: var(--btn-sheen);
   box-shadow: var(--shadow-brutal-md);
-  transition: all 100ms;
+  transition:
+    translate 140ms var(--ease-press),
+    box-shadow 140ms var(--ease-press),
+    background-color 100ms,
+    color 100ms;
   text-decoration: none;
   cursor: pointer;
 }
@@ -476,6 +489,7 @@
 .brutalist-button-ghost:hover:not(:disabled) {
   --btn-bg: var(--color-orange-100);
   box-shadow: var(--shadow-brick), var(--shadow-brutal-lg);
+  translate: -2px -2px;
 }
 
 .brutalist-button-primary:focus-visible,
@@ -501,7 +515,8 @@
   --btn-bg: var(--color-black);
   color: white;
   box-shadow: none;
-  translate: 2px 2px;
+  translate: 4px 4px;
+  transition-duration: 60ms;
 }
 
 .brutalist-card-hover:hover {
@@ -555,3 +570,11 @@
 
 /* Design System Consistency - Note: In Tailwind v4, @apply with custom classes in @layer components doesn't work.
    We apply utilities directly in components instead, as recommended by Tailwind team. */
+
+@media (prefers-reduced-motion: reduce) {
+  .brutalist-button-primary,
+  .brutalist-button-secondary,
+  .brutalist-button-ghost {
+    translate: none !important;
+  }
+}

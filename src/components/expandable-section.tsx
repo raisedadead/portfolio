@@ -1,6 +1,6 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import type React from 'react';
 
 type ExpandableSectionProps = {
@@ -55,6 +55,11 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
   className,
   defaultOpen = false
 }) => {
+  const reduceMotion = useReducedMotion();
+  const heightTransition = reduceMotion
+    ? { duration: 0 }
+    : { type: 'spring' as const, bounce: 0.2, visualDuration: 0.35 };
+
   return (
     <Disclosure as='div' className={className} defaultOpen={defaultOpen}>
       {({ open }) => (
@@ -79,10 +84,18 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
                   initial={{ height: 0 }}
                   animate={{ height: 'auto' }}
                   exit={{ height: 0 }}
-                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  transition={heightTransition}
                   className='overflow-hidden'
                 >
-                  <div className='bg-blue-100 p-4 text-slate-700'>{children}</div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={reduceMotion ? { duration: 0 } : { duration: 0.2, ease: [0.2, 0, 0, 1] }}
+                    className='bg-blue-100 p-4 text-slate-700'
+                  >
+                    {children}
+                  </motion.div>
                 </motion.div>
               </DisclosurePanel>
             )}
