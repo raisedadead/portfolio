@@ -571,10 +571,98 @@
 /* Design System Consistency - Note: In Tailwind v4, @apply with custom classes in @layer components doesn't work.
    We apply utilities directly in components instead, as recommended by Tailwind team. */
 
+@keyframes post-morph-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+article[data-morph] {
+  view-transition-name: post-card;
+}
+
+article[data-morph] [data-post-cover] {
+  view-transition-name: post-cover;
+}
+
+::view-transition-group(post-card),
+::view-transition-group(post-cover) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+::view-transition-old(post-cover),
+::view-transition-new(post-cover) {
+  height: 100%;
+  object-fit: cover;
+}
+
+::view-transition-image-pair(post-cover) {
+  overflow: clip;
+}
+
+html:has(article[data-post])::view-transition-old(post-cover),
+html:not(:has(article[data-post]))::view-transition-new(post-cover) {
+  animation: none;
+  opacity: 0;
+}
+
+html:has(article[data-post])::view-transition-new(post-cover),
+html:not(:has(article[data-post]))::view-transition-old(post-cover) {
+  animation: none;
+  opacity: 1;
+}
+
+::view-transition-group(post-card) {
+  background: var(--color-white, #fff);
+  box-shadow:
+    inset 0 0 0 2px #000,
+    var(--shadow-brutal-lg);
+}
+
+::view-transition-image-pair(post-card) {
+  overflow: clip;
+}
+
+::view-transition-old(post-card),
+::view-transition-new(post-card) {
+  height: 100%;
+  object-fit: none;
+  object-position: left top;
+}
+
+::view-transition-old(post-card) {
+  animation: 120ms ease-out both post-morph-fade reverse;
+}
+
+::view-transition-new(post-card) {
+  animation: 240ms ease-in 180ms both post-morph-fade;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-soft-nav]) .card-in,
+  .card-in-late {
+    animation: card-in 420ms var(--ease-press) both;
+    animation-delay: var(--card-delay, 0ms);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .brutalist-button-primary,
   .brutalist-button-secondary,
   .brutalist-button-ghost {
     translate: none !important;
   }
+}
+
+html[data-soft-nav] .animate-fade-in {
+  opacity: 1;
+  animation: none;
 }

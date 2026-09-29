@@ -111,6 +111,10 @@ const image = pageImage || defaultImage;
 
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
+    <script>
+      import { installPostMorph } from '@/lib/post-morph';
+      installPostMorph();
+    </script>
     <slot name="head" />
   </head>
   <body>

@@ -39,11 +39,13 @@ const pageImage = coverImageUrl;
       'shadow-brutal-lg',
       'transition-all duration-100'
     )}
+    data-post
+    data-post-slug={entry.id}
   >
     <!-- Cover Image or Fallback -->
     {
       coverImageUrl ? (
-        <div class='relative aspect-video w-full'>
+        <div class='relative aspect-video w-full' data-post-cover>
           <img
             src={coverImageUrl}
             alt={data.cover?.alt || data.title}
@@ -55,7 +57,10 @@ const pageImage = coverImageUrl;
           />
         </div>
       ) : (
-        <div class='flex aspect-video items-center justify-center bg-linear-to-br/oklch from-blue-500 via-purple-500 to-pink-500'>
+        <div
+          class='flex aspect-video items-center justify-center bg-linear-to-br/oklch from-blue-500 via-purple-500 to-pink-500'
+          data-post-cover
+        >
           <span class='text-6xl'>📝</span>
         </div>
       )

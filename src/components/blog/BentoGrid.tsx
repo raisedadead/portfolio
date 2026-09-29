@@ -67,24 +67,32 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
           const linkProps = isExternal
             ? { target: '_blank' as const, rel: 'noopener noreferrer' }
             : { 'data-astro-prefetch': 'hover' as const };
+          const isInitial = index < initialCount;
+          const entrance = {
+            className: isInitial ? 'card-in' : 'card-in-late',
+            delay: `${(isInitial ? index : (index - initialCount) % postsPerLoad) * 60}ms`
+          };
 
           return (
             <article
               key={post.id}
               data-blog-post-id={post.id}
-              className={`${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-brutal-md transition-all duration-100 hover:bg-orange-100 hover:shadow-brutal-lg focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none sm:col-span-2`}
+              data-post-slug={isExternal ? undefined : post.data.slug}
+              suppressHydrationWarning
+              style={{ '--card-delay': entrance.delay } as React.CSSProperties}
+              className={`${entrance.className} ${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-brutal-md transition-all duration-100 hover:bg-orange-100 hover:shadow-brutal-lg focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none sm:col-span-2`}
             >
               <a href={postUrl} className='block no-underline' {...linkProps}>
                 {/* Cover Image */}
                 {coverUrl ? (
-                  <div className={`relative w-full overflow-hidden ${spanConfig.height}`}>
+                  <div className={`relative w-full overflow-hidden ${spanConfig.height}`} data-post-cover>
                     <div className='absolute inset-0 animate-pulse bg-gray-200' />
                     <img
                       src={coverUrl}
                       alt={post.data.coverImage?.alt || post.data.title}
                       width={post.data.coverImage?.width}
                       height={post.data.coverImage?.height}
-                      className='h-full w-full animate-fade-in object-cover transition-all duration-500 group-hover:scale-105'
+                      className='relative h-full w-full animate-fade-in object-cover transition-all duration-500 group-hover:scale-105'
                       loading={index === 0 ? 'eager' : 'lazy'}
                       fetchPriority={index === 0 ? 'high' : undefined}
                     />
@@ -92,6 +100,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
                 ) : (
                   <div
                     className={`flex items-center justify-center bg-linear-to-br/oklch from-blue-500 via-purple-500 to-pink-500 ${spanConfig.height}`}
+                    data-post-cover
                   >
                     <span className='text-6xl'>📝</span>
                   </div>
