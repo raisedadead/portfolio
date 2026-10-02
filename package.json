@@ -53,7 +53,7 @@
     "@sentry/cloudflare": "10.75.3",
     "@sentry/replay": "10.75.3",
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.3.4",
+    "astro": "7.3.5",
     "clsx": "2.1.1",
     "emdash": "^1.0.1",
     "motion": "13.4.2",
