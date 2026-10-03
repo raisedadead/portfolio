@@ -44,7 +44,7 @@
     "@ascorbic/feed-loader": "^2.0.1",
     "@astrojs/check": "0.9.10",
     "@astrojs/cloudflare": "14.3.3",
-    "@astrojs/react": "6.0.6",
+    "@astrojs/react": "7.0.0",
     "@calcom/embed-react": "1.5.3",
     "@emdash-cms/cloudflare": "^1.0.1",
     "@headlessui/react": "2.2.10",
