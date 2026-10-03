@@ -41,3 +41,6 @@ playwright/.cache/
 .scratchpad/
 .emdash/uploads/
 .emdash/migrations.json
+
+# Vitest reports
+.vitest/
