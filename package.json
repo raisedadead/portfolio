@@ -89,7 +89,7 @@
     "oxlint": "1.85.0",
     "portless": "0.15.6",
     "tailwindcss": "4.3.3",
-    "turbo": "2.11.4",
+    "turbo": "2.11.5",
     "typescript": "6.0.3",
     "vite": "8.3.1",
     "vitest": "4.1.11",
