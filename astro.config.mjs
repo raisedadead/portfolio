@@ -42,10 +42,8 @@ export default defineConfig({
           return source.replace(/^.*\/dist\//, '~/dist/');
         }
       },
-      unstable_sentryVitePluginOptions: {
-        release: {
-          name: process.env.PUBLIC_SENTRY_RELEASE || 'dev'
-        }
+      release: {
+        name: process.env.PUBLIC_SENTRY_RELEASE || 'dev'
       },
       autoInstrumentation: {
         requestHandler: false // Disabled for Cloudflare Workers
