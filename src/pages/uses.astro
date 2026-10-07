@@ -3,6 +3,12 @@ import { CustomLink as Link } from '@/components/custom-link';
 import { ExpandableSection as ES } from '@/components/expandable-section';
 import { Social } from '@/components/social';
 import MainLayout from '@/layouts/main-layout.astro';
+
+const sections = [
+  { id: 'hardware', label: 'Hardware' },
+  { id: 'software', label: 'Software' },
+  { id: 'philosophy', label: 'Philosophy' }
+];
 ---
 
 <MainLayout pageTitle='Uses' variant='main'>
@@ -12,10 +18,26 @@ import MainLayout from '@/layouts/main-layout.astro';
     </div>
   </section>
   <section class='mb-12'>
-    <p class='pb-6 text-center text-base sm:text-lg text-slate-600'>
+    <p class='pb-6 text-center text-base sm:text-lg text-slate-700'>
       A non-exhaustive list of stuff that I use on a daily basis.
     </p>
-    <h2 class='mb-6 text-center text-display-sm text-slate-700'>Hardware</h2>
+    <nav aria-label='On this page' class='sticky top-3 z-10 mb-8 flex justify-center' data-uses-sections>
+      <ul class='m-0 flex list-none border-2 border-black bg-orange-200 p-0 shadow-brutal-md'>
+        {
+          sections.map((section) => (
+            <li class='border-l-2 border-black first:border-l-0'>
+              <a
+                href={`#${section.id}`}
+                class='brutalist-focus flex h-10 items-center px-3 text-sm font-bold text-slate-800 no-underline transition-colors duration-100 hover:bg-orange-100 sm:px-4 sm:text-base [&[aria-current]]:bg-black [&[aria-current]]:text-white'
+              >
+                {section.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <h2 id='hardware' class='mb-6 scroll-mt-20 text-center text-display-sm text-slate-700'>Hardware</h2>
     <ul class='list-none space-y-6'>
       <li>
         <ES
@@ -482,7 +504,7 @@ import MainLayout from '@/layouts/main-layout.astro';
       </li>
     </ul>
 
-    <h2 class='mb-6 mt-12 text-center text-2xl font-bold text-slate-700'>Software</h2>
+    <h2 id='software' class='mb-6 mt-12 scroll-mt-20 text-center text-2xl font-bold text-slate-700'>Software</h2>
     <ul class='list-none space-y-6'>
       <li>
         <ES
@@ -1152,7 +1174,7 @@ import MainLayout from '@/layouts/main-layout.astro';
       </li>
     </ul>
 
-    <h2 class='mb-6 mt-12 text-center text-2xl font-bold text-slate-700'>Philosophy & Principles</h2>
+    <h2 id='philosophy' class='mb-6 mt-12 scroll-mt-20 text-center text-2xl font-bold text-slate-700'>Philosophy & Principles</h2>
     <ul class='list-none space-y-6'>
       <li>
         <ES title='Setup Philosophy' defaultOpen={true} client:visible>
@@ -1197,3 +1219,14 @@ import MainLayout from '@/layouts/main-layout.astro';
     </div>
   </section>
 </MainLayout>
+
+<script>
+  import { installSectionSpy } from '@/lib/section-spy';
+
+  document.addEventListener('astro:page-load', () => {
+    const nav = document.querySelector<HTMLElement>('[data-uses-sections]');
+    if (!nav) return;
+    const uninstall = installSectionSpy(nav);
+    document.addEventListener('astro:before-swap', uninstall, { once: true });
+  });
+</script>

@@ -46,6 +46,30 @@ test.describe('Navigation', () => {
     await expect(page).toHaveURL(/\/blog\/?$/);
   });
 
+  test('desktop nav shows section links and marks the current one', async ({ page }) => {
+    await page.goto('/uses');
+    const sections = page.getByRole('list', { name: 'Sections' });
+    await expect(sections.getByRole('link', { name: 'Uses' })).toHaveAttribute('aria-current', 'page');
+    await expect(sections.getByRole('link', { name: 'Blog' })).not.toHaveAttribute('aria-current');
+    await expect(page.getByRole('button', { name: 'Open navigation menu' })).toBeHidden();
+  });
+
+  test('home lists the latest posts with a link to all posts', async ({ page }) => {
+    await page.goto('/');
+    const latest = page.getByRole('region', { name: 'Latest writing' });
+    await expect(latest.getByRole('listitem')).toHaveCount(3);
+    await latest.getByRole('link', { name: /^All \d+ posts/ }).click();
+    await expect(page).toHaveURL(/\/blog\/?$/);
+  });
+
+  test('uses section bar jumps to a section and marks it', async ({ page }) => {
+    await page.goto('/uses');
+    const bar = page.getByRole('navigation', { name: 'On this page' });
+    await bar.getByRole('link', { name: 'Software' }).click();
+    await expect(page).toHaveURL(/#software$/);
+    await expect(bar.getByRole('link', { name: 'Software' })).toHaveAttribute('aria-current', 'true');
+  });
+
   test('logo returns to homepage', async ({ page }) => {
     await page.goto('/blog');
 
@@ -64,7 +88,7 @@ test.describe('Navigation', () => {
     const trigger = page.getByRole('button', { name: 'Open navigation menu' });
     await trigger.focus();
     await page.keyboard.press('Enter');
-    const blog = page.getByRole('menuitem', { name: 'Recent Posts' });
+    const blog = page.getByRole('menuitem', { name: 'Blog' });
     await expect(blog).toBeVisible();
     const menu = page.getByRole('menu');
     const activeId = await menu.getAttribute('aria-activedescendant');
