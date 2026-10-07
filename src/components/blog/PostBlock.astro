@@ -1,0 +1,12 @@
+---
+import type { ComponentProps } from 'astro/types';
+import { emdashComponents } from 'emdash/ui';
+
+const EmdashBlock = emdashComponents.block;
+
+type Props = ComponentProps<typeof EmdashBlock> & { node: { anchorId?: string } };
+
+const blockProps = { ...Astro.props, id: Astro.props.node.anchorId };
+---
+
+<EmdashBlock {...blockProps}><slot /></EmdashBlock>
