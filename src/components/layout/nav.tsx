@@ -5,16 +5,23 @@ import { Fragment, useEffect, useState } from 'react';
 import { CustomLink as Link } from '@/components/custom-link';
 
 const links = [
-  { href: '/blog', label: 'Recent Posts', icon: BookOpenIcon },
+  { href: '/blog', label: 'Blog', icon: BookOpenIcon },
   { href: '/uses', label: 'Uses', icon: CpuChipIcon }
 ];
+
+const currentState = (href: string, path?: string): 'page' | 'true' | undefined => {
+  if (!path) return undefined;
+  if (path === href || path === `${href}/`) return 'page';
+  return path.startsWith(`${href}/`) ? 'true' : undefined;
+};
 
 type NavProps = {
   className?: string;
   showHomeButton?: boolean;
+  currentPath?: string;
 };
 
-export const Nav: React.FC<NavProps> = ({ className, showHomeButton = true }) => {
+export const Nav: React.FC<NavProps> = ({ className, showHomeButton = true, currentPath }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -26,8 +33,24 @@ export const Nav: React.FC<NavProps> = ({ className, showHomeButton = true }) =>
   }, [isMenuOpen]);
 
   return (
-    <nav className={`relative ${className}`}>
-      <Menu as='div' className='absolute top-4 right-4 text-left'>
+    <nav aria-label='Site' className={`relative ${className}`}>
+      <ul
+        aria-label='Sections'
+        className='absolute top-4 right-4 m-0 hidden list-none border-2 border-black bg-orange-200 p-0 shadow-brutal-md md:flex'
+      >
+        {links.map((link) => (
+          <li key={link.href} className='border-l-2 border-black first:border-l-0'>
+            <Link
+              href={link.href}
+              aria-current={currentState(link.href, currentPath)}
+              className='brutalist-focus flex h-10 items-center px-4 font-bold text-slate-800 no-underline transition-colors duration-100 hover:bg-orange-100 [&[aria-current]]:bg-black [&[aria-current]]:text-white'
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <Menu as='div' className='absolute top-4 right-4 text-left md:hidden'>
         {({ open }) => (
           <>
             <div>

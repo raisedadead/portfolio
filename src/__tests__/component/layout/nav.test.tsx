@@ -1,5 +1,5 @@
 import { Nav } from '@/components/layout/nav';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 describe('Nav', () => {
@@ -9,7 +9,7 @@ describe('Nav', () => {
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
     fireEvent.click(trigger);
     const menu = await screen.findByRole('menu');
-    const blog = screen.getByRole('menuitem', { name: 'Recent Posts' });
+    const blog = screen.getByRole('menuitem', { name: 'Blog' });
     expect(blog).toHaveAttribute('href', '/blog');
     expect(screen.getByRole('menuitem', { name: 'Uses' })).toHaveAttribute('href', '/uses');
     fireEvent.keyDown(menu, { key: 'ArrowDown' });
@@ -25,5 +25,14 @@ describe('Nav', () => {
     expect(screen.getByRole('link', { name: 'Go Home' })).toHaveAttribute('href', '/');
     rerender(<Nav showHomeButton={false} />);
     expect(screen.queryByRole('link', { name: 'Go Home' })).not.toBeInTheDocument();
+  });
+
+  it('marks the current section in the inline links', () => {
+    const { rerender } = render(<Nav currentPath='/blog' />);
+    const inline = screen.getByRole('list', { name: 'Sections' });
+    expect(within(inline).getByRole('link', { name: 'Blog' })).toHaveAttribute('aria-current', 'page');
+    rerender(<Nav currentPath='/blog/some-post' />);
+    expect(within(inline).getByRole('link', { name: 'Blog' })).toHaveAttribute('aria-current', 'true');
+    expect(within(inline).getByRole('link', { name: 'Uses' })).not.toHaveAttribute('aria-current');
   });
 });
