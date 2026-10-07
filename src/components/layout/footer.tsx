@@ -1,11 +1,12 @@
 import { CustomLink as Link } from '@/components/custom-link';
 
 type FooterProps = {
+  currentYear: number;
   isDefault?: boolean;
   className?: string;
 };
 export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
-  const { isDefault = false, className } = props;
+  const { currentYear, isDefault = false, className } = props;
   const footerType = isDefault ? 'text-gray-700 text-sm text-center mx-8 md:mx-auto' : 'text-center';
   const anchorClass = isDefault
     ? 'text-gray-700 hover:text-black rounded-full hover:bg-orange-100 py-1 px-2 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none transition-all duration-100'
@@ -13,7 +14,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
   return (
     <footer className={className}>
       <div className={footerType}>
-        <p>© 2012-{new Date().getFullYear()} Mrugesh Mohapatra Co. — All rights reserved.</p>
+        <p>© 2012-{currentYear} Mrugesh Mohapatra Co. — All rights reserved.</p>
         <p className='mt-2'>
           {!isDefault && (
             <>
