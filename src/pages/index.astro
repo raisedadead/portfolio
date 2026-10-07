@@ -1,10 +1,25 @@
 ---
+import { getCollection } from 'astro:content';
+import { getEmDashCollection } from 'emdash';
+import LatestPosts from '@/components/blog/LatestPosts.astro';
 import { Profile } from '@/components/layout/profile';
+import { Social } from '@/components/social';
 import MainLayout from '@/layouts/main-layout.astro';
+import { normalizeEmdashPosts } from '@/lib/emdash-posts';
+import { mergeAndSortPosts, normalizeFreeCodeCampPosts } from '@/lib/freecodecamp-utils';
+
+const { entries: localPosts } = await getEmDashCollection('posts', { status: 'published' });
+const freecodecampPosts = await getCollection('freecodecamp');
+const posts = mergeAndSortPosts(normalizeEmdashPosts(localPosts), normalizeFreeCodeCampPosts(freecodecampPosts));
 ---
 
 <MainLayout variant='main' showHomeButton={false}>
   <section class='mb-12'>
     <Profile client:visible />
+    {posts.length > 0 && <LatestPosts posts={posts.slice(0, 3)} total={posts.length} />}
+    <div class='prose prose-lg prose-slate mx-auto max-w-3xl'>
+      <h3 class='mb-4 text-center font-bold text-slate-700'>Elsewhere on the internet</h3>
+      <Social />
+    </div>
   </section>
 </MainLayout>

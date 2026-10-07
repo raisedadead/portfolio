@@ -3,11 +3,6 @@ import { render, screen } from '@testing-library/react';
 import type React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
-// Mock the Social component
-vi.mock('@/components/social', () => ({
-  Social: () => <div data-testid='mocked-social'>Social Links</div>
-}));
-
 // Mock the CalButton component
 vi.mock('@/components/cal-embed', () => ({
   default: ({ className, children }: { className?: string; children: React.ReactNode }) => (
@@ -52,12 +47,5 @@ describe('Profile Component', () => {
 
     const calButton = screen.getByTestId('cal-button');
     expect(calButton).toHaveClass('h-14', 'brutalist-button-secondary');
-  });
-
-  it('renders social links section', () => {
-    render(<Profile />);
-
-    expect(screen.getByTestId('mocked-social')).toBeTruthy();
-    expect(screen.getByText('Elsewhere on the internet')).toBeTruthy();
   });
 });

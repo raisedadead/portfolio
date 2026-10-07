@@ -1,0 +1,80 @@
+---
+import type { LightweightPost } from '@/types/blog';
+import { formatDate } from '@/lib/formatDate';
+
+interface Props {
+  posts: LightweightPost[];
+  total: number;
+}
+
+const { posts, total } = Astro.props;
+---
+
+<section aria-labelledby='latest-writing' class='mx-auto mb-10 w-full max-w-xl px-4 text-left'>
+  <h3 id='latest-writing' class='mb-4 text-center text-2xl font-bold text-slate-700'>Latest writing</h3>
+  <div class='border-2 border-black bg-white shadow-brutal-md'>
+    <ul class='m-0 list-none divide-y-2 divide-black p-0'>
+      {
+        posts.map((post) => {
+          const isExternal = post.data.source === 'freecodecamp' && post.data.externalUrl;
+          return (
+            <li>
+              <a
+                href={isExternal ? post.data.externalUrl : `/blog/${post.data.slug}`}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noopener noreferrer' : undefined}
+                data-astro-prefetch={isExternal ? undefined : 'hover'}
+                class='group brutalist-focus flex items-center justify-between gap-4 px-4 py-3 no-underline transition-colors duration-100 hover:bg-orange-100'
+              >
+                <span>
+                  <span class='block font-display font-bold text-slate-900 group-hover:text-orange-800'>
+                    {post.data.title}
+                  </span>
+                  <span class='mt-1 flex flex-wrap items-center gap-2 text-sm text-slate-500'>
+                    <span>{formatDate(new Date(post.data.publishedAt))}</span>
+                    <span aria-hidden='true'>•</span>
+                    <span>{post.data.readingTime} min read</span>
+                    {isExternal && (
+                      <span class='rounded bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800'>
+                        freeCodeCamp
+                      </span>
+                    )}
+                  </span>
+                </span>
+                {isExternal ? (
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    class='h-4 w-4 shrink-0 text-slate-600'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                    role='img'
+                    aria-label='Opens in a new tab'
+                  >
+                    <path
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                      stroke-width='2'
+                      d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+                    />
+                  </svg>
+                ) : (
+                  <span aria-hidden='true' class='shrink-0 font-bold text-slate-600'>
+                    →
+                  </span>
+                )}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+    <a
+      href='/blog'
+      class='brutalist-focus flex items-center justify-between border-t-2 border-black bg-orange-50 px-4 py-2.5 font-bold text-slate-800 no-underline transition-colors duration-100 hover:bg-orange-100'
+    >
+      <span>All {total} posts</span>
+      <span aria-hidden='true'>→</span>
+    </a>
+  </div>
+</section>

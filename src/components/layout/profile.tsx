@@ -2,7 +2,6 @@ import { useRef } from 'react';
 
 import CalButton from '@/components/cal-embed';
 import { CustomLink as Link } from '@/components/custom-link';
-import { Social } from '@/components/social';
 
 const secondaryButtonClasses =
   'inline-flex items-center justify-center h-14 px-6 py-3 text-sm font-bold sm:text-base md:text-lg brutalist-button-secondary';
@@ -21,8 +20,8 @@ export const Profile: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center py-8 text-center sm:py-12'>
-      <div className='profile-plate mb-10 md:mb-12'>
+    <div className='flex flex-col items-center justify-center pt-2 pb-8 text-center sm:pt-4 sm:pb-10'>
+      <div className='profile-plate mb-8'>
         <div className='profile-studs' aria-hidden='true'>
           <span />
           <span />
@@ -83,7 +82,7 @@ export const Profile: React.FC = () => {
         </Link>
       </h3>
 
-      <div className='mb-10 flex w-full max-w-md flex-col items-center justify-center gap-4 px-4 sm:flex-row'>
+      <div className='flex w-full max-w-md flex-col items-center justify-center gap-4 px-4 sm:flex-row'>
         <CalButton
           aria-label='Schedule a meeting with me'
           className={`${secondaryButtonClasses} w-full sm:w-auto sm:flex-1`}
@@ -98,10 +97,6 @@ export const Profile: React.FC = () => {
         >
           Blog
         </Link>
-      </div>
-      <div className='prose prose-lg prose-slate mx-auto mt-8 max-w-3xl'>
-        <h3 className='mb-4 text-center font-bold text-slate-700'>Elsewhere on the internet</h3>
-        <Social />
       </div>
     </div>
   );
