@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import * as Sentry from '@sentry/astro';
 import type { LightweightPost } from '@/types/blog';
-import { getBentoGridSpan } from '@/lib/blog-utils';
+import { filterPostsByTag, getBentoGridSpan, getSharedTags, getTagsWithCount } from '@/lib/blog-utils';
 import { formatDate } from '@/lib/formatDate';
 import LoadMoreButton from './LoadMoreButton';
+import TagFilter from './TagFilter';
 
 interface Props {
   posts: LightweightPost[];
@@ -11,19 +12,24 @@ interface Props {
   postsPerLoad?: number;
 }
 
-export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPerLoad = 3 }: Props) {
+export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPerLoad = 6 }: Props) {
   const [visibleCount, setVisibleCount] = useState(initialCount);
+  const [activeTag, setActiveTag] = useState<string | null>(null);
 
-  const visiblePosts = posts.slice(0, visibleCount);
+  const sharedTags = useMemo(() => getSharedTags(posts), [posts]);
+  const tagTotal = useMemo(() => getTagsWithCount(posts).length, [posts]);
+  const listedPosts = useMemo(() => (activeTag ? filterPostsByTag(posts, activeTag) : posts), [posts, activeTag]);
+  const visiblePosts = listedPosts.slice(0, visibleCount);
+  const scope = activeTag ? ` tagged #${activeTag}` : '';
 
   // Pre-load images for the next batch of posts
   useEffect(() => {
     // Only pre-load if there are more posts to load
-    if (visibleCount >= posts.length) return;
+    if (visibleCount >= listedPosts.length) return;
 
     const nextBatchStart = visibleCount;
-    const nextBatchEnd = Math.min(visibleCount + postsPerLoad, posts.length);
-    const nextPosts = posts.slice(nextBatchStart, nextBatchEnd);
+    const nextBatchEnd = Math.min(visibleCount + postsPerLoad, listedPosts.length);
+    const nextPosts = listedPosts.slice(nextBatchStart, nextBatchEnd);
     const createdLinks: HTMLLinkElement[] = [];
 
     for (const post of nextPosts) {
@@ -44,18 +50,28 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
     return () => {
       createdLinks.forEach((link) => link.remove());
     };
-  }, [visibleCount, posts, postsPerLoad]);
+  }, [visibleCount, listedPosts, postsPerLoad]);
 
   const handleLoadMore = () => {
     Sentry.metrics.count('blog.load_more', 1, {
-      attributes: { visible: String(visibleCount), total: String(posts.length) }
+      attributes: { visible: String(visibleCount), total: String(listedPosts.length) }
     });
 
-    setVisibleCount((prev) => Math.min(prev + postsPerLoad, posts.length));
+    setVisibleCount((prev) => Math.min(prev + postsPerLoad, listedPosts.length));
+  };
+
+  const handleTagToggle = (slug: string) => {
+    setActiveTag((current) => (current === slug ? null : slug));
+    setVisibleCount(initialCount);
   };
 
   return (
     <>
+      <TagFilter tags={sharedTags} tagTotal={tagTotal} activeTag={activeTag} onToggle={handleTagToggle} />
+      <p className='sr-only' role='status'>
+        {`${listedPosts.length} ${listedPosts.length === 1 ? 'post' : 'posts'}${scope}`}
+      </p>
+
       {/* Bento Grid */}
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5'>
         {visiblePosts.map((post, index) => {
@@ -159,7 +175,13 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
       </div>
 
       {/* Load More Button */}
-      <LoadMoreButton totalPosts={posts.length} visiblePosts={visibleCount} onLoadMore={handleLoadMore} />
+      <LoadMoreButton
+        totalPosts={listedPosts.length}
+        visiblePosts={visiblePosts.length}
+        postsPerLoad={postsPerLoad}
+        scope={scope}
+        onLoadMore={handleLoadMore}
+      />
     </>
   );
 }

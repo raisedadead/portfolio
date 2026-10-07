@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getAllTags, filterPostsByTag, getTagBySlug, getBentoGridSpan } from '@/lib/blog-utils';
+import { getAllTags, filterPostsByTag, getTagBySlug, getBentoGridSpan, getAdjacentPosts } from '@/lib/blog-utils';
 import type { BlogPost } from '@/types/blog';
 
 describe('Blog Utils', () => {
@@ -243,6 +243,24 @@ describe('Blog Utils', () => {
       expect(slugMap.get('react')).toBe('React');
       expect(slugMap.get('tutorial')).toBe('Tutorial');
       expect(slugMap.get('advanced')).toBe('Advanced');
+    });
+  });
+
+  describe('getAdjacentPosts', () => {
+    const post = (slug: string) => ({ data: { slug } });
+    const newestFirst = [post('d'), post('c'), post('b'), post('a')];
+
+    it('returns the next newer and older posts', () => {
+      expect(getAdjacentPosts(newestFirst, 'c')).toEqual({ newer: newestFirst[0], older: newestFirst[2] });
+    });
+
+    it('leaves a side empty at either end of the list', () => {
+      expect(getAdjacentPosts(newestFirst, 'd')).toEqual({ newer: undefined, older: newestFirst[1] });
+      expect(getAdjacentPosts(newestFirst, 'a')).toEqual({ newer: newestFirst[2], older: undefined });
+    });
+
+    it('returns no neighbours for an unknown slug', () => {
+      expect(getAdjacentPosts(newestFirst, 'missing')).toEqual({ newer: undefined, older: undefined });
     });
   });
 });

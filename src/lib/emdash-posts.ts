@@ -69,6 +69,8 @@ export function portableTextWordCount(blocks: EmdashPortableBlock[] | undefined)
   return count;
 }
 
+const BRIEF_MAX = 160;
+
 export function extractBrief(brief: string | undefined, blocks: EmdashPortableBlock[] | undefined): string {
   if (brief) return brief;
   const firstText = (blocks ?? []).find((block) => block._type === 'block' && (block.style ?? 'normal') === 'normal');
@@ -76,7 +78,11 @@ export function extractBrief(brief: string | undefined, blocks: EmdashPortableBl
     .map((span) => span.text ?? '')
     .join('')
     .trim();
-  return text.slice(0, 160);
+  if (text.length <= BRIEF_MAX) return text;
+  const cut = text.slice(0, BRIEF_MAX - 1);
+  const lastSpace = /\s/.test(text[BRIEF_MAX - 1]) ? cut.length : cut.lastIndexOf(' ');
+  const words = lastSpace > 0 ? cut.slice(0, lastSpace).replace(/[\s,;:]+$/, '') : cut;
+  return `${words}…`;
 }
 
 export function readingTimeMinutes(data: EmdashPostData): number {

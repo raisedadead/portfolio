@@ -23,18 +23,30 @@ describe('BlogGridWithLoadMore', () => {
   it('reveals the next batch immediately and stops at the end', () => {
     render(<BlogGridWithLoadMore posts={posts} />);
     expect(screen.getAllByRole('article')).toHaveLength(6);
-    fireEvent.click(screen.getByRole('button', { name: 'Load more blog posts' }));
-    expect(screen.getAllByRole('article')).toHaveLength(9);
-    fireEvent.click(screen.getByRole('button', { name: 'Load more blog posts' }));
+    expect(screen.getByText('Showing 6 of 10')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Load 4 more' }));
     expect(screen.getAllByRole('article')).toHaveLength(10);
-    expect(screen.queryByRole('button')).not.toBeInTheDocument();
-    expect(screen.getByText(/that's the end/i)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /^Load/ })).not.toBeInTheDocument();
+    expect(screen.getByText("That's all 10 posts.")).toBeInTheDocument();
   });
 
   it('honors custom batch sizes', () => {
     render(<BlogGridWithLoadMore posts={posts} initialCount={2} postsPerLoad={4} />);
     expect(screen.getAllByRole('article')).toHaveLength(2);
-    fireEvent.click(screen.getByRole('button', { name: 'Load more blog posts' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Load 4 more' }));
+    expect(screen.getAllByRole('article')).toHaveLength(6);
+  });
+
+  it('filters by a shared tag in place and clears on a second press', () => {
+    const zsh = { name: 'Zsh', slug: 'zsh' };
+    const tagged = posts.map((post, i) => ({ ...post, data: { ...post.data, tags: i < 3 ? [zsh] : [] } }));
+    render(<BlogGridWithLoadMore posts={tagged} />);
+    const chip = screen.getByRole('button', { name: /#zsh/ });
+    fireEvent.click(chip);
+    expect(chip).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getAllByRole('article')).toHaveLength(3);
+    expect(screen.getByRole('status')).toHaveTextContent('3 posts tagged #zsh');
+    fireEvent.click(chip);
     expect(screen.getAllByRole('article')).toHaveLength(6);
   });
 

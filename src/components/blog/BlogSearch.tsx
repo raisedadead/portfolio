@@ -112,7 +112,7 @@ export default function BlogSearch({ posts }: Props) {
   };
 
   return (
-    <div ref={searchRef} className='relative mb-12'>
+    <div ref={searchRef} className='relative mb-4'>
       {/* Search Input */}
       <div className='relative'>
         <label htmlFor='blog-search-input' className='sr-only'>

@@ -29,20 +29,20 @@ const lightweightPosts = mergeAndSortPosts(
     </div>
   </section>
   <section class='mb-12'>
-    <p class='pb-6 text-center text-base sm:text-lg text-slate-600'>
+    <p class='pb-6 text-center text-base sm:text-lg text-slate-700'>
       Thoughts on web development, technology, and more
     </p>
 
     {
       lightweightPosts.length === 0 ? (
         <div class='mx-auto max-w-md rounded-lg border-2 border-dashed border-slate-300 p-12 text-center'>
-          <p class='text-base text-slate-600 sm:text-lg'>No blog posts yet. Check back soon!</p>
+          <p class='text-base text-slate-700 sm:text-lg'>No blog posts yet. Check back soon!</p>
         </div>
       ) : (
         <>
           <BlogSearch posts={lightweightPosts} client:idle />
 
-          <BentoGrid posts={lightweightPosts} initialCount={6} postsPerLoad={3} client:visible />
+          <BentoGrid posts={lightweightPosts} initialCount={6} postsPerLoad={6} client:visible />
         </>
       )
     }

@@ -57,9 +57,44 @@ test.describe('Blog', () => {
       await page.locator('astro-island[component-url*="BentoGrid"]:not([ssr])').waitFor();
       const cards = page.locator('[data-blog-post-id]');
       await expect(cards).toHaveCount(6);
-      await page.getByRole('button', { name: 'Load more blog posts' }).click();
+      await page.getByRole('button', { name: /^Load \d+ more$/ }).click();
       await expect.poll(() => cards.count()).toBeGreaterThan(6);
       await expect(cards.nth(6)).toBeVisible();
+    });
+
+    test('topic filter narrows the grid and clears on a second press', async ({ page }) => {
+      await page.goto('/blog');
+      await page.locator('astro-island[component-url*="BentoGrid"]:not([ssr])').waitFor();
+      const cards = page.locator('[data-blog-post-id]');
+      const chip = page.getByRole('button', { name: /^#testing/ });
+      await chip.click();
+      await expect(chip).toHaveAttribute('aria-pressed', 'true');
+      await expect(cards).toHaveCount(4);
+      await expect(page.getByText("That's all 4 posts tagged #testing.")).toBeVisible();
+      await chip.click();
+      await expect(chip).toHaveAttribute('aria-pressed', 'false');
+      await expect(cards).toHaveCount(6);
+    });
+
+    test('topic filter hides chips that overflow the first row', async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 700 });
+      await page.goto('/blog');
+      await page.locator('astro-island[component-url*="BentoGrid"]:not([ssr])').waitFor();
+      const group = page.getByRole('group', { name: 'Topics' });
+      const allChips = await group.locator('button').count();
+      const visibleChips = group.getByRole('button');
+      await expect.poll(() => visibleChips.count()).toBeLessThan(allChips);
+      const groupBox = await group.boundingBox();
+      expect(groupBox).not.toBeNull();
+      for (const chip of await visibleChips.all()) {
+        const chipBox = await chip.boundingBox();
+        expect(chipBox).not.toBeNull();
+        expect(chipBox!.x).toBeGreaterThanOrEqual(groupBox!.x);
+        expect(chipBox!.y).toBeGreaterThanOrEqual(groupBox!.y);
+        expect(chipBox!.x + chipBox!.width).toBeLessThanOrEqual(groupBox!.x + groupBox!.width + 1);
+        expect(chipBox!.y + chipBox!.height).toBeLessThanOrEqual(groupBox!.y + groupBox!.height + 1);
+      }
+      await expect(page.getByRole('link', { name: /^All \d+ tags/ })).toBeVisible();
     });
 
     test('search returns a matching article and an empty state', async ({ page }) => {
@@ -138,13 +173,9 @@ test.describe('Blog', () => {
       await firstPost.click();
       await expect(page).toHaveURL(/\/blog\/.+/);
 
-      // Should have tags section
-      const tagsHeading = page.getByRole('heading', { name: /tags/i });
-      await expect(tagsHeading).toBeVisible();
-
-      // Should have tag links
-      const tagLinks = page.locator('a[href*="/blog/tags/"]');
-      expect(await tagLinks.count()).toBeGreaterThan(0);
+      const tagLinks = page.getByRole('list', { name: 'Tags' }).getByRole('link');
+      await expect(tagLinks.first()).toBeVisible();
+      await expect(tagLinks.first()).toHaveAttribute('href', /\/blog\/tags\//);
     });
 
     test('code blocks render correctly', async ({ page }) => {

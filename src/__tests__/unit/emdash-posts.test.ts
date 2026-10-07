@@ -63,12 +63,30 @@ describe('extractBrief', () => {
     expect(extractBrief('given brief', BLOCKS)).toBe('given brief');
   });
 
-  it('falls back to the first normal paragraph, capped at 160 chars', () => {
+  it('falls back to the first normal paragraph', () => {
     expect(extractBrief(undefined, BLOCKS)).toBe('First paragraph of the post body.');
-    const long: EmdashPortableBlock[] = [
+  });
+
+  it('cuts a long paragraph at a word boundary within 160 chars', () => {
+    const text = 'Docker builds can become cumbersome, especially when dealing with large codebases. '.repeat(4);
+    const brief = extractBrief(undefined, [{ _type: 'block', style: 'normal', children: [{ _type: 'span', text }] }]);
+    expect(brief.length).toBeLessThanOrEqual(160);
+    expect(brief.endsWith('…')).toBe(true);
+    expect(text.startsWith(brief.slice(0, -1))).toBe(true);
+    expect(text[brief.length - 1]).toBe(' ');
+  });
+
+  it('keeps the last word when it ends exactly at the cut', () => {
+    const text = `${'a'.repeat(150)} ${'b'.repeat(8)} tail words`;
+    const brief = extractBrief(undefined, [{ _type: 'block', style: 'normal', children: [{ _type: 'span', text }] }]);
+    expect(brief).toBe(`${'a'.repeat(150)} ${'b'.repeat(8)}…`);
+  });
+
+  it('hard-cuts a long paragraph without spaces', () => {
+    const brief = extractBrief(undefined, [
       { _type: 'block', style: 'normal', children: [{ _type: 'span', text: 'x'.repeat(300) }] }
-    ];
-    expect(extractBrief(undefined, long)).toHaveLength(160);
+    ]);
+    expect(brief).toBe(`${'x'.repeat(159)}…`);
   });
 });
 

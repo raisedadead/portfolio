@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { getTagsWithCount, getAllTags, filterPostsByTag, getTagBySlug } from '@/lib/blog-utils';
+import { getTagsWithCount, getAllTags, filterPostsByTag, getTagBySlug, getSharedTags } from '@/lib/blog-utils';
 import type { BlogPost } from '@/types/blog';
 
 describe('Tag utility functions - edge cases and performance', () => {
@@ -120,6 +120,22 @@ describe('Tag utility functions - edge cases and performance', () => {
       const nextNuxtTag = tagsWithCount.find((t) => t.name === 'Next/Nuxt');
       expect(nextNuxtTag).toBeDefined();
       expect(nextNuxtTag?.count).toBe(1);
+    });
+  });
+
+  describe('getSharedTags', () => {
+    const post = (id: string, ...names: string[]) => ({
+      id,
+      data: { tags: names.map((name) => ({ name, slug: name.toLowerCase() })) }
+    });
+
+    it('keeps tags used by two or more posts, most used first, then by name', () => {
+      const posts = [post('1', 'Zsh', 'Git', 'Cli'), post('2', 'Zsh', 'Cli'), post('3', 'Zsh', 'Docker', 'Git')];
+      expect(getSharedTags(posts).map((t) => [t.slug, t.count])).toEqual([
+        ['zsh', 3],
+        ['cli', 2],
+        ['git', 2]
+      ]);
     });
   });
 

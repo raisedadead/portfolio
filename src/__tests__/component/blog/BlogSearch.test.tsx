@@ -289,7 +289,7 @@ describe('BlogSearch Component', () => {
       const { container } = render(<BlogSearch posts={mockPosts} />);
 
       const wrapper = container.firstChild;
-      expect(wrapper).toHaveClass('relative', 'mb-12');
+      expect(wrapper).toHaveClass('relative', 'mb-4');
     });
 
     it('applies base styling to input', () => {

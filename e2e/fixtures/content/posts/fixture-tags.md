@@ -3,6 +3,9 @@ title: 'Fixture: tags'
 date: 2021-01-01
 tags:
   - testing
+  - typescript
+  - react
+  - javascript
 ---
 
 This article supplies a post beyond the first page of results.

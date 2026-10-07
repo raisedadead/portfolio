@@ -73,6 +73,25 @@ export function getTagsWithCount(posts: PostWithTags[]): TagWithCount[] {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
+interface SequencedPost {
+  data: { slug: string };
+}
+
+export function getAdjacentPosts<T extends SequencedPost>(
+  newestFirst: readonly T[],
+  slug: string
+): { newer?: T; older?: T } {
+  const index = newestFirst.findIndex((post) => post.data.slug === slug);
+  if (index === -1) return { newer: undefined, older: undefined };
+  return { newer: newestFirst[index - 1], older: newestFirst[index + 1] };
+}
+
+export function getSharedTags(posts: PostWithTags[]): TagWithCount[] {
+  return getTagsWithCount(posts)
+    .filter((tag) => tag.count > 1)
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+}
+
 /**
  * Filters blog posts by a specific tag slug
  * @param posts - Array of blog posts (works with BlogPost or LightweightPost)
