@@ -111,6 +111,8 @@ export default function BlogSearch({ posts }: Props) {
     setSearchQuery('');
   };
 
+  const showResults = isOpen && searchQuery.trim() !== '' && filteredPosts.length > 0;
+
   return (
     <div ref={searchRef} className='relative mb-4'>
       {/* Search Input */}
@@ -129,7 +131,8 @@ export default function BlogSearch({ posts }: Props) {
           onFocus={() => searchQuery.trim() && setIsOpen(true)}
           aria-label='Search blog posts by title, content, or tags'
           aria-autocomplete='list'
-          aria-controls='search-results'
+          aria-controls={showResults ? 'search-results' : undefined}
+          aria-activedescendant={showResults && selectedIndex >= 0 ? `search-result-${selectedIndex}` : undefined}
           className='w-full px-4 py-3 pl-12 text-gray-900 placeholder-gray-500'
         />
         <svg
@@ -149,13 +152,9 @@ export default function BlogSearch({ posts }: Props) {
 
       {/* Dropdown Results */}
       {isOpen && searchQuery.trim() && (
-        <div
-          id='search-results'
-          role='listbox'
-          className='absolute z-50 mt-2 w-full border-2 border-black bg-white shadow-brutal-md'
-        >
+        <div className='absolute z-50 mt-2 w-full border-2 border-black bg-white shadow-brutal-md'>
           {filteredPosts.length > 0 ? (
-            <ul className='max-h-96 overflow-y-auto'>
+            <div id='search-results' role='listbox' aria-label='Search results' className='max-h-96 overflow-y-auto'>
               {filteredPosts.map((post, index) => {
                 const isExternal = post.data.source === 'freecodecamp' && post.data.externalUrl;
                 const url = isExternal ? post.data.externalUrl : `/blog/${post.data.slug}`;
@@ -164,24 +163,24 @@ export default function BlogSearch({ posts }: Props) {
                   : { 'data-astro-prefetch': 'hover' as const };
 
                 return (
-                  <li
+                  <div
                     key={post.id}
-                    role='none'
                     className='border-b-2 border-gray-200 last:border-b-0'
                     onMouseEnter={() => setSelectedIndex(index)}
                   >
                     <a
                       href={url}
                       {...linkProps}
+                      id={`search-result-${index}`}
                       role='option'
                       aria-selected={index === selectedIndex}
-                      className={`block cursor-pointer p-4 no-underline transition-all duration-100 focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none ${
+                      className={`block cursor-pointer p-4 no-underline transition-all duration-100 focus-visible:outline-3 focus-visible:-outline-offset-4 focus-visible:outline-slate-800 ${
                         index === selectedIndex ? 'bg-orange-100' : 'hover:bg-orange-50'
                       }`}
                       onClick={handleResultClick}
                     >
                       <div className='mb-1 flex items-center gap-2'>
-                        <h3 className='font-bold text-gray-900'>{post.data.title}</h3>
+                        <span className='font-bold text-gray-900'>{post.data.title}</span>
                         {isExternal && (
                           <span className='flex-shrink-0 rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-800'>
                             freeCodeCamp
@@ -197,10 +196,10 @@ export default function BlogSearch({ posts }: Props) {
                         ))}
                       </div>
                     </a>
-                  </li>
+                  </div>
                 );
               })}
-            </ul>
+            </div>
           ) : (
             <div className='p-6 text-center text-gray-600'>No posts match your search</div>
           )}

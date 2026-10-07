@@ -11,10 +11,10 @@ export interface OutlineSection extends OutlineEntry {
 
 export type AnchoredBlock<T extends EmdashPortableBlock> = T & { anchorId?: string };
 
-const ANCHORED_STYLES = new Set(['h2', 'h3', 'h4']);
+const HEADING_STYLE = /^h([2-6])$/;
 
-const isHeading = (block: EmdashPortableBlock): boolean =>
-  block._type === 'block' && ANCHORED_STYLES.has(block.style ?? '');
+const headingLevel = (block: EmdashPortableBlock): number =>
+  block._type === 'block' ? Number(block.style?.match(HEADING_STYLE)?.[1] ?? 0) : 0;
 
 const headingText = (block: EmdashPortableBlock): string =>
   (block.children ?? [])
@@ -34,21 +34,25 @@ const slugify = (text: string): string =>
 export function anchorHeadings<T extends EmdashPortableBlock>(
   blocks: readonly T[]
 ): { content: AnchoredBlock<T>[]; outline: OutlineSection[] } {
-  const sectionStyle = blocks.some((block) => isHeading(block) && block.style === 'h2') ? 'h2' : 'h3';
-  const childStyle = sectionStyle === 'h2' ? 'h3' : 'h4';
+  const levels = blocks.map(headingLevel);
+  const present = levels.filter(Boolean);
+  const shift = present.length > 0 ? Math.min(...present) - 2 : 0;
   const used = new Set<string>();
   const outline: OutlineSection[] = [];
 
-  const content = blocks.map((block): AnchoredBlock<T> => {
-    if (!isHeading(block)) return block;
+  const content = blocks.map((block, index): AnchoredBlock<T> => {
+    if (!levels[index]) return block;
+    const level = levels[index] - shift;
+    const promoted = { ...block, style: `h${level}` };
+    if (level > 4) return promoted;
     const text = headingText(block);
     const base = slugify(text) || 'section';
     let id = base;
     for (let suffix = 2; used.has(id); suffix += 1) id = `${base}-${suffix}`;
     used.add(id);
-    if (block.style === sectionStyle) outline.push({ id, text, children: [] });
-    if (block.style === childStyle) outline.at(-1)?.children.push({ id, text });
-    return { ...block, anchorId: id };
+    if (level === 2) outline.push({ id, text, children: [] });
+    if (level === 3) outline.at(-1)?.children.push({ id, text });
+    return { ...promoted, anchorId: id };
   });
 
   return { content, outline };

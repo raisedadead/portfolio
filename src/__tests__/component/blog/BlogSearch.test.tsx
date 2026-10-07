@@ -251,6 +251,30 @@ describe('BlogSearch Component', () => {
       expect(input).toHaveAttribute('aria-autocomplete', 'list');
     });
 
+    it('points aria-controls at the listbox only while it is rendered', async () => {
+      render(<BlogSearch posts={mockPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      expect(input).not.toHaveAttribute('aria-controls');
+      fireEvent.change(input, { target: { value: 'TypeScript' } });
+
+      const listbox = await screen.findByRole('listbox');
+      expect(input).toHaveAttribute('aria-controls', listbox.id);
+      expect(listbox).toHaveAccessibleName('Search results');
+    });
+
+    it('exposes the highlighted option through aria-activedescendant', async () => {
+      render(<BlogSearch posts={mockPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      fireEvent.change(input, { target: { value: 'TypeScript' } });
+      await screen.findByRole('listbox');
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+
+      const [first] = screen.getAllByRole('option');
+      expect(input).toHaveAttribute('aria-activedescendant', first.id);
+    });
+
     it('search input has associated label', () => {
       render(<BlogSearch posts={mockPosts} />);
 
@@ -313,7 +337,7 @@ describe('BlogSearch Component', () => {
       fireEvent.change(input, { target: { value: 'TypeScript' } });
 
       await waitFor(() => {
-        const dropdown = screen.getByRole('listbox');
+        const dropdown = screen.getByRole('listbox').parentElement;
         expect(dropdown).toHaveClass('border-2', 'border-black', 'shadow-brutal-md');
       });
     });

@@ -39,6 +39,11 @@ describe('anchorHeadings', () => {
     ]);
   });
 
+  it('promotes heading levels so the top level renders as H2', () => {
+    const { content } = anchorHeadings([heading('h3', 'Intro'), paragraph, heading('h4', 'Detail')]);
+    expect(content.map((block) => block.style)).toEqual(['h2', 'normal', 'h3']);
+  });
+
   it('gives repeated headings unique ids', () => {
     const { outline } = anchorHeadings([heading('h2', 'Setup'), heading('h2', 'Setup')]);
     expect(outline.map((section) => section.id)).toEqual(['setup', 'setup-2']);

@@ -96,7 +96,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
               data-post-slug={isExternal ? undefined : post.data.slug}
               suppressHydrationWarning
               style={{ '--card-delay': entrance.delay } as React.CSSProperties}
-              className={`${entrance.className} ${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-brutal-md transition-all duration-100 hover:bg-orange-100 hover:shadow-brutal-lg focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:outline-none sm:col-span-2`}
+              className={`${entrance.className} ${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-brutal-md transition-all duration-100 hover:bg-orange-100 hover:shadow-brutal-lg brutalist-focus sm:col-span-2`}
             >
               <a href={postUrl} className='block no-underline' {...linkProps}>
                 {/* Cover Image */}

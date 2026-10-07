@@ -25,7 +25,7 @@ const currentYear = new Date().getFullYear();
 <BaseLayout {...baseProps} showHomeButton={showHomeButton}>
   <slot name='head' slot='head' />
   <div class='container'>
-    <div class='fixed inset-0 -z-10' transition:persist='background'>
+    <div class='fixed inset-0 -z-10' aria-hidden='true' transition:persist='background'>
       <Background client:idle />
     </div>
     <Container size='full' className='my-2 py-8'>
