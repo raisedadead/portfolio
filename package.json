@@ -86,7 +86,7 @@
     "lint-staged": "17.6.0",
     "marked": "18.0.14",
     "oxfmt": "^0.71.0",
-    "oxlint": "1.86.0",
+    "oxlint": "1.87.0",
     "portless": "0.15.6",
     "tailwindcss": "4.3.3",
     "turbo": "2.11.6",
