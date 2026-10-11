@@ -31,7 +31,8 @@ export const Profile: React.FC = () => {
         <img
           id='profile-image'
           alt='Mrugesh Mohapatra'
-          src='/images/logo.png'
+          src='/images/logo.webp'
+          fetchPriority='high'
           className='relative h-28 w-28 rounded-full border-2 border-orange-50 sm:h-36 sm:w-36 md:h-40 md:w-40'
           width={256}
           height={256}

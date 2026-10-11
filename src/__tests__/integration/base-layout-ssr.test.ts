@@ -50,10 +50,8 @@ describe('BaseLayout — SSR slot integrity', () => {
     expect(baseLayout).not.toMatch(/ErrorBoundary|ClientProviders/);
   });
 
-  it('hydrates ConsentBanner without client:only', () => {
-    // Astro dev loads the next page in a hidden iframe on every ClientRouter
-    // navigation when a client:only island exists, adding ~1.5s per click.
-    expect(baseLayout).toMatch(/<ConsentBanner\s+client:idle\s*\/>/);
+  it('renders ConsentBanner without a client hydration dependency', () => {
+    expect(baseLayout).toMatch(/<ConsentBanner\s*\/>/);
     expect(baseLayout).not.toMatch(/client:only/);
   });
 });
