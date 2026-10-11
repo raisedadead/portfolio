@@ -1,6 +1,6 @@
 ---
 import "@/styles/global.css";
-import ConsentBanner from "@/components/consent-banner";
+import ConsentBanner from "@/components/consent-banner.astro";
 import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 
@@ -119,7 +119,7 @@ const image = pageImage || defaultImage;
   </head>
   <body>
     <slot />
-    <ConsentBanner client:idle />
+    <ConsentBanner />
     <div id="page-curtain" aria-hidden="true" transition:persist="page-curtain">
       {Array.from({ length: 6 }, () => <span />)}
     </div>

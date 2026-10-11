@@ -1,0 +1,42 @@
+<div id="consent-banner" hidden class="fixed right-0 bottom-0 left-0 bg-gray-800 px-4 py-2 shadow-lg">
+  <div class="container mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between">
+    <p class="mb-2 text-sm text-white sm:mb-0 sm:text-base">
+      We use third-party services to improve how users interact with our website. Refer to our{' '}
+      <a href="/privacy" class="text-blue-300 underline transition-all duration-100 hover:text-blue-400">privacy policy</a>.
+      Do you accept this?
+    </p>
+    <div class="flex space-x-4">
+      <button
+        type="button"
+        data-consent="true"
+        class="transform rounded bg-blue-700 px-4 py-1 text-sm font-medium text-white transition-all duration-100 hover:scale-105 hover:bg-blue-800 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none"
+      >
+        Accept
+      </button>
+      <button
+        type="button"
+        data-consent="false"
+        class="transform rounded border-2 border-white px-4 py-1 text-sm font-medium text-white transition-all duration-100 hover:scale-105 hover:bg-white hover:text-gray-800 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+      >
+        Decline
+      </button>
+    </div>
+  </div>
+</div>
+<script is:inline>
+  {
+    const banner = document.getElementById('consent-banner');
+    if (banner) {
+      try {
+        const consent = localStorage.getItem('ga-consent');
+        banner.hidden = consent === 'true' || consent === 'false';
+      } catch {
+        banner.hidden = false;
+      }
+    }
+  }
+</script>
+<script>
+  import { installConsentBanner } from '@/lib/consent';
+  installConsentBanner();
+</script>

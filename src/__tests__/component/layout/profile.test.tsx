@@ -1,16 +1,6 @@
 import { Profile } from '@/components/layout/profile';
 import { render, screen } from '@testing-library/react';
-import type React from 'react';
-import { describe, expect, it, vi } from 'vitest';
-
-// Mock the CalButton component
-vi.mock('@/components/cal-embed', () => ({
-  default: ({ className, children }: { className?: string; children: React.ReactNode }) => (
-    <button type='button' className={className} data-testid='cal-button'>
-      {children}
-    </button>
-  )
-}));
+import { describe, expect, it } from 'vitest';
 
 describe('Profile Component', () => {
   it('renders the profile name', () => {
@@ -30,7 +20,8 @@ describe('Profile Component', () => {
     render(<Profile />);
 
     const profileImage = screen.getByAltText('Mrugesh Mohapatra');
-    expect(profileImage).toBeTruthy();
+    expect(profileImage).toHaveAttribute('src', '/images/logo.webp');
+    expect(profileImage).toHaveAttribute('fetchpriority', 'high');
     expect(profileImage).toHaveAttribute('width', '256');
     expect(profileImage).toHaveAttribute('height', '256');
   });
@@ -42,10 +33,10 @@ describe('Profile Component', () => {
     expect(screen.getByText('Blog')).toBeTruthy();
   });
 
-  it('passes className to CalButton component', () => {
+  it('renders the meeting button with the secondary button style', () => {
     render(<Profile />);
 
-    const calButton = screen.getByTestId('cal-button');
+    const calButton = screen.getByRole('button', { name: 'Schedule a meeting with me' });
     expect(calButton).toHaveClass('h-14', 'brutalist-button-secondary');
   });
 });
