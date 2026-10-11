@@ -38,6 +38,34 @@ test('decline prevents analytics across navigation and reload', async ({ page })
   expect(scriptRequests).toBe(0);
 });
 
+test('executes the pending analytics response after ClientRouter navigation', async ({ page }) => {
+  const responseGate = Promise.withResolvers<void>();
+  let scriptRequests = 0;
+  await page.route('https://www.googletagmanager.com/**', async (route) => {
+    scriptRequests++;
+    await responseGate.promise;
+    await route.fulfill({
+      contentType: 'application/javascript',
+      body: 'document.documentElement.dataset.gtmExecuted = "true";'
+    });
+  });
+  await page.goto('/');
+  const originalDocument = await page.evaluateHandle(() => document);
+  try {
+    await page.getByRole('button', { name: 'Accept', exact: true }).click();
+    await expect.poll(() => scriptRequests).toBe(1);
+    await page.getByRole('link', { name: /blog/i }).first().click();
+    await expect(page.getByRole('heading', { name: 'Blog', exact: true })).toBeVisible();
+    expect(await page.evaluate((previous) => previous === document, originalDocument)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.dataset.gtmExecuted)).toBeUndefined();
+  } finally {
+    responseGate.resolve();
+    await originalDocument.dispose();
+  }
+  await expect(page.locator('html')).toHaveAttribute('data-gtm-executed', 'true');
+  expect(scriptRequests).toBe(1);
+});
+
 test('consent initializes analytics once and preserves the choice across navigation', async ({ page }) => {
   const errors: string[] = [];
   let scriptRequests = 0;
