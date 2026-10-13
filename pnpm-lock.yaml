@@ -168,13 +168,13 @@ importers:
     dependencies:
       '@ascorbic/feed-loader':
         specifier: ^2.0.1
-        version: 2.0.1(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))
+        version: 2.0.1(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))
       '@astrojs/check':
         specifier: 0.9.10
         version: 0.9.10(prettier-plugin-astro@0.14.1)(prettier@3.8.1)(typescript@6.0.3)
       '@astrojs/cloudflare':
         specifier: 14.3.4
-        version: 14.3.4(@types/node@26.6.4)(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(esbuild@0.28.1)(jiti@2.7.0)(wrangler@4.148.0(@cloudflare/workers-types@5.20261008.1)(@types/node@26.6.4))(yaml@2.9.1)
+        version: 14.3.4(@types/node@26.6.4)(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(esbuild@0.28.1)(jiti@2.7.0)(wrangler@4.148.0(@cloudflare/workers-types@5.20261008.1)(@types/node@26.6.4))(yaml@2.9.1)
       '@astrojs/react':
         specifier: 7.0.1
         version: 7.0.1(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(yaml@2.9.1)
@@ -183,7 +183,7 @@ importers:
         version: 1.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@emdash-cms/cloudflare':
         specifier: ^1.1.0
-        version: 1.2.0(b8002b6814dd83834f1c2939085c05b3)
+        version: 1.2.0(14b668f6bed0d218b293ecdcd799d0e8)
       '@headlessui/react':
         specifier: 2.2.10
         version: 2.2.10(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -192,7 +192,7 @@ importers:
         version: 2.2.0(react@19.3.0)
       '@sentry/astro':
         specifier: 11.4.0
-        version: 11.4.0(@babel/core@7.29.0(supports-color@10.2.2))(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(rollup@4.52.3)
+        version: 11.4.0(@babel/core@7.29.0(supports-color@10.2.2))(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(rollup@4.52.3)
       '@sentry/cloudflare':
         specifier: 11.4.0
         version: 11.4.0(@cloudflare/workers-types@5.20261008.1)(wrangler@4.148.0(@cloudflare/workers-types@5.20261008.1)(@types/node@26.6.4))
@@ -203,14 +203,14 @@ importers:
         specifier: 4.3.3
         version: 4.3.3(vite@8.3.3(@types/node@26.6.4)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))
       astro:
-        specifier: 7.3.6
-        version: 7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)
+        specifier: 7.3.8
+        version: 7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
       clsx:
         specifier: 2.1.1
         version: 2.1.1
       emdash:
         specifier: ^1.1.0
-        version: 1.2.0(@astrojs/react@7.0.1(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(yaml@2.9.1))(@atcute/cbor@2.3.6(@atcute/cid@2.4.2))(@atcute/cid@2.4.2)(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@10.2.2)(typescript@6.0.3)
+        version: 1.2.0(@astrojs/react@7.0.1(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(yaml@2.9.1))(@atcute/cbor@2.3.6(@atcute/cid@2.4.2))(@atcute/cid@2.4.2)(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@10.2.2)(typescript@6.0.3)
       motion:
         specifier: 13.5.1
         version: 13.5.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -3452,8 +3452,8 @@ packages:
     peerDependencies:
       astro: '>=4.6.0'
 
-  astro@7.3.6:
-    resolution: {integrity: sha512-3q0MKxfE4cpr5IoQ9EWrN0gwxeT5tkCaSVe3SrGlLR5fnTIywHqjVqFokQkQiZexfwpNtB9dtBdUcXV9FuD+4w==}
+  astro@7.3.8:
+    resolution: {integrity: sha512-LHzDHSaV+YzZiR3EFndDYTLLeNeuMtP1qX1FLcCNUUHOCqTTIWPczy2UV3zpA5VqvJe5cWZolqM9Z8JFqR2i9w==}
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     peerDependencies:
@@ -3981,10 +3981,6 @@ packages:
 
   fontace@0.4.1:
     resolution: {integrity: sha512-lDMvbAzSnHmbYMTEld5qdtvNH2/pWpICOqpean9IgC7vUbUJc3k+k5Dokp85CegamqQpFbXf0rAVkbzpyTA8aw==}
-
-  fontkitten@1.0.2:
-    resolution: {integrity: sha512-piJxbLnkD9Xcyi7dWJRnqszEURixe7CrF/efBfbffe2DPyabmuIuqraruY8cXTs19QoM8VJzx47BDRVNXETM7Q==}
-    engines: {node: '>=20'}
 
   fontkitten@1.0.3:
     resolution: {integrity: sha512-Wp1zXWPVUPBmfoa3Cqc9ctaKuzKAV6uLstRqlR56kSjplf5uAce+qeyYym7F+PHbGTk+tCEdkCW6RD7DX/gBZw==}
@@ -4723,9 +4719,6 @@ packages:
   p-timeout@7.0.1:
     resolution: {integrity: sha512-AxTM2wDGORHGEkPCt8yqxOTMgpfbEHqF51f/5fJCmwFC3C/zNcGT63SymH2ttOAaiIws2zVg4+izQCjrakcwHg==}
     engines: {node: '>=20'}
-
-  package-manager-detector@1.6.0:
-    resolution: {integrity: sha512-61A5ThoTiDG/C8s8UMZwSorAGwMJ0ERVGj2OjoW5pAalsNOg15+iQiPzrLJ4jhZ1HJzmC2PIHT2oEiH3R5fzNA==}
 
   package-manager-detector@1.9.0:
     resolution: {integrity: sha512-zAMfbta9nPA8AKkA4WdmNAT8R8s6Dk0/xwPsqNnRidMFcLo1YkLuPDTgs2f64XdzS8vbLNnoJ+uUIkgbz7oRHA==}
@@ -5878,15 +5871,15 @@ snapshots:
       is-potential-custom-element-name: 1.0.1
       lru-cache: 11.5.3
 
-  '@ascorbic/feed-loader@2.0.1(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))':
+  '@ascorbic/feed-loader@2.0.1(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
-      '@ascorbic/loader-utils': 1.0.2(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))
+      '@ascorbic/loader-utils': 1.0.2(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))
       '@rowanmanning/feed-parser': 2.1.1
-      astro: 7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)
+      astro: 7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
 
-  '@ascorbic/loader-utils@1.0.2(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))':
+  '@ascorbic/loader-utils@1.0.2(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
-      astro: 7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)
+      astro: 7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
 
   '@astrojs/check@0.9.10(prettier-plugin-astro@0.14.1)(prettier@3.8.1)(typescript@6.0.3)':
     dependencies:
@@ -5899,12 +5892,12 @@ snapshots:
       - prettier
       - prettier-plugin-astro
 
-  '@astrojs/cloudflare@14.3.4(@types/node@26.6.4)(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(esbuild@0.28.1)(jiti@2.7.0)(wrangler@4.148.0(@cloudflare/workers-types@5.20261008.1)(@types/node@26.6.4))(yaml@2.9.1)':
+  '@astrojs/cloudflare@14.3.4(@types/node@26.6.4)(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(esbuild@0.28.1)(jiti@2.7.0)(wrangler@4.148.0(@cloudflare/workers-types@5.20261008.1)(@types/node@26.6.4))(yaml@2.9.1)':
     dependencies:
       '@astrojs/internal-helpers': 0.12.0
       '@astrojs/underscore-redirects': 1.0.4
       '@cloudflare/vite-plugin': 1.54.6(vite@8.3.3(@types/node@26.6.4)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(wrangler@4.148.0(@cloudflare/workers-types@5.20261008.1)(@types/node@26.6.4))
-      astro: 7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)
+      astro: 7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
       piccolore: 0.1.3
       vite: 8.3.3(@types/node@26.6.4)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
       wrangler: 4.148.0(@cloudflare/workers-types@5.20261008.1)(@types/node@26.6.4)
@@ -6057,7 +6050,7 @@ snapshots:
       ci-info: 4.4.0
       dset: 3.1.4
       is-docker: 4.0.0
-      package-manager-detector: 1.6.0
+      package-manager-detector: 1.9.0
 
   '@astrojs/underscore-redirects@1.0.4': {}
 
@@ -6656,12 +6649,12 @@ snapshots:
       - typescript
       - zod
 
-  '@emdash-cms/auth@1.2.0(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(kysely@0.29.5)':
+  '@emdash-cms/auth@1.2.0(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(kysely@0.29.5)':
     dependencies:
       '@oslojs/crypto': 1.0.1
       '@oslojs/encoding': 1.1.0
       '@oslojs/webauthn': 1.0.0
-      astro: 7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)
+      astro: 7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
       jose: 6.2.9
       ulidx: 2.4.1
       zod: 4.5.4
@@ -6684,13 +6677,13 @@ snapshots:
       - date-fns
       - zod
 
-  '@emdash-cms/cloudflare@1.2.0(b8002b6814dd83834f1c2939085c05b3)':
+  '@emdash-cms/cloudflare@1.2.0(14b668f6bed0d218b293ecdcd799d0e8)':
     dependencies:
-      '@astrojs/cloudflare': 14.3.4(@types/node@26.6.4)(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(esbuild@0.28.1)(jiti@2.7.0)(wrangler@4.148.0(@cloudflare/workers-types@5.20261008.1)(@types/node@26.6.4))(yaml@2.9.1)
+      '@astrojs/cloudflare': 14.3.4(@types/node@26.6.4)(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(esbuild@0.28.1)(jiti@2.7.0)(wrangler@4.148.0(@cloudflare/workers-types@5.20261008.1)(@types/node@26.6.4))(yaml@2.9.1)
       '@cloudflare/ai-search-snippet': 0.0.42
       '@cloudflare/workers-types': 5.20261008.1
-      astro: 7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)
-      emdash: 1.2.0(@astrojs/react@7.0.1(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(yaml@2.9.1))(@atcute/cbor@2.3.6(@atcute/cid@2.4.2))(@atcute/cid@2.4.2)(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@10.2.2)(typescript@6.0.3)
+      astro: 7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
+      emdash: 1.2.0(@astrojs/react@7.0.1(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(yaml@2.9.1))(@atcute/cbor@2.3.6(@atcute/cid@2.4.2))(@atcute/cid@2.4.2)(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@10.2.2)(typescript@6.0.3)
       jose: 6.2.9
       kysely: 0.29.5
       kysely-d1: 0.4.0(kysely@0.29.5)
@@ -7901,7 +7894,7 @@ snapshots:
       fast-xml-parser: 5.3.4
       html-entities: 2.6.0
 
-  '@sentry/astro@11.4.0(@babel/core@7.29.0(supports-color@10.2.2))(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(rollup@4.52.3)':
+  '@sentry/astro@11.4.0(@babel/core@7.29.0(supports-color@10.2.2))(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(rollup@4.52.3)':
     dependencies:
       '@sentry/browser': 11.4.0
       '@sentry/bundler-plugins': 11.4.0(@babel/core@7.29.0(supports-color@10.2.2))(rollup@4.52.3)
@@ -7910,7 +7903,7 @@ snapshots:
       '@sentry/node': 11.4.0(@babel/core@7.29.0(supports-color@10.2.2))(rollup@4.52.3)
       '@sentry/server-runtime-injection': 11.4.0
       '@sentry/server-utils': 11.4.0
-      astro: 7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)
+      astro: 7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
     transitivePeerDependencies:
       - '@babel/core'
       - rollup
@@ -8746,13 +8739,13 @@ snapshots:
       estree-walker: 3.0.3
       js-tokens: 10.0.0
 
-  astro-portabletext@0.11.4(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)):
+  astro-portabletext@0.11.4(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)):
     dependencies:
       '@portabletext/toolkit': 3.0.3
       '@portabletext/types': 2.0.15
-      astro: 7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)
+      astro: 7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
 
-  astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1):
+  astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1):
     dependencies:
       '@astrojs/compiler-rs': 0.5.1
       '@astrojs/internal-helpers': 0.12.0
@@ -8772,7 +8765,6 @@ snapshots:
       diff: 9.0.0
       dset: 3.1.4
       es-module-lexer: 3.0.3
-      esbuild: 0.28.1
       find-proc: 0.2.0
       flattie: 1.1.1
       fontace: 0.4.1
@@ -8828,6 +8820,7 @@ snapshots:
       - '@vitejs/devtools'
       - aws4fetch
       - db0
+      - esbuild
       - idb-keyval
       - ioredis
       - jiti
@@ -9144,7 +9137,7 @@ snapshots:
   electron-to-chromium@1.5.228:
     optional: true
 
-  emdash@1.2.0(@astrojs/react@7.0.1(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(yaml@2.9.1))(@atcute/cbor@2.3.6(@atcute/cid@2.4.2))(@atcute/cid@2.4.2)(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@10.2.2)(typescript@6.0.3):
+  emdash@1.2.0(@astrojs/react@7.0.1(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(yaml@2.9.1))(@atcute/cbor@2.3.6(@atcute/cid@2.4.2))(@atcute/cid@2.4.2)(@atcute/identity@2.0.2(@atcute/lexicons@2.0.3)(typescript@6.0.3))(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(date-fns@4.4.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@10.2.2)(typescript@6.0.3):
     dependencies:
       '@astrojs/react': 7.0.1(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(yaml@2.9.1)
       '@atcute/client': 5.1.1(@atcute/lexicons@2.0.3)(typescript@6.0.3)
@@ -9152,7 +9145,7 @@ snapshots:
       '@atcute/lexicons': 2.0.3
       '@atcute/multibase': 1.2.5
       '@emdash-cms/admin': 1.2.0(@atcute/cbor@2.3.6(@atcute/cid@2.4.2))(@atcute/cid@2.4.2)(@date-fns/tz@1.5.0)(@floating-ui/dom@1.8.0)(@tiptap/extensions@3.30.2(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(echarts@6.1.0)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(zod@4.5.4)
-      '@emdash-cms/auth': 1.2.0(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))(kysely@0.29.5)
+      '@emdash-cms/auth': 1.2.0(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))(kysely@0.29.5)
       '@emdash-cms/blocks': 1.2.0(@date-fns/tz@1.5.0)(@types/react@19.3.0)(date-fns@4.4.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zod@4.5.4)
       '@emdash-cms/gutenberg-to-portable-text': 1.2.0
       '@emdash-cms/plugin-types': 0.6.0
@@ -9184,8 +9177,8 @@ snapshots:
       '@tiptap/suggestion': 3.30.2(@floating-ui/dom@1.8.0)(@tiptap/core@3.30.2(@tiptap/pm@3.30.2))(@tiptap/pm@3.30.2)
       '@unpic/placeholder': 0.1.2
       arctic: 3.7.0
-      astro: 7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1)
-      astro-portabletext: 0.11.4(astro@7.3.6(@types/node@26.6.4)(aws4fetch@1.0.20)(jiti@2.7.0)(yaml@2.9.1))
+      astro: 7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1)
+      astro-portabletext: 0.11.4(astro@7.3.8(@types/node@26.6.4)(aws4fetch@1.0.20)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.1))
       blurhash: 2.0.5
       citty: 0.2.2
       consola: 3.4.2
@@ -9417,11 +9410,7 @@ snapshots:
 
   fontace@0.4.1:
     dependencies:
-      fontkitten: 1.0.2
-
-  fontkitten@1.0.2:
-    dependencies:
-      tiny-inflate: 1.0.3
+      fontkitten: 1.0.3
 
   fontkitten@1.0.3:
     dependencies:
@@ -10137,8 +10126,6 @@ snapshots:
       p-timeout: 7.0.1
 
   p-timeout@7.0.1: {}
-
-  package-manager-detector@1.6.0: {}
 
   package-manager-detector@1.9.0: {}
 
