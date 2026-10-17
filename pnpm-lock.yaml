@@ -291,8 +291,8 @@ importers:
         specifier: 17.6.0
         version: 17.6.0
       marked:
-        specifier: 18.0.14
-        version: 18.0.14
+        specifier: 18.1.1
+        version: 18.1.1
       oxfmt:
         specifier: ^0.71.0
         version: 0.71.0
@@ -4309,8 +4309,8 @@ packages:
     engines: {node: '>= 20'}
     hasBin: true
 
-  marked@18.0.14:
-    resolution: {integrity: sha512-mBHK6FBHuBAlhgRe88w9F0O1AbwwXJUcQibUbC/QcdTbVGAD7aWza+xt3N6oT/jCZx3/OMeS+8rnuiHZcQ9s7A==}
+  marked@18.1.1:
+    resolution: {integrity: sha512-zEGgrtUG8crk+TrMacJSVABU4DYDDkS8uqgU3ohrn/2fW9C2AEfUrO3m6IhpIpQpl7YcVpiXXC9cSMWDANT3dg==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -9599,7 +9599,7 @@ snapshots:
 
   marked@17.0.6: {}
 
-  marked@18.0.14: {}
+  marked@18.1.1: {}
 
   math-intrinsics@1.1.0: {}
 
