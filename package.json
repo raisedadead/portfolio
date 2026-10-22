@@ -87,7 +87,7 @@
     "marked": "18.1.1",
     "oxfmt": "^0.71.0",
     "oxlint": "1.88.0",
-    "portless": "0.15.6",
+    "portless": "0.15.8",
     "tailwindcss": "4.3.3",
     "turbo": "2.11.8",
     "typescript": "6.0.3",
