@@ -2,7 +2,7 @@ import { execSync } from 'node:child_process';
 import { defineConfig, devices } from '@playwright/test';
 
 const e2eServer =
-  'node scripts/prepare-e2e-state.mjs && exec wrangler dev --config dist/server/wrangler.json --persist-to .wrangler/e2e --port';
+  'node scripts/prepare-e2e-state.mjs && PORTFOLIO_E2E_STATE_DIR=.wrangler/e2e exec astro preview --ignore-lock --port';
 
 const isCI = !!process.env.CI;
 

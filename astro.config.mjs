@@ -2,6 +2,7 @@ import react from '@astrojs/react';
 import { defineConfig, envField, fontProviders } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
+import { voidPlugin } from 'void';
 
 import tailwindcss from '@tailwindcss/vite';
 // eslint-disable-next-line import/default -- False positive: @sentry/astro exports default via conditional exports
@@ -26,6 +27,7 @@ export default defineConfig({
   },
 
   adapter: cloudflare({
+    configPath: './.void-wrangler.jsonc',
     imageService: 'compile',
     persistState: process.env.PORTFOLIO_E2E_STATE_DIR ? { path: process.env.PORTFOLIO_E2E_STATE_DIR } : undefined
   }),
@@ -78,7 +80,7 @@ export default defineConfig({
       __SENTRY_DEBUG__: false
     },
 
-    plugins: [tailwindcss()]
+    plugins: [voidPlugin(), tailwindcss()]
   },
 
   build: {

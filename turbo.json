@@ -6,13 +6,8 @@
     "signature": true
   },
   "tasks": {
-    "cf-typegen": {
-      "inputs": ["wrangler.jsonc", "package.json"],
-      "outputs": ["worker-configuration.d.ts"],
-      "cache": true
-    },
     "do:build": {
-      "dependsOn": ["^do:build", "cf-typegen"],
+      "dependsOn": ["^do:build"],
       "outputs": ["dist/**", ".astro/**"],
       "env": [
         "NODE_ENV",
@@ -55,14 +50,12 @@
       "inputs": ["src/**", "e2e/**", ".github/**/*.{js,ts,mjs}", ".oxlintrc.json", "package.json"]
     },
     "do:check": {
-      "dependsOn": ["cf-typegen"],
       "outputs": [],
       "cache": true
     },
     "do:develop": {
       "cache": false,
-      "persistent": true,
-      "dependsOn": ["cf-typegen"]
+      "persistent": true
     },
     "do:preview": {
       "cache": false,

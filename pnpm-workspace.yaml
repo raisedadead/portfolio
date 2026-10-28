@@ -37,6 +37,3 @@ minimumReleaseAgeExclude:
   - turbo@2.10.8
   - wrangler@4.118.0
 trustLockfile: true
-# pnpm 11 default re-installs on `pnpm run`; recurses infinitely via
-# postinstall -> turbo -> pnpm run cf-typegen (CI OOM/SIGTERM)
-verifyDepsBeforeRun: false

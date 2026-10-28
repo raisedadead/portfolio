@@ -5,7 +5,6 @@ node_modules/
 # dotenv environment variable files
 .env
 .env.*
-!.env.example
 
 # VSCode
 .vscode/
@@ -20,10 +19,8 @@ dist/
 
 # Wrangler
 .wrangler/
-worker-configuration.d.ts
 tsconfig.tsbuildinfo
 .dev.vars
-!.dev.vars.example
 .playwright-mcp/
 
 # Turborepo
@@ -44,3 +41,7 @@ playwright/.cache/
 
 # Vitest reports
 .vitest/
+
+# Void
+.void/
+.void-wrangler.jsonc

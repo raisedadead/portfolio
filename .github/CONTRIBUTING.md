@@ -21,6 +21,12 @@ pnpm build
 pnpm preview
 ```
 
+#### Local configuration
+
+- Edit `void.config.ts` for Worker settings and bindings. Void generates `.void-wrangler.jsonc`; do not edit it.
+- Copy `env.example` to `.env` for local values. Void reads only `.env`; it rejects `.dev.vars` and `.env.example`.
+- Local D1, R2 and KV bindings use local data, not production data.
+
 #### Found something broken?
 
 Create an issue on the tracker [here](https://github.com/raisedadead/raisedadead/issues/new).

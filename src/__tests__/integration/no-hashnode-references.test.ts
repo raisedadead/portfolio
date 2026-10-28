@@ -7,7 +7,7 @@
  * test prevents regressions from sneaking it back in.
  *
  * Scope: walks `src/`, `astro.config.mjs`, root `*.md` config files,
- * and `wrangler.jsonc`. Excludes:
+ * and `void.config.ts`. Excludes:
  *   - `src/__tests__/**` (test files may negate-match the string as
  *     part of their assertions, including this very file)
  *   - `.scratchpad/` (gitignored dossier theatre)
@@ -23,7 +23,7 @@ const repoRoot = process.cwd();
 const SCAN_TARGETS = [
   path.join(repoRoot, 'src'),
   path.join(repoRoot, 'astro.config.mjs'),
-  path.join(repoRoot, 'wrangler.jsonc'),
+  path.join(repoRoot, 'void.config.ts'),
   path.join(repoRoot, 'CLAUDE.md'),
   path.join(repoRoot, 'README.md')
 ] as const;

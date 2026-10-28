@@ -107,6 +107,10 @@ describe('Void configuration — existing Worker identity', () => {
     expect(config.compatibility_flags).toContain('nodejs_compat');
   });
 
+  it('adds the AsyncLocalStorage flag that void needs', () => {
+    expect(config.compatibility_flags).toContain('nodejs_als');
+  });
+
   it('has no competing root Wrangler configuration', () => {
     expect(
       ['wrangler.jsonc', 'wrangler.json', 'wrangler.toml'].some((file) => existsSync(path.join(repoRoot, file)))
