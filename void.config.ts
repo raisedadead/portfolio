@@ -11,6 +11,9 @@ export default defineConfig({
     compatibility_flags: ['nodejs_compat'],
     preview_urls: true,
     workers_dev: false,
+    // When the active version is the newest, void uploads with cf, which keeps
+    // only these binding types from that version.
+    unsafe: { metadata: { keep_bindings: ['secret_text', 'secret_key', 'plain_text', 'json'] } },
     dev: {
       port: 8787
     },

@@ -9,6 +9,11 @@
     "compatibility_flags": ["nodejs_compat"],
     "preview_urls": true,
     "workers_dev": false,
+    "unsafe": {
+      "metadata": {
+        "keep_bindings": ["secret_text", "secret_key", "plain_text", "json"]
+      }
+    },
     "dev": {
       "port": 8787
     },
@@ -65,6 +70,11 @@
     "compatibility_flags": ["nodejs_compat", "nodejs_als"],
     "preview_urls": true,
     "workers_dev": false,
+    "unsafe": {
+      "metadata": {
+        "keep_bindings": ["secret_text", "secret_key", "plain_text", "json"]
+      }
+    },
     "dev": {
       "port": 8787
     },
@@ -110,7 +120,8 @@
       "traces": {
         "enabled": true
       }
-    }
+    },
+    "keep_vars": true
   },
-  "text": "{\n  \"$schema\": \"node_modules/wrangler/config-schema.json\",\n  \"name\": \"portfolio\",\n  \"account_id\": \"dee584c21793767c25eee4cebc062726\",\n  \"main\": \"@astrojs/cloudflare/entrypoints/server\",\n  \"compatibility_date\": \"2026-02-24\",\n  \"compatibility_flags\": [\n    \"nodejs_compat\",\n    \"nodejs_als\"\n  ],\n  \"preview_urls\": true,\n  \"workers_dev\": false,\n  \"dev\": {\n    \"port\": 8787\n  },\n  \"routes\": [\n    {\n      \"pattern\": \"mrugesh.dev\",\n      \"custom_domain\": true\n    }\n  ],\n  \"assets\": {\n    \"binding\": \"ASSETS\",\n    \"directory\": \"./dist\",\n    \"run_worker_first\": [\n      \"/api/*\",\n      \"/_emdash/*\"\n    ]\n  },\n  \"vars\": {\n    \"PUBLIC_SENTRY_DSN\": \"https://e8c88c11abffd1e5b5c581de57321642@o4507798912958464.ingest.us.sentry.io/4510267624128512\",\n    \"PUBLIC_SENTRY_ENVIRONMENT\": \"production\"\n  },\n  \"kv_namespaces\": [\n    {\n      \"binding\": \"SESSION\",\n      \"id\": \"2e04f6b05af0486f9de09797027d5fc0\"\n    }\n  ],\n  \"r2_buckets\": [\n    {\n      \"binding\": \"MEDIA\",\n      \"bucket_name\": \"emdash-media\"\n    }\n  ],\n  \"d1_databases\": [\n    {\n      \"binding\": \"DB\",\n      \"database_name\": \"emdash-db\",\n      \"database_id\": \"c9986d13-d392-4839-bbb1-014afc131260\"\n    }\n  ],\n  \"observability\": {\n    \"logs\": {\n      \"enabled\": true,\n      \"invocation_logs\": true\n    },\n    \"traces\": {\n      \"enabled\": true\n    }\n  }\n}\n"
+  "text": "{\n  \"$schema\": \"node_modules/wrangler/config-schema.json\",\n  \"name\": \"portfolio\",\n  \"account_id\": \"dee584c21793767c25eee4cebc062726\",\n  \"main\": \"@astrojs/cloudflare/entrypoints/server\",\n  \"compatibility_date\": \"2026-02-24\",\n  \"compatibility_flags\": [\n    \"nodejs_compat\",\n    \"nodejs_als\"\n  ],\n  \"preview_urls\": true,\n  \"workers_dev\": false,\n  \"unsafe\": {\n    \"metadata\": {\n      \"keep_bindings\": [\n        \"secret_text\",\n        \"secret_key\",\n        \"plain_text\",\n        \"json\"\n      ]\n    }\n  },\n  \"dev\": {\n    \"port\": 8787\n  },\n  \"routes\": [\n    {\n      \"pattern\": \"mrugesh.dev\",\n      \"custom_domain\": true\n    }\n  ],\n  \"assets\": {\n    \"binding\": \"ASSETS\",\n    \"directory\": \"./dist\",\n    \"run_worker_first\": [\n      \"/api/*\",\n      \"/_emdash/*\"\n    ]\n  },\n  \"vars\": {\n    \"PUBLIC_SENTRY_DSN\": \"https://e8c88c11abffd1e5b5c581de57321642@o4507798912958464.ingest.us.sentry.io/4510267624128512\",\n    \"PUBLIC_SENTRY_ENVIRONMENT\": \"production\"\n  },\n  \"kv_namespaces\": [\n    {\n      \"binding\": \"SESSION\",\n      \"id\": \"2e04f6b05af0486f9de09797027d5fc0\"\n    }\n  ],\n  \"r2_buckets\": [\n    {\n      \"binding\": \"MEDIA\",\n      \"bucket_name\": \"emdash-media\"\n    }\n  ],\n  \"d1_databases\": [\n    {\n      \"binding\": \"DB\",\n      \"database_name\": \"emdash-db\",\n      \"database_id\": \"c9986d13-d392-4839-bbb1-014afc131260\"\n    }\n  ],\n  \"observability\": {\n    \"logs\": {\n      \"enabled\": true,\n      \"invocation_logs\": true\n    },\n    \"traces\": {\n      \"enabled\": true\n    }\n  },\n  \"keep_vars\": true\n}\n"
 }

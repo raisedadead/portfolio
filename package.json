@@ -27,7 +27,7 @@
     "do:develop": "astro dev",
     "do:build": "astro build",
     "do:preview": "node scripts/snapshot-preview-state.mjs && PORTFOLIO_E2E_STATE_DIR=.wrangler/preview astro preview --ignore-lock",
-    "do:deploy": "wrangler deploy --config dist/server/wrangler.json",
+    "do:deploy": "void deploy --platform cloudflare",
     "do:versions:upload": "wrangler versions upload --config dist/server/wrangler.json",
     "do:lint": "oxlint .",
     "do:lint:fix": "oxlint . --fix",

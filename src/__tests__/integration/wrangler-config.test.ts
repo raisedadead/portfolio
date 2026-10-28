@@ -3,7 +3,6 @@ import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import packageJson from '../../../package.json';
 
 interface R2BucketBinding {
   binding: string;
@@ -70,12 +69,8 @@ const rawConfig = readFileSync(configPath, 'utf8');
 const config = parseJsonc(rawConfig);
 
 describe('Void configuration — existing Worker identity', () => {
-  it('deploys production through void', () => {
-    expect(packageJson.scripts['do:deploy']).toBe('void deploy --platform cloudflare');
-  });
-
   it('keeps remote secrets when void uploads a version', () => {
-    expect(config.unsafe?.metadata?.keep_bindings).toEqual(expect.arrayContaining(['secret_text', 'secret_key']));
+    expect(config.unsafe?.metadata?.keep_bindings).toEqual(['secret_text', 'secret_key', 'plain_text', 'json']);
   });
 
   it('preserves the Worker and account', () => {

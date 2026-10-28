@@ -17,7 +17,7 @@ My personal website built with [Astro](https://astro.build) and React, deployed 
 - **Testing**: [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/react), with [Playwright](https://playwright.dev) for end-to-end
 - **Tooling**: [Turborepo](https://turbo.build) with [oxlint and oxfmt](https://oxc.rs)
 - **Monitoring**: [Sentry](https://sentry.io)
-- **Deployment**: [Cloudflare Workers](https://workers.cloudflare.com) via [Wrangler](https://developers.cloudflare.com/workers/wrangler/)
+- **Deployment**: [Cloudflare Workers](https://workers.cloudflare.com) via [Void](https://void.cloud/guide) (production) and [Wrangler](https://developers.cloudflare.com/workers/wrangler/) (branch versions)
 - **Package Manager**: [pnpm](https://pnpm.io)
 
 ## Link
