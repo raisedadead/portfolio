@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
+import packageJson from '../../../package.json';
 
 interface R2BucketBinding {
   binding: string;
@@ -32,6 +33,7 @@ interface WranglerConfig {
   routes?: { pattern: string; custom_domain: boolean }[];
   workers_dev?: boolean;
   preview_urls?: boolean;
+  unsafe?: { metadata?: { keep_bindings?: string[] } };
   r2_buckets?: R2BucketBinding[];
   kv_namespaces?: KvBinding[];
   d1_databases?: D1Binding[];
@@ -68,6 +70,14 @@ const rawConfig = readFileSync(configPath, 'utf8');
 const config = parseJsonc(rawConfig);
 
 describe('Void configuration — existing Worker identity', () => {
+  it('deploys production through void', () => {
+    expect(packageJson.scripts['do:deploy']).toBe('void deploy --platform cloudflare');
+  });
+
+  it('keeps remote secrets when void uploads a version', () => {
+    expect(config.unsafe?.metadata?.keep_bindings).toEqual(expect.arrayContaining(['secret_text', 'secret_key']));
+  });
+
   it('preserves the Worker and account', () => {
     expect({ name: config.name, account_id: config.account_id }).toEqual({
       name: 'portfolio',
