@@ -1,4 +1,5 @@
-import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -13,16 +14,24 @@ interface R2BucketBinding {
 interface KvBinding {
   binding: string;
   id: string;
+  remote?: boolean;
 }
 
 interface D1Binding {
   binding: string;
   database_name: string;
   database_id: string;
+  remote?: boolean;
 }
 
 interface WranglerConfig {
+  name?: string;
+  account_id?: string;
   compatibility_date?: string;
+  compatibility_flags?: string[];
+  routes?: { pattern: string; custom_domain: boolean }[];
+  workers_dev?: boolean;
+  preview_urls?: boolean;
   r2_buckets?: R2BucketBinding[];
   kv_namespaces?: KvBinding[];
   d1_databases?: D1Binding[];
@@ -49,11 +58,63 @@ function parseJsonc(raw: string): WranglerConfig {
   return JSON.parse(noTrailingCommas) as WranglerConfig;
 }
 
-const configPath = path.join(repoRoot, 'wrangler.jsonc');
+execFileSync(process.execPath, ['--input-type=module', '--eval', "import { voidPlugin } from 'void'; voidPlugin();"], {
+  cwd: repoRoot,
+  timeout: 30_000,
+  stdio: 'pipe'
+});
+const configPath = path.join(repoRoot, '.void-wrangler.jsonc');
 const rawConfig = readFileSync(configPath, 'utf8');
 const config = parseJsonc(rawConfig);
 
-describe('wrangler.jsonc — EmDash stateful bindings', () => {
+describe('Void configuration — existing Worker identity', () => {
+  it('preserves the Worker and account', () => {
+    expect({ name: config.name, account_id: config.account_id }).toEqual({
+      name: 'portfolio',
+      account_id: 'dee584c21793767c25eee4cebc062726'
+    });
+  });
+
+  it('preserves the custom domain and URL visibility', () => {
+    expect({ routes: config.routes, workers_dev: config.workers_dev, preview_urls: config.preview_urls }).toEqual({
+      routes: [{ pattern: 'mrugesh.dev', custom_domain: true }],
+      workers_dev: false,
+      preview_urls: true
+    });
+  });
+
+  it('preserves the existing D1 database identity', () => {
+    expect(config.d1_databases?.[0]).toMatchObject({
+      binding: 'DB',
+      database_name: 'emdash-db',
+      database_id: 'c9986d13-d392-4839-bbb1-014afc131260'
+    });
+  });
+
+  it('preserves the existing session namespace identity', () => {
+    expect(config.kv_namespaces?.[0]).toMatchObject({
+      binding: 'SESSION',
+      id: '2e04f6b05af0486f9de09797027d5fc0'
+    });
+  });
+
+  it('keeps all stateful resources local in development', () => {
+    const bindings = [...(config.d1_databases ?? []), ...(config.r2_buckets ?? []), ...(config.kv_namespaces ?? [])];
+    expect(bindings.some((binding) => binding.remote)).toBe(false);
+  });
+
+  it('retains Node compatibility for Astro and EmDash', () => {
+    expect(config.compatibility_flags).toContain('nodejs_compat');
+  });
+
+  it('has no competing root Wrangler configuration', () => {
+    expect(
+      ['wrangler.jsonc', 'wrangler.json', 'wrangler.toml'].some((file) => existsSync(path.join(repoRoot, file)))
+    ).toBe(false);
+  });
+});
+
+describe('Void configuration — EmDash stateful bindings', () => {
   it('declares only the MEDIA R2 binding (ARTICLES retired with the R2 markdown pipeline)', () => {
     expect(config.r2_buckets?.map((b) => b.binding)).toEqual(['MEDIA']);
     expect(config.r2_buckets?.[0]?.bucket_name).toBe('emdash-media');
@@ -73,7 +134,7 @@ describe('wrangler.jsonc — EmDash stateful bindings', () => {
   });
 });
 
-describe('wrangler.jsonc — legacy CMS surface stays purged, EmDash session store present', () => {
+describe('Void configuration — legacy CMS surface stays purged, EmDash session store present', () => {
   it('declares exactly the SESSION KV namespace with a real id (EmDash admin auth lives in Astro sessions)', () => {
     const kv = config.kv_namespaces ?? [];
     expect(kv.map((n) => n.binding)).toEqual(['SESSION']);
@@ -99,8 +160,12 @@ describe('wrangler.jsonc — legacy CMS surface stays purged, EmDash session sto
 describe('astro.config.mjs — sessions real, EmDash wired', () => {
   const astroConfig = readFileSync(path.join(repoRoot, 'astro.config.mjs'), 'utf8');
 
-  it('does NOT null-driver Astro sessions (EmDash admin auth breaks silently without a real session store; SESSION KV in wrangler.jsonc satisfies deploy error 10210 from withastro/astro#15802)', () => {
+  it('does NOT null-driver Astro sessions (EmDash admin auth breaks silently without a real session store; SESSION KV satisfies deploy error 10210 from withastro/astro#15802)', () => {
     expect(astroConfig).not.toMatch(/unstorage\/drivers\/null/);
+  });
+
+  it('adds Void without replacing the Astro adapter', () => {
+    expect(astroConfig).toMatch(/plugins:\s*\[voidPlugin\(\),\s*tailwindcss\(\)\]/);
   });
 
   it('registers emdash with D1 database and R2 MEDIA storage', () => {
@@ -114,8 +179,8 @@ describe('astro.config.mjs — sessions real, EmDash wired', () => {
   });
 });
 
-describe('.env.example — single-source schema', () => {
-  const envExample = readFileSync(path.join(repoRoot, '.env.example'), 'utf8');
+describe('env.example — local environment template', () => {
+  const envExample = readFileSync(path.join(repoRoot, 'env.example'), 'utf8');
 
   it.each(['R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_ENDPOINT', 'R2_BUCKET_NAME'])(
     'does NOT list retired R2 loader key %s (content now lives in EmDash D1/R2 bindings)',
@@ -135,7 +200,7 @@ describe('.env.example — single-source schema', () => {
     }
   );
 
-  it('.dev.vars.example is gone (single source = .env.example)', () => {
-    expect(() => readFileSync(path.join(repoRoot, '.dev.vars.example'))).toThrow();
+  it.each(['.env.example', '.dev.vars.example'])('does not keep the unsupported dotenv file %s', (file) => {
+    expect(existsSync(path.join(repoRoot, file))).toBe(false);
   });
 });
