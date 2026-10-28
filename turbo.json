@@ -8,7 +8,7 @@
   "tasks": {
     "do:build": {
       "dependsOn": ["^do:build"],
-      "outputs": ["dist/**", ".astro/**"],
+      "outputs": ["dist/**", ".astro/**", ".void/preview-deploy-config.json"],
       "env": [
         "NODE_ENV",
         "CI",
