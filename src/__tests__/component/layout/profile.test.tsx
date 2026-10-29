@@ -29,7 +29,7 @@ describe('Profile Component', () => {
   it('renders call-to-action buttons', () => {
     render(<Profile />);
 
-    expect(screen.getByText('Meet me!')).toBeTruthy();
+    expect(screen.getByText('Book 1:1 Meeting')).toBeTruthy();
     expect(screen.getByText('Blog')).toBeTruthy();
   });
 

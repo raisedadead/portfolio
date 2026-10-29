@@ -88,7 +88,7 @@ export const Profile: React.FC = () => {
           aria-label='Schedule a meeting with me'
           className={`${secondaryButtonClasses} w-full sm:w-auto sm:flex-1`}
         >
-          Meet me!
+          Book 1:1 Meeting
         </CalButton>
         <Link
           aria-label='Browse my blog'
