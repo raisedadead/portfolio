@@ -103,41 +103,31 @@ export default defineConfig({
 
   fonts: [
     {
-      provider: fontProviders.local(),
-      fallbacks: [],
+      provider: fontProviders.fontsource(),
       name: 'Inter',
       cssVariable: '--font-inter',
-      options: {
-        variants: [
-          { weight: 400, style: 'normal', src: ['./src/assets/fonts/inter/inter-400.woff2'] },
-          { weight: 600, style: 'normal', src: ['./src/assets/fonts/inter/inter-600.woff2'] },
-          { weight: 700, style: 'normal', src: ['./src/assets/fonts/inter/inter-700.woff2'] }
-        ]
-      }
+      weights: ['100 900'],
+      styles: ['normal'],
+      subsets: ['latin', 'latin-ext'],
+      fallbacks: []
     },
     {
-      provider: fontProviders.local(),
-      fallbacks: [],
+      provider: fontProviders.fontsource(),
       name: 'Space Grotesk',
       cssVariable: '--font-space-grotesk',
-      options: {
-        variants: [
-          { weight: 400, style: 'normal', src: ['./src/assets/fonts/space-grotesk/space-grotesk-400.woff2'] },
-          { weight: 600, style: 'normal', src: ['./src/assets/fonts/space-grotesk/space-grotesk-600.woff2'] },
-          { weight: 700, style: 'normal', src: ['./src/assets/fonts/space-grotesk/space-grotesk-700.woff2'] }
-        ]
-      }
+      weights: ['300 700'],
+      styles: ['normal'],
+      subsets: ['latin', 'latin-ext'],
+      fallbacks: []
     },
     {
-      provider: fontProviders.local(),
-      fallbacks: [],
+      provider: fontProviders.fontsource(),
       name: 'JetBrains Mono',
       cssVariable: '--font-jetbrains-mono',
-      options: {
-        variants: [
-          { weight: 400, style: 'normal', src: ['./src/assets/fonts/jetbrains-mono/jetbrains-mono-400.woff2'] }
-        ]
-      }
+      weights: ['100 800'],
+      styles: ['normal', 'italic'],
+      subsets: ['latin', 'latin-ext'],
+      fallbacks: []
     }
   ]
 });

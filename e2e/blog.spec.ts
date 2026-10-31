@@ -244,10 +244,7 @@ test.describe('Console Errors', () => {
     const criticalErrors = errors
       .filter((error) => !isTelemetryHost(error.url))
       .map((error) => error.text)
-      .filter(
-        (text) =>
-          !text.includes('favicon') && !text.includes('Sentry') && !text.includes('Failed to decode downloaded font')
-      );
+      .filter((text) => !text.includes('favicon') && !text.includes('Sentry'));
 
     expect(criticalErrors).toHaveLength(0);
   });
