@@ -98,12 +98,12 @@ const image = pageImage || defaultImage;
     <link rel="icon" type="image/png" href="/favicon.ico" />
 
     <!--
-      Astro Fonts API: emits @font-face for each variant declared in
-      `fonts: [...]` in astro.config.mjs and preloads the critical
-      weights via the filtered <link rel="preload"> output below.
+      Astro Fonts API: each <Font> emits the @font-face rules for its
+      family from `fonts: [...]` in astro.config.mjs. Only the Latin
+      files of the two text fonts are preloaded.
     -->
-    <Font cssVariable="--font-inter" preload />
-    <Font cssVariable="--font-space-grotesk" preload />
+    <Font cssVariable="--font-inter" preload={[{ subset: "latin" }]} />
+    <Font cssVariable="--font-space-grotesk" preload={[{ subset: "latin" }]} />
     <Font cssVariable="--font-jetbrains-mono" />
 
     <!-- Theme Color -->
