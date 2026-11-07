@@ -29,6 +29,7 @@ export default defineConfig({
       '**/.scratchpad/**',
       '**/dist/**',
       '**/.astro/**',
+      '**/.cloudflare/**',
       '**/coverage/**',
       '**/e2e/**'
     ]

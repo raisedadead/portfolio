@@ -17,7 +17,8 @@ dist/
 .cursor/
 .claude/
 
-# Wrangler
+# Cloudflare
+.cloudflare/
 .wrangler/
 tsconfig.tsbuildinfo
 .dev.vars
@@ -41,7 +42,3 @@ playwright/.cache/
 
 # Vitest reports
 .vitest/
-
-# Void
-.void/
-.void-wrangler.jsonc

@@ -23,9 +23,10 @@ pnpm preview
 
 #### Local configuration
 
-- Edit `void.config.ts` for Worker settings and bindings. Void generates `.void-wrangler.jsonc`; do not edit it.
-- Copy `env.example` to `.env` for local values. Void reads only `.env`; it rejects `.dev.vars` and `.env.example`.
-- Local D1, R2 and KV bindings use local data, not production data.
+- Edit `cloudflare.config.ts` for Worker settings and bindings. The Cloudflare CLI and Astro adapter use pinned beta releases.
+- Copy `env.example` to `.env` for local values. Keep secret values out of `cloudflare.config.ts`.
+- Local D1, R2 and KV bindings use local data, not production data. Development retains `.wrangler/state`; preview and end-to-end tests use separate state directories.
+- `pnpm build` creates `.cloudflare/output`. `pnpm deploy` builds and deploys it. `pnpm versions:upload` builds and uploads a version without activating it.
 
 #### Found something broken?
 
