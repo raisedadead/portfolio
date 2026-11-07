@@ -2,7 +2,6 @@ import react from '@astrojs/react';
 import { defineConfig, envField, fontProviders } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
-import { voidPlugin } from 'void';
 
 import tailwindcss from '@tailwindcss/vite';
 // eslint-disable-next-line import/default -- False positive: @sentry/astro exports default via conditional exports
@@ -18,6 +17,8 @@ export default defineConfig({
 
   prefetch: true,
 
+  server: { port: 8787 },
+
   env: {
     schema: {
       PUBLIC_SENTRY_DSN: envField.string({ context: 'client', access: 'public', optional: true, url: true }),
@@ -27,9 +28,8 @@ export default defineConfig({
   },
 
   adapter: cloudflare({
-    configPath: './.void-wrangler.jsonc',
     imageService: 'compile',
-    persistState: process.env.PORTFOLIO_E2E_STATE_DIR ? { path: process.env.PORTFOLIO_E2E_STATE_DIR } : undefined
+    persistState: { path: process.env.PORTFOLIO_E2E_STATE_DIR ?? '.wrangler/state' }
   }),
 
   integrations: [
@@ -80,7 +80,7 @@ export default defineConfig({
       __SENTRY_DEBUG__: false
     },
 
-    plugins: [voidPlugin(), tailwindcss()]
+    plugins: [tailwindcss()]
   },
 
   build: {

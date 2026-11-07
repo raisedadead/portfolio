@@ -20,6 +20,6 @@
     },
     "types": ["astro/client", "vite/client"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.astro", ".astro/types.d.ts"],
-  "exclude": ["node_modules", ".next", "dist"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.astro", ".astro/types.d.ts", ".cloudflare/types/**/*.d.ts"],
+  "exclude": ["node_modules", ".next", "dist", ".cloudflare/output", ".cloudflare/state"]
 }
