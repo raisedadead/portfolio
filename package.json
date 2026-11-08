@@ -41,7 +41,7 @@
   "dependencies": {
     "@ascorbic/feed-loader": "^2.0.1",
     "@astrojs/check": "0.9.12",
-    "@astrojs/cloudflare": "14.4.3",
+    "@astrojs/cloudflare": "14.4.4",
     "@astrojs/react": "7.1.2",
     "@calcom/embed-react": "1.5.3",
     "@emdash-cms/cloudflare": "^1.1.0",
@@ -51,7 +51,7 @@
     "@sentry/cloudflare": "11.10.0",
     "@sentry/replay": "11.10.0",
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.4.4",
+    "astro": "7.4.5",
     "clsx": "2.1.1",
     "emdash": "^1.1.0",
     "motion": "13.5.1",
