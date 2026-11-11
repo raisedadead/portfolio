@@ -27,10 +27,6 @@ jobs:
         run: pnpm test:coverage
         env:
           CI: true
-          TURBO_API: ${{ secrets.TURBO_API }}
-          TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-          TURBO_REMOTE_CACHE_SIGNATURE_KEY: ${{ secrets.TURBO_REMOTE_CACHE_SIGNATURE_KEY }}
 
       - name: Generate coverage summary
         if: always()
