@@ -25,13 +25,14 @@ pnpm preview
 
 - Edit `cloudflare.config.ts` for Worker settings and bindings. The Cloudflare CLI and Astro adapter use pinned beta releases.
 - Copy `env.example` to `.env` for local values. Keep secret values out of `cloudflare.config.ts`.
-- Local D1, R2 and KV bindings use local data, not production data. Development retains `.wrangler/state`; preview and end-to-end tests use separate state directories.
-- `pnpm build` creates `.cloudflare/output`. `pnpm run deploy` builds and deploys it. `pnpm run versions:upload` builds and uploads a version without activating it.
+- Local D1, R2 and KV bindings use local data, not production data. Development retains `.cloudflare/state`; preview and end-to-end tests use separate state directories.
+- `pnpm build` creates `.cloudflare/output`. `pnpm run deploy` builds and deploys it. `pnpm exec cf previews deploy` builds and deploys a Worker Preview for the current branch.
 
 #### Deploys
 
-- Workers Builds deploys `main` with `pnpm run do:deploy`. Other branches upload a version with `pnpm run do:versions:upload`.
-- Do not change the Worker in the Cloudflare dashboard or with the API. After such a change, branch uploads stop with an error. To fix this, start a main build:
+- Workers Builds deploys `main` with `pnpm run do:deploy`. Other branches deploy a Worker Preview with `pnpm exec cf previews deploy`.
+- Worker Previews use separate staging data. `node scripts/seed-preview-data.mjs` fills an empty staging database and bucket with the end-to-end test content.
+- Do not change the Worker in the Cloudflare dashboard or with the API. The next deploy from `main` overwrites such a change. To restore the config now, start a main build:
 
   ```bash
   pnpm exec cf builds create cc20f4aaea3249688c2131e6b1ae11b8 --branch main

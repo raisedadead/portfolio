@@ -5,7 +5,9 @@ import { describe, expect, it } from 'vitest';
 import config from '../../../cloudflare.config';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-const worker = config.worker;
+const productionConfig = config({ isPreview: false, mode: undefined });
+const worker = productionConfig.worker;
+const previewWorker = config({ isPreview: true, mode: undefined }).worker;
 const rawConfig = readFileSync(path.join(repoRoot, 'cloudflare.config.ts'), 'utf8');
 const astroConfig = readFileSync(path.join(repoRoot, 'astro.config.mjs'), 'utf8');
 const pkg = JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8'));
@@ -19,7 +21,7 @@ describe('Cloudflare configuration — existing Worker identity', () => {
   it('preserves the Worker, account, custom domain and URL visibility', () => {
     expect({
       name: worker.name,
-      accountId: config.accountId,
+      accountId: productionConfig.accountId,
       domains: worker.domains,
       workersDev: worker.workersDev,
       previewUrls: worker.previewUrls
@@ -101,28 +103,49 @@ describe('Cloudflare configuration — EmDash resources', () => {
   });
 });
 
+describe('Cloudflare configuration — Worker Previews', () => {
+  it('binds the shared staging data, never production', () => {
+    expect(previewWorker.env.DB).toMatchObject({
+      type: 'd1',
+      name: 'emdash-db-preview',
+      id: '994b3893-56cc-4dfd-abfe-4cb8a1381545'
+    });
+    expect(previewWorker.env.SESSION).toMatchObject({ type: 'kv', id: '6e1d014294854034bcf0f8e669c9c29a' });
+    expect(previewWorker.env.MEDIA).toMatchObject({ type: 'r2', name: 'emdash-media-preview' });
+  });
+
+  it('reports to Sentry as preview', () => {
+    expect(previewWorker.env.PUBLIC_SENTRY_ENVIRONMENT).toEqual({ type: 'text', value: 'preview' });
+  });
+
+  it('leaves out settings a Preview upload rejects or must not claim', () => {
+    expect(previewWorker.unsafe).toBeUndefined();
+    expect(previewWorker.domains).toBeUndefined();
+  });
+
+  it('keeps the Worker identity and the encryption secret', () => {
+    expect(previewWorker.name).toBe('portfolio');
+    expect(previewWorker.env.EMDASH_ENCRYPTION_KEY).toEqual({ type: 'secret' });
+  });
+});
+
 describe('native Cloudflare workflow', () => {
-  it('uses cf for development, builds, deployment and version uploads', () => {
+  it('uses cf for development, builds and deployment, with no version uploads', () => {
     expect(pkg.scripts['do:develop']).toBe('cf dev');
     expect(pkg.scripts['do:build']).toBe('cf build');
     expect(pkg.scripts['do:deploy']).toBe('cf deploy --prebuilt --force');
-    expect(pkg.scripts['do:versions:upload']).toBe('cf workers versions create --prebuilt');
+    expect(pkg.scripts['do:versions:upload']).toBeUndefined();
+    expect(pkg.scripts['versions:upload']).toBeUndefined();
     expect(pkg.devDependencies.void).toBeUndefined();
     expect(pkg.devDependencies.wrangler).toBeUndefined();
   });
 
   it('keeps turbo out of the build and deploy paths', () => {
-    expect({
-      build: pkg.scripts.build,
-      deploy: pkg.scripts.deploy,
-      versionsUpload: pkg.scripts['versions:upload']
-    }).toEqual({
+    expect({ build: pkg.scripts.build, deploy: pkg.scripts.deploy }).toEqual({
       build: 'pnpm run do:build',
-      deploy: 'pnpm run do:build && pnpm run do:deploy',
-      versionsUpload: 'pnpm run do:build && pnpm run do:versions:upload'
+      deploy: 'pnpm run do:build && pnpm run do:deploy'
     });
     expect(turbo.tasks['do:deploy']).toBeUndefined();
-    expect(turbo.tasks['do:versions:upload']).toBeUndefined();
   });
 
   it('caches the build output required for preview and prebuilt deployment', () => {
@@ -135,8 +158,8 @@ describe('native Cloudflare workflow', () => {
     expect(turbo.tasks['do:test:e2e'].dependsOn).toContain('do:build');
   });
 
-  it('preserves the existing local-state path and isolated e2e overrides', () => {
-    expect(astroConfig).toContain("process.env.PORTFOLIO_E2E_STATE_DIR ?? '.wrangler/state'");
+  it('keeps local state in the cf default directory with isolated e2e overrides', () => {
+    expect(astroConfig).toContain("process.env.PORTFOLIO_E2E_STATE_DIR ?? '.cloudflare/state'");
   });
 
   it('keeps real Astro sessions and EmDash D1/R2 integration', () => {

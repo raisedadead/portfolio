@@ -29,7 +29,7 @@ export default defineConfig({
 
   adapter: cloudflare({
     imageService: 'compile',
-    persistState: { path: process.env.PORTFOLIO_E2E_STATE_DIR ?? '.wrangler/state' }
+    persistState: { path: process.env.PORTFOLIO_E2E_STATE_DIR ?? '.cloudflare/state' }
   }),
 
   integrations: [
