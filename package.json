@@ -26,7 +26,7 @@
     "test:e2e:headed": "turbo do:test:e2e:headed",
     "do:develop": "cf dev",
     "do:build": "cf build",
-    "do:preview": "node scripts/snapshot-preview-state.mjs && PORTFOLIO_E2E_STATE_DIR=.wrangler/preview astro preview --ignore-lock",
+    "do:preview": "node scripts/snapshot-preview-state.mjs && PORTFOLIO_E2E_STATE_DIR=.cloudflare/preview astro preview --ignore-lock",
     "do:deploy": "cf deploy --prebuilt --force",
     "do:versions:upload": "cf workers versions create --prebuilt",
     "do:lint": "oxlint .",

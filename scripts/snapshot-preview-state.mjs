@@ -5,8 +5,8 @@ import { cpSync, existsSync, readdirSync, rmSync, statSync, unlinkSync } from 'n
 import path from 'node:path';
 import process from 'node:process';
 
-const STATE = '.wrangler/state/v3';
-const PREVIEW = '.wrangler/preview';
+const STATE = '.cloudflare/state/v3';
+const PREVIEW = '.cloudflare/preview';
 
 function walkSqliteFiles(dir, found = []) {
   for (const name of readdirSync(dir)) {

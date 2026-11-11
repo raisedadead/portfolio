@@ -1,8 +1,10 @@
 import { execSync } from 'node:child_process';
 import { defineConfig, devices } from '@playwright/test';
 
-const e2eServer =
-  'node scripts/prepare-e2e-state.mjs && PORTFOLIO_E2E_STATE_DIR=.wrangler/e2e exec astro preview --ignore-lock --port';
+const e2eServer = [
+  'node scripts/prepare-e2e-state.mjs &&',
+  'PORTFOLIO_E2E_STATE_DIR=.cloudflare/e2e exec astro preview --ignore-lock --port'
+].join(' ');
 
 const isCI = !!process.env.CI;
 

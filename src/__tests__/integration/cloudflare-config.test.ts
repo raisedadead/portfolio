@@ -135,8 +135,8 @@ describe('native Cloudflare workflow', () => {
     expect(turbo.tasks['do:test:e2e'].dependsOn).toContain('do:build');
   });
 
-  it('preserves the existing local-state path and isolated e2e overrides', () => {
-    expect(astroConfig).toContain("process.env.PORTFOLIO_E2E_STATE_DIR ?? '.wrangler/state'");
+  it('keeps local state in the cf default directory with isolated e2e overrides', () => {
+    expect(astroConfig).toContain("process.env.PORTFOLIO_E2E_STATE_DIR ?? '.cloudflare/state'");
   });
 
   it('keeps real Astro sessions and EmDash D1/R2 integration', () => {

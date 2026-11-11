@@ -25,7 +25,7 @@ pnpm preview
 
 - Edit `cloudflare.config.ts` for Worker settings and bindings. The Cloudflare CLI and Astro adapter use pinned beta releases.
 - Copy `env.example` to `.env` for local values. Keep secret values out of `cloudflare.config.ts`.
-- Local D1, R2 and KV bindings use local data, not production data. Development retains `.wrangler/state`; preview and end-to-end tests use separate state directories.
+- Local D1, R2 and KV bindings use local data, not production data. Development retains `.cloudflare/state`; preview and end-to-end tests use separate state directories.
 - `pnpm build` creates `.cloudflare/output`. `pnpm run deploy` builds and deploys it. `pnpm run versions:upload` builds and uploads a version without activating it.
 
 #### Deploys

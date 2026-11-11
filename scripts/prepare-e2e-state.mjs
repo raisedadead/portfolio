@@ -18,7 +18,7 @@ await new Promise((resolve, reject) => {
 });
 const DEV_URL = `http://127.0.0.1:${devPort}`;
 const DEV_LOG = '.astro/e2e-dev.log';
-const E2E_STATE = path.resolve('.wrangler/e2e');
+const E2E_STATE = path.resolve('.cloudflare/e2e');
 
 const require = createRequire(import.meta.url);
 const astroBin = path.join(path.dirname(require.resolve('astro/package.json')), 'bin/astro.mjs');
