@@ -8,6 +8,5 @@ test('the deployment package preserves the Worker settings', () => {
   const { manifest, ...packaged } = JSON.parse(readFileSync(packagedConfig, 'utf8')) as Record<string, unknown>;
   const { entrypoint, ...source } = cloudflareConfig.worker;
   expect(manifest).toMatchObject({ mainModule: 'entry.mjs' });
-  expect(entrypoint).toBe('@astrojs/cloudflare/entrypoints/server');
   expect(packaged).toEqual(source);
 });

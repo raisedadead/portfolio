@@ -131,6 +131,10 @@ describe('native Cloudflare workflow', () => {
     expect(turbo.tasks['do:build'].outputs).not.toContain('.void/preview-deploy-config.json');
   });
 
+  it('builds before the end-to-end tests check the deployment package', () => {
+    expect(turbo.tasks['do:test:e2e'].dependsOn).toContain('do:build');
+  });
+
   it('preserves the existing local-state path and isolated e2e overrides', () => {
     expect(astroConfig).toContain("process.env.PORTFOLIO_E2E_STATE_DIR ?? '.wrangler/state'");
   });
