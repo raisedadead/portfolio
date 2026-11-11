@@ -5,7 +5,9 @@ import { describe, expect, it } from 'vitest';
 import config from '../../../cloudflare.config';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-const worker = config.worker;
+const productionConfig = config({ isPreview: false, mode: undefined });
+const worker = productionConfig.worker;
+const previewWorker = config({ isPreview: true, mode: undefined }).worker;
 const rawConfig = readFileSync(path.join(repoRoot, 'cloudflare.config.ts'), 'utf8');
 const astroConfig = readFileSync(path.join(repoRoot, 'astro.config.mjs'), 'utf8');
 const pkg = JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8'));
@@ -19,7 +21,7 @@ describe('Cloudflare configuration — existing Worker identity', () => {
   it('preserves the Worker, account, custom domain and URL visibility', () => {
     expect({
       name: worker.name,
-      accountId: config.accountId,
+      accountId: productionConfig.accountId,
       domains: worker.domains,
       workersDev: worker.workersDev,
       previewUrls: worker.previewUrls
@@ -98,6 +100,32 @@ describe('Cloudflare configuration — EmDash resources', () => {
 
   it('keeps retired CMS configuration absent', () => {
     expect(rawConfig).not.toMatch(/CF_ACCESS|DEV_BYPASS_ACCESS|DEPLOY_HOOK_URL/);
+  });
+});
+
+describe('Cloudflare configuration — Worker Previews', () => {
+  it('binds the shared staging data, never production', () => {
+    expect(previewWorker.env.DB).toMatchObject({
+      type: 'd1',
+      name: 'emdash-db-preview',
+      id: '994b3893-56cc-4dfd-abfe-4cb8a1381545'
+    });
+    expect(previewWorker.env.SESSION).toMatchObject({ type: 'kv', id: '6e1d014294854034bcf0f8e669c9c29a' });
+    expect(previewWorker.env.MEDIA).toMatchObject({ type: 'r2', name: 'emdash-media-preview' });
+  });
+
+  it('reports to Sentry as preview', () => {
+    expect(previewWorker.env.PUBLIC_SENTRY_ENVIRONMENT).toEqual({ type: 'text', value: 'preview' });
+  });
+
+  it('leaves out settings a Preview upload rejects or must not claim', () => {
+    expect(previewWorker.unsafe).toBeUndefined();
+    expect(previewWorker.domains).toBeUndefined();
+  });
+
+  it('keeps the Worker identity and the encryption secret', () => {
+    expect(previewWorker.name).toBe('portfolio');
+    expect(previewWorker.env.EMDASH_ENCRYPTION_KEY).toEqual({ type: 'secret' });
   });
 });
 
