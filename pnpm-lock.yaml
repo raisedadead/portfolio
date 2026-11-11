@@ -303,8 +303,8 @@ importers:
         specifier: 1.89.0
         version: 1.89.0
       portless:
-        specifier: 0.15.12
-        version: 0.15.12
+        specifier: 0.16.0
+        version: 0.16.0
       tailwindcss:
         specifier: 4.3.3
         version: 4.3.3
@@ -4491,8 +4491,8 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  portless@0.15.12:
-    resolution: {integrity: sha512-Lbz85zLboOMkvq2unXYfJ/YMpsvFZYQgrwGEbinZErp045y9fLm4obm7E77V2BI2Om0Mh6tX/2w2ftFqRs5kfQ==}
+  portless@0.16.0:
+    resolution: {integrity: sha512-qklO8w/OhLGLKYoeAi8HOFFnd2JQYenWzbev0rvDcyAZ3xDpMg9tqb/aKlz8qrd6NIEJB5bSiDxGURaq0+YLkA==}
     engines: {node: '>=24'}
     os: [darwin, linux, win32]
     hasBin: true
@@ -9664,7 +9664,7 @@ snapshots:
     dependencies:
       playwright-core: 1.64.1
 
-  portless@0.15.12: {}
+  portless@0.16.0: {}
 
   postcss-selector-parser@6.0.10:
     dependencies:
