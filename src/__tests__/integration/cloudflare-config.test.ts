@@ -105,10 +105,18 @@ describe('native Cloudflare workflow', () => {
   it('uses cf for development, builds, deployment and version uploads', () => {
     expect(pkg.scripts['do:develop']).toBe('cf dev');
     expect(pkg.scripts['do:build']).toBe('cf build');
-    expect(pkg.scripts['do:deploy']).toBe('cf deploy --prebuilt');
+    expect(pkg.scripts['do:deploy']).toBe('cf deploy --prebuilt --force');
     expect(pkg.scripts['do:versions:upload']).toBe('cf workers versions create --prebuilt');
     expect(pkg.devDependencies.void).toBeUndefined();
     expect(pkg.devDependencies.wrangler).toBeUndefined();
+  });
+
+  it('keeps turbo out of the build and deploy paths', () => {
+    for (const script of ['build', 'deploy', 'versions:upload', 'do:build', 'do:deploy', 'do:versions:upload']) {
+      expect(pkg.scripts[script], script).not.toMatch(/turbo/);
+    }
+    expect(turbo.tasks['do:deploy']).toBeUndefined();
+    expect(turbo.tasks['do:versions:upload']).toBeUndefined();
   });
 
   it('caches the build output required for preview and prebuilt deployment', () => {
