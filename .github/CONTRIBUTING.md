@@ -28,6 +28,17 @@ pnpm preview
 - Local D1, R2 and KV bindings use local data, not production data. Development retains `.wrangler/state`; preview and end-to-end tests use separate state directories.
 - `pnpm build` creates `.cloudflare/output`. `pnpm run deploy` builds and deploys it. `pnpm run versions:upload` builds and uploads a version without activating it.
 
+#### Deploys
+
+- Workers Builds deploys `main` with `pnpm run do:deploy`. Other branches upload a version with `pnpm run do:versions:upload`.
+- Do not change the Worker in the Cloudflare dashboard or with the API. After such a change, branch uploads stop with an error. To fix this, start a main build:
+
+  ```bash
+  cf builds create 8703399d-e510-4575-a142-21d85728c654 --branch main
+  ```
+
+- To roll back, revert the commit with `git revert` and merge it. Do not roll back in the dashboard.
+
 #### Found something broken?
 
 Create an issue on the tracker [here](https://github.com/raisedadead/raisedadead/issues/new).
