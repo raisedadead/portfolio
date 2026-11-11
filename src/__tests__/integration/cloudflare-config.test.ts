@@ -112,9 +112,15 @@ describe('native Cloudflare workflow', () => {
   });
 
   it('keeps turbo out of the build and deploy paths', () => {
-    for (const script of ['build', 'deploy', 'versions:upload', 'do:build', 'do:deploy', 'do:versions:upload']) {
-      expect(pkg.scripts[script], script).not.toMatch(/turbo/);
-    }
+    expect({
+      build: pkg.scripts.build,
+      deploy: pkg.scripts.deploy,
+      versionsUpload: pkg.scripts['versions:upload']
+    }).toEqual({
+      build: 'pnpm run do:build',
+      deploy: 'pnpm run do:build && pnpm run do:deploy',
+      versionsUpload: 'pnpm run do:build && pnpm run do:versions:upload'
+    });
     expect(turbo.tasks['do:deploy']).toBeUndefined();
     expect(turbo.tasks['do:versions:upload']).toBeUndefined();
   });

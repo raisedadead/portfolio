@@ -34,7 +34,7 @@ pnpm preview
 - Do not change the Worker in the Cloudflare dashboard or with the API. After such a change, branch uploads stop with an error. To fix this, start a main build:
 
   ```bash
-  cf builds create 8703399d-e510-4575-a142-21d85728c654 --branch main
+  pnpm exec cf builds create cc20f4aaea3249688c2131e6b1ae11b8 --branch main
   ```
 
 - To roll back, revert the commit with `git revert` and merge it. Do not roll back in the dashboard.
