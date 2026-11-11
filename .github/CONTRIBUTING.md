@@ -31,6 +31,7 @@ pnpm preview
 #### Deploys
 
 - Workers Builds deploys `main` with `pnpm run do:deploy`. Other branches upload a version with `pnpm run do:versions:upload`.
+- Worker Previews use separate staging data. `node scripts/seed-preview-data.mjs` fills an empty staging database and bucket with the end-to-end test content.
 - Do not change the Worker in the Cloudflare dashboard or with the API. After such a change, branch uploads stop with an error. To fix this, start a main build:
 
   ```bash
