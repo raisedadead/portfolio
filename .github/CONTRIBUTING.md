@@ -23,9 +23,21 @@ pnpm preview
 
 #### Local configuration
 
-- Edit `void.config.ts` for Worker settings and bindings. Void generates `.void-wrangler.jsonc`; do not edit it.
-- Copy `env.example` to `.env` for local values. Void reads only `.env`; it rejects `.dev.vars` and `.env.example`.
-- Local D1, R2 and KV bindings use local data, not production data.
+- Edit `cloudflare.config.ts` for Worker settings and bindings. The Cloudflare CLI and Astro adapter use pinned beta releases.
+- Copy `env.example` to `.env` for local values. Keep secret values out of `cloudflare.config.ts`.
+- Local D1, R2 and KV bindings use local data, not production data. Development retains `.wrangler/state`; preview and end-to-end tests use separate state directories.
+- `pnpm build` creates `.cloudflare/output`. `pnpm run deploy` builds and deploys it. `pnpm run versions:upload` builds and uploads a version without activating it.
+
+#### Deploys
+
+- Workers Builds deploys `main` with `pnpm run do:deploy`. Other branches upload a version with `pnpm run do:versions:upload`.
+- Do not change the Worker in the Cloudflare dashboard or with the API. After such a change, branch uploads stop with an error. To fix this, start a main build:
+
+  ```bash
+  pnpm exec cf builds create cc20f4aaea3249688c2131e6b1ae11b8 --branch main
+  ```
+
+- To roll back, revert the commit with `git revert` and merge it. Do not roll back in the dashboard.
 
 #### Found something broken?
 

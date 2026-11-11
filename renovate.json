@@ -2,6 +2,11 @@
   "extends": ["github>raisedadead/renovate-config"],
   "packageRules": [
     {
+      "matchPackageNames": ["cf", "@astrojs/cloudflare", "@cloudflare/vite-plugin"],
+      "groupName": "cloudflare toolchain",
+      "description": "Update the cf CLI, the Astro Cloudflare adapter and the Cloudflare Vite plugin in one PR. Their beta releases depend on each other."
+    },
+    {
       "matchPackageNames": ["@tailwindcss/vite", "tailwindcss"],
       "allowedVersions": "<4.3.0",
       "description": "Pin <4.3.0: 4.3.x breaks the rolldown-vite build (`Missing field tsconfigPaths on BindingViteResolvePluginConfig.resolveOptions`). Tracking: withastro/astro#16542. Unpin once @tailwindcss/vite passes tsconfigPaths to vite's createIdResolver."
