@@ -12,8 +12,8 @@ const pkg = JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8')
 const turbo = JSON.parse(readFileSync(path.join(repoRoot, 'turbo.json'), 'utf8'));
 
 describe('Cloudflare configuration — existing Worker identity', () => {
-  it('keeps existing remote secrets and dashboard variables on upload', () => {
-    expect(worker.unsafe?.metadata?.keep_bindings).toEqual(['secret_text', 'secret_key', 'plain_text', 'json']);
+  it('keeps existing remote secrets on upload and takes variables only from this config', () => {
+    expect(worker.unsafe?.metadata?.keep_bindings).toEqual(['secret_text', 'secret_key']);
   });
 
   it('preserves the Worker, account, custom domain and URL visibility', () => {

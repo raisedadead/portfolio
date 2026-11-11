@@ -29,7 +29,7 @@ export default defineConfig({
       MEDIA: bindings.r2({ name: 'emdash-media', dev: { remote: false } }),
       ASSETS: bindings.assets()
     },
-    unsafe: { metadata: { keep_bindings: ['secret_text', 'secret_key', 'plain_text', 'json'] } },
+    unsafe: { metadata: { keep_bindings: ['secret_text', 'secret_key'] } },
     observability: {
       logs: { enabled: true, invocationLogs: true },
       traces: { enabled: true }
