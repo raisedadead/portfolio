@@ -75,7 +75,7 @@
     "@vitest/coverage-v8": "5.1.0",
     "@vitest/ui": "5.1.0",
     "cf": "1.0.0-beta.29",
-    "happy-dom": "20.14.6",
+    "happy-dom": "21.0.4",
     "husky": "9.1.7",
     "is-ci": "4.1.0",
     "jest-axe": "11.0.0",
