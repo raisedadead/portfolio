@@ -27,3 +27,8 @@ jobs:
         run: pnpm lint
         env:
           CI: true
+
+      - name: Run astro check
+        run: pnpm check
+        env:
+          CI: true
