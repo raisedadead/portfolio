@@ -130,27 +130,22 @@ describe('Cloudflare configuration — Worker Previews', () => {
 });
 
 describe('native Cloudflare workflow', () => {
-  it('uses cf for development, builds, deployment and version uploads', () => {
+  it('uses cf for development, builds and deployment, with no version uploads', () => {
     expect(pkg.scripts['do:develop']).toBe('cf dev');
     expect(pkg.scripts['do:build']).toBe('cf build');
     expect(pkg.scripts['do:deploy']).toBe('cf deploy --prebuilt --force');
-    expect(pkg.scripts['do:versions:upload']).toBe('cf workers versions create --prebuilt');
+    expect(pkg.scripts['do:versions:upload']).toBeUndefined();
+    expect(pkg.scripts['versions:upload']).toBeUndefined();
     expect(pkg.devDependencies.void).toBeUndefined();
     expect(pkg.devDependencies.wrangler).toBeUndefined();
   });
 
   it('keeps turbo out of the build and deploy paths', () => {
-    expect({
-      build: pkg.scripts.build,
-      deploy: pkg.scripts.deploy,
-      versionsUpload: pkg.scripts['versions:upload']
-    }).toEqual({
+    expect({ build: pkg.scripts.build, deploy: pkg.scripts.deploy }).toEqual({
       build: 'pnpm run do:build',
-      deploy: 'pnpm run do:build && pnpm run do:deploy',
-      versionsUpload: 'pnpm run do:build && pnpm run do:versions:upload'
+      deploy: 'pnpm run do:build && pnpm run do:deploy'
     });
     expect(turbo.tasks['do:deploy']).toBeUndefined();
-    expect(turbo.tasks['do:versions:upload']).toBeUndefined();
   });
 
   it('caches the build output required for preview and prebuilt deployment', () => {
