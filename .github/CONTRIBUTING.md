@@ -32,7 +32,7 @@ pnpm preview
 
 - Workers Builds deploys `main` with `pnpm run do:deploy`. Other branches deploy a Worker Preview with `pnpm exec cf previews deploy`.
 - Worker Previews use separate staging data. `node scripts/seed-preview-data.mjs` fills an empty staging database and bucket with the end-to-end test content.
-- Do not change the Worker in the Cloudflare dashboard or with the API. After such a change, production deploys stop with an error. To fix this, start a main build:
+- Do not change the Worker in the Cloudflare dashboard or with the API. The next deploy from `main` overwrites such a change. To restore the config now, start a main build:
 
   ```bash
   pnpm exec cf builds create cc20f4aaea3249688c2131e6b1ae11b8 --branch main

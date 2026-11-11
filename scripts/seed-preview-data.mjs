@@ -9,7 +9,16 @@ import { DatabaseSync } from 'node:sqlite';
 import cloudflareConfig from '../cloudflare.config.ts';
 
 const STATE = path.resolve('.cloudflare/e2e/v3');
-const SIGN_IN_TABLES = new Set(['credentials', 'auth_tokens', 'oauth_accounts']);
+const SIGN_IN_TABLES = new Set([
+  'credentials',
+  'auth_tokens',
+  'auth_challenges',
+  'oauth_accounts',
+  '_emdash_api_tokens',
+  '_emdash_oauth_tokens',
+  '_emdash_device_codes',
+  '_emdash_authorization_codes'
+]);
 
 const { env } = cloudflareConfig({ isPreview: true, mode: undefined }).worker;
 const databaseId = env.DB.id;
@@ -29,29 +38,27 @@ function stateFile(dir) {
 }
 
 const quoteIdent = (name) => `"${name.replaceAll('"', '""')}"`;
-const isCopied = (name) => !name.startsWith('sqlite_') && !name.startsWith('_cf_') && !name.startsWith('_emdash_fts_');
+const isVirtual = ({ sql }) => /^CREATE VIRTUAL TABLE/i.test(sql);
 
 function fixtureStatements(db) {
   const tables = db.prepare("SELECT name, sql FROM sqlite_master WHERE type = 'table' ORDER BY rowid").all();
-  const copied = tables.filter(({ name }) => isCopied(name));
+  const virtual = tables.filter(isVirtual);
+  const isShadow = (name) => virtual.some((table) => name.startsWith(`${table.name}_`));
+  const copied = tables
+    .filter(({ name }) => !name.startsWith('sqlite_') && !name.startsWith('_cf_') && !isShadow(name))
+    .sort((a, b) => Number(isVirtual(a)) - Number(isVirtual(b)));
   const statements = copied.map(({ sql }) => sql);
 
   for (const { name } of copied) {
     if (SIGN_IN_TABLES.has(name)) continue;
-    const columns = db.prepare(`PRAGMA table_info(${quoteIdent(name)})`).all();
-    const values = columns.map(({ name: column }) => `quote(${quoteIdent(column)})`).join(" || ',' || ");
+    const columns = db
+      .prepare(`PRAGMA table_info(${quoteIdent(name)})`)
+      .all()
+      .map((column) => column.name);
+    const values = columns.map((column) => `quote(${quoteIdent(column)})`).join(" || ',' || ");
+    const target = `${quoteIdent(name)}(${columns.map(quoteIdent).join(', ')})`;
     for (const { row } of db.prepare(`SELECT ${values} AS row FROM ${quoteIdent(name)}`).all()) {
-      statements.push(`INSERT INTO ${quoteIdent(name)} VALUES(${row})`);
-    }
-  }
-
-  const search = tables.find(({ name }) => name === '_emdash_fts_posts');
-  if (search) {
-    statements.push(search.sql);
-    const values =
-      "quote(id) || ',' || quote(locale) || ',' || quote(title) || ',' || quote(brief) || ',' || quote(content)";
-    for (const { row } of db.prepare(`SELECT ${values} AS row FROM _emdash_fts_posts`).all()) {
-      statements.push(`INSERT INTO _emdash_fts_posts(id, locale, title, brief, content) VALUES(${row})`);
+      statements.push(`INSERT INTO ${target} VALUES(${row})`);
     }
   }
 
@@ -74,14 +81,6 @@ if (seeded[0].results[0].n > 0) {
 
 execFileSync(process.execPath, ['scripts/prepare-e2e-state.mjs'], { stdio: 'inherit' });
 
-const work = mkdtempSync(path.join(tmpdir(), 'seed-preview-'));
-const db = new DatabaseSync(stateFile(path.join(STATE, 'd1/miniflare-D1DatabaseObject')));
-const batchFile = path.join(work, 'batch.json');
-const statements = fixtureStatements(db);
-writeFileSync(batchFile, JSON.stringify(statements.map((sql) => ({ sql }))));
-cf(['d1', 'query', databaseId, '--batch', `@${batchFile}`]);
-console.log(`${env.DB.name}: ${statements.length} statements applied`);
-
 const objects = new DatabaseSync(stateFile(path.join(STATE, 'r2/miniflare-R2BucketObject')));
 const blobs = path.join(STATE, 'r2/emdash-media/blobs');
 for (const { key, blob_id, http_metadata } of objects
@@ -102,3 +101,11 @@ for (const { key, blob_id, http_metadata } of objects
   ]);
   console.log(`${bucket}: ${key}`);
 }
+
+const work = mkdtempSync(path.join(tmpdir(), 'seed-preview-'));
+const db = new DatabaseSync(stateFile(path.join(STATE, 'd1/miniflare-D1DatabaseObject')));
+const batchFile = path.join(work, 'batch.json');
+const statements = fixtureStatements(db);
+writeFileSync(batchFile, JSON.stringify(statements.map((sql) => ({ sql }))));
+cf(['d1', 'query', databaseId, '--batch', `@${batchFile}`]);
+console.log(`${env.DB.name}: ${statements.length} statements applied`);
