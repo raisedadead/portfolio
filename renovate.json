@@ -3,9 +3,16 @@
   "packageRules": [
     {
       "matchPackageNames": ["cf", "@astrojs/cloudflare", "@cloudflare/vite-plugin", "@cloudflare/workers-types"],
+      "matchUpdateTypes": ["minor", "patch"],
       "groupName": "cloudflare toolchain",
-      "schedule": ["* 0-3 * * 1"],
-      "description": "Update the cf CLI, the Astro Cloudflare adapter, the Cloudflare Vite plugin and the Workers types in one weekly PR. Their beta releases depend on each other, and the Workers types publish almost daily."
+      "schedule": ["* * * * 1"],
+      "description": "Update the cf CLI, the Astro Cloudflare adapter, the Cloudflare Vite plugin and the Workers types in one PR on Mondays. Their beta releases depend on each other, and the Workers types publish almost daily."
+    },
+    {
+      "matchPackageNames": ["cf", "@astrojs/cloudflare", "@cloudflare/vite-plugin"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "cloudflare toolchain",
+      "description": "Keep major updates of the cf CLI, the Astro Cloudflare adapter and the Cloudflare Vite plugin in one PR. Their beta releases depend on each other."
     },
     {
       "matchPackageNames": ["emdash", "@emdash-cms/**"],
