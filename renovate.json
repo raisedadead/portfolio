@@ -2,9 +2,32 @@
   "extends": ["github>raisedadead/renovate-config"],
   "packageRules": [
     {
-      "matchPackageNames": ["cf", "@astrojs/cloudflare", "@cloudflare/vite-plugin"],
+      "matchPackageNames": ["cf", "@astrojs/cloudflare", "@cloudflare/vite-plugin", "@cloudflare/workers-types"],
       "groupName": "cloudflare toolchain",
-      "description": "Update the cf CLI, the Astro Cloudflare adapter and the Cloudflare Vite plugin in one PR. Their beta releases depend on each other."
+      "schedule": ["* 0-3 * * 1"],
+      "description": "Update the cf CLI, the Astro Cloudflare adapter, the Cloudflare Vite plugin and the Workers types in one weekly PR. Their beta releases depend on each other, and the Workers types publish almost daily."
+    },
+    {
+      "matchPackageNames": ["emdash", "@emdash-cms/**"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "emdash",
+      "description": "Update EmDash and its packages in one PR. They release together."
+    },
+    {
+      "matchPackageNames": [
+        "vite",
+        "vitest",
+        "@vitest/**",
+        "@vitejs/plugin-react",
+        "oxlint",
+        "turbo",
+        "@playwright/test",
+        "happy-dom",
+        "jsdom"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "build and test tooling",
+      "description": "Update the build, lint and test tools in one PR."
     },
     {
       "matchPackageNames": ["@tailwindcss/vite", "tailwindcss"],
