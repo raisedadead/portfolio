@@ -26,6 +26,12 @@ Object.defineProperty(window, 'matchMedia', {
   }))
 });
 
+const cancelAnimation = window.Animation.prototype.cancel;
+window.Animation.prototype.cancel = function cancelWithHandledFinished(this: Animation) {
+  this.finished.catch(() => {});
+  cancelAnimation.call(this);
+};
+
 // Mock clipboard API
 Object.defineProperty(navigator, 'clipboard', {
   value: {
