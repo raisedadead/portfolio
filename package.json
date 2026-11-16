@@ -86,9 +86,9 @@
     "oxlint": "1.93.0",
     "portless": "0.17.0",
     "tailwindcss": "4.3.5",
-    "turbo": "2.11.10",
+    "turbo": "2.11.11",
     "typescript": "6.0.3",
-    "vite": "8.3.7",
+    "vite": "8.3.8",
     "vitest": "5.1.0",
     "yaml": "^2.9.0"
   },
