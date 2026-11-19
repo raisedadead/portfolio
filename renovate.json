@@ -22,19 +22,18 @@
     },
     {
       "matchPackageNames": [
+        "vite-plus",
+        "@voidzero-dev/**",
         "vite",
         "vitest",
         "@vitest/**",
         "@vitejs/plugin-react",
-        "oxlint",
-        "turbo",
         "@playwright/test",
-        "happy-dom",
-        "jsdom"
+        "happy-dom"
       ],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "build and test tooling",
-      "description": "Update the build, lint and test tools in one PR."
+      "description": "Update Vite+, the Vite and Vitest versions it bundles, and the other build and test tools in one PR."
     },
     {
       "matchPackageNames": ["@tailwindcss/vite", "tailwindcss"],
