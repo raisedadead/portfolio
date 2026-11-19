@@ -131,6 +131,7 @@ describe('Cloudflare configuration — Worker Previews', () => {
 describe('native Cloudflare workflow', () => {
   it('uses cf for development, builds and deployment, with no version uploads', () => {
     expect(pkg.scripts.dev).toBe('cf dev');
+    expect(pkg.scripts.develop).toBe('cf dev');
     expect(pkg.scripts['do:build']).toBe('cf build');
     expect(pkg.scripts['do:deploy']).toBe('cf deploy --prebuilt --force');
     expect(pkg.scripts['do:versions:upload']).toBeUndefined();
