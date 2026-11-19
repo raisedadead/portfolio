@@ -160,5 +160,12 @@ export default defineConfig({
         specifier: 'vite-plus/oxlint-plugin'
       }
     ]
+  },
+  staged: {
+    '**/*.{mjs,cjs,js,jsx,tsx}': ['vp lint --fix', 'vp fmt --write'],
+    '**/!(*.d).ts': ['vp lint --fix', 'vp fmt --write'],
+    '**/*.d.ts': ['vp fmt --write --no-error-on-unmatched-pattern'],
+    '**/*.astro': ['vp lint --fix'],
+    '**/*.{json,md}': ['vp fmt --write --no-error-on-unmatched-pattern']
   }
 });

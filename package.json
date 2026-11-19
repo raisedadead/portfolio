@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "is-ci || husky",
+    "prepare": "[ \"$(git config --get core.hooksPath 2>/dev/null)\" != .husky/_ ] || git config --unset core.hooksPath; vp config --no-agent",
     "dev": "cf dev",
     "develop": "cf dev",
     "build": "pnpm run do:build",
@@ -66,10 +66,7 @@
     "@vitest/ui": "catalog:",
     "cf": "1.0.0-beta.29",
     "happy-dom": "21.0.4",
-    "husky": "9.1.7",
-    "is-ci": "4.1.0",
     "jest-axe": "11.0.0",
-    "lint-staged": "17.6.0",
     "marked": "18.2.0",
     "portless": "0.17.0",
     "tailwindcss": "4.3.5",
@@ -78,25 +75,6 @@
     "vite-plus": "catalog:",
     "vitest": "catalog:",
     "yaml": "^2.9.0"
-  },
-  "lint-staged": {
-    "**/*.{mjs,cjs,js,jsx,tsx}": [
-      "vp lint --fix",
-      "vp fmt --write"
-    ],
-    "**/!(*.d).ts": [
-      "vp lint --fix",
-      "vp fmt --write"
-    ],
-    "**/*.d.ts": [
-      "vp fmt --write --no-error-on-unmatched-pattern"
-    ],
-    "**/*.astro": [
-      "vp lint --fix"
-    ],
-    "**/*.{json,md}": [
-      "vp fmt --write --no-error-on-unmatched-pattern"
-    ]
   },
   "packageManager": "pnpm@12.21.0"
 }
