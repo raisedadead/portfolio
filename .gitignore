@@ -24,9 +24,6 @@ tsconfig.tsbuildinfo
 .dev.vars
 .playwright-mcp/
 
-# Turborepo
-.turbo/
-
 # Test coverage
 coverage/
 
