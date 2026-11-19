@@ -15,7 +15,7 @@ My personal website built with [Astro](https://astro.build) and React, deployed 
 - **Content**: [EmDash CMS](https://emdashcms.com) — posts in [Cloudflare D1](https://developers.cloudflare.com/d1/), media in [R2](https://developers.cloudflare.com/r2/), admin sessions in [KV](https://developers.cloudflare.com/kv/)
 - **Rendering**: Portable Text bodies, code highlighted with [Shiki](https://shiki.style), [Fontsource](https://fontsource.org) fonts, fetched at build time and self-hosted through the [Astro Fonts API](https://docs.astro.build/en/guides/fonts/)
 - **Testing**: [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/react), with [Playwright](https://playwright.dev) for end-to-end
-- **Tooling**: [Turborepo](https://turbo.build) with [oxlint and oxfmt](https://oxc.rs)
+- **Tooling**: [Vite+](https://viteplus.dev) for linting, formatting, tests and git hooks
 - **Monitoring**: [Sentry](https://sentry.io)
 - **Deployment**: [Cloudflare Workers](https://workers.cloudflare.com) via the [Cloudflare CLI beta](https://developers.cloudflare.com/cf/) and `cloudflare.config.ts`
 - **Package Manager**: [pnpm](https://pnpm.io)

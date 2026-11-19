@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vite-plus/test';
 import { markdownToPortableText } from '../../../scripts/markdown-to-portable-text.mjs';
 
 const text = (block: Record<string, any>): string =>

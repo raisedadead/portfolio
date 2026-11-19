@@ -1,5 +1,5 @@
 import type { APIContext } from 'astro';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vite-plus/test';
 import { GET } from '../../pages/robots.txt';
 
 async function robotsFor(url: string): Promise<string> {

@@ -2,7 +2,7 @@
 // rather than replacing them. `toHaveNoViolations` is registered at
 // runtime by `vitest.setup.ts`.
 
-import 'vitest';
+import 'vite-plus/test';
 
 declare module 'vitest' {
   interface Assertion {

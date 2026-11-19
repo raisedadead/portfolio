@@ -1,6 +1,6 @@
 import { installConsentBanner } from '@/lib/consent';
 import { GA_TRACKING_ID } from '@/lib/utils';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vite-plus/test';
 
 function mountBanner(): HTMLElement {
   document.body.innerHTML = `<div id="consent-banner" hidden>

@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vite-plus/test';
 import config from '../../../cloudflare.config';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
@@ -11,7 +11,6 @@ const previewWorker = config({ isPreview: true, mode: undefined }).worker;
 const rawConfig = readFileSync(path.join(repoRoot, 'cloudflare.config.ts'), 'utf8');
 const astroConfig = readFileSync(path.join(repoRoot, 'astro.config.mjs'), 'utf8');
 const pkg = JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8'));
-const turbo = JSON.parse(readFileSync(path.join(repoRoot, 'turbo.json'), 'utf8'));
 
 describe('Cloudflare configuration — existing Worker identity', () => {
   it('keeps existing remote secrets on upload and takes variables only from this config', () => {
@@ -131,7 +130,7 @@ describe('Cloudflare configuration — Worker Previews', () => {
 
 describe('native Cloudflare workflow', () => {
   it('uses cf for development, builds and deployment, with no version uploads', () => {
-    expect(pkg.scripts['do:develop']).toBe('cf dev');
+    expect(pkg.scripts.dev).toBe('cf dev');
     expect(pkg.scripts['do:build']).toBe('cf build');
     expect(pkg.scripts['do:deploy']).toBe('cf deploy --prebuilt --force');
     expect(pkg.scripts['do:versions:upload']).toBeUndefined();
@@ -140,22 +139,19 @@ describe('native Cloudflare workflow', () => {
     expect(pkg.devDependencies.wrangler).toBeUndefined();
   });
 
-  it('keeps turbo out of the build and deploy paths', () => {
+  it('keeps build and deploy on the cf scripts', () => {
     expect({ build: pkg.scripts.build, deploy: pkg.scripts.deploy }).toEqual({
       build: 'pnpm run do:build',
       deploy: 'pnpm run do:build && pnpm run do:deploy'
     });
-    expect(turbo.tasks['do:deploy']).toBeUndefined();
   });
 
-  it('caches the build output required for preview and prebuilt deployment', () => {
-    expect(turbo.tasks['do:build'].outputs).toContain('.cloudflare/output/**');
-    expect(turbo.tasks['do:build'].outputs).toContain('.cloudflare/types/**');
-    expect(turbo.tasks['do:build'].outputs).not.toContain('.void/preview-deploy-config.json');
+  it('builds before the local preview', () => {
+    expect(pkg.scripts.preview).toMatch(/^pnpm run do:build && /);
   });
 
   it('builds before the end-to-end tests check the deployment package', () => {
-    expect(turbo.tasks['do:test:e2e'].dependsOn).toContain('do:build');
+    expect(pkg.scripts['test:e2e']).toMatch(/^pnpm run do:build && /);
   });
 
   it('keeps local state in the cf default directory with isolated e2e overrides', () => {

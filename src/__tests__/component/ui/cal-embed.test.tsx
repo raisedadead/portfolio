@@ -2,7 +2,7 @@ import CalButton from '@/components/cal-embed';
 import { getCalApi } from '@calcom/embed-react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vite-plus/test';
 
 const cal = vi.fn();
 

@@ -22,7 +22,7 @@ const stateDir = path.join(root, STATE);
 const previewDir = path.join(root, PREVIEW);
 
 if (!existsSync(stateDir)) {
-  console.error(`missing ${STATE} — run \`pnpm do:develop\` once to create local state`);
+  console.error(`missing ${STATE} — run \`pnpm dev\` once to create local state`);
   process.exit(1);
 }
 

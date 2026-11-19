@@ -1,6 +1,6 @@
 import { Profile } from '@/components/layout/profile';
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vite-plus/test';
 
 describe('Profile Component', () => {
   it('renders the profile name', () => {
