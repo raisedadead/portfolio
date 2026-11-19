@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "[ \"$(git config --get core.hooksPath 2>/dev/null)\" != .husky/_ ] || git config --unset core.hooksPath; vp config --no-agent",
+    "prepare": "[ \"$(git config --local --get core.hooksPath 2>/dev/null)\" != .husky/_ ] || git config --local --unset-all core.hooksPath; vp config --no-agent",
     "dev": "cf dev",
     "develop": "cf dev",
     "build": "pnpm run do:build",
@@ -13,7 +13,7 @@
     "lint": "vp lint .",
     "lint:fix": "vp lint . --fix",
     "format": "vp fmt --write .",
-    "format:check": "vp fmt .",
+    "format:check": "vp fmt --check .",
     "test": "vp test run",
     "test:coverage": "vp test run --coverage",
     "test:update": "vp test --update",
