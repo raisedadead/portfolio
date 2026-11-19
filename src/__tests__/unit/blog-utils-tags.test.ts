@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vite-plus/test';
 import { getTagsWithCount, getAllTags, filterPostsByTag, getTagBySlug, getSharedTags } from '@/lib/blog-utils';
 import type { BlogPost } from '@/types/blog';
 

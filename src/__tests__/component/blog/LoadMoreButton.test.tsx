@@ -1,6 +1,6 @@
 import BlogLoadMore from '@/components/blog/LoadMoreButton';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vite-plus/test';
 
 describe('BlogLoadMore', () => {
   it('shows progress and loads at most one batch', () => {

@@ -1,5 +1,5 @@
 import type { APIContext } from 'astro';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vite-plus/test';
 import { GET } from '../../pages/api/health';
 
 interface HealthResponse {

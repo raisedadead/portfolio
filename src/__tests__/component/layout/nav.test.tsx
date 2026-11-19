@@ -1,6 +1,6 @@
 import { Nav } from '@/components/layout/nav';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vite-plus/test';
 
 describe('Nav', () => {
   it('opens the real menu with accessible links and closes on Escape', async () => {

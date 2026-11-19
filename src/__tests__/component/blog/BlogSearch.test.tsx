@@ -1,6 +1,6 @@
 import BlogSearch from '@/components/blog/BlogSearch';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi, afterEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi, afterEach } from 'vite-plus/test';
 import type { LightweightPost } from '@/types/blog';
 
 const mockPosts: LightweightPost[] = [

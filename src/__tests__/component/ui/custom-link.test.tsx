@@ -1,6 +1,6 @@
 import { CustomLink } from '@/components/custom-link';
 import { createRef } from 'react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vite-plus/test';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('CustomLink', () => {

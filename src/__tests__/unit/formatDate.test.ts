@@ -1,5 +1,5 @@
 import { formatDate } from '@/lib/formatDate';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vite-plus/test';
 
 describe('formatDate', () => {
   it('formats date in MMM DD, YYYY format', () => {

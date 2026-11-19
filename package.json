@@ -12,13 +12,13 @@
     "deploy": "pnpm run do:build && pnpm run do:deploy",
     "lint": "turbo do:lint",
     "lint:fix": "turbo do:lint:fix",
-    "format": "oxfmt --write .",
-    "format:check": "oxfmt .",
+    "format": "vp fmt --write .",
+    "format:check": "vp fmt .",
     "test": "turbo do:test",
     "test:coverage": "turbo do:test:coverage",
-    "test:update": "vitest --update",
-    "test:watch:ui": "vitest --ui",
-    "test:watch": "vitest",
+    "test:update": "vp test --update",
+    "test:watch:ui": "vp test --ui",
+    "test:watch": "vp test",
     "check": "turbo do:check",
     "test:e2e": "turbo do:test:e2e",
     "test:e2e:ui": "turbo do:test:e2e:ui",
@@ -27,10 +27,10 @@
     "do:build": "cf build",
     "do:preview": "node scripts/snapshot-preview-state.mjs && PORTFOLIO_E2E_STATE_DIR=.cloudflare/preview astro preview --ignore-lock",
     "do:deploy": "cf deploy --prebuilt --force",
-    "do:lint": "oxlint .",
-    "do:lint:fix": "oxlint . --fix",
-    "do:test": "vitest run",
-    "do:test:coverage": "vitest run --coverage",
+    "do:lint": "vp lint .",
+    "do:lint:fix": "vp lint . --fix",
+    "do:test": "vp test run",
+    "do:test:coverage": "vp test run --coverage",
     "do:check": "astro check",
     "do:test:e2e": "playwright test",
     "do:test:e2e:ui": "playwright test --ui",
@@ -72,43 +72,41 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.3.0",
-    "@vitest/coverage-v8": "5.1.0",
-    "@vitest/ui": "5.1.0",
+    "@vitest/coverage-v8": "catalog:",
+    "@vitest/ui": "catalog:",
     "cf": "1.0.0-beta.29",
     "happy-dom": "21.0.4",
     "husky": "9.1.7",
     "is-ci": "4.1.0",
     "jest-axe": "11.0.0",
-    "jsdom": "31.0.1",
     "lint-staged": "17.6.0",
     "marked": "18.2.0",
-    "oxfmt": "^0.78.0",
-    "oxlint": "1.93.0",
     "portless": "0.17.0",
     "tailwindcss": "4.3.5",
     "turbo": "2.11.11",
     "typescript": "6.0.3",
-    "vite": "8.3.8",
-    "vitest": "5.1.0",
+    "vite": "catalog:",
+    "vite-plus": "catalog:",
+    "vitest": "catalog:",
     "yaml": "^2.9.0"
   },
   "lint-staged": {
     "**/*.{mjs,cjs,js,jsx,tsx}": [
-      "oxlint --fix",
-      "oxfmt --write"
+      "vp lint --fix",
+      "vp fmt --write"
     ],
     "**/!(*.d).ts": [
-      "oxlint --fix",
-      "oxfmt --write"
+      "vp lint --fix",
+      "vp fmt --write"
     ],
     "**/*.d.ts": [
-      "oxfmt --write --no-error-on-unmatched-pattern"
+      "vp fmt --write --no-error-on-unmatched-pattern"
     ],
     "**/*.astro": [
-      "oxlint --fix"
+      "vp lint --fix"
     ],
     "**/*.{json,md}": [
-      "oxfmt --write --no-error-on-unmatched-pattern"
+      "vp fmt --write --no-error-on-unmatched-pattern"
     ]
   },
   "packageManager": "pnpm@12.21.0"

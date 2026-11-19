@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vite-plus/test';
 import type { EmdashPortableBlock } from '@/lib/emdash-posts';
 import { anchorHeadings } from '@/lib/post-outline';
 
