@@ -171,6 +171,16 @@ describe('native Cloudflare workflow', () => {
     expect(astroConfig).toMatch(/d1\(\{\s*binding:\s*'DB'/);
     expect(astroConfig).toMatch(/r2\(\{\s*binding:\s*'MEDIA'/);
   });
+
+  it('batches EmDash D1 reads through a D1 session', () => {
+    expect(astroConfig).toMatch(/d1\(\{\s*binding:\s*'DB',\s*session:\s*'auto',\s*coalesce:\s*true\s*\}\)/);
+  });
+
+  it('has no compatibility flag that blocks D1 session queries', () => {
+    for (const workerConfig of [worker, previewWorker]) {
+      expect(workerConfig.compatibilityFlags).not.toContain('global_fetch_strictly_public');
+    }
+  });
 });
 
 describe('env.example — local environment template', () => {
