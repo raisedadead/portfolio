@@ -19,6 +19,7 @@ dist/
 
 # Cloudflare
 .cloudflare/
+# cf writes startup-error profiles to .wrangler/tmp
 .wrangler/
 tsconfig.tsbuildinfo
 .dev.vars

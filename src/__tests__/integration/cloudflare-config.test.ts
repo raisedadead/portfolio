@@ -140,6 +140,12 @@ describe('native Cloudflare workflow', () => {
     expect(pkg.devDependencies.wrangler).toBeUndefined();
   });
 
+  it('installs no Wrangler, not even as an optional peer', () => {
+    const lockfile = readFileSync(path.join(repoRoot, 'pnpm-lock.yaml'), 'utf8');
+    expect(lockfile).not.toMatch(/^ {2}'?wrangler@/m);
+    expect(lockfile).not.toMatch(/\(wrangler@/);
+  });
+
   it('keeps build and deploy on the cf scripts', () => {
     expect({ build: pkg.scripts.build, deploy: pkg.scripts.deploy }).toEqual({
       build: 'pnpm run do:build',

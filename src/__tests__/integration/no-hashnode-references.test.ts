@@ -28,7 +28,7 @@ const SCAN_TARGETS = [
   path.join(repoRoot, 'README.md')
 ] as const;
 
-const EXCLUDED_DIRS = new Set(['node_modules', 'dist', 'coverage', '.astro', '.wrangler', '__tests__', '__mocks__']);
+const EXCLUDED_DIRS = new Set(['node_modules', 'dist', 'coverage', '.astro', '__tests__', '__mocks__']);
 
 function* walk(target: string): Generator<string> {
   let stat;
