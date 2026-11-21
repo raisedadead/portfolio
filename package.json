@@ -67,7 +67,7 @@
     "cf": "1.0.0-beta.29",
     "happy-dom": "21.0.4",
     "jest-axe": "11.0.0",
-    "marked": "18.2.0",
+    "marked": "18.2.1",
     "portless": "0.17.0",
     "tailwindcss": "4.3.5",
     "typescript": "6.0.3",
