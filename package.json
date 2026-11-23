@@ -29,7 +29,7 @@
   "dependencies": {
     "@ascorbic/feed-loader": "^2.0.1",
     "@astrojs/check": "0.9.12",
-    "@astrojs/cloudflare": "15.0.0-beta.5",
+    "@astrojs/cloudflare": "15.0.0-beta.6",
     "@astrojs/react": "7.1.9",
     "@calcom/embed-react": "1.5.3",
     "@emdash-cms/cloudflare": "^1.5.0",
@@ -51,7 +51,7 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "5.20261110.1",
+    "@cloudflare/workers-types": "5.20261118.1",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/forms": "0.5.11",
     "@tailwindcss/typography": "0.5.20",
@@ -64,7 +64,7 @@
     "@vitejs/plugin-react": "6.3.0",
     "@vitest/coverage-v8": "catalog:",
     "@vitest/ui": "catalog:",
-    "cf": "1.0.0-beta.29",
+    "cf": "1.0.0-rc.1",
     "happy-dom": "21.0.4",
     "jest-axe": "11.0.0",
     "marked": "18.2.1",
