@@ -29,7 +29,6 @@ const presetRulesPendingMigration = [
   'unicorn/consistent-function-scoping',
   'unicorn/no-typeof-undefined',
   'unicorn/prefer-set-has',
-  'unicorn/prefer-string-raw',
   'unicorn/prefer-string-replace-all',
   'unicorn/prefer-structured-clone',
   'unicorn/prefer-top-level-await',

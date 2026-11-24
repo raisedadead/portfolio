@@ -267,7 +267,7 @@ describe('markdownToPortableText — escaping', () => {
 
   it('leaves code block content byte-exact', () => {
     const blocks = markdownToPortableText('```bash\necho "a > b" && echo \'c\\_d\'\n```\n');
-    expect(blocks[0].code).toBe('echo "a > b" && echo \'c\\_d\'');
+    expect(blocks[0].code).toBe(String.raw`echo "a > b" && echo 'c\_d'`);
   });
 });
 
