@@ -91,7 +91,7 @@ const SAFE_HREF_SCHEME_RE = /^(?:https?:|mailto:|tel:)/i;
 const SCHEME_RE = /^[a-zA-Z][a-zA-Z0-9+.-]*:/;
 
 function decodeEntities(input) {
-  return input.replace(ENTITY_RE, (match, dec, hex, name) => {
+  return input.replaceAll(ENTITY_RE, (match, dec, hex, name) => {
     if (dec !== undefined) {
       return safeCodePoint(Number.parseInt(dec, 10)) ?? match;
     }

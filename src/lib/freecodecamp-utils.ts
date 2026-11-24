@@ -34,7 +34,7 @@ export function normalizeFreeCodeCampPosts(posts: Array<FreeCodeCampPostData>): 
     const tags =
       post.data.categories?.map((cat: { label: string; term: string }) => ({
         name: cat.label,
-        slug: cat.term.toLowerCase().replace(/\s+/g, '-')
+        slug: cat.term.toLowerCase().replaceAll(/\s+/g, '-')
       })) || [];
 
     // Estimate reading time (average 200 words per minute)

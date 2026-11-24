@@ -26,10 +26,10 @@ const slugify = (text: string): string =>
   text
     .toLowerCase()
     .normalize('NFKD')
-    .replace(/\p{Diacritic}/gu, '')
-    .replace(/[^\w\s-]/g, '')
+    .replaceAll(/\p{Diacritic}/gu, '')
+    .replaceAll(/[^\w\s-]/g, '')
     .trim()
-    .replace(/[\s-]+/g, '-');
+    .replaceAll(/[\s-]+/g, '-');
 
 export function anchorHeadings<T extends EmdashPortableBlock>(
   blocks: ReadonlyArray<T>

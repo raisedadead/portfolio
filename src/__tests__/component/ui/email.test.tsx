@@ -20,7 +20,7 @@ describe('Email', () => {
 
   it('transforms email correctly', () => {
     const originalInput = 'supPo    Rt @ mrug esh.dev';
-    const expectedProcessed = originalInput.toLowerCase().replace(/ /g, '').split('').reverse().join('');
+    const expectedProcessed = originalInput.toLowerCase().replaceAll(' ', '').split('').reverse().join('');
 
     expect(expectedProcessed).toBe('ved.hsegurm@troppus');
 

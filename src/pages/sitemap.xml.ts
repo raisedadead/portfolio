@@ -16,7 +16,7 @@ const XML_ESCAPES: Record<string, string> = {
 };
 
 function escapeXml(value: string): string {
-  return value.replace(/[&<>"']/g, (ch) => XML_ESCAPES[ch]);
+  return value.replaceAll(/[&<>"']/g, (ch) => XML_ESCAPES[ch]);
 }
 
 function urlTag(loc: string, lastmod?: string): string {
