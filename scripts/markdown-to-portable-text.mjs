@@ -339,18 +339,19 @@ function listBlocks(state, token, level) {
 
     const leadBlocks = lead ? inlineToBlocks(state.nextKey, lead.tokens ?? [], attributes) : [];
     if (leadBlocks.length && leadBlocks[0]._type === 'block') {
-      blocks.push(leadBlocks[0]);
-      blocks.push(...leadBlocks.slice(1).map(stripListAttributes));
+      blocks.push(leadBlocks[0], ...leadBlocks.slice(1).map(stripListAttributes));
     } else {
-      blocks.push({
-        _type: 'block',
-        _key: state.nextKey(),
-        style: 'normal',
-        markDefs: [],
-        children: [makeSpan(state.nextKey, '', [])],
-        ...attributes
-      });
-      blocks.push(...leadBlocks.map(stripListAttributes));
+      blocks.push(
+        {
+          _type: 'block',
+          _key: state.nextKey(),
+          style: 'normal',
+          markDefs: [],
+          children: [makeSpan(state.nextKey, '', [])],
+          ...attributes
+        },
+        ...leadBlocks.map(stripListAttributes)
+      );
     }
 
     for (const child of rest) {
