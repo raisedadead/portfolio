@@ -4,6 +4,43 @@ import cloudflare from '@cloudflare/oxlint-config';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite-plus';
 
+const accessibilityRules = [
+  'alt-text',
+  'anchor-has-content',
+  'anchor-is-valid',
+  'aria-activedescendant-has-tabindex',
+  'aria-props',
+  'aria-proptypes',
+  'aria-role',
+  'aria-unsupported-elements',
+  'autocomplete-valid',
+  'click-events-have-key-events',
+  'control-has-associated-label',
+  'heading-has-content',
+  'html-has-lang',
+  'iframe-has-title',
+  'img-redundant-alt',
+  'interactive-supports-focus',
+  'label-has-associated-control',
+  'lang',
+  'media-has-caption',
+  'mouse-events-have-key-events',
+  'no-access-key',
+  'no-aria-hidden-on-focusable',
+  'no-autofocus',
+  'no-distracting-elements',
+  'no-interactive-element-to-noninteractive-role',
+  'no-noninteractive-element-interactions',
+  'no-noninteractive-element-to-interactive-role',
+  'no-noninteractive-tabindex',
+  'no-redundant-roles',
+  'no-static-element-interactions',
+  'role-has-required-aria-props',
+  'role-supports-aria-props',
+  'scope',
+  'tabindex-no-positive'
+];
+
 const filesWhereWorkersTypesBreakDomAppend = [
   'src/__tests__/unit/consent.test.ts',
   'src/components/blog/BentoGrid.tsx',
@@ -104,11 +141,7 @@ export default defineConfig({
           ignoreRestSiblings: true
         }
       ],
-      'jsx-a11y/anchor-has-content': 'error',
-      'jsx-a11y/aria-props': 'error',
-      'jsx-a11y/aria-unsupported-elements': 'error',
-      'jsx-a11y/role-has-required-aria-props': 'error',
-      'jsx-a11y/role-supports-aria-props': 'error',
+      ...Object.fromEntries(accessibilityRules.map((rule) => [`jsx-a11y/${rule}`, 'error' as const])),
       'vite-plus/prefer-vite-plus-imports': 'error'
     },
     overrides: [

@@ -6,6 +6,8 @@ This guide tells you which tool owns each job in this project.
 
 - Vite+ (`vp`) owns installs, package scripts, lint, format, unit tests, and git hooks.
 - `@cloudflare/oxlint-config` supplies the lint rules. The `lint` block in `vite.config.ts` spreads it and adds the project rules.
+- The preset turns off whole Oxlint categories, so a rule runs only when the preset or `vite.config.ts` names it. `accessibilityRules` in `vite.config.ts` names the `jsx-a11y` rules.
+- The project relaxes the preset on purpose: `no-console` allows `warn` and `error`, and is off in `src/lib/`, `scripts/`, and `.github/`.
 - pnpm is the package manager under `vp`. `vp install` runs it.
 - The Cloudflare CLI (`cf`) owns dev, build, preview deploys, and deploys. `cf` runs `astro dev` and `astro build`.
 - `astro check` owns type checks.
