@@ -19,14 +19,11 @@ jobs:
   lint:
     name: Lint
     uses: ./.github/workflows/re-lint.yml
-    secrets: inherit
 
   test:
     name: Test
     uses: ./.github/workflows/re-test.yml
-    secrets: inherit
 
   build:
     name: Build
     uses: ./.github/workflows/re-build.yml
-    secrets: inherit
