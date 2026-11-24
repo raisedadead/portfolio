@@ -1,4 +1,5 @@
-import { createHighlighterCore, type HighlighterCore } from 'shiki/core';
+import { createHighlighterCore } from 'shiki/core';
+import type { HighlighterCore } from 'shiki/core';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
 import catppuccinMocha from 'shiki/themes/catppuccin-mocha.mjs';
 import langBash from 'shiki/langs/bash.mjs';

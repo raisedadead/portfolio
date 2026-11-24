@@ -1,4 +1,5 @@
-import { forwardRef, type ComponentPropsWithoutRef } from 'react';
+import { forwardRef } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
 type CustomLinkProps = ComponentPropsWithoutRef<'a'> & { href: string };
 

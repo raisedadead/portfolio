@@ -6,10 +6,9 @@ import {
   normalizeEmdashPosts,
   portableTextWordCount,
   readingTimeMinutes,
-  termsToTags,
-  type EmdashPortableBlock,
-  type EmdashPostEntry
+  termsToTags
 } from '@/lib/emdash-posts';
+import type { EmdashPortableBlock, EmdashPostEntry } from '@/lib/emdash-posts';
 
 const BLOCKS: Array<EmdashPortableBlock> = [
   { _type: 'block', style: 'h2', children: [{ _type: 'span', text: 'Heading words here' }] },

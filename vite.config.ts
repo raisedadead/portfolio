@@ -9,7 +9,6 @@ const presetRulesPendingMigration = [
   'no-promise-executor-return',
   'object-shorthand',
   'prefer-rest-params',
-  'import/consistent-type-specifier-style',
   'import-x/no-namespace',
   '@nkzw/no-instanceof',
   'quality/no-array-filter-map',
