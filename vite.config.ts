@@ -27,7 +27,6 @@ const presetRulesPendingMigration = [
   'typescript/unbound-method',
   'typescript/use-unknown-in-catch-callback-variable',
   'unicorn/consistent-function-scoping',
-  'unicorn/no-typeof-undefined',
   'unicorn/prefer-set-has',
   'unicorn/prefer-structured-clone',
   'unicorn/prefer-top-level-await',

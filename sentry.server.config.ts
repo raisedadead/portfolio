@@ -6,7 +6,7 @@ const dsn = process.env.PUBLIC_SENTRY_DSN;
 // `addEventListener('load', _, true)` crashes the runtime.
 // `process.versions.node` alone is not enough (unenv polyfills it);
 // `WebSocketPair` is the reliable Cloudflare signal.
-const isWorkerd = typeof (globalThis as unknown as { WebSocketPair?: unknown }).WebSocketPair !== 'undefined';
+const isWorkerd = (globalThis as unknown as { WebSocketPair?: unknown }).WebSocketPair !== undefined;
 const isNodeServer = typeof process !== 'undefined' && typeof process.versions?.node === 'string';
 
 if (dsn && isNodeServer && !isWorkerd) {
