@@ -29,6 +29,7 @@ describe('Consent banner', () => {
     mountBanner();
     const appendChild = document.head.appendChild.bind(document.head);
     vi.spyOn(document.head, 'appendChild').mockImplementation((node) => {
+      // eslint-disable-next-line @nkzw/no-instanceof
       if (node instanceof HTMLScriptElement) {
         node.type = 'text/plain';
       }

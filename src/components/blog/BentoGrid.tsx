@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import * as Sentry from '@sentry/astro';
+import { metrics } from '@sentry/astro';
 import type { LightweightPost } from '@/types/blog';
 import { filterPostsByTag, getBentoGridSpan, getSharedTags, getTagsWithCount } from '@/lib/blog-utils';
 import { formatDate } from '@/lib/formatDate';
@@ -59,7 +59,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
   }, [visibleCount, listedPosts, postsPerLoad]);
 
   const handleLoadMore = () => {
-    Sentry.metrics.count('blog.load_more', 1, {
+    metrics.count('blog.load_more', 1, {
       attributes: { visible: String(visibleCount), total: String(listedPosts.length) }
     });
 

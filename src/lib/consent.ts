@@ -26,6 +26,7 @@ export function installConsentBanner(): () => void {
   };
 
   const handleClick = (event: MouseEvent): void => {
+    // eslint-disable-next-line @nkzw/no-instanceof
     if (!(event.target instanceof Element)) {
       return;
     }

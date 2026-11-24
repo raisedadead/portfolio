@@ -1,17 +1,31 @@
 import { bindings, defineConfig } from 'cf/config';
 
+interface WorkerOverrides {
+  domains?: Array<string>;
+  unsafe?: { metadata: { keep_bindings: Array<string> } };
+}
+
+const productionWorkerOverrides: WorkerOverrides = {
+  domains: ['mrugesh.dev'],
+  unsafe: { metadata: { keep_bindings: ['secret_text', 'secret_key'] } }
+};
+
+const previewWorkerOverrides: WorkerOverrides = {};
+
 const production = {
   sentryEnvironment: 'production',
   db: { name: 'emdash-db', id: 'c9986d13-d392-4839-bbb1-014afc131260' },
   sessionId: '2e04f6b05af0486f9de09797027d5fc0',
-  mediaBucket: 'emdash-media'
+  mediaBucket: 'emdash-media',
+  workerOverrides: productionWorkerOverrides
 };
 
 const preview = {
   sentryEnvironment: 'preview',
   db: { name: 'emdash-db-preview', id: '994b3893-56cc-4dfd-abfe-4cb8a1381545' },
   sessionId: '6e1d014294854034bcf0f8e669c9c29a',
-  mediaBucket: 'emdash-media-preview'
+  mediaBucket: 'emdash-media-preview',
+  workerOverrides: previewWorkerOverrides
 };
 
 export default defineConfig(({ isPreview }) => {
@@ -25,7 +39,6 @@ export default defineConfig(({ isPreview }) => {
       entrypoint: '@astrojs/cloudflare/entrypoints/server',
       workersDev: false,
       previewUrls: true,
-      ...(isPreview ? {} : { domains: ['mrugesh.dev'] }),
       assets: { runWorkerFirst: ['/api/*', '/_emdash/*'] },
       env: {
         PUBLIC_SENTRY_DSN: bindings.text(
@@ -38,7 +51,7 @@ export default defineConfig(({ isPreview }) => {
         MEDIA: bindings.r2({ name: data.mediaBucket, dev: { remote: false } }),
         ASSETS: bindings.assets()
       },
-      ...(isPreview ? {} : { unsafe: { metadata: { keep_bindings: ['secret_text', 'secret_key'] } } }),
+      ...data.workerOverrides,
       observability: {
         logs: { enabled: true, invocationLogs: true },
         traces: { enabled: true }

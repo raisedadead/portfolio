@@ -31,9 +31,12 @@ const slugify = (text: string): string =>
     .trim()
     .replaceAll(/[\s-]+/g, '-');
 
-export function anchorHeadings<T extends EmdashPortableBlock>(
-  blocks: ReadonlyArray<T>
-): { content: Array<AnchoredBlock<T>>; outline: Array<OutlineSection> } {
+export interface AnchoredContent<T extends EmdashPortableBlock> {
+  content: Array<AnchoredBlock<T>>;
+  outline: Array<OutlineSection>;
+}
+
+export function anchorHeadings<T extends EmdashPortableBlock>(blocks: ReadonlyArray<T>): AnchoredContent<T> {
   const levels = blocks.map(headingLevel);
   const present = levels.filter(Boolean);
   const shift = present.length > 0 ? Math.min(...present) - 2 : 0;

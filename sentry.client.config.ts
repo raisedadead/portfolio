@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/astro';
+import { addIntegration, browserTracingIntegration, init, metrics } from '@sentry/astro';
 import { PUBLIC_SENTRY_DSN, PUBLIC_SENTRY_ENVIRONMENT, PUBLIC_SENTRY_RELEASE } from 'astro:env/client';
 
 const dsn = PUBLIC_SENTRY_DSN;
@@ -9,7 +9,7 @@ const dsn = PUBLIC_SENTRY_DSN;
 const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
 
 if (dsn && isBrowser) {
-  Sentry.init({
+  init({
     dsn,
     environment: PUBLIC_SENTRY_ENVIRONMENT || (import.meta.env.PROD ? 'production' : 'development'),
     release: PUBLIC_SENTRY_RELEASE || 'dev',
@@ -28,7 +28,7 @@ if (dsn && isBrowser) {
       /^\/api\//
     ],
 
-    integrations: [Sentry.browserTracingIntegration()],
+    integrations: [browserTracingIntegration()],
 
     beforeSend(event) {
       const url = event.request?.url || '';
@@ -59,7 +59,7 @@ if (dsn && isBrowser) {
     // Track page views with route context
     beforeSendTransaction(event) {
       const route = event.transaction || window.location.pathname;
-      Sentry.metrics.count('page.view', 1, {
+      metrics.count('page.view', 1, {
         attributes: { route }
       });
       return event;
@@ -88,7 +88,7 @@ if (dsn && isBrowser) {
   const loadReplay = () =>
     import('@sentry/replay')
       .then(({ replayIntegration }) =>
-        Sentry.addIntegration(replayIntegration({ maskAllText: true, blockAllMedia: true, maskAllInputs: true }))
+        addIntegration(replayIntegration({ maskAllText: true, blockAllMedia: true, maskAllInputs: true }))
       )
       .catch((error) => import.meta.env.DEV && console.warn('[Sentry] Replay failed to load', error));
   const whenIdle = () =>

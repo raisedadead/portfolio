@@ -18,20 +18,20 @@ describe('Background', () => {
       quadraticCurveTo: vi.fn(),
       stroke: vi.fn(),
       fill: vi.fn(),
-      getImageData: vi.fn(() => ({
+      getImageData: vi.fn<CanvasRenderingContext2D['getImageData']>(() => ({
         data: new Uint8ClampedArray(100),
         width: 10,
         height: 10,
         colorSpace: 'srgb'
-      })) as unknown as typeof CanvasRenderingContext2D.prototype.getImageData,
+      })),
       putImageData: vi.fn(),
       drawImage: vi.fn(),
-      createLinearGradient: vi.fn(() => ({
+      createLinearGradient: vi.fn<CanvasRenderingContext2D['createLinearGradient']>(() => ({
         addColorStop: vi.fn()
-      })) as unknown as typeof CanvasRenderingContext2D.prototype.createLinearGradient,
-      createRadialGradient: vi.fn(() => ({
+      })),
+      createRadialGradient: vi.fn<CanvasRenderingContext2D['createRadialGradient']>(() => ({
         addColorStop: vi.fn()
-      })) as unknown as typeof CanvasRenderingContext2D.prototype.createRadialGradient
+      }))
     };
 
     mockGetContext = vi.fn(() => mockContext);

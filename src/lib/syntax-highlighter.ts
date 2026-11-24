@@ -14,18 +14,18 @@ import langTypescript from 'shiki/langs/typescript.mjs';
 import langYaml from 'shiki/langs/yaml.mjs';
 
 const NO_LINE_NUMBER_LANGUAGES = ['bash', 'console', 'plaintext'];
-const LANGUAGE_ALIASES: Record<string, string> = {
-  '': 'plaintext',
-  text: 'plaintext',
-  txt: 'plaintext',
-  sh: 'bash',
-  shell: 'bash',
-  zsh: 'bash',
-  js: 'javascript',
-  ts: 'typescript',
-  ps1: 'powershell',
-  pwsh: 'powershell'
-};
+const LANGUAGE_ALIASES = new Map([
+  ['', 'plaintext'],
+  ['text', 'plaintext'],
+  ['txt', 'plaintext'],
+  ['sh', 'bash'],
+  ['shell', 'bash'],
+  ['zsh', 'bash'],
+  ['js', 'javascript'],
+  ['ts', 'typescript'],
+  ['ps1', 'powershell'],
+  ['pwsh', 'powershell']
+]);
 const PLAIN_LANGUAGES = ['plaintext', 'ansi'];
 
 let highlighterPromise: Promise<HighlighterCore> | undefined;
@@ -55,7 +55,7 @@ export async function highlightCode(code: string, language: string): Promise<str
     .trim()
     .toLowerCase()
     .replace(/^lang-/, '');
-  const formattedLanguage = Object.hasOwn(LANGUAGE_ALIASES, stripped) ? LANGUAGE_ALIASES[stripped] : stripped;
+  const formattedLanguage = LANGUAGE_ALIASES.get(stripped) ?? stripped;
   const showLineNumbers = !NO_LINE_NUMBER_LANGUAGES.includes(formattedLanguage);
 
   try {
@@ -89,12 +89,12 @@ export async function highlightCode(code: string, language: string): Promise<str
 }
 
 function escapeHtml(text: string): string {
-  const map: Record<string, string> = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  };
-  return text.replaceAll(/[&<>"']/g, (m) => map[m]);
+  const map = new Map([
+    ['&', '&amp;'],
+    ['<', '&lt;'],
+    ['>', '&gt;'],
+    ['"', '&quot;'],
+    ["'", '&#039;']
+  ]);
+  return text.replaceAll(/[&<>"']/g, (m) => map.get(m) ?? m);
 }

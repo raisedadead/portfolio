@@ -1,10 +1,15 @@
 import { describe, expect, it } from 'vite-plus/test';
 import { markdownToPortableText } from '../../../scripts/markdown-to-portable-text.mjs';
+import type { PortableTextNode, PortableTextSpan } from '../../../scripts/markdown-to-portable-text.mjs';
 
-const text = (block: Record<string, any>): string =>
-  ((block.children ?? []) as Array<{ text?: string }>).map((span) => span.text ?? '').join('');
+const spans = (block: PortableTextNode): Array<PortableTextSpan> => block.children ?? [];
 
-const types = (blocks: Array<Record<string, any>>): Array<string> => blocks.map((block) => block._type);
+const text = (block: PortableTextNode): string =>
+  spans(block)
+    .map((span) => span.text)
+    .join('');
+
+const types = (blocks: Array<PortableTextNode>): Array<string> => blocks.map((block) => block._type);
 
 describe('markdownToPortableText — block structure', () => {
   it('keeps a wrapped paragraph as one block', () => {
@@ -44,8 +49,8 @@ describe('markdownToPortableText — block structure', () => {
     expect(blocks[0]._type).toBe('table');
     expect(blocks[0].hasHeaderRow).toBe(true);
     expect(blocks[0].rows).toHaveLength(2);
-    expect(blocks[0].rows[0].cells.map((cell: any) => cell.content[0].text)).toEqual(['Flag', 'Use']);
-    expect(blocks[0].rows[0].cells.every((cell: any) => cell.isHeader)).toBe(true);
+    expect(blocks[0].rows![0].cells.map((cell) => cell.content[0].text)).toEqual(['Flag', 'Use']);
+    expect(blocks[0].rows![0].cells.every((cell) => cell.isHeader)).toBe(true);
   });
 
   it('maps a raw HTML block to an htmlBlock', () => {
@@ -60,7 +65,7 @@ describe('markdownToPortableText — images', () => {
     const blocks = markdownToPortableText('![a shot](../assets/images/post/shot.png)\n');
     expect(types(blocks)).toEqual(['image']);
     expect(blocks[0].alt).toBe('a shot');
-    expect(blocks[0].asset.url).toBe('../assets/images/post/shot.png');
+    expect(blocks[0].asset?.url).toBe('../assets/images/post/shot.png');
   });
 
   it('lifts an image indented inside an ordered list item', () => {
@@ -68,7 +73,7 @@ describe('markdownToPortableText — images', () => {
     const blocks = markdownToPortableText(md);
     const image = blocks.find((block) => block._type === 'image');
     expect(image).toBeDefined();
-    expect(image?.asset.url).toBe('../assets/images/post/ZwwU48KzC.png');
+    expect(image?.asset?.url).toBe('../assets/images/post/ZwwU48KzC.png');
     expect(blocks.some((block) => text(block).includes('!['))).toBe(false);
     expect(blocks.some((block) => text(block).startsWith('!'))).toBe(false);
   });
@@ -87,7 +92,7 @@ describe('markdownToPortableText — images', () => {
 
   it('keeps a remote image URL untouched', () => {
     const blocks = markdownToPortableText('![g](https://guide-images.cdn.ifixit.com/igi/1KYGFBXEjBCNtXCW.medium)\n');
-    expect(blocks[0].asset.url).toBe('https://guide-images.cdn.ifixit.com/igi/1KYGFBXEjBCNtXCW.medium');
+    expect(blocks[0].asset?.url).toBe('https://guide-images.cdn.ifixit.com/igi/1KYGFBXEjBCNtXCW.medium');
   });
 });
 
@@ -159,8 +164,8 @@ it('keeps the numbered slot when a list item leads with an image', () => {
 describe('markdownToPortableText — inline marks', () => {
   it('marks strong and emphasis, including single-asterisk emphasis', () => {
     const blocks = markdownToPortableText('This is **bold** and *slanted* and _also slanted_.\n');
-    const marked = blocks[0].children.filter((span: any) => (span.marks ?? []).length > 0);
-    expect(marked.map((span: any) => [span.text, span.marks])).toEqual([
+    const marked = spans(blocks[0]).filter((span) => span.marks.length > 0);
+    expect(marked.map((span) => [span.text, span.marks])).toEqual([
       ['bold', ['strong']],
       ['slanted', ['em']],
       ['also slanted', ['em']]
@@ -169,38 +174,39 @@ describe('markdownToPortableText — inline marks', () => {
 
   it('marks inline code and keeps underscores inside it intact', () => {
     const blocks = markdownToPortableText('Set the `ZSH_THEME` value in `~/.zshrc`.\n');
-    const code = blocks[0].children.filter((span: any) => (span.marks ?? []).includes('code'));
-    expect(code.map((span: any) => span.text)).toEqual(['ZSH_THEME', '~/.zshrc']);
+    const code = spans(blocks[0]).filter((span) => span.marks.includes('code'));
+    expect(code.map((span) => span.text)).toEqual(['ZSH_THEME', '~/.zshrc']);
   });
 
   it('does not italicise snake_case words outside code', () => {
     const blocks = markdownToPortableText('The known_hosts file lives in ~/.ssh/known_hosts today.\n');
     expect(text(blocks[0])).toBe('The known_hosts file lives in ~/.ssh/known_hosts today.');
-    expect(blocks[0].children.every((span: any) => (span.marks ?? []).length === 0)).toBe(true);
+    expect(spans(blocks[0]).every((span) => span.marks.length === 0)).toBe(true);
   });
 
   it('marks strikethrough', () => {
     const blocks = markdownToPortableText('This is ~~gone~~ now.\n');
-    const struck = blocks[0].children.find((span: any) => (span.marks ?? []).includes('strike-through'));
-    expect(struck.text).toBe('gone');
+    const struck = spans(blocks[0]).find((span) => span.marks.includes('strike-through'));
+    expect(struck?.text).toBe('gone');
   });
 
   it('records a link as a markDef annotation', () => {
     const blocks = markdownToPortableText('See [the docs](https://example.com/docs).\n');
     expect(blocks[0].markDefs).toHaveLength(1);
-    expect(blocks[0].markDefs[0]).toMatchObject({ _type: 'link', href: 'https://example.com/docs' });
-    const linked = blocks[0].children.find((span: any) => (span.marks ?? []).includes(blocks[0].markDefs[0]._key));
-    expect(linked.text).toBe('the docs');
+    const link = blocks[0].markDefs![0];
+    expect(link).toMatchObject({ _type: 'link', href: 'https://example.com/docs' });
+    const linked = spans(blocks[0]).find((span) => span.marks.includes(link._key));
+    expect(linked?.text).toBe('the docs');
   });
 
   it('resolves a reference-style link', () => {
     const blocks = markdownToPortableText('See [the docs][d].\n\n[d]: https://example.com/docs\n');
-    expect(blocks[0].markDefs[0].href).toBe('https://example.com/docs');
+    expect(blocks[0].markDefs?.[0].href).toBe('https://example.com/docs');
   });
 
   it('autolinks a bare URL', () => {
     const blocks = markdownToPortableText('Read https://cli.github.com/manual/ for more.\n');
-    expect(blocks[0].markDefs[0].href).toBe('https://cli.github.com/manual/');
+    expect(blocks[0].markDefs?.[0].href).toBe('https://cli.github.com/manual/');
   });
 });
 
@@ -208,15 +214,13 @@ describe('markdownToPortableText — inline HTML', () => {
   it('maps a kbd tag to the code mark instead of leaking the tag', () => {
     const blocks = markdownToPortableText('Press <kbd>Ctrl</kbd>+<kbd>P</kbd> to open it.\n');
     expect(text(blocks[0])).toBe('Press Ctrl+P to open it.');
-    const marked = blocks[0].children.filter((span: any) => (span.marks ?? []).includes('code'));
-    expect(marked.map((span: any) => span.text)).toEqual(['Ctrl', 'P']);
+    const marked = spans(blocks[0]).filter((span) => span.marks.includes('code'));
+    expect(marked.map((span) => span.text)).toEqual(['Ctrl', 'P']);
   });
 
   it('maps presentational tags to their Portable Text marks', () => {
     const blocks = markdownToPortableText('<b>b</b> <i>i</i> <u>u</u> <s>s</s> <sup>up</sup> <sub>dn</sub>\n');
-    const pairs = blocks[0].children
-      .filter((span: any) => (span.marks ?? []).length > 0)
-      .map((span: any) => [span.text, span.marks[0]]);
+    const pairs = spans(blocks[0]).flatMap((span) => (span.marks.length > 0 ? [[span.text, span.marks[0]]] : []));
     expect(pairs).toEqual([
       ['b', 'strong'],
       ['i', 'em'],
@@ -235,7 +239,7 @@ describe('markdownToPortableText — inline HTML', () => {
   it('drops an unmapped inline tag but keeps its text', () => {
     const blocks = markdownToPortableText('a <span class="x">kept</span> b\n');
     expect(text(blocks[0])).toBe('a kept b');
-    expect(blocks[0].children.every((span: any) => (span.marks ?? []).length === 0)).toBe(true);
+    expect(spans(blocks[0]).every((span) => span.marks.length === 0)).toBe(true);
   });
 
   it('turns an inline br into a newline', () => {
@@ -274,15 +278,15 @@ describe('markdownToPortableText — escaping', () => {
 describe('markdownToPortableText — nesting', () => {
   it('keeps inline code inside a link', () => {
     const blocks = markdownToPortableText('Use [`fzf`](https://github.com/junegunn/fzf) for this.\n');
-    const linkKey = blocks[0].markDefs[0]._key;
-    const span = blocks[0].children.find((s: any) => s.text === 'fzf');
-    expect(span.marks).toEqual(expect.arrayContaining(['code', linkKey]));
+    const linkKey = blocks[0].markDefs![0]._key;
+    const span = spans(blocks[0]).find((s) => s.text === 'fzf');
+    expect(span?.marks).toEqual(expect.arrayContaining(['code', linkKey]));
   });
 
   it('keeps emphasis nested inside strong', () => {
     const blocks = markdownToPortableText('**bold _and italic_ here**\n');
-    const both = blocks[0].children.find((s: any) => s.text === 'and italic');
-    expect(both.marks).toEqual(['strong', 'em']);
+    const both = spans(blocks[0]).find((s) => s.text === 'and italic');
+    expect(both?.marks).toEqual(['strong', 'em']);
   });
 
   it('drops a trailing reference definition instead of leaking it as a paragraph', () => {
@@ -313,8 +317,8 @@ describe('markdownToPortableText — untrusted input', () => {
 
   it('never derives a mark from an Object prototype key', () => {
     const blocks = markdownToPortableText('A <constructor>x</constructor> B\n');
-    const persisted = JSON.parse(JSON.stringify(blocks));
-    expect(persisted[0].children.flatMap((span: any) => span.marks ?? [])).toEqual([]);
+    const persisted = structuredClone(blocks);
+    expect(spans(persisted[0]).flatMap((span) => span.marks)).toEqual([]);
     expect(text(blocks[0])).toBe('A <constructor>x</constructor> B');
   });
 
@@ -322,7 +326,7 @@ describe('markdownToPortableText — untrusted input', () => {
     const blocks = markdownToPortableText('Click [here](javascript:alert(1)) now.\n');
     expect(blocks[0].markDefs).toEqual([]);
     expect(text(blocks[0])).toBe('Click here now.');
-    expect(blocks[0].children.every((span: any) => (span.marks ?? []).length === 0)).toBe(true);
+    expect(spans(blocks[0]).every((span) => span.marks.length === 0)).toBe(true);
   });
 
   it('drops a data-url link mark', () => {
@@ -333,7 +337,7 @@ describe('markdownToPortableText — untrusted input', () => {
   it('keeps http, mailto, anchor and relative link marks', () => {
     const md = '[a](https://x.dev) [b](mailto:x@y.dev) [c](#top) [d](/blog/post) [e](../other)\n';
     const blocks = markdownToPortableText(md);
-    expect(blocks[0].markDefs.map((def: any) => def.href)).toEqual([
+    expect(blocks[0].markDefs?.map((def) => def.href)).toEqual([
       'https://x.dev',
       'mailto:x@y.dev',
       '#top',

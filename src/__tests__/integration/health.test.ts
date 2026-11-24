@@ -13,8 +13,8 @@ function isHealthResponse(data: unknown): data is HealthResponse {
     data !== null &&
     'status' in data &&
     'timestamp' in data &&
-    typeof (data as Record<string, unknown>).status === 'string' &&
-    typeof (data as Record<string, unknown>).timestamp === 'string'
+    typeof data.status === 'string' &&
+    typeof data.timestamp === 'string'
   );
 }
 

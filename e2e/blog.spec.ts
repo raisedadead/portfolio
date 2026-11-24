@@ -241,10 +241,9 @@ test.describe('Console Errors', () => {
     await page.waitForLoadState('networkidle');
 
     // Filter out known acceptable errors
-    const criticalErrors = errors
-      .filter((error) => !isTelemetryHost(error.url))
-      .map((error) => error.text)
-      .filter((text) => !text.includes('favicon') && !text.includes('Sentry'));
+    const criticalErrors = errors.flatMap(({ text, url }) =>
+      isTelemetryHost(url) || text.includes('favicon') || text.includes('Sentry') ? [] : [text]
+    );
 
     expect(criticalErrors).toHaveLength(0);
   });

@@ -5,13 +5,6 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite-plus';
 
 const presetRulesPendingMigration = [
-  'import-x/no-namespace',
-  '@nkzw/no-instanceof',
-  'quality/no-array-filter-map',
-  'quality/no-chained-type-assertions',
-  'quality/no-conditional-empty-object-spread',
-  'quality/no-known-value-widening',
-  'quality/no-unsafe-dictionary-type',
   '@typescript-eslint/no-floating-promises',
   'typescript/no-floating-promises',
   '@typescript-eslint/no-misused-promises',

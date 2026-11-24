@@ -18,20 +18,18 @@ const Label: React.FC<{ children: React.ReactNode; labelColor: string }> = ({ ch
   const preClasses =
     'mx-1 inline-flex items-center rounded-full shadow-brutal-md border-2 px-2 py-0.5 text-xs font-medium';
 
-  const colorVariants: {
-    [key: string]: string;
-  } = {
-    red: 'border-black bg-red-100 text-red-800',
-    green: 'border-black bg-green-100 text-green-800',
-    blue: 'border-black bg-blue-100 text-blue-800',
-    orange: 'border-black bg-orange-100 text-orange-800',
-    yellow: 'border-black bg-yellow-100 text-yellow-800',
-    purple: 'border-black bg-purple-100 text-purple-800',
-    pink: 'border-black bg-pink-100 text-pink-800',
-    gray: 'border-black bg-gray-100 text-gray-800'
-  };
+  const colorVariants = new Map([
+    ['red', 'border-black bg-red-100 text-red-800'],
+    ['green', 'border-black bg-green-100 text-green-800'],
+    ['blue', 'border-black bg-blue-100 text-blue-800'],
+    ['orange', 'border-black bg-orange-100 text-orange-800'],
+    ['yellow', 'border-black bg-yellow-100 text-yellow-800'],
+    ['purple', 'border-black bg-purple-100 text-purple-800'],
+    ['pink', 'border-black bg-pink-100 text-pink-800'],
+    ['gray', 'border-black bg-gray-100 text-gray-800']
+  ]);
 
-  return <span className={`${colorVariants[labelColor]} ${preClasses}`}>{children}</span>;
+  return <span className={`${colorVariants.get(labelColor) ?? ''} ${preClasses}`}>{children}</span>;
 };
 
 const Labels: React.FC<{

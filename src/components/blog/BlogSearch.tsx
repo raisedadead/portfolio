@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
-import * as Sentry from '@sentry/astro';
+import { metrics } from '@sentry/astro';
 import { Input } from '@/components/forms/input';
 import type { LightweightPost } from '@/types/blog';
 
@@ -38,10 +38,10 @@ export default function BlogSearch({ posts }: Props) {
   const trackSearch = useCallback((resultCount: number) => {
     clearTimeout(searchTimerRef.current);
     searchTimerRef.current = setTimeout(() => {
-      Sentry.metrics.count('blog.search', 1, {
+      metrics.count('blog.search', 1, {
         attributes: { has_results: String(resultCount > 0) }
       });
-      Sentry.metrics.distribution('blog.search.result_count', resultCount);
+      metrics.distribution('blog.search.result_count', resultCount);
     }, 500);
   }, []);
 
@@ -109,7 +109,7 @@ export default function BlogSearch({ posts }: Props) {
   };
 
   const handleResultClick = () => {
-    Sentry.metrics.count('blog.search.click', 1);
+    metrics.count('blog.search.click', 1);
     setIsOpen(false);
     setSelectedIndex(-1);
     setSearchQuery('');

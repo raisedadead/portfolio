@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/astro';
+import { init } from '@sentry/astro';
 
 const dsn = process.env.PUBLIC_SENTRY_DSN;
 
@@ -6,11 +6,11 @@ const dsn = process.env.PUBLIC_SENTRY_DSN;
 // `addEventListener('load', _, true)` crashes the runtime.
 // `process.versions.node` alone is not enough (unenv polyfills it);
 // `WebSocketPair` is the reliable Cloudflare signal.
-const isWorkerd = (globalThis as unknown as { WebSocketPair?: unknown }).WebSocketPair !== undefined;
+const isWorkerd = 'WebSocketPair' in globalThis;
 const isNodeServer = typeof process !== 'undefined' && typeof process.versions?.node === 'string';
 
 if (dsn && isNodeServer && !isWorkerd) {
-  Sentry.init({
+  init({
     dsn,
     environment: process.env.PUBLIC_SENTRY_ENVIRONMENT || 'production',
     release: process.env.PUBLIC_SENTRY_RELEASE || 'dev',

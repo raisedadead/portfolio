@@ -5,8 +5,8 @@ import cloudflareConfig from '../cloudflare.config';
 const packagedConfig = '.cloudflare/output/v0/workers/default/worker.config.json';
 
 test('the deployment package preserves the Worker settings', () => {
-  const { manifest, ...packaged } = JSON.parse(readFileSync(packagedConfig, 'utf8')) as Record<string, unknown>;
+  const packaged: unknown = JSON.parse(readFileSync(packagedConfig, 'utf8'));
   const { entrypoint, ...source } = cloudflareConfig({ isPreview: false, mode: undefined }).worker;
-  expect(manifest).toMatchObject({ mainModule: 'entry.mjs' });
-  expect(packaged).toEqual(source);
+  expect(packaged).toMatchObject({ manifest: { mainModule: 'entry.mjs' } });
+  expect(packaged).toEqual({ ...source, manifest: expect.anything() });
 });

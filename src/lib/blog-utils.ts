@@ -77,10 +77,15 @@ interface SequencedPost {
   data: { slug: string };
 }
 
+export interface AdjacentPosts<T> {
+  newer?: T;
+  older?: T;
+}
+
 export function getAdjacentPosts<T extends SequencedPost>(
   newestFirst: ReadonlyArray<T>,
   slug: string
-): { newer?: T; older?: T } {
+): AdjacentPosts<T> {
   const index = newestFirst.findIndex((post) => post.data.slug === slug);
   if (index === -1) {
     return { newer: undefined, older: undefined };
