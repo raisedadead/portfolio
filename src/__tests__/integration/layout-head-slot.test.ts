@@ -11,8 +11,8 @@ import path from 'node:path';
 import { describe, expect, it } from 'vite-plus/test';
 
 const here = import.meta.dirname;
-const baseLayout = readFileSync(path.resolve(here, '../../layouts/base-layout.astro'), 'utf-8');
-const mainLayout = readFileSync(path.resolve(here, '../../layouts/main-layout.astro'), 'utf-8');
+const baseLayout = readFileSync(path.resolve(here, '../../layouts/base-layout.astro'), 'utf8');
+const mainLayout = readFileSync(path.resolve(here, '../../layouts/main-layout.astro'), 'utf8');
 
 describe('Layout head slot — chain integrity', () => {
   it('base-layout exposes a named "head" slot inside <head>', () => {

@@ -14,7 +14,7 @@ import { describe, expect, it } from 'vite-plus/test';
 
 const here = import.meta.dirname;
 const baseLayoutPath = path.resolve(here, '../../layouts/base-layout.astro');
-const baseLayout = readFileSync(baseLayoutPath, 'utf-8');
+const baseLayout = readFileSync(baseLayoutPath, 'utf8');
 
 describe('BaseLayout — SSR slot integrity', () => {
   it('the body <slot /> is NOT wrapped in any React island', () => {

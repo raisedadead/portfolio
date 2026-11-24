@@ -29,8 +29,7 @@ const presetRulesPendingMigration = [
   'unicorn/consistent-function-scoping',
   'unicorn/prefer-set-has',
   'unicorn/prefer-structured-clone',
-  'unicorn/prefer-top-level-await',
-  'unicorn/text-encoding-identifier-case'
+  'unicorn/prefer-top-level-await'
 ];
 const presetRulesClashingWithWorkersTypes = ['unicorn/prefer-dom-node-append'];
 const presetRulesOff = Object.fromEntries(
