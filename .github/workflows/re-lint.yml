@@ -17,12 +17,12 @@ jobs:
       - name: Setup Vite+
         uses: ./.github/actions/setup-vp
 
-      - name: Run lint
-        run: vp run lint
+      - name: Run astro check
+        run: vp run check
         env:
           CI: true
 
-      - name: Run astro check
-        run: vp run check
+      - name: Run lint
+        run: vp run lint
         env:
           CI: true
