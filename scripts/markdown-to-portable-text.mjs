@@ -126,63 +126,71 @@ function makeSpan(nextKey, text, marks) {
   return { _type: 'span', _key: nextKey(), text, marks: [...marks] };
 }
 
+const WRAPPING_MARKS = new Map([
+  ['strong', 'strong'],
+  ['em', 'em'],
+  ['del', 'strike-through']
+]);
+
 function collectInline(tokens, context, marks, spans) {
   const open = [];
-  const active = () => (open.length ? [...marks, ...open] : marks);
-
   for (const token of tokens ?? []) {
-    switch (token.type) {
-      case 'text':
-        if (token.tokens?.length) {
-          collectInline(token.tokens, context, active(), spans);
-        } else {
-          spans.push(makeSpan(context.nextKey, decodeEntities(token.text ?? ''), active()));
-        }
-        break;
-      case 'escape':
-        spans.push(makeSpan(context.nextKey, token.text ?? '', active()));
-        break;
-      case 'strong':
-        collectInline(token.tokens, context, [...active(), 'strong'], spans);
-        break;
-      case 'em':
-        collectInline(token.tokens, context, [...active(), 'em'], spans);
-        break;
-      case 'del':
-        collectInline(token.tokens, context, [...active(), 'strike-through'], spans);
-        break;
-      case 'codespan':
-        spans.push(makeSpan(context.nextKey, token.text ?? '', [...active(), 'code']));
-        break;
-      case 'br':
-        spans.push(makeSpan(context.nextKey, '\n', active()));
-        break;
-      case 'link': {
-        const href = token.href ?? '';
-        if (!isSafeHref(href)) {
-          collectInline(token.tokens, context, active(), spans);
-          break;
-        }
-        const key = context.nextKey();
-        context.markDefs.push({ _key: key, _type: 'link', href });
-        collectInline(token.tokens, context, [...active(), key], spans);
-        break;
-      }
-      case 'html':
-        applyInlineTag(token.text ?? '', open, context, spans, marks);
-        break;
-      case 'image':
-        spans.push({ image: token });
-        break;
-      default:
-        if (token.tokens?.length) {
-          collectInline(token.tokens, context, active(), spans);
-        } else if (typeof token.text === 'string') {
-          spans.push(makeSpan(context.nextKey, decodeEntities(token.text), active()));
-        }
+    if (token.type === 'html') {
+      applyInlineTag(token.text ?? '', open, context, spans, marks);
+    } else {
+      collectToken(token, context, open.length ? [...marks, ...open] : marks, spans);
     }
   }
   return spans;
+}
+
+function collectToken(token, context, active, spans) {
+  const wrappingMark = WRAPPING_MARKS.get(token.type);
+  if (wrappingMark) {
+    collectInline(token.tokens, context, [...active, wrappingMark], spans);
+    return;
+  }
+  switch (token.type) {
+    case 'text':
+      collectText(token, context, active, spans, token.text ?? '');
+      return;
+    case 'escape':
+      spans.push(makeSpan(context.nextKey, token.text ?? '', active));
+      return;
+    case 'codespan':
+      spans.push(makeSpan(context.nextKey, token.text ?? '', [...active, 'code']));
+      return;
+    case 'br':
+      spans.push(makeSpan(context.nextKey, '\n', active));
+      return;
+    case 'link':
+      collectLink(token, context, active, spans);
+      return;
+    case 'image':
+      spans.push({ image: token });
+      return;
+    default:
+      collectText(token, context, active, spans, token.text);
+  }
+}
+
+function collectText(token, context, active, spans, text) {
+  if (token.tokens?.length) {
+    collectInline(token.tokens, context, active, spans);
+  } else if (typeof text === 'string') {
+    spans.push(makeSpan(context.nextKey, decodeEntities(text), active));
+  }
+}
+
+function collectLink(token, context, active, spans) {
+  const href = token.href ?? '';
+  if (!isSafeHref(href)) {
+    collectInline(token.tokens, context, active, spans);
+    return;
+  }
+  const key = context.nextKey();
+  context.markDefs.push({ _key: key, _type: 'link', href });
+  collectInline(token.tokens, context, [...active, key], spans);
 }
 
 function isSafeHref(href) {

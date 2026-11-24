@@ -261,12 +261,7 @@ async function updateEntry(baseUrl, token, id, input) {
   return payload.data;
 }
 
-async function main() {
-  const args = parseArgs(process.argv);
-  const sourceDir = path.resolve(args.sourceDir);
-  const token = args.token || process.env.EMDASH_TOKEN || (await mintDevToken(args.baseUrl));
-  const client = new EmDashClient({ baseUrl: args.baseUrl, token });
-
+async function loadExistingPosts(client) {
   const existingBySlug = new Map();
   let publishedCount = 0;
   let draftCount = 0;
@@ -280,40 +275,28 @@ async function main() {
       draftCount++;
     }
   }
+  return { existingBySlug, publishedCount, draftCount };
+}
 
-  if (args.status) {
-    console.log(`posts collection: ${publishedCount} published, ${draftCount} drafts`);
-    return;
-  }
-
+async function readEntries(sourceDir) {
   const files = [
     ...(await readCollectionFiles(sourceDir, 'posts')),
     ...(await readCollectionFiles(sourceDir, 'drafts'))
   ];
-  console.log(`${files.length} markdown files in ${sourceDir}; ${existingBySlug.size} entries already in EmDash`);
-
-  const entries = files.map((file) => {
+  return files.map((file) => {
     const { frontmatter, body } = splitFrontmatter(file.raw);
     return { ...file, frontmatter, body, refs: collectLocalImageRefs(frontmatter, body) };
   });
+}
 
-  const pending = entries.filter((entry) => args.reimport || !existingBySlug.has(entry.slug));
-  for (const entry of entries) {
-    const exists = existingBySlug.has(entry.slug);
-    const state = exists
-      ? args.reimport
-        ? 'rewrite (exists)'
-        : 'skip (exists)'
-      : entry.isDraft || entry.frontmatter.draft
-        ? 'draft'
-        : 'publish';
-    console.log(`  ${state}: ${entry.slug} (${entry.refs.length} local images)`);
+export function planState(entry, exists, reimport) {
+  if (exists) {
+    return reimport ? 'rewrite (exists)' : 'skip (exists)';
   }
-  if (!args.commit) {
-    console.log(`dry-run: would import ${pending.length} entries. Pass --commit to write.`);
-    return;
-  }
+  return entry.isDraft || entry.frontmatter.draft ? 'draft' : 'publish';
+}
 
+async function uploadMedia(client, sourceDir, pending) {
   const mediaByRef = new Map();
   for (const entry of pending) {
     for (const ref of entry.refs) {
@@ -330,44 +313,79 @@ async function main() {
       console.log(`  ^ media ${optimized.filename} -> ${item.id}`);
     }
   }
+  return mediaByRef;
+}
 
+function coverValue(frontmatter, mediaByRef) {
+  if (!frontmatter.cover || !mediaByRef.has(frontmatter.cover)) {
+    return undefined;
+  }
+  return toMediaValue(mediaByRef.get(frontmatter.cover), frontmatter.coverAlt ?? frontmatter.title);
+}
+
+async function writeEntry(client, baseUrl, token, existing, entry) {
+  const label = entry.input.publish ? 'published' : 'draft';
+  if (existing) {
+    await updateEntry(baseUrl, token, existing.id, entry.input);
+    if (entry.input.publish) {
+      await client.publish('posts', existing.id);
+    } else if (existing.status === 'published') {
+      await client.unpublish('posts', existing.id);
+    }
+    console.log(`  ~ rewrote ${label}: ${entry.slug}`);
+    return;
+  }
+  const item = await createEntry(baseUrl, token, entry.input);
+  const record = item?.item ?? item;
+  if (entry.input.publish) {
+    await client.publish('posts', record.id);
+  }
+  console.log(`  = ${label}: ${entry.slug}`);
+}
+
+async function main() {
+  const args = parseArgs(process.argv);
+  const sourceDir = path.resolve(args.sourceDir);
+  const token = args.token || process.env.EMDASH_TOKEN || (await mintDevToken(args.baseUrl));
+  const client = new EmDashClient({ baseUrl: args.baseUrl, token });
+
+  const { existingBySlug, publishedCount, draftCount } = await loadExistingPosts(client);
+  if (args.status) {
+    console.log(`posts collection: ${publishedCount} published, ${draftCount} drafts`);
+    return;
+  }
+
+  const entries = await readEntries(sourceDir);
+  console.log(`${entries.length} markdown files in ${sourceDir}; ${existingBySlug.size} entries already in EmDash`);
+
+  const pending = entries.filter((entry) => args.reimport || !existingBySlug.has(entry.slug));
+  for (const entry of entries) {
+    const state = planState(entry, existingBySlug.has(entry.slug), args.reimport);
+    console.log(`  ${state}: ${entry.slug} (${entry.refs.length} local images)`);
+  }
+  if (!args.commit) {
+    console.log(`dry-run: would import ${pending.length} entries. Pass --commit to write.`);
+    return;
+  }
+
+  const mediaByRef = await uploadMedia(client, sourceDir, pending);
   for (const entry of pending) {
+    const blocks = rewriteImageBlocks(markdownToPortableText(entry.body), mediaByRef);
     entry.input = toEntryInput(
       entry.slug,
       entry.frontmatter,
-      rewriteImageBlocks(markdownToPortableText(entry.body), mediaByRef),
+      blocks,
       entry.isDraft,
-      entry.frontmatter.cover && mediaByRef.has(entry.frontmatter.cover)
-        ? toMediaValue(mediaByRef.get(entry.frontmatter.cover), entry.frontmatter.coverAlt ?? entry.frontmatter.title)
-        : undefined
+      coverValue(entry.frontmatter, mediaByRef)
     );
   }
 
   await ensureTerms(client, pending);
 
-  let written = 0;
   for (const entry of pending) {
-    const existing = existingBySlug.get(entry.slug);
-    if (existing) {
-      await updateEntry(args.baseUrl, token, existing.id, entry.input);
-      if (entry.input.publish) {
-        await client.publish('posts', existing.id);
-      } else if (existing.status === 'published') {
-        await client.unpublish('posts', existing.id);
-      }
-      written++;
-      console.log(`  ~ rewrote ${entry.input.publish ? 'published' : 'draft'}: ${entry.slug}`);
-      continue;
-    }
-    const item = await createEntry(args.baseUrl, token, entry.input);
-    const record = item?.item ?? item;
-    if (entry.input.publish) {
-      await client.publish('posts', record.id);
-    }
-    written++;
-    console.log(`  = ${entry.input.publish ? 'published' : 'draft'}: ${entry.slug}`);
+    await writeEntry(client, args.baseUrl, token, existingBySlug.get(entry.slug), entry);
   }
-  console.log(`wrote ${written} of ${pending.length} pending entries`);
+  console.log(`wrote ${pending.length} entries`);
 }
 
 const isDirectRun = process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href;

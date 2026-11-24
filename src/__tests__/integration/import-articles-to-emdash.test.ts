@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vite-plus/test';
 import {
   capitalizeTag,
   collectLocalImageRefs,
+  planState,
   refToDiskPath,
   rewriteImageBlocks,
   splitFrontmatter,
@@ -142,5 +143,20 @@ describe('capitalizeTag', () => {
   it('matches the articles schema transform', () => {
     expect(capitalizeTag('github-actions')).toBe('Github Actions');
     expect(capitalizeTag('dns')).toBe('Dns');
+  });
+});
+
+describe('planState', () => {
+  const published = { isDraft: false, frontmatter: {} };
+
+  it('skips or rewrites an entry that already exists', () => {
+    expect(planState(published, true, false)).toBe('skip (exists)');
+    expect(planState(published, true, true)).toBe('rewrite (exists)');
+  });
+
+  it('marks a new entry as a draft when its folder or frontmatter says so', () => {
+    expect(planState({ isDraft: true, frontmatter: {} }, false, false)).toBe('draft');
+    expect(planState({ isDraft: false, frontmatter: { draft: true } }, false, false)).toBe('draft');
+    expect(planState(published, false, true)).toBe('publish');
   });
 });
