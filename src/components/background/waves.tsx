@@ -74,7 +74,10 @@ export const drawWave = (ctx: CanvasRenderingContext2D, wave: Wave, canvasWidth:
   }
 
   // Close the shape to bottom
-  ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+  const lastPoint = points.at(-1);
+  if (lastPoint) {
+    ctx.lineTo(lastPoint.x, lastPoint.y);
+  }
   ctx.lineTo(canvasWidth, canvasHeight);
   ctx.lineTo(0, canvasHeight);
   ctx.closePath();

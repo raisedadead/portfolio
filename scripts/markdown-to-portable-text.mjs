@@ -238,7 +238,7 @@ function trimSpans(spans) {
     return trimmed;
   }
   trimmed[0].text = trimmed[0].text.trimStart();
-  trimmed[trimmed.length - 1].text = trimmed.at(-1).text.trimEnd();
+  trimmed.at(-1).text = trimmed.at(-1).text.trimEnd();
   return trimmed;
 }
 
