@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import type { TagWithCount } from '@/lib/blog-utils';
 
 interface Props {
-  tags: TagWithCount[];
+  tags: Array<TagWithCount>;
   tagTotal: number;
   activeTag: string | null;
   onToggle: (slug: string) => void;
@@ -18,7 +18,7 @@ export default function TagFilter({ tags, tagTotal, activeTag, onToggle }: Props
       return;
     }
     const measure = () => {
-      const chips = [...group.children] as HTMLElement[];
+      const chips = [...group.children] as Array<HTMLElement>;
       const firstTop = chips[0]?.offsetTop ?? 0;
       setFirstRowCount(chips.filter((chip) => chip.offsetTop === firstTop).length);
     };

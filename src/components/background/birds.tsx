@@ -1,6 +1,6 @@
 import type { Bird } from './types';
 
-export const createBirds = (canvasWidth: number, canvasHeight: number): Bird[] => {
+export const createBirds = (canvasWidth: number, canvasHeight: number): Array<Bird> => {
   return Array.from({ length: 12 }, () => ({
     x: Math.random() * canvasWidth,
     y: Math.random() * (canvasHeight * 0.25) + canvasHeight * 0.15,

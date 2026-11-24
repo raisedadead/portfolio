@@ -4,7 +4,7 @@ import { Input } from '@/components/forms/input';
 import type { LightweightPost } from '@/types/blog';
 
 interface Props {
-  posts: LightweightPost[];
+  posts: Array<LightweightPost>;
 }
 
 export default function BlogSearch({ posts }: Props) {

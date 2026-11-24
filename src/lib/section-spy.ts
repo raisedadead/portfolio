@@ -1,4 +1,4 @@
-export function currentSectionIndex(headingTops: readonly number[], threshold: number): number {
+export function currentSectionIndex(headingTops: ReadonlyArray<number>, threshold: number): number {
   let current = 0;
   headingTops.forEach((top, index) => {
     if (top < threshold) {

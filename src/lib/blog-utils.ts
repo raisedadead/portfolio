@@ -11,7 +11,7 @@ interface GridSpanResult {
 }
 
 export function getBentoGridSpan(index: number): GridSpanResult {
-  const patterns: GridSpanResult[] = [
+  const patterns: Array<GridSpanResult> = [
     { desktop: 'lg:col-span-3', height: 'h-64' },
     { desktop: 'lg:col-span-2', height: 'h-48' },
     { desktop: 'lg:col-span-5', height: 'h-56' },
@@ -28,7 +28,7 @@ export function getBentoGridSpan(index: number): GridSpanResult {
  * @param posts - Array of blog posts (works with BlogPost or LightweightPost)
  * @returns Array of unique tags sorted by name
  */
-export function getAllTags(posts: PostWithTags[]): Tag[] {
+export function getAllTags(posts: Array<PostWithTags>): Array<Tag> {
   const tagMap = new Map<string, Tag>();
 
   posts.forEach((post) => {
@@ -54,7 +54,7 @@ export interface TagWithCount extends Tag {
  * @param posts - Array of blog posts (works with BlogPost or LightweightPost)
  * @returns Array of tags with counts, sorted by name
  */
-export function getTagsWithCount(posts: PostWithTags[]): TagWithCount[] {
+export function getTagsWithCount(posts: Array<PostWithTags>): Array<TagWithCount> {
   const tagCountMap = new Map<string, { tag: Tag; count: number }>();
 
   posts.forEach((post) => {
@@ -78,7 +78,7 @@ interface SequencedPost {
 }
 
 export function getAdjacentPosts<T extends SequencedPost>(
-  newestFirst: readonly T[],
+  newestFirst: ReadonlyArray<T>,
   slug: string
 ): { newer?: T; older?: T } {
   const index = newestFirst.findIndex((post) => post.data.slug === slug);
@@ -88,7 +88,7 @@ export function getAdjacentPosts<T extends SequencedPost>(
   return { newer: newestFirst[index - 1], older: newestFirst[index + 1] };
 }
 
-export function getSharedTags(posts: PostWithTags[]): TagWithCount[] {
+export function getSharedTags(posts: Array<PostWithTags>): Array<TagWithCount> {
   return getTagsWithCount(posts)
     .filter((tag) => tag.count > 1)
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
@@ -100,7 +100,7 @@ export function getSharedTags(posts: PostWithTags[]): TagWithCount[] {
  * @param tagSlug - The tag slug to filter by
  * @returns Array of posts that contain the specified tag
  */
-export function filterPostsByTag<T extends PostWithTags>(posts: T[], tagSlug: string): T[] {
+export function filterPostsByTag<T extends PostWithTags>(posts: Array<T>, tagSlug: string): Array<T> {
   return posts.filter((post) => post.data.tags.some((tag) => tag.slug === tagSlug));
 }
 
@@ -110,7 +110,7 @@ export function filterPostsByTag<T extends PostWithTags>(posts: T[], tagSlug: st
  * @param tagSlug - The tag slug to find
  * @returns The tag object if found, undefined otherwise
  */
-export function getTagBySlug(posts: PostWithTags[], tagSlug: string): Tag | undefined {
+export function getTagBySlug(posts: Array<PostWithTags>, tagSlug: string): Tag | undefined {
   const allTags = getAllTags(posts);
   return allTags.find((tag) => tag.slug === tagSlug);
 }

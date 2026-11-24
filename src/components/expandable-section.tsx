@@ -5,10 +5,10 @@ import type React from 'react';
 
 type ExpandableSectionProps = {
   title: string;
-  labels?: {
+  labels?: Array<{
     name: string;
     color: string;
-  }[];
+  }>;
   children: React.ReactNode;
   className?: string;
   defaultOpen?: boolean;

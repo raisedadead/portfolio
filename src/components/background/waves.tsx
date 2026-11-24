@@ -1,6 +1,6 @@
 import type { Wave } from './types';
 
-export const createWaves = (): Wave[] => {
+export const createWaves = (): Array<Wave> => {
   return Array.from({ length: 6 }, (_, index) => {
     const baseWavelength = 250 + index * 60;
     const wavelength = baseWavelength + (Math.random() - 0.5) * 50;

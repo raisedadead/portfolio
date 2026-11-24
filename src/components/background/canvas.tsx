@@ -93,8 +93,8 @@ export const CanvasLayer: React.FC = () => {
     resizeCanvas();
 
     // Initialize birds and waves
-    const birds: Bird[] = createBirds(canvas.width, canvas.height);
-    const waves: Wave[] = createWaves();
+    const birds: Array<Bird> = createBirds(canvas.width, canvas.height);
+    const waves: Array<Wave> = createWaves();
 
     const animate = (currentTime: number) => {
       const deltaTime = currentTime - lastTime;

@@ -3,7 +3,7 @@ import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi, afterEach } from 'vite-plus/test';
 import type { LightweightPost } from '@/types/blog';
 
-const mockPosts: LightweightPost[] = [
+const mockPosts: Array<LightweightPost> = [
   {
     id: 'post-1',
     data: {
@@ -565,7 +565,7 @@ describe('BlogSearch Component', () => {
       }
     };
 
-    const mixedPosts: LightweightPost[] = [...mockPosts, fccPost];
+    const mixedPosts: Array<LightweightPost> = [...mockPosts, fccPost];
 
     it('includes freeCodeCamp posts in search results', async () => {
       render(<BlogSearch posts={mixedPosts} />);

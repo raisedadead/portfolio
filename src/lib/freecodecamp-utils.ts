@@ -19,7 +19,7 @@ interface FreeCodeCampPostData {
  * @param posts - Raw freeCodeCamp posts from the content collection
  * @returns Array of normalized LightweightPost objects
  */
-export function normalizeFreeCodeCampPosts(posts: FreeCodeCampPostData[]): LightweightPost[] {
+export function normalizeFreeCodeCampPosts(posts: Array<FreeCodeCampPostData>): Array<LightweightPost> {
   return posts.map((post) => {
     // Extract slug from URL (last part of the path)
     const urlPath = post.data.url || '';
@@ -64,7 +64,7 @@ export function normalizeFreeCodeCampPosts(posts: FreeCodeCampPostData[]): Light
  * @param postArrays - Arrays of LightweightPost to merge
  * @returns Sorted array of all posts
  */
-export function mergeAndSortPosts(...postArrays: LightweightPost[][]): LightweightPost[] {
+export function mergeAndSortPosts(...postArrays: Array<Array<LightweightPost>>): Array<LightweightPost> {
   return postArrays
     .flat()
     .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime());

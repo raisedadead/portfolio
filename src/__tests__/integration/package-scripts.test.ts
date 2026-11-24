@@ -7,10 +7,10 @@ import { afterEach, describe, expect, it } from 'vite-plus/test';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const pkg = JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8'));
-const prepareSteps: string[] = pkg.scripts.prepare.split('; ');
+const prepareSteps: Array<string> = pkg.scripts.prepare.split('; ');
 const [handover, hookInstall] = prepareSteps;
 
-const dirs: string[] = [];
+const dirs: Array<string> = [];
 
 function tempDir() {
   const dir = mkdtempSync(path.join(tmpdir(), 'prepare-'));

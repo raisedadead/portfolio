@@ -7,7 +7,7 @@ import LoadMoreButton from './LoadMoreButton';
 import TagFilter from './TagFilter';
 
 interface Props {
-  posts: LightweightPost[];
+  posts: Array<LightweightPost>;
   initialCount?: number;
   postsPerLoad?: number;
 }
@@ -32,7 +32,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
     const nextBatchStart = visibleCount;
     const nextBatchEnd = Math.min(visibleCount + postsPerLoad, listedPosts.length);
     const nextPosts = listedPosts.slice(nextBatchStart, nextBatchEnd);
-    const createdLinks: HTMLLinkElement[] = [];
+    const createdLinks: Array<HTMLLinkElement> = [];
 
     for (const post of nextPosts) {
       const coverUrl = post.data.coverImage?.url;

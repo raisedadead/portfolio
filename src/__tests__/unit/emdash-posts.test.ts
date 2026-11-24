@@ -11,7 +11,7 @@ import {
   type EmdashPostEntry
 } from '@/lib/emdash-posts';
 
-const BLOCKS: EmdashPortableBlock[] = [
+const BLOCKS: Array<EmdashPortableBlock> = [
   { _type: 'block', style: 'h2', children: [{ _type: 'span', text: 'Heading words here' }] },
   { _type: 'block', style: 'normal', children: [{ _type: 'span', text: 'First paragraph of the post body.' }] },
   { _type: 'code', code: 'echo one two' }

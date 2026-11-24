@@ -5,7 +5,7 @@ import BlogGridWithLoadMore from '@/components/blog/BentoGrid';
 
 vi.mock('@sentry/astro', () => ({ metrics: { count: vi.fn() } }));
 
-const posts: LightweightPost[] = Array.from({ length: 10 }, (_, i) => ({
+const posts: Array<LightweightPost> = Array.from({ length: 10 }, (_, i) => ({
   id: `post-${i}`,
   data: {
     slug: `post-${i}`,

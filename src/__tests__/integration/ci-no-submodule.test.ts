@@ -11,7 +11,7 @@ import { describe, expect, it } from 'vite-plus/test';
 
 const workflowsDir = join(process.cwd(), '.github/workflows');
 
-function loadWorkflows(): { name: string; body: string }[] {
+function loadWorkflows(): Array<{ name: string; body: string }> {
   return readdirSync(workflowsDir)
     .filter((f) => f.endsWith('.yml') || f.endsWith('.yaml'))
     .map((name) => ({ name, body: readFileSync(join(workflowsDir, name), 'utf8') }));

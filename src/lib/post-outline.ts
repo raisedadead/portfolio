@@ -6,7 +6,7 @@ export interface OutlineEntry {
 }
 
 export interface OutlineSection extends OutlineEntry {
-  children: OutlineEntry[];
+  children: Array<OutlineEntry>;
 }
 
 export type AnchoredBlock<T extends EmdashPortableBlock> = T & { anchorId?: string };
@@ -32,13 +32,13 @@ const slugify = (text: string): string =>
     .replace(/[\s-]+/g, '-');
 
 export function anchorHeadings<T extends EmdashPortableBlock>(
-  blocks: readonly T[]
-): { content: AnchoredBlock<T>[]; outline: OutlineSection[] } {
+  blocks: ReadonlyArray<T>
+): { content: Array<AnchoredBlock<T>>; outline: Array<OutlineSection> } {
   const levels = blocks.map(headingLevel);
   const present = levels.filter(Boolean);
   const shift = present.length > 0 ? Math.min(...present) - 2 : 0;
   const used = new Set<string>();
-  const outline: OutlineSection[] = [];
+  const outline: Array<OutlineSection> = [];
 
   const content = blocks.map((block, index): AnchoredBlock<T> => {
     if (!levels[index]) {

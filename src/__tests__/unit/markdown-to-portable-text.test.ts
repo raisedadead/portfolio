@@ -4,7 +4,7 @@ import { markdownToPortableText } from '../../../scripts/markdown-to-portable-te
 const text = (block: Record<string, any>): string =>
   ((block.children ?? []) as Array<{ text?: string }>).map((span) => span.text ?? '').join('');
 
-const types = (blocks: Array<Record<string, any>>): string[] => blocks.map((block) => block._type);
+const types = (blocks: Array<Record<string, any>>): Array<string> => blocks.map((block) => block._type);
 
 describe('markdownToPortableText — block structure', () => {
   it('keeps a wrapped paragraph as one block', () => {

@@ -29,6 +29,6 @@ export function loadGAScript(): void {
   document.head.appendChild(script);
 }
 
-export const cn = (...inputs: ClassValue[]) => {
+export const cn = (...inputs: Array<ClassValue>) => {
   return twMerge(clsx(inputs));
 };

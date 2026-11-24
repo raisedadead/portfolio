@@ -54,8 +54,8 @@ function* walk(target: string): Generator<string> {
   }
 }
 
-function findHashnodeHits(): { file: string; line: number; preview: string }[] {
-  const hits: { file: string; line: number; preview: string }[] = [];
+function findHashnodeHits(): Array<{ file: string; line: number; preview: string }> {
+  const hits: Array<{ file: string; line: number; preview: string }> = [];
   for (const target of SCAN_TARGETS) {
     for (const file of walk(target)) {
       const text = readFileSync(file, 'utf8');

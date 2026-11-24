@@ -3,7 +3,7 @@ import { getTagsWithCount, getAllTags, filterPostsByTag, getTagBySlug, getShared
 import type { BlogPost } from '@/types/blog';
 
 describe('Tag utility functions - edge cases and performance', () => {
-  let mockPosts: BlogPost[];
+  let mockPosts: Array<BlogPost>;
 
   beforeEach(() => {
     mockPosts = [
@@ -81,7 +81,7 @@ describe('Tag utility functions - edge cases and performance', () => {
     });
 
     it('returns empty array when no posts have tags', () => {
-      const postsWithoutTags: BlogPost[] = [
+      const postsWithoutTags: Array<BlogPost> = [
         {
           id: '1',
           data: {
@@ -124,7 +124,7 @@ describe('Tag utility functions - edge cases and performance', () => {
   });
 
   describe('getSharedTags', () => {
-    const post = (id: string, ...names: string[]) => ({
+    const post = (id: string, ...names: Array<string>) => ({
       id,
       data: { tags: names.map((name) => ({ name, slug: name.toLowerCase() })) }
     });
@@ -194,7 +194,7 @@ describe('Tag utility functions - edge cases and performance', () => {
 
   describe('Performance tests', () => {
     it('handles large number of posts efficiently', () => {
-      const largeMockPosts: BlogPost[] = Array.from({ length: 1000 }, (_, i) => ({
+      const largeMockPosts: Array<BlogPost> = Array.from({ length: 1000 }, (_, i) => ({
         id: `post-${i}`,
         data: {
           slug: `post-${i}`,
@@ -239,7 +239,7 @@ describe('Tag utility functions - edge cases and performance', () => {
         }
       }));
 
-      getTagsWithCount(instrumentedPosts as BlogPost[]);
+      getTagsWithCount(instrumentedPosts as Array<BlogPost>);
 
       // Should only iterate through posts once
       expect(iterationCount).toBe(mockPosts.length);
@@ -251,7 +251,7 @@ describe('Tag utility functions - edge cases and performance', () => {
       // Note: This is testing behavior with malformed data (duplicate tags in a single post)
       // The function doesn't deduplicate tags within a single post, which is reasonable
       // since this should be prevented at the data entry level
-      const postsWithDuplicates: BlogPost[] = [
+      const postsWithDuplicates: Array<BlogPost> = [
         {
           id: '1',
           data: {
@@ -283,7 +283,7 @@ describe('Tag utility functions - edge cases and performance', () => {
     });
 
     it('handles tags with empty or whitespace names', () => {
-      const postsWithEmptyTags: BlogPost[] = [
+      const postsWithEmptyTags: Array<BlogPost> = [
         {
           id: '1',
           data: {

@@ -40,7 +40,7 @@ test.describe('404 Page', () => {
 
 test.describe('Assets', () => {
   test('critical assets load without 404', async ({ page }) => {
-    const failedRequests: string[] = [];
+    const failedRequests: Array<string> = [];
 
     page.on('response', (response) => {
       if (response.status() === 404) {
@@ -59,7 +59,7 @@ test.describe('Assets', () => {
   });
 
   test('images load without network errors', async ({ page }) => {
-    const failedImages: string[] = [];
+    const failedImages: Array<string> = [];
 
     page.on('response', (response) => {
       const url = response.url();

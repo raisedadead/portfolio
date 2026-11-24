@@ -3,7 +3,7 @@ import { getAllTags, filterPostsByTag, getTagBySlug, getBentoGridSpan, getAdjace
 import type { BlogPost } from '@/types/blog';
 
 describe('Blog Utils', () => {
-  const mockPosts: BlogPost[] = [
+  const mockPosts: Array<BlogPost> = [
     {
       id: 'post-1',
       data: {
@@ -119,7 +119,7 @@ describe('Blog Utils', () => {
     });
 
     it('returns empty array for posts with no tags', () => {
-      const postsWithoutTags: BlogPost[] = [
+      const postsWithoutTags: Array<BlogPost> = [
         {
           ...mockPosts[0],
           data: { ...mockPosts[0].data, tags: [] }

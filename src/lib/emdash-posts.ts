@@ -22,7 +22,7 @@ export interface EmdashPortableSpan {
 export interface EmdashPortableBlock {
   _type: string;
   style?: string;
-  children?: EmdashPortableSpan[];
+  children?: Array<EmdashPortableSpan>;
   code?: string;
 }
 
@@ -33,10 +33,10 @@ export interface EmdashPostData {
   cover?: EmdashMediaValue;
   brief?: string;
   reading_time?: string;
-  content?: EmdashPortableBlock[];
+  content?: Array<EmdashPortableBlock>;
   seo_title?: string;
   seo_description?: string;
-  terms?: Record<string, EmdashTerm[]>;
+  terms?: Record<string, Array<EmdashTerm>>;
 }
 
 export interface EmdashPostEntry {
@@ -59,11 +59,11 @@ export function mediaValueToUrl(value: EmdashMediaValue | undefined): string | u
   return key && SAFE_STORAGE_KEY.test(key) ? `${MEDIA_FILE_ROUTE}/${key}` : undefined;
 }
 
-export function termsToTags(terms: Record<string, EmdashTerm[]> | undefined): Tag[] {
+export function termsToTags(terms: Record<string, Array<EmdashTerm>> | undefined): Array<Tag> {
   return (terms?.tag ?? []).map((term) => ({ name: term.label, slug: term.slug }));
 }
 
-export function portableTextWordCount(blocks: EmdashPortableBlock[] | undefined): number {
+export function portableTextWordCount(blocks: Array<EmdashPortableBlock> | undefined): number {
   let count = 0;
   for (const block of blocks ?? []) {
     const text =
@@ -75,7 +75,7 @@ export function portableTextWordCount(blocks: EmdashPortableBlock[] | undefined)
 
 const BRIEF_MAX = 160;
 
-export function extractBrief(brief: string | undefined, blocks: EmdashPortableBlock[] | undefined): string {
+export function extractBrief(brief: string | undefined, blocks: Array<EmdashPortableBlock> | undefined): string {
   if (brief) {
     return brief;
   }
@@ -101,7 +101,7 @@ export function readingTimeMinutes(data: EmdashPostData): number {
   return Math.max(1, Math.ceil(portableTextWordCount(data.content) / 200));
 }
 
-export function normalizeEmdashPosts(entries: EmdashPostEntry[]): LightweightPost[] {
+export function normalizeEmdashPosts(entries: Array<EmdashPostEntry>): Array<LightweightPost> {
   return entries.map((entry) => {
     const { data } = entry;
     const coverUrl = mediaValueToUrl(data.cover);

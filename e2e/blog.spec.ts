@@ -250,7 +250,7 @@ test.describe('Console Errors', () => {
   });
 
   test('blog post has no hydration errors', async ({ page }) => {
-    const errors: string[] = [];
+    const errors: Array<string> = [];
 
     page.on('console', (msg) => {
       if (msg.type() === 'error') {

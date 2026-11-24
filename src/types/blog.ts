@@ -24,7 +24,7 @@ export type PostSource = 'local' | 'freecodecamp';
 export interface PostWithTags {
   id: string;
   data: {
-    tags: Tag[];
+    tags: Array<Tag>;
   };
 }
 
@@ -39,7 +39,7 @@ export interface BlogPost {
     };
     coverImage?: CoverImage;
     author: Author;
-    tags: Tag[];
+    tags: Array<Tag>;
     publishedAt: Date;
     readingTime: number;
     externalUrl?: string;
@@ -61,7 +61,7 @@ export interface LightweightPost {
     title: string;
     brief: string;
     coverImage?: CoverImage;
-    tags: Tag[];
+    tags: Array<Tag>;
     publishedAt: Date;
     readingTime: number;
     source: PostSource;

@@ -69,7 +69,7 @@ test('executes the pending analytics response after ClientRouter navigation', as
 });
 
 test('consent initializes analytics once and preserves the choice across navigation', async ({ page }) => {
-  const errors: string[] = [];
+  const errors: Array<string> = [];
   let scriptRequests = 0;
   page.on('pageerror', (error) => errors.push(error.message));
   await page.route('https://www.googletagmanager.com/**', (route) => {
