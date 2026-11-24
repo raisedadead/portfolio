@@ -5,7 +5,7 @@ import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vite-plus/test';
 
 const repoRoot = path.resolve(import.meta.dirname, '../../..');
-const pkg = JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8'));
+const pkg: { scripts: Record<string, string> } = JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8'));
 const prepareSteps: Array<string> = pkg.scripts.prepare.split('; ');
 const [handover, hookInstall] = prepareSteps;
 
@@ -53,7 +53,7 @@ describe('package scripts', () => {
   });
 
   it('runs nested scripts through vp, not pnpm', () => {
-    const scriptsCallingPnpm = Object.entries(pkg.scripts as Record<string, string>)
+    const scriptsCallingPnpm = Object.entries(pkg.scripts)
       .filter(([, command]) => /\bpnpm\b/.test(command))
       .map(([name]) => name);
     expect(scriptsCallingPnpm).toEqual([]);

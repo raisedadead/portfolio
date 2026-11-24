@@ -14,7 +14,7 @@ Object.defineProperty(window, 'scrollTo', {
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: vi.fn().mockImplementation((query) => ({
+  value: vi.fn().mockImplementation((query: string) => ({
     matches: false,
     media: query,
     onchange: null,
@@ -26,6 +26,7 @@ Object.defineProperty(window, 'matchMedia', {
   }))
 });
 
+// eslint-disable-next-line typescript/unbound-method
 const cancelAnimation = window.Animation.prototype.cancel;
 window.Animation.prototype.cancel = function cancelWithHandledFinished(this: Animation) {
   this.finished.catch(() => {});

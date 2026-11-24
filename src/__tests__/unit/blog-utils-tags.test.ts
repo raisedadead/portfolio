@@ -2,6 +2,11 @@ import { describe, it, expect, beforeEach } from 'vite-plus/test';
 import { getTagsWithCount, getAllTags, filterPostsByTag, getTagBySlug, getSharedTags } from '@/lib/blog-utils';
 import type { BlogPost } from '@/types/blog';
 
+const taggedPost = (id: string, ...names: Array<string>) => ({
+  id,
+  data: { tags: names.map((name) => ({ name, slug: name.toLowerCase() })) }
+});
+
 describe('Tag utility functions - edge cases and performance', () => {
   let mockPosts: Array<BlogPost>;
 
@@ -124,13 +129,12 @@ describe('Tag utility functions - edge cases and performance', () => {
   });
 
   describe('getSharedTags', () => {
-    const post = (id: string, ...names: Array<string>) => ({
-      id,
-      data: { tags: names.map((name) => ({ name, slug: name.toLowerCase() })) }
-    });
-
     it('keeps tags used by two or more posts, most used first, then by name', () => {
-      const posts = [post('1', 'Zsh', 'Git', 'Cli'), post('2', 'Zsh', 'Cli'), post('3', 'Zsh', 'Docker', 'Git')];
+      const posts = [
+        taggedPost('1', 'Zsh', 'Git', 'Cli'),
+        taggedPost('2', 'Zsh', 'Cli'),
+        taggedPost('3', 'Zsh', 'Docker', 'Git')
+      ];
       expect(getSharedTags(posts).map((t) => [t.slug, t.count])).toEqual([
         ['zsh', 3],
         ['cli', 2],
@@ -239,7 +243,7 @@ describe('Tag utility functions - edge cases and performance', () => {
         }
       }));
 
-      getTagsWithCount(instrumentedPosts as Array<BlogPost>);
+      getTagsWithCount(instrumentedPosts);
 
       // Should only iterate through posts once
       expect(iterationCount).toBe(mockPosts.length);

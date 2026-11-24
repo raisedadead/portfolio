@@ -18,7 +18,7 @@ export default function TagFilter({ tags, tagTotal, activeTag, onToggle }: Props
       return;
     }
     const measure = () => {
-      const chips = [...group.children] as Array<HTMLElement>;
+      const chips = [...group.querySelectorAll<HTMLElement>(':scope > *')];
       const firstTop = chips[0]?.offsetTop ?? 0;
       setFirstRowCount(chips.filter((chip) => chip.offsetTop === firstTop).length);
     };

@@ -8,6 +8,18 @@ const dsn = PUBLIC_SENTRY_DSN;
 // crashes workerd. Gate init on a real browser presence.
 const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
 
+const loadReplay = (): void => {
+  import('@sentry/replay')
+    .then(({ replayIntegration }) =>
+      addIntegration(replayIntegration({ maskAllText: true, blockAllMedia: true, maskAllInputs: true }))
+    )
+    .catch((error: unknown) => {
+      if (import.meta.env.DEV) {
+        console.warn('[Sentry] Replay failed to load', error);
+      }
+    });
+};
+
 if (dsn && isBrowser) {
   init({
     dsn,
@@ -85,12 +97,6 @@ if (dsn && isBrowser) {
     ]
   });
 
-  const loadReplay = () =>
-    import('@sentry/replay')
-      .then(({ replayIntegration }) =>
-        addIntegration(replayIntegration({ maskAllText: true, blockAllMedia: true, maskAllInputs: true }))
-      )
-      .catch((error) => import.meta.env.DEV && console.warn('[Sentry] Replay failed to load', error));
   const whenIdle = () =>
     'requestIdleCallback' in window ? requestIdleCallback(loadReplay) : setTimeout(loadReplay, 1);
   if (document.readyState === 'complete') {

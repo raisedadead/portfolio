@@ -80,7 +80,7 @@ test('consent initializes analytics once and preserves the choice across navigat
   await page.getByRole('button', { name: 'Accept', exact: true }).click();
   await expect(page.locator('script#google-analytics')).toHaveCount(1);
   await expect.poll(() => scriptRequests).toBe(1);
-  const commands = await page.evaluate(() => window.dataLayer?.map((entry) => Array.from(entry)));
+  const commands = await page.evaluate(() => window.dataLayer?.map((entry) => Array.from<unknown>(entry)));
   expect(commands?.map((entry) => entry[0])).toEqual(['consent', 'js', 'config']);
   await page.getByRole('link', { name: /blog/i }).first().click();
   await expect(page.getByRole('heading', { name: 'Blog', exact: true })).toBeVisible();

@@ -2,6 +2,10 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { ArrowUp } from './scroll-arrows';
 
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
 const ScrollButton = ({ className }: { className: string }) => {
   const [showButton, setShowButton] = useState(false);
   const [bounceButton, setBounceButton] = useState(false);
@@ -28,10 +32,6 @@ const ScrollButton = ({ className }: { className: string }) => {
       window.removeEventListener('resize', handleScroll);
     };
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const arrowClassName = `cursor-pointer rounded-full border-2 border-black bg-white text-black shadow-brutal-md hover:bg-orange-100 hover:shadow-brutal-lg brutalist-focus ${
     bounceButton ? 'animate-bounce' : ''

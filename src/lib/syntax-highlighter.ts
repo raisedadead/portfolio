@@ -13,7 +13,7 @@ import langPython from 'shiki/langs/python.mjs';
 import langTypescript from 'shiki/langs/typescript.mjs';
 import langYaml from 'shiki/langs/yaml.mjs';
 
-const NO_LINE_NUMBER_LANGUAGES = ['bash', 'console', 'plaintext'];
+const NO_LINE_NUMBER_LANGUAGES = new Set(['bash', 'console', 'plaintext']);
 const LANGUAGE_ALIASES = new Map([
   ['', 'plaintext'],
   ['text', 'plaintext'],
@@ -26,7 +26,7 @@ const LANGUAGE_ALIASES = new Map([
   ['ps1', 'powershell'],
   ['pwsh', 'powershell']
 ]);
-const PLAIN_LANGUAGES = ['plaintext', 'ansi'];
+const PLAIN_LANGUAGES = new Set(['plaintext', 'ansi']);
 
 let highlighterPromise: Promise<HighlighterCore> | undefined;
 
@@ -56,11 +56,11 @@ export async function highlightCode(code: string, language: string): Promise<str
     .toLowerCase()
     .replace(/^lang-/, '');
   const formattedLanguage = LANGUAGE_ALIASES.get(stripped) ?? stripped;
-  const showLineNumbers = !NO_LINE_NUMBER_LANGUAGES.includes(formattedLanguage);
+  const showLineNumbers = !NO_LINE_NUMBER_LANGUAGES.has(formattedLanguage);
 
   try {
     const highlighter = await getHighlighter();
-    if (!PLAIN_LANGUAGES.includes(formattedLanguage) && !highlighter.getLoadedLanguages().includes(formattedLanguage)) {
+    if (!PLAIN_LANGUAGES.has(formattedLanguage) && !highlighter.getLoadedLanguages().includes(formattedLanguage)) {
       throw new Error(`language not loaded: ${formattedLanguage}`);
     }
     return highlighter.codeToHtml(code, {

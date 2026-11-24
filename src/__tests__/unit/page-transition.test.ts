@@ -24,7 +24,9 @@ const curtainWithAnimations = () => {
   const running: Array<() => void> = [];
   curtain.getAnimations = () => {
     const { promise, resolve } = Promise.withResolvers<Animation>();
+    // eslint-disable-next-line typescript/no-unsafe-type-assertion
     running.push(() => resolve({} as Animation));
+    // eslint-disable-next-line typescript/no-unsafe-type-assertion
     return [{ finished: promise } as Animation];
   };
   const finish = async () => {

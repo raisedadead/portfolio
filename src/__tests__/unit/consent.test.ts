@@ -73,7 +73,7 @@ describe('Consent banner', () => {
     install();
     choose('true');
     expect(localStorage.getItem('ga-consent')).toBe('true');
-    expect(window.dataLayer?.map((entry) => Array.from(entry))).toEqual([
+    expect(window.dataLayer?.map((entry) => Array.from<unknown>(entry))).toEqual([
       [
         'consent',
         'update',

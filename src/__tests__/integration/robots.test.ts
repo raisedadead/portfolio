@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vite-plus/test';
 import { GET } from '../../pages/robots.txt';
 
 async function robotsFor(url: string): Promise<string> {
+  // eslint-disable-next-line typescript/no-unsafe-type-assertion
   const response = await GET({ url: new URL(url) } as APIContext);
   return response.text();
 }

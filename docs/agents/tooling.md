@@ -17,7 +17,8 @@ This guide tells you which tool owns each job in this project.
 - If a job has a package script, run the script with `vp run`, for example `vp run lint` or `vp run build`. The scripts are in `package.json`.
 - If a job has no script, run the tool with `vp exec`, for example `vp exec cf previews deploy`.
 - Do not run `vp dev`, `vp build`, `vp preview`, or `vp check`. They are Vite+ commands, not the package scripts. Use `vp run dev`, `vp run build`, `vp run preview`, or `vp run check`.
-- To turn on a lint rule from `presetRulesPendingMigration` in `vite.config.ts`, remove it from the list, fix its findings, and commit the rule alone.
+- Fix a lint finding in the code. If the fix makes the code worse, disable the rule on that line with an `eslint-disable-next-line` comment. Do not turn a rule off for the whole project.
+- The devcontainer image has no `vp`, so `.devcontainer/devcontainer.json` still runs `pnpm install` and `pnpm develop`.
 - Do not add Wrangler or a Wrangler config file. `cloudflare.config.ts` is the only Worker config.
 - Do not use `turbo`. The package scripts and `vp` replace it.
 - Do not use Husky or lint-staged. The `staged` block in `vite.config.ts` and `.vite-hooks/` replace them.

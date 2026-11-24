@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 describe('Social', () => {
   it('renders social links container with proper styling', () => {
     const { container } = render(<Social />);
-    const socialContainer = container.firstChild as HTMLElement;
+    const socialContainer = container.firstElementChild!;
 
     expect(socialContainer).toHaveClass('mx-auto', 'flex', 'flex-row', 'items-center', 'justify-center');
   });

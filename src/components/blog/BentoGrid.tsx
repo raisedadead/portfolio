@@ -101,7 +101,7 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
               data-blog-post-id={post.id}
               data-post-slug={isExternal ? undefined : post.data.slug}
               suppressHydrationWarning
-              style={{ '--card-delay': entrance.delay } as React.CSSProperties}
+              style={{ '--card-delay': entrance.delay }}
               className={`${entrance.className} ${spanConfig.desktop} group flex flex-col overflow-hidden border-2 border-black bg-white p-4 no-underline shadow-brutal-md transition-all duration-100 hover:bg-orange-100 hover:shadow-brutal-lg brutalist-focus sm:col-span-2`}
             >
               <a href={postUrl} className='block no-underline' {...linkProps}>

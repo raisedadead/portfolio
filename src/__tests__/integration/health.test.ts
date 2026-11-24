@@ -20,7 +20,8 @@ function isHealthResponse(data: unknown): data is HealthResponse {
 
 function callGet(): Promise<Response> {
   const request = new Request('https://example.com/api/health', { method: 'GET' });
-  return Promise.resolve(GET({ request } as APIContext) as Response);
+  // eslint-disable-next-line typescript/no-unsafe-type-assertion
+  return Promise.resolve(GET({ request } as APIContext));
 }
 
 describe('/api/health — liveness probe', () => {
@@ -40,7 +41,7 @@ describe('/api/health — liveness probe', () => {
 
   it('returns JSON body { status: "healthy", timestamp: <ISO> }', async () => {
     const response = await callGet();
-    const data = (await response.json()) as unknown;
+    const data: unknown = await response.json();
     if (!isHealthResponse(data)) {
       throw new Error('unexpected health response shape');
     }
@@ -71,7 +72,8 @@ describe('/api/health — liveness probe', () => {
         'cf-connecting-ip': '203.0.113.42'
       }
     });
-    const response = (await GET({ request } as APIContext)) as Response;
+    // eslint-disable-next-line typescript/no-unsafe-type-assertion
+    const response = await GET({ request } as APIContext);
     const body = (await response.text()).toLowerCase();
     expect(body).not.toContain('attackerbot');
     expect(body).not.toContain('203.0.113.42');

@@ -4,27 +4,11 @@ import cloudflare from '@cloudflare/oxlint-config';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite-plus';
 
-const presetRulesPendingMigration = [
-  '@typescript-eslint/no-floating-promises',
-  'typescript/no-floating-promises',
-  '@typescript-eslint/no-misused-promises',
-  '@typescript-eslint/no-misused-spread',
-  'typescript/no-unnecessary-type-assertion',
-  'typescript/no-unsafe-assignment',
-  'typescript/no-unsafe-call',
-  'typescript/no-unsafe-return',
-  'typescript/no-unsafe-type-assertion',
-  'typescript/unbound-method',
-  'typescript/use-unknown-in-catch-callback-variable',
-  'unicorn/consistent-function-scoping',
-  'unicorn/prefer-set-has',
-  'unicorn/prefer-structured-clone',
-  'unicorn/prefer-top-level-await'
+const filesWhereWorkersTypesBreakDomAppend = [
+  'src/__tests__/unit/consent.test.ts',
+  'src/components/blog/BentoGrid.tsx',
+  'src/lib/utils.ts'
 ];
-const presetRulesClashingWithWorkersTypes = ['unicorn/prefer-dom-node-append'];
-const presetRulesOff = Object.fromEntries(
-  [...presetRulesPendingMigration, ...presetRulesClashingWithWorkersTypes].map((rule) => [rule, 'off' as const])
-);
 
 export default defineConfig({
   plugins: [react()],
@@ -125,8 +109,7 @@ export default defineConfig({
       'jsx-a11y/aria-unsupported-elements': 'error',
       'jsx-a11y/role-has-required-aria-props': 'error',
       'jsx-a11y/role-supports-aria-props': 'error',
-      'vite-plus/prefer-vite-plus-imports': 'error',
-      ...presetRulesOff
+      'vite-plus/prefer-vite-plus-imports': 'error'
     },
     overrides: [
       ...(cloudflare.overrides ?? []),
@@ -152,8 +135,10 @@ export default defineConfig({
         }
       },
       {
-        files: ['**/*'],
-        rules: presetRulesOff
+        files: filesWhereWorkersTypesBreakDomAppend,
+        rules: {
+          'unicorn/prefer-dom-node-append': 'off'
+        }
       }
     ],
     ignorePatterns: [

@@ -60,7 +60,6 @@ describe('BlogSearch Component', () => {
     delete (window as { location?: Location }).location;
     Object.defineProperty(window, 'location', {
       value: {
-        ...originalLocation,
         href: '',
         assign: vi.fn((url: string) => {
           window.location.href = url;
@@ -461,6 +460,22 @@ describe('BlogSearch Component', () => {
       await waitFor(() => {
         expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
       });
+    });
+
+    it('keeps the dropdown open when pressing inside the search box or a result', async () => {
+      render(<BlogSearch posts={mockPosts} />);
+
+      const input = screen.getByRole('searchbox');
+      fireEvent.change(input, { target: { value: 'TypeScript' } });
+
+      await waitFor(() => {
+        expect(screen.getByRole('listbox')).toBeInTheDocument();
+      });
+
+      fireEvent.mouseDown(input);
+      fireEvent.mouseDown(screen.getAllByRole('option')[0]);
+
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
     });
   });
 

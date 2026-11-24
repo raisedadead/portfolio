@@ -20,7 +20,7 @@ describe('Container', () => {
       </Container>
     );
 
-    const div = container.firstChild as HTMLElement;
+    const div = container.firstElementChild!;
     expect(div.className).toContain('max-w-4xl');
     expect(div.className).toContain('mx-auto');
   });
@@ -32,7 +32,7 @@ describe('Container', () => {
       </Container>
     );
 
-    const div = container.firstChild as HTMLElement;
+    const div = container.firstElementChild!;
     expect(div.className).toContain('max-w-3xl');
     expect(div.className).toContain('mx-auto');
   });
@@ -44,7 +44,7 @@ describe('Container', () => {
       </Container>
     );
 
-    const div = container.firstChild as HTMLElement;
+    const div = container.firstElementChild!;
     expect(div.className).toContain('max-w-4xl');
     expect(div.className).toContain('mx-auto');
   });
@@ -56,7 +56,7 @@ describe('Container', () => {
       </Container>
     );
 
-    const div = container.firstChild as HTMLElement;
+    const div = container.firstElementChild!;
     expect(div.className).toContain('max-w-7xl');
     expect(div.className).toContain('mx-auto');
   });
@@ -68,7 +68,7 @@ describe('Container', () => {
       </Container>
     );
 
-    const div = container.firstChild as HTMLElement;
+    const div = container.firstElementChild!;
     expect(div.className).toContain('w-full');
     expect(div.className).toContain('lg:w-[75%]');
     expect(div.className).toContain('xl:w-[80%]');
@@ -82,7 +82,7 @@ describe('Container', () => {
       </Container>
     );
 
-    const div = container.firstChild as HTMLElement;
+    const div = container.firstElementChild!;
     expect(div.className).toContain('max-w-4xl');
     expect(div.className).toContain('mx-auto');
     expect(div.className).toContain('custom-class');
@@ -96,7 +96,7 @@ describe('Container', () => {
       </Container>
     );
 
-    const div = container.firstChild as HTMLElement;
+    const div = container.firstElementChild!;
     expect(div.className).toContain('max-w-4xl');
     expect(div.className).toContain('mx-auto');
     expect(div.className).not.toContain('  '); // No double spaces

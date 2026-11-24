@@ -22,4 +22,10 @@ declare global {
   }
 }
 
+declare module 'react' {
+  interface CSSProperties {
+    '--card-delay'?: string;
+  }
+}
+
 export {};

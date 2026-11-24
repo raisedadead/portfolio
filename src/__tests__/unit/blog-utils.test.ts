@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vite-plus/test';
 import { getAllTags, filterPostsByTag, getTagBySlug, getBentoGridSpan, getAdjacentPosts } from '@/lib/blog-utils';
 import type { BlogPost } from '@/types/blog';
 
+const sequencedPost = (slug: string) => ({ data: { slug } });
+
 describe('Blog Utils', () => {
   const mockPosts: Array<BlogPost> = [
     {
@@ -247,8 +249,7 @@ describe('Blog Utils', () => {
   });
 
   describe('getAdjacentPosts', () => {
-    const post = (slug: string) => ({ data: { slug } });
-    const newestFirst = [post('d'), post('c'), post('b'), post('a')];
+    const newestFirst = [sequencedPost('d'), sequencedPost('c'), sequencedPost('b'), sequencedPost('a')];
 
     it('returns the next newer and older posts', () => {
       expect(getAdjacentPosts(newestFirst, 'c')).toEqual({ newer: newestFirst[0], older: newestFirst[2] });

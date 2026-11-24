@@ -44,7 +44,7 @@ export function createCurtain(element: HTMLElement): Curtain {
   let cycle: Promise<void> | undefined;
   let direction = 'forward';
   const coverRows = async (current: number, source: Element | undefined) => {
-    const rows = [...element.children] as Array<HTMLElement>;
+    const rows = [...element.querySelectorAll<HTMLElement>(':scope > *')];
     const delays = rowDelays(rows.length, originRow(rows.length, innerHeight, source), ROW_SPREAD_MS);
     rows.forEach((row, index) => row.style.setProperty('animation-delay', `${delays[index]}ms`));
     element.dataset.direction = direction;

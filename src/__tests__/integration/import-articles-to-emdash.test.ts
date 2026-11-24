@@ -23,7 +23,7 @@ Body with ![shot](../assets/images/test-post/shot.png) and ![ext](https://cdn.ex
 
 describe('splitFrontmatter', () => {
   it('separates YAML frontmatter from body', () => {
-    const { frontmatter, body } = splitFrontmatter(RAW);
+    const { frontmatter, body }: { frontmatter: { title?: unknown }; body: string } = splitFrontmatter(RAW);
     expect(frontmatter.title).toBe('Test Post');
     expect(body.startsWith('Body with')).toBe(true);
   });

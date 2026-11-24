@@ -48,16 +48,13 @@ describe('Input', () => {
 
   it('supports different input types', () => {
     const { rerender } = render(<Input type='email' />);
-    let input = screen.getByRole('textbox');
-    expect(input).toHaveAttribute('type', 'email');
+    expect(screen.getByRole('textbox')).toHaveAttribute('type', 'email');
 
     rerender(<Input type='password' />);
-    input = document.querySelector('input[type="password"]') as HTMLInputElement;
-    expect(input).toHaveAttribute('type', 'password');
+    expect(document.querySelector('input')).toHaveAttribute('type', 'password');
 
     rerender(<Input type='number' />);
-    input = screen.getByRole('spinbutton');
-    expect(input).toHaveAttribute('type', 'number');
+    expect(screen.getByRole('spinbutton')).toHaveAttribute('type', 'number');
   });
 
   it('supports ARIA attributes', () => {

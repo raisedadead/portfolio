@@ -15,7 +15,9 @@ export const Profile: React.FC = () => {
   const playPronunciation = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
-      audioRef.current.play();
+      audioRef.current.play().catch((error: unknown) => {
+        console.warn('Could not play the pronunciation', error);
+      });
     }
   };
 

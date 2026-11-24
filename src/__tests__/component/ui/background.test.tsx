@@ -37,6 +37,7 @@ describe('Background', () => {
     mockGetContext = vi.fn(() => mockContext);
 
     // Mock HTMLCanvasElement.prototype.getContext
+    // eslint-disable-next-line typescript/no-unsafe-type-assertion
     HTMLCanvasElement.prototype.getContext = mockGetContext as typeof HTMLCanvasElement.prototype.getContext;
 
     // Mock requestAnimationFrame
@@ -58,7 +59,7 @@ describe('Background', () => {
 
   it('renders background container with proper structure', () => {
     const { container } = render(<Background />);
-    const mainElement = container.firstChild as HTMLElement;
+    const mainElement = container.firstElementChild!;
 
     expect(mainElement).toBeInTheDocument();
     expect(mainElement.tagName).toBe('DIV');

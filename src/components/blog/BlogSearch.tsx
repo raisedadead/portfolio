@@ -54,7 +54,7 @@ export default function BlogSearch({ posts }: Props) {
   // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (searchRef.current && !event.composedPath().includes(searchRef.current)) {
         setIsOpen(false);
         setSelectedIndex(-1);
       }
@@ -89,7 +89,7 @@ export default function BlogSearch({ posts }: Props) {
             window.open(url, '_blank', 'noopener,noreferrer');
           } else {
             // Programmatically click the selected anchor for keyboard navigation
-            const selectedLink = document.querySelector(`[data-astro-prefetch][href="${url}"]`) as HTMLAnchorElement;
+            const selectedLink = document.querySelector<HTMLAnchorElement>(`[data-astro-prefetch][href="${url}"]`);
             selectedLink?.click();
           }
         }
