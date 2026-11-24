@@ -2,10 +2,9 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vite-plus/test';
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+const repoRoot = path.resolve(import.meta.dirname, '../../..');
 const pkg = JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8'));
 const prepareSteps: Array<string> = pkg.scripts.prepare.split('; ');
 const [handover, hookInstall] = prepareSteps;

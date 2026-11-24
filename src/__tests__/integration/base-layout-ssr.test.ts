@@ -10,10 +10,9 @@
 
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vite-plus/test';
 
-const here = path.dirname(fileURLToPath(import.meta.url));
+const here = import.meta.dirname;
 const baseLayoutPath = path.resolve(here, '../../layouts/base-layout.astro');
 const baseLayout = readFileSync(baseLayoutPath, 'utf-8');
 
