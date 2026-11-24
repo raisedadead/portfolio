@@ -1,7 +1,50 @@
 // vp migrate: merged .oxlintrc.json (15e7e629c1c15a2008a88223d55cb7b8).
 import path from 'node:path';
+import cloudflare from '@cloudflare/oxlint-config';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite-plus';
+
+const presetRulesPendingMigration = [
+  'curly',
+  'no-empty',
+  'no-promise-executor-return',
+  'object-shorthand',
+  'prefer-rest-params',
+  'import/consistent-type-specifier-style',
+  'import-x/no-namespace',
+  '@nkzw/no-instanceof',
+  'quality/no-array-filter-map',
+  'quality/no-chained-type-assertions',
+  'quality/no-conditional-empty-object-spread',
+  'quality/no-known-value-widening',
+  'quality/no-unsafe-dictionary-type',
+  '@typescript-eslint/array-type',
+  '@typescript-eslint/no-floating-promises',
+  'typescript/no-floating-promises',
+  '@typescript-eslint/no-misused-promises',
+  '@typescript-eslint/no-misused-spread',
+  'typescript/no-unnecessary-type-assertion',
+  'typescript/no-unsafe-assignment',
+  'typescript/no-unsafe-call',
+  'typescript/no-unsafe-return',
+  'typescript/no-unsafe-type-assertion',
+  'typescript/unbound-method',
+  'typescript/use-unknown-in-catch-callback-variable',
+  'unicorn/consistent-function-scoping',
+  'unicorn/no-typeof-undefined',
+  'unicorn/numeric-separators-style',
+  'unicorn/prefer-at',
+  'unicorn/prefer-dom-node-append',
+  'unicorn/prefer-import-meta-properties',
+  'unicorn/prefer-set-has',
+  'unicorn/prefer-single-call',
+  'unicorn/prefer-string-raw',
+  'unicorn/prefer-string-replace-all',
+  'unicorn/prefer-structured-clone',
+  'unicorn/prefer-top-level-await',
+  'unicorn/text-encoding-identifier-case'
+];
+const pendingMigrationOff = Object.fromEntries(presetRulesPendingMigration.map((rule) => [rule, 'off' as const]));
 
 export default defineConfig({
   plugins: [react()],
@@ -79,58 +122,40 @@ export default defineConfig({
     ]
   },
   lint: {
-    plugins: ['react', 'jsx-a11y', 'import', 'unicorn'],
-    env: {
-      browser: true,
-      node: true
-    },
+    ...cloudflare,
     globals: {
       React: 'readonly'
     },
     rules: {
-      'prefer-const': 'error',
+      ...cloudflare.rules,
       'prefer-template': 'error',
-      eqeqeq: 'warn',
       'no-alert': 'error',
-      'no-console': [
-        'warn',
-        {
-          allow: ['warn', 'error']
-        }
-      ],
+      'no-console': ['error', { allow: ['warn', 'error'] }],
       'no-unused-vars': [
-        'warn',
+        'error',
         {
+          args: 'none',
+          fix: { imports: 'safe-fix', variables: 'off' },
+          varsIgnorePattern: '^_',
           ignoreRestSiblings: true
         }
       ],
-      'react/react-in-jsx-scope': 'off',
-      'react/jsx-key': 'error',
-      'react/jsx-no-duplicate-props': 'error',
-      'react/jsx-no-undef': 'error',
-      'react/no-children-prop': 'error',
-      'react/no-danger-with-children': 'error',
-      'react/no-unescaped-entities': 'warn',
-      'react/void-dom-elements-no-children': 'error',
-      'react/rules-of-hooks': 'error',
-      'react/exhaustive-deps': 'warn',
-      'jsx-a11y/alt-text': 'error',
       'jsx-a11y/anchor-has-content': 'error',
       'jsx-a11y/aria-props': 'error',
       'jsx-a11y/aria-unsupported-elements': 'error',
       'jsx-a11y/role-has-required-aria-props': 'error',
       'jsx-a11y/role-supports-aria-props': 'error',
-      'jsx-a11y/prefer-tag-over-role': 'off',
-      'vite-plus/prefer-vite-plus-imports': 'error'
+      'vite-plus/prefer-vite-plus-imports': 'error',
+      ...pendingMigrationOff
     },
     overrides: [
+      ...(cloudflare.overrides ?? []),
       {
         files: ['**/*.test.{ts,tsx,js,jsx}', '**/__tests__/**/*.{ts,tsx,js,jsx}'],
         env: {
           jest: true
         },
         rules: {
-          'typescript/no-explicit-any': 'off',
           'react/no-unescaped-entities': 'off'
         }
       },
@@ -139,9 +164,20 @@ export default defineConfig({
         rules: {
           'no-console': 'off'
         }
+      },
+      {
+        files: ['**/*.astro'],
+        globals: {
+          Astro: 'readonly'
+        }
+      },
+      {
+        files: ['**/*'],
+        rules: pendingMigrationOff
       }
     ],
     ignorePatterns: [
+      ...(cloudflare.ignorePatterns ?? []),
       'node_modules/**',
       'dist/**',
       '.astro/**',
@@ -151,10 +187,8 @@ export default defineConfig({
       'specs/**',
       '.specify/**'
     ],
-    options: {
-      typeAware: true
-    },
     jsPlugins: [
+      ...(cloudflare.jsPlugins ?? []),
       {
         name: 'vite-plus',
         specifier: 'vite-plus/oxlint-plugin'

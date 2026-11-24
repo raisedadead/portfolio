@@ -4,7 +4,6 @@ import { defineConfig, envField, fontProviders } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 
 import tailwindcss from '@tailwindcss/vite';
-// eslint-disable-next-line import/default -- False positive: @sentry/astro exports default via conditional exports
 import sentry from '@sentry/astro';
 import emdash from 'emdash/astro';
 import { d1, r2 } from '@emdash-cms/cloudflare';
