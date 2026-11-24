@@ -5,9 +5,6 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite-plus';
 
 const presetRulesPendingMigration = [
-  'no-empty',
-  'no-promise-executor-return',
-  'prefer-rest-params',
   'import-x/no-namespace',
   '@nkzw/no-instanceof',
   'quality/no-array-filter-map',

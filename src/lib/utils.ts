@@ -12,6 +12,7 @@ export function loadGAScript(): void {
   const dataLayer = (window.dataLayer ??= []);
   // https://developers.google.com/tag-platform/gtagjs
   window.gtag = function (): void {
+    // eslint-disable-next-line prefer-rest-params
     dataLayer.push(arguments);
   };
   window.gtag('consent', 'update', {

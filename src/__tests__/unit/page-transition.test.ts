@@ -29,7 +29,9 @@ const curtainWithAnimations = () => {
   };
   const finish = async () => {
     running.splice(0).forEach((resolve) => resolve());
-    await new Promise((resolve) => setTimeout(resolve));
+    await new Promise((resolve) => {
+      setTimeout(resolve);
+    });
   };
   return { curtain, finish };
 };
@@ -129,7 +131,9 @@ describe('page transitions', () => {
 
     document.dispatchEvent(event);
     await event.loader();
-    await new Promise((resolve) => setTimeout(resolve));
+    await new Promise((resolve) => {
+      setTimeout(resolve);
+    });
 
     expect(curtain.dataset.state).toBeUndefined();
   });

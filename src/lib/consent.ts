@@ -41,7 +41,9 @@ export function installConsentBanner(): () => void {
     choice = value;
     try {
       window.localStorage.setItem('ga-consent', value);
-    } catch {}
+    } catch (error: unknown) {
+      console.warn('Could not save the consent choice', error);
+    }
     syncBanner();
   };
 
