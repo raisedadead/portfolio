@@ -7,7 +7,6 @@ import { defineConfig } from 'vite-plus';
 const presetRulesPendingMigration = [
   'no-empty',
   'no-promise-executor-return',
-  'object-shorthand',
   'prefer-rest-params',
   'import-x/no-namespace',
   '@nkzw/no-instanceof',

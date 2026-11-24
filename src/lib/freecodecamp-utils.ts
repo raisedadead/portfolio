@@ -45,7 +45,7 @@ export function normalizeFreeCodeCampPosts(posts: Array<FreeCodeCampPostData>): 
     return {
       id: `fcc-${post.id}`,
       data: {
-        slug: slug,
+        slug,
         title: post.data.title || 'Untitled',
         brief: post.data.description || '',
         coverImage: coverImageUrl ? { url: coverImageUrl } : undefined,

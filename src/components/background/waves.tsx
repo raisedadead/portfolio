@@ -7,7 +7,7 @@ export const createWaves = (): Array<Wave> => {
     const baseAmplitude = 12 + index * 3;
     return {
       amplitude: baseAmplitude + (Math.random() - 0.5) * 6,
-      wavelength: wavelength,
+      wavelength,
       opacity: 0.08 + index * 0.04 + Math.random() * 0.02,
       speed: Math.sqrt(wavelength) * (0.3 + Math.random() * 0.2),
       time: Math.random() * 100,
