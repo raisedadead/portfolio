@@ -14,7 +14,9 @@ export default function TagFilter({ tags, tagTotal, activeTag, onToggle }: Props
 
   useLayoutEffect(() => {
     const group = groupRef.current;
-    if (!group) return;
+    if (!group) {
+      return;
+    }
     const measure = () => {
       const chips = [...group.children] as HTMLElement[];
       const firstTop = chips[0]?.offsetTop ?? 0;
@@ -26,7 +28,9 @@ export default function TagFilter({ tags, tagTotal, activeTag, onToggle }: Props
     return () => resizeObserver.disconnect();
   }, [tags]);
 
-  if (tags.length === 0) return null;
+  if (tags.length === 0) {
+    return null;
+  }
 
   return (
     <section aria-label='Filter posts by topic' className='mb-6 flex items-center gap-3'>

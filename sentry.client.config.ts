@@ -93,8 +93,11 @@ if (dsn && isBrowser) {
       .catch((error) => import.meta.env.DEV && console.warn('[Sentry] Replay failed to load', error));
   const whenIdle = () =>
     'requestIdleCallback' in window ? requestIdleCallback(loadReplay) : setTimeout(loadReplay, 1);
-  if (document.readyState === 'complete') whenIdle();
-  else window.addEventListener('load', whenIdle, { once: true });
+  if (document.readyState === 'complete') {
+    whenIdle();
+  } else {
+    window.addEventListener('load', whenIdle, { once: true });
+  }
 } else if (!dsn && isBrowser) {
   console.warn('[Sentry] DSN not configured - monitoring disabled');
 }

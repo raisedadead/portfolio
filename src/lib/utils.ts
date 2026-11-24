@@ -4,7 +4,9 @@ import { twMerge } from 'tailwind-merge';
 export const GA_TRACKING_ID = 'G-VD9T0P1KLN';
 
 export function loadGAScript(): void {
-  if (window.gtag) return;
+  if (window.gtag) {
+    return;
+  }
 
   const dataLayer = (window.dataLayer ??= []);
   // https://developers.google.com/tag-platform/gtagjs

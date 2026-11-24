@@ -15,9 +15,13 @@ export default function BlogLoadMore({ totalPosts, visiblePosts, postsPerLoad, s
   const endRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    if (!loadedRef.current) return;
+    if (!loadedRef.current) {
+      return;
+    }
     loadedRef.current = false;
-    if (!hasMore) endRef.current?.focus();
+    if (!hasMore) {
+      endRef.current?.focus();
+    }
   }, [visiblePosts, totalPosts, hasMore]);
 
   const handleLoadMore = () => {

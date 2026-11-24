@@ -29,13 +29,17 @@ describe('Consent banner', () => {
     mountBanner();
     const appendChild = document.head.appendChild.bind(document.head);
     vi.spyOn(document.head, 'appendChild').mockImplementation((node) => {
-      if (node instanceof HTMLScriptElement) node.type = 'text/plain';
+      if (node instanceof HTMLScriptElement) {
+        node.type = 'text/plain';
+      }
       return appendChild(node);
     });
   });
 
   afterEach(() => {
-    for (const dispose of disposers.splice(0)) dispose();
+    for (const dispose of disposers.splice(0)) {
+      dispose();
+    }
     vi.restoreAllMocks();
   });
 

@@ -27,7 +27,9 @@ function isolatedEnv(globalConfig = '/dev/null') {
 function repo(env: NodeJS.ProcessEnv, localHooksPath?: string) {
   const dir = tempDir();
   execFileSync('git', ['init', '-q', '--template='], { cwd: dir, env });
-  if (localHooksPath) execFileSync('git', ['config', '--local', 'core.hooksPath', localHooksPath], { cwd: dir, env });
+  if (localHooksPath) {
+    execFileSync('git', ['config', '--local', 'core.hooksPath', localHooksPath], { cwd: dir, env });
+  }
   return dir;
 }
 
@@ -41,7 +43,9 @@ function localHooksPathAfterHandover(dir: string, env: NodeJS.ProcessEnv) {
 }
 
 afterEach(() => {
-  for (const dir of dirs.splice(0)) rmSync(dir, { recursive: true, force: true });
+  for (const dir of dirs.splice(0)) {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 describe('package scripts', () => {

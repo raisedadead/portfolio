@@ -82,7 +82,9 @@ export function getAdjacentPosts<T extends SequencedPost>(
   slug: string
 ): { newer?: T; older?: T } {
   const index = newestFirst.findIndex((post) => post.data.slug === slug);
-  if (index === -1) return { newer: undefined, older: undefined };
+  if (index === -1) {
+    return { newer: undefined, older: undefined };
+  }
   return { newer: newestFirst[index - 1], older: newestFirst[index + 1] };
 }
 

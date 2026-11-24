@@ -41,7 +41,9 @@ describe('/api/health — liveness probe', () => {
   it('returns JSON body { status: "healthy", timestamp: <ISO> }', async () => {
     const response = await callGet();
     const data = (await response.json()) as unknown;
-    if (!isHealthResponse(data)) throw new Error('unexpected health response shape');
+    if (!isHealthResponse(data)) {
+      throw new Error('unexpected health response shape');
+    }
     expect(data.status).toBe('healthy');
     expect(data.timestamp).toBe('2025-01-15T12:00:00.000Z');
   });

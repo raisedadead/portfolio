@@ -41,17 +41,27 @@ export function anchorHeadings<T extends EmdashPortableBlock>(
   const outline: OutlineSection[] = [];
 
   const content = blocks.map((block, index): AnchoredBlock<T> => {
-    if (!levels[index]) return block;
+    if (!levels[index]) {
+      return block;
+    }
     const level = levels[index] - shift;
     const promoted = { ...block, style: `h${level}` };
-    if (level > 4) return promoted;
+    if (level > 4) {
+      return promoted;
+    }
     const text = headingText(block);
     const base = slugify(text) || 'section';
     let id = base;
-    for (let suffix = 2; used.has(id); suffix += 1) id = `${base}-${suffix}`;
+    for (let suffix = 2; used.has(id); suffix += 1) {
+      id = `${base}-${suffix}`;
+    }
     used.add(id);
-    if (level === 2) outline.push({ id, text, children: [] });
-    if (level === 3) outline.at(-1)?.children.push({ id, text });
+    if (level === 2) {
+      outline.push({ id, text, children: [] });
+    }
+    if (level === 3) {
+      outline.at(-1)?.children.push({ id, text });
+    }
     return { ...promoted, anchorId: id };
   });
 

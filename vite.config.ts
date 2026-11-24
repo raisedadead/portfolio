@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite-plus';
 
 const presetRulesPendingMigration = [
-  'curly',
   'no-empty',
   'no-promise-executor-return',
   'object-shorthand',

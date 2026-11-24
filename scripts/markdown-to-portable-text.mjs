@@ -92,15 +92,23 @@ const SCHEME_RE = /^[a-zA-Z][a-zA-Z0-9+.-]*:/;
 
 function decodeEntities(input) {
   return input.replace(ENTITY_RE, (match, dec, hex, name) => {
-    if (dec !== undefined) return safeCodePoint(Number.parseInt(dec, 10)) ?? match;
-    if (hex !== undefined) return safeCodePoint(Number.parseInt(hex, 16)) ?? match;
+    if (dec !== undefined) {
+      return safeCodePoint(Number.parseInt(dec, 10)) ?? match;
+    }
+    if (hex !== undefined) {
+      return safeCodePoint(Number.parseInt(hex, 16)) ?? match;
+    }
     return Object.hasOwn(NAMED_ENTITIES, name) ? NAMED_ENTITIES[name] : match;
   });
 }
 
 function safeCodePoint(code) {
-  if (!Number.isInteger(code) || code <= 0 || code > 0x10ffff) return undefined;
-  if (code >= 0xd800 && code <= 0xdfff) return undefined;
+  if (!Number.isInteger(code) || code <= 0 || code > 0x10ffff) {
+    return undefined;
+  }
+  if (code >= 0xd800 && code <= 0xdfff) {
+    return undefined;
+  }
   return String.fromCodePoint(code);
 }
 
@@ -167,9 +175,11 @@ function collectInline(tokens, context, marks, spans) {
         spans.push({ image: token });
         break;
       default:
-        if (token.tokens?.length) collectInline(token.tokens, context, active(), spans);
-        else if (typeof token.text === 'string')
+        if (token.tokens?.length) {
+          collectInline(token.tokens, context, active(), spans);
+        } else if (typeof token.text === 'string') {
           spans.push(makeSpan(context.nextKey, decodeEntities(token.text), active()));
+        }
     }
   }
   return spans;
@@ -177,7 +187,9 @@ function collectInline(tokens, context, marks, spans) {
 
 function isSafeHref(href) {
   const trimmed = href.trim();
-  if (!trimmed) return false;
+  if (!trimmed) {
+    return false;
+  }
   return SCHEME_RE.test(trimmed) ? SAFE_HREF_SCHEME_RE.test(trimmed) : true;
 }
 
@@ -197,12 +209,18 @@ function applyInlineTag(raw, open, context, spans, marks) {
     spans.push(makeSpan(context.nextKey, '\n', open.length ? [...marks, ...open] : marks));
     return;
   }
-  if (selfClosing) return;
-  if (!Object.hasOwn(INLINE_TAG_MARKS, name)) return;
+  if (selfClosing) {
+    return;
+  }
+  if (!Object.hasOwn(INLINE_TAG_MARKS, name)) {
+    return;
+  }
   const mark = INLINE_TAG_MARKS[name];
   if (closing) {
     const index = open.lastIndexOf(mark);
-    if (index !== -1) open.splice(index, 1);
+    if (index !== -1) {
+      open.splice(index, 1);
+    }
     return;
   }
   open.push(mark);
@@ -210,9 +228,15 @@ function applyInlineTag(raw, open, context, spans, marks) {
 
 function trimSpans(spans) {
   const trimmed = spans.map((span) => ({ ...span }));
-  while (trimmed.length && trimmed[0].text.trimStart() === '') trimmed.shift();
-  while (trimmed.length && trimmed.at(-1).text.trimEnd() === '') trimmed.pop();
-  if (!trimmed.length) return trimmed;
+  while (trimmed.length && trimmed[0].text.trimStart() === '') {
+    trimmed.shift();
+  }
+  while (trimmed.length && trimmed.at(-1).text.trimEnd() === '') {
+    trimmed.pop();
+  }
+  if (!trimmed.length) {
+    return trimmed;
+  }
   trimmed[0].text = trimmed[0].text.trimStart();
   trimmed[trimmed.length - 1].text = trimmed.at(-1).text.trimEnd();
   return trimmed;
@@ -236,7 +260,9 @@ function inlineToBlocks(nextKey, tokens, blockAttributes) {
   const flush = () => {
     const spans = trimSpans(run);
     run = [];
-    if (!spans.length) return;
+    if (!spans.length) {
+      return;
+    }
     const used = new Set(spans.flatMap((span) => span.marks));
     blocks.push({
       _type: 'block',
@@ -307,7 +333,9 @@ function listBlocks(state, token, level) {
   for (const item of token.items ?? []) {
     const { lead, rest } = listItemLead(item.tokens);
     const attributes = { listItem, level, listId };
-    if (listStart !== undefined) attributes.listStart = listStart;
+    if (listStart !== undefined) {
+      attributes.listStart = listStart;
+    }
 
     const leadBlocks = lead ? inlineToBlocks(state.nextKey, lead.tokens ?? [], attributes) : [];
     if (leadBlocks.length && leadBlocks[0]._type === 'block') {
@@ -333,7 +361,9 @@ function listBlocks(state, token, level) {
 }
 
 function stripListAttributes(block) {
-  if (block._type !== 'block') return block;
+  if (block._type !== 'block') {
+    return block;
+  }
   const { listItem: _listItem, level: _level, listId: _listId, listStart: _listStart, ...rest } = block;
   return rest;
 }

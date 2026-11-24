@@ -23,7 +23,9 @@ export function rowDelays(rows: number, origin: number, spread: number): number[
 }
 
 export function originRow(rows: number, viewportHeight: number, source: Element | undefined): number {
-  if (!source) return (rows - 1) / 2;
+  if (!source) {
+    return (rows - 1) / 2;
+  }
   const { top, height } = source.getBoundingClientRect();
   return Math.min(rows - 1, Math.max(0, Math.floor(((top + height / 2) / viewportHeight) * rows)));
 }
@@ -48,7 +50,9 @@ export function createCurtain(element: HTMLElement): Curtain {
     element.dataset.direction = direction;
     element.dataset.state = 'covering';
     await settled(element);
-    if (generation === current) element.dataset.state = 'covered';
+    if (generation === current) {
+      element.dataset.state = 'covered';
+    }
   };
   const cover = (nextDirection: string, source: Element | undefined) => {
     direction = nextDirection;
@@ -57,14 +61,20 @@ export function createCurtain(element: HTMLElement): Curtain {
   };
   const reveal = async () => {
     const current = cycle;
-    if (!current) return;
+    if (!current) {
+      return;
+    }
     await current;
-    if (cycle !== current) return;
+    if (cycle !== current) {
+      return;
+    }
     cycle = undefined;
     element.dataset.direction = direction;
     element.dataset.state = 'revealing';
     await settled(element);
-    if (!cycle) delete element.dataset.state;
+    if (!cycle) {
+      delete element.dataset.state;
+    }
   };
   const reset = () => {
     generation += 1;
@@ -78,7 +88,9 @@ export function installPageTransitions(): void {
   const curtains = new WeakMap<HTMLElement, Curtain>();
   const curtain = () => {
     const element = document.getElementById('page-curtain');
-    if (!element) return undefined;
+    if (!element) {
+      return undefined;
+    }
     const controls = curtains.get(element) ?? createCurtain(element);
     curtains.set(element, controls);
     return controls;
@@ -96,7 +108,9 @@ export function installPageTransitions(): void {
     { capture: true }
   );
   addEventListener('pageshow', (event) => {
-    if (event.persisted) curtain()?.reset();
+    if (event.persisted) {
+      curtain()?.reset();
+    }
   });
   document.addEventListener('astro:before-preparation', (event) => {
     const navigation = ++latest;
@@ -106,9 +120,15 @@ export function installPageTransitions(): void {
     const load = event.loader;
     event.loader = async () => {
       await Promise.all([load(), covering]);
-      if (event.signal.aborted && navigation === latest) void curtain()?.reveal();
-      if (event.signal.aborted || event.defaultPrevented) return;
-      if (!pairMorph(document, event.newDocument, !covering)) await cover();
+      if (event.signal.aborted && navigation === latest) {
+        void curtain()?.reveal();
+      }
+      if (event.signal.aborted || event.defaultPrevented) {
+        return;
+      }
+      if (!pairMorph(document, event.newDocument, !covering)) {
+        await cover();
+      }
     };
   });
   document.addEventListener('astro:before-swap', (event) => {

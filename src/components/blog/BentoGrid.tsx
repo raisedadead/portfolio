@@ -25,7 +25,9 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
   // Pre-load images for the next batch of posts
   useEffect(() => {
     // Only pre-load if there are more posts to load
-    if (visibleCount >= listedPosts.length) return;
+    if (visibleCount >= listedPosts.length) {
+      return;
+    }
 
     const nextBatchStart = visibleCount;
     const nextBatchEnd = Math.min(visibleCount + postsPerLoad, listedPosts.length);
@@ -34,9 +36,13 @@ export default function BlogGridWithLoadMore({ posts, initialCount = 6, postsPer
 
     for (const post of nextPosts) {
       const coverUrl = post.data.coverImage?.url;
-      if (!coverUrl) continue;
+      if (!coverUrl) {
+        continue;
+      }
       const existingLink = document.querySelector(`link[rel="prefetch"][href="${coverUrl}"]`);
-      if (existingLink) continue;
+      if (existingLink) {
+        continue;
+      }
 
       const link = document.createElement('link');
       link.rel = 'prefetch';

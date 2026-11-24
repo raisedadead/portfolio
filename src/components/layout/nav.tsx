@@ -10,8 +10,12 @@ const links = [
 ];
 
 const currentState = (href: string, path?: string): 'page' | 'true' | undefined => {
-  if (!path) return undefined;
-  if (path === href || path === `${href}/`) return 'page';
+  if (!path) {
+    return undefined;
+  }
+  if (path === href || path === `${href}/`) {
+    return 'page';
+  }
   return path.startsWith(`${href}/`) ? 'true' : undefined;
 };
 

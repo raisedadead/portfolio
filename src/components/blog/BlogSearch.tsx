@@ -16,7 +16,9 @@ export default function BlogSearch({ posts }: Props) {
 
   // Filter posts based on search query
   const filteredPosts = useMemo(() => {
-    if (!searchQuery.trim()) return [];
+    if (!searchQuery.trim()) {
+      return [];
+    }
 
     const lowerQuery = searchQuery.toLowerCase();
 
@@ -64,7 +66,9 @@ export default function BlogSearch({ posts }: Props) {
 
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!isOpen || filteredPosts.length === 0) return;
+    if (!isOpen || filteredPosts.length === 0) {
+      return;
+    }
 
     switch (e.key) {
       case 'ArrowDown':

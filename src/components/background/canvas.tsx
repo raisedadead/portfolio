@@ -9,10 +9,14 @@ export const CanvasLayer: React.FC = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      return;
+    }
 
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (!ctx) {
+      return;
+    }
 
     let lastTime = performance.now();
     let animationId: number;
@@ -22,7 +26,9 @@ export const CanvasLayer: React.FC = () => {
     const grainCtx = grainCanvas.getContext('2d');
 
     const generateGrainTexture = () => {
-      if (!grainCtx) return;
+      if (!grainCtx) {
+        return;
+      }
 
       // Use 50% resolution for 4x performance improvement
       grainCanvas.width = canvas.width * 0.5;

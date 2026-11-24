@@ -17,10 +17,10 @@ interface Props {
 const MEDIA_PATH_RE = new RegExp(`^${MEDIA_FILE_ROUTE}/([A-Za-z0-9._-]+)$`);
 
 function resolveSrc(ref: string | undefined): string | undefined {
-  if (!ref) return undefined;
-  if (/^https:\/\/[^/]+\//.test(ref)) return ref;
-  if (MEDIA_PATH_RE.test(ref)) return ref;
-  if (SAFE_STORAGE_KEY.test(ref)) return `${MEDIA_FILE_ROUTE}/${ref}`;
+  if (!ref) {return undefined;}
+  if (/^https:\/\/[^/]+\//.test(ref)) {return ref;}
+  if (MEDIA_PATH_RE.test(ref)) {return ref;}
+  if (SAFE_STORAGE_KEY.test(ref)) {return `${MEDIA_FILE_ROUTE}/${ref}`;}
   return undefined;
 }
 

@@ -5,7 +5,9 @@ test('warm EmDash runtime until posts render', async ({ request }) => {
     .poll(
       async () => {
         const res = await request.get('/blog', { headers: { accept: 'text/html' } });
-        if (!res.ok()) return 0;
+        if (!res.ok()) {
+          return 0;
+        }
         const html = await res.text();
         return [...html.matchAll(/href="\/blog\/[a-z0-9-]+"/g)].length;
       },

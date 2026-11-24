@@ -42,7 +42,9 @@ function* walk(target: string): Generator<string> {
     return;
   }
   for (const entry of readdirSync(target, { withFileTypes: true })) {
-    if (EXCLUDED_DIRS.has(entry.name)) continue;
+    if (EXCLUDED_DIRS.has(entry.name)) {
+      continue;
+    }
     const full = path.join(target, entry.name);
     if (entry.isDirectory()) {
       yield* walk(full);

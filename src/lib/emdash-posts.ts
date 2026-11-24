@@ -49,8 +49,12 @@ export const MEDIA_FILE_ROUTE = '/_emdash/api/media/file';
 export const SAFE_STORAGE_KEY = /^[A-Za-z0-9._-]+$/;
 
 export function mediaValueToUrl(value: EmdashMediaValue | undefined): string | undefined {
-  if (!value) return undefined;
-  if (value.src) return value.src;
+  if (!value) {
+    return undefined;
+  }
+  if (value.src) {
+    return value.src;
+  }
   const key = value.meta?.storageKey || value.id;
   return key && SAFE_STORAGE_KEY.test(key) ? `${MEDIA_FILE_ROUTE}/${key}` : undefined;
 }
@@ -72,13 +76,17 @@ export function portableTextWordCount(blocks: EmdashPortableBlock[] | undefined)
 const BRIEF_MAX = 160;
 
 export function extractBrief(brief: string | undefined, blocks: EmdashPortableBlock[] | undefined): string {
-  if (brief) return brief;
+  if (brief) {
+    return brief;
+  }
   const firstText = (blocks ?? []).find((block) => block._type === 'block' && (block.style ?? 'normal') === 'normal');
   const text = (firstText?.children ?? [])
     .map((span) => span.text ?? '')
     .join('')
     .trim();
-  if (text.length <= BRIEF_MAX) return text;
+  if (text.length <= BRIEF_MAX) {
+    return text;
+  }
   const cut = text.slice(0, BRIEF_MAX - 1);
   const lastSpace = /\s/.test(text[BRIEF_MAX - 1]) ? cut.length : cut.lastIndexOf(' ');
   const words = lastSpace > 0 ? cut.slice(0, lastSpace).replace(/[\s,;:]+$/, '') : cut;
@@ -87,7 +95,9 @@ export function extractBrief(brief: string | undefined, blocks: EmdashPortableBl
 
 export function readingTimeMinutes(data: EmdashPostData): number {
   const explicit = Number.parseInt(data.reading_time ?? '', 10);
-  if (Number.isFinite(explicit) && explicit > 0) return explicit;
+  if (Number.isFinite(explicit) && explicit > 0) {
+    return explicit;
+  }
   return Math.max(1, Math.ceil(portableTextWordCount(data.content) / 200));
 }
 

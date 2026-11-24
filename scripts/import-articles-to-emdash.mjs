@@ -47,7 +47,9 @@ const LOCAL_IMAGE_RE = /\.\.\/assets\/images\/[^\s)"']+/g;
 
 export function splitFrontmatter(raw) {
   const match = raw.match(FRONTMATTER_RE);
-  if (!match) return { frontmatter: {}, body: raw };
+  if (!match) {
+    return { frontmatter: {}, body: raw };
+  }
   return { frontmatter: parseYaml(match[1]) ?? {}, body: raw.slice(match[0].length).trimStart() };
 }
 
@@ -56,7 +58,9 @@ export function collectLocalImageRefs(frontmatter, body) {
   if (typeof frontmatter.cover === 'string' && frontmatter.cover.startsWith('../assets/images/')) {
     refs.add(frontmatter.cover);
   }
-  for (const ref of body.match(LOCAL_IMAGE_RE) ?? []) refs.add(ref);
+  for (const ref of body.match(LOCAL_IMAGE_RE) ?? []) {
+    refs.add(ref);
+  }
   return [...refs];
 }
 
@@ -85,9 +89,13 @@ export function toMediaValue(item, alt) {
 
 export function rewriteImageBlocks(blocks, mediaByRef) {
   return blocks.map((block) => {
-    if (block._type !== 'image' || typeof block.asset?.url !== 'string') return block;
+    if (block._type !== 'image' || typeof block.asset?.url !== 'string') {
+      return block;
+    }
     const item = mediaByRef.get(block.asset.url);
-    if (!item) return block;
+    if (!item) {
+      return block;
+    }
     return {
       ...block,
       width: item.width,
@@ -104,12 +112,24 @@ export function toEntryInput(slug, frontmatter, blocks, isDraft, coverValue) {
     date: new Date(frontmatter.date).toISOString(),
     content: blocks
   };
-  if (frontmatter.modified) data.modified = new Date(frontmatter.modified).toISOString();
-  if (coverValue) data.cover = coverValue;
-  if (frontmatter.brief) data.brief = frontmatter.brief;
-  if (frontmatter.readingTime) data.reading_time = frontmatter.readingTime;
-  if (frontmatter.seo?.title) data.seo_title = frontmatter.seo.title;
-  if (frontmatter.seo?.description) data.seo_description = frontmatter.seo.description;
+  if (frontmatter.modified) {
+    data.modified = new Date(frontmatter.modified).toISOString();
+  }
+  if (coverValue) {
+    data.cover = coverValue;
+  }
+  if (frontmatter.brief) {
+    data.brief = frontmatter.brief;
+  }
+  if (frontmatter.readingTime) {
+    data.reading_time = frontmatter.readingTime;
+  }
+  if (frontmatter.seo?.title) {
+    data.seo_title = frontmatter.seo.title;
+  }
+  if (frontmatter.seo?.description) {
+    data.seo_description = frontmatter.seo.description;
+  }
   return {
     slug,
     publish: !(isDraft || frontmatter.draft),
@@ -137,27 +157,40 @@ function parseArgs(argv) {
   };
   for (let i = 2; i < argv.length; i++) {
     const arg = argv[i];
-    if (arg === '--commit') args.commit = true;
-    else if (arg === '--dry-run') args.commit = false;
-    else if (arg === '--status') args.status = true;
-    else if (arg === '--reimport') args.reimport = true;
-    else if (arg === '--source') args.sourceDir = argv[++i];
-    else if (arg === '--base-url') args.baseUrl = argv[++i];
-    else if (arg === '--token') args.token = argv[++i];
-    else if (arg === '--help' || arg === '-h') {
+    if (arg === '--commit') {
+      args.commit = true;
+    } else if (arg === '--dry-run') {
+      args.commit = false;
+    } else if (arg === '--status') {
+      args.status = true;
+    } else if (arg === '--reimport') {
+      args.reimport = true;
+    } else if (arg === '--source') {
+      args.sourceDir = argv[++i];
+    } else if (arg === '--base-url') {
+      args.baseUrl = argv[++i];
+    } else if (arg === '--token') {
+      args.token = argv[++i];
+    } else if (arg === '--help' || arg === '-h') {
       console.log(USAGE);
       process.exit(0);
-    } else throw new Error(`unknown argument: ${arg}\n${USAGE}`);
+    } else {
+      throw new Error(`unknown argument: ${arg}\n${USAGE}`);
+    }
   }
   return args;
 }
 
 async function mintDevToken(baseUrl) {
   const response = await fetch(`${baseUrl}/_emdash/api/setup/dev-bypass?token=1`, { method: 'POST' });
-  if (!response.ok) throw new Error(`dev-bypass failed: ${response.status}`);
+  if (!response.ok) {
+    throw new Error(`dev-bypass failed: ${response.status}`);
+  }
   const payload = await response.json();
   const token = payload?.data?.token;
-  if (!token) throw new Error('dev-bypass returned no token');
+  if (!token) {
+    throw new Error('dev-bypass returned no token');
+  }
   return token;
 }
 
@@ -182,13 +215,19 @@ async function readCollectionFiles(sourceDir, dir) {
 async function ensureTerms(client, entries) {
   const wanted = new Map();
   for (const entry of entries) {
-    for (const slug of entry.input.taxonomies.tag) wanted.set(slug, capitalizeTag(slug));
+    for (const slug of entry.input.taxonomies.tag) {
+      wanted.set(slug, capitalizeTag(slug));
+    }
   }
   const existing = new Set();
   const { items } = await client.terms('tag', { limit: 200 });
-  for (const term of items ?? []) existing.add(term.slug);
+  for (const term of items ?? []) {
+    existing.add(term.slug);
+  }
   for (const [slug, label] of wanted) {
-    if (existing.has(slug)) continue;
+    if (existing.has(slug)) {
+      continue;
+    }
     await client.createTerm('tag', { slug, label });
     console.log(`  + term ${slug} (${label})`);
   }
@@ -232,9 +271,14 @@ async function main() {
   let publishedCount = 0;
   let draftCount = 0;
   for await (const item of client.listAll('posts', { limit: 100 })) {
-    if (item.slug) existingBySlug.set(item.slug, item);
-    if (item.status === 'published') publishedCount++;
-    else draftCount++;
+    if (item.slug) {
+      existingBySlug.set(item.slug, item);
+    }
+    if (item.status === 'published') {
+      publishedCount++;
+    } else {
+      draftCount++;
+    }
   }
 
   if (args.status) {
@@ -273,7 +317,9 @@ async function main() {
   const mediaByRef = new Map();
   for (const entry of pending) {
     for (const ref of entry.refs) {
-      if (mediaByRef.has(ref)) continue;
+      if (mediaByRef.has(ref)) {
+        continue;
+      }
       const raw = await readFile(refToDiskPath(sourceDir, ref));
       const optimized = await optimizeImage(raw, `${entry.slug}--${path.basename(ref)}`);
       const item = await client.mediaUpload(new Uint8Array(optimized.bytes), optimized.filename, {
@@ -304,15 +350,20 @@ async function main() {
     const existing = existingBySlug.get(entry.slug);
     if (existing) {
       await updateEntry(args.baseUrl, token, existing.id, entry.input);
-      if (entry.input.publish) await client.publish('posts', existing.id);
-      else if (existing.status === 'published') await client.unpublish('posts', existing.id);
+      if (entry.input.publish) {
+        await client.publish('posts', existing.id);
+      } else if (existing.status === 'published') {
+        await client.unpublish('posts', existing.id);
+      }
       written++;
       console.log(`  ~ rewrote ${entry.input.publish ? 'published' : 'draft'}: ${entry.slug}`);
       continue;
     }
     const item = await createEntry(args.baseUrl, token, entry.input);
     const record = item?.item ?? item;
-    if (entry.input.publish) await client.publish('posts', record.id);
+    if (entry.input.publish) {
+      await client.publish('posts', record.id);
+    }
     written++;
     console.log(`  = ${entry.input.publish ? 'published' : 'draft'}: ${entry.slug}`);
   }

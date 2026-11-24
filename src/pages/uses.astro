@@ -1225,7 +1225,7 @@ const sections = [
 
   document.addEventListener('astro:page-load', () => {
     const nav = document.querySelector<HTMLElement>('[data-uses-sections]');
-    if (!nav) return;
+    if (!nav) {return;}
     const uninstall = installSectionSpy(nav);
     document.addEventListener('astro:before-swap', uninstall, { once: true });
   });

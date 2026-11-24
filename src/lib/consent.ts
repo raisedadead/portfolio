@@ -17,17 +17,27 @@ export function installConsentBanner(): () => void {
   const syncBanner = (): void => {
     const consent = choice ?? readConsent();
     const banner = document.getElementById('consent-banner');
-    if (banner) banner.hidden = consent !== null;
-    if (consent === 'true') loadGAScript();
+    if (banner) {
+      banner.hidden = consent !== null;
+    }
+    if (consent === 'true') {
+      loadGAScript();
+    }
   };
 
   const handleClick = (event: MouseEvent): void => {
-    if (!(event.target instanceof Element)) return;
+    if (!(event.target instanceof Element)) {
+      return;
+    }
     const button = event.target.closest<HTMLButtonElement>('button[data-consent]');
     const banner = document.getElementById('consent-banner');
-    if (!button || !banner?.contains(button)) return;
+    if (!button || !banner?.contains(button)) {
+      return;
+    }
     const value = button.dataset.consent;
-    if (value !== 'true' && value !== 'false') return;
+    if (value !== 'true' && value !== 'false') {
+      return;
+    }
     choice = value;
     try {
       window.localStorage.setItem('ga-consent', value);

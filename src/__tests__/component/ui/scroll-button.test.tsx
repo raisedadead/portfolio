@@ -19,7 +19,9 @@ describe('ScrollButton', () => {
 
   it.each([0, 100])('hides when no scrolling is needed at offset %i', (offset) => {
     window.pageYOffset = offset;
-    if (offset) Object.defineProperty(document.documentElement, 'scrollHeight', { value: 800, configurable: true });
+    if (offset) {
+      Object.defineProperty(document.documentElement, 'scrollHeight', { value: 800, configurable: true });
+    }
     render(<ScrollButton className='fixed' />);
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });

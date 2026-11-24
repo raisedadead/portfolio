@@ -33,7 +33,9 @@ function cf(args) {
 
 function stateFile(dir) {
   const file = readdirSync(dir).find((name) => name.endsWith('.sqlite') && name !== 'metadata.sqlite');
-  if (!file) throw new Error(`no SQLite file in ${dir}`);
+  if (!file) {
+    throw new Error(`no SQLite file in ${dir}`);
+  }
   return path.join(dir, file);
 }
 
@@ -50,7 +52,9 @@ function fixtureStatements(db) {
   const statements = copied.map(({ sql }) => sql);
 
   for (const { name } of copied) {
-    if (SIGN_IN_TABLES.has(name)) continue;
+    if (SIGN_IN_TABLES.has(name)) {
+      continue;
+    }
     const columns = db
       .prepare(`PRAGMA table_info(${quoteIdent(name)})`)
       .all()

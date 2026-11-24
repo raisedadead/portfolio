@@ -18,7 +18,9 @@ for (const consent of ['true', 'false']) {
     await page.route('**/*.js', (route) => route.abort());
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('button', { name: 'Accept', exact: true })).toBeHidden();
-    if (consent === 'false') await expect(page.locator('script#google-analytics')).toHaveCount(0);
+    if (consent === 'false') {
+      await expect(page.locator('script#google-analytics')).toHaveCount(0);
+    }
   });
 }
 

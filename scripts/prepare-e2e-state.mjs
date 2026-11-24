@@ -57,11 +57,15 @@ function startDevServer() {
 async function waitUntilReady(state, timeoutMs) {
   const deadline = Date.now() + timeoutMs;
   while (Date.now() < deadline) {
-    if (state.spawnError) return `spawn failed: ${state.spawnError.message}`;
+    if (state.spawnError) {
+      return `spawn failed: ${state.spawnError.message}`;
+    }
     if (state.exited && state.exitCode !== 0) {
       return `astro dev exited with code ${state.exitCode}`;
     }
-    if (await isServing()) return null;
+    if (await isServing()) {
+      return null;
+    }
     await sleep(1000);
   }
   return 'timed out waiting for astro dev health';
@@ -89,7 +93,9 @@ async function stopDevServer(state) {
     while (!state.exited && Date.now() < deadline) {
       await sleep(250);
     }
-    if (!state.exited) state.child.kill('SIGKILL');
+    if (!state.exited) {
+      state.child.kill('SIGKILL');
+    }
   }
   const deadline = Date.now() + 15_000;
   while ((await isServing()) && Date.now() < deadline) {
