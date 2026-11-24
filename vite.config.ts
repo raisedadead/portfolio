@@ -28,7 +28,6 @@ const presetRulesPendingMigration = [
   'typescript/use-unknown-in-catch-callback-variable',
   'unicorn/consistent-function-scoping',
   'unicorn/no-typeof-undefined',
-  'unicorn/prefer-dom-node-append',
   'unicorn/prefer-import-meta-properties',
   'unicorn/prefer-set-has',
   'unicorn/prefer-single-call',
@@ -38,7 +37,10 @@ const presetRulesPendingMigration = [
   'unicorn/prefer-top-level-await',
   'unicorn/text-encoding-identifier-case'
 ];
-const pendingMigrationOff = Object.fromEntries(presetRulesPendingMigration.map((rule) => [rule, 'off' as const]));
+const presetRulesClashingWithWorkersTypes = ['unicorn/prefer-dom-node-append'];
+const presetRulesOff = Object.fromEntries(
+  [...presetRulesPendingMigration, ...presetRulesClashingWithWorkersTypes].map((rule) => [rule, 'off' as const])
+);
 
 export default defineConfig({
   plugins: [react()],
@@ -140,7 +142,7 @@ export default defineConfig({
       'jsx-a11y/role-has-required-aria-props': 'error',
       'jsx-a11y/role-supports-aria-props': 'error',
       'vite-plus/prefer-vite-plus-imports': 'error',
-      ...pendingMigrationOff
+      ...presetRulesOff
     },
     overrides: [
       ...(cloudflare.overrides ?? []),
@@ -167,7 +169,7 @@ export default defineConfig({
       },
       {
         files: ['**/*'],
-        rules: pendingMigrationOff
+        rules: presetRulesOff
       }
     ],
     ignorePatterns: [
