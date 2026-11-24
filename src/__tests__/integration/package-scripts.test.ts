@@ -52,6 +52,13 @@ describe('package scripts', () => {
     expect(pkg.scripts['format:check']).toBe('vp fmt --check .');
   });
 
+  it('runs nested scripts through vp, not pnpm', () => {
+    const scriptsCallingPnpm = Object.entries(pkg.scripts as Record<string, string>)
+      .filter(([, command]) => /\bpnpm\b/.test(command))
+      .map(([name]) => name);
+    expect(scriptsCallingPnpm).toEqual([]);
+  });
+
   it('hands over the hooks path, then installs Vite+ hooks without touching agent files', () => {
     expect(prepareSteps).toHaveLength(2);
     expect(hookInstall).toBe('vp config --no-agent');

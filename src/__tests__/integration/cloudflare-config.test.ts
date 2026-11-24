@@ -147,17 +147,17 @@ describe('native Cloudflare workflow', () => {
 
   it('keeps build and deploy on the cf scripts', () => {
     expect({ build: pkg.scripts.build, deploy: pkg.scripts.deploy }).toEqual({
-      build: 'pnpm run do:build',
-      deploy: 'pnpm run do:build && pnpm run do:deploy'
+      build: 'vp run do:build',
+      deploy: 'vp run do:build && vp run do:deploy'
     });
   });
 
   it('builds before the local preview', () => {
-    expect(pkg.scripts.preview).toMatch(/^pnpm run do:build && /);
+    expect(pkg.scripts.preview).toMatch(/^vp run do:build && /);
   });
 
   it('builds before the end-to-end tests check the deployment package', () => {
-    expect(pkg.scripts['test:e2e']).toMatch(/^pnpm run do:build && /);
+    expect(pkg.scripts['test:e2e']).toMatch(/^vp run do:build && /);
   });
 
   it('keeps local state in the cf default directory with isolated e2e overrides', () => {

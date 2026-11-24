@@ -25,8 +25,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+      - name: Setup Vite+
+        uses: ./.github/actions/setup-vp
 
       - name: Resolve Playwright version
         id: playwright-version
@@ -41,10 +41,10 @@ jobs:
 
       - name: Install Playwright browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm exec playwright install --only-shell
+        run: vp exec playwright install --only-shell
 
       - name: Run E2E tests
-        run: pnpm test:e2e
+        run: vp run test:e2e
         env:
           CI: true
 

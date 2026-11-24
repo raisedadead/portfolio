@@ -1,2 +1,2 @@
-pnpm lint
-pnpm test
+vp run lint
+vp run test

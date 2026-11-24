@@ -82,7 +82,7 @@ function ownsDevLock() {
 async function stopDevServer(state) {
   if (ownsDevLock()) {
     try {
-      execSync('pnpm exec astro dev stop', { stdio: 'ignore', timeout: 30_000 });
+      execSync('vp exec astro dev stop', { stdio: 'ignore', timeout: 30_000 });
     } catch (error) {
       console.error('astro dev stop:', error instanceof Error ? error.message : error);
     }

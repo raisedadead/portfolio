@@ -6,7 +6,7 @@ This guide lists the Cloudflare doc pages that this project uses, and tells you 
 
 1. Find the page in the lists below.
 1. Fetch the page as Markdown. Add `/index.md` to the URL, or send the `Accept: text/markdown` header.
-1. If the lists do not have the page, run `pnpm exec cf docs search "<question>"`.
+1. If the lists do not have the page, run `vp exec cf docs search "<question>"`.
 1. If the search does not find it, read the index for the product, for example `https://developers.cloudflare.com/workers/llms.txt`.
 1. If you need a skill or an MCP server for Cloudflare, read [Docs for agents](https://developers.cloudflare.com/docs-for-agents/index.md).
 

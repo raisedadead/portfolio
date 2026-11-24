@@ -14,10 +14,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+      - name: Setup Vite+
+        uses: ./.github/actions/setup-vp
 
       - name: Build
-        run: pnpm build
+        run: vp run build
         env:
           CI: true

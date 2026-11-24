@@ -25,7 +25,7 @@ const databaseId = env.DB.id;
 const bucket = env.MEDIA.name;
 
 function cf(args) {
-  return execFileSync('pnpm', ['exec', 'cf', ...args, '--quiet'], {
+  return execFileSync('vp', ['exec', 'cf', ...args, '--quiet'], {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'inherit']
   });

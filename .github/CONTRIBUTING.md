@@ -4,21 +4,23 @@ Thanks for checking out this codebase. I am grateful for your feedback, suggesti
 
 #### Getting started
 
+Install [Vite+](https://viteplus.dev/guide/) (`vp`). It runs pnpm for installs.
+
 ```bash
 # Install dependencies
-pnpm install
+vp install
 
 # Start development server
-pnpm dev
+vp run dev
 
 # Run tests
-pnpm test
+vp run test
 
 # Build for production
-pnpm build
+vp run build
 
 # Preview production build
-pnpm preview
+vp run preview
 ```
 
 #### Local configuration
@@ -26,7 +28,7 @@ pnpm preview
 - Edit `cloudflare.config.ts` for Worker settings and bindings. The Cloudflare CLI and Astro adapter use pinned beta releases.
 - Copy `env.example` to `.env` for local values. Keep secret values out of `cloudflare.config.ts`.
 - Local D1, R2 and KV bindings use local data, not production data. Development retains `.cloudflare/state`; preview and end-to-end tests use separate state directories.
-- `pnpm build` creates `.cloudflare/output`. `pnpm run deploy` builds and deploys it. `pnpm exec cf previews deploy` builds and deploys a Worker Preview for the current branch.
+- `vp run build` creates `.cloudflare/output`. `vp run deploy` builds and deploys it. `vp exec cf previews deploy` builds and deploys a Worker Preview for the current branch.
 
 #### Deploys
 
@@ -35,7 +37,7 @@ pnpm preview
 - Do not change the Worker in the Cloudflare dashboard or with the API. The next deploy from `main` overwrites such a change. To restore the config now, start a main build:
 
   ```bash
-  pnpm exec cf builds create cc20f4aaea3249688c2131e6b1ae11b8 --branch main
+  vp exec cf builds create cc20f4aaea3249688c2131e6b1ae11b8 --branch main
   ```
 
 - To roll back, revert the commit with `git revert` and merge it. Do not roll back in the dashboard.
