@@ -28,7 +28,6 @@ const presetRulesPendingMigration = [
   'typescript/use-unknown-in-catch-callback-variable',
   'unicorn/consistent-function-scoping',
   'unicorn/no-typeof-undefined',
-  'unicorn/numeric-separators-style',
   'unicorn/prefer-at',
   'unicorn/prefer-dom-node-append',
   'unicorn/prefer-import-meta-properties',

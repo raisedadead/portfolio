@@ -103,10 +103,10 @@ function decodeEntities(input) {
 }
 
 function safeCodePoint(code) {
-  if (!Number.isInteger(code) || code <= 0 || code > 0x10ffff) {
+  if (!Number.isInteger(code) || code <= 0 || code > 0x10_ff_ff) {
     return undefined;
   }
-  if (code >= 0xd800 && code <= 0xdfff) {
+  if (code >= 0xd8_00 && code <= 0xdf_ff) {
     return undefined;
   }
   return String.fromCodePoint(code);

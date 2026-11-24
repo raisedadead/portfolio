@@ -35,9 +35,9 @@ export default defineConfig({
     command: isCI ? `${e2eServer} 8787` : `portless portfolio-e2e --force sh -c '${e2eServer} "$PORT"'`,
     url: `${baseURL}/blog`,
     ignoreHTTPSErrors: !isCI,
-    gracefulShutdown: isCI ? undefined : { signal: 'SIGTERM', timeout: 10000 },
+    gracefulShutdown: isCI ? undefined : { signal: 'SIGTERM', timeout: 10_000 },
     reuseExistingServer: false,
-    timeout: 300000
+    timeout: 300_000
   },
 
   projects: [
