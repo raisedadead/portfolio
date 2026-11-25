@@ -69,7 +69,7 @@
     "happy-dom": "21.0.4",
     "jest-axe": "11.0.0",
     "marked": "18.2.1",
-    "portless": "0.17.0",
+    "portless": "0.18.1",
     "tailwindcss": "4.3.5",
     "typescript": "6.0.3",
     "vite": "catalog:",
