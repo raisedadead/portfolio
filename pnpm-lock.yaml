@@ -272,8 +272,8 @@ importers:
         version: 1.0.7(tailwindcss@4.3.5)
     devDependencies:
       '@cloudflare/oxlint-config':
-        specifier: ^0.1.0
-        version: 0.1.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)))(supports-color@10.2.2)(tsrs@7.1.0-beta.tsrs2)(typescript@6.0.3)
+        specifier: ^0.2.0
+        version: 0.2.0(eslint-plugin-perfectionist@5.14.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)))(tsrs@7.1.0-beta.tsrs2)(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1))
       '@cloudflare/workers-types':
         specifier: 5.20261118.1
         version: 5.20261118.1
@@ -763,12 +763,20 @@ packages:
       zod:
         optional: true
 
-  '@cloudflare/oxlint-config@0.1.0':
-    resolution: {integrity: sha512-ZIajMHdEImUjtKZEHbpddrXsnNBpQT7Gy1MZg2lOL3ketdmWYpNWtZghkkKAlhgi2R8z/HATZyas4OOpMy6TIQ==}
+  '@cloudflare/oxlint-config@0.2.0':
+    resolution: {integrity: sha512-HENc8yIzCuIPvUyQbX47UKv2kgA26iZt1XRsrlQXayJG6cWmBNlnHXfPy7oNCghqWpTBcbFRdGwsHd1Ahe3zhw==}
     engines: {node: ^22.18.0 || >=24.0.0}
     peerDependencies:
       oxlint: ^1.94.0
-      tsrs: '>=0.25.0-ts7.1.0-beta'
+      tsrs: '>=7.1.0-beta.tsrs2'
+      vite-plus: '>=1.7.0'
+    peerDependenciesMeta:
+      oxlint:
+        optional: true
+      tsrs:
+        optional: true
+      vite-plus:
+        optional: true
 
   '@cloudflare/runtime-types@0.1.30':
     resolution: {integrity: sha512-p68T70lDZT7Vyv5c2SDzB0uqVRVCtj/3WMgXVQESnWVyTybcCwXRM9Ekmh2rQ+aPGhtIWiACvd8pX2yGA9Z5mw==}
@@ -1605,16 +1613,30 @@ packages:
   '@neon-rs/load@0.0.4':
     resolution: {integrity: sha512-kTPhdZyTQxB+2wpiRcFWrDcejc4JI6tkPuS7UZCG4l6Zvc5kU/gGQ/ozvHTh1XR5tS+UlfAfGuPajjzQjCiHCw==}
 
-  '@nkzw/eslint-plugin@2.0.0':
-    resolution: {integrity: sha512-IoU8kOqHfnf7se2dGxMD/7RPm6WVjzjOjWSo7FulRx3lJzuZvXioSkT5Nd82l66DH3Pl2whw74lPT1di3KMwFA==}
+  '@nkzw/eslint-plugin@3.0.0':
+    resolution: {integrity: sha512-J6Ms/OzUxx7BNBggCKOqFWbESgAJYjvXvekCjjpxVJA2fBv5xOsC5P+2WDYqQUMCvDOU3GxBgG/jrmbqf+/wQA==}
     peerDependencies:
       eslint: '>= 9'
+    peerDependenciesMeta:
+      eslint:
+        optional: true
 
-  '@nkzw/oxlint-config@3.0.0':
-    resolution: {integrity: sha512-eBLEwZp7Q0HMPr5ixSBH+Brv4+ZFUJkjSnrpBJNHjBzusi4uau91VWVlzFUePascXWAmv2LVR3emwE8666oViw==}
+  '@nkzw/oxlint-config@4.1.0':
+    resolution: {integrity: sha512-uFJxSqD8LPGe+uYVh+EC9BwndUGr3h7+aHQhKcdUANNSV4c1vvRoOqqHUTlML5RnHtvABtapW1ZyY4gkz6sKOA==}
     peerDependencies:
+      eslint-plugin-perfectionist: ^5.14.0
       oxlint: '>=1.94.0'
-      tsrs: '>=0.25.0-ts7.1.0-beta'
+      tsrs: '>=0.25.0-ts7.1.0-beta || ^7.1.0-beta.tsrs2'
+      vite-plus: '>=1.7.0'
+    peerDependenciesMeta:
+      eslint-plugin-perfectionist:
+        optional: true
+      oxlint:
+        optional: true
+      tsrs:
+        optional: true
+      vite-plus:
+        optional: true
 
   '@noble/secp256k1@3.2.0':
     resolution: {integrity: sha512-Z3ZAWOTxJ0EuTuZTi7Y69iK7GgrLHh8sgm45lVDhg/b3Nk1TpAiKhick2KkZisHuupeepSkyIydN/J459SdX1w==}
@@ -6277,11 +6299,13 @@ snapshots:
       '@keyv/bigmap': 1.3.1(keyv@5.6.0)
       hookified: 1.15.1
       keyv: 5.6.0
+    optional: true
 
   '@cacheable/utils@2.5.0':
     dependencies:
       hashery: 1.5.1
       keyv: 5.6.0
+    optional: true
 
   '@calcom/embed-core@1.5.3': {}
 
@@ -6353,16 +6377,16 @@ snapshots:
       - '@types/react'
       - date-fns
 
-  '@cloudflare/oxlint-config@0.1.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)))(supports-color@10.2.2)(tsrs@7.1.0-beta.tsrs2)(typescript@6.0.3)':
+  '@cloudflare/oxlint-config@0.2.0(eslint-plugin-perfectionist@5.14.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)))(tsrs@7.1.0-beta.tsrs2)(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1))':
     dependencies:
-      '@nkzw/oxlint-config': 3.0.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)))(supports-color@10.2.2)(tsrs@7.1.0-beta.tsrs2)(typescript@6.0.3)
+      '@nkzw/oxlint-config': 4.1.0(eslint-plugin-perfectionist@5.14.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)))(tsrs@7.1.0-beta.tsrs2)(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1))
+    optionalDependencies:
       oxlint: 1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1))
       tsrs: 7.1.0-beta.tsrs2
+      vite-plus: 1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)
     transitivePeerDependencies:
-      - '@typescript/native'
       - eslint
-      - supports-color
-      - typescript
+      - eslint-plugin-perfectionist
 
   '@cloudflare/runtime-types@0.1.30(@types/node@26.6.6)':
     dependencies:
@@ -6851,8 +6875,10 @@ snapshots:
     dependencies:
       eslint: 10.15.0(jiti@2.7.0)(supports-color@10.2.2)
       eslint-visitor-keys: 3.4.3
+    optional: true
 
-  '@eslint-community/regexpp@4.12.3': {}
+  '@eslint-community/regexpp@4.12.3':
+    optional: true
 
   '@eslint/config-array@0.23.6(supports-color@10.2.2)':
     dependencies:
@@ -6861,21 +6887,26 @@ snapshots:
       minimatch: 11.0.6
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@eslint/config-helpers@0.7.0':
     dependencies:
       '@eslint/core': 1.2.1
+    optional: true
 
   '@eslint/core@1.2.1':
     dependencies:
       '@types/json-schema': 7.0.15
+    optional: true
 
-  '@eslint/object-schema@3.0.5': {}
+  '@eslint/object-schema@3.0.5':
+    optional: true
 
   '@eslint/plugin-kit@0.7.3':
     dependencies:
       '@eslint/core': 1.2.1
       levn: 0.4.1
+    optional: true
 
   '@floating-ui/core@1.8.0':
     dependencies:
@@ -6931,18 +6962,23 @@ snapshots:
   '@humanfs/core@0.19.2':
     dependencies:
       '@humanfs/types': 0.15.0
+    optional: true
 
   '@humanfs/node@0.16.8':
     dependencies:
       '@humanfs/core': 0.19.2
       '@humanfs/types': 0.15.0
       '@humanwhocodes/retry': 0.4.3
+    optional: true
 
-  '@humanfs/types@0.15.0': {}
+  '@humanfs/types@0.15.0':
+    optional: true
 
-  '@humanwhocodes/module-importer@1.0.1': {}
+  '@humanwhocodes/module-importer@1.0.1':
+    optional: true
 
-  '@humanwhocodes/retry@0.4.3': {}
+  '@humanwhocodes/retry@0.4.3':
+    optional: true
 
   '@img/colour@1.1.0': {}
 
@@ -7089,8 +7125,10 @@ snapshots:
       hashery: 1.5.1
       hookified: 1.15.1
       keyv: 5.6.0
+    optional: true
 
-  '@keyv/serialize@1.1.1': {}
+  '@keyv/serialize@1.1.1':
+    optional: true
 
   '@lezer/common@1.5.3': {}
 
@@ -7257,22 +7295,21 @@ snapshots:
   '@neon-rs/load@0.0.4':
     optional: true
 
-  '@nkzw/eslint-plugin@2.0.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))':
-    dependencies:
+  '@nkzw/eslint-plugin@3.0.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))':
+    optionalDependencies:
       eslint: 10.15.0(jiti@2.7.0)(supports-color@10.2.2)
 
-  '@nkzw/oxlint-config@3.0.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)))(supports-color@10.2.2)(tsrs@7.1.0-beta.tsrs2)(typescript@6.0.3)':
+  '@nkzw/oxlint-config@4.1.0(eslint-plugin-perfectionist@5.14.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)))(tsrs@7.1.0-beta.tsrs2)(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1))':
     dependencies:
-      '@nkzw/eslint-plugin': 2.0.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))
+      '@nkzw/eslint-plugin': 3.0.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))
       eslint-plugin-no-only-tests: 3.4.0
+    optionalDependencies:
       eslint-plugin-perfectionist: 5.14.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       oxlint: 1.94.0(vite-plus@1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1))
       tsrs: 7.1.0-beta.tsrs2
+      vite-plus: 1.7.0(@astrojs/compiler-rs@0.5.3)(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(@volar/typescript@2.4.28(typescript@6.0.3))(esbuild@0.28.2)(happy-dom@21.0.4)(jiti@2.7.0)(playwright@1.65.1)(tsx@4.23.15)(typescript@6.0.3)(yaml@2.9.1)
     transitivePeerDependencies:
-      - '@typescript/native'
       - eslint
-      - supports-color
-      - typescript
 
   '@noble/secp256k1@3.2.0': {}
 
@@ -8335,7 +8372,8 @@ snapshots:
 
   '@types/deep-eql@4.0.2': {}
 
-  '@types/esrecurse@4.3.1': {}
+  '@types/esrecurse@4.3.1':
+    optional: true
 
   '@types/estree-jsx@1.0.5':
     dependencies:
@@ -8347,7 +8385,8 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/json-schema@7.0.15': {}
+  '@types/json-schema@7.0.15':
+    optional: true
 
   '@types/mdast@4.0.4':
     dependencies:
@@ -8390,17 +8429,21 @@ snapshots:
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@typescript-eslint/scope-manager@8.73.0':
     dependencies:
       '@typescript-eslint/types': 8.73.0
       '@typescript-eslint/visitor-keys': 8.73.0
+    optional: true
 
   '@typescript-eslint/tsconfig-utils@8.73.0(typescript@6.0.3)':
     dependencies:
       typescript: 6.0.3
+    optional: true
 
-  '@typescript-eslint/types@8.73.0': {}
+  '@typescript-eslint/types@8.73.0':
+    optional: true
 
   '@typescript-eslint/typescript-estree@8.73.0(supports-color@10.2.2)(typescript@6.0.3)':
     dependencies:
@@ -8416,6 +8459,7 @@ snapshots:
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@typescript-eslint/utils@8.73.0(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)':
     dependencies:
@@ -8428,11 +8472,13 @@ snapshots:
     transitivePeerDependencies:
       - '@typescript/native'
       - supports-color
+    optional: true
 
   '@typescript-eslint/visitor-keys@8.73.0':
     dependencies:
       '@typescript-eslint/types': 8.73.0
       eslint-visitor-keys: 5.0.1
+    optional: true
 
   '@ungap/structured-clone@1.3.0': {}
 
@@ -8686,8 +8732,10 @@ snapshots:
   acorn-jsx@5.3.2(acorn@8.19.0):
     dependencies:
       acorn: 8.19.0
+    optional: true
 
-  acorn@8.19.0: {}
+  acorn@8.19.0:
+    optional: true
 
   ajv-draft-04@1.0.0(ajv@8.17.1):
     optionalDependencies:
@@ -8707,6 +8755,7 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
+    optional: true
 
   ajv@8.17.1:
     dependencies:
@@ -8908,6 +8957,7 @@ snapshots:
       hookified: 1.15.1
       keyv: 5.6.0
       qified: 0.10.1
+    optional: true
 
   call-bind-apply-helpers@1.0.2:
     dependencies:
@@ -9073,7 +9123,8 @@ snapshots:
     optionalDependencies:
       supports-color: 10.2.2
 
-  deep-is@0.1.4: {}
+  deep-is@0.1.4:
+    optional: true
 
   deepmerge@4.3.1: {}
 
@@ -9343,6 +9394,7 @@ snapshots:
       - '@typescript/native'
       - supports-color
       - typescript
+    optional: true
 
   eslint-scope@9.1.2:
     dependencies:
@@ -9350,10 +9402,13 @@ snapshots:
       '@types/estree': 1.0.8
       esrecurse: 4.3.0
       estraverse: 5.3.0
+    optional: true
 
-  eslint-visitor-keys@3.4.3: {}
+  eslint-visitor-keys@3.4.3:
+    optional: true
 
-  eslint-visitor-keys@5.0.1: {}
+  eslint-visitor-keys@5.0.1:
+    optional: true
 
   eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2):
     dependencies:
@@ -9391,6 +9446,7 @@ snapshots:
       jiti: 2.7.0
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   esm-env@1.2.2: {}
 
@@ -9399,22 +9455,27 @@ snapshots:
       acorn: 8.19.0
       acorn-jsx: 5.3.2(acorn@8.19.0)
       eslint-visitor-keys: 5.0.1
+    optional: true
 
   esquery@1.7.0:
     dependencies:
       estraverse: 5.3.0
+    optional: true
 
   esrecurse@4.3.0:
     dependencies:
       estraverse: 5.3.0
+    optional: true
 
-  estraverse@5.3.0: {}
+  estraverse@5.3.0:
+    optional: true
 
   estree-walker@3.0.3:
     dependencies:
       '@types/estree': 1.0.8
 
-  esutils@2.0.3: {}
+  esutils@2.0.3:
+    optional: true
 
   etag@1.8.1: {}
 
@@ -9473,9 +9534,11 @@ snapshots:
 
   fast-equals@5.4.1: {}
 
-  fast-json-stable-stringify@2.1.0: {}
+  fast-json-stable-stringify@2.1.0:
+    optional: true
 
-  fast-levenshtein@2.0.6: {}
+  fast-levenshtein@2.0.6:
+    optional: true
 
   fast-string-truncated-width@3.0.3: {}
 
@@ -9508,6 +9571,7 @@ snapshots:
   file-entry-cache@11.1.5:
     dependencies:
       flat-cache: 6.1.23
+    optional: true
 
   finalhandler@2.1.1(supports-color@10.2.2):
     dependencies:
@@ -9524,12 +9588,14 @@ snapshots:
     dependencies:
       locate-path: 6.0.0
       path-exists: 4.0.0
+    optional: true
 
   flat-cache@6.1.23:
     dependencies:
       cacheable: 2.5.0
       flatted: 3.4.4
       hookified: 1.15.1
+    optional: true
 
   flatted@3.4.4: {}
 
@@ -9608,6 +9674,7 @@ snapshots:
   glob-parent@6.0.2:
     dependencies:
       is-glob: 4.0.3
+    optional: true
 
   glob@14.0.4:
     dependencies:
@@ -9651,6 +9718,7 @@ snapshots:
   hashery@1.5.1:
     dependencies:
       hookified: 1.15.1
+    optional: true
 
   hasown@2.0.4:
     dependencies:
@@ -9678,9 +9746,11 @@ snapshots:
 
   hono@4.13.14: {}
 
-  hookified@1.15.1: {}
+  hookified@1.15.1:
+    optional: true
 
-  hookified@2.2.0: {}
+  hookified@2.2.0:
+    optional: true
 
   html-entities@2.6.0: {}
 
@@ -9709,9 +9779,11 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  ignore@5.3.2: {}
+  ignore@5.3.2:
+    optional: true
 
-  imurmurhash@0.1.4: {}
+  imurmurhash@0.1.4:
+    optional: true
 
   indent-string@4.0.0: {}
 
@@ -9727,11 +9799,13 @@ snapshots:
 
   is-docker@4.0.0: {}
 
-  is-extglob@2.1.1: {}
+  is-extglob@2.1.1:
+    optional: true
 
   is-glob@4.0.3:
     dependencies:
       is-extglob: 2.1.1
+    optional: true
 
   is-plain-obj@4.1.0: {}
 
@@ -9781,13 +9855,15 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  json-schema-traverse@0.4.1: {}
+  json-schema-traverse@0.4.1:
+    optional: true
 
   json-schema-traverse@1.0.0: {}
 
   json-schema-typed@8.0.2: {}
 
-  json-stable-stringify-without-jsonify@1.0.1: {}
+  json-stable-stringify-without-jsonify@1.0.1:
+    optional: true
 
   jsonc-parser@2.3.1: {}
 
@@ -9796,6 +9872,7 @@ snapshots:
   keyv@5.6.0:
     dependencies:
       '@keyv/serialize': 1.1.1
+    optional: true
 
   kleur@4.1.5: {}
 
@@ -9815,6 +9892,7 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    optional: true
 
   lib0@0.2.117:
     dependencies:
@@ -9888,6 +9966,7 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
+    optional: true
 
   lodash.merge@4.6.2: {}
 
@@ -10045,9 +10124,11 @@ snapshots:
 
   nanoid@3.3.20: {}
 
-  natural-compare@1.4.0: {}
+  natural-compare@1.4.0:
+    optional: true
 
-  natural-orderby@5.0.0: {}
+  natural-orderby@5.0.0:
+    optional: true
 
   negotiator@1.0.0: {}
 
@@ -10113,6 +10194,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
       word-wrap: 1.2.5
+    optional: true
 
   orderedmap@2.1.1: {}
 
@@ -10192,6 +10274,7 @@ snapshots:
   p-limit@3.1.0:
     dependencies:
       yocto-queue: 0.1.0
+    optional: true
 
   p-limit@7.3.3:
     dependencies:
@@ -10200,6 +10283,7 @@ snapshots:
   p-locate@5.0.0:
     dependencies:
       p-limit: 3.1.0
+    optional: true
 
   p-queue@10.0.0: {}
 
@@ -10217,7 +10301,8 @@ snapshots:
 
   path-browserify@1.0.1: {}
 
-  path-exists@4.0.0: {}
+  path-exists@4.0.0:
+    optional: true
 
   path-key@3.1.1: {}
 
@@ -10317,7 +10402,8 @@ snapshots:
       xtend: 4.0.2
     optional: true
 
-  prelude-ls@1.2.1: {}
+  prelude-ls@1.2.1:
+    optional: true
 
   prettier-plugin-astro@0.14.1:
     dependencies:
@@ -10443,11 +10529,13 @@ snapshots:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
 
-  punycode@2.3.1: {}
+  punycode@2.3.1:
+    optional: true
 
   qified@0.10.1:
     dependencies:
       hookified: 2.2.0
+    optional: true
 
   qs@6.15.3:
     dependencies:
@@ -10868,6 +10956,7 @@ snapshots:
   ts-api-utils@2.5.0(typescript@6.0.3):
     dependencies:
       typescript: 6.0.3
+    optional: true
 
   tslib@2.3.0: {}
 
@@ -10894,6 +10983,7 @@ snapshots:
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
+    optional: true
 
   type-is@2.1.0:
     dependencies:
@@ -10995,6 +11085,7 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+    optional: true
 
   use-sync-external-store@1.6.0(react@19.3.1):
     dependencies:
@@ -11231,7 +11322,8 @@ snapshots:
 
   why-is-node-running@3.2.1: {}
 
-  word-wrap@1.2.5: {}
+  word-wrap@1.2.5:
+    optional: true
 
   workerd@1.20261117.1:
     optionalDependencies:
@@ -11307,7 +11399,8 @@ snapshots:
     dependencies:
       lib0: 0.2.117
 
-  yocto-queue@0.1.0: {}
+  yocto-queue@0.1.0:
+    optional: true
 
   yocto-queue@1.2.1: {}
 
